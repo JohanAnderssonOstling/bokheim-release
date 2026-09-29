@@ -1,6 +1,6 @@
 [package]
 name = "desktop-gpui"
-version = "0.1.3"
+version = "0.1.7"
 edition = "2024"
 
 [lib]
