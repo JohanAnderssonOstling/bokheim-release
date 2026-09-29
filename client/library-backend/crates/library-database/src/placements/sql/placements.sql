@@ -218,7 +218,20 @@ INSERT INTO book_dir(dir_id,book_row_id,file_name,local_hash,is_downloaded,last_
 
 -- name: restore_book_record_with_parent_select_2?
 -- param: content_hash: &str
-SELECT dir_id,file_name FROM book_dir WHERE book_row_id=(SELECT row_id FROM book WHERE content_hash=:content_hash) AND (deleted_at IS NULL OR deleted_at=(SELECT MAX(deleted_at) FROM book_dir WHERE book_row_id=(SELECT row_id FROM book WHERE content_hash=:content_hash))) ORDER BY dir_id;
+-- Display deletion flags are normalized to 1 during projection. Recency belongs
+-- to the canonical placement register, not that disposable flag.
+WITH placements AS (
+    SELECT bd.dir_id,bd.file_name,bd.deleted_at,v.changed_at
+    FROM book_dir bd
+    JOIN book b ON b.row_id=bd.book_row_id
+    JOIN sync_state_version v ON v.state_kind='placement'
+        AND v.state_key=b.content_hash AND v.state_subkey=bd.dir_id
+    WHERE b.content_hash=:content_hash AND v.body IS NOT NULL
+)
+SELECT dir_id,file_name FROM placements
+WHERE deleted_at IS NULL OR (NOT EXISTS(SELECT 1 FROM placements WHERE deleted_at IS NULL)
+    AND changed_at=(SELECT MAX(changed_at) FROM placements))
+ORDER BY dir_id;
 
 -- name: restore_book_record_with_parent_select_3?
 -- param: content_hash: &str
@@ -226,7 +239,9 @@ SELECT trash_origin_dir_id FROM book WHERE content_hash=:content_hash;
 
 -- name: restore_book_record_with_parent_select_4?
 -- param: dir_id: &str
-SELECT parent_id,deleted_at IS NULL AND purged_at IS NULL FROM dir WHERE id=:dir_id;
+-- Suppressed directories have a repaired display parent. Restore follows the
+-- retained parent intent while visibility still comes from the projection.
+SELECT COALESCE(intent_parent_id,parent_id),deleted_at IS NULL AND purged_at IS NULL FROM dir WHERE id=:dir_id;
 
 -- name: restore_book_record_with_parent_update!
 -- param: content_hash: &str

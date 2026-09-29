@@ -480,8 +480,9 @@ fn recovery_preserves_the_full_winner_across_repeated_publication_and_reopen() {
     for _ in 0..3 {
         replica.sync_enqueue_missing_state_cells(&cells).unwrap();
         let publications = replica.sync_publishable_mutations().unwrap();
-        assert_eq!(publications.len(), 1);
-        assert_eq!(library_replica::VersionKey::from_wire(&publications[0].to_wire().unwrap(), uuid::Uuid::from_u128(999)), expected);
+        assert_eq!(publications.len(), 2, "recovery republishes both lifecycle and metadata cells");
+        let metadata = publications.iter().find(|publication| publication.to_wire().unwrap().kind == "metadata").unwrap();
+        assert_eq!(library_replica::VersionKey::from_wire(&metadata.to_wire().unwrap(), uuid::Uuid::from_u128(999)), expected);
         let stored: (u64, String, u64, String) = replica
             .connection
             .query_row("SELECT changed_at,replica_id,replica_seq,mutation_id FROM sync_state_version WHERE state_kind='metadata'", [], |r| Ok((r.get::<_, i64>(0)? as u64, r.get(1)?, r.get::<_, i64>(2)? as u64, r.get(3)?)))
@@ -490,7 +491,7 @@ fn recovery_preserves_the_full_winner_across_repeated_publication_and_reopen() {
         let reopened = Database::open(&path).unwrap();
         reopened.initialize_library().unwrap();
         assert_eq!(reopened.sync_publishable_mutations().unwrap(), publications, "origin is part of the durable retry snapshot");
-        replica.sync_acknowledge_mutations(&[publications[0].mutation_id]).unwrap();
+        replica.sync_acknowledge_mutations(&publications.iter().map(|publication| publication.mutation_id).collect::<Vec<_>>()).unwrap();
     }
     drop(replica);
     std::fs::remove_file(path).unwrap();
