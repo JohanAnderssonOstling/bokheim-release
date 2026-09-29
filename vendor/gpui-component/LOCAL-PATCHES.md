@@ -4,7 +4,7 @@ Source: https://github.com/longbridge/gpui-component
 Revision: 88f102d13654fe25aa2fede076274b6b751a3704
 License: Apache-2.0 (LICENSE-APACHE included).
 
-Only the UI, assets, and macros crates are included; workspace members are narrowed accordingly. Manifests explicitly use this nested workspace and the existing local GPUI fork. The unused standalone psm Git override is removed; application dependency resolution remains controlled by the main workspace.
+Only the UI, assets, and macros crates are included; workspace members are narrowed accordingly. The nested workspace uses the same pinned GPUI fork revision as the main workspace so Cargo resolves one GPUI crate. The unused standalone psm Git override is removed.
 
 - Input and OTP carets remain visible and stop scheduling blink/pause timers when GPUI reports reduced motion.
 - Switches skip the animation and its completion timer under reduced motion.

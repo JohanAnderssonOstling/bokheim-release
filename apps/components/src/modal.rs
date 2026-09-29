@@ -1,7 +1,9 @@
 use gpui::prelude::*;
 use gpui::{Div, ElementId, FontWeight, MouseButton, SharedString, Stateful, div, px, rems};
 
-use crate::{BrowserTheme, RADIUS_MD, SPACE_MD, SPACE_SM, TEXT_MD};
+use gpui_component::{Icon, IconName};
+
+use crate::{BrowserTheme, RADIUS_MD, SPACE_MD, SPACE_SM, SPACE_XXS, TEXT_MD, TEXT_XS};
 
 /// The shared full-window layer for a centered modal. The caller supplies the
 /// scrim and surface so it can retain its own identity and dismissal behavior.
@@ -48,4 +50,35 @@ pub fn bottom_sheet_header(title: impl Into<SharedString>, theme: BrowserTheme) 
         .border_b_1()
         .border_color(theme.rule)
         .child(div().text_size(rems(TEXT_MD)).font_weight(FontWeight::SEMIBOLD).text_color(theme.text).child(title.into()))
+}
+
+/// A small muted heading over a group of sheet rows.
+pub fn bottom_sheet_section(label: impl Into<SharedString>, theme: BrowserTheme) -> Div {
+    div().flex_none().min_w_0().px(px(SPACE_SM)).pt(px(SPACE_SM)).pb(px(SPACE_XXS)).text_size(rems(TEXT_XS)).font_weight(FontWeight::SEMIBOLD).text_color(theme.text_muted).child(label.into())
+}
+
+pub fn bottom_sheet_divider(theme: BrowserTheme) -> Div {
+    div().flex_none().h(px(1.0)).my(px(SPACE_XXS)).bg(theme.rule)
+}
+
+/// One full-width, touch-sized choice in a bottom sheet; `checked` marks the
+/// current one.
+pub fn bottom_sheet_row(id: impl Into<ElementId>, label: impl Into<SharedString>, checked: bool, theme: BrowserTheme) -> Stateful<Div> {
+    div()
+        .id(id)
+        .flex_none()
+        .min_w_0()
+        .cursor_pointer()
+        .min_h(px(48.0))
+        .flex()
+        .items_center()
+        .justify_between()
+        .gap(px(SPACE_SM))
+        .px(px(SPACE_MD))
+        .py(px(SPACE_SM))
+        .text_size(rems(TEXT_MD))
+        .hover(move |style| style.bg(theme.hover))
+        .when(checked, |row| row.bg(theme.accent).text_color(theme.accent_text))
+        .child(div().flex_1().min_w_0().whitespace_normal().child(label.into()))
+        .when(checked, |row| row.child(Icon::new(IconName::Check).size(px(15.0))))
 }

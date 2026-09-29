@@ -45,7 +45,7 @@ mod tests {
 
     #[gpui::test]
     fn loading_and_error_share_a_cancellable_footer(cx: &mut gpui::TestAppContext) {
-        let (footer, cx) = cx.add_window_view(|_, cx| cx.new(|_| AudiobookFooter::default()));
+        let (footer, cx) = cx.add_window_view(|_, _| AudiobookFooter::default());
         let cancellations = cx.new(|cx| {
             cx.subscribe(&footer, |count: &mut usize, _, _: &CancelPending, _| *count += 1).detach();
             0usize

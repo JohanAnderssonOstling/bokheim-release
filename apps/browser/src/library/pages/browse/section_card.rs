@@ -346,21 +346,14 @@ fn mixed_groups(id: &str, page: WeakEntity<BrowsePage>, section: &BrowseSection,
                 let location = subject.id.clone();
                 let open_page = page.clone();
                 let menu_page = page.clone();
-                let mobile_menu_page = page.clone();
                 let menu_location = location.clone();
-                let mobile_menu_location = location.clone();
                 let mut row = components::section_card_subject(format!("{id}-subject-{index}"), child_icon, subject.name.clone(), subject.book_count, focus.get() == Some(index), theme).on_click(move |_, window, cx| {
                     let _ = open_page.update(cx, |page, cx| page.open_child(location.clone(), window, cx));
-                }).on_mouse_down(MouseButton::Right, move |event, window, cx| {
-                    if !components::uses_mobile_navigation(window) {
-                        let _ = menu_page.update(cx, |page, cx| page.open_section_child_menu(&menu_location, event.position, window, cx));
-                    }
+                }).on_mouse_down(MouseButton::Right, |_, _, cx| {
                     cx.stop_propagation();
                 }).on_aux_click(move |event, window, cx| {
                     if event.is_secondary() {
-                        if components::uses_mobile_navigation(window) {
-                            let _ = mobile_menu_page.update(cx, |page, cx| page.open_section_child_menu(&mobile_menu_location, event.position(), window, cx));
-                        }
+                        let _ = menu_page.update(cx, |page, cx| page.open_section_child_menu(&menu_location, event.position(), window, cx));
                         cx.stop_propagation();
                     }
                 });
@@ -386,7 +379,8 @@ fn mixed_groups(id: &str, page: WeakEntity<BrowsePage>, section: &BrowseSection,
             // Identified because a drag source has to be a stateful element,
             // and each by its place: a drag's state is kept per id, so covers
             // sharing one would hand a press on one cover to another.
-            let frame = div().id(("book", index)).w_full().h_full().min_w_0().child(rendered.clone());
+            let frame = div().id(("book", index)).w_full().h_full().min_w_0().child(rendered.clone())
+                .on_mouse_down(MouseButton::Right, |_, _, cx| cx.stop_propagation());
             match folder {
                 Some(folder) => {
                     let targets = FolderTargets { folders: Vec::new(), folder_parents: Default::default(), books: vec![rendered.read(cx).content_hash()], source: folder };

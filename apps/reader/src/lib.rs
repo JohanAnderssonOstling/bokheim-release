@@ -25,20 +25,24 @@ type CloseReader = std::rc::Rc<dyn Fn(&mut gpui::Window, &mut gpui::App)>;
 
 pub use app_preferences::PdfZoomMode;
 pub use app_preferences::{ReaderFontFamily, ReaderTextAlignment};
-#[cfg(feature = "audiobooks")]
 pub use audiobook_player::{ActiveAudiobook, AudiobookDock, DockAction, PlaybackSession};
 pub use settings::{ReaderPreferences, SaveReaderSettings};
-#[cfg(feature = "audiobooks")]
 pub use windows::AudiobookOpened;
 pub use windows::{CloseRequested, ReaderView, configure};
 
-#[cfg(feature = "audiobooks")]
+fn save_audiobook_speed(speed: f64, cx: &mut gpui::App) {
+    settings::ReaderSettings::update(cx, |preferences| preferences.audiobook_speed = speed);
+}
+
+pub fn open_audiobook(locator: library_model::BookLocator, library: library_backend::LibraryClient, resolved: library_backend::ResolvedBook, initial_target: Option<String>, cx: &mut gpui::App) -> gpui::Entity<PlaybackSession> {
+    use gpui::AppContext;
+    let speed = settings::ReaderSettings::preferences(cx).audiobook_speed;
+    cx.new(|cx| PlaybackSession::open(locator, library, resolved, initial_target, speed, save_audiobook_speed, cx))
+}
+
 pub fn restore_audiobook(record: &ActiveAudiobook, library: library_backend::LibraryClient, cx: &mut gpui::App) -> gpui::Entity<PlaybackSession> {
     use gpui::AppContext;
-    let save_speed = std::rc::Rc::new(|speed, cx: &mut gpui::App| {
-        settings::ReaderSettings::update(cx, |preferences| preferences.audiobook_speed = speed);
-    });
-    cx.new(|cx| PlaybackSession::restore(record, library, save_speed, cx))
+    cx.new(|cx| PlaybackSession::restore(record, library, save_audiobook_speed, cx))
 }
 
 actions!(

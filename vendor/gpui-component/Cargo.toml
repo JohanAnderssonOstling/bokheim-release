@@ -13,10 +13,10 @@ gpui-component-macros = { path = "crates/macros", version = "0.5.1" }
 gpui-component-assets = { path = "crates/assets", version = "0.5.1" }
 story = { path = "crates/story" }
 
-gpui = { path = "../../../GPUI-Fork/crates/gpui" }
-gpui_platform = { path = "../../../GPUI-Fork/crates/gpui_platform", features = ["font-kit", "x11", "wayland", "runtime_shaders"] }
+gpui = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd" }
+gpui_platform = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd", features = ["font-kit", "x11", "wayland", "runtime_shaders"] }
 gpui_web = { git = "https://github.com/zed-industries/zed" }
-gpui_macros = { path = "../../../GPUI-Fork/crates/gpui_macros" }
+gpui_macros = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd" }
 reqwest_client = { git = "https://github.com/zed-industries/zed" }
 sum-tree = { version = "0.2.0", package = "zed-sum-tree" }
 # reqwest = { version = "0.12.15-zed", package = "zed-reqwest" }
@@ -106,4 +106,3 @@ consts = "consts"
 ignored = ["log", "anyhow", "serde"]
 
 # Patches for WASM compatibility
-

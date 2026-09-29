@@ -3,7 +3,7 @@
 use std::rc::Rc;
 
 use gpui::prelude::*;
-use gpui::{AnyElement, App, Window, div, px};
+use gpui::{AnyElement, App, Window, div};
 use gpui_component::menu::PopupMenu;
 use ui_components as components;
 
@@ -52,23 +52,13 @@ impl ContextActions {
         let mut rows = div().id("reader-context-sheet-rows").flex_1().min_h_0().overflow_y_scroll();
         for (section_index, section) in self.sections.iter().enumerate() {
             if section_index > 0 {
-                rows = rows.child(div().h(px(1.0)).my(px(components::SPACE_XXS)).bg(theme.rule));
+                rows = rows.child(components::bottom_sheet_divider(theme));
             }
             for (action_index, action) in section.iter().enumerate() {
                 let run = action.run.clone();
                 let dismiss = on_dismiss.clone();
                 rows = rows.child(
-                    div()
-                        .id(("reader-context-action", section_index * 10 + action_index))
-                        .cursor_pointer()
-                        .min_h(px(48.0))
-                        .flex()
-                        .items_center()
-                        .px(px(components::SPACE_MD))
-                        .py(px(components::SPACE_SM))
-                        .text_size(gpui::rems(components::TEXT_MD))
-                        .hover(move |style| style.bg(theme.hover))
-                        .child(action.label)
+                    components::bottom_sheet_row(("reader-context-action", section_index * 10 + action_index), action.label, false, theme)
                         .on_click(move |_, window, cx| {
                             cx.stop_propagation();
                             dismiss(window, cx);

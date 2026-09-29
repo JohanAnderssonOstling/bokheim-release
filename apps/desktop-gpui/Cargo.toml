@@ -9,9 +9,7 @@ path = "src/lib.rs"
 
 [features]
 default = ["desktop"]
-audiobooks = ["reader-ui/audiobooks", "application-shell/audiobooks"]
 desktop = [
-    "audiobooks",
     "reader-ui/native-audio",
     "dep:gpui_platform",
     "dep:image",
@@ -27,7 +25,7 @@ flatpak = ["desktop", "reader-ui/packaged-pdfium", "application-shell/packaged-p
 # to turn a page on a touchscreen reader.
 kobo = ["mobile", "dep:gpui_kobo", "dep:kobo-device", "browser-ui/kobo", "reader-ui/kobo", "application-shell/kobo"]
 mobile = ["browser-ui/mobile", "reader-ui/mobile", "application-shell/mobile", "ui-components/mobile"]
-android = ["mobile", "audiobooks", "dep:audiobook-player", "dep:gpui_android", "dep:gpui_platform", "dep:update-client", "dep:linux-update-host"]
+android = ["mobile", "dep:audiobook-player", "dep:gpui_android", "dep:gpui_platform", "dep:update-client", "dep:linux-update-host"]
 
 [[bin]]
 name = "desktop-gpui"

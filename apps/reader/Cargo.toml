@@ -4,10 +4,9 @@ version = "0.1.0"
 edition = "2024"
 
 [features]
-default = []
-audiobooks = ["dep:audiobook-player"]
+default = ["native-audio"]
 native-audio = ["audiobook-player/native-rodio"]
-kobo = ["mobile", "dep:gpui_kobo", "app/kobo", "audiobooks", "audiobook-player/kobo", "ui-components/kobo"]
+kobo = ["mobile", "dep:gpui_kobo", "app/kobo", "audiobook-player/kobo", "ui-components/kobo"]
 mobile = ["ui-components/mobile"]
 packaged-pdfium = ["pdf-reader-core/packaged-pdfium"]
 
@@ -19,7 +18,7 @@ app = { path = "../../client/app", default-features = false }
 async-channel = "2"
 futures-util = "0.3"
 ui-components = { path = "../components" }
-audiobook-player = { path = "../audiobook-player", default-features = false, optional = true }
+audiobook-player = { path = "../audiobook-player", default-features = false }
 gpui.workspace = true
 gpui-component.workspace = true
 gpui_kobo = { path = "../../../GPUI-Fork/crates/gpui_kobo", optional = true }

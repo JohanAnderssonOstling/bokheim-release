@@ -1,16 +1,13 @@
 //! Per-window composition for the library and book reader.
 
-#[cfg(feature = "audiobooks")]
 mod audiobook_footer;
 #[cfg(feature = "kobo")]
 mod kobo_bar;
-#[cfg(feature = "audiobooks")]
 mod playback;
 
 use std::rc::Rc;
 
 use app::AppClient;
-#[cfg(feature = "audiobooks")]
 use browser_ui::BookDetailDismissed;
 use browser_ui::{AppServices, BrowserRoot, DismissSettings, OpenBookRequested};
 use gpui::prelude::*;
@@ -28,7 +25,6 @@ struct ReaderSurface {
 #[cfg(all(target_os = "linux", not(feature = "mobile")))]
 const NATIVE_TITLEBAR_HOVER_HEIGHT: gpui::Pixels = px(34.0);
 
-#[cfg(feature = "audiobooks")]
 struct AudiobookSurface {
     locator: BookLocator,
     session: Entity<reader_ui::PlaybackSession>,
@@ -64,20 +60,14 @@ pub struct ApplicationRoot {
     titlebar_reveal_armed: bool,
     #[cfg(all(target_os = "linux", not(feature = "mobile")))]
     native_pointer_left_client: bool,
-    #[cfg(feature = "audiobooks")]
     audiobook: Option<AudiobookSurface>,
-    #[cfg(feature = "audiobooks")]
     audiobook_footer: Entity<audiobook_footer::AudiobookFooter>,
-    #[cfg(feature = "audiobooks")]
     playback: Entity<playback::PlaybackController>,
-    #[cfg(feature = "audiobooks")]
-    pending_audiobook: Option<Entity<reader_ui::ReaderView>>,
-    #[cfg(feature = "audiobooks")]
+    pending_audiobook: Option<SharedString>,
     open_task: Option<gpui::Task<()>>,
     /// Set the instant a book is tapped, before the async format lookup that
     /// gates opening it resolves — without this, the screen looks unchanged
     /// for however long that lookup takes.
-    #[cfg(feature = "audiobooks")]
     opening: bool,
     application_title: SharedString,
     _browser_subscription: Subscription,
@@ -266,7 +256,6 @@ impl ApplicationRoot {
             root.open_book(request.locator.clone(), request.title.clone(), request.initial_target.clone(), window, cx);
         })
         .detach();
-        #[cfg(feature = "audiobooks")]
         cx.subscribe(&browser, |root, _, _: &BookDetailDismissed, cx| {
             if let Some(audio) = &root.audiobook {
                 audio.dock.update(cx, |dock, cx| dock.collapse_mobile(cx));
@@ -274,17 +263,14 @@ impl ApplicationRoot {
         })
         .detach();
         cx.observe_window_activation(window, |root, window, cx| root.update_notification_interest(window, cx)).detach();
-        #[cfg(feature = "audiobooks")]
         let playback = playback::PlaybackController::shared(backend.clone(), playback_restore_path, cx);
-        #[cfg(feature = "audiobooks")]
         cx.observe_in(&playback, window, |root, _, window, cx| root.sync_playback(window, cx)).detach();
-        #[cfg(feature = "audiobooks")]
         let audiobook_footer = cx.new(|_| audiobook_footer::AudiobookFooter::default());
-        #[cfg(feature = "audiobooks")]
         cx.subscribe(&audiobook_footer, |root, _, _: &audiobook_footer::CancelPending, cx| {
             root.pending_audiobook = None;
             root.open_task = None;
             root.opening = false;
+            root.playback.update(cx, |controller, cx| controller.close(cx));
             cx.notify();
         })
         .detach();
@@ -316,21 +302,14 @@ impl ApplicationRoot {
             _browser_subscription: browser_subscription,
             notification_mode: None,
             notification_task: None,
-            #[cfg(feature = "audiobooks")]
             audiobook: None,
-            #[cfg(feature = "audiobooks")]
             audiobook_footer,
-            #[cfg(feature = "audiobooks")]
             playback,
-            #[cfg(feature = "audiobooks")]
             pending_audiobook: None,
-            #[cfg(feature = "audiobooks")]
             open_task: None,
-            #[cfg(feature = "audiobooks")]
             opening: false,
         };
         root.update_notification_interest(window, cx);
-        #[cfg(feature = "audiobooks")]
         root.sync_playback(window, cx);
         root
     }
@@ -348,9 +327,7 @@ impl ApplicationRoot {
         if browser_ui::library_is_being_removed(*locator.library_id(), cx) {
             return;
         }
-        #[cfg(feature = "audiobooks")]
         let audio_request = self.playback.update(cx, |controller, _| controller.reserve_open());
-        #[cfg(feature = "audiobooks")]
         if self.playback.update(cx, |controller, cx| controller.activate_current(audio_request, &locator, initial_target.as_deref(), cx)) {
             self.open_task.take();
             self.pending_audiobook = None;
@@ -359,90 +336,87 @@ impl ApplicationRoot {
             self.return_to_library(window, cx);
             return;
         }
-        #[cfg(feature = "audiobooks")]
-        {
-            let library = self.backend.library(*locator.library_id());
-            self.pending_audiobook = None;
-            self.opening = true;
-            cx.notify();
-            self.open_task = Some(cx.spawn(async move |root, cx| {
-                let audio = matches!(library.book_format(locator.content_hash()).await, Ok(Some(book_model::BookFormat::M4b | book_model::BookFormat::Mp3Folder)));
-                let _ = root.update_in(cx, |root, window, cx| {
-                    if audio {
-                        if !root.playback.update(cx, |controller, cx| controller.prepare_open(audio_request, &locator, cx)) {
-                            root.opening = false;
-                            cx.notify();
+        let library = self.backend.library(*locator.library_id());
+        self.pending_audiobook = None;
+        self.opening = true;
+        cx.notify();
+        self.open_task = Some(cx.spawn(async move |root, cx| {
+            let audio = matches!(library.book_format(locator.content_hash()).await, Ok(Some(book_model::BookFormat::M4b | book_model::BookFormat::Mp3Folder)));
+            if !audio {
+                let _ = root.update_in(cx, |root, window, cx| root.open_reader_surface(locator, title, initial_target, window, cx));
+                return;
+            }
+            let Ok(Some(generation)) = root.update_in(cx, |root, window, cx| {
+                if !root.playback.update(cx, |controller, cx| controller.prepare_open(audio_request, &locator, cx)) {
+                    root.opening = false;
+                    cx.notify();
+                    return None;
+                }
+                root.opening = false;
+                root.pending_audiobook = Some("Opening audiobook…".into());
+                root.sync_playback(window, cx);
+                cx.notify();
+                Some(root.playback.read(cx).generation)
+            }) else {
+                return;
+            };
+            let result = library.resolve_book(locator.content_hash()).await;
+            let _ = root.update_in(cx, |root, window, cx| {
+                if root.playback.read(cx).generation != generation {
+                    return;
+                }
+                match result {
+                    Ok(resolved) => {
+                        if !matches!(resolved.format(), book_model::BookFormat::M4b | book_model::BookFormat::Mp3Folder) {
+                            root.pending_audiobook = None;
+                            root.open_reader_surface(locator, title, initial_target, window, cx);
                             return;
                         }
+                        let session = reader_ui::open_audiobook(locator.clone(), library, resolved, initial_target, cx);
+                        root.playback.update(cx, |controller, cx| controller.replace(locator, title, session, cx));
+                        root.pending_audiobook = None;
                         root.sync_playback(window, cx);
+                        root.return_to_library(window, cx);
                     }
-                    root.open_reader_surface(locator, title, initial_target, audio, audio_request, window, cx);
-                });
-            }));
-        }
-        #[cfg(not(feature = "audiobooks"))]
-        self.open_reader_surface(locator, title, initial_target, false, 0, window, cx);
+                    Err(error) => {
+                        log::error!("cannot open audiobook: {error}");
+                        root.pending_audiobook = Some(format!("Could not open audiobook: {error}").into());
+                        cx.notify();
+                    }
+                }
+            });
+        }));
     }
 
-    fn open_reader_surface(&mut self, locator: BookLocator, title: String, initial_target: Option<String>, audio: bool, audio_request: u64, window: &mut Window, cx: &mut Context<Self>) {
-        #[cfg(feature = "audiobooks")]
-        {
-            self.opening = false;
-        }
-        #[cfg(feature = "audiobooks")]
-        if !audio {
-            self.playback.update(cx, |controller, cx| controller.close(cx));
-            self.sync_playback(window, cx);
-            self.browser.update(cx, |browser, cx| browser.clear_cached_book_details(cx));
-        }
-        let reader_locator = locator.clone();
+    fn open_reader_surface(&mut self, locator: BookLocator, title: String, initial_target: Option<String>, window: &mut Window, cx: &mut Context<Self>) {
+        self.opening = false;
+        let audio_request = self.playback.update(cx, |controller, cx| {
+            controller.close(cx);
+            controller.reserve_open()
+        });
+        self.sync_playback(window, cx);
+        self.browser.update(cx, |browser, cx| browser.clear_cached_book_details(cx));
         let library = Rc::new(self.backend.library(*locator.library_id()));
-        #[cfg(feature = "audiobooks")]
+        let audio_locator = locator.clone();
         let audio_title = title.clone();
-        let reader = cx.new(|cx| reader_ui::ReaderView::new(reader_locator, title, initial_target, self.backend.clone(), library, window, cx));
-        cx.subscribe_in(&reader, window, |root, owner, _: &reader_ui::CloseRequested, window, cx| {
-            #[cfg(feature = "audiobooks")]
-            if root.pending_audiobook.as_ref().is_some_and(|pending| pending == owner) {
-                root.pending_audiobook = None;
+        let reader = cx.new(|cx| reader_ui::ReaderView::new(locator.clone(), title, initial_target, self.backend.clone(), library, window, cx));
+        cx.subscribe_in(&reader, window, |root, _, _: &reader_ui::CloseRequested, window, cx| root.return_to_library(window, cx)).detach();
+        cx.observe(&reader, |_, _, cx| cx.notify()).detach();
+        cx.subscribe_in(&reader, window, move |root, _, event: &reader_ui::AudiobookOpened, window, cx| {
+            let session = event.0.clone();
+            if !root.playback.update(cx, |controller, cx| controller.prepare_open(audio_request, &audio_locator, cx)) {
+                session.update(cx, |session, _| session.stop_playback());
+                if root.reader.as_ref().is_some_and(|reader| reader.locator == audio_locator) {
+                    root.return_to_library(window, cx);
+                }
+                return;
             }
+            root.playback.update(cx, |controller, cx| controller.replace(audio_locator.clone(), audio_title.clone(), session, cx));
+            root.sync_playback(window, cx);
             root.return_to_library(window, cx);
         })
         .detach();
-        cx.observe(&reader, |_, _, cx| cx.notify()).detach();
-        #[cfg(feature = "audiobooks")]
-        {
-            let audio_locator = locator.clone();
-            let generation = self.playback.read(cx).generation;
-            cx.subscribe_in(&reader, window, move |root, owner, event: &reader_ui::AudiobookOpened, window, cx| {
-                let session = event.0.clone();
-                let accepted = if audio { root.playback.read(cx).generation == generation } else { root.playback.update(cx, |controller, cx| controller.prepare_open(audio_request, &audio_locator, cx)) };
-                if !accepted {
-                    session.update(cx, |session, _| session.stop_playback());
-                    if root.reader.as_ref().is_some_and(|reader| reader.locator == audio_locator) {
-                        root.return_to_library(window, cx);
-                    }
-                    if root.pending_audiobook.as_ref().is_some_and(|pending| pending == owner) {
-                        root.pending_audiobook = None;
-                        cx.notify();
-                    }
-                    return;
-                }
-                root.playback.update(cx, |controller, cx| controller.replace(audio_locator.clone(), audio_title.clone(), session, cx));
-                root.sync_playback(window, cx);
-                root.pending_audiobook = None;
-                root.return_to_library(window, cx);
-            })
-            .detach();
-        }
-        #[cfg(feature = "audiobooks")]
-        if audio {
-            self.pending_audiobook = Some(reader);
-            window.set_window_title(&self.application_title);
-            cx.notify();
-            return;
-        }
-        let view = reader.into();
-        self.reader = Some(ReaderSurface { locator, view });
+        self.reader = Some(ReaderSurface { locator, view: reader.into() });
         self.update_notification_interest(window, cx);
         cx.set_volume_button_capture(true);
         cx.set_keep_screen_awake(true);
@@ -474,17 +448,14 @@ impl ApplicationRoot {
         cx.notify();
     }
 
-    #[cfg(feature = "audiobooks")]
     pub fn audiobook_session(&self) -> Option<Entity<reader_ui::PlaybackSession>> {
         self.audiobook.as_ref().map(|audio| audio.session.clone())
     }
 
-    #[cfg(feature = "audiobooks")]
     pub fn audiobook_is_expanded(&self) -> bool {
         self.audiobook.as_ref().is_some_and(|audio| self.reader.as_ref().is_some_and(|reader| reader.locator == audio.locator))
     }
 
-    #[cfg(feature = "audiobooks")]
     pub fn expand_audiobook(&mut self, window: &mut Window, cx: &mut Context<Self>) {
         if self.audiobook_is_expanded() {
             return;
@@ -496,13 +467,11 @@ impl ApplicationRoot {
         }
     }
 
-    #[cfg(feature = "audiobooks")]
     pub fn close_audiobook(&mut self, window: &mut Window, cx: &mut Context<Self>) {
         self.playback.update(cx, |controller, cx| controller.close(cx));
         self.sync_playback(window, cx);
     }
 
-    #[cfg(feature = "audiobooks")]
     fn sync_playback(&mut self, window: &mut Window, cx: &mut Context<Self>) {
         let active = self.playback.read(cx).current.as_ref().map(|active| (active.record.locator.clone(), active.session.clone()));
         if active.as_ref().is_some_and(|(_, session)| self.audiobook.as_ref().is_some_and(|audio| &audio.session == session)) {
@@ -557,21 +526,18 @@ impl ApplicationRoot {
 
 impl Render for ApplicationRoot {
     fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
-        #[cfg(feature = "audiobooks")]
         let footer = {
             let dock = self.audiobook.as_ref().filter(|audio| self.reader.as_ref().is_none_or(|reader| reader.locator != audio.locator)).map(|audio| audio.dock.clone());
-            let pending = self.pending_audiobook.as_ref().map(|pending| pending.read(cx).loading_error().unwrap_or_else(|| "Opening audiobook…".into()));
+            let pending = self.pending_audiobook.clone();
             let visible = dock.is_some() || pending.is_some();
             self.audiobook_footer.update(cx, |footer, cx| footer.set(dock, pending, cx));
             visible.then(|| AnyView::from(self.audiobook_footer.clone()))
         };
-        #[cfg(feature = "audiobooks")]
         self.browser.update(cx, |browser, cx| browser.set_content_footer(footer.clone().filter(|_| self.reader.is_none()), cx));
         let content = self.reader.as_ref().map(|reader| reader.view.clone()).unwrap_or_else(|| AnyView::from(self.browser.clone()));
         // Covers the gap between tapping a book and the async format lookup
         // in `open_book` resolving, so the tap isn't indistinguishable from
         // one that did nothing.
-        #[cfg(feature = "audiobooks")]
         let opening_overlay = self.opening.then(|| gpui::div().absolute().inset_0().flex().items_center().justify_center().bg(gpui::rgba(0x000000a0)).text_color(gpui::rgb(0xffffff)).child("Opening…"));
         let root = gpui::div().size_full().relative().flex().flex_col().key_context("Application").on_action(cx.listener(Self::on_back));
         #[cfg(all(target_os = "linux", not(feature = "mobile")))]
@@ -601,11 +567,9 @@ impl Render for ApplicationRoot {
         #[cfg(feature = "kobo")]
         let root = root.when(self.reader.is_none(), |root| root.child(self.device_bar.clone()));
         let root = root.child(gpui::div().flex_1().min_h_0().w_full().child(content));
-        #[cfg(feature = "audiobooks")]
         // No bottom nav bar below the dock on this path, so it needs its own
         // padding to clear the OS gesture/button bar.
         let root = root.children(footer.filter(|_| self.reader.is_some()).map(|footer| gpui::div().w_full().flex_none().pb(window.insets().safe_area.bottom).child(footer)));
-        #[cfg(feature = "audiobooks")]
         let root = root.children(opening_overlay);
         #[cfg(all(target_os = "linux", not(feature = "mobile")))]
         let root = root.when(matches!(window.window_decorations(), gpui::Decorations::Client { .. }), |root| {

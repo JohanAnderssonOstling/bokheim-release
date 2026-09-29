@@ -54,8 +54,8 @@ strip = true
 
 [workspace.dependencies]
 blake3 = "1"
-html = { package = "html-engine", git = "https://github.com/JohanAnderssonOstling/HtmlEngine", rev = "91766fb2db8d56b38dc0336ddf74972da9872520" }
-html-view-core = { git = "https://github.com/JohanAnderssonOstling/HtmlViewCore", rev = "0d407738fd6ecfd6d6ea84f1a9ce0a488e3dfaf7" }
+html = { package = "html-engine", git = "https://github.com/JohanAnderssonOstling/HtmlEngine" }
+html-view-core = { git = "https://github.com/JohanAnderssonOstling/HtmlViewCore" }
 kurbo = "0.11.3"
 peniko = "0.2.0"
 lightningcss = { version = "1.0.0-alpha.72", features = ["substitute_variables"] }

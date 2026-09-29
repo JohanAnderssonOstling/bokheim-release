@@ -27,6 +27,49 @@ pub fn absolute_full_size() -> Div {
     div().absolute().inset_0().size_full()
 }
 
+/// Spans the top edge of the nearest positioned ancestor, taking no space in
+/// its flow.
+pub fn top_edge() -> Div {
+    div().absolute().left_0().right_0().top_0()
+}
+
+/// Children side by side, centred on the cross axis, `gap` pixels apart.
+pub fn row(gap: f32) -> Div {
+    div().flex().items_center().gap(px(gap))
+}
+
+/// A [`row`] whose first and last children are pushed to its two ends.
+pub fn spread_row(gap: f32) -> Div {
+    row(gap).justify_between()
+}
+
+/// Children stacked top to bottom, `gap` pixels apart.
+pub fn column(gap: f32) -> Div {
+    div().flex().flex_col().gap(px(gap))
+}
+
+/// Content centred on both axes.
+pub fn centered() -> Div {
+    div().flex().items_center().justify_center()
+}
+
+/// How an element sits inside a flex parent.
+pub trait FlexItem: Styled + Sized {
+    /// Take the space the parent has left, and shrink below the content's own
+    /// width when there is not enough — which is what lets text inside it
+    /// truncate rather than push its siblings out.
+    fn fill(self) -> Self {
+        self.flex_1().min_w_0()
+    }
+
+    /// A box of exactly this size, which the parent neither grows nor shrinks.
+    fn fixed(self, width: f32, height: f32) -> Self {
+        self.w(px(width)).h(px(height)).flex_none()
+    }
+}
+
+impl<T: Styled + Sized> FlexItem for T {}
+
 /// The window-sized page root: full-size column, clipped, dressed in the theme.
 fn page_root(theme: BrowserTheme) -> Div {
     full_size_column().relative().overflow_hidden().bg(theme.page_bg).text_color(theme.text)
@@ -77,6 +120,20 @@ pub fn sidebar(theme: BrowserTheme) -> Scrollable<Div> {
 pub fn nav_rail_destinations(theme: BrowserTheme) -> Div {
     let _ = theme;
     div().w_full().flex_1().min_h_0().flex().flex_col().gap_0()
+}
+
+/// One line of text that ellipsizes rather than wrapping or widening its row.
+pub fn single_line(text: impl Into<SharedString>) -> Div {
+    div().min_w_0().overflow_hidden().whitespace_nowrap().text_ellipsis().child(text.into())
+}
+
+pub fn muted_line(text: impl Into<SharedString>, theme: BrowserTheme) -> Div {
+    single_line(text).text_color(theme.text_muted)
+}
+
+/// A small muted line: a chapter title, a time readout.
+pub fn caption_line(text: impl Into<SharedString>, theme: BrowserTheme) -> Div {
+    muted_line(text, theme).text_size(gpui::rems(TEXT_XS))
 }
 
 pub fn section_title(text: impl Into<SharedString>) -> Div {

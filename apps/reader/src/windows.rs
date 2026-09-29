@@ -20,26 +20,12 @@ use crate::settings::{ReaderPreferences, ReaderSettings, SaveReaderSettings};
 use crate::CloseReader;
 
 pub struct CloseRequested;
-#[cfg(feature = "audiobooks")]
 pub struct AudiobookOpened(pub gpui::Entity<audiobook_player::PlaybackSession>);
 
 enum PreparedBook {
-    Book {
-        book: Arc<crate::book::NativeBook>,
-        preparation: html_view_core::RendererPreparation,
-    },
-    Pdf {
-        page_source: Option<std::sync::Arc<dyn pdf_reader_core::PdfPageSource>>,
-        metadata: Option<pdf_reader_core::PdfReaderMetadata>,
-        reader: BoxedBookReader,
-        initial_page: usize,
-        initial_full_page_position: f32,
-    },
-    #[cfg(feature = "audiobooks")]
-    Audiobook {
-        resolved: library_backend::ResolvedBook,
-        initial_target: Option<String>,
-    },
+    Book { book: Arc<crate::book::NativeBook>, preparation: html_view_core::RendererPreparation },
+    Pdf { page_source: Option<std::sync::Arc<dyn pdf_reader_core::PdfPageSource>>, metadata: Option<pdf_reader_core::PdfReaderMetadata>, reader: BoxedBookReader, initial_page: usize, initial_full_page_position: f32 },
+    Audiobook { resolved: library_backend::ResolvedBook, initial_target: Option<String> },
 }
 
 enum ReaderState {
@@ -191,22 +177,13 @@ async fn load_book(
 
     let prepared = match format {
         BookFormat::Pdf => prepare_pdf(&prepare_locator, content, &library, initial_target, startup_started, &updates).await?,
-        #[cfg(feature = "audiobooks")]
         BookFormat::M4b | BookFormat::Mp3Folder => PreparedBook::Audiobook { resolved: content, initial_target },
-        #[cfg(not(feature = "audiobooks"))]
-        BookFormat::M4b | BookFormat::Mp3Folder => return Err("stage=prepare: audiobook support is disabled".to_owned()),
         BookFormat::Epub | BookFormat::Mobi => prepare_book(&prepare_locator, content, format, &library, &executor, renderer_config, initial_target, startup_started, &updates).await?,
     };
     Ok(prepared)
 }
 
 impl ReaderView {
-    pub fn loading_error(&self) -> Option<SharedString> {
-        match &self.state {
-            ReaderState::Error(error) => Some(error.clone()),
-            _ => None,
-        }
-    }
     fn request_close(&mut self, cx: &mut Context<Self>) {
         cx.emit(CloseRequested);
     }
@@ -268,17 +245,8 @@ impl ReaderView {
                                 cx.new(|cx| PdfReaderView::new(locator, title, app, library, reader, metadata, page_source, initial_page, initial_full_page_position, close_reader, window, cx)).into()
                             }
                             PreparedBook::Book { book, preparation } => cx.new(|cx| EpubReaderView::new(locator, title, app, library, book, preparation, close_reader, window, cx)).into(),
-                            #[cfg(feature = "audiobooks")]
                             PreparedBook::Audiobook { resolved, initial_target } => {
-                                // Narration speed lives with the reader's other
-                                // settings, so the player is handed the saved
-                                // one and reports changes back the same way the
-                                // document readers do.
-                                let speed = crate::settings::ReaderSettings::preferences(cx).audiobook_speed;
-                                let save_speed: std::rc::Rc<dyn Fn(f64, &mut gpui::App)> = std::rc::Rc::new(|speed, cx| {
-                                    crate::settings::ReaderSettings::update(cx, |preferences| preferences.audiobook_speed = speed);
-                                });
-                                let session = cx.new(|cx| audiobook_player::PlaybackSession::open(locator, library.as_ref().clone(), resolved, initial_target, speed, save_speed, cx));
+                                let session = crate::open_audiobook(locator, library.as_ref().clone(), resolved, initial_target, cx);
                                 cx.emit(AudiobookOpened(session));
                                 return;
                             }
@@ -331,7 +299,6 @@ impl ReaderView {
 }
 
 impl EventEmitter<CloseRequested> for ReaderView {}
-#[cfg(feature = "audiobooks")]
 impl EventEmitter<AudiobookOpened> for ReaderView {}
 
 #[cfg(all(test, not(target_arch = "wasm32")))]

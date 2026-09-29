@@ -2,7 +2,7 @@ use std::cell::Cell;
 use std::rc::Rc;
 
 use gpui::prelude::*;
-use gpui::{Anchor, AnyElement, App, Context, Entity, Focusable, FontWeight, IntoElement, SharedString, Subscription, Window, div, px};
+use gpui::{Anchor, AnyElement, App, Context, Entity, Focusable, IntoElement, Subscription, Window, div, px};
 use gpui_component::input::{InputEvent, InputState};
 use gpui_component::menu::DropdownMenu as _;
 use gpui_component::{Icon, IconName};
@@ -296,34 +296,6 @@ where
         .into_any_element()
 }
 
-fn sheet_section(label: &'static str, theme: components::BrowserTheme) -> gpui::Div {
-    div().flex_none().min_w_0().px(px(components::SPACE_SM)).pt(px(components::SPACE_SM)).pb(px(components::SPACE_XXS)).text_size(gpui::rems(components::TEXT_XS)).font_weight(FontWeight::SEMIBOLD).text_color(theme.text_muted).child(label)
-}
-
-fn sheet_divider(theme: components::BrowserTheme) -> gpui::Div {
-    div().flex_none().h(px(1.0)).my(px(components::SPACE_XXS)).bg(theme.rule)
-}
-
-fn sheet_row(id: String, label: String, checked: bool, theme: components::BrowserTheme) -> gpui::Stateful<gpui::Div> {
-    div()
-        .id(SharedString::from(id))
-        .flex_none()
-        .min_w_0()
-        .cursor_pointer()
-        .min_h(px(48.0))
-        .flex()
-        .items_center()
-        .justify_between()
-        .gap(px(components::SPACE_SM))
-        .px(px(components::SPACE_MD))
-        .py(px(components::SPACE_SM))
-        .text_size(gpui::rems(components::TEXT_MD))
-        .hover(move |style| style.bg(theme.hover))
-        .when(checked, |row| row.bg(theme.accent).text_color(theme.accent_text))
-        .child(div().flex_1().min_w_0().whitespace_normal().child(label))
-        .when(checked, |row| row.child(Icon::new(IconName::Check).size(px(15.0))))
-}
-
 /// The compact counterpart to `browse_options_control`'s dropdown: the same
 /// sections, events, and read of `controls`/`selection`, laid out as full-width
 /// rows in a bottom sheet instead of a small anchored popup, since the popup
@@ -337,45 +309,45 @@ where
     let mut rows = div().flex().flex_col();
 
     if !controls.book_sorts.is_empty() {
-        rows = rows.child(sheet_section("Sort books", theme));
+        rows = rows.child(components::bottom_sheet_section("Sort books", theme));
         for sort in controls.book_sorts.iter().copied() {
             let page = page.clone();
             let select = select_option.clone();
-            rows = rows.child(sheet_row(format!("sheet-book-sort-{}", sort.label()), sort.label().to_owned(), Some(sort) == selection.book_sort, theme).on_click(move |_, _, cx| {
+            rows = rows.child(components::bottom_sheet_row(format!("sheet-book-sort-{}", sort.label()), sort.label().to_owned(), Some(sort) == selection.book_sort, theme).on_click(move |_, _, cx| {
                 cx.stop_propagation();
                 page.update(cx, |page, cx| select(page, BrowseOptionsEvent::SelectBookSort(sort), cx));
             }));
         }
     }
     if !controls.collection_sorts.is_empty() {
-        rows = rows.child(sheet_divider(theme)).child(sheet_section("Sort collections", theme));
+        rows = rows.child(components::bottom_sheet_divider(theme)).child(components::bottom_sheet_section("Sort collections", theme));
         for sort in controls.collection_sorts.iter().copied() {
             let page = page.clone();
             let select = select_option.clone();
-            rows = rows.child(sheet_row(format!("sheet-chip-sort-{}", sort.label()), sort.label().to_owned(), Some(sort) == selection.chip_sort, theme).on_click(move |_, _, cx| {
+            rows = rows.child(components::bottom_sheet_row(format!("sheet-chip-sort-{}", sort.label()), sort.label().to_owned(), Some(sort) == selection.chip_sort, theme).on_click(move |_, _, cx| {
                 cx.stop_propagation();
                 page.update(cx, |page, cx| select(page, BrowseOptionsEvent::SelectChipSort(sort), cx));
             }));
         }
     }
     if !controls.formats.is_empty() || !selection.formats.is_empty() {
-        rows = rows.child(sheet_divider(theme)).child(sheet_section("Format", theme));
+        rows = rows.child(components::bottom_sheet_divider(theme)).child(components::bottom_sheet_section("Format", theme));
         let formats = if controls.formats.is_empty() { vec![BrowseFormatFilter::Any] } else { controls.formats.clone() };
         for format in formats {
             let checked = if format == BrowseFormatFilter::Any { selection.formats.is_empty() } else { selection.formats.contains(&format) };
             let page = page.clone();
             let select = select_option.clone();
-            rows = rows.child(sheet_row(format!("sheet-format-{}", format.label()), controls.format_label(format), checked, theme).on_click(move |_, _, cx| {
+            rows = rows.child(components::bottom_sheet_row(format!("sheet-format-{}", format.label()), controls.format_label(format), checked, theme).on_click(move |_, _, cx| {
                 cx.stop_propagation();
                 page.update(cx, |page, cx| select(page, BrowseOptionsEvent::ToggleFormat(format), cx));
             }));
         }
     }
     if !controls.languages.is_empty() || !selection.languages.is_empty() {
-        rows = rows.child(sheet_divider(theme)).child(sheet_section("Language", theme));
+        rows = rows.child(components::bottom_sheet_divider(theme)).child(components::bottom_sheet_section("Language", theme));
         let page_for_any = page.clone();
         let select_any = select_option.clone();
-        rows = rows.child(sheet_row("sheet-language-any".to_owned(), "Any".to_owned(), selection.languages.is_empty(), theme).on_click(move |_, _, cx| {
+        rows = rows.child(components::bottom_sheet_row("sheet-language-any".to_owned(), "Any".to_owned(), selection.languages.is_empty(), theme).on_click(move |_, _, cx| {
             cx.stop_propagation();
             page_for_any.update(cx, |page, cx| select_any(page, BrowseOptionsEvent::ToggleLanguage(None), cx));
         }));
@@ -383,7 +355,7 @@ where
             let checked = selection.languages.contains(&language);
             let page = page.clone();
             let select = select_option.clone();
-            rows = rows.child(sheet_row(format!("sheet-language-{language}"), controls.language_label(language, label), checked, theme).on_click(move |_, _, cx| {
+            rows = rows.child(components::bottom_sheet_row(format!("sheet-language-{language}"), controls.language_label(language, label), checked, theme).on_click(move |_, _, cx| {
                 cx.stop_propagation();
                 page.update(cx, |page, cx| select(page, BrowseOptionsEvent::ToggleLanguage(Some(language)), cx));
             }));
@@ -392,7 +364,7 @@ where
     if controls.supports_reading_progress {
         let page = page.clone();
         let select = select_option.clone();
-        rows = rows.child(sheet_divider(theme)).child(sheet_row("sheet-hide-finished".to_owned(), "Hide finished".to_owned(), selection.hide_finished, theme).on_click(move |_, _, cx| {
+        rows = rows.child(components::bottom_sheet_divider(theme)).child(components::bottom_sheet_row("sheet-hide-finished".to_owned(), "Hide finished".to_owned(), selection.hide_finished, theme).on_click(move |_, _, cx| {
             cx.stop_propagation();
             page.update(cx, |page, cx| select(page, BrowseOptionsEvent::ToggleHideFinished, cx));
         }));
@@ -400,7 +372,7 @@ where
     if controls.supports_direct_child_books {
         let page = page.clone();
         let select = select_option.clone();
-        rows = rows.child(sheet_divider(theme)).child(sheet_row("sheet-direct-child-books".to_owned(), "Include books from direct children".to_owned(), selection.include_direct_child_books, theme).on_click(move |_, _, cx| {
+        rows = rows.child(components::bottom_sheet_divider(theme)).child(components::bottom_sheet_row("sheet-direct-child-books".to_owned(), "Include books from direct children".to_owned(), selection.include_direct_child_books, theme).on_click(move |_, _, cx| {
             cx.stop_propagation();
             page.update(cx, |page, cx| select(page, BrowseOptionsEvent::ToggleDirectChildBooks, cx));
         }));

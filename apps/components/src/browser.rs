@@ -39,8 +39,14 @@ pub fn nav_rail_item(id: impl Into<ElementId>, icon: impl Into<Icon>, label: imp
         )
 }
 
+/// A full-width bar along the bottom of the window, ruled off from the page
+/// above: the navigation bar, and the audiobook dock.
+pub fn bottom_bar(theme: BrowserTheme) -> Div {
+    div().w_full().flex_none().flex().border_t_1().border_color(theme.rule).bg(theme.page_bg).text_color(theme.text)
+}
+
 pub fn bottom_navigation(theme: BrowserTheme) -> Div {
-    div().w_full().h(gpui::rems(crate::BOTTOM_NAV_HEIGHT_REM)).flex_none().flex().flex_row().items_stretch().border_t_1().border_color(theme.rule).bg(theme.page_bg)
+    bottom_bar(theme).h(gpui::rems(crate::BOTTOM_NAV_HEIGHT_REM)).flex_row().items_stretch()
 }
 
 pub fn bottom_navigation_item(id: impl Into<ElementId>, icon: impl Into<Icon>, label: impl Into<SharedString>, selected: bool, theme: BrowserTheme) -> Button {

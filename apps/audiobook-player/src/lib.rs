@@ -7,13 +7,12 @@ pub use session::{ActiveAudiobook, PlaybackSession};
 use std::io::{Read, Seek, SeekFrom};
 #[cfg(not(target_arch = "wasm32"))]
 use std::path::PathBuf;
-use std::rc::Rc;
 use std::sync::Arc;
 use std::time::Duration;
 
 use gpui::{
-    App, Bounds, Context, DispatchPhase, Entity, FontWeight, Image, ImageFormat, IntoElement, MouseButton, MouseMoveEvent, MouseUpEvent, ObjectFit, Pixels, Render, SharedString, Styled,
-    StyledImage, Window, canvas, div, img, prelude::*, px, relative,
+    App, Bounds, Context, DispatchPhase, Entity, Image, ImageFormat, IntoElement, MouseButton, MouseMoveEvent, MouseUpEvent, Pixels, Render, SharedString, Styled, Window, canvas, div, prelude::*,
+    px,
 };
 use web_time::Instant;
 
@@ -48,6 +47,7 @@ use audio_engine::AudioEngine;
 #[cfg(target_arch = "wasm32")]
 mod web_audio;
 use book_model::AudiobookChapter;
+use gpui_component::menu::PopupMenu;
 use gpui_component::{ElementExt, Icon, IconName};
 use library_backend::LibraryClient;
 use library_backend::ResolvedBook;
@@ -56,6 +56,7 @@ use library_model::BookLocator;
 use web_audio::AudioEngine;
 
 const POSITION_SAVE_INTERVAL: Duration = Duration::from_secs(5);
+type PlaybackPosition = (Duration, f32);
 /// How far the transport's two skip controls move. Back is shorter than
 /// forward: it is used to hear something again.
 const SKIP_BACK_SECONDS: f64 = -15.0;
@@ -64,29 +65,6 @@ const SKIP_FORWARD_SECONDS: f64 = 30.0;
 const PLAYBACK_SPEEDS: [f64; 6] = [0.75, 1.0, 1.25, 1.5, 1.75, 2.0];
 /// The sleep timer's fixed lengths, in minutes.
 const SLEEP_MINUTES: [u64; 5] = [5, 15, 30, 45, 60];
-/// Width of the playback menus on a wide window.
-const MENU_WIDTH: f32 = 176.0;
-
-#[derive(Clone, Copy)]
-struct MenuLayout {
-    compact: bool,
-    max_width: f32,
-    max_height: f32,
-}
-
-impl MenuLayout {
-    fn for_window(window: &Window) -> Self {
-        let compact = ui_components::WindowWidthClass::for_window(window).is_compact();
-        Self {
-            compact,
-            max_width: (f32::from(window.viewport_size().width) - if compact { 0.0 } else { 2.0 * ui_components::SPACE_MD }).max(1.0),
-            max_height: (f32::from(window.viewport_size().height) - if compact { ui_components::SPACE_MD } else { 56.0 + 2.0 * ui_components::SPACE_MD }).max(1.0),
-        }
-    }
-}
-/// The progress track is drawn thin but has to be easy to hit, so its hit area
-/// is taller than the bar inside it.
-const TRACK_HIT_HEIGHT: f32 = 16.0;
 
 // Browser media callbacks report fractional progress, whereas the library stores
 // percentages. Reject invalid media values before they reach persistence.
@@ -170,7 +148,7 @@ struct AudiobookBook {
 
 /// Persists the narration speed. It belongs to the reader's settings rather
 /// than to this session: it describes how someone listens, not what to.
-type SaveSpeed = Rc<dyn Fn(f64, &mut App)>;
+type SaveSpeed = fn(f64, &mut App);
 
 /// What the sleep timer is waiting for.
 #[derive(Clone, Copy, PartialEq, Eq)]
@@ -182,264 +160,118 @@ enum SleepPlan {
     EndOfChapter(usize),
 }
 
-trait PlaybackTarget: 'static {
-    fn toggle_playback(&mut self, cx: &mut App);
-    fn seek_by(&mut self, seconds: f64, cx: &mut App);
-    fn previous_chapter(&mut self, cx: &mut App);
-    fn next_chapter(&mut self, cx: &mut App);
-    fn set_rate(&mut self, rate: f64, cx: &mut App);
-    fn set_sleep(&mut self, plan: Option<SleepPlan>, cx: &mut App);
-    fn toggle_sleep_menu(&mut self);
-    fn toggle_speed_menu(&mut self);
-    fn active_chapter_index(&self, cx: &App) -> usize;
-    fn sleep_label(&self, cx: &App) -> Option<SharedString>;
+/// A choice in the sleep timer menu, shared by the compact sheet and the wide
+/// dropdown.
+#[derive(Clone, Copy)]
+enum SleepChoice {
+    Minutes(u64),
+    EndOfChapter,
+    Off,
 }
 
-fn menu_trigger(id: &'static str, label: impl IntoElement, active: bool, theme: ui_components::BrowserTheme) -> gpui::Stateful<gpui::Div> {
-    // Active is already the solid accent, so the ordinary translucent hover
-    // would just erase it; it darkens instead, the same distinction
-    // `accent_hover` exists for everywhere else in the interface.
-    let hovered = if active { theme.accent_hover } else { theme.hover };
-    div()
-        .id(id)
-        .cursor_pointer()
-        .h(px(56.0))
-        .w_full()
-        .min_w_0()
-        .flex()
-        .items_center()
-        .justify_center()
-        .bg(if active { theme.accent } else { gpui::Hsla::transparent_black() })
-        .text_color(if active { theme.accent_text } else { theme.text_muted })
-        .hover(move |style| style.bg(hovered))
-        .text_size(gpui::rems(ui_components::TEXT_MD))
-        .font_weight(FontWeight::BOLD)
-        .child(label)
-}
-
-/// The small popup anchored above the transport, for a wide window. A
-/// compact window uses a full-width bottom sheet instead — see the `layout.compact`
-/// branch in `sleep_menu`/`playback_speed_menu`, which build one directly from
-/// `ui_components::bottom_sheet_*` rather than through this function.
-fn menu_panel(theme: ui_components::BrowserTheme, layout: MenuLayout, title: &'static str) -> gpui::Stateful<gpui::Div> {
-    div()
-        .id(title)
-        .absolute()
-        .bottom(px(56.0))
-        .w(gpui::rems(MENU_WIDTH / 16.0))
-        .max_w(px(layout.max_width))
-        .max_h(px(layout.max_height))
-        .overflow_y_scroll()
-        .whitespace_normal()
-        .p(px(ui_components::SPACE_XS))
-        .border_1()
-        .border_color(theme.border)
-        .bg(theme.page_bg)
-        .shadow_lg()
-        .flex()
-        .flex_col()
-        .gap(px(ui_components::SPACE_XXS))
-        .child(
-            div()
-                .flex_none()
-                .min_w_0()
-                .px(px(ui_components::SPACE_SM))
-                .pt(px(ui_components::SPACE_XS))
-                .pb(px(ui_components::SPACE_XS))
-                .text_size(gpui::rems(ui_components::TEXT_MD))
-                .font_weight(FontWeight::SEMIBOLD)
-                .text_color(theme.text)
-                .child(title),
-        )
-        .on_mouse_down(MouseButton::Left, |_, _, cx| cx.stop_propagation())
-}
-
-fn menu_option(id: String, label: String, selected: bool, theme: ui_components::BrowserTheme) -> gpui::Stateful<gpui::Div> {
-    // Selected is already the solid accent, so the ordinary translucent
-    // hover would just erase it; it darkens instead, the same distinction
-    // `accent_hover` exists for everywhere else in the interface.
-    let hovered = if selected { theme.accent_hover } else { theme.hover };
-    div()
-        .id(gpui::SharedString::from(id))
-        .flex_none()
-        .min_w_0()
-        .cursor_pointer()
-        .min_h(px(48.0))
-        .flex()
-        .items_center()
-        .justify_between()
-        .px(px(ui_components::SPACE_MD))
-        .py(px(ui_components::SPACE_SM))
-        .text_size(gpui::rems(ui_components::TEXT_MD))
-        .hover(move |style| style.bg(hovered))
-        .when(selected, |row| row.bg(theme.accent).text_color(theme.accent_text))
-        .child(div().flex_1().min_w_0().whitespace_normal().child(label))
-        .when(selected, |row| row.child(Icon::new(IconName::Check).size(px(15.0))))
-}
-
-fn playback_speed_menu<T: PlaybackTarget>(target: gpui::WeakEntity<T>, current_rate: f64, layout: MenuLayout, theme: ui_components::BrowserTheme) -> gpui::AnyElement {
-    if layout.compact {
-        let mut rows = div().id("playback-speed-rows").flex_1().min_h_0().overflow_y_scroll().flex().flex_col();
-        for rate in PLAYBACK_SPEEDS {
-            let option_target = target.clone();
-            rows = rows.child(menu_option(format!("speed-{rate}"), format_playback_rate(rate), same_rate(rate, current_rate), theme).on_click(move |_, _, cx| {
-                cx.stop_propagation();
-                let _ = option_target.update(cx, |dock, cx| {
-                    dock.set_rate(rate, cx);
-                    cx.notify();
-                });
-            }));
-        }
-        let dismiss_target = target;
-        let sheet = ui_components::bottom_sheet_surface(theme).id("playback-speed-sheet").debug_selector(|| "playback-speed-sheet".into()).child(ui_components::bottom_sheet_header("Playback speed", theme)).child(rows);
-        return ui_components::bottom_sheet_overlay()
-            .child(ui_components::modal_scrim("playback-speed-scrim", theme).on_click(move |_, _, cx| {
-                let _ = dismiss_target.update(cx, |dock, cx| {
-                    dock.toggle_speed_menu();
-                    cx.notify();
-                });
-            }))
-            .child(sheet)
-            .into_any_element();
+impl SleepChoice {
+    /// "Off" is only offered while a timer is running.
+    fn offered(armed: bool) -> impl Iterator<Item = SleepChoice> {
+        SLEEP_MINUTES.into_iter().map(SleepChoice::Minutes).chain([SleepChoice::EndOfChapter]).chain(armed.then_some(SleepChoice::Off))
     }
-    let mut menu = menu_panel(theme, layout, "Playback speed").right_0();
+
+    fn id(self) -> SharedString {
+        match self {
+            SleepChoice::Minutes(minutes) => format!("sleep-{minutes}").into(),
+            SleepChoice::EndOfChapter => "sleep-chapter".into(),
+            SleepChoice::Off => "sleep-off".into(),
+        }
+    }
+
+    fn label(self) -> SharedString {
+        match self {
+            SleepChoice::Minutes(minutes) => format!("{minutes} minutes").into(),
+            SleepChoice::EndOfChapter => "End of chapter".into(),
+            SleepChoice::Off => "Off".into(),
+        }
+    }
+
+    fn plan(self, active_chapter: usize) -> Option<SleepPlan> {
+        match self {
+            SleepChoice::Minutes(minutes) => Some(SleepPlan::Until(Instant::now() + Duration::from_secs(minutes * 60))),
+            SleepChoice::EndOfChapter => Some(SleepPlan::EndOfChapter(active_chapter)),
+            SleepChoice::Off => None,
+        }
+    }
+}
+
+/// What a running sleep timer is waiting for, heading its menu.
+fn sleep_status(remaining: &str) -> String {
+    if remaining == "Chapter" { "Until end of chapter".to_owned() } else { format!("{remaining} remaining") }
+}
+
+fn playback_speed_items(mut menu: PopupMenu, target: gpui::WeakEntity<AudiobookDock>, current_rate: f64) -> PopupMenu {
     for rate in PLAYBACK_SPEEDS {
-        let option_target = target.clone();
-        menu = menu.child(menu_option(format!("speed-{rate}"), format_playback_rate(rate), same_rate(rate, current_rate), theme).on_click(move |_, _, cx| {
-            cx.stop_propagation();
-            let _ = option_target.update(cx, |dock, cx| {
-                dock.set_rate(rate, cx);
-                cx.notify();
-            });
-        }));
+        let target = target.clone();
+        menu = menu.item(
+            ui_components::menu_item(format_playback_rate(rate), move |_, _, cx| {
+                let _ = target.update(cx, |dock, cx| dock.set_rate(rate, cx));
+            })
+            .checked(same_rate(rate, current_rate)),
+        );
     }
-    menu.into_any_element()
+    menu
 }
 
-fn sleep_menu<T: PlaybackTarget>(target: gpui::WeakEntity<T>, remaining: Option<SharedString>, layout: MenuLayout, theme: ui_components::BrowserTheme) -> gpui::AnyElement {
-    let armed = remaining.is_some();
-    if layout.compact {
-        let mut rows = div().id("sleep-rows").flex_1().min_h_0().overflow_y_scroll().flex().flex_col().when_some(remaining, |rows, remaining| {
-            let label = if remaining.as_ref() == "Chapter" { "Until end of chapter".to_owned() } else { format!("{remaining} remaining") };
-            rows.child(div().flex_none().min_w_0().px(px(ui_components::SPACE_SM)).py(px(ui_components::SPACE_SM)).text_size(gpui::rems(ui_components::TEXT_MD)).font_weight(FontWeight::SEMIBOLD).child(label))
-        });
-        for minutes in SLEEP_MINUTES {
-            let option_target = target.clone();
-            rows = rows.child(menu_option(format!("sleep-{minutes}"), format!("{minutes} minutes"), false, theme).on_click(move |_, _, cx| {
-                cx.stop_propagation();
-                let _ = option_target.update(cx, |dock, cx| {
-                    dock.set_sleep(Some(SleepPlan::Until(Instant::now() + Duration::from_secs(minutes * 60))), cx);
-                    cx.notify();
-                });
-            }));
-        }
-        let chapter_target = target.clone();
-        rows = rows.child(menu_option("sleep-chapter".to_owned(), "End of chapter".to_owned(), false, theme).on_click(move |_, _, cx| {
-            cx.stop_propagation();
-            let _ = chapter_target.update(cx, |dock, cx| {
-                let chapter = dock.active_chapter_index(cx);
-                dock.set_sleep(Some(SleepPlan::EndOfChapter(chapter)), cx);
-                cx.notify();
-            });
-        }));
-        if armed {
-            let off_target = target.clone();
-            rows = rows.child(menu_option("sleep-off".to_owned(), "Off".to_owned(), false, theme).on_click(move |_, _, cx| {
-                cx.stop_propagation();
-                let _ = off_target.update(cx, |dock, cx| {
-                    dock.set_sleep(None, cx);
-                    cx.notify();
-                });
-            }));
-        }
-        let dismiss_target = target;
-        let sheet = ui_components::bottom_sheet_surface(theme).id("sleep-sheet").debug_selector(|| "sleep-sheet".into()).child(ui_components::bottom_sheet_header("Sleep timer", theme)).child(rows);
-        return ui_components::bottom_sheet_overlay()
-            .child(ui_components::modal_scrim("sleep-scrim", theme).on_click(move |_, _, cx| {
-                let _ = dismiss_target.update(cx, |dock, cx| {
-                    dock.toggle_sleep_menu();
-                    cx.notify();
-                });
-            }))
-            .child(sheet)
-            .into_any_element();
+fn sleep_items(mut menu: PopupMenu, target: gpui::WeakEntity<AudiobookDock>, remaining: Option<SharedString>) -> PopupMenu {
+    if let Some(remaining) = &remaining {
+        menu = menu.item(ui_components::menu_section(sleep_status(remaining)));
     }
-    let mut menu = menu_panel(theme, layout, "Sleep timer").left_0().when_some(remaining, |menu, remaining| {
-        let label = if remaining.as_ref() == "Chapter" { "Until end of chapter".to_owned() } else { format!("{remaining} remaining") };
-        menu.child(div().flex_none().min_w_0().px(px(ui_components::SPACE_SM)).py(px(ui_components::SPACE_SM)).text_size(gpui::rems(ui_components::TEXT_MD / 16.0)).font_weight(FontWeight::SEMIBOLD).child(label))
-    });
-    for minutes in SLEEP_MINUTES {
-        let option_target = target.clone();
-        menu = menu.child(menu_option(format!("sleep-{minutes}"), format!("{minutes} minutes"), false, theme).on_click(move |_, _, cx| {
-            cx.stop_propagation();
-            let _ = option_target.update(cx, |dock, cx| {
-                dock.set_sleep(Some(SleepPlan::Until(Instant::now() + Duration::from_secs(minutes * 60))), cx);
-                cx.notify();
-            });
+    for choice in SleepChoice::offered(remaining.is_some()) {
+        let target = target.clone();
+        menu = menu.item(ui_components::menu_item(choice.label(), move |_, _, cx| {
+            let _ = target.update(cx, |dock, cx| dock.choose_sleep(choice, cx));
         }));
     }
-    let chapter_target = target.clone();
-    menu = menu.child(menu_option("sleep-chapter".to_owned(), "End of chapter".to_owned(), false, theme).on_click(move |_, _, cx| {
-        cx.stop_propagation();
-        let _ = chapter_target.update(cx, |dock, cx| {
-            let chapter = dock.active_chapter_index(cx);
-            dock.set_sleep(Some(SleepPlan::EndOfChapter(chapter)), cx);
-            cx.notify();
-        });
-    }));
-    if armed {
-        menu = menu.child(menu_option("sleep-off".to_owned(), "Off".to_owned(), false, theme).on_click(move |_, _, cx| {
-            cx.stop_propagation();
-            let _ = target.update(cx, |dock, cx| {
-                dock.set_sleep(None, cx);
-                cx.notify();
-            });
-        }));
-    }
-    menu.into_any_element()
+    menu
+}
+
+fn playback_speed_sheet(target: gpui::WeakEntity<AudiobookDock>, current_rate: f64, theme: ui_components::BrowserTheme) -> gpui::AnyElement {
+    let rows = PLAYBACK_SPEEDS
+        .into_iter()
+        .map(|rate| {
+            let target = target.clone();
+            ui_components::bottom_sheet_row(SharedString::from(format!("speed-{rate}")), format_playback_rate(rate), same_rate(rate, current_rate), theme)
+                .on_click(move |_, _, cx| {
+                    cx.stop_propagation();
+                    let _ = target.update(cx, |dock, cx| dock.set_rate(rate, cx));
+                })
+                .into_any_element()
+        })
+        .collect();
+    menu_sheet("playback-speed", "Playback speed", None, rows, move |cx| drop(target.update(cx, |dock, cx| dock.toggle_speed_menu(cx))), theme)
+}
+
+fn sleep_sheet(target: gpui::WeakEntity<AudiobookDock>, remaining: Option<SharedString>, theme: ui_components::BrowserTheme) -> gpui::AnyElement {
+    let rows = SleepChoice::offered(remaining.is_some())
+        .map(|choice| {
+            let target = target.clone();
+            ui_components::bottom_sheet_row(choice.id(), choice.label(), false, theme)
+                .on_click(move |_, _, cx| {
+                    cx.stop_propagation();
+                    let _ = target.update(cx, |dock, cx| dock.choose_sleep(choice, cx));
+                })
+                .into_any_element()
+        })
+        .collect();
+    menu_sheet("sleep", "Sleep timer", remaining.as_deref().map(sleep_status), rows, move |cx| drop(target.update(cx, |dock, cx| dock.toggle_sleep_menu(cx))), theme)
+}
+
+/// A playback menu as a bottom sheet, for a compact window.
+fn menu_sheet(id: &'static str, title: &'static str, status: Option<String>, rows: Vec<gpui::AnyElement>, dismiss: impl Fn(&mut App) + 'static, theme: ui_components::BrowserTheme) -> gpui::AnyElement {
+    let rows = ui_components::column(0.0).id(SharedString::from(format!("{id}-rows"))).flex_1().min_h_0().overflow_y_scroll().children(status.map(|status| ui_components::bottom_sheet_section(status, theme))).children(rows);
+    let sheet = ui_components::bottom_sheet_surface(theme).id(SharedString::from(format!("{id}-sheet"))).debug_selector(move || format!("{id}-sheet")).child(ui_components::bottom_sheet_header(title, theme)).child(rows);
+    ui_components::bottom_sheet_overlay().child(ui_components::modal_scrim(SharedString::from(format!("{id}-scrim")), theme).on_click(move |_, _, cx| dismiss(cx))).child(sheet).into_any_element()
 }
 
 fn format_playback_rate(rate: f64) -> String {
     let formatted = format!("{rate:.2}");
     format!("{}×", formatted.trim_end_matches('0').trim_end_matches('.'))
-}
-
-fn transport_control(id: impl Into<SharedString>, content: impl IntoElement, theme: ui_components::BrowserTheme) -> gpui::Stateful<gpui::Div> {
-    transport_control_base(id, content, theme).hover(|style| style.bg(theme.hover))
-}
-
-fn transport_control_base(id: impl Into<SharedString>, content: impl IntoElement, theme: ui_components::BrowserTheme) -> gpui::Stateful<gpui::Div> {
-    let id = id.into();
-    let selector = id.clone();
-    div()
-        .id(id)
-        .debug_selector(move || selector.to_string())
-        .flex_1()
-        .h(px(56.0))
-        .min_w_0()
-        .cursor_pointer()
-        .flex()
-        .items_center()
-        .justify_center()
-        .bg(gpui::Hsla::transparent_black())
-        .text_color(theme.text_muted)
-        .font_weight(FontWeight::BOLD)
-        .child(content)
-}
-
-fn chapter_icon(forward: bool, theme: ui_components::BrowserTheme) -> gpui::Div {
-    let chevron = Icon::new(if forward { IconName::ChevronRight } else { IconName::ChevronLeft }).size(px(19.0));
-    let bar = div().w(px(2.0)).h(px(17.0)).bg(theme.text_muted);
-    let icon = div().flex().items_center();
-    if forward { icon.child(chevron).child(bar) } else { icon.child(bar).child(chevron) }
-}
-
-fn skip_icon(forward: bool, seconds: &'static str) -> gpui::Div {
-    div()
-        .relative()
-        .size(px(32.0))
-        .child(Icon::new(if forward { IconName::Redo2 } else { IconName::Undo2 }).size(px(32.0)))
-        .child(div().absolute().inset_0().flex().items_center().justify_center().text_size(gpui::rems(ui_components::TEXT_XS / 16.0)).child(seconds))
 }
 
 fn active_chapter_index(chapters: &[AudiobookChapter], position: Duration) -> usize {

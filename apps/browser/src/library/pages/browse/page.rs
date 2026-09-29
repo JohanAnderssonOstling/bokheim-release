@@ -383,7 +383,7 @@ impl BrowsePage {
         };
         let chips = self.listing.children();
         let folders = targets.folders.iter().map(|id| {
-            let title = chips.iter().find(|chip| DirId::parse_str(&chip.id).ok() == Some(*id)).map(|chip| chip.name.clone()).unwrap_or_default();
+            let title = chips.iter().chain(single_chip).find(|chip| DirId::parse_str(&chip.id).ok() == Some(*id)).map(|chip| chip.name.clone()).unwrap_or_default();
             crate::NewWindowTarget::Folder { library_id, directory_id: *id, title }
         });
         let books = targets.books.iter().map(|hash| crate::NewWindowTarget::Book {
@@ -433,31 +433,20 @@ impl BrowsePage {
         self.show_items_menu(window_targets, split_target, download_targets, folder_commands, position, window, cx);
     }
 
-    /// A child inside a section card owns its own menu. It is not one of the
-    /// outer paginator's selectable chips, so pass its row to the same menu
-    /// builder with a single target.
+    /// Section children use the same item menu as ordinary chips.
     pub(super) fn open_section_child_menu(&mut self, child_id: &str, position: Point<Pixels>, window: &mut Window, cx: &mut Context<Self>) {
         let Some((parent, child)) = self.listing.sections().iter().find_map(|section| section.children.iter().find(|child| child.id == child_id).map(|child| (&section.parent, child))) else { return };
-        let split_target = self.can_split(window).then(|| child.id.clone());
-        let download_targets = can_download(child).then(|| child.id.clone()).into_iter().collect();
-        let window_targets = if crate::native_windows_available() {
-            let library_id = *self.ui.backend().id();
-            if let Ok(directory_id) = DirId::parse_str(&child.id) {
-                vec![crate::NewWindowTarget::Folder { library_id, directory_id, title: child.name.clone() }]
-            } else {
-                vec![crate::NewWindowTarget::Subject { library_id, location: child.id.clone(), label: child.name.clone() }]
-            }
-        } else {
-            Vec::new()
-        };
-        let folder_commands = self.folder_actions.as_ref().and_then(|actions| {
+        let targets = self.folder_actions.as_ref().and_then(|_| {
             let folder = DirId::parse_str(&child.id).ok()?;
             let source = DirId::parse_str(&parent.id).ok()?;
-            let targets = FolderTargets { folders: vec![folder], folder_parents: Default::default(), books: Vec::new(), source };
-            let commands = actions.read(cx).item_commands(targets, |_| Some(child.name.clone()), |_| child.downloaded_book_count > 0, cx);
-            Some((actions.clone(), commands))
+            Some(FolderTargets { folders: vec![folder], folder_parents: Default::default(), books: Vec::new(), source })
         });
-        self.show_items_menu(window_targets, split_target, download_targets, folder_commands, position, window, cx);
+        let window_targets = self.window_targets(targets.as_ref(), Some(child), cx);
+        let folder_commands = self.folder_actions.clone().zip(targets).map(|(actions, targets)| {
+            let commands = actions.read(cx).item_commands(targets, |_| Some(child.name.clone()), |_| child.downloaded_book_count > 0, cx);
+            (actions, commands)
+        });
+        self.show_items_menu(window_targets, self.can_split(window).then(|| child.id.clone()), can_download(child).then(|| child.id.clone()).into_iter().collect(), folder_commands, position, window, cx);
     }
 
     fn show_items_menu(&mut self, window_targets: Vec<crate::NewWindowTarget>, split_target: Option<String>, download_targets: Vec<String>, folder_commands: Option<(Entity<FolderActions>, ItemCommands)>, position: Point<Pixels>, window: &mut Window, cx: &mut Context<Self>) {

@@ -166,7 +166,7 @@ impl PlaybackSession {
         let Some((_, library)) = self.origin.clone() else {
             return false;
         };
-        let replacement = Self::restore(record, library, self.save_speed.clone(), cx);
+        let replacement = Self::restore(record, library, self.save_speed, cx);
         *self = replacement;
         cx.notify();
         true
@@ -315,7 +315,7 @@ impl PlaybackSession {
         }
     }
 
-    pub fn open(locator: BookLocator, library: LibraryClient, resolved: ResolvedBook, initial_target: Option<String>, speed: f64, save_speed: Rc<dyn Fn(f64, &mut App)>, cx: &mut Context<Self>) -> Self {
+    pub fn open(locator: BookLocator, library: LibraryClient, resolved: ResolvedBook, initial_target: Option<String>, speed: f64, save_speed: fn(f64, &mut App), cx: &mut Context<Self>) -> Self {
         Self::create(locator, library, Some(resolved), initial_target, speed, save_speed, cx)
     }
 
@@ -381,14 +381,20 @@ impl PlaybackSession {
 
     #[cfg(not(target_arch = "wasm32"))]
     fn advance_track_if_finished(&mut self, cx: &mut Context<Self>) {
-        if !self.playback_requested || !self.audio.as_ref().is_some_and(AudioEngine::finished) { return; }
+        if !self.playback_requested || !self.audio.as_ref().is_some_and(AudioEngine::finished) {
+            return;
+        }
         let Some(current) = &self.active_track else { return };
         let Some(next) = self.tracks.iter().find(|track| track.start_ms == current.end_ms).cloned() else { return };
         self.position = Duration::from_millis(next.start_ms);
         #[cfg(target_os = "android")]
-        if let Some(audio) = &self.audio { audio.stop(); }
+        if let Some(audio) = &self.audio {
+            audio.stop();
+        }
         self.audio.take();
-        if let Some(control) = self.stream_control.take() { control.cancel(); }
+        if let Some(control) = self.stream_control.take() {
+            control.cancel();
+        }
         self.active_track = None;
         self.observed_playing = false;
         self.observed_buffering = false;
@@ -444,7 +450,9 @@ impl PlaybackSession {
             let result = work.await;
             let _ = this.update(cx, |this, cx| {
                 this.finish_load(result, initial_position);
-                if this.audio.is_none() && this.playback_requested { this.ensure_source(cx); }
+                if this.audio.is_none() && this.playback_requested {
+                    this.ensure_source(cx);
+                }
                 cx.notify();
             });
         }));
@@ -504,7 +512,11 @@ impl PlaybackSession {
                 #[cfg(not(target_arch = "wasm32"))]
                 let selected_track = cached_metadata.as_ref().filter(|metadata| metadata.format == book_model::BookFormat::Mp3Folder).and_then(|metadata| {
                     let position = initial_position.as_millis() as u64;
-                    metadata.tracks.iter().enumerate().find(|(_, track)| position >= track.start_ms && position < track.end_ms)
+                    metadata
+                        .tracks
+                        .iter()
+                        .enumerate()
+                        .find(|(_, track)| position >= track.start_ms && position < track.end_ms)
                         .or_else(|| metadata.tracks.last().map(|track| (metadata.tracks.len() - 1, track)))
                         .map(|(index, track)| (index, track.clone()))
                 });
@@ -512,7 +524,10 @@ impl PlaybackSession {
                 let resolved = if let Some((index, _)) = &selected_track {
                     library.resolve_audiobook_track(content_hash, *index).await?
                 } else {
-                    match resolved { Some(resolved) => resolved, None => library.resolve_book(content_hash).await? }
+                    match resolved {
+                        Some(resolved) => resolved,
+                        None => library.resolve_book(content_hash).await?,
+                    }
                 };
                 #[cfg(target_arch = "wasm32")]
                 let resolved = match resolved {
@@ -631,7 +646,7 @@ impl PlaybackSession {
             stream_control: None,
             resolve_task: None,
             load_task: None,
-            save_speed: Rc::new(|_, _| {}),
+            save_speed: |_, _| {},
             playback_requested: true,
             pending_seek: None,
             #[cfg(not(target_arch = "wasm32"))]
@@ -911,9 +926,13 @@ impl PlaybackSession {
             let millis = position.as_millis() as u64;
             if millis < track.start_ms || (millis >= track.end_ms && position < book.duration) {
                 #[cfg(target_os = "android")]
-                if let Some(audio) = &self.audio { audio.stop(); }
+                if let Some(audio) = &self.audio {
+                    audio.stop();
+                }
                 self.audio.take();
-                if let Some(control) = self.stream_control.take() { control.cancel(); }
+                if let Some(control) = self.stream_control.take() {
+                    control.cancel();
+                }
                 self.active_track = None;
                 self.observed_playing = false;
                 self.observed_buffering = false;
@@ -1197,10 +1216,19 @@ mod tests {
             locator.clone(),
             42_000,
             1.25,
-            app::PlaybackMetadata { format: book_model::BookFormat::M4b, title: "Restored book".into(), author: "Author".into(), narrator: None, duration_ms: 100_000, chapters: vec![], tracks: vec![], cover: b"\x89PNG\r\n\x1a\ncover".to_vec() },
+            app::PlaybackMetadata {
+                format: book_model::BookFormat::M4b,
+                title: "Restored book".into(),
+                author: "Author".into(),
+                narrator: None,
+                duration_ms: 100_000,
+                chapters: vec![],
+                tracks: vec![],
+                cover: b"\x89PNG\r\n\x1a\ncover".to_vec(),
+            },
         );
         let library = backend.library(*locator.library_id());
-        let playback = cx.new(|cx| PlaybackSession::restore(&record, library, Rc::new(|_, _| {}), cx));
+        let playback = cx.new(|cx| PlaybackSession::restore(&record, library, |_, _| {}, cx));
         cx.run_until_parked();
         playback.read_with(cx, |session, _| {
             assert!(!session.playback_requested);

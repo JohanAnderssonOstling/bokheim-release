@@ -652,14 +652,8 @@ impl Render for BookCardView {
 
         let context_menu = self.context_menu.as_ref().map(|active| mobile_context_menu::render(active.menu.clone(), active.position, window));
         let context_menu_target = cx.entity();
-        let section_cover = self.section_cover_left_aligned;
         let card = components::book_card(element_id, highlighted, self.marquee, theme)
             .when(self.section_cover_left_aligned, |card| card.pl(px(4.0)).pr(px(components::BOOK_CARD_PADDING * 2.0 - 4.0)))
-            .on_mouse_down(gpui::MouseButton::Right, move |_, _, cx| {
-                if section_cover {
-                    cx.stop_propagation();
-                }
-            })
             .on_aux_click(move |event, window, cx| {
                 // A card inside a selection is not the subject of its own menu:
                 // the page opens one over everything the band picked up.
