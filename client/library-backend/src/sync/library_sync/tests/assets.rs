@@ -32,7 +32,7 @@ fn only_new_path_changes_request_file_reconciliation() {
     let hash = fixture_content_hash(97);
     let placement = pulled_change(3, MutationBody::Placement { dir_id: crate::ROOT_DIR_ID, content_hash: hash, present: true, origin_folder_id: None });
     let cursor = database.sync_pull_cursor().unwrap();
-    database.sync_commit_pull_response(&[], &sync_common::PullStateResponse { book_creations: Vec::new(), mutations: vec![placement], next_cursor: cursor, has_more: false }).unwrap();
+    database.sync_commit_pull_response(&[], &sync_common::PullStateResponse { book_creations: vec![pulled_change(1, added(97, 1))], mutations: vec![placement], next_cursor: cursor, has_more: false }).unwrap();
     assert_eq!(database.local_book_work_hashes().unwrap(), vec![hash]);
     assert_eq!(database.native_directory_work_ids().unwrap().len(), 0, "a root placement must not reconcile the whole library");
 }

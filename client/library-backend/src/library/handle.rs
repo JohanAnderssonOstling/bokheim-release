@@ -1522,6 +1522,7 @@ mod background_scan_tests {
         assert_eq!(count, filesystem_scanner::filesystem_scan::PUBLISH_BATCH_SIZE);
         assert!(actor.session.scanner_running());
         let result = actor.scan_job.task.as_mut().unwrap().await;
+        assert!(matches!(result, Ok(Some(library_database::ScanApplyResult::Applied))), "scan failed: {result:?}");
         actor.finish_scan(result);
         assert!(!actor.session.scanner_running());
         assert_eq!(actor.session.book_count().unwrap(), 33);
@@ -1589,7 +1590,9 @@ mod background_scan_tests {
         }
         library_database::execute_owner_fixture_sql(
             &library.db,
-            "DETACH curated; ATTACH ':memory:' AS curated;
+            "UPDATE sync_metadata SET change_origin='remote';
+         DETACH curated; ATTACH ':memory:' AS curated;
+         CREATE TABLE curated.taxonomy_meta(key TEXT PRIMARY KEY,value TEXT NOT NULL);
          CREATE TABLE curated.concept(concept_id INTEGER PRIMARY KEY,preferred_label TEXT NOT NULL);
          INSERT INTO curated.concept VALUES(920001,'History'),(920002,'U.S.'),(920003,'Period');
          CREATE TABLE curated.unified_concept_route(route_id INTEGER PRIMARY KEY,concept_id INTEGER NOT NULL,parent_route_id INTEGER NOT NULL);
@@ -1600,7 +1603,8 @@ mod background_scan_tests {
          INSERT INTO book_dir(dir_id,book_row_id,file_name,local_hash,is_downloaded)
             SELECT '00000000-0000-0000-0000-000000000000',row_id,title,title,1 FROM book;
          INSERT INTO book_unified_concept(book_row_id,concept_id,mapper_version)
-            SELECT row_id,CASE title WHEN 'General history' THEN 920002 ELSE 920003 END,1 FROM book;",
+            SELECT row_id,CASE title WHEN 'General history' THEN 920002 ELSE 920003 END,1 FROM book;
+         UPDATE sync_metadata SET change_origin='local';",
         )
         .unwrap();
         let mut query = LibraryBrowseQuery {

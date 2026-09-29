@@ -14,7 +14,7 @@ on:
 
 permissions:
   contents: read
-  statuses: read
+  statuses: write
 
 concurrency:
   group: kobo-release-${{ github.ref }}
@@ -27,6 +27,12 @@ env:
   APPIMAGETOOL_VERSION: 1.9.1
 
 jobs:
+  shared-tests:
+    permissions:
+      contents: read
+      statuses: write
+    uses: ./.github/workflows/sync-e2e.yml
+
   version:
     name: Release version
     runs-on: ubuntu-24.04
@@ -55,7 +61,7 @@ jobs:
 
   build-windows-installer:
     name: Windows USB installer
-    needs: version
+    needs: [version, shared-tests]
     runs-on: windows-2025
     timeout-minutes: 30
 
@@ -142,7 +148,7 @@ jobs:
 
   build-linux-installer:
     name: Linux USB installer AppImage
-    needs: version
+    needs: [version, shared-tests]
     runs-on: ubuntu-22.04
     timeout-minutes: 30
 

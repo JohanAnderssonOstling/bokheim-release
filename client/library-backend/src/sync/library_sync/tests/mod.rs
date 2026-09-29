@@ -214,6 +214,14 @@ impl TestManager {
     }
 
     fn queue_outbox_reading_change(&self, mutation: &StateMutation, sequence: u64) {
+        // These fixtures exercise edits of books already present on the device.
+        library_database::configure_fixture_connection(&self.database, |conn| {
+            let tx = conn.unchecked_transaction()?;
+            tx.execute("UPDATE sync_metadata SET change_origin='remote'", [])?;
+            tx.execute("INSERT OR IGNORE INTO book(content_hash) VALUES(?1)", [fixture_content_hash(sequence).as_str()])?;
+            tx.execute("UPDATE sync_metadata SET change_origin='local'", [])?;
+            tx.commit()
+        }).unwrap();
         self.database.enqueue_outbox_reading_change(&mutation.mutation_id.to_string(), fixture_content_hash(sequence).as_str(), &sync_common::wire::encode(&mutation.body).unwrap(), i64::try_from(mutation.changed_at).unwrap()).unwrap();
     }
 }

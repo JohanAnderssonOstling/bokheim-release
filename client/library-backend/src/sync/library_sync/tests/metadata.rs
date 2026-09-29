@@ -324,10 +324,7 @@ async fn push_and_pull_pagination_advance_in_the_same_exchange_loop() {
         let now = web_time::SystemTime::now().duration_since(web_time::UNIX_EPOCH).unwrap().as_millis() as u64;
         for sequence in 1..=sync_common::MAX_PUSH_MUTATIONS as u64 + 1 {
             let mutation = reading_change(sequence, sequence, "epubcfi(/6/2)", now);
-            manager
-                .database
-                .enqueue_outbox_reading_change(&mutation.mutation_id.to_string(), fixture_content_hash(sequence).as_str(), &sync_common::wire::encode(&mutation.body).unwrap(), i64::try_from(mutation.changed_at).unwrap())
-                .unwrap();
+            manager.queue_outbox_reading_change(&mutation, sequence);
         }
     }
 
@@ -376,10 +373,7 @@ async fn transient_rejection_does_not_starve_later_push_pages() {
     {
         for sequence in 1..=sync_common::MAX_PUSH_MUTATIONS as u64 + 1 {
             let mutation = reading_change(sequence, sequence, "epubcfi(/6/2)", sequence);
-            manager
-                .database
-                .enqueue_outbox_reading_change(&mutation.mutation_id.to_string(), fixture_content_hash(sequence).as_str(), &sync_common::wire::encode(&mutation.body).unwrap(), i64::try_from(mutation.changed_at).unwrap())
-                .unwrap();
+            manager.queue_outbox_reading_change(&mutation, sequence);
         }
     }
 

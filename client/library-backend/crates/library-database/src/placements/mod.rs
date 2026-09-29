@@ -1390,6 +1390,9 @@ impl Database {
                 Self::finish_filesystem_scan_operation(transaction, discovery.readable)?;
             }
             timing.mark("finalize_inventory");
+            // Commit-time projection can change placements and their work revision.
+            // Include those changes in our next batch guard while still holding the writer.
+            crate::sync::apply::project_dirty(transaction)?;
             next_guard = Some((transaction.scanner_file_work_revision(|row| row.get(0))?, scan_placements(transaction)?));
             timing.mark("refresh_snapshot");
             Ok(crate::transactions::WriteOutcome::Commit(ScanApplyResult::Applied))

@@ -14,7 +14,7 @@ on:
 
 permissions:
   contents: read
-  statuses: read
+  statuses: write
 
 concurrency:
   group: desktop-release-${{ github.ref }}
@@ -34,10 +34,18 @@ env:
   BOKHEIM_UPDATE_ENDPOINT: ${{ vars.BOKHEIM_UPDATE_ENDPOINT || 'https://updates.bokheim.se/v1/stable' }}
 
 jobs:
+  shared-tests:
+    permissions:
+      contents: read
+      statuses: write
+    uses: ./.github/workflows/sync-e2e.yml
+
   platform-checks:
+    needs: shared-tests
     uses: ./.github/workflows/client-platforms.yml
 
   build-appimage:
+    needs: platform-checks
     name: x86-64 AppImage
     runs-on: ubuntu-22.04
     timeout-minutes: 120
@@ -184,6 +192,7 @@ jobs:
 
 
   build-windows:
+    needs: platform-checks
     name: x86-64 Windows installer
     runs-on: windows-2025
     timeout-minutes: 120
@@ -326,6 +335,7 @@ jobs:
 
 
   build-android:
+    needs: platform-checks
     name: ARM64 Android release APK
     runs-on: [self-hosted, linux, x64, bokheim-local]
     environment: android-release
