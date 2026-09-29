@@ -35,7 +35,7 @@ jobs:
     name: Release ${{ matrix.platform }}
     # Pull requests use disposable hosted machines; trusted Linux checks run locally.
     runs-on: ${{ matrix.os == 'windows-2025' && 'windows-2025' || (github.event_name == 'pull_request' && 'ubuntu-24.04' || fromJSON('["self-hosted","linux","x64","bokheim-local"]')) }}
-    timeout-minutes: ${{ matrix.platform == 'web' && 90 || 30 }}
+    timeout-minutes: ${{ matrix.platform == 'web' && 90 || (matrix.os == 'windows-2025' && 60 || 30) }}
     strategy:
       fail-fast: false
       matrix:

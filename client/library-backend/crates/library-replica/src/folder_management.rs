@@ -11,11 +11,19 @@ pub fn numbered_folder_name(base: &str, number: usize) -> String {
 }
 
 pub fn numbered_file_name(base: &str, number: usize) -> String {
+    use crate::filenames::{MAX_FILE_NAME_BYTES, truncate_utf8};
     let path = Path::new(base);
-    match (path.file_stem().and_then(|value| value.to_str()), path.extension().and_then(|value| value.to_str())) {
-        (Some(stem), Some(extension)) => format!("{stem} {number}.{extension}"),
-        _ => format!("{base} {number}"),
-    }
+    let suffix = format!(" {number}");
+    let (stem, extension) = match (path.file_stem().and_then(|value| value.to_str()), path.extension().and_then(|value| value.to_str())) {
+        (Some(stem), Some(extension)) => {
+            // Leave room for a full UTF-8 character even with an unusually long extension.
+            let extension = truncate_utf8(extension, MAX_FILE_NAME_BYTES - suffix.len() - 5);
+            (stem, format!(".{extension}"))
+        }
+        _ => (base, String::new()),
+    };
+    let stem = truncate_utf8(stem, MAX_FILE_NAME_BYTES - suffix.len() - extension.len());
+    format!("{stem}{suffix}{extension}")
 }
 
 fn unique_name<'a>(requested: &str, occupied: impl IntoIterator<Item = &'a str>, numbered: fn(&str, usize) -> String) -> String {
@@ -90,4 +98,20 @@ mod tests {
         assert_eq!(unique_folder_name("Shelf", ["shelf", "Shelf 2"]), "Shelf 3");
         assert_eq!(unique_file_name("Book.epub", ["book.epub", "Book 2.epub"]), "Book 3.epub");
     }
+    #[test]
+    fn numbered_files_reserve_space_for_suffixes_on_utf8_boundaries() {
+        for stem in ["a".repeat(250), "界".repeat(83), "😀".repeat(62)] {
+            let base = format!("{stem}.epub");
+            let second = unique_file_name(&base, [base.as_str()]);
+            let third = unique_file_name(&base, [base.as_str(), second.as_str()]);
+            assert!(second.len() <= crate::filenames::MAX_FILE_NAME_BYTES);
+            assert!(third.len() <= crate::filenames::MAX_FILE_NAME_BYTES);
+            assert!(second.ends_with(" 2.epub"));
+            assert!(third.ends_with(" 3.epub"));
+        }
+        for base in ["a".repeat(255), format!("a.{}", "界".repeat(84))] {
+            assert!(numbered_file_name(&base, usize::MAX).len() <= crate::filenames::MAX_FILE_NAME_BYTES);
+        }
+    }
+
 }
