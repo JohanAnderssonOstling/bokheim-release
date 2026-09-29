@@ -95,6 +95,21 @@ class PublishReleaseTests(unittest.TestCase):
         self.assertEqual(self.shared_checks, 2)
         self.assertEqual(self.calls[-1][0], 'bash')
 
+    def test_local_receipts_are_rechecked_before_signing(self):
+        receipts = {target: {'files': {publish.prepare_release.PACKAGES[target][1]:
+                    {k: artifact[k] for k in ('bytes', 'sha256')}}} for target, artifact in self.packages.items()}
+        self.receipt.update(workflow_run=None, build_receipts=receipts)
+        (self.bundle / 'provenance.json').write_text(json.dumps(self.receipt))
+        self.args.review_sha256 = publish.reviewed_inputs(self.bundle)[2]
+        with patch.object(publish.prepare_release, 'verified_receipts', return_value=receipts):
+            self.run_publish()
+        self.assertTrue((self.args.output / 'manifest.signed.json').is_file())
+        self.args.output = self.root / 'changed-receipts'
+        self.calls.clear()
+        with patch.object(publish.prepare_release, 'verified_receipts', return_value={}), self.assertRaisesRegex(ValueError, 'receipts differ'):
+            self.run_publish()
+        self.assertFalse(any('sign_manifest' in call for call in self.calls))
+
     def test_review_digest_covers_manifest_and_provenance(self):
         for name in ['manifest.json', 'provenance.json']:
             with self.subTest(name=name):

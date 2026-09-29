@@ -48,17 +48,26 @@ def validate_release(manifest, receipt, config):
     repository = receipt['release_repository']
     sha = receipt['source_commit']
     tag = receipt['tag']
-    run_id = receipt['workflow_run']
+    run_id = receipt.get('workflow_run')
     for name in (source, repository):
         require(re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', name), 'Invalid repository in provenance')
     require(re.fullmatch(r'[0-9a-f]{40}', sha), 'Invalid source commit in provenance')
-    require(type(run_id) is int and run_id > 0, 'Invalid workflow run in provenance')
+    require((type(run_id) is int and run_id > 0) or (run_id is None and bool(receipt.get('build_receipts'))), 'Missing build provenance')
     require(re.fullmatch(r'v\d+\.\d+\.\d+', tag), 'Expected a stable release tag')
     application = manifest.get('application') or {}
     require(application.get('version') == tag[1:], 'Manifest version differs from provenance')
     require(application.get('artifacts') and application['artifacts'] == receipt.get('artifacts'), 'Manifest packages differ from provenance')
-    run = json.loads(command('gh', 'api', f'repos/{source}/actions/runs/{run_id}'))
-    require(prepare_release.validate_run(run, source) == sha, 'Workflow source differs from reviewed provenance')
+    if run_id is not None:
+        run = json.loads(command('gh', 'api', f'repos/{source}/actions/runs/{run_id}'))
+        require(prepare_release.validate_run(run, source) == sha, 'Workflow source differs from reviewed provenance')
+    else:
+        with tempfile.TemporaryDirectory(prefix='bokheim-receipts-') as scratch:
+            actual = prepare_release.verified_receipts(repository, source, sha, tag, Path(scratch))
+        require(actual == receipt['build_receipts'], 'Build receipts differ from reviewed provenance')
+        for target, artifact in application['artifacts'].items():
+            filename = prepare_release.PACKAGES[target][1]
+            require(actual[target]['files'][filename] == {k: artifact[k] for k in ('bytes', 'sha256')},
+                    'Reviewed artifact differs from build receipt')
     command(sys.executable, str(ROOT / 'scripts/ci/require-shared-tests.py'), source, sha)
     release = json.loads(command('gh', 'release', 'view', tag, '--repo', repository, '--json', 'tagName,isDraft,isPrerelease,assets'))
     require(release.get('tagName') == tag and release.get('isDraft') is False and release.get('isPrerelease') is False,

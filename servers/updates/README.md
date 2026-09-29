@@ -101,46 +101,35 @@ APK's signing key: an unrelated replacement key cannot update those installs.
 This pipeline pins a single APK certificate; signing-key rotation is not
 implemented. Store an offline backup of the keystore and its recovery details.
 
-The GitHub `android-release` environment uses the signing secrets
-`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`,
-`ANDROID_KEY_ALIAS` and `ANDROID_KEY_PASSWORD`. The repository already supplies
-these names; the workflow maps them to the Gradle build environment.
-The build decodes the keystore into a private temporary file and removes it on
-exit. It builds optimized release APKs only; local fixture signing is not enabled.
-Set repository variable `BOKHEIM_ANDROID_CERT_SHA256` to the lowercase SHA-256
-certificate fingerprint from an existing production APK, independently checked
-with Android SDK `apksigner verify --print-certs EXISTING.apk`.
+Android builds now run locally. Configure `BOKHEIM_ANDROID_KEYSTORE`,
+`BOKHEIM_ANDROID_KEY_ALIAS` and `BOKHEIM_ANDROID_STORE_PASSWORD_FILE` in the
+private Gradle user properties or environment; key password defaults to the store
+password and supports a separate `BOKHEIM_ANDROID_KEY_PASSWORD_FILE`.
+Keep the existing GitHub signing secrets available for already-running jobs.
 
-The `verify-android` job needs a Linux x64 runner labeled `bokheim-android`,
-Python 3.11+, adb, and a dedicated attached ARM64 Android device. Configure its
-serial in repository variable `BOKHEIM_ANDROID_TEST_SERIAL`. The script installs
-the signed release and separate instrumentation APK; it does not launch the GUI
-or initialize a library. Use a test device without personal data. An incompatible
-existing signing identity causes installation to fail; the script never uninstalls
-an existing app to bypass that check.
+Set `ANDROID_SERIAL` to a dedicated ARM64 test device and
+`ANDROID_CERT_SHA256` to the production certificate fingerprint, independently
+checked with `apksigner verify --print-certs EXISTING.apk`. The local verification
+script installs the signed release and instrumentation APK, reads native
+compatibility/trust, checks the signer and binds metadata to the APK hash. It
+never uninstalls an existing app to bypass a signature mismatch. Only verified
+release APKs enter the draft; instrumentation APKs are not distributed.
 
-The job reads native compatibility and feed trust from the installed APK, verifies
-its production certificate, and binds the receipt to the APK hash. Only that
-verified APK enters the draft release. Feed preparation rechecks the pinned
-certificate, application identity/version, release mode, hash and shared trust.
-The instrumentation APK is retained only as an intermediate CI artifact and is
-not distributed in the published release.
-
-### Prepare a release from GitHub builds
+### Prepare a release from verified packages
 
 The workspace and release workflow supply the configured production public key
 (`release-1`). Repository variables `BOKHEIM_UPDATE_PUBLIC_KEY_HEX`,
 `BOKHEIM_UPDATE_KEY_ID` and `BOKHEIM_UPDATE_ENDPOINT` can override it for an
 explicitly configured release environment.
-The AppImage workflow retains the package's actual `--bokheim-update-info` output,
+The local AppImage build retains the package's actual `--bokheim-update-info` output,
 including its bundled trust configuration. An updater-disabled package cannot
 pass the preparation gate.
 
 ```bash
 python3 servers/updates/prepare-github-release.py \
-  --source-repository JohanAnderssonOstling/bokheim \
-  --release-repository JohanAnderssonOstling/bokheim \
-  --run-id BUILD_RUN_ID --tag v1.2.0 --sequence 1 \
+  --source-repository JohanAnderssonOstling/bokheim-release \
+  --release-repository JohanAnderssonOstling/bokheim-release \
+  --source-commit FULL_SOURCE_SHA --tag v1.2.0 --sequence 1 \
   --android-cert-sha256 "$BOKHEIM_ANDROID_CERT_SHA256" \
   --config /secure/bokheim-updates.json --initial --output /tmp/update-bundle
 ```
@@ -153,14 +142,15 @@ enforces signatures and increasing publication sequence. Validity defaults to
 Use `--key-id` when signing with a key other than `release-1`. Every new package
 must trust that signing key; the publisher may retain older keys for history.
 
-Preparation requires a successful trusted desktop-release workflow and the latest
-successful shared-suite status for its exact source SHA. It downloads the original
-workflow artifact and the release asset, compares their bytes, checks the release
-source receipt and package compatibility/trust metadata, then writes `manifest.json`
-and `provenance.json`, plus the verified packages under `artifacts/`. It never
-runs downloaded executables, changes a GitHub release,
-signs metadata or updates the live feed. Expired workflow artifacts require a fresh
-successful build. GitHub access uses the operator's existing `gh` authentication.
+Preparation requires the newest successful shared-suite status for the exact
+source SHA, matching per-platform build receipts and a successful Windows
+release workflow. It downloads release packages, compares their fingerprints
+with the verified-build receipts, checks Android signing and package
+compatibility/trust, then writes `manifest.json`, `provenance.json` and packages
+under `artifacts/`. It never runs downloaded executables, changes a GitHub release,
+signs metadata or updates the live feed. GitHub access uses the operator's `gh`
+authentication. The legacy `--run-id` mode also compares workflow artifacts and
+requires those artifacts to remain available.
 
 Preparation includes Linux AppImages, Windows update ZIPs and Android ARM64 APKs.
 All packages must contain matching version/schema/taxonomy compatibility and
@@ -288,3 +278,14 @@ from a manifest or modify users' libraries.
 See `IMPLEMENTATION.md` for current deployment and verification status. Hosting
 and an initial signed feed are live; that feed advertises no application updates.
 Packaged rollout trials and the first updater-enabled distribution remain pending.
+
+### Local platform builds
+
+Linux and Android packages are built and verified locally using
+`scripts/ci/local-release.py`; Windows alone uses the desktop release workflow.
+All packages and their `build-receipt-*.json` files are uploaded to the same draft
+in `bokheim-release`. Prepare with `--source-commit FULL_SOURCE_SHA`; preparation
+and publication check these per-platform receipts and the successful Windows
+run. `--run-id` is retained for older combined Actions builds. See
+`scripts/ci/README.md` for commands. Web builds deploy directly to the server and
+do not need GitHub release assets.

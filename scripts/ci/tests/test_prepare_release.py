@@ -89,6 +89,44 @@ class PreparationTests(unittest.TestCase):
         self.assertEqual(receipt['source_commit'], self.sha)
         self.assertTrue(receipt['release_was_draft'])
 
+    def test_local_packages_and_independent_windows_run(self):
+        self.args.run_id = None
+        self.args.source_commit = self.sha
+        fixture = self.args.output.parent / 'built'
+        fixture.mkdir()
+        receipts = {}
+        for platform in ('linux', 'windows', 'android'):
+            target = release.release_artifacts.TARGETS[platform]
+            archive, _ = release.PACKAGES[target]
+            self.command('gh', 'run', 'download', '123', '--name', archive, '--dir', str(fixture))
+            for name in release.release_artifacts.FILES[platform]:
+                if not (fixture / name).exists():
+                    (fixture / name).write_bytes(b'package')
+            receipts[target] = release.release_artifacts.record(platform, fixture, self.sha, 'owner/source', 123 if platform == 'windows' else None)
+
+        def local_command(*args):
+            if args[:2] == ('gh', 'api') and '/commits/' in args[-1]:
+                return json.dumps({'sha': self.sha})
+            if args[:3] == ('gh', 'release', 'download'):
+                name = args[args.index('--pattern') + 1]
+                if name != 'desktop-source-commit.txt':
+                    destination = Path(args[args.index('--dir') + 1]) / name
+                    destination.write_bytes((fixture / name).read_bytes())
+                    return ''
+            return self.command(*args)
+
+        with patch.object(release, 'command', local_command):
+            release.prepare(self.args)
+        provenance = json.loads((self.args.output / 'provenance.json').read_text())
+        self.assertEqual(provenance['build_receipts'], receipts)
+        self.assertIsNone(provenance['workflow_run'])
+        # A replaced local package cannot be prepared under its previous receipt.
+        self.args.output = self.args.output.parent / 'replaced-output'
+        (fixture / 'Bokheim-x86_64.AppImage').write_bytes(b'replaced')
+        with patch.object(release, 'command', local_command), self.assertRaisesRegex(ValueError, 'differs from verified local build'):
+            release.prepare(self.args)
+        self.assertFalse(self.args.output.exists())
+
     def test_windows_package_must_match_shared_schema_and_bundled_trust(self):
         for change in ({'schema': 81}, {'update_trust': None}):
             self.windows_info = change

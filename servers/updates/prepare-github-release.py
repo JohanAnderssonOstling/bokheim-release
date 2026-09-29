@@ -2,6 +2,7 @@
 """Prepare an unsigned update from tested GitHub packages; never publish or sign."""
 import argparse
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 import re
@@ -13,6 +14,10 @@ import tempfile
 import time
 
 ROOT = Path(__file__).resolve().parents[2]
+spec = importlib.util.spec_from_file_location('release_artifacts', ROOT / 'scripts/ci/release_artifacts.py')
+release_artifacts = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(release_artifacts)
+
 # Add a platform only after its activation/recovery adapter is implemented.
 PACKAGES = {
     'linux-x86_64-appimage': ('bokheim-desktop-appimage-x86-64', 'Bokheim-x86_64.AppImage'),
@@ -85,11 +90,27 @@ def hosted_artifact(config, tag, filename):
     return f'{origin}/releases/{tag}/{filename}', relative
 
 
+def verified_receipts(repository, source, sha, tag, directory):
+    """Release upload permission is the local builder trust boundary."""
+    require(gh_json('api', f'repos/{repository}/commits/{tag}')['sha'] == sha, 'Release tag differs from tested source')
+    receipts = {}
+    for platform in ('linux', 'windows', 'android'):
+        name = release_artifacts.receipt_name(platform)
+        command('gh', 'release', 'download', tag, '--repo', repository, '--pattern', name, '--dir', str(directory))
+        receipt = json.loads((directory / name).read_text())
+        release_artifacts.validate(receipt, platform, sha, source)
+        if platform == 'windows':
+            run = gh_json('api', f'repos/{source}/actions/runs/{receipt["workflow_run"]}')
+            require(validate_run(run, source) == sha, 'Windows workflow differs from tested source')
+        receipts[release_artifacts.TARGETS[platform]] = receipt
+    return receipts
+
+
 def prepare(args):
     for repo in (args.source_repository, args.release_repository):
         require(re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repo), 'Expected OWNER/REPO')
     require(re.fullmatch(r'v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', args.tag), 'Expected stable vMAJOR.MINOR.PATCH tag')
-    require(args.run_id > 0 and args.sequence > 0 and 1 <= args.valid_days <= 90, 'Invalid run, sequence or validity (1–90 days)')
+    require((args.run_id is None or args.run_id > 0) and args.sequence > 0 and 1 <= args.valid_days <= 90, 'Invalid run, sequence or validity (1–90 days)')
     require(not args.output.exists(), 'Output directory already exists; choose a new directory')
     config = json.loads(args.config.read_text())
     trust = {'endpoint': config['endpoint'], 'channel': config['channel'], 'keys': config['trusted_keys']}
@@ -98,8 +119,12 @@ def prepare(args):
     require(args.key_id in trust['keys'], 'Selected signing key is not trusted by publisher configuration')
     android_cert = args.android_cert_sha256
     require(isinstance(android_cert, str) and re.fullmatch('[0-9a-f]{64}', android_cert), 'Expected Android production certificate SHA-256')
-    run = gh_json('api', f'repos/{args.source_repository}/actions/runs/{args.run_id}')
-    sha = validate_run(run, args.source_repository)
+    if args.run_id is not None:
+        run = gh_json('api', f'repos/{args.source_repository}/actions/runs/{args.run_id}')
+        sha = validate_run(run, args.source_repository)
+    else:
+        sha = args.source_commit
+        require(re.fullmatch('[0-9a-f]{40}', sha), 'Expected full source commit')
     command(sys.executable, str(ROOT / 'scripts/ci/require-shared-tests.py'), args.source_repository, sha)
     release = gh_json('release', 'view', args.tag, '--repo', args.release_repository,
                       '--json', 'tagName,isDraft,isPrerelease,assets')
@@ -120,14 +145,21 @@ def prepare(args):
         command('gh', 'release', 'download', args.tag, '--repo', args.release_repository,
                 '--pattern', 'desktop-source-commit.txt', '--dir', str(downloaded))
         require((downloaded / 'desktop-source-commit.txt').read_text().strip() == sha, 'Release source differs from tested commit')
+        build_receipts = verified_receipts(args.release_repository, args.source_repository, sha, args.tag, scratch) if args.run_id is None else None
         artifacts = {}
         first_info = None
         for target, (archive, filename) in PACKAGES.items():
             require(filename in assets, f'Missing release package: {filename}')
             built = scratch / target
             built.mkdir()
-            command('gh', 'run', 'download', str(args.run_id), '--repo', args.source_repository,
-                    '--name', archive, '--dir', str(built))
+            if build_receipts is not None:
+                for name in build_receipts[target]['files']:
+                    command('gh', 'release', 'download', args.tag, '--repo', args.release_repository,
+                            '--pattern', name, '--dir', str(built))
+                    require(fingerprint(built / name) == build_receipts[target]['files'][name], 'Release artifact differs from verified local build')
+            else:
+                command('gh', 'run', 'download', str(args.run_id), '--repo', args.source_repository,
+                        '--name', archive, '--dir', str(built))
             info = json.loads((built / f'update-info-{target}.json').read_text())
             validate_info(info, target, args.tag[1:], trust, args.key_id)
             if target == 'android-aarch64-apk':
@@ -167,6 +199,8 @@ def prepare(args):
                    'workflow_run': args.run_id, 'release_repository': args.release_repository,
                    'tag': args.tag, 'signing_key_id': args.key_id,
                    'release_was_draft': release['isDraft'], 'android_cert_sha256': android_cert, 'artifacts': artifacts}
+        if build_receipts is not None:
+            receipt['build_receipts'] = build_receipts
         # Only expose a complete preparation result; a failed download leaves no
         # output that a later signing step might accidentally consume.
         with tempfile.TemporaryDirectory(prefix='.prepare-', dir=args.output.parent) as stage:
@@ -186,7 +220,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-repository', required=True)
     parser.add_argument('--release-repository', required=True)
-    parser.add_argument('--run-id', required=True, type=int)
+    origin = parser.add_mutually_exclusive_group(required=True)
+    origin.add_argument('--run-id', type=int, help='Legacy combined Actions build')
+    origin.add_argument('--source-commit', help='Exact source SHA of local builds and the Windows run')
     parser.add_argument('--tag', required=True)
     parser.add_argument('--sequence', required=True, type=int)
     parser.add_argument('--valid-days', type=int, default=14)

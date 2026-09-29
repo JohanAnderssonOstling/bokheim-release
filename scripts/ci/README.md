@@ -1,116 +1,108 @@
-# Release test ownership
+# Local releases and Windows Actions
 
-Prefer the local workstation for shared tests and trusted Linux/web/Android
-checks and Android builds. Windows and distribution-specific packaging use
-GitHub-hosted runners. Pull-request platform checks stay on disposable hosted
-runners; shared tests run only by explicit dispatch or local invocation.
+Shared tests, Linux/AppImage, Android/APK and web/Wasm run directly on the
+workstation. GitHub Actions builds and checks Windows. GitHub also stores native
+release downloads; it does not need to build the locally produced packages.
+Web deploys directly over SSH to our server.
 
-| Suite | Execution |
-| --- | --- |
-| Library schema/replica/backend, taxonomy, shared services and runtime | Own Linux runner |
-| Update coordinator, native staging and publisher | Own Linux runner |
-| Kobo extraction rules and platform-neutral Android/Kobo adapter logic | Own Linux runner |
-| PostgreSQL synchronization E2E | Own Linux runner |
-| Linux update activation/recovery subprocess test | Local workstation |
-| Native adapter tests | Local Linux and GitHub Windows |
-| Web worker/Wasm checks and browser runtime helpers | Local workstation |
-| Android target cross-compilation and release APK | Local workstation |
-| AppImage payload/linking and Windows installer checks | GitHub respective OS |
-| Kobo installer package checks and OS path conventions | GitHub respective OS |
+## Source and tools
 
-All Rust builds/tests/checks use optimized release mode. Compiling shared code as
-part of a platform build is expected; its test suite is not rerun on each OS.
-The old architecture check scripts no longer exist in this checkout and are no
-longer referenced by workflows.
+Use a clean release checkout, with clean sibling GPUI-Fork, HtmlEngine and
+HtmlViewCore checkouts at the pins in `.github/workflows/desktop-release.yml`.
+Keep this separate from the Actions runner's `_work` directory and build caches.
+All platforms must use the same source commit. Do not create or move a version
+tag as part of building; publication requires an existing tag at that commit.
 
-## Run shared tests
+Install Rust 1.95.0, Python 3.11+, gh, and the platform build tools. The local
+command selects Rust through its environment, without changing your default
+toolchain. All builds/tests use optimized release profiles.
 
-```bash
-python3 scripts/ci/shared-tests.py --dry-run
-python3 scripts/ci/shared-tests.py
-# After tests on a clean release checkout, report the result to the source repo:
-python3 scripts/ci/shared-tests.py --report OWNER/REPO
-```
+- Shared suite: PostgreSQL tools (`initdb`, `pg_ctl`, `createdb`), ripgrep and
+  native build libraries. The suite creates an isolated temporary database when
+  `SYNC_E2E_DATABASE_URL` is absent.
+- Linux: native GPUI libraries, linuxdeploy and appimagetool in PATH (or set
+  `LINUXDEPLOY` and `APPIMAGETOOL`). Release tooling pins remain in the Windows
+  workflow environment. Build in a local Ubuntu 22.04 environment/container for
+  the GLIBC 2.35 baseline. Newer host builds are accepted only if both the
+  AppImage runtime and all packaged ELF files pass the same compatibility check.
+- Android: Java 21, Gradle 8.14.3, Android SDK 36/build-tools 36.0.0, NDK
+  29.0.13599879 and Rust target `aarch64-linux-android`. Configure production
+  signing in private Gradle user properties or `BOKHEIM_ANDROID_*` environment
+  variables; password `_FILE` settings are supported. Set `ANDROID_SERIAL` to a
+  dedicated ARM64 test device and `ANDROID_CERT_SHA256` to the production signer.
+  Verification installs the release and instrumentation APKs on that device.
+- Web: Node, Rust `wasm32-unknown-unknown` and `rust-src`, Binaryen `wasm-opt`,
+  wasm-bindgen-cli matching Cargo.lock, and Playwright 1.61.1 with Firefox and
+  Chromium installed. Set `PLAYWRIGHT_MODULE` to its absolute `index.mjs` path.
 
-`--report` runs the suite, posts pending before execution and success only after
-all commands pass. It requires the main checkout to remain clean at the same
-commit, and all three sibling repositories to match the desktop release pins.
-A dirty development checkout may run tests without reporting release readiness.
-The status protocol is `bokheim/shared-tests-v1`; changes that invalidate old
-results should bump this context in both scripts.
-
-Local reporting requires `gh` authentication with commit-status write permission.
-Only trusted release operators/CI should have that permission. The release gate
-checks the newest status for this context and exact checkout SHA; repository
-status-writing authority is the trust boundary. It never accepts an earlier
-success over a later failure or pending result. GitHub's commit-status protocol:
-https://docs.github.com/en/rest/commits/statuses
-
-Alternatively dispatch **Shared release tests (own runner)** on the release
-branch/tag. The workflow is manual and runs on labels
-`self-hosted, linux, x64, bokheim-shared`, not a GitHub-hosted runner. Provision it
-with Rust 1.95.0, Python 3, gh, ripgrep, PostgreSQL tools, and the Linux
-native build libraries used by the desktop/Kobo packages. Do not automatically
-run untrusted pull requests on this runner. A local run without a supplied
-`SYNC_E2E_DATABASE_URL` needs PostgreSQL's initdb/pg_ctl/createdb in PATH.
-
-The shared workflow uses the same native PostgreSQL lifecycle as local tests: it
-starts an isolated temporary database on an available port and stops it afterwards.
-Docker and a fixed PostgreSQL service port are not required. GitHub authentication
-and Actions runner `johan-82sn-bokheim` are configured on the release workstation.
-Its labels are `bokheim-shared` and `bokheim-local`; its isolated work directory
-is `~/.local/share/bokheim-actions-runner/_work`. The user service
-`bokheim-actions-runner.service` starts with the user session and can be controlled
-with `systemctl --user`. Rust 1.95.0 is installed without changing the developer
-default toolchain. Android device verification needs an attached device and the
-`bokheim-android` label; that label is not assigned yet. The local reporting command works without a runner daemon.
-
-## Independent platform runs
-
-Run one platform per invocation against the same source ref:
+## Local commands
 
 ```bash
-gh workflow run desktop-release.yml --repo JohanAnderssonOstling/bokheim-release --ref main -f platform=linux -f publish=false
-gh workflow run desktop-release.yml --repo JohanAnderssonOstling/bokheim-release --ref main -f platform=windows -f publish=false
-gh workflow run desktop-release.yml --repo JohanAnderssonOstling/bokheim-release --ref main -f platform=android -f publish=false
-gh workflow run client-platforms.yml --repo JohanAnderssonOstling/bokheim-release --ref main -f platform=web
+# Optional: run/report shared tests first. Platform commands reuse this success.
+RUSTUP_TOOLCHAIN=1.95.0 RUSTC_BOOTSTRAP=1 python3 scripts/ci/shared-tests.py --report JohanAnderssonOstling/bokheim-release
+
+# One platform at a time. Output must be a fresh directory outside the checkout.
+python3 scripts/ci/local-release.py linux --output "$HOME/bokheim-builds/linux-01"
+python3 scripts/ci/local-release.py android --output "$HOME/bokheim-builds/android-01"
+python3 scripts/ci/local-release.py web --output "$HOME/bokheim-builds/web-01" --deploy
 ```
 
-Use an existing immutable release tag when all runs must use an identical ref.
-Each invocation has its own run and can be retried independently. Desktop runs
-reuse the newest successful shared-test status for their exact commit; otherwise
-the local shared suite runs first. A later failure or pending status invalidates
-an earlier success. Browser checks/builds run separately from executable packaging.
-Local jobs share one runner and therefore execute sequentially on that machine.
-Local platform Cargo artifacts live outside the cleaned checkout; hosted platform
-jobs save and restore their Cargo cache.
+`--dry-run` prints the plan without running checks, builds, uploads or deployment.
+The local command reuses the newest successful `bokheim/shared-tests-v1` status
+for the exact commit; otherwise it runs/reports shared tests locally. A newer
+pending or failed result blocks reuse. The source and sibling pins must remain
+clean through completion. Source commit and artifact hashes are recorded only
+after platform verification succeeds. An incomplete output directory is retained
+for diagnosis but has no verified receipt; retry using a fresh output directory.
 
-## Release gate
+Use `--upload --tag EXISTING_VERSION_TAG` on a native local command to upload after
+verification. Or upload an already verified directory without rebuilding:
 
-1. Shared tests must pass for the exact release commit.
-2. Each executable requires only its own platform checks before packaging.
-3. A selected platform can upload its verified artifacts to the shared draft with
-   `publish=true`; other platform jobs are skipped. `platform=all` is available
-   for a combined run, and existing tag pushes retain combined release behavior.
-4. Publication checks the shared result again and requires an existing version
-   tag pointing to the exact source commit. It never creates or moves tags.
-5. Draft assets are uploaded to `JohanAnderssonOstling/bokheim-release` using the
-   repository Actions token with write access only in the publication job.
-6. Artifacts include a source-commit receipt. Drafts remain unpublished, and public
-   releases cannot be overwritten by these jobs. All desired platform assets must
-   be collected and verified before publishing the draft publicly.
+```bash
+python3 scripts/ci/release_artifacts.py upload linux --directory "$HOME/bokheim-builds/linux-01" --tag EXISTING_VERSION_TAG
+python3 scripts/ci/release_artifacts.py upload android --directory "$HOME/bokheim-builds/android-01" --tag EXISTING_VERSION_TAG
+```
 
-These gates apply to existing **draft GitHub release uploads**. The reviewed
-`servers/updates/publish-github-release.py` command rechecks the source workflow,
-published release/source receipt and exact-commit shared gate before signing, and
-checks the shared gate again before publication. Run it on a trusted release
-machine or protected own runner; private keys never reach the serving host.
-See `servers/updates/README.md` for review, local staging and publication commands.
-Direct operator use of the static publisher remains a trusted release operation.
+Uploads verify package hashes, shared tests, package version and existing tag
+commit. They create/update only a **draft release**, never tags or public assets.
+A draft containing a different source receipt is rejected. The default release
+repository is `JohanAnderssonOstling/bokheim-release`.
 
-Android APK release signing/emulator installation tests and Windows next-launch
-activation tests remain pending. Linux now has a subprocess activation/recovery
-test and an AppImage update-metadata entry-point check. The existing
-Windows installer check validates its PE container; it does not claim a complete
-install/restart exercise. Add those tests to the relevant platform jobs as the
-activation adapters become available.
+Web `--deploy` uses `servers/sync/deploy/deploy-web-remote.sh --dist DIRECTORY`.
+It verifies the receipt and deploys those exact files, without a second build.
+Existing `BOKHEIM_DEPLOY_HOST`, `BOKHEIM_DEPLOY_USER` and SSH settings apply.
+To stage for manual installation instead, use that script with `--dist` and
+`--stage-only`. Web does not upload a bundle to a GitHub release.
+
+## Windows
+
+After reporting local shared tests for the source revision:
+
+```bash
+gh workflow run desktop-release.yml --repo JohanAnderssonOstling/bokheim-release --ref SOURCE_REF -f publish=false
+```
+
+Windows runs its platform checks, builds the optimized executable, packages the
+installer and update ZIP, probes runtime metadata and records artifact hashes.
+`publish=true` uploads to the version's existing tag draft after checking that
+tag points to the build commit. Windows platform checks also run on relevant
+pull requests and pushes. No Linux, Android or web jobs are scheduled by these
+two workflows. Updating their definitions does not restart or cancel old runs.
+
+The manual shared-suite workflow remains available for operator use, but Windows
+release jobs only read its commit status; they never schedule shared tests.
+The separate Kobo workflow is outside this desktop/mobile/web change.
+
+## Feed publication
+
+Collect all three verified native platforms on the same version draft. Prepare
+using `servers/updates/prepare-github-release.py --source-commit FULL_SHA` in place
+of the legacy `--run-id`: it verifies individual platform receipts, package
+hashes, Android signing identity, compatibility and the successful Windows run.
+The old combined-run preparation mode remains supported for existing builds.
+
+Review the prepared bundle, publish the GitHub draft, then use the existing
+review/sign/publish command in `servers/updates/README.md`. Publication rechecks
+the source gate and platform receipts. Signing keys stay on the trusted local
+machine. Permission to upload releases/report commit statuses is the trust
+boundary for local build attestations.

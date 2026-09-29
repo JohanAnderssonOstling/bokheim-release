@@ -24,15 +24,35 @@ cleanup() {
 trap cleanup EXIT
 
 stage_only=false
-if [[ ${1:-} == --stage-only && $# -eq 1 ]]; then
-    stage_only=true
-elif [[ $# -ne 0 ]]; then
-    echo "usage: $0 [--stage-only]" >&2
-    exit 2
+dist=
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --stage-only) stage_only=true; shift ;;
+        --dist) dist=${2:?--dist requires a verified build directory}; shift 2 ;;
+        *) echo "usage: $0 [--stage-only] [--dist VERIFIED_DIRECTORY]" >&2; exit 2 ;;
+    esac
+done
+if [[ -n "$dist" ]]; then
+    # Deploy the exact bundle checked locally, without rebuilding it.
+    dist=$(cd "$dist" && pwd)
+    python3 - "$repository_root" "$dist" <<'PY_VERIFY'
+import json, sys
+from pathlib import Path
+sys.path.insert(0, str(Path(sys.argv[1]) / 'scripts/ci'))
+import release_artifacts as artifacts
+directory = Path(sys.argv[2])
+receipt = json.loads((directory / artifacts.receipt_name('web')).read_text())
+artifacts.validate(receipt, 'web', receipt['source_commit'], receipt['source_repository'], directory)
+if artifacts.command('git', 'rev-parse', 'HEAD') != receipt['source_commit']:
+    raise SystemExit('Web bundle belongs to a different deployment source commit')
+artifacts.clean_revision(receipt['source_commit'])
+artifacts.command('python3', 'scripts/ci/require-shared-tests.py', receipt['source_repository'], receipt['source_commit'])
+PY_VERIFY
+else
+    "${repository_root}/apps/web-gpui/scripts/build.sh"
+    dist="${repository_root}/apps/web-gpui/dist"
 fi
-
-"${repository_root}/apps/web-gpui/scripts/build.sh"
-tar -czf "${stage}/web-dist.tar.gz" -C "${repository_root}/apps/web-gpui/dist" .
+tar -czf "${stage}/web-dist.tar.gz" -C "$dist" .
 tar -czf "${stage}/admin-dist.tar.gz" -C "${repository_root}/servers/admin-web" .
 install -m 0755 "${script_directory}/install-web-staged.sh" "${stage}/install-web-staged.sh"
 

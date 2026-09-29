@@ -1,17 +1,11 @@
-name: GPUI platform release
-run-name: Release ${{ inputs.platform || 'all' }} — ${{ github.ref_name }}
+name: Windows release
+run-name: Release Windows — ${{ github.ref_name }}
 
 on:
   workflow_dispatch:
     inputs:
-      platform:
-        description: Platform to build in this independent run
-        required: true
-        type: choice
-        default: linux
-        options: [linux, windows, android, all]
       publish:
-        description: Upload the desktop builds to the shared draft release for this version
+        description: Upload the Windows builds to the shared draft release for this version
         required: true
         type: boolean
         default: false
@@ -21,10 +15,10 @@ on:
 
 permissions:
   contents: read
-  statuses: write
+  statuses: read
 
 concurrency:
-  group: desktop-release-${{ github.ref }}-${{ inputs.platform || 'all' }}
+  group: windows-release-${{ github.ref }}
   cancel-in-progress: false
 
 env:
@@ -42,178 +36,18 @@ env:
 
 jobs:
   shared-tests:
-    permissions:
-      contents: read
-      statuses: write
-    uses: ./.github/workflows/sync-e2e.yml
-
-  linux-checks:
-    if: github.event_name == 'push' || inputs.platform == 'all' || inputs.platform == 'linux'
-    needs: shared-tests
-    uses: ./.github/workflows/client-platforms.yml
-    with:
-      platform: linux
+    name: Require local shared tests
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Require shared tests for this source commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ci/require-shared-tests.py "${{ github.repository }}" "$GITHUB_SHA"
 
   windows-checks:
-    if: github.event_name == 'push' || inputs.platform == 'all' || inputs.platform == 'windows'
     needs: shared-tests
     uses: ./.github/workflows/client-platforms.yml
-    with:
-      platform: windows
-
-  android-checks:
-    if: github.event_name == 'push' || inputs.platform == 'all' || inputs.platform == 'android'
-    needs: shared-tests
-    uses: ./.github/workflows/client-platforms.yml
-    with:
-      platform: android
-
-  build-appimage:
-    needs: linux-checks
-    name: x86-64 AppImage
-    runs-on: ubuntu-22.04
-    timeout-minutes: 120
-
-    steps:
-      - name: Set up PDFium preparation tools
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Check out Bokheim
-        uses: actions/checkout@v6
-        with:
-          path: bokheim
-
-      - name: Check out GPUI-Fork
-        uses: actions/checkout@v6
-        with:
-          repository: JohanAnderssonOstling/GPUI-Fork
-          ref: ${{ env.GPUI_FORK_REF }}
-          path: GPUI-Fork
-
-      - name: Check out HtmlEngine
-        uses: actions/checkout@v6
-        with:
-          repository: JohanAnderssonOstling/HtmlEngine
-          ref: ${{ env.HTML_ENGINE_REF }}
-          path: HtmlEngine
-
-      - name: Check out HtmlViewCore
-        uses: actions/checkout@v6
-        with:
-          repository: JohanAnderssonOstling/HtmlViewCore
-          ref: ${{ env.HTML_VIEW_CORE_REF }}
-          path: HtmlViewCore
-
-      - name: Install build and packaging dependencies
-        run: |
-          sudo apt-get -o Acquire::Retries=3 update
-          sudo apt-get -o Acquire::Retries=3 install -y \
-            binutils \
-            build-essential \
-            clang \
-            cmake \
-            curl \
-            file \
-            libasound2-dev \
-            libfontconfig1-dev \
-            libfreetype6-dev \
-            libfuse2 \
-            libssl-dev \
-            libvulkan-dev \
-            libwayland-dev \
-            libxcb-xkb-dev \
-            libxkbcommon-dev \
-            libxkbcommon-x11-dev \
-            pkg-config \
-            zsync
-
-      - name: Install Rust
-        run: |
-          rustup toolchain install "$RUST_VERSION" --profile minimal
-          rustup default "$RUST_VERSION"
-
-      - name: Restore Cargo dependencies and build artifacts
-        uses: Swatinem/rust-cache@v2
-        with:
-          prefix-key: bokheim-appimage-v3
-          shared-key: desktop-x86-64
-          key: gpui-${{ env.GPUI_FORK_REF }}-engine-${{ env.HTML_ENGINE_REF }}-view-${{ env.HTML_VIEW_CORE_REF }}
-          workspaces: bokheim -> target
-          cache-on-failure: true
-          cache-workspace-crates: true
-
-      - name: Download pinned AppImage packaging tools
-        run: |
-          curl --fail --location --retry 3 \
-            "https://github.com/linuxdeploy/linuxdeploy/releases/download/${LINUXDEPLOY_VERSION}/linuxdeploy-x86_64.AppImage" \
-            --output "$RUNNER_TEMP/linuxdeploy-x86_64.AppImage"
-          curl --fail --location --retry 3 \
-            "https://github.com/AppImage/appimagetool/releases/download/${APPIMAGETOOL_VERSION}/appimagetool-x86_64.AppImage" \
-            --output "$RUNNER_TEMP/appimagetool-x86_64.AppImage"
-          chmod +x \
-            "$RUNNER_TEMP/linuxdeploy-x86_64.AppImage" \
-            "$RUNNER_TEMP/appimagetool-x86_64.AppImage"
-
-      - name: Check tagged version
-        if: startsWith(github.ref, 'refs/tags/')
-        working-directory: bokheim
-        shell: bash
-        run: |
-          VERSION=$(sed -n 's/^version = "\([^"]*\)"/\1/p' apps/desktop-gpui/Cargo.toml | head -n 1)
-          test "v${VERSION}" = "$GITHUB_REF_NAME"
-
-      - name: Verify the desktop dependency graph is GPUI-only
-        working-directory: bokheim
-        shell: bash
-        run: |
-          cargo tree -p desktop-gpui --no-default-features --features desktop > "$RUNNER_TEMP/desktop-dependency-tree.txt"
-          if grep -E -i '(^|[[:space:]])(tauri|wry|webkit2gtk|mobileapp)([[:space:]]|$)' "$RUNNER_TEMP/desktop-dependency-tree.txt"; then
-            echo "The GPUI AppImage must not depend on Tauri or the mobile application." >&2
-            exit 1
-          fi
-
-      - name: Build GPUI desktop release
-        working-directory: bokheim
-        run: python3 apps/desktop-gpui/scripts/build.py
-
-      - name: Build updateable AppImage
-        working-directory: bokheim
-        env:
-          APPIMAGE_EXTRACT_AND_RUN: "1"
-          APPIMAGETOOL: ${{ runner.temp }}/appimagetool-x86_64.AppImage
-          LINUXDEPLOY: ${{ runner.temp }}/linuxdeploy-x86_64.AppImage
-        run: apps/desktop-gpui/linux/appimage/build-appimage.sh
-
-      - name: Verify AppImage runtime and payload
-        working-directory: bokheim
-        shell: bash
-        run: |
-          APPIMAGE_EXTRACT_AND_RUN=1 release/Bokheim-x86_64.AppImage --bokheim-update-info > release/update-info-linux-x86_64-appimage.json
-          python3 -c 'import json; p=json.load(open("release/update-info-linux-x86_64-appimage.json")); assert p["schema"] > 0 and p["target"] == "linux-x86_64-appimage"'
-          release/Bokheim-x86_64.AppImage --appimage-version
-          release/Bokheim-x86_64.AppImage --appimage-extract >/dev/null
-          test -x squashfs-root/usr/bin/desktop-gpui
-          test -f squashfs-root/se.bokheim.Bokheim.desktop
-          test -e squashfs-root/se.bokheim.Bokheim.svg -o -e squashfs-root/se.bokheim.Bokheim.png
-          (cd release && sha256sum --check Bokheim-x86_64.AppImage.sha256)
-          ldd squashfs-root/usr/bin/desktop-gpui > "$RUNNER_TEMP/appimage-ldd.txt"
-          cat "$RUNNER_TEMP/appimage-ldd.txt"
-          if grep -F 'not found' "$RUNNER_TEMP/appimage-ldd.txt"; then
-            echo "The packaged desktop executable has unresolved shared libraries." >&2
-            exit 1
-          fi
-          apps/desktop-gpui/linux/appimage/verify-glibc-compatibility.sh release/Bokheim-x86_64.AppImage 2.35
-          apps/desktop-gpui/linux/appimage/verify-glibc-compatibility.sh squashfs-root 2.35
-
-      - name: Retain workflow artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: bokheim-desktop-appimage-x86-64
-          path: bokheim/release/*
-          if-no-files-found: error
-
 
   build-windows:
     needs: windows-checks
@@ -350,6 +184,11 @@ jobs:
             throw "The Windows installer is not a PE executable"
           }
 
+      - name: Record verified Windows artifacts
+        working-directory: bokheim
+        shell: pwsh
+        run: python scripts/ci/release_artifacts.py record windows --directory release --repository "${{ github.repository }}"
+
       - name: Retain workflow artifact
         uses: actions/upload-artifact@v7
         with:
@@ -358,151 +197,13 @@ jobs:
           if-no-files-found: error
 
 
-  build-android:
-    needs: android-checks
-    name: ARM64 Android release APK
-    runs-on: [self-hosted, linux, x64, bokheim-local]
-    environment: android-release
-    env:
-      RUSTC_BOOTSTRAP: '1'
-      RUSTUP_TOOLCHAIN: '1.95.0'
-    timeout-minutes: 120
-    steps:
-      - name: Set up PDFium preparation tools
-        if: runner.environment == 'github-hosted'
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Check out Bokheim
-        uses: actions/checkout@v6
-        with:
-          path: bokheim
-
-      - name: Check out GPUI-Fork
-        uses: actions/checkout@v6
-        with:
-          repository: JohanAnderssonOstling/GPUI-Fork
-          ref: ${{ env.GPUI_FORK_REF }}
-          path: GPUI-Fork
-
-      - name: Check out HtmlEngine
-        uses: actions/checkout@v6
-        with:
-          repository: JohanAnderssonOstling/HtmlEngine
-          ref: ${{ env.HTML_ENGINE_REF }}
-          path: HtmlEngine
-
-      - name: Check out HtmlViewCore
-        uses: actions/checkout@v6
-        with:
-          repository: JohanAnderssonOstling/HtmlViewCore
-          ref: ${{ env.HTML_VIEW_CORE_REF }}
-          path: HtmlViewCore
-
-      - uses: actions/setup-java@v4
-        if: runner.environment == 'github-hosted'
-        with:
-          distribution: temurin
-          java-version: '21'
-      - uses: android-actions/setup-android@v3
-        if: runner.environment == 'github-hosted'
-      - uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.14.3'
-      - name: Install Rust and Android build tools
-        run: |
-          rustup toolchain install "$RUST_VERSION" --profile minimal
-          rustup target add aarch64-linux-android
-          sdkmanager 'platforms;android-36' 'build-tools;36.0.0' 'ndk;29.0.13599879'
-      - name: Reuse Android build artifacts on the local runner
-        if: runner.environment == 'self-hosted'
-        run: |
-          mkdir -p "$RUNNER_TOOL_CACHE/bokheim-android-release"
-          ln -s "$RUNNER_TOOL_CACHE/bokheim-android-release" bokheim/target
-      - uses: Swatinem/rust-cache@v2
-        if: runner.environment == 'github-hosted'
-        with:
-          prefix-key: bokheim-android-release-v1
-          workspaces: bokheim -> target
-      - name: Build signed release and instrumentation APKs
-        working-directory: bokheim
-        env:
-          APK_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-          BOKHEIM_ANDROID_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          BOKHEIM_ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-          BOKHEIM_ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-        run: |
-          set -euo pipefail
-          VERSION=$(sed -n 's/^version = "\([^" ]*\)"/\1/p' apps/desktop-gpui/Cargo.toml | head -n 1)
-          if [[ "$GITHUB_REF" == refs/tags/* ]]; then test "v$VERSION" = "$GITHUB_REF_NAME"; fi
-          test -n "$BOKHEIM_UPDATE_PUBLIC_KEY_HEX"
-          test -n "$APK_KEYSTORE_BASE64"
-          export BOKHEIM_ANDROID_KEYSTORE="$RUNNER_TEMP/bokheim-release.keystore"
-          trap 'rm -f "$BOKHEIM_ANDROID_KEYSTORE"' EXIT
-          umask 077
-          printf '%s' "$APK_KEYSTORE_BASE64" | base64 --decode > "$BOKHEIM_ANDROID_KEYSTORE"
-          gradle -p apps/desktop-gpui/android --no-daemon assembleRelease assembleReleaseAndroidTest testReleaseUnitTest
-          mkdir -p release android-probe
-          cp apps/desktop-gpui/android/build/outputs/apk/release/*-release.apk release/Bokheim-Android-arm64.apk
-          cp apps/desktop-gpui/android/build/outputs/apk/androidTest/release/*.apk android-probe/instrumentation.apk
-      - uses: actions/upload-artifact@v7
-        with:
-          name: bokheim-android-unverified
-          path: |
-            bokheim/release/Bokheim-Android-arm64.apk
-            bokheim/android-probe/instrumentation.apk
-          if-no-files-found: error
-
-  verify-android:
-    name: Verify packaged Android runtime
-    needs: build-android
-    # A dedicated ARM64 device is attached to this Linux x64 runner. Never use a
-    # personal device: verification installs the release and instrumentation APKs.
-    runs-on: [self-hosted, linux, x64, bokheim-android]
-    timeout-minutes: 10
-    concurrency:
-      group: bokheim-android-release-device
-      cancel-in-progress: false
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/download-artifact@v8
-        with:
-          name: bokheim-android-unverified
-          path: android-input
-      - name: Read compatibility and trust from the installed release
-        env:
-          ANDROID_SERIAL: ${{ vars.BOKHEIM_ANDROID_TEST_SERIAL }}
-          ANDROID_CERT_SHA256: ${{ vars.BOKHEIM_ANDROID_CERT_SHA256 }}
-        run: |
-          set -euo pipefail
-          test -n "$ANDROID_SERIAL"
-          mkdir -p release
-          cp android-input/release/Bokheim-Android-arm64.apk release/
-          python3 apps/desktop-gpui/android/verify-release.py \
-            --serial "$ANDROID_SERIAL" \
-            --cert-sha256 "$ANDROID_CERT_SHA256" \
-            --apk release/Bokheim-Android-arm64.apk \
-            --test-apk android-input/android-probe/instrumentation.apk \
-            --output release/update-info-android-aarch64-apk.json
-      - uses: actions/upload-artifact@v7
-        with:
-          name: bokheim-desktop-android-arm64
-          path: release/*
-          if-no-files-found: error
-
   publish-draft:
     permissions:
       contents: write
       statuses: read
     name: Publish verified draft artifacts
-    needs: [build-appimage, build-windows, verify-android]
-    if: >-
-      !cancelled() &&
-      (startsWith(github.ref, 'refs/tags/') || inputs.publish == true) &&
-      (needs.build-appimage.result == 'success' || (needs.build-appimage.result == 'skipped' && inputs.platform != 'all' && inputs.platform != 'linux' && github.event_name != 'push')) &&
-      (needs.build-windows.result == 'success' || (needs.build-windows.result == 'skipped' && inputs.platform != 'all' && inputs.platform != 'windows' && github.event_name != 'push')) &&
-      (needs.verify-android.result == 'success' || (needs.verify-android.result == 'skipped' && inputs.platform != 'all' && inputs.platform != 'android' && github.event_name != 'push'))
+    needs: build-windows
+    if: startsWith(github.ref, 'refs/tags/') || inputs.publish == true
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
@@ -517,26 +218,9 @@ jobs:
           pattern: bokheim-desktop-*
           path: release
           merge-multiple: true
-      - name: Upload completed platform builds to draft release
+      - name: Upload verified Windows artifacts to draft
         env:
           GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
         run: |
-          VERSION=$(sed -n 's/^version = "\([^"]*\)"/\1/p' apps/desktop-gpui/Cargo.toml | head -n 1)
-          test -n "$VERSION"
-          RELEASE_TAG="v${VERSION}"
-          # Publication never creates or moves tags, and artifacts must match the tag.
-          gh api "repos/$GH_REPO/git/ref/tags/$RELEASE_TAG" >/dev/null
-          TAG_SHA=$(gh api "repos/$GH_REPO/commits/$RELEASE_TAG" --jq .sha)
-          test "$TAG_SHA" = "$GITHUB_SHA"
-          if ! gh release view "$RELEASE_TAG" --repo "$GH_REPO" >/dev/null 2>&1; then
-            gh release create "$RELEASE_TAG" \
-              --repo "$GH_REPO" \
-              --verify-tag --draft --generate-notes --title "Bokheim ${VERSION}" || \
-              gh release view "$RELEASE_TAG" --repo "$GH_REPO" >/dev/null
-          fi
-          # Refuse to overwrite assets after a release has become public.
-          test "$(gh release view "$RELEASE_TAG" --repo "$GH_REPO" --json isDraft --jq .isDraft)" = true
-          printf '%s\n' "$(git rev-parse HEAD)" > release/desktop-source-commit.txt
-          gh release upload "$RELEASE_TAG" release/* \
-            --repo "$GH_REPO" --clobber
+          VERSION=$(sed -n 's/^version = "\([^\"]*\)"/\1/p' apps/desktop-gpui/Cargo.toml | head -n 1)
+          python3 scripts/ci/release_artifacts.py upload windows --directory release --repository "${{ github.repository }}" --tag "v$VERSION"
