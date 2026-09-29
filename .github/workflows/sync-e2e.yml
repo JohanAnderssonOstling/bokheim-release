@@ -24,6 +24,10 @@ jobs:
       RUSTUP_TOOLCHAIN: '1.95.0'
       RUSTC_BOOTSTRAP: '1'
       CARGO_TERM_COLOR: always
+      # Keep optimized dependencies outside the checkout cleaned between jobs.
+      CARGO_TARGET_DIR: ${{ runner.tool_cache }}/bokheim-shared-tests
+      SYNC_E2E_BACKEND_TARGET_DIR: ${{ runner.tool_cache }}/bokheim-shared-tests
+      SYNC_E2E_SERVER_TARGET_DIR: ${{ runner.tool_cache }}/bokheim-sync-server
       GH_TOKEN: ${{ github.token }}
       REPORT_REPOSITORY: ${{ github.repository }}
     steps:
