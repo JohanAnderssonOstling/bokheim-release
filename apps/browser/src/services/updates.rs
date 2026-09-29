@@ -9,11 +9,16 @@ pub type UpdateActionHandler = Rc<dyn Fn(UpdateAction, &mut App)>;
 pub struct UpdateControls {
     pub(crate) view: UpdateView,
     pub(crate) action: UpdateActionHandler,
+    prompt: super::update_prompt::UpdatePromptState,
 }
 
 impl UpdateControls {
     pub fn new(view: UpdateView, action: UpdateActionHandler) -> Self {
-        Self { view, action }
+        Self { view, action, prompt: Default::default() }
+    }
+
+    pub(crate) fn take_available_prompt(&mut self) -> Option<UpdateActionHandler> {
+        self.prompt.take(matches!(self.view, UpdateView::Available)).then(|| self.action.clone())
     }
 
     /// Backend notifications must enter through the platform's normal UI event

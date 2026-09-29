@@ -2,6 +2,7 @@
 
 mod app;
 pub(crate) mod updates;
+mod update_prompt;
 pub use updates::{UpdateAction, UpdateActionHandler, UpdateControls, UpdateView};
 mod format;
 pub(crate) use format::format_storage_bytes;
