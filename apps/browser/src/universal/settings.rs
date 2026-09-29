@@ -116,11 +116,12 @@ impl SettingsPage {
             UpdateView::NeedsPermission => ("Permission needed".into(), Some(("Continue", UpdateAction::GrantPermission, false))),
             UpdateView::Activating => ("Updating your library…".into(), None),
         };
+        let message = if controls.worker_failed && button.is_some() { "Could not continue update. Try again.".to_owned() } else { message };
         let theme = components::browser_theme(cx);
         let mut row = gpui::div().w_full().px(px(components::SPACE_MD)).py(px(components::SPACE_SM)).min_h(px(56.0)).flex().flex_wrap().items_center().justify_between().gap(px(components::SPACE_SM)).child(message);
         if let Some((label, action, disabled)) = button {
             let handler = controls.action.clone();
-            row = row.child(components::browser_settings_header_button("apply-update", label, true, theme).disabled(disabled).on_click(move |_, _, cx| handler(action.clone(), cx)));
+            row = row.child(components::browser_settings_header_button("apply-update", label, true, theme).disabled(disabled && !controls.worker_failed).on_click(move |_, _, cx| handler(action.clone(), cx)));
         }
         Some(self.section(UPDATES_SECTION, components::browser_settings_group(theme).child(row)))
     }

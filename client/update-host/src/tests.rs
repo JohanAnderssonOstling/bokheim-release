@@ -18,6 +18,9 @@ fn approve(host: &mut Host, key: &Ed25519KeyPair, manifest: &Manifest, app: &[u8
     let bytes = serde_json::to_vec(&SignedManifest { key_id: "fixture".into(), signature: hex(key.sign(&message).as_ref()), payload }).unwrap();
     host.coordinator.discovered(bytes, now()).unwrap();
     host.approve().unwrap();
+    // The UI must be able to report preparation before any download completes.
+    assert_eq!(host.view(), UpdateView::Preparing);
+    assert!(host.coordinator.record().approved.as_ref().unwrap().completed.is_empty());
     let staging = host.root.join("staging").join(&host.coordinator.record().approved.as_ref().unwrap().id);
     fs::create_dir_all(&staging).unwrap();
     fs::write(staging.join("application.bin"), app).unwrap();

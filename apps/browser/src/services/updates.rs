@@ -9,22 +9,29 @@ pub type UpdateActionHandler = Rc<dyn Fn(UpdateAction, &mut App)>;
 pub struct UpdateControls {
     pub(crate) view: UpdateView,
     pub(crate) action: UpdateActionHandler,
+    pub(crate) worker_failed: bool,
     prompt: super::update_prompt::UpdatePromptState,
 }
 
 impl UpdateControls {
     pub fn new(view: UpdateView, action: UpdateActionHandler) -> Self {
-        Self { view, action, prompt: Default::default() }
+        Self { view, action, worker_failed: false, prompt: Default::default() }
     }
 
     pub(crate) fn take_available_prompt(&mut self) -> Option<UpdateActionHandler> {
         self.prompt.take(matches!(self.view, UpdateView::Available)).then(|| self.action.clone())
     }
 
+    pub fn work_failed(&mut self, cx: &mut Context<Self>) {
+        self.worker_failed = true;
+        cx.notify();
+    }
+
     /// Backend notifications must enter through the platform's normal UI event
     /// bridge. In particular a browser worker must not re-enter a GPUI render.
     pub fn apply(&mut self, view: UpdateView, cx: &mut Context<Self>) {
-        if self.view != view {
+        if self.view != view || self.worker_failed {
+            self.worker_failed = false;
             self.view = view;
             cx.notify();
         }

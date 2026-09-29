@@ -103,28 +103,38 @@ pub fn bind(cx: &mut App) -> Option<Entity<UpdateControls>> {
     // Scheduling this after the startup callback lets healthy() commit before polling.
     cx.spawn(async move |_| {
         let _ = worker
-            .dispatch(move || loop {
-                let action = match requests.recv_timeout(Duration::from_secs(1)) {
-                    Ok(action) => Some(action),
-                    Err(std::sync::mpsc::RecvTimeoutError::Timeout) => None,
-                    Err(_) => break,
-                };
-                let result = (|| {
-                    let mut host = host.lock().map_err(|_| "update host lock poisoned".to_owned())?;
-                    if action == Some(UpdateAction::Update) {
-                        host.approve()?;
-                    }
-                    host.tick()
-                })();
-                match result {
-                    Ok(view) => {
-                        if views.send_blocking(view).is_err() {
-                            break;
+            .dispatch(move || {
+                let mut retry_delay = Duration::from_secs(1);
+                loop {
+                    let action = match requests.recv_timeout(retry_delay) {
+                        Ok(action) => Some(action),
+                        Err(std::sync::mpsc::RecvTimeoutError::Timeout) => None,
+                        Err(_) => break,
+                    };
+                    let result = (|| {
+                        let mut host = host.lock().map_err(|_| "update host lock poisoned".to_owned())?;
+                        if action == Some(UpdateAction::Update) {
+                            host.approve()?;
+                            // Publish the committed approval before tick downloads.
+                            views.try_send(Ok(host.view())).map_err(|_| "update UI closed".to_owned())?;
                         }
-                    }
-                    Err(error) => {
-                        log::warn!("update work will retry: {error}");
-                        std::thread::sleep(Duration::from_secs(30));
+                        host.tick()
+                    })();
+                    match result {
+                        Ok(view) => {
+                            retry_delay = Duration::from_secs(1);
+                            if views.send_blocking(Ok(view)).is_err() {
+                                break;
+                            }
+                        }
+                        Err(error) => {
+                            log::warn!("update work will retry: {error}");
+                            if views.try_send(Err(())).is_err() {
+                                break;
+                            }
+                            // A new button press can wake the worker during backoff.
+                            retry_delay = Duration::from_secs(30);
+                        }
                     }
                 }
             })
@@ -134,7 +144,13 @@ pub fn bind(cx: &mut App) -> Option<Entity<UpdateControls>> {
     .detach();
     cx.spawn(async move |cx| {
         while let Ok(view) = received.recv().await {
-            if weak.update(cx, |controls, cx| controls.apply(view, cx)).is_err() {
+            if weak
+                .update(cx, |controls, cx| match view {
+                    Ok(view) => controls.apply(view, cx),
+                    Err(()) => controls.work_failed(cx),
+                })
+                .is_err()
+            {
                 break;
             }
         }

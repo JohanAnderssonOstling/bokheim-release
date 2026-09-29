@@ -239,6 +239,11 @@ impl Host {
         self.coordinator.reload()?;
         self.coordinator.approve(now())
     }
+    /// Current durable state without starting discovery or download work.
+    pub fn view(&self) -> UpdateView {
+        self.coordinator.view(now())
+    }
+
     pub fn tick(&mut self) -> Result<UpdateView, String> {
         let lock = UpdateLock::acquire(&self.root)?;
         self.coordinator.reload()?;
