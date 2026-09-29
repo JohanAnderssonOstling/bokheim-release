@@ -42,13 +42,14 @@ jobs:
       RUSTUP_TOOLCHAIN: '1.95.0'
       RUSTC_BOOTSTRAP: '1'
       CARGO_BUILD_JOBS: '1'
-      CARGO_TARGET_DIR: ${{ runner.tool_cache }}/bokheim-kobo-installer
     steps:
       - uses: actions/checkout@v6
       - name: Install Rust
         run: rustup toolchain install "$RUSTUP_TOOLCHAIN" --profile minimal
       - name: Test Kobo installer
-        run: cargo test --release --no-fail-fast --manifest-path apps/kobo-installer/Cargo.toml --lib
+        run: |
+          export CARGO_TARGET_DIR="$RUNNER_TOOL_CACHE/bokheim-kobo-installer"
+          cargo test --release --no-fail-fast --manifest-path apps/kobo-installer/Cargo.toml --lib
 
   version:
     name: Release version
