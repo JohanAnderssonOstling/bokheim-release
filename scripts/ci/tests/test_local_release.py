@@ -29,14 +29,39 @@ class ArtifactTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'changed after verification'):
             artifacts.validate(self.receipt, 'linux', self.sha, 'owner/repo', self.directory)
 
-    def test_upload_never_creates_a_tag_or_uploads_to_wrong_commit(self):
+    def test_existing_older_tag_accepts_build_and_retains_actual_source(self):
+        info = self.directory / 'update-info-linux-x86_64-appimage.json'
+        info.write_text(json.dumps({'application': '1.2.3', 'target': 'linux-x86_64-appimage'}))
+        artifacts.record('linux', self.directory, self.sha, 'owner/repo')
         calls = []
         def command(*args):
             calls.append(args)
-            if '/commits/' in args[-1]:
-                return json.dumps({'sha': 'b' * 40})
+            if args[:2] == ('gh', 'api'):
+                if '/git/ref/tags/' in args[-1]:
+                    return json.dumps({'object': {'sha': 'b' * 40}})
+                if '/releases?' in args[-1]:
+                    return '[[]]'
+                self.fail(f'Unexpected API request: {args}')
+            if args[:3] == ('gh', 'release', 'view'):
+                return json.dumps({'isDraft': True, 'assets': []})
+            if args[:3] == ('gh', 'release', 'create'):
+                self.assertIn('--verify-tag', args)
+                self.assertNotIn('--target', args)
+            if args[:3] == ('gh', 'release', 'upload'):
+                self.assertEqual(Path(args[-1]).read_text().strip(), self.sha)
             return ''
-        with patch.object(artifacts, 'command', command), self.assertRaisesRegex(ValueError, 'Tag differs'):
+        with patch.object(artifacts, 'command', command):
+            artifacts.upload('linux', self.directory, 'owner/repo', 'v1.2.3')
+        self.assertTrue(any(c[:3] == ('gh', 'release', 'upload') for c in calls))
+
+    def test_missing_existing_tag_still_blocks_upload(self):
+        calls = []
+        def command(*args):
+            calls.append(args)
+            if '/git/ref/tags/' in args[-1]:
+                raise RuntimeError('tag missing')
+            return ''
+        with patch.object(artifacts, 'command', command), self.assertRaisesRegex(RuntimeError, 'tag missing'):
             artifacts.upload('linux', self.directory, 'owner/repo', 'v1.2.3')
         self.assertFalse(any('create' in c or 'upload' in c for c in calls))
 

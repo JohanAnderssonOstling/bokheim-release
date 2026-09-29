@@ -101,7 +101,7 @@ def upload(platform, directory, repository, tag):
     command('python3', 'scripts/ci/require-shared-tests.py', repository, sha)
     # Never creates or moves tags, including when the release does not exist yet.
     command('gh', 'api', f'repos/{repository}/git/ref/tags/{tag}')
-    require(json.loads(command('gh', 'api', f'repos/{repository}/commits/{tag}'))['sha'] == sha, 'Tag differs from built source')
+    # The version tag may predate the build; the receipt is the source of truth.
     info = json.loads((directory / f'update-info-{TARGETS[platform]}.json').read_text())
     require(info.get('application') == tag[1:] and info.get('target') == TARGETS[platform], 'Tag differs from package version')
     releases = json.loads(command('gh', 'api', '--paginate', '--slurp', f'repos/{repository}/releases?per_page=100'))

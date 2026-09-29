@@ -11,7 +11,8 @@ Use a clean release checkout, with clean sibling GPUI-Fork, HtmlEngine and
 HtmlViewCore checkouts at the pins in `.github/workflows/desktop-release.yml`.
 Keep this separate from the Actions runner's `_work` directory and build caches.
 All platforms must use the same source commit. Do not create or move a version
-tag as part of building; publication requires an existing tag at that commit.
+tag as part of building; publication requires an existing version tag. The tag may point to older source;
+the build receipts record the actual tested commit.
 
 Install Rust 1.95.0, Python 3.11+, gh, and the platform build tools. The local
 command selects Rust through its environment, without changing your default
@@ -63,8 +64,8 @@ python3 scripts/ci/release_artifacts.py upload linux --directory "$HOME/bokheim-
 python3 scripts/ci/release_artifacts.py upload android --directory "$HOME/bokheim-builds/android-01" --tag EXISTING_VERSION_TAG
 ```
 
-Uploads verify package hashes, shared tests, package version and existing tag
-commit. They create/update only a **draft release**, never tags or public assets.
+Uploads verify package hashes, shared tests, package version and existing version
+tag. They create/update only a **draft release**, never tags or public assets.
 A draft containing a different source receipt is rejected. The default release
 repository is `JohanAnderssonOstling/bokheim-release`.
 
@@ -85,7 +86,7 @@ gh workflow run desktop-release.yml --repo JohanAnderssonOstling/bokheim-release
 Windows runs its platform checks, builds the optimized executable, packages the
 installer and update ZIP, probes runtime metadata and records artifact hashes.
 `publish=true` uploads to the version's existing tag draft after checking that
-tag points to the build commit. Windows platform checks also run on relevant
+tag exists and matches the package version. The actual build commit is recorded separately. Windows platform checks also run on relevant
 pull requests and pushes. No Linux, Android or web jobs are scheduled by these
 two workflows. Updating their definitions does not restart or cancel old runs.
 
