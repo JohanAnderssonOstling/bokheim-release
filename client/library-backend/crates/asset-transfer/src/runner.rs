@@ -186,9 +186,9 @@ impl<H: TransferHost> TransferRunner<'_, H> {
                     }
                 }
             }
-            // Thumbnail requests are bounded by both count and payload size,
-            // and their endpoint completes the whole request atomically.
-            // They therefore share one outcome and one retry decision.
+            // Thumbnail requests are bounded by count and payload size. A
+            // rejected upload batch does not identify the offending item;
+            // retry those uploads individually before suppressing any of them.
             let is_thumbnail_batch = matches!(claimed.first().and_then(|item| item.job.batch_kind()), Some(TransferJobKind::DownloadThumbnail | TransferJobKind::UploadThumbnail));
             if is_thumbnail_batch {
                 let outcome = { self.host.execute(snapshot, &claimed, out).await };
@@ -206,9 +206,28 @@ impl<H: TransferHost> TransferRunner<'_, H> {
                     }
                     Err(TransferError::Rejected(message)) => {
                         log::warn!("Rejected thumbnail batch: {message}");
-                        for item in &claimed {
-                            self.host.settle_rejection(&item.job, &message.to_string(), out);
-                            drain.settlements.push(QueueSettlement::Complete(item.id, Some(message.to_string())));
+                        let isolate_uploads = claimed.len() > 1 && claimed[0].job.batch_kind() == Some(TransferJobKind::UploadThumbnail);
+                        for (index, item) in claimed.iter().enumerate() {
+                            let result = if isolate_uploads {
+                                self.host.execute(snapshot, std::slice::from_ref(item), out).await
+                            } else {
+                                Err(TransferError::Rejected(message.clone()))
+                            };
+                            match result {
+                                Ok(()) => drain.settlements.push(QueueSettlement::Complete(item.id, None)),
+                                Err(TransferError::Rejected(reason)) => {
+                                    self.host.settle_rejection(&item.job, &reason.to_string(), out);
+                                    drain.settlements.push(QueueSettlement::Complete(item.id, Some(reason.to_string())));
+                                }
+                                Err(TransferError::Retryable(reason)) => drain.settlements.push(QueueSettlement::Retry(item.id, reason.to_string())),
+                                Err(TransferError::AuthenticationRequired) => {
+                                    drain.settlements.extend(claimed[index..].iter().map(|item| QueueSettlement::Release(item.id)));
+                                    self.host.changed();
+                                    self.host.flush();
+                                    drain.result = Err(TransferError::AuthenticationRequired);
+                                    return drain;
+                                }
+                            }
                         }
                     }
                     Err(TransferError::AuthenticationRequired) => {

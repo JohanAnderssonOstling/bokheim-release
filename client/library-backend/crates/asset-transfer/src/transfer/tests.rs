@@ -1002,15 +1002,20 @@ async fn rejected_thumbnail_upload_does_not_suppress_its_peers() {
     let rejected = fixture_content_hash(71);
     let accepted = fixture_content_hash(72);
     let route = format!("/api/libraries/{}/thumbnail-batch", test_support::fixture_library_id("library"));
+    let requests = Arc::new(std::sync::Mutex::new(Vec::new()));
+    let observed = requests.clone();
     let app = Router::new().route(
         &route,
-        put(move |body: axum::body::Bytes| async move {
-            let request: sync_common::api::assets::ThumbnailBatchUploadRequest = sync_common::transport::decode(&body, sync_common::wire::MAX_DECODED_REQUEST_BYTES).unwrap();
-            assert_eq!(request.thumbnails.len(), 1);
-            if request.thumbnails[0].content_hash == rejected {
-                StatusCode::FORBIDDEN
-            } else {
-                StatusCode::OK
+        put(move |body: axum::body::Bytes| {
+            let observed = observed.clone();
+            async move {
+                let request: sync_common::api::assets::ThumbnailBatchUploadRequest = sync_common::transport::decode(&body, sync_common::wire::MAX_DECODED_REQUEST_BYTES).unwrap();
+                observed.lock().unwrap().push(request.thumbnails.len());
+                if request.thumbnails.iter().any(|entry| entry.content_hash == rejected) {
+                    StatusCode::FORBIDDEN
+                } else {
+                    StatusCode::OK
+                }
             }
         }),
     );
@@ -1033,6 +1038,7 @@ async fn rejected_thumbnail_upload_does_not_suppress_its_peers() {
     assert!(pool.rejected_asset_upload_hashes(BlobKind::Thumbnail).unwrap().contains(&rejected));
     assert!(pool.remote_asset_hashes(BlobKind::Thumbnail).unwrap().contains(&accepted));
     assert!(!pool.rejected_asset_upload_hashes(BlobKind::Thumbnail).unwrap().contains(&accepted));
+    assert_eq!(*requests.lock().unwrap(), vec![2, 1, 1], "batch rejection must isolate each upload");
     server.abort();
 }
 
@@ -1161,24 +1167,24 @@ async fn missing_browse_thumbnail_is_repaired_without_credentials_or_network() {
 
 #[tokio::test]
 async fn thumbnail_availability_only_queues_missing_locally_authored_covers() {
-    use sync_common::api::assets::{ThumbnailBatchDownloadRequest, ThumbnailBatchDownloadResponse, ThumbnailBatchDownloadEntry};
+    use sync_common::api::assets::{ThumbnailPresenceRequest, ThumbnailPresenceResponse};
     let hash = fixture_content_hash(91);
     let mode = Arc::new(AtomicUsize::new(0));
     let response_mode = mode.clone();
-    let route = format!("/api/libraries/{}/thumbnail-batch", test_support::fixture_library_id("library"));
+    let route = format!("/api/libraries/{}/thumbnails/presence", test_support::fixture_library_id("library"));
     let app = Router::new().route(
         &route,
         post(move |body: axum::body::Bytes| {
             let mode = response_mode.load(Ordering::SeqCst);
             async move {
-                let request: ThumbnailBatchDownloadRequest = sync_common::transport::decode(&body, sync_common::wire::MAX_DECODED_REQUEST_BYTES).unwrap();
+                let request: ThumbnailPresenceRequest = sync_common::transport::decode(&body, sync_common::wire::MAX_DECODED_REQUEST_BYTES).unwrap();
                 assert_eq!(request.content_hashes, vec![hash]);
                 let response = match mode {
-                    0 => ThumbnailBatchDownloadResponse { thumbnails: vec![ThumbnailBatchDownloadEntry { content_hash: hash, bytes: vec![0xff, 0xd8, 0xff], browse_bytes: None }], missing: vec![] },
-                    1 => ThumbnailBatchDownloadResponse { thumbnails: vec![], missing: vec![hash] },
-                    _ => ThumbnailBatchDownloadResponse { thumbnails: vec![], missing: vec![] },
+                    0 => ThumbnailPresenceResponse { present: vec![hash], revisions: vec![] },
+                    1 => ThumbnailPresenceResponse { present: vec![], revisions: vec![] },
+                    _ => ThumbnailPresenceResponse { present: vec![fixture_content_hash(92)], revisions: vec![] },
                 };
-                sync_common::transport::encode(&response).unwrap()
+                ([("content-type", sync_common::transport::MEDIA_TYPE)], sync_common::transport::encode(&response).unwrap())
             }
         }),
     );
@@ -1231,7 +1237,7 @@ async fn thumbnail_availability_only_queues_missing_locally_authored_covers() {
         pool.commit_transfer_outcome(&outcome).unwrap();
         Ok::<_, TransferError>(jobs)
     };
-    assert!(prepared.await.is_err(), "unknown availability is not permission to upload");
+    assert!(prepared.await.is_err(), "an unrequested hash is not a valid availability response");
     server.abort();
 }
 
