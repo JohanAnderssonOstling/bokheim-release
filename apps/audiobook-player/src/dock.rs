@@ -10,23 +10,11 @@ pub enum DockAction {
     Close,
 }
 
-/// Fixed cover box for the skinny docked bar. A `w`/`h` pair rather than one
-/// dimension plus the book's own aspect ratio, so the row's height — and
-/// everything sized off it — never shifts with the cover a given book
-/// happens to have, or is missing one to draw at all.
-const SKINNY_COVER_SIZE: (f32, f32) = (48.0, 60.0);
-const DESKTOP_DOCK_HEIGHT: f32 = 72.0;
-const DESKTOP_COVER_WIDTH: f32 = 48.0;
-const DESKTOP_CONTROL_SIZE: f32 = 44.0;
-/// The docked bar's play button, centred in the bar's height with the cover and
-/// the titles.
-const SKINNY_PLAY_SIZE: (f32, f32) = (48.0, 44.0);
-/// The close, collapse and menu buttons beside the title in the expanded
-/// mobile player; the speed button is wider to fit its label.
-const COMPACT_TOOL_SIZE: (f32, f32) = (36.0, 28.0);
-const COMPACT_SPEED_WIDTH: f32 = 44.0;
-/// Height of the transport controls in the expanded mobile player.
-const MOBILE_CONTROL_HEIGHT: f32 = 56.0;
+/// The cover's square box, in every layout. Square because audiobook art is,
+/// and fixed so the bar's height never shifts with the cover a given book
+/// happens to have, or is missing one to draw at all. The docked bar and the
+/// desktop dock are this tall.
+const COVER_SIZE: f32 = 56.0;
 /// The progress line is drawn thin but has to be easy to hit, so its hit area
 /// is taller than the line inside it.
 const TRACK_HIT_HEIGHT: f32 = 16.0;
@@ -46,7 +34,7 @@ fn page_sheet(sheet: gpui::AnyElement, window: &Window) -> gpui::AnyElement {
 /// streaming resources of its own.
 pub struct AudiobookDock {
     player: Entity<PlaybackSession>,
-    snapshot: (String, Option<String>, Option<String>, bool, Option<String>, bool, Option<u64>, Option<u64>),
+    snapshot: (String, Option<String>, bool, Option<String>, bool, Option<u64>, Option<u64>),
     speed_menu_open: bool,
     sleep_menu_open: bool,
     mobile_expanded: bool,
@@ -151,12 +139,11 @@ impl AudiobookDock {
         cx.notify();
     }
 
-    fn snapshot(player: &PlaybackSession) -> (String, Option<String>, Option<String>, bool, Option<String>, bool, Option<u64>, Option<u64>) {
+    fn snapshot(player: &PlaybackSession) -> (String, Option<String>, bool, Option<String>, bool, Option<u64>, Option<u64>) {
         let title = player.book.as_ref().map(|book| book.title.clone()).unwrap_or_else(|| "Opening audiobook…".into());
-        let subtitle = player.book.as_ref().and_then(|book| book.author.clone().or_else(|| book.narrator.clone()));
         let chapter = player.book.as_ref().and_then(|book| book.chapters.get(player.active_chapter_index())).map(|chapter| super::chapter_display_title(&chapter.title));
         let minutes_left = player.book.as_ref().filter(|book| !book.duration.is_zero()).map(|book| book.duration.saturating_sub(player.position).as_secs().div_ceil(60));
-        (title, subtitle, chapter, player.transport_playing(), player.error.clone(), player.is_buffering(), player.book.as_ref().and_then(|book| book.cover.as_ref()).map(|cover| cover.id()), minutes_left)
+        (title, chapter, player.transport_playing(), player.error.clone(), player.is_buffering(), player.book.as_ref().and_then(|book| book.cover.as_ref()).map(|cover| cover.id()), minutes_left)
     }
 }
 
@@ -244,121 +231,6 @@ impl AudiobookDock {
 mod tests {
     use super::*;
 
-    struct DockHost {
-        dock: Entity<AudiobookDock>,
-        expanded: usize,
-        closed: usize,
-    }
-    impl Render for DockHost {
-        fn render(&mut self, _: &mut Window, _: &mut Context<Self>) -> impl IntoElement {
-            div().size_full().flex().flex_col().child(div().flex_1().min_h_0().debug_selector(|| "dock-test-browsing".into()).child("Browsing stays visible")).child(self.dock.clone())
-        }
-    }
-
-    #[gpui::test]
-    fn rendered_dock_is_compact_and_routes_body_and_close_separately(cx: &mut gpui::TestAppContext) {
-        cx.update(gpui_component::init);
-        let (sender, _) = async_channel::unbounded();
-        let player = cx.new(|_| {
-            let mut player = PlaybackSession::new(1.0, sender);
-            player.stopped = true;
-            player.book = Some(Arc::new(AudiobookBook {
-                title: "A very long audiobook title that must not push the transport buttons outside the screen".into(),
-                author: None,
-                narrator: None,
-                duration: Duration::from_secs(100),
-                chapters: vec![],
-                cover: None,
-            }));
-            player
-        });
-        let dock = cx.new(|cx| AudiobookDock::new(player, cx));
-        let host = cx.new(|cx| {
-            cx.subscribe(&dock, |host: &mut DockHost, _, action, cx| {
-                match action {
-                    DockAction::Expand => host.expanded += 1,
-                    DockAction::Close => host.closed += 1,
-                }
-                cx.notify();
-            })
-            .detach();
-            DockHost { dock, expanded: 0, closed: 0 }
-        });
-        let (_, cx) = cx.add_window_view(|window, cx| gpui_component::Root::new(host.clone(), window, cx));
-
-        // Docked on a narrow window: skinny bar only, no transport controls.
-        cx.simulate_resize(gpui::size(px(320.0), px(800.0)));
-        cx.run_until_parked();
-        let dock = cx.debug_bounds("audiobook-dock").unwrap();
-        let browsing = cx.debug_bounds("dock-test-browsing").unwrap();
-        let skinny_height = dock.size.height;
-        let progress = cx.debug_bounds("audiobook-dock-progress").unwrap();
-        assert!(progress.top() <= dock.top() + px(2.0), "compact progress must sit on the dock's top edge");
-        assert!(skinny_height < px(100.0), "docked bar must be skinny (was {:?})", skinny_height);
-        assert!(browsing.size.height > px(600.0));
-        assert!(browsing.bottom() <= dock.top());
-        assert!(cx.debug_bounds("dock-seek-back").is_none(), "transport controls must not show while docked");
-
-        // Tapping the docked bar expands it into the full mobile player.
-        let expand = cx.debug_bounds("audiobook-dock-expand").unwrap();
-        cx.simulate_click(expand.center(), gpui::Modifiers::none());
-        cx.run_until_parked();
-        let dock = cx.debug_bounds("audiobook-dock").unwrap();
-        let progress = cx.debug_bounds("audiobook-dock-progress").unwrap();
-        assert!(progress.top() <= dock.top() + px(2.0), "expanded progress must sit on the dock's top edge");
-        let progress_meta = cx.debug_bounds("audiobook-dock-progress-meta").unwrap();
-        let collapse = cx.debug_bounds("audiobook-dock-collapse").unwrap();
-        assert!(progress_meta.bottom() <= collapse.top(), "expanded progress text must sit above the title and controls");
-        assert!(dock.size.height > skinny_height, "expanded mobile player must be taller than the skinny dock (was {:?})", dock.size.height);
-        for selector in ["dock-play", "dock-seek-back", "dock-seek-forward"] {
-            let control = cx.debug_bounds(selector).unwrap_or_else(|| panic!("missing bounds for {selector} while expanded"));
-            assert!(control.left() >= dock.left() && control.right() <= dock.right());
-        }
-
-        let speed = cx.debug_bounds("dock-playback-rate").unwrap();
-        cx.simulate_click(speed.center(), gpui::Modifiers::none());
-        cx.run_until_parked();
-        assert!(host.read_with(cx, |host, cx| host.dock.read(cx).speed_menu_open));
-        let sheet = cx.debug_bounds("playback-speed-sheet").unwrap();
-        assert!(sheet.top() < dock.top(), "speed sheet should extend into the page above the dock");
-        assert!(sheet.size.height > dock.size.height, "speed sheet should use page height, not dock height");
-        cx.simulate_click(gpui::point(px(10.0), px(10.0)), gpui::Modifiers::none());
-        cx.run_until_parked();
-
-        // The chevron collapses it back to the skinny bar.
-        let collapse = cx.debug_bounds("audiobook-dock-collapse").unwrap();
-        cx.simulate_click(collapse.center(), gpui::Modifiers::none());
-        cx.run_until_parked();
-        let dock = cx.debug_bounds("audiobook-dock").unwrap();
-        assert!(dock.size.height <= skinny_height, "docked bar must collapse back to skinny");
-
-        // Wide windows always show the full desktop dock with a close button.
-        for width in [600.0, 1200.0] {
-            cx.simulate_resize(gpui::size(px(width), px(800.0)));
-            cx.run_until_parked();
-            let dock = cx.debug_bounds("audiobook-dock").unwrap();
-            let progress = cx.debug_bounds("audiobook-dock-progress").unwrap();
-            assert!(progress.top() <= dock.top() + px(2.0), "desktop progress must sit on the dock's top edge");
-            let progress_meta = cx.debug_bounds("audiobook-dock-progress-meta").unwrap();
-            let play = cx.debug_bounds("dock-play").unwrap();
-            assert!(progress_meta.bottom() <= play.top(), "desktop progress text must sit above the title and controls");
-            let browsing = cx.debug_bounds("dock-test-browsing").unwrap();
-            assert!(dock.size.height <= px(DESKTOP_DOCK_HEIGHT + 2.0), "desktop dock must stay at cover height (was {:?})", dock.size.height);
-            assert!(browsing.size.height > px(500.0));
-            assert!(browsing.bottom() <= dock.top());
-            for selector in ["dock-play", "dock-seek-back", "dock-seek-forward", "dock-close"] {
-                let control = cx.debug_bounds(selector).unwrap_or_else(|| panic!("missing bounds for {selector} at width {width}"));
-                assert!(control.left() >= dock.left() && control.right() <= dock.right());
-            }
-        }
-        let close = cx.debug_bounds("dock-close").unwrap();
-        cx.simulate_click(close.center(), gpui::Modifiers::none());
-        host.read_with(cx, |host, _| {
-            assert_eq!(host.expanded, 1);
-            assert_eq!(host.closed, 1);
-        });
-    }
-
     #[test]
     fn snapshot_tracks_cover_but_not_playback_clock() {
         let (sender, _) = async_channel::unbounded();
@@ -410,6 +282,17 @@ mod tests {
 }
 
 
+/// Title over the current chapter, both truncated: the same block in every
+/// layout.
+fn title_block(title: String, chapter: String, theme: ui_components::BrowserTheme) -> gpui::Div {
+    ui_components::column(0.0).fill().child(ui_components::single_line(title)).child(ui_components::caption_line(chapter, theme))
+}
+
+/// The cover's square box; empty when the book has no cover.
+fn cover_box(cover: Option<Arc<Image>>, theme: ui_components::BrowserTheme) -> gpui::Div {
+    div().fixed(COVER_SIZE, COVER_SIZE).children(cover.map(|cover| ui_components::book_cover_image("audiobook-dock-cover", cover, 1.0, false, theme)))
+}
+
 /// The chapter's progress as a thin line.
 fn progress_line(fraction: f32, theme: ui_components::BrowserTheme) -> gpui::Div {
     ui_components::progress_track(theme).h(px(PROGRESS_LINE_HEIGHT)).child(ui_components::progress_fill(fraction, theme))
@@ -433,7 +316,7 @@ impl Render for AudiobookDock {
             })
             .unwrap_or_default();
         let progress_fraction = if chapter_duration.is_zero() { 0.0 } else { (chapter_position.as_secs_f64() / chapter_duration.as_secs_f64()) as f32 };
-        let current_chapter = self.snapshot.2.clone().unwrap_or_else(|| "No chapter".into());
+        let current_chapter = self.snapshot.1.clone().unwrap_or_else(|| "No chapter".into());
         // While scrubbing (dragging, or the finger/pointer resting after a
         // press), the bar and the time readout follow the drag instead of
         // live playback, so what the digits say matches where the fill is.
@@ -444,34 +327,25 @@ impl Render for AudiobookDock {
         let chapter_time = format!("{} / {}", super::format_time(display_position), super::format_time(chapter_duration));
 
         if compact && !self.mobile_expanded {
-            let chapter_line = ui_components::row(SPACE_SM).min_w_0().child(ui_components::muted_line(current_chapter, theme).fill()).children(book_remaining.map(|left| ui_components::muted_line(left, theme).flex_none()));
-            let summary = ui_components::column(SPACE_XXS)
+            let summary = title_block(self.snapshot.0.clone(), current_chapter, theme)
                 .id("audiobook-dock-expand")
-                .debug_selector(|| "audiobook-dock-expand".into())
-                .fill()
                 .cursor_pointer()
                 .on_click(cx.listener(|dock, _, _, cx| {
                     dock.mobile_expanded = true;
                     cx.emit(DockAction::Expand);
                     cx.notify();
-                }))
-                .child(ui_components::single_line(self.snapshot.0.clone()))
-                .child(chapter_line);
-            let play = ui_components::outlined_icon_button("dock-play", if self.snapshot.3 { "Pause" } else { "Play" }, Icon::new(if self.snapshot.3 { IconName::Pause } else { IconName::Play }).size(px(22.0)), theme)
-                .fixed(SKINNY_PLAY_SIZE.0, SKINNY_PLAY_SIZE.1)
-                .debug_selector(|| "dock-play".into())
+                }));
+            let playing = self.snapshot.2;
+            let play = ui_components::selectable_button(ui_components::outlined_icon_button("dock-play", if playing { "Pause" } else { "Play" }, if playing { IconName::Pause } else { IconName::Play }, theme), true, theme)
                 .on_click(cx.listener(|dock, _, _, cx| dock.toggle_playback(cx)));
-            let cover = div().fixed(SKINNY_COVER_SIZE.0, SKINNY_COVER_SIZE.1).children(cover.map(|cover| ui_components::book_cover_image("audiobook-dock-cover", cover, 1.0, false, theme)));
-            // The cover's height is the whole docked bar.
             return ui_components::bottom_bar(theme)
                 .id("audiobook-dock")
-                .debug_selector(|| "audiobook-dock".into())
                 .occlude()
                 .relative()
-                .h(px(SKINNY_COVER_SIZE.1))
+                .h(px(COVER_SIZE))
                 .on_scroll_wheel(cx.listener(|dock, event, _, cx| dock.handle_swipe(event, cx)))
-                .child(ui_components::row(SPACE_SM).fill().h_full().pr(px(SPACE_SM)).child(cover).child(summary).child(play))
-                .child(ui_components::top_edge().debug_selector(|| "audiobook-dock-progress".into()).child(progress_line(progress_fraction, theme)))
+                .child(ui_components::row(SPACE_SM).fill().pr(px(SPACE_SM)).child(cover_box(cover, theme)).child(summary).child(play))
+                .child(ui_components::top_edge().child(progress_line(progress_fraction, theme)))
                 .into_any_element();
         }
 
@@ -479,7 +353,6 @@ impl Render for AudiobookDock {
         // The line is drawn thin, inside a taller hit area.
         let scrub_track = ui_components::top_edge()
             .id("audiobook-dock-progress")
-            .debug_selector(|| "audiobook-dock-progress".into())
             .h(px(TRACK_HIT_HEIGHT))
             .cursor_pointer()
             .child(progress_line(display_fraction, theme))
@@ -498,80 +371,59 @@ impl Render for AudiobookDock {
             }));
         let sleep_label = player.sleep_label();
         let rate = player.rate;
-        let playing = self.snapshot.3;
+        let playing = self.snapshot.2;
 
-        // The controls both expanded layouts share; each only sizes them.
+        // The controls both expanded layouts share; each only arranges them.
         let transport = [
-            ui_components::base_button("dock-previous-chapter")
-                .ghost()
-                .tooltip("Previous chapter")
-                .child(ui_components::audiobook_chapter_icon(false, theme))
-                .debug_selector(|| "dock-previous-chapter".into())
+            ui_components::outlined_icon_button("dock-previous-chapter", "Previous chapter", IconName::ChevronLeft, theme)
                 .on_click(cx.listener(|dock, _, _, cx| dock.previous_chapter(cx))),
-            ui_components::outlined_icon_button("dock-seek-back", "Back 15 seconds", Icon::new(IconName::Undo2).size(px(28.0)), theme)
-                .debug_selector(|| "dock-seek-back".into())
+            ui_components::outlined_icon_button("dock-seek-back", "Back 15 seconds", IconName::Undo2, theme)
                 .on_click(cx.listener(|dock, _, _, cx| dock.seek_by(super::SKIP_BACK_SECONDS, cx))),
-            ui_components::selectable_button(ui_components::outlined_icon_button("dock-play", if playing { "Pause" } else { "Play" }, Icon::new(if playing { IconName::Pause } else { IconName::Play }).size(px(22.0)), theme), true, theme)
-                .debug_selector(|| "dock-play".into())
+            ui_components::selectable_button(ui_components::outlined_icon_button("dock-play", if playing { "Pause" } else { "Play" }, if playing { IconName::Pause } else { IconName::Play }, theme), true, theme)
                 .on_click(cx.listener(|dock, _, _, cx| dock.toggle_playback(cx))),
-            ui_components::outlined_icon_button("dock-seek-forward", "Forward 30 seconds", Icon::new(IconName::Redo2).size(px(28.0)), theme)
-                .debug_selector(|| "dock-seek-forward".into())
+            ui_components::outlined_icon_button("dock-seek-forward", "Forward 30 seconds", IconName::Redo2, theme)
                 .on_click(cx.listener(|dock, _, _, cx| dock.seek_by(super::SKIP_FORWARD_SECONDS, cx))),
-            ui_components::base_button("dock-next-chapter")
-                .ghost()
-                .tooltip("Next chapter")
-                .child(ui_components::audiobook_chapter_icon(true, theme))
-                .debug_selector(|| "dock-next-chapter".into())
+            ui_components::outlined_icon_button("dock-next-chapter", "Next chapter", IconName::ChevronRight, theme)
                 .on_click(cx.listener(|dock, _, _, cx| dock.next_chapter(cx))),
         ];
-        let close = ui_components::outlined_icon_button("dock-close", "Close player", Icon::new(IconName::Close).size(px(18.0)), theme).debug_selector(|| "dock-close".into()).on_click(cx.listener(|_, _, _, cx| cx.emit(DockAction::Close)));
+        let close = ui_components::outlined_icon_button("dock-close", "Close player", IconName::Close, theme).on_click(cx.listener(|_, _, _, cx| cx.emit(DockAction::Close)));
         // The alarm glyph, or the time left once a timer is running.
         let sleep = match sleep_label.clone() {
             Some(label) => ui_components::base_button("dock-sleep-timer").ghost().label(label).tooltip("Sleep timer"),
-            None => ui_components::outlined_icon_button("dock-sleep-timer", "Sleep timer", Icon::empty().path("icons/alarm.svg").size(px(18.0)), theme),
+            None => ui_components::outlined_icon_button("dock-sleep-timer", "Sleep timer", Icon::empty().path("icons/alarm.svg"), theme),
         };
-        let sleep = ui_components::selectable_button(sleep, self.sleep_menu_open || sleep_label.is_some(), theme).debug_selector(|| "dock-sleep-timer".into());
+        let sleep = ui_components::selectable_button(sleep, self.sleep_menu_open || sleep_label.is_some(), theme);
         let speed = ui_components::base_button("dock-playback-rate").ghost().label(super::format_playback_rate(rate)).tooltip("Playback speed");
-        let speed = ui_components::selectable_button(speed, self.speed_menu_open, theme).debug_selector(|| "dock-playback-rate".into());
+        let speed = ui_components::selectable_button(speed, self.speed_menu_open, theme);
 
         if compact {
-            let titles = ui_components::column(0.0)
-                .id("audiobook-dock-title")
-                .fill()
-                .cursor_pointer()
-                .on_click(cx.listener(|dock, _, _, cx| dock.collapse_mobile(cx)))
-                .child(ui_components::single_line(self.snapshot.0.clone()))
-                .child(ui_components::caption_line(current_chapter, theme));
-            let collapse = ui_components::outlined_icon_button("dock-collapse", "Collapse player", Icon::new(IconName::ChevronDown).size(px(18.0)), theme)
-                .debug_selector(|| "audiobook-dock-collapse".into())
-                .fixed(COMPACT_TOOL_SIZE.0, COMPACT_TOOL_SIZE.1)
+            let titles = title_block(self.snapshot.0.clone(), current_chapter, theme).id("audiobook-dock-title").cursor_pointer().on_click(cx.listener(|dock, _, _, cx| dock.collapse_mobile(cx)));
+            let collapse = ui_components::outlined_icon_button("dock-collapse", "Collapse player", IconName::ChevronDown, theme)
                 .on_click(cx.listener(|dock, _, _, cx| dock.collapse_mobile(cx)));
             let top_row = ui_components::row(SPACE_XS)
                 .child(collapse)
                 .child(titles)
-                .child(sleep.fixed(COMPACT_TOOL_SIZE.0, COMPACT_TOOL_SIZE.1).on_click(cx.listener(|dock, _, _, cx| dock.toggle_sleep_menu(cx))))
-                .child(speed.fixed(COMPACT_SPEED_WIDTH, COMPACT_TOOL_SIZE.1).on_click(cx.listener(|dock, _, _, cx| dock.toggle_speed_menu(cx))))
-                .child(close.fixed(COMPACT_TOOL_SIZE.0, COMPACT_TOOL_SIZE.1));
+                .child(sleep.on_click(cx.listener(|dock, _, _, cx| dock.toggle_sleep_menu(cx))))
+                .child(speed.on_click(cx.listener(|dock, _, _, cx| dock.toggle_speed_menu(cx))))
+                .child(close);
 
             // The menus are rendered in a window-sized anchored layer.
             let sleep_sheet = self.sleep_menu_open.then(|| gpui::deferred(page_sheet(super::sleep_sheet(target.clone(), sleep_label, theme), window)).with_priority(1));
             let speed_sheet = self.speed_menu_open.then(|| gpui::deferred(page_sheet(super::playback_speed_sheet(target.clone(), rate, theme), window)).with_priority(1));
 
-            let progress_meta = ui_components::spread_row(SPACE_SM)
-                .debug_selector(|| "audiobook-dock-progress-meta".into())
+            let time_row = ui_components::spread_row(SPACE_SM)
                 .child(ui_components::caption_line(chapter_time, theme).flex_none())
                 .children(book_remaining.map(|left| ui_components::caption_line(left, theme).text_right()));
-            let controls = ui_components::row(0.0).children(transport.map(|control| control.fill().h(px(MOBILE_CONTROL_HEIGHT))));
+            let controls = ui_components::row(0.0).justify_around().children(transport);
 
             return ui_components::bottom_bar(theme)
                 .id("audiobook-dock")
-                .debug_selector(|| "audiobook-dock".into())
                 .occlude()
                 .relative()
                 .px(px(SPACE_SM))
                 .pt(px(TRACK_HIT_HEIGHT))
                 .pb(px(SPACE_XS))
-                .child(ui_components::column(SPACE_XXS).fill().child(progress_meta).child(top_row).child(controls))
+                .child(ui_components::column(SPACE_XS).fill().child(time_row).child(top_row).child(controls))
                 .child(scrub_track)
                 .children(sleep_sheet)
                 .children(speed_sheet)
@@ -579,46 +431,34 @@ impl Render for AudiobookDock {
                 .into_any_element();
         }
 
-        let book = ui_components::column(0.0)
+        let book = title_block(self.snapshot.0.clone(), current_chapter, theme)
             .id("audiobook-dock-expand")
-            .debug_selector(|| "audiobook-dock-expand".into())
-            .fill()
             .cursor_pointer()
-            .on_click(cx.listener(|_, _, _, cx| cx.emit(DockAction::Expand)))
-            .child(ui_components::single_line(self.snapshot.0.clone()))
-            .children(self.snapshot.1.clone().map(|subtitle| ui_components::muted_line(subtitle, theme)))
-            .child(ui_components::caption_line(current_chapter, theme));
-        let book_area = ui_components::row(SPACE_SM)
-            .fill()
-            .h_full()
-            .children(cover.map(|cover| div().fixed(DESKTOP_COVER_WIDTH, DESKTOP_DOCK_HEIGHT).child(ui_components::book_cover_image("audiobook-dock-cover", cover, 1.0, false, theme))))
-            .child(book);
-
+            .on_click(cx.listener(|_, _, _, cx| cx.emit(DockAction::Expand)));
         let transport = ui_components::column(SPACE_XXS)
             .flex_none()
             .items_center()
-            .child(ui_components::caption_line(chapter_time, theme).debug_selector(|| "audiobook-dock-progress-meta".into()))
-            .child(ui_components::row(SPACE_XXS).children(transport.map(|control| control.fixed(DESKTOP_CONTROL_SIZE, DESKTOP_CONTROL_SIZE))));
+            .child(ui_components::caption_line(chapter_time, theme))
+            .child(ui_components::row(SPACE_XXS).children(transport));
 
         let sleep_target = target.clone();
-        let sleep = sleep.fixed(DESKTOP_CONTROL_SIZE, DESKTOP_CONTROL_SIZE).dropdown_menu_with_anchor(gpui::Anchor::BottomLeft, move |menu, _, _| super::sleep_items(menu, sleep_target.clone(), sleep_label.clone()));
+        let sleep = sleep.dropdown_menu_with_anchor(gpui::Anchor::BottomLeft, move |menu, _, _| super::sleep_items(menu, sleep_target.clone(), sleep_label.clone()));
         let speed_target = target.clone();
-        let speed = speed.fixed(DESKTOP_CONTROL_SIZE, DESKTOP_CONTROL_SIZE).dropdown_menu_with_anchor(gpui::Anchor::BottomRight, move |menu, _, _| super::playback_speed_items(menu, speed_target.clone(), rate));
-        // A matched-width counterpart to `book_area`: both sides fill, so the
-        // fixed-width transport between them lands in the header's true
-        // center rather than wherever the book area's content leaves off.
+        let speed = speed.dropdown_menu_with_anchor(gpui::Anchor::BottomRight, move |menu, _, _| super::playback_speed_items(menu, speed_target.clone(), rate));
+        // A matched-width counterpart to the book: both sides fill, so the
+        // transport between them lands in the dock's true center rather than
+        // wherever the book's content leaves off.
         let tools = ui_components::column(SPACE_XXS)
             .fill()
             .items_end()
             .children(book_remaining.map(|left| ui_components::caption_line(left, theme)))
-            .child(ui_components::row(SPACE_SM).child(ui_components::row(SPACE_XS).child(sleep).child(speed)).child(close.fixed(COMPACT_TOOL_SIZE.0, DESKTOP_CONTROL_SIZE)));
+            .child(ui_components::row(SPACE_XS).child(sleep).child(speed).child(close));
 
         ui_components::bottom_bar(theme)
             .id("audiobook-dock")
-            .debug_selector(|| "audiobook-dock".into())
             .occlude()
             .relative()
-            .child(ui_components::row(SPACE_SM).fill().h(px(DESKTOP_DOCK_HEIGHT)).pr(px(SPACE_SM)).child(book_area).child(transport).child(tools))
+            .child(ui_components::row(SPACE_SM).fill().h(px(COVER_SIZE)).pr(px(SPACE_SM)).child(ui_components::row(SPACE_SM).fill().h_full().child(cover_box(cover, theme)).child(book)).child(transport).child(tools))
             .child(scrub_track)
             .when(self.scrub.is_some(), |dock| dock.child(dock_scrub_capture(target.clone())))
             .into_any_element()

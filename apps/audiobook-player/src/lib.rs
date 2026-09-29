@@ -265,7 +265,7 @@ fn sleep_sheet(target: gpui::WeakEntity<AudiobookDock>, remaining: Option<Shared
 /// A playback menu as a bottom sheet, for a compact window.
 fn menu_sheet(id: &'static str, title: &'static str, status: Option<String>, rows: Vec<gpui::AnyElement>, dismiss: impl Fn(&mut App) + 'static, theme: ui_components::BrowserTheme) -> gpui::AnyElement {
     let rows = ui_components::column(0.0).id(SharedString::from(format!("{id}-rows"))).flex_1().min_h_0().overflow_y_scroll().children(status.map(|status| ui_components::bottom_sheet_section(status, theme))).children(rows);
-    let sheet = ui_components::bottom_sheet_surface(theme).id(SharedString::from(format!("{id}-sheet"))).debug_selector(move || format!("{id}-sheet")).child(ui_components::bottom_sheet_header(title, theme)).child(rows);
+    let sheet = ui_components::bottom_sheet_surface(theme).id(SharedString::from(format!("{id}-sheet"))).child(ui_components::bottom_sheet_header(title, theme)).child(rows);
     ui_components::bottom_sheet_overlay().child(ui_components::modal_scrim(SharedString::from(format!("{id}-scrim")), theme).on_click(move |_, _, cx| dismiss(cx))).child(sheet).into_any_element()
 }
 

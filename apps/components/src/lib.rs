@@ -2,7 +2,6 @@
 
 pub mod account;
 pub mod assets;
-pub mod audiobook;
 pub mod browser;
 pub mod buttons;
 pub mod contents;
@@ -24,7 +23,6 @@ pub mod tokens;
 
 pub use account::*;
 pub use assets::*;
-pub use audiobook::*;
 pub use browser::*;
 pub use buttons::*;
 pub use contents::*;
