@@ -2,6 +2,11 @@ name: Client platform release checks
 on:
   workflow_dispatch:
   workflow_call:
+    inputs:
+      platform:
+        description: Platform to check (all, linux, windows, web, or android)
+        type: string
+        default: all
   pull_request:
     paths:
       - 'client/**'
@@ -28,7 +33,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: client-platforms-${{ github.workflow }}-${{ github.ref }}
+  group: client-platforms-${{ github.workflow }}-${{ github.ref }}-${{ inputs.platform || 'all' }}
   cancel-in-progress: true
 jobs:
   checks:
@@ -39,11 +44,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - { platform: native, os: ubuntu-24.04 }
-          - { platform: native, os: windows-2025 }
-          - { platform: web, os: ubuntu-24.04 }
-          - { platform: android, os: ubuntu-24.04 }
+        include: ${{ fromJSON(inputs.platform == 'linux' && '[{"platform":"native","os":"ubuntu-24.04"}]' || inputs.platform == 'windows' && '[{"platform":"native","os":"windows-2025"}]' || inputs.platform == 'android' && '[{"platform":"android","os":"ubuntu-24.04"}]' || inputs.platform == 'web' && '[{"platform":"web","os":"ubuntu-24.04"}]' || '[{"platform":"native","os":"ubuntu-24.04"},{"platform":"native","os":"windows-2025"},{"platform":"web","os":"ubuntu-24.04"},{"platform":"android","os":"ubuntu-24.04"}]') }}
     defaults:
       run:
         working-directory: bokheim
