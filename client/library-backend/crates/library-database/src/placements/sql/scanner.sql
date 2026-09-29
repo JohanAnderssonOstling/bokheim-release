@@ -54,14 +54,16 @@ INSERT INTO sync_metadata(singleton,scan_seq) VALUES(1,:value) ON CONFLICT(singl
 SELECT bd.local_hash,b.content_hash,bd.dir_id,bd.file_name,b.description_scanned=0,i.version
 FROM book_dir bd JOIN book b ON b.row_id=bd.book_row_id
 LEFT JOIN local_import_inspection i ON i.content_hash=b.content_hash AND i.format=b.format
-WHERE bd.deleted_at IS NULL AND bd.local_hash!='';
+WHERE bd.deleted_at IS NULL AND b.deleted_at IS NULL AND bd.local_hash!='';
 
 -- name: scanner_known_directories?
 SELECT d.id,d.parent_id,d.name,d.deleted_at IS NULL,paths.path FROM dir d LEFT JOIN dir_paths paths ON paths.id=d.id;
 
 -- name: scanner_tombstoned_files?
-SELECT removed.dir_id,removed.file_name FROM book_dir removed
-WHERE removed.deleted_at IS NOT NULL AND NOT EXISTS(SELECT 1 FROM book_dir live WHERE live.dir_id=removed.dir_id AND live.file_name=removed.file_name AND live.deleted_at IS NULL);
+SELECT removed.dir_id,removed.file_name FROM book_dir removed JOIN book b ON b.row_id=removed.book_row_id
+WHERE (removed.deleted_at IS NOT NULL OR b.deleted_at IS NOT NULL)
+AND NOT EXISTS(SELECT 1 FROM book_dir live JOIN book owner ON owner.row_id=live.book_row_id
+    WHERE live.dir_id=removed.dir_id AND live.file_name=removed.file_name AND live.deleted_at IS NULL AND owner.deleted_at IS NULL);
 
 -- name: scanner_upsert_directory!
 -- param: id: &str
@@ -116,7 +118,7 @@ SELECT b.content_hash, bd.dir_id, bd.file_name,
 FROM book_dir bd JOIN book b ON b.row_id=bd.book_row_id
 JOIN dir_paths paths ON paths.id=bd.dir_id
 LEFT JOIN local_file_projection projection ON projection.content_hash=b.content_hash AND projection.dir_id=bd.dir_id
-WHERE bd.deleted_at IS NULL
+WHERE bd.deleted_at IS NULL AND b.deleted_at IS NULL
 ORDER BY bd.dir_id,b.content_hash;
 
 -- name: scanner_retire_replaced_placement!

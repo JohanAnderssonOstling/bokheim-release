@@ -12,7 +12,7 @@ WHERE u.id IS NULL OR p.upload_id=u.id;
 -- name: transfer_local_versions?
 -- param: content_hash: &str
 SELECT dir_id, file_name, local_hash FROM book_dir JOIN book ON book.row_id=book_dir.book_row_id
-WHERE book.content_hash=:content_hash AND book_dir.deleted_at IS NULL ORDER BY dir_id,file_name;
+WHERE book.content_hash=:content_hash AND book.deleted_at IS NULL AND book_dir.deleted_at IS NULL ORDER BY dir_id,file_name;
 
 -- name: transfer_upload_intent?
 -- param: content_hash: &str
@@ -26,6 +26,7 @@ SELECT b.content_hash, bd.dir_id, bd.file_name, bd.local_hash
 FROM json_each(:hashes) requested
 JOIN book b ON b.content_hash = requested.value
 JOIN book_dir bd ON bd.book_row_id = b.row_id AND bd.deleted_at IS NULL
+WHERE b.deleted_at IS NULL
 ORDER BY b.content_hash, bd.dir_id, bd.file_name;
 
 -- name: transfer_snapshot_intents?

@@ -108,7 +108,7 @@ WHERE content_hash = :content_hash AND id = :work_id;
 -- name: native_book_entry?
 -- param: relative_path: &str
 SELECT book.content_hash,bd.dir_id,bd.file_name FROM book_dir bd JOIN book ON book.row_id=bd.book_row_id JOIN dir_paths paths ON paths.id=bd.dir_id
-WHERE ('/' || CASE WHEN paths.path='' THEN bd.file_name ELSE paths.path || '/' || bd.file_name END)=:relative_path AND bd.deleted_at IS NULL LIMIT 1;
+WHERE ('/' || CASE WHEN paths.path='' THEN bd.file_name ELSE paths.path || '/' || bd.file_name END)=:relative_path AND bd.deleted_at IS NULL AND book.deleted_at IS NULL LIMIT 1;
 
 -- name: native_occupied_file_names?
 -- param: dir_id: &str
@@ -144,7 +144,7 @@ SELECT id,operation,content_hash,relative_path FROM local_file_work ORDER BY id;
 -- move after queueing must not strand the job.
 -- name: native_live_placement_paths?
 -- param: content_hash: &str
-SELECT bd.dir_id, bd.file_name, ('/' || CASE WHEN paths.path='' THEN bd.file_name ELSE paths.path || '/' || bd.file_name END) FROM book_dir bd JOIN book ON book.row_id=bd.book_row_id JOIN dir_paths paths ON paths.id=bd.dir_id WHERE book.content_hash=:content_hash AND bd.deleted_at IS NULL ORDER BY 3;
+SELECT bd.dir_id, bd.file_name, ('/' || CASE WHEN paths.path='' THEN bd.file_name ELSE paths.path || '/' || bd.file_name END) FROM book_dir bd JOIN book ON book.row_id=bd.book_row_id JOIN dir_paths paths ON paths.id=bd.dir_id WHERE book.content_hash=:content_hash AND bd.deleted_at IS NULL AND book.deleted_at IS NULL ORDER BY 3;
 
 -- Last materialized locations for a hash; trash work for a retired book
 -- resolves here instead of the stale queued path.
@@ -162,7 +162,7 @@ SELECT EXISTS(SELECT 1 FROM local_file_work WHERE id=:id AND operation=:operatio
 -- name: native_current_checksum?
 -- param: content_hash: &str
 -- param: relative_path: &str
-SELECT max(current.checksum) FROM local_book_current current JOIN book b ON b.content_hash=current.content_hash JOIN book_dir bd ON bd.book_row_id=b.row_id AND bd.dir_id=current.dir_id AND bd.deleted_at IS NULL JOIN dir_paths paths ON paths.id=bd.dir_id WHERE current.content_hash=:content_hash AND ('/' || CASE WHEN paths.path='' THEN bd.file_name ELSE paths.path||'/'||bd.file_name END)=:relative_path;
+SELECT max(current.checksum) FROM local_book_current current JOIN book b ON b.content_hash=current.content_hash JOIN book_dir bd ON bd.book_row_id=b.row_id AND bd.dir_id=current.dir_id AND bd.deleted_at IS NULL JOIN dir_paths paths ON paths.id=bd.dir_id WHERE current.content_hash=:content_hash AND b.deleted_at IS NULL AND ('/' || CASE WHEN paths.path='' THEN bd.file_name ELSE paths.path||'/'||bd.file_name END)=:relative_path;
 
 -- name: native_delete_file_projection!
 -- param: content_hash: &str

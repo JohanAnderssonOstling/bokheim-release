@@ -58,17 +58,6 @@ fn recoverable_placements(connection: &rusqlite::Connection, content_hash: &Cont
         placements.push((row.get::<_, String>(0)?, row.get::<_, String>(1)?));
         Ok(())
     })?;
-    let mut origin: Option<Option<String>> = None;
-    connection.restore_book_record_with_parent_select_3(content_hash.as_str(), |row| {
-        origin = Some(row.get(0)?);
-        Ok(())
-    })?;
-    let origin: Option<String> = origin.ok_or(rusqlite::Error::QueryReturnedNoRows)?;
-    if let Some(origin) = origin {
-        if placements.iter().any(|(dir, _)| *dir == origin) {
-            placements.retain(|(dir, _)| *dir == origin);
-        }
-    }
     Ok(placements)
 }
 
@@ -792,9 +781,12 @@ impl Database {
             Ok(())
         })?;
         let now = unix_millis()?;
-        transaction.remove_book_placement_record_update(&source_id.to_string(), content_hash.as_str(), now)?;
         if orphaned {
+            // Removing the last copy trashes the book, retaining its placement
+            // so restore does not have to reconstruct membership from clocks.
             transaction.trash_directory_record_update(content_hash.as_str(), now, &source_id.to_string())?;
+        } else {
+            transaction.remove_book_placement_record_update(&source_id.to_string(), content_hash.as_str(), now)?;
         }
         crate::sync::apply::commit(transaction)?;
         Ok(orphaned)
@@ -836,7 +828,6 @@ impl Database {
         if changed == 0 {
             return Err(DatabaseError::message("book does not exist or is already in Trash"));
         }
-        transaction.trash_book_record_update_2(content_hash.as_str(), now)?;
         crate::sync::apply::commit(transaction)?;
         Ok(())
     }
@@ -892,6 +883,14 @@ impl Database {
         if choices.len() != recoverable.len() || choices.iter().any(|(original, _)| !recoverable.contains_key(original) || !originals.insert(*original)) {
             return Err(DatabaseError::message("restore targets do not cover the recoverable placements"));
         }
+        // Choosing another folder is an explicit move, not a side effect of
+        // trashing. Retain originals that are also selected destinations.
+        let targets = choices.iter().map(|(_, target)| *target).collect::<HashSet<_>>();
+        for (original, _) in choices {
+            if !targets.contains(original) {
+                transaction.remove_book_placement_record_update(&original.to_string(), content_hash.as_str(), unix_millis()?)?;
+            }
+        }
         transaction.restore_book_record_with_parent_update(content_hash.as_str())?;
         for (original, target) in choices {
             if *target != sync_common::ROOT_DIR_ID && !directory_is_live(&transaction, target)? {
@@ -903,9 +902,10 @@ impl Database {
                 existing
             } else {
                 let occupied = occupied_file_names_in(&transaction, &target.to_string())?;
-                library_replica::unique_file_name(name, occupied.iter().map(String::as_str))
+                let chosen = library_replica::unique_file_name(name, occupied.iter().map(String::as_str));
+                transaction.restore_book_record_with_parent_insert(&target.to_string(), content_hash.as_str(), &chosen)?;
+                chosen
             };
-            transaction.restore_book_record_with_parent_insert(&target.to_string(), content_hash.as_str(), &chosen)?;
             queue_file_work(&transaction, "restore", content_hash, &placement_path(&transaction, target, &chosen)?)?;
         }
         add_download_request(&transaction, content_hash)?;
@@ -959,10 +959,11 @@ impl Database {
             hashes.push(row.get::<_, String>(0)?);
             Ok(())
         })?;
-        transaction.trash_directory_record_with_3(&directory_id.to_string(), now)?;
         for hash in hashes {
             transaction.trash_directory_record_update(&hash, now, &directory_id.to_string())?;
         }
+        // Only books still present elsewhere need independent placement removals.
+        transaction.trash_directory_record_with_3(&directory_id.to_string(), now)?;
         transaction.trash_directory_record_update_2(&directory_id.to_string(), now)?;
         crate::sync::apply::commit(transaction)?;
         Ok(())

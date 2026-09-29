@@ -68,3 +68,20 @@ case is separate so either regression can fail independently. Both orders must c
 A PostgreSQL regression additionally checks all book-owned field kinds, unchanged
 winner identities, unrelated-book isolation, rejected purges and duplicate
 suppression.
+
+## Trash membership
+
+Book trashing preserves present folder placements and changes the book lifecycle.
+Restore uses those retained placements, without timestamp-based inference.
+Explicit folder removals remain removed. A restore to another folder is an
+explicit placement move. Scanner and filesystem queries exclude trashed books,
+and their local downloaded flags are cleared without changing placement intent.
+
+Database regressions also exercise concurrent Trash and move/copy operations,
+including folder Trash, in opposite delivery orders with duplicate replay.
+Book lifecycle controls visibility even when a concurrent move leaves a retained
+placement outside the trashed folder. Ordinary restore preserves placement
+versions and local file metadata; recovery may resend the original versions.
+A concurrent placement removal survives restore. If that removal arrives after
+planning but before commit, the stale restore plan fails atomically and must be
+rebuilt from the remaining placements.

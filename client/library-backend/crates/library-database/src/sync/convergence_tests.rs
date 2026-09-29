@@ -332,7 +332,7 @@ fn independent_facts_allow_fresh_device_to_restore_deleted_book() {
     let old = db();
     let fresh = db();
     let deleted = change(MutationBody::BookLifecycle { content_hash: hash(), value: BookLifecycleState::Deleted { origin_folder_id: None } }, 20, 3);
-    let placement = change(MutationBody::Placement { content_hash: hash(), dir_id: ROOT_DIR_ID, present: false, origin_folder_id: None }, 21, 4);
+    let placement = change(MutationBody::Placement { content_hash: hash(), dir_id: ROOT_DIR_ID, present: true, origin_folder_id: None }, 21, 4);
     pull(&old, &[facts(10, 1), present(10, 2)]);
     pull(&old, &[deleted.clone(), placement.clone()]);
     pull(&fresh, &[deleted, placement, facts(10, 1)]);

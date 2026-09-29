@@ -388,3 +388,31 @@ async fn review_copy_collision_keeps_a_maximum_length_filename_materializable() 
     assert!(result.is_ok(), "a valid source filename became {} bytes after collision repair: {result:?}", chosen.len());
     assert_eq!(std::fs::read(root.path().join("Target").join(chosen)).unwrap(), source_bytes);
 }
+
+#[tokio::test]
+async fn book_trash_preserves_membership_but_moves_bytes_until_restore() {
+    for remove_last_copy in [false, true] {
+        let root = tempfile::tempdir().unwrap();
+        let db = Database::open(root.path().join("library.db")).unwrap();
+        db.initialize_library().unwrap();
+        let store = AssetStore::open(root.path().to_str().unwrap()).unwrap();
+        let bytes = b"preserved placement";
+        let hash = book_identity::identify(&mut std::io::Cursor::new(bytes)).unwrap();
+        std::fs::write(root.path().join("book.epub"), bytes).unwrap();
+        db.seed_book(&hash, Some("book"), 1, "epub");
+        db.add_book_placement(&ROOT_DIR_ID, &hash, "book.epub", "", true);
+        db.seed_file_projection(&hash, &ROOT_DIR_ID, "/book.epub");
+        if remove_last_copy { assert!(db.remove_book_placement(&hash, &ROOT_DIR_ID).unwrap()); }
+        else { db.trash_book(&hash).unwrap(); }
+        assert!(raw(&db).query_row("SELECT deleted_at IS NULL FROM book_dir", [], |r| r.get::<_, bool>(0)).unwrap());
+        assert_eq!(raw(&db).query_row("SELECT is_downloaded FROM book_dir", [], |r| r.get::<_, i64>(0)).unwrap(), 0);
+        store.run_file_jobs(&db).await.unwrap();
+        assert!(!root.path().join("book.epub").exists(), "retaining membership must not keep trashed bytes at the live path");
+        assert!(db.native_file_work().unwrap().is_empty());
+        assert_eq!(db.restore_book_plan(&hash).unwrap().len(), 1);
+        db.restore_book_commit(&hash, &[(ROOT_DIR_ID, ROOT_DIR_ID)]).unwrap();
+        store.run_file_jobs(&db).await.unwrap();
+        assert_eq!(std::fs::read(root.path().join("book.epub")).unwrap(), bytes);
+        assert!(db.native_file_work().unwrap().is_empty());
+    }
+}

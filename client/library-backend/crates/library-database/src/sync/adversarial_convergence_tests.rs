@@ -418,3 +418,246 @@ fn review_native_collision_ack_reprojects_siblings_before_commit() {
     let dirty: i64 = replica.connection.query_row("SELECT count(*) FROM sync_projection_dirty", [], |row| row.get(0)).unwrap();
     assert_eq!(dirty, 0);
 }
+
+#[test]
+fn review_restore_plan_does_not_revive_an_old_removal_from_a_faster_clock() {
+    let replica = db();
+    let old = uuid::Uuid::from_u128(401);
+    let current = uuid::Uuid::from_u128(402);
+    replica.create_directory_with_id(&old, &ROOT_DIR_ID, &"Old".into()).unwrap();
+    replica.create_directory_with_id(&current, &ROOT_DIR_ID, &"Current".into()).unwrap();
+    // Two minutes of device clock skew is within the server's accepted range.
+    // This removal has already arrived before the user trashes the book.
+    let ahead = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_millis() as u64 + 120_000;
+    pull(&replica, &[
+        present(100, 1),
+        change(MutationBody::Placement { dir_id: old, content_hash: hash(), present: false, origin_folder_id: None }, ahead, 2),
+        change(MutationBody::Placement { dir_id: current, content_hash: hash(), present: true, origin_folder_id: None }, 200, 3),
+    ]);
+    replica.trash_book(&hash()).unwrap();
+    let plan = replica.restore_book_plan(&hash()).unwrap();
+    assert_eq!(plan.iter().map(|p| p.original).collect::<Vec<_>>(), vec![current], "a faster clock on an earlier removal must not change which placement this trash operation removed");
+}
+
+#[test]
+fn review_restore_plan_keeps_every_placement_removed_by_one_trash_operation() {
+    let replica = db();
+    let first = uuid::Uuid::from_u128(403);
+    let second = uuid::Uuid::from_u128(404);
+    replica.create_directory_with_id(&first, &ROOT_DIR_ID, &"First".into()).unwrap();
+    replica.create_directory_with_id(&second, &ROOT_DIR_ID, &"Second".into()).unwrap();
+    let ahead = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_millis() as u64 + 120_000;
+    pull(&replica, &[
+        present(100, 1),
+        change(MutationBody::Placement { dir_id: first, content_hash: hash(), present: true, origin_folder_id: None }, 200, 2),
+        change(MutationBody::Placement { dir_id: second, content_hash: hash(), present: true, origin_folder_id: None }, ahead, 3),
+    ]);
+    replica.trash_book(&hash()).unwrap();
+    let plan = replica.restore_book_plan(&hash()).unwrap();
+    assert_eq!(plan.iter().map(|p| p.original).collect::<Vec<_>>(), vec![first, second], "one trash operation can assign different per-placement version timestamps and must still restore both placements");
+}
+
+#[test]
+fn book_trash_preserves_placement_versions_and_restore_moves_only_selected_originals() {
+    let replica = db();
+    let first = uuid::Uuid::from_u128(405);
+    let second = uuid::Uuid::from_u128(406);
+    replica.create_directory_with_id(&first, &ROOT_DIR_ID, &"First".into()).unwrap();
+    replica.create_directory_with_id(&second, &ROOT_DIR_ID, &"Second".into()).unwrap();
+    pull(&replica, &[
+        present(100, 1),
+        change(MutationBody::Placement { dir_id: first, content_hash: hash(), present: true, origin_folder_id: None }, 200, 2),
+        change(MutationBody::Placement { dir_id: second, content_hash: hash(), present: true, origin_folder_id: None }, 300, 3),
+    ]);
+    let version = |dir: sync_common::DirId| super::apply::registers::canonical_body(&replica.connection, "placement", hash().as_str(), &dir.to_string()).unwrap();
+    let before = [version(first), version(second)];
+    replica.trash_book(&hash()).unwrap();
+    assert_eq!([version(first), version(second)], before, "trash must not author placement changes");
+    assert!(replica.sync_publishable_mutations().unwrap().iter().all(|m| !matches!(m.body, MutationBody::Placement { present: false, .. })));
+    assert!(replica.local_book_paths().unwrap().is_empty(), "retained placements of a trashed book are not live files");
+    replica.restore_book_commit(&hash(), &[(first, ROOT_DIR_ID), (second, second)]).unwrap();
+    let live: Vec<String> = replica.connection.prepare("SELECT dir_id FROM book_dir WHERE deleted_at IS NULL ORDER BY dir_id").unwrap()
+        .query_map([], |r| r.get(0)).unwrap().collect::<Result<_, _>>().unwrap();
+    assert_eq!(live, vec![ROOT_DIR_ID.to_string(), second.to_string()], "redirecting restore must not leave the old folder association live");
+    assert_eq!(version(second), before[1], "a retained placement needs no new version on restore");
+}
+
+#[cfg(feature = "scanner")]
+#[test]
+fn scanner_excludes_retained_placements_of_trashed_books() {
+    let replica = db();
+    replica.seed_book(&hash(), Some("book"), 1, "epub");
+    replica.add_book_placement(&ROOT_DIR_ID, &hash(), "book.epub", "123", true);
+    assert_eq!(replica.scan_snapshot().unwrap().placements.len(), 1);
+    assert_eq!(replica.transfer_snapshot(&[hash()]).unwrap().asset_for(&hash()).unwrap().upload.local_versions.len(), 1);
+    replica.trash_book(&hash()).unwrap();
+    assert!(replica.book_upload_snapshot(&hash()).unwrap().local_versions.is_empty());
+    assert!(replica.transfer_snapshot(&[hash()]).unwrap().asset_for(&hash()).unwrap().upload.local_versions.is_empty());
+    let snapshot = replica.scan_snapshot().unwrap();
+    assert!(snapshot.books.is_empty());
+    assert!(snapshot.placements.is_empty());
+    assert_eq!(snapshot.tombstoned_files, vec![(ROOT_DIR_ID, "book.epub".into())]);
+    assert_eq!(replica.restore_book_plan(&hash()).unwrap()[0].original, ROOT_DIR_ID);
+}
+
+fn take_publications(replica: &crate::Database) -> Vec<ServerMutation> {
+    let id: String = replica.connection.query_row("SELECT replica_id FROM sync_metadata", [], |r| r.get(0)).unwrap();
+    let pending = replica.sync_publishable_mutations().unwrap();
+    let events = pending
+        .iter()
+        .enumerate()
+        .map(|(index, m)| ServerMutation {
+            mutation: m.to_wire().unwrap(),
+            replica_id: uuid::Uuid::parse_str(&id).unwrap(),
+            revision: LibraryRevision::new(index as u64 + 1).unwrap(),
+        })
+        .collect();
+    replica.sync_acknowledge_mutations(&pending.iter().map(|m| m.mutation_id).collect::<Vec<_>>()).unwrap();
+    events
+}
+
+fn membership_snapshot(replica: &crate::Database) -> Vec<Vec<rusqlite::types::Value>> {
+    let mut rows = Vec::new();
+    for sql in [
+        "SELECT state_kind,state_key,state_subkey,changed_at,conflict_rank,replica_id,replica_seq,mutation_id,body FROM sync_state_version ORDER BY state_kind,state_key,state_subkey",
+        "SELECT content_hash,deleted_at IS NOT NULL,trash_origin_dir_id FROM book ORDER BY content_hash",
+        "SELECT b.content_hash,bd.dir_id,bd.deleted_at IS NOT NULL FROM book_dir bd JOIN book b ON b.row_id=bd.book_row_id ORDER BY b.content_hash,bd.dir_id",
+        "SELECT id,parent_id,deleted_at IS NOT NULL FROM dir ORDER BY id",
+    ] {
+        let mut statement = replica.connection.prepare(sql).unwrap();
+        let count = statement.column_count();
+        rows.extend(statement.query_map([], |row| (0..count).map(|column| row.get(column)).collect()).unwrap().collect::<Result<Vec<Vec<_>>, _>>().unwrap());
+    }
+    rows
+}
+
+fn membership_seed(two_placements: bool) -> Vec<ServerMutation> {
+    let mut seed = folder(501, "Source");
+    seed.extend(folder(502, "Destination"));
+    seed.push(present(100, 6000));
+    for id in if two_placements { vec![501, 502] } else { vec![501] } {
+        seed.push(change(
+            MutationBody::Placement {
+                dir_id: uuid::Uuid::from_u128(id),
+                content_hash: hash(),
+                present: true,
+                origin_folder_id: None,
+            },
+            100,
+            6000 + id as u64,
+        ));
+    }
+    seed
+}
+
+#[test]
+fn concurrent_trash_and_transfer_preserve_membership_in_both_delivery_orders() {
+    let source = uuid::Uuid::from_u128(501);
+    let destination = uuid::Uuid::from_u128(502);
+    for folder_trash in [false, true] {
+        for remove_source in [false, true] {
+            let seed = membership_seed(false);
+            let a = db();
+            let b = db();
+            for replica in [&a, &b] {
+                pull(replica, &seed);
+                take_publications(replica);
+            }
+            if folder_trash {
+                a.trash_directory(&source).unwrap();
+            } else {
+                a.trash_book(&hash()).unwrap();
+            }
+            b.transfer_book_placement(&hash(), &source, &destination, remove_source).unwrap();
+            let trash = take_publications(&a);
+            let transfer = take_publications(&b);
+            pull(&a, &transfer);
+            pull(&b, &trash);
+            assert_eq!(membership_snapshot(&a), membership_snapshot(&b));
+            assert!(a.local_book_paths().unwrap().is_empty(), "a concurrent transfer must not clear Trash");
+            let expected = membership_snapshot(&a);
+            for reversed in [false, true] {
+                let observer = db();
+                pull(&observer, &seed);
+                let groups = if reversed { [&transfer, &trash] } else { [&trash, &transfer] };
+                for group in groups {
+                    for event in group {
+                        pull(&observer, std::slice::from_ref(event));
+                    }
+                }
+                assert_eq!(membership_snapshot(&observer), expected);
+                for group in groups {
+                    pull(&observer, group);
+                }
+                assert_eq!(membership_snapshot(&observer), expected, "duplicate delivery must be inert");
+            }
+            let plan = a.restore_book_plan(&hash()).unwrap();
+            assert_eq!(plan.len(), if remove_source { 1 } else { 2 });
+            let choices = plan.iter().map(|p| (p.original, if folder_trash { destination } else { p.original })).collect::<Vec<_>>();
+            a.restore_book_commit(&hash(), &choices).unwrap();
+            let restore = take_publications(&a);
+            pull(&b, &restore);
+            assert_eq!(membership_snapshot(&a), membership_snapshot(&b));
+            assert!(!a.local_book_paths().unwrap().is_empty());
+        }
+    }
+}
+
+#[test]
+fn concurrent_removal_survives_book_restore_and_rejects_a_stale_restore_plan() {
+    let source = uuid::Uuid::from_u128(501);
+    let destination = uuid::Uuid::from_u128(502);
+    for removal_before_commit in [false, true] {
+        let seed = membership_seed(true);
+        let a = db();
+        let b = db();
+        for replica in [&a, &b] {
+            pull(replica, &seed);
+            take_publications(replica);
+        }
+        a.trash_book(&hash()).unwrap();
+        let trash = take_publications(&a);
+        let plan = a.restore_book_plan(&hash()).unwrap();
+        let choices = plan.iter().map(|p| (p.original, p.original)).collect::<Vec<_>>();
+        assert!(!b.remove_book_placement(&hash(), &source).unwrap());
+        let removal = take_publications(&b);
+        if removal_before_commit {
+            pull(&a, &removal);
+            let before = membership_snapshot(&a);
+            assert!(a.restore_book_commit(&hash(), &choices).is_err());
+            assert_eq!(membership_snapshot(&a), before, "stale plans must fail atomically");
+            assert!(a.sync_publishable_mutations().unwrap().is_empty());
+            a.restore_book_commit(&hash(), &[(destination, destination)]).unwrap();
+        } else {
+            a.restore_book_commit(&hash(), &choices).unwrap();
+        }
+        let restore = take_publications(&a);
+        assert!(restore.iter().all(|m| m.mutation.kind != "placement" || m.mutation.origin.is_some()), "ordinary restore must not author placements");
+        pull(&a, &removal);
+        pull(&b, &trash);
+        pull(&b, &restore);
+        assert_eq!(membership_snapshot(&a), membership_snapshot(&b));
+        let removed: bool = a.connection.query_row("SELECT deleted_at IS NOT NULL FROM book_dir WHERE dir_id=?1", [source.to_string()], |r| r.get(0)).unwrap();
+        assert!(removed);
+        for events in [vec![&removal, &trash, &restore], vec![&restore, &trash, &removal]] {
+            let observer = db();
+            pull(&observer, &seed);
+            for group in events {
+                pull(&observer, group);
+            }
+            assert_eq!(membership_snapshot(&observer), membership_snapshot(&a));
+        }
+    }
+}
+
+#[test]
+fn ordinary_restore_preserves_retained_local_file_metadata() {
+    let replica = db();
+    pull(&replica, &membership_seed(false));
+    replica.connection.execute("UPDATE book_dir SET local_hash='retained-checksum',last_scan=123", []).unwrap();
+    replica.trash_book(&hash()).unwrap();
+    let source = uuid::Uuid::from_u128(501);
+    replica.restore_book_commit(&hash(), &[(source, source)]).unwrap();
+    let retained: (String, i64) = replica.connection.query_row("SELECT local_hash,last_scan FROM book_dir", [], |r| Ok((r.get(0)?, r.get(1)?))).unwrap();
+    assert_eq!(retained, ("retained-checksum".into(), 123));
+}

@@ -224,6 +224,10 @@ fn project_book(tx: &rusqlite::Transaction<'_>, hash: &str, values: &[(MutationB
         WHERE content_hash=?1 AND (format,added_at,deleted_at,trash_origin_dir_id,read_pos,read_progress) IS NOT (?2,?3,?4,?5,?6,?7)",
         rusqlite::params![hash, format, added_at, deleted_at, origin, reading, progress],
     )?;
+    if deleted_at.is_some() {
+        // Membership survives Trash; downloaded flags describe only live files.
+        tx.execute("UPDATE book_dir SET is_downloaded=0 WHERE book_row_id=(SELECT row_id FROM book WHERE content_hash=?1) AND is_downloaded!=0", [hash])?;
+    }
     if !kinds.contains("metadata") {
         let mut empty = library_replica::SyncBookMetadata::default();
         empty.title = String::new();
