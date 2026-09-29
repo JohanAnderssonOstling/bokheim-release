@@ -415,7 +415,13 @@ jobs:
           rustup toolchain install "$RUST_VERSION" --profile minimal
           rustup target add aarch64-linux-android
           sdkmanager 'platforms;android-36' 'build-tools;36.0.0' 'ndk;29.0.13599879'
+      - name: Reuse Android build artifacts on the local runner
+        if: runner.environment == 'self-hosted'
+        run: |
+          mkdir -p "$RUNNER_TOOL_CACHE/bokheim-android-release"
+          ln -s "$RUNNER_TOOL_CACHE/bokheim-android-release" bokheim/target
       - uses: Swatinem/rust-cache@v2
+        if: runner.environment == 'github-hosted'
         with:
           prefix-key: bokheim-android-release-v1
           workspaces: bokheim -> target
