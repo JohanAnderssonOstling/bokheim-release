@@ -64,6 +64,9 @@ scraper = "0.27"
 unicode-normalization = "0.1"
 gpui = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd", version = "=0.2.2" }
 gpui_platform = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd", features = ["wayland", "x11"] }
+gpui_android = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd" }
+gpui_kobo = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd" }
+gpui_wgpu = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd" }
 gpui-component = { git = "https://github.com/longbridge/gpui-component", rev = "88f102d13654fe25aa2fede076274b6b751a3704" }
 gpui-component-assets = { git = "https://github.com/longbridge/gpui-component", rev = "88f102d13654fe25aa2fede076274b6b751a3704" }
 pdfium-render = { version = "0.9.3", default-features = false }

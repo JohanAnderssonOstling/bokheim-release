@@ -44,10 +44,10 @@ ui-components = { path = "../components" }
 browser-ui = { path = "../browser", default-features = false }
 app = { path = "../../client/app", default-features = false }
 gpui.workspace = true
-gpui_android = { path = "../../../GPUI-Fork/crates/gpui_android", optional = true }
+gpui_android = { workspace = true, optional = true }
 gpui-component.workspace = true
 gpui_platform = { workspace = true, optional = true }
-gpui_kobo = { path = "../../../GPUI-Fork/crates/gpui_kobo", optional = true }
+gpui_kobo = { workspace = true, optional = true }
 fs2 = "0.4"
 image = { version = "0.25.1", default-features = false, features = ["png"], optional = true }
 kobo-device = { path = "../kobo-device", optional = true }

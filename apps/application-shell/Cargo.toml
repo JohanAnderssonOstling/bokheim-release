@@ -15,7 +15,7 @@ async-channel = "2"
 app = { path = "../../client/app", default-features = false }
 browser-ui = { path = "../browser", default-features = false }
 gpui.workspace = true
-gpui_kobo = { path = "../../../GPUI-Fork/crates/gpui_kobo", optional = true }
+gpui_kobo = { workspace = true, optional = true }
 library-model = { path = "../../client/library-model" }
 log = "0.4"
 futures-util = "0.3"

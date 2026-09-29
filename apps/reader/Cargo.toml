@@ -21,7 +21,7 @@ ui-components = { path = "../components" }
 audiobook-player = { path = "../audiobook-player", default-features = false }
 gpui.workspace = true
 gpui-component.workspace = true
-gpui_kobo = { path = "../../../GPUI-Fork/crates/gpui_kobo", optional = true }
+gpui_kobo = { workspace = true, optional = true }
 html-view-core.workspace = true
 html-view-gpui = { path = "crates/html/crates/html-view-gpui" }
 html.workspace = true
