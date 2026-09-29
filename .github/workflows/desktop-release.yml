@@ -1,8 +1,15 @@
-name: GPUI desktop release
+name: GPUI platform release
+run-name: Release ${{ inputs.platform || 'all' }} — ${{ github.ref_name }}
 
 on:
   workflow_dispatch:
     inputs:
+      platform:
+        description: Platform to build in this independent run
+        required: true
+        type: choice
+        default: linux
+        options: [linux, windows, android, all]
       publish:
         description: Upload the desktop builds to the shared draft release for this version
         required: true
@@ -17,7 +24,7 @@ permissions:
   statuses: write
 
 concurrency:
-  group: desktop-release-${{ github.ref }}
+  group: desktop-release-${{ github.ref }}-${{ inputs.platform || 'all' }}
   cancel-in-progress: false
 
 env:
@@ -41,18 +48,21 @@ jobs:
     uses: ./.github/workflows/sync-e2e.yml
 
   linux-checks:
+    if: github.event_name == 'push' || inputs.platform == 'all' || inputs.platform == 'linux'
     needs: shared-tests
     uses: ./.github/workflows/client-platforms.yml
     with:
       platform: linux
 
   windows-checks:
+    if: github.event_name == 'push' || inputs.platform == 'all' || inputs.platform == 'windows'
     needs: shared-tests
     uses: ./.github/workflows/client-platforms.yml
     with:
       platform: windows
 
   android-checks:
+    if: github.event_name == 'push' || inputs.platform == 'all' || inputs.platform == 'android'
     needs: shared-tests
     uses: ./.github/workflows/client-platforms.yml
     with:
@@ -481,7 +491,12 @@ jobs:
       statuses: read
     name: Publish verified draft artifacts
     needs: [build-appimage, build-windows, verify-android]
-    if: startsWith(github.ref, 'refs/tags/') || inputs.publish == true
+    if: >-
+      !cancelled() &&
+      (startsWith(github.ref, 'refs/tags/') || inputs.publish == true) &&
+      (needs.build-appimage.result == 'success' || (needs.build-appimage.result == 'skipped' && inputs.platform != 'all' && inputs.platform != 'linux' && github.event_name != 'push')) &&
+      (needs.build-windows.result == 'success' || (needs.build-windows.result == 'skipped' && inputs.platform != 'all' && inputs.platform != 'windows' && github.event_name != 'push')) &&
+      (needs.verify-android.result == 'success' || (needs.verify-android.result == 'skipped' && inputs.platform != 'all' && inputs.platform != 'android' && github.event_name != 'push'))
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
@@ -504,10 +519,14 @@ jobs:
           VERSION=$(sed -n 's/^version = "\([^"]*\)"/\1/p' apps/desktop-gpui/Cargo.toml | head -n 1)
           test -n "$VERSION"
           RELEASE_TAG="v${VERSION}"
+          # Publication never creates or moves tags, and artifacts must match the tag.
+          gh api "repos/$GH_REPO/git/ref/tags/$RELEASE_TAG" >/dev/null
+          TAG_SHA=$(gh api "repos/$GH_REPO/commits/$RELEASE_TAG" --jq .sha)
+          test "$TAG_SHA" = "$GITHUB_SHA"
           if ! gh release view "$RELEASE_TAG" --repo "$GH_REPO" >/dev/null 2>&1; then
             gh release create "$RELEASE_TAG" \
               --repo "$GH_REPO" \
-              --target "$GITHUB_SHA" --draft --generate-notes --title "Bokheim ${VERSION}" || \
+              --verify-tag --draft --generate-notes --title "Bokheim ${VERSION}" || \
               gh release view "$RELEASE_TAG" --repo "$GH_REPO" >/dev/null
           fi
           # Refuse to overwrite assets after a release has become public.

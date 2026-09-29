@@ -65,20 +65,40 @@ with `systemctl --user`. Rust 1.95.0 is installed without changing the developer
 default toolchain. Android device verification needs an attached device and the
 `bokheim-android` label; that label is not assigned yet. The local reporting command works without a runner daemon.
 
+## Independent platform runs
+
+Run one platform per invocation against the same source ref:
+
+```bash
+gh workflow run desktop-release.yml --repo JohanAnderssonOstling/bokheim-release --ref main -f platform=linux -f publish=false
+gh workflow run desktop-release.yml --repo JohanAnderssonOstling/bokheim-release --ref main -f platform=windows -f publish=false
+gh workflow run desktop-release.yml --repo JohanAnderssonOstling/bokheim-release --ref main -f platform=android -f publish=false
+gh workflow run client-platforms.yml --repo JohanAnderssonOstling/bokheim-release --ref main -f platform=web
+```
+
+Use an existing immutable release tag when all runs must use an identical ref.
+Each invocation has its own run and can be retried independently. Desktop runs
+reuse the newest successful shared-test status for their exact commit; otherwise
+the local shared suite runs first. A later failure or pending status invalidates
+an earlier success. Browser checks/builds run separately from executable packaging.
+Local jobs share one runner and therefore execute sequentially on that machine.
+Local platform Cargo artifacts live outside the cleaned checkout; hosted platform
+jobs save and restore their Cargo cache.
+
 ## Release gate
 
-1. Run/report shared tests for the release commit.
-2. Run the desktop/Kobo release workflows for that same commit/tag.
-3. Each workflow builds and checks its platform packages. Desktop also requires
-   the reusable native/web/Android platform-check workflow to pass.
-4. Only after all jobs pass does its single draft-publication job check the shared
-   result and upload artifacts. A missing result fails closed; report it and rerun
-   the failed publication job. Build artifacts remain available for inspection.
-5. Releases are created in `JohanAnderssonOstling/bokheim`, using the source
-   repository’s built-in Actions token with write access only in the publication
-   job. No separate release-repository token is required.
-6. Artifacts include a component source-commit file. The draft release remains
-   unpublished, and public releases cannot be overwritten by these jobs.
+1. Shared tests must pass for the exact release commit.
+2. Each executable requires only its own platform checks before packaging.
+3. A selected platform can upload its verified artifacts to the shared draft with
+   `publish=true`; other platform jobs are skipped. `platform=all` is available
+   for a combined run, and existing tag pushes retain combined release behavior.
+4. Publication checks the shared result again and requires an existing version
+   tag pointing to the exact source commit. It never creates or moves tags.
+5. Draft assets are uploaded to `JohanAnderssonOstling/bokheim-release` using the
+   repository Actions token with write access only in the publication job.
+6. Artifacts include a source-commit receipt. Drafts remain unpublished, and public
+   releases cannot be overwritten by these jobs. All desired platform assets must
+   be collected and verified before publishing the draft publicly.
 
 These gates apply to existing **draft GitHub release uploads**. The reviewed
 `servers/updates/publish-github-release.py` command rechecks the source workflow,

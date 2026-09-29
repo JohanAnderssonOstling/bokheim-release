@@ -1,6 +1,13 @@
 name: Client platform release checks
 on:
   workflow_dispatch:
+    inputs:
+      platform:
+        description: Platform to check in this independent run
+        required: true
+        type: choice
+        default: web
+        options: [web, linux, windows, android, all]
   workflow_call:
     inputs:
       platform:
@@ -82,6 +89,18 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y build-essential clang pkg-config libssl-dev
           fi
+      - name: Reuse local platform build artifacts
+        if: runner.environment == 'self-hosted'
+        run: echo "CARGO_TARGET_DIR=$RUNNER_TOOL_CACHE/bokheim-platform-checks" >> "$GITHUB_ENV"
+      - name: Restore hosted platform build cache
+        if: runner.environment == 'github-hosted'
+        uses: Swatinem/rust-cache@v2
+        with:
+          prefix-key: bokheim-platform-checks-v1
+          key: ${{ matrix.platform }}
+          workspaces: bokheim -> target
+          cache-on-failure: true
+          cache-workspace-crates: true
       - uses: actions/setup-python@v6
         if: matrix.platform == 'native' && runner.environment == 'github-hosted'
         with:
