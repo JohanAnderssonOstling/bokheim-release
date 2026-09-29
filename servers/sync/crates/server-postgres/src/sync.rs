@@ -444,6 +444,11 @@ mod tests {
             let hash = blake3::hash(key.as_bytes()).to_hex().to_string();
             sqlx::query("INSERT INTO blob_object(content_hash,size_bytes) VALUES($1,10)").bind(&hash).execute(pool).await.unwrap();
             sqlx::query("INSERT INTO user_blob_charge(user_id,content_hash) VALUES($1,$2)").bind(user).bind(&hash).execute(pool).await.unwrap();
+            let library: String = sqlx::query_scalar("SELECT id FROM libraries WHERE user_id=$1").bind(user).fetch_one(pool).await.unwrap();
+            let mut creation = wire_mutation("book_lifecycle", key, 1, 1);
+            creation.blob_reference = Some(DeclaredBlobReference { present: true, content_hash: Some(sync_common::ContentHash::new(&hash)) });
+            let response = PostgresSyncRepository { pool: pool.clone() }.exchange(user, &exchange_request(sync_common::LibraryId::parse_str(&library).unwrap(), vec![creation])).await.unwrap();
+            assert!(response.push.rejected.is_empty());
         }
     }
 

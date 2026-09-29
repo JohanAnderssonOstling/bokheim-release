@@ -61,14 +61,18 @@ async fn completed_upload_releases_the_same_pending_mutations() {
 
 #[tokio::test]
 #[ignore = "requires SYNC_E2E_DATABASE_URL"]
-async fn reading_position_cannot_bypass_upload_admission() {
+async fn reading_position_requires_a_book_and_creation_requires_upload() {
     let fixture = AudiobookFixture::new().await;
-    let request = fixture.request(&[mutation_kind::READING_POSITION]);
-
-    assert_deferred(&fixture.exchange(&request).await, 1);
+    let alone = fixture.request(&[mutation_kind::READING_POSITION]);
+    let ignored = fixture.exchange(&alone).await;
+    assert_eq!(ignored.push.accepted, vec![alone.mutations[0].mutation_id]);
+    assert!(ignored.pull.mutations.is_empty());
+    let request = fixture.request(&[mutation_kind::READING_POSITION, mutation_kind::BOOK_LIFECYCLE]);
+    assert_deferred(&fixture.exchange(&request).await, 2);
     fixture.upload(fixture.audio.clone()).await.unwrap();
-
-    assert!(fixture.exchange(&request).await.push.rejected.is_empty());
+    let accepted = fixture.exchange(&request).await;
+    assert!(accepted.push.rejected.is_empty());
+    assert_eq!(accepted.pull.mutations.len(), 2);
 }
 
 #[tokio::test]
@@ -89,17 +93,17 @@ async fn another_accounts_upload_does_not_authorize_book() {
 async fn missing_upload_does_not_block_an_uploaded_book_in_the_same_batch() {
     let fixture = AudiobookFixture::new().await;
     fixture.upload(fixture.audio.clone()).await.unwrap();
-    let mut request = fixture.request(&[mutation_kind::METADATA, mutation_kind::DESCRIPTION]);
-    request.mutations[1].entity_key = "a".repeat(64);
-
+    let mut request = fixture.request(&[mutation_kind::BOOK_LIFECYCLE, mutation_kind::METADATA, mutation_kind::BOOK_LIFECYCLE, mutation_kind::DESCRIPTION]);
+    request.mutations[2].entity_key = "a".repeat(64);
+    request.mutations[2].blob_reference = Some(sync_common::DeclaredBlobReference { present: true, content_hash: Some(ContentHash::new(&"a".repeat(64))) });
+    request.mutations[3].entity_key = "a".repeat(64);
     let response = fixture.exchange(&request).await;
-
-    assert_eq!(response.push.accepted, vec![request.mutations[0].mutation_id]);
-    assert_eq!(response.push.rejected, vec![MutationRejection {
-        mutation_id: request.mutations[1].mutation_id,
-        reason: MutationRejectionReason::MissingDependency,
-    }]);
-    assert_eq!(response.pull.mutations.len(), 1);
+    assert_eq!(response.push.accepted, vec![request.mutations[0].mutation_id, request.mutations[1].mutation_id]);
+    assert_eq!(response.push.rejected.len(), 2);
+    for index in [2, 3] {
+        assert!(response.push.rejected.contains(&MutationRejection { mutation_id: request.mutations[index].mutation_id, reason: MutationRejectionReason::MissingDependency }));
+    }
+    assert_eq!(response.pull.mutations.len(), 2);
 }
 
 fn assert_deferred(response: &SyncExchangeResponse, count: usize) {
