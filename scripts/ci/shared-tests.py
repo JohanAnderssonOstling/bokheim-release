@@ -21,7 +21,6 @@ def commands():
         ['cargo', 'test', '--release', '--no-fail-fast', *sum((['-p', p] for p in packages), [])],
         ['cargo', 'test', '--release', '--no-fail-fast', '-p', 'update-client', '--features', 'native-state'],
         ['cargo', 'test', '--release', '--no-fail-fast', '-p', 'update-publisher'],
-        ['cargo', 'test', '--release', '--no-fail-fast', '--manifest-path', 'apps/kobo-installer/Cargo.toml', '--lib'],
         ['bash', 'client/app/tests/run_sync_e2e.sh'],
     ]
 

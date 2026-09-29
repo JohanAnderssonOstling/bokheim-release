@@ -33,6 +33,23 @@ jobs:
       statuses: write
     uses: ./.github/workflows/sync-e2e.yml
 
+  installer-tests:
+    name: Kobo installer tests
+    needs: shared-tests
+    runs-on: [self-hosted, linux, x64, bokheim-shared]
+    timeout-minutes: 60
+    env:
+      RUSTUP_TOOLCHAIN: '1.95.0'
+      RUSTC_BOOTSTRAP: '1'
+      CARGO_BUILD_JOBS: '1'
+      CARGO_TARGET_DIR: ${{ runner.tool_cache }}/bokheim-kobo-installer
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install Rust
+        run: rustup toolchain install "$RUSTUP_TOOLCHAIN" --profile minimal
+      - name: Test Kobo installer
+        run: cargo test --release --no-fail-fast --manifest-path apps/kobo-installer/Cargo.toml --lib
+
   version:
     name: Release version
     runs-on: ubuntu-24.04
@@ -61,7 +78,7 @@ jobs:
 
   build-windows-installer:
     name: Windows USB installer
-    needs: [version, shared-tests]
+    needs: [version, shared-tests, installer-tests]
     runs-on: windows-2025
     timeout-minutes: 30
 
@@ -148,7 +165,7 @@ jobs:
 
   build-linux-installer:
     name: Linux USB installer AppImage
-    needs: [version, shared-tests]
+    needs: [version, shared-tests, installer-tests]
     runs-on: ubuntu-22.04
     timeout-minutes: 30
 
