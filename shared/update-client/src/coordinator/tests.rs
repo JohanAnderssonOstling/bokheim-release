@@ -73,6 +73,46 @@ fn explicit_approval_and_next_launch_are_required_even_after_interruption() {
 }
 
 #[test]
+fn startup_checks_again_without_losing_approval_or_replay_protection() {
+    let (config, device, manifest) = fixture();
+    let store = Memory::default();
+    let mut first = Coordinator::open(store.clone(), config.clone(), device.clone(), "first".into()).unwrap();
+    first.discovered(signed(&manifest), 150).unwrap();
+    first.approve(150).unwrap();
+    let approved = first.record().approved.as_ref().unwrap().id.clone();
+    assert!(!first.discovery_due(151));
+    drop(first);
+
+    let mut second = Coordinator::open(store, config, device, "second".into()).unwrap();
+    assert!(second.discovery_due(151));
+    assert_eq!(second.record().next_check_at, 150 + CHECK_INTERVAL_SECONDS);
+    assert_eq!(second.record().highest_sequence, manifest.sequence);
+    assert_eq!(second.record().approved.as_ref().unwrap().id, approved);
+    second.discovered(signed(&manifest), 151).unwrap();
+    assert!(!second.discovery_due(152));
+    assert!(second.discovery_due(151 + CHECK_INTERVAL_SECONDS));
+    assert_eq!(second.record().approved.as_ref().unwrap().id, approved);
+}
+
+#[test]
+fn startup_retries_offline_discovery_then_respects_retry_backoff() {
+    let (config, device, _) = fixture();
+    let store = Memory::default();
+    let mut first = Coordinator::open(store.clone(), config.clone(), device.clone(), "first".into()).unwrap();
+    first.discovery_failed(150, "offline".into()).unwrap();
+    assert!(!first.discovery_due(151));
+    drop(first);
+
+    let mut second = Coordinator::open(store, config, device, "second".into()).unwrap();
+    assert!(second.discovery_due(151));
+    assert_eq!(second.record().discovery_failures, 1);
+    second.discovery_failed(151, "still offline".into()).unwrap();
+    assert!(!second.discovery_due(152));
+    assert_eq!(second.record().discovery_failures, 2);
+    assert!(second.discovery_due(211));
+}
+
+#[test]
 fn discovery_failures_are_silent_and_approved_plan_is_pinned() {
     let (config, device, mut manifest) = fixture();
     let mut coordinator = Coordinator::open(Memory::default(), config, device, "first".into()).unwrap();

@@ -129,6 +129,7 @@ pub struct Coordinator<S> {
     device: DeviceVersion,
     session: String,
     record: Record,
+    startup_check_pending: bool,
 }
 
 fn hash(bytes: &[u8]) -> String {
@@ -157,7 +158,7 @@ impl<S: Store> Coordinator<S> {
             return Err("update coordinator requires a launch session ID".into());
         }
         let record = store.load()?;
-        let mut coordinator = Self { store, config, device, session, record };
+        let mut coordinator = Self { store, config, device, session, record, startup_check_pending: true };
         let scope = trust_scope(&coordinator.config);
         if coordinator.record.trust_scope != scope {
             // Adding a rotation key must not erase an approved plan or reset its
@@ -206,7 +207,7 @@ impl<S: Store> Coordinator<S> {
     }
 
     pub fn discovery_due(&self, now: u64) -> bool {
-        now >= self.record.next_check_at
+        self.startup_check_pending || now >= self.record.next_check_at
     }
 
     pub fn discovered(&mut self, envelope: Vec<u8>, now: u64) -> Result<(), String> {
@@ -233,7 +234,9 @@ impl<S: Store> Coordinator<S> {
         next.discovery_failures = 0;
         next.last_discovery_error = None;
         // Approved plans stay pinned even when a new release is published.
-        self.commit(next)
+        self.commit(next)?;
+        self.startup_check_pending = false;
+        Ok(())
     }
 
     pub fn discovery_failed(&mut self, now: u64, diagnostic: String) -> Result<(), String> {
@@ -241,7 +244,9 @@ impl<S: Store> Coordinator<S> {
         next.discovery_failures = next.discovery_failures.saturating_add(1);
         next.next_check_at = now.saturating_add(retry_delay(next.discovery_failures));
         next.last_discovery_error = Some(diagnostic);
-        self.commit(next)
+        self.commit(next)?;
+        self.startup_check_pending = false;
+        Ok(())
     }
 
     pub fn view(&self, now: u64) -> UpdateView {
