@@ -107,6 +107,9 @@ jobs:
           done
           cargo test --release -p linux-update-host windows
           cargo run --release -p linux-update-host --example windows_update_trial
+      - name: Prepare WebAssembly PDFium
+        if: matrix.platform == 'web'
+        run: python3 shared/pdfium/prepare.py --target wasm32-unknown-unknown
       - name: Standalone web platform check
         if: matrix.platform == 'web'
         run: cargo check --release -p client-platform-web --target wasm32-unknown-unknown --features web-runtime-tests

@@ -1,0 +1,2 @@
+# Keep the pinned PDFium notice bytes identical on every platform.
+shared/pdfium/windows-static/NOTICES.txt text eol=lf
