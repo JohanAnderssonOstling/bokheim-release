@@ -46,6 +46,7 @@ artifacts.validate(receipt, 'web', receipt['source_commit'], receipt['source_rep
 if artifacts.command('git', 'rev-parse', 'HEAD') != receipt['source_commit']:
     raise SystemExit('Web bundle belongs to a different deployment source commit')
 artifacts.clean_revision(receipt['source_commit'])
+artifacts.command('python3', 'scripts/ci/check-server-protocol.py', receipt['source_commit'])
 artifacts.command('python3', 'scripts/ci/require-shared-tests.py', receipt['source_repository'], receipt['source_commit'])
 PY_VERIFY
 else

@@ -99,6 +99,7 @@ def upload(platform, directory, repository, tag):
     sha = receipt['source_commit']
     validate(receipt, platform, sha, repository, directory)
     command('python3', 'scripts/ci/require-shared-tests.py', repository, sha)
+    command('python3', 'scripts/ci/check-server-protocol.py', sha)
     # Never creates or moves tags, including when the release does not exist yet.
     command('gh', 'api', f'repos/{repository}/git/ref/tags/{tag}')
     # The version tag may predate the build; the receipt is the source of truth.

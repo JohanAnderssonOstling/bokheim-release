@@ -67,7 +67,7 @@ python3 scripts/ci/release_artifacts.py upload linux --directory "$HOME/bokheim-
 python3 scripts/ci/release_artifacts.py upload android --directory "$HOME/bokheim-builds/android-01" --tag EXISTING_VERSION_TAG
 ```
 
-Uploads verify package hashes, shared tests, package version and existing version
+Uploads verify package hashes, shared tests, the live server protocol, package version and existing version
 tag. They create/update only a **draft release**, never tags or public assets.
 A draft containing a different source receipt is rejected. The default release
 repository is `JohanAnderssonOstling/bokheim-release`.
@@ -110,3 +110,5 @@ review/sign/publish command in `servers/updates/README.md`. Publication rechecks
 the source gate and platform receipts. Signing keys stay on the trusted local
 machine. Permission to upload releases/report commit statuses is the trust
 boundary for local build attestations.
+
+Before publishing native packages or deploying a verified web bundle, the pipeline probes the live login endpoint with the built protocol and empty input. A protocol mismatch blocks publication until the matching server is deployed.
