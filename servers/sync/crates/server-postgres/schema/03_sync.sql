@@ -32,9 +32,9 @@
 -- Cursor correctness requires every server_seq at or below an advertised
 -- channel head to be committed. Every write path therefore locks its library
 -- row with authorize_owned_library.sql before an INSERT or UPDATE can allocate
--- server_seq. Generic and atomic reading exchanges both hold that lock through
--- commit; the atomic path deliberately acquires it in a preceding statement so
--- its mutation statement gets a fresh READ COMMITTED snapshot after waiting.
+-- server_seq. Every exchange uses the same admission path and holds that lock
+-- through commit. The following statements get a fresh READ COMMITTED snapshot
+-- after waiting.
 -- The revision statement trigger then advances the channel head while that
 -- same transaction still owns the lock. Its sync_library_revision upsert is a
 -- second serialization point, but it happens after sequence allocation and
@@ -71,6 +71,9 @@ BEGIN
 END
 $$;
 
+-- Revision-only updates deliberately bypass the value guard: conflict repair
+-- can redeliver an unchanged winner. Ordinary upserts still run the guard and
+-- exact retries remain no-ops. Revision statement triggers cover both paths.
 CREATE FUNCTION enforce_lww_order() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
@@ -144,7 +147,7 @@ CREATE TABLE sync_state (
 CREATE INDEX sync_state_library_seq ON sync_state (library_id, server_seq);
 CREATE TRIGGER advance_library_sync_revision_state_insert AFTER INSERT ON sync_state REFERENCING NEW TABLE AS new_rows FOR EACH STATEMENT EXECUTE FUNCTION advance_library_sync_revision_statement();
 CREATE TRIGGER advance_library_sync_revision_state_update AFTER UPDATE ON sync_state REFERENCING NEW TABLE AS new_rows FOR EACH STATEMENT EXECUTE FUNCTION advance_library_sync_revision_statement();
-CREATE TRIGGER lww_guard BEFORE UPDATE ON sync_state FOR EACH ROW EXECUTE FUNCTION enforce_lww_order();
+CREATE TRIGGER lww_guard BEFORE UPDATE OF library_id, kind, entity_key, entity_subkey, value, present, content_hash, changed_at, replica_id, replica_seq, version_rank, event_id ON sync_state FOR EACH ROW EXECUTE FUNCTION enforce_lww_order();
 
 CREATE TABLE sync_reading_state (
     library_id text NOT NULL REFERENCES libraries(id) ON DELETE CASCADE,
@@ -166,4 +169,4 @@ CREATE TABLE sync_reading_state (
 CREATE INDEX sync_reading_state_library_seq ON sync_reading_state (library_id, server_seq);
 CREATE TRIGGER advance_library_sync_revision_reading_insert AFTER INSERT ON sync_reading_state REFERENCING NEW TABLE AS new_rows FOR EACH STATEMENT EXECUTE FUNCTION advance_library_sync_revision_statement();
 CREATE TRIGGER advance_library_sync_revision_reading_update AFTER UPDATE ON sync_reading_state REFERENCING NEW TABLE AS new_rows FOR EACH STATEMENT EXECUTE FUNCTION advance_library_sync_revision_statement();
-CREATE TRIGGER lww_guard BEFORE UPDATE ON sync_reading_state FOR EACH ROW EXECUTE FUNCTION enforce_lww_order();
+CREATE TRIGGER lww_guard BEFORE UPDATE OF library_id, kind, entity_key, entity_subkey, value, present, content_hash, changed_at, replica_id, replica_seq, version_rank, event_id ON sync_reading_state FOR EACH ROW EXECUTE FUNCTION enforce_lww_order();

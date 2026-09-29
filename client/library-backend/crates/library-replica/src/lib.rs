@@ -149,7 +149,10 @@ pub fn coalesce_mutations_for_push(mutations: Vec<StateMutation>) -> Vec<StateMu
 
 /// Encodes replica-domain mutations and partitions them into bounded protocol
 /// pages while retaining oversized mutation identities for diagnostics.
-pub fn prepare_push(changes: Vec<StateMutation>) -> Result<sync_common::PushBatcher, Box<dyn std::error::Error>> {
+pub fn prepare_push(mut changes: Vec<StateMutation>) -> Result<sync_common::PushBatcher, Box<dyn std::error::Error>> {
+    // Recovery inventory order is not creation order. Declarations must precede
+    // fields even when bounded requests split the pending snapshot into pages.
+    changes.sort_by_key(|mutation| !matches!(mutation.body, MutationBody::BookLifecycle { .. }));
     let mutations = changes.into_iter().map(|mutation| mutation.to_wire()).collect::<Result<Vec<_>, _>>()?;
     Ok(sync_common::PushBatcher::new(mutations)?)
 }
@@ -370,6 +373,55 @@ mod tests {
     }
 
     #[test]
+    fn recovery_push_sends_creation_first_and_defers_fields_across_pages() {
+        let hash = content_hash('a');
+        let other = content_hash('b');
+        let mutation = |body, sequence| StateMutation { origin: None, mutation_id: MutationId::new(), body, changed_at: 1, replica_seq: ReplicaSeq::new(sequence).unwrap() };
+        let mut queued = (0..sync_common::MAX_PUSH_MUTATIONS)
+            .map(|i| mutation(MutationBody::Placement { content_hash: hash, dir_id: sync_common::DirId::from_u128(i as u128 + 1), present: true, origin_folder_id: None }, i as u64 + 1))
+            .collect::<Vec<_>>();
+        queued.push(mutation(MutationBody::BookLifecycle { content_hash: hash, value: BookLifecycleState::Present }, 1000));
+        queued.push(mutation(MutationBody::Description { content_hash: other, value: "Other book".into() }, 1001));
+        let mut batcher = prepare_push(queued).unwrap();
+        let first = batcher.next_batch();
+        assert_eq!(first[0].kind, sync_common::mutation_kind::BOOK_LIFECYCLE);
+        assert_eq!(first.len(), sync_common::MAX_PUSH_MUTATIONS);
+        batcher.defer_book_fields(&[hash.to_string()]);
+        let next = batcher.next_batch();
+        assert_eq!(next.len(), 1);
+        assert_eq!(next[0].book_field_owner(), Some(other.as_str()));
+        assert!(batcher.is_empty());
+    }
+
+    #[test]
+    fn annotation_deletion_keeps_owner_without_upload_dependency() {
+        let hash = content_hash('a');
+        let body = MutationBody::Annotation {
+            annotation_id: "note".into(),
+            value: book_model::AnnotationState {
+                content_hash: hash,
+                anchor: book_model::AnnotationAnchor::epub_cfi("epubcfi(/6/2)"),
+                exact_text: String::new(),
+                style: book_model::AnnotationStyle::Highlight,
+                color: "#fff".into(),
+                note: String::new(),
+                created_at: 1,
+                modified_at: 2,
+                deleted: true,
+                toc_ordinal: None,
+                progress: None,
+            },
+        };
+        assert_eq!(body.upload_dependency(), None);
+        let mut wire = body.to_wire(MutationId::new(), 2, ReplicaSeq::new(1).unwrap()).unwrap();
+        assert_eq!(wire.book_field_owner(), Some(hash.as_str()));
+        assert!(!wire.blob_reference.as_ref().unwrap().present);
+        assert_eq!(MutationBody::from_wire(&wire).unwrap(), Some(body));
+        wire.blob_reference.as_mut().unwrap().content_hash = Some(content_hash('b'));
+        assert!(MutationBody::from_wire(&wire).is_err());
+    }
+
+    #[test]
     fn removing_an_unuploaded_import_does_not_require_its_bytes() {
         let hash = content_hash('a');
         let removals = [MutationBody::BookLifecycle { content_hash: hash, value: BookLifecycleState::Purged }, MutationBody::Placement { dir_id: sync_common::ROOT_DIR_ID, content_hash: hash, present: false, origin_folder_id: None }];
@@ -400,9 +452,20 @@ mod tests {
     #[test]
     fn placement_updates_coalesce_to_the_latest_register_value() {
         let dir_id = dir_id("11111111-1111-4111-8111-111111111111");
-        let claim = StateMutation { origin: None, mutation_id: MutationId::new(), body: MutationBody::Placement { dir_id, content_hash: content_hash('a'), present: true, origin_folder_id: None }, changed_at: 1, replica_seq: ReplicaSeq::new(1).unwrap() };
-        let release =
-            StateMutation { origin: None, mutation_id: MutationId::new(), body: MutationBody::Placement { dir_id, content_hash: content_hash('a'), present: false, origin_folder_id: None }, changed_at: 2, replica_seq: ReplicaSeq::new(2).unwrap() };
+        let claim = StateMutation {
+            origin: None,
+            mutation_id: MutationId::new(),
+            body: MutationBody::Placement { dir_id, content_hash: content_hash('a'), present: true, origin_folder_id: None },
+            changed_at: 1,
+            replica_seq: ReplicaSeq::new(1).unwrap(),
+        };
+        let release = StateMutation {
+            origin: None,
+            mutation_id: MutationId::new(),
+            body: MutationBody::Placement { dir_id, content_hash: content_hash('a'), present: false, origin_folder_id: None },
+            changed_at: 2,
+            replica_seq: ReplicaSeq::new(2).unwrap(),
+        };
         let reduced = coalesce_mutations_for_push(vec![claim, release]);
         assert!(matches!(reduced.as_slice(), [StateMutation { body: MutationBody::Placement { present: false, .. }, .. }]));
     }

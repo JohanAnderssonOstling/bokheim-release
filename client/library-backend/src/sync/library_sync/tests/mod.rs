@@ -22,6 +22,7 @@ use sync_transport::{PushResponseError, validate_pull_batch, validate_push_respo
 mod accounts;
 mod assets;
 mod cancellation;
+mod convergence;
 mod metadata;
 mod protocol;
 mod recovery;

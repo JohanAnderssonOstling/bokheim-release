@@ -106,6 +106,14 @@ pub(crate) fn accept_value(conn: &Connection, body: &MutationBody, time: u64, id
     let version = library_replica::VersionKey::new(time, body.conflict_rank(), local_replica(conn)?, next_sequence(conn)?, id.unwrap_or_else(|| MutationId::parse(&uuid::Uuid::new_v4().to_string()).expect("UUID")));
     if merge_inner(conn, body, &version, false)? {
         schedule(conn, kind, &key, &subkey, Some(&version))?;
+        if matches!(body, MutationBody::BookLifecycle { value: library_replica::BookLifecycleState::Present | library_replica::BookLifecycleState::Deleted { .. }, .. }) {
+            // Our own winning existence declaration may be the first state
+            // published after another device's purge/readd. Its server echo
+            // has an equal version, so queue surviving fields here as well.
+            for cell in book_fields(conn, &key)? {
+                recover(conn, &cell)?;
+            }
+        }
     }
     Ok(())
 }
@@ -123,6 +131,13 @@ fn schedule(conn: &Connection, kind: &str, key: &str, subkey: &str, local: Optio
         params![storage_i64(seq, "queue sequence")?, id, kind, key, subkey],
     )?;
     Ok(())
+}
+
+pub(crate) fn book_fields(conn: &Connection, hash: &str) -> Result<Vec<sync_common::StateCell>, DatabaseError> {
+    Ok(conn
+        .prepare("SELECT state_kind,state_key,state_subkey FROM sync_state_version WHERE book_key=?1 AND state_kind!='book_lifecycle' AND body IS NOT NULL")?
+        .query_map([hash], |r| Ok(sync_common::StateCell { kind: r.get(0)?, entity_key: r.get(1)?, entity_subkey: r.get(2)? }))?
+        .collect::<Result<Vec<_>, _>>()?)
 }
 
 /// Recovery queues canonical identities only. Merge has already invalidated any

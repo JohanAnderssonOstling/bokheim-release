@@ -68,6 +68,44 @@ mod tests {
         }
         assert_eq!(db.connection.query_row("SELECT COUNT(*) FROM book", [], |r| r.get::<_, i64>(0)).unwrap(), 1, "only the purged row is deleted");
     }
+    #[test]
+    fn purge_clears_pending_annotation_and_rollback_preserves_its_publication() {
+        let db = Database::open(":memory:").unwrap();
+        db.initialize_library().unwrap();
+        let hash = sync_common::ContentHash::new(&"c".repeat(64));
+        add(&db, hash.as_str());
+        let annotation = book_model::ReaderAnnotation {
+            id: "offline-note".into(),
+            content_hash: hash,
+            anchor: book_model::AnnotationAnchor::epub_cfi("epubcfi(/6/2)"),
+            exact_text: "Text".into(),
+            style: book_model::AnnotationStyle::Highlight,
+            color: "#fff".into(),
+            note: "Note".into(),
+            created_at: 1,
+            modified_at: 2,
+            toc_ordinal: None,
+            progress: None,
+        };
+        db.upsert_annotation(&annotation).unwrap();
+        db.trash_book(&hash).unwrap();
+        let pending = db.sync_publishable_mutations().unwrap();
+        assert!(pending.iter().any(|m| matches!(m.body, library_replica::MutationBody::Annotation { .. })));
+        db.connection.execute_batch("CREATE TEMP TRIGGER reject_purge BEFORE DELETE ON book BEGIN SELECT RAISE(ABORT,'purge failed'); END;").unwrap();
+        assert!(db.purge_book(&hash).is_err());
+        assert_eq!(db.sync_publishable_mutations().unwrap(), pending);
+        assert_eq!(db.annotations(hash).unwrap().len(), 1);
+        db.connection.execute_batch("DROP TRIGGER reject_purge;").unwrap();
+        db.purge_book(&hash).unwrap();
+        assert!(db.annotations(hash).unwrap().is_empty());
+        assert_eq!(db.connection.query_row("SELECT count(*) FROM sync_state_version WHERE book_key=?1 AND state_kind!='book_lifecycle'", [hash.as_str()], |r| r.get::<_, i64>(0)).unwrap(), 0);
+        assert!(db.sync_publishable_mutations().unwrap().iter().all(|m| matches!(m.body, library_replica::MutationBody::BookLifecycle { .. })));
+        add(&db, hash.as_str());
+        db.upsert_annotation(&annotation).unwrap();
+        db.sync_acknowledge_mutations(&pending.iter().map(|m| m.mutation_id).collect::<Vec<_>>()).unwrap();
+        assert!(db.sync_publishable_mutations().unwrap().iter().any(|m| matches!(m.body, library_replica::MutationBody::Annotation { .. })), "old acknowledgements cannot erase readded work");
+    }
+
     fn add(db: &Database, hash: &str) {
         db.connection.execute("INSERT INTO book(content_hash,title,format,added_at) VALUES(?1,'Book','epub',1)", [hash]).unwrap();
     }
@@ -106,5 +144,4 @@ mod tests {
         db.acknowledge_purge_book(stale).unwrap();
         assert_eq!(count(&db), 1);
     }
-
 }

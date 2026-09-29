@@ -79,7 +79,7 @@ pub(super) fn decode(wire: &WireMutation) -> Result<MutationBody, transport::Wir
                 return Err(decode_error("annotation owner declaration does not match its value"));
             }
             Ok(MutationBody::Annotation { annotation_id: key.to_owned(), value })
-        },
+        }
         (sync_common::mutation_kind::PDF_READER_METADATA, Kind::PdfReaderMetadata(bytes)) => {
             let value: pdf_view_common::PdfReaderMetadata = serde_json::from_slice(&bytes).map_err(|e| decode_error(e.to_string()))?;
             if !value.valid_for(&wire.entity_subkey) {

@@ -262,6 +262,7 @@ mod apply_tests {
                 let database = &holder.database;
                 apply_metadata_test_pages(database, &changes, page_size);
                 assert_metadata_projection(database, hash, &canonical);
+                crate::sync::convergence_tests::acknowledge_confirmed_reconciliation(database, &changes);
                 // Replayed values cannot alter either register's projection.
                 apply_metadata_test_pages(database, &changes, page_size);
                 assert_metadata_projection(database, hash, &canonical);

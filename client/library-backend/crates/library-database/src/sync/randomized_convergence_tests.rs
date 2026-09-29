@@ -42,11 +42,13 @@ fn history(seed: u64) -> Vec<ServerMutation> {
             2 => MutationBody::DirectoryName { dir_id, name: ["Shelf", "shelf", "Ｓｈｅｌｆ", "Shelf 2", "Étage", "E\u{301}tage", "..", "Folder", "A/B", "A\\B", "CON.txt", "Shelf. "][random.pick(12)].into() },
             3 => MutationBody::DirectoryLifecycle { dir_id, value: [DirectoryLifecycleState::Present, DirectoryLifecycleState::Deleted, DirectoryLifecycleState::Purged][random.pick(3)].clone() },
             4 => {
-                MutationBody::BookLifecycle { content_hash: super::convergence_tests::hash(), // Field registers commute within an existing book's lifetime.
-                // Purge/readd requires server admission order; covered by the
-                // lifetime boundary and server exchange tests, not shuffling
-                // discarded fields back into an invented current snapshot.
-                value: [BookLifecycleState::Present, BookLifecycleState::Deleted { origin_folder_id: None }][random.pick(2)].clone() }
+                MutationBody::BookLifecycle {
+                    content_hash: super::convergence_tests::hash(), // Field registers commute within an existing book's lifetime.
+                    // Purge/readd requires server admission order; covered by the
+                    // lifetime boundary and server exchange tests, not shuffling
+                    // discarded fields back into an invented current snapshot.
+                    value: [BookLifecycleState::Present, BookLifecycleState::Deleted { origin_folder_id: None }][random.pick(2)].clone(),
+                }
             }
             5 => MutationBody::Placement { dir_id, content_hash: super::convergence_tests::hash(), present: random.pick(2) == 0, origin_folder_id: None },
             6 => MutationBody::from_wire(&metadata(["en", "fr", "sv"][random.pick(3)], 1, 1).mutation).unwrap().unwrap(),
@@ -130,6 +132,40 @@ fn assert_visible_tree(db: &Database) {
 }
 
 #[test]
+fn seeded_purge_boundaries_discard_absent_updates_and_allow_old_fields_after_readd() {
+    for seed in seeds() {
+        let events = history(seed);
+        let devices = [db(), db()];
+        for (index, replica) in devices.iter().enumerate() {
+            deliver(replica, &events, &mut Random(seed + index as u64));
+        }
+        let purge = change(MutationBody::BookLifecycle { content_hash: super::convergence_tests::hash(), value: BookLifecycleState::Purged }, 100, 10000);
+        for (index, replica) in devices.iter().enumerate() {
+            pull(replica, &[purge.clone()]);
+            // Delayed fields while absent are completed no-ops, regardless of
+            // their order, duplicates or page boundaries. Stale declarations
+            // accompanying them cannot override the purge winner.
+            deliver(replica, &events, &mut Random(seed + 100 + index as u64));
+            assert_eq!(replica.connection.query_row("SELECT count(*) FROM book", [], |r| r.get::<_, i64>(0)).unwrap(), 0);
+            assert_eq!(replica.connection.query_row("SELECT count(*) FROM sync_state_version WHERE book_key IS NOT NULL AND state_kind!='book_lifecycle'", [], |r| r.get::<_, i64>(0)).unwrap(), 0);
+        }
+        let readd = present(101, 10001);
+        let expected = db();
+        pull(&expected, &[readd.clone()]);
+        pull(&expected, &winners(&events));
+        for (index, replica) in devices.iter().enumerate() {
+            pull(replica, &[readd.clone()]);
+            // These are new server admissions after readd. Original timestamps
+            // and mutation IDs are intentionally older than the purge.
+            deliver(replica, &events, &mut Random(seed + 200 + index as u64));
+            pull(replica, &[purge.clone()]); // losing purge cannot remove fields
+            assert_eq!(canonical(replica), canonical(&expected), "seed={seed}");
+            assert_eq!(projection(replica), projection(&expected), "seed={seed}");
+        }
+    }
+}
+
+#[test]
 fn seeded_delivery_pages_duplicates_restarts_and_recovery_converge() {
     for seed in seeds() {
         let result = std::panic::catch_unwind(|| {
@@ -155,11 +191,14 @@ fn seeded_delivery_pages_duplicates_restarts_and_recovery_converge() {
                 deliver(&replica, &scheduled[split..], &mut random);
                 assert_eq!(canonical(&replica), canonical(&expected), "device={device}, canonical winners");
                 assert_eq!(projection(&replica), projection(&expected), "device={device}, projection");
-                assert!(replica.sync_publishable_mutations().unwrap().is_empty(), "remote projection generated an echo");
+                super::convergence_tests::acknowledge_confirmed_reconciliation(&replica, &events);
+                // Once acknowledged, re-delivery cannot start a new cycle.
+                pull(&replica, &winners(&events));
+                assert!(replica.sync_publishable_mutations().unwrap().is_empty());
                 devices.push(replica);
             }
-            // Recover from a fully synchronized device: republication may change
-            // versions, but must preserve payloads and the repaired tree.
+            // Recover from a fully synchronized device: republication preserves
+            // original versions, payloads and the repaired tree.
             let source = &devices[seed as usize % devices.len()];
             source.sync_enqueue_missing_state_cells(&source.sync_inventory_page(None).unwrap()).unwrap();
             let sent = source.sync_publishable_mutations().unwrap();

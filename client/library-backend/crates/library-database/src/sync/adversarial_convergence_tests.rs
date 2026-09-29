@@ -316,6 +316,28 @@ fn review_restore_plan_excludes_placements_removed_before_the_book_was_trashed()
     replica.trash_book(&hash()).unwrap();
     let plan = replica.restore_book_plan(&hash()).unwrap();
     assert_eq!(plan.iter().map(|p| p.original).collect::<Vec<_>>(), vec![current], "an older independent placement removal must not be undone by restoring the later book deletion");
+    replica.restore_book_commit(&hash(), &[(current, current)]).unwrap();
+    let old_removed: bool = replica.connection.query_row("SELECT deleted_at IS NOT NULL FROM book_dir WHERE dir_id=?1", [old.to_string()], |r| r.get(0)).unwrap();
+    assert!(old_removed, "committing the plan must preserve the old independent removal");
+    let current_live: bool = replica.connection.query_row("SELECT deleted_at IS NULL FROM book_dir WHERE dir_id=?1", [current.to_string()], |r| r.get(0)).unwrap();
+    assert!(current_live);
+}
+
+#[test]
+fn review_restore_plan_prefers_remaining_live_placements_over_old_removals() {
+    let replica = db();
+    let old = uuid::Uuid::from_u128(306);
+    let current = uuid::Uuid::from_u128(307);
+    replica.create_directory_with_id(&old, &ROOT_DIR_ID, &"Old".into()).unwrap();
+    replica.create_directory_with_id(&current, &ROOT_DIR_ID, &"Current".into()).unwrap();
+    // A lifecycle page can arrive before the placement-removal page. A later
+    // independent removal must not outweigh a still-present placement either.
+    pull(&replica, &[
+        change(MutationBody::BookLifecycle { content_hash: hash(), value: BookLifecycleState::Deleted { origin_folder_id: None } }, 400, 1),
+        change(MutationBody::Placement { dir_id: old, content_hash: hash(), present: false, origin_folder_id: None }, 300, 2),
+        change(MutationBody::Placement { dir_id: current, content_hash: hash(), present: true, origin_folder_id: None }, 200, 3),
+    ]);
+    assert_eq!(replica.restore_book_plan(&hash()).unwrap().iter().map(|p| p.original).collect::<Vec<_>>(), vec![current]);
 }
 
 #[test]
@@ -331,6 +353,12 @@ fn review_restore_plan_keeps_live_ancestors_of_suppressed_directories() {
     replica.trash_directory(&parent).unwrap();
     let plan = replica.restore_book_plan(&hash()).unwrap();
     assert!(plan[0].ancestry.iter().any(|a| a.id == grandparent && a.live), "restore planning lost the original live ancestor: {plan:?}");
+    assert_eq!(plan[0].ancestry.iter().map(|a| a.id).collect::<Vec<_>>(), vec![child, parent, grandparent]);
+    assert_eq!(plan[0].ancestry.last().unwrap().path, "Live");
+    replica.restore_book_commit(&hash(), &[(child, grandparent)]).unwrap();
+    let target_live: bool = replica.connection.query_row("SELECT deleted_at IS NULL FROM book_dir WHERE dir_id=?1", [grandparent.to_string()], |r| r.get(0)).unwrap();
+    assert!(target_live, "the live ancestor offered by the plan must be a valid restore destination");
+    assert!(replica.directory_relative_path_string(&parent).unwrap().is_none(), "restoring the book must not restore the deleted folder");
 }
 
 #[test]

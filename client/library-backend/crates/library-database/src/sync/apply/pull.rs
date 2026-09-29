@@ -27,13 +27,37 @@ impl Database {
         let acknowledgements = if ids.is_empty() { None } else { Some(serde_json::to_string(&ids.iter().map(ToString::to_string).collect::<Vec<_>>()).map_err(DatabaseError::operation)?) };
         self.with_write_transaction(|tx| {
             tx.pragma_update(None, "defer_foreign_keys", "ON").map_err(DatabaseError::operation)?;
+            let mut acknowledged_fields = Vec::new();
             if let Some(payload) = acknowledgements {
+                // An acknowledgement confirms a publication even if its field
+                // is on a later pull page. Capture only still-matching queue
+                // generations: old acknowledgements cannot confirm new edits.
+                let cells = tx
+                    .prepare("SELECT state_kind,state_key,state_subkey FROM sync_outbox WHERE mutation_id IN (SELECT value FROM json_each(?1))")?
+                    .query_map([&payload], |r| Ok((r.get::<_, String>(0)?, r.get::<_, String>(1)?, r.get::<_, String>(2)?)))?
+                    .collect::<Result<Vec<_>, _>>()?;
+                for cell in cells {
+                    if let Some(version) = read_version(tx, &cell.0, &cell.1, &cell.2)? {
+                        acknowledged_fields.push((cell, version));
+                    }
+                }
                 tx.outbox_delete_for_ids(&payload).map_err(DatabaseError::operation)?;
             }
             if creations.is_empty() && page.mutations.is_empty() && read_cursor(tx)? == page.next_cursor {
                 return Ok(crate::transactions::WriteOutcome::Commit(false));
             }
             {
+                // A still-existing row may have missed a complete purge/readd.
+                // Remember its lifecycle before merging this page, not the
+                // intermediate order of declarations and lifecycle mutations.
+                let mut existing = std::collections::BTreeMap::new();
+                for (_, body) in &creations {
+                    let MutationBody::BookLifecycle { content_hash, .. } = body else { unreachable!() };
+                    let hash = content_hash.as_str();
+                    if tx.query_row("SELECT EXISTS(SELECT 1 FROM book WHERE content_hash=?1)", [hash], |r| r.get::<_, bool>(0))? {
+                        existing.insert(hash.to_owned(), read_version(tx, "book_lifecycle", hash, "")?);
+                    }
+                }
                 for (change, body) in &creations {
                     registers::merge(tx, body, &library_replica::VersionKey::from_wire(&change.mutation, change.replica_id))?;
                 }
@@ -62,12 +86,47 @@ impl Database {
                     registers::merge(tx, body, &library_replica::VersionKey::from_wire(&change.mutation, change.replica_id))?;
                 }
                 project_dirty(tx)?;
+                reconcile_surviving_fields(tx, existing, &prepared, acknowledged_fields)?;
                 write_cursor_revision(tx, PullCursorKey::State, page.next_cursor.state_revision)?;
                 write_cursor_revision(tx, PullCursorKey::Reading, page.next_cursor.reading_revision)?;
             }
             Ok(crate::transactions::WriteOutcome::Commit(!page.mutations.is_empty() || !creations.is_empty()))
         })
     }
+}
+
+/// A newer existence declaration does not reveal whether purge happened while
+/// this replica was away. Reconcile surviving fields through normal publication,
+/// preserving their original versions. Same-page confirmations avoid echoes.
+fn reconcile_surviving_fields(
+    tx: &rusqlite::Transaction<'_>, existing: std::collections::BTreeMap<String, Option<library_replica::VersionKey>>, prepared: &PreparedRemoteChanges<'_>, acknowledged: Vec<((String, String, String), library_replica::VersionKey)>,
+) -> Result<(), DatabaseError> {
+    let mut confirmed = acknowledged.into_iter().collect::<std::collections::HashMap<_, _>>();
+    for (change, body) in &prepared.changes {
+        let version = library_replica::VersionKey::from_wire(&change.mutation, change.replica_id);
+        let (kind, key, subkey) = sync_state_identity(body);
+        confirmed
+            .entry((kind.to_owned(), key, subkey))
+            .and_modify(|old: &mut library_replica::VersionKey| {
+                if version > *old {
+                    *old = version.clone();
+                }
+            })
+            .or_insert(version);
+    }
+    for (hash, previous) in existing {
+        if read_version(tx, "book_lifecycle", &hash, "")? == previous || !tx.query_row("SELECT EXISTS(SELECT 1 FROM book WHERE content_hash=?1)", [&hash], |r| r.get::<_, bool>(0))? {
+            continue;
+        }
+        for cell in registers::book_fields(tx, &hash)? {
+            let current = read_version(tx, &cell.kind, &cell.entity_key, &cell.entity_subkey)?;
+            if confirmed.get(&(cell.kind.clone(), cell.entity_key.clone(), cell.entity_subkey.clone())).is_some_and(|seen| Some(seen) >= current.as_ref()) {
+                continue;
+            }
+            registers::recover(tx, &cell)?;
+        }
+    }
+    Ok(())
 }
 
 /// Project canonical winners inside the same transaction as their admission.

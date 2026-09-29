@@ -42,6 +42,13 @@ impl PushBatcher {
         self.ready.is_empty()
     }
 
+    /// Leave fields of failed creations in the durable outbox for a later
+    /// exchange. Sending them in a later page would look like standalone
+    /// absent-book edits, which the server correctly acknowledges as no-ops.
+    pub fn defer_book_fields(&mut self, books: &[String]) {
+        self.ready.retain(|row| !row.mutation.book_field_owner().is_some_and(|owner| books.iter().any(|hash| hash == owner)));
+    }
+
     pub fn next_batch(&mut self) -> Vec<WireMutation> {
         let mut batch = Vec::with_capacity(crate::MAX_PUSH_MUTATIONS.min(self.ready.len()));
         let mut bytes = 0_usize;

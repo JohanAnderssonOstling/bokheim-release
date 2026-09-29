@@ -127,20 +127,53 @@ pub(super) async fn insert_changes(tx: &mut Transaction<'_, Postgres>, user_id: 
     for table in ["sync_state", "sync_reading_state"] {
         sqlx::query(&format!(
             "DELETE FROM {table} field USING sync_state lifecycle
-             WHERE lifecycle.library_id=$1 AND lifecycle.kind='book_lifecycle'
+             WHERE lifecycle.library_id=$1 AND lifecycle.kind='book_lifecycle' AND lifecycle.entity_subkey=''
                AND lifecycle.entity_key=ANY($2) AND lifecycle.present IS FALSE
                AND field.library_id=lifecycle.library_id
                AND (CASE WHEN field.kind='annotation' THEN field.content_hash
-                         WHEN field.kind IN ('book_facts','placement','reading_position','metadata','description','pdf_reader_metadata','book_toc') THEN field.entity_key END)=lifecycle.entity_key"))
-            .bind(library_id.to_string()).bind(lifecycles.iter().map(|c| c.entity_key.clone()).collect::<Vec<_>>())
-            .execute(&mut **tx).await?;
+                         WHEN field.kind IN ('book_facts','placement','reading_position','metadata','description','pdf_reader_metadata','book_toc') THEN field.entity_key END)=lifecycle.entity_key"
+        ))
+        .bind(library_id.to_string())
+        .bind(lifecycles.iter().map(|c| c.entity_key.clone()).collect::<Vec<_>>())
+        .execute(&mut **tx)
+        .await?;
+    }
+    // A losing purge has already removed the sender's entire local book.
+    // Redeliver all surviving fields, even those behind its cursor. Preserve
+    // the canonical value/version; only delivery revisions advance. The caller
+    // still holds the library lock, including across both channel updates.
+    let purged = lifecycles.iter().filter(|c| c.blob_reference.as_ref().is_some_and(|r| !r.present) && result.accepted.contains(&c.mutation_id)).map(|c| c.entity_key.clone()).collect::<Vec<_>>();
+    if !purged.is_empty() {
+        for table in ["sync_state", "sync_reading_state"] {
+            sqlx::query(&format!(
+                "UPDATE {table} field SET server_seq=nextval('sync_server_sequence')
+                 FROM sync_state lifecycle
+                 WHERE lifecycle.library_id=$1 AND lifecycle.kind='book_lifecycle' AND lifecycle.entity_subkey=''
+                   AND lifecycle.entity_key=ANY($2) AND lifecycle.present IS TRUE
+                   AND field.library_id=lifecycle.library_id
+                   AND (CASE WHEN field.kind='annotation' THEN field.content_hash
+                             WHEN field.kind IN ('book_facts','placement','reading_position','metadata','description','pdf_reader_metadata','book_toc') THEN field.entity_key END)=lifecycle.entity_key"
+            ))
+            .bind(library_id.to_string())
+            .bind(&purged)
+            .execute(&mut **tx)
+            .await?;
+        }
     }
     let mut fields = Vec::new();
     let owners = changes.iter().filter_map(|c| field_owner(c).ok().flatten().map(str::to_owned)).collect::<Vec<_>>();
-    let existing: std::collections::HashSet<String> = sqlx::query_scalar::<_, String>(
-        "SELECT entity_key FROM sync_state WHERE library_id=$1 AND kind='book_lifecycle' AND entity_subkey='' AND present IS TRUE AND entity_key=ANY($2)")
-        .bind(library_id.to_string()).bind(owners).fetch_all(&mut **tx).await?.into_iter().collect();
+    let existing: std::collections::HashSet<String> = sqlx::query_scalar::<_, String>("SELECT entity_key FROM sync_state WHERE library_id=$1 AND kind='book_lifecycle' AND entity_subkey='' AND present IS TRUE AND entity_key=ANY($2)")
+        .bind(library_id.to_string())
+        .bind(owners)
+        .fetch_all(&mut **tx)
+        .await?
+        .into_iter()
+        .collect();
     for change in changes.iter().filter(|c| c.kind != sync_common::mutation_kind::BOOK_LIFECYCLE) {
+        if let Some(reason) = storage_rejection(change, server_now_ms()) {
+            result.rejected.push(MutationRejection { mutation_id: change.mutation_id, reason });
+            continue;
+        }
         let owner = match field_owner(change) {
             Ok(owner) => owner,
             Err(reason) => {
@@ -149,8 +182,7 @@ pub(super) async fn insert_changes(tx: &mut Transaction<'_, Postgres>, user_id: 
             }
         };
         if owner.is_some_and(|hash| !existing.contains(hash)) {
-            let failed_creation = lifecycles.iter().filter(|c| Some(c.entity_key.as_str()) == owner)
-                .find_map(|c| result.rejected.iter().find(|r| r.mutation_id == c.mutation_id).map(|r| r.reason.clone()));
+            let failed_creation = lifecycles.iter().filter(|c| Some(c.entity_key.as_str()) == owner).find_map(|c| result.rejected.iter().find(|r| r.mutation_id == c.mutation_id).map(|r| r.reason.clone()));
             if let Some(reason) = failed_creation {
                 result.rejected.push(MutationRejection { mutation_id: change.mutation_id, reason });
             } else {
@@ -170,17 +202,19 @@ pub(super) async fn insert_changes(tx: &mut Transaction<'_, Postgres>, user_id: 
 
 /// Annotation identity is independent of its book hash, including on deletion.
 fn field_owner(change: &WireMutation) -> Result<Option<&str>, MutationRejectionReason> {
-    use sync_common::mutation_kind as kind;
-    match change.kind.as_str() {
-        kind::ANNOTATION => change.blob_reference.as_ref().and_then(|r| r.content_hash.as_ref()).map(|h| Some(h.as_str())).ok_or(MutationRejectionReason::InvalidPayload),
-        kind::BOOK_FACTS | kind::PLACEMENT | kind::READING_POSITION | kind::METADATA | kind::DESCRIPTION | kind::PDF_READER_METADATA | kind::BOOK_TOC => Ok(Some(&change.entity_key)),
-        _ => Ok(None),
+    let owner = change.book_field_owner();
+    if change.kind == sync_common::mutation_kind::ANNOTATION && owner.is_none() {
+        return Err(MutationRejectionReason::InvalidPayload);
     }
+    Ok(owner)
 }
 
 /// Stores opaque wire rows. The only routing knowledge is that reading state
 /// belongs to the hot table; cold kinds need no server-side enum arm.
 async fn insert_admitted_changes(tx: &mut Transaction<'_, Postgres>, user_id: &str, library_id: &LibraryId, replica_id: &ReplicaId, changes: &[WireMutation]) -> Result<InsertChangesResult, sqlx::Error> {
+    if changes.is_empty() {
+        return Ok(InsertChangesResult { accepted: Vec::new(), rejected: Vec::new() });
+    }
     let now = server_now_ms();
     let (accepted, rejected): (Vec<_>, Vec<_>) = changes.iter().partition(|change| storage_rejection(change, now).is_none());
     let mut rejected = rejected.into_iter().map(|change| MutationRejection { mutation_id: change.mutation_id, reason: storage_rejection(change, now).expect("partitioned rejection") }).collect::<Vec<_>>();
@@ -545,7 +579,6 @@ mod tests {
         assert_eq!(comparison, "NEW.changed_at,NEW.version_rank,NEW.replica_idCOLLATE\"C\",NEW.replica_seq,NEW.event_idCOLLATE\"C\"");
         assert!(!LWW_TRIGGER_SQL.contains("hlc_"));
     }
-
 
     #[tokio::test]
     #[ignore = "requires SYNC_E2E_DATABASE_URL"]

@@ -68,7 +68,7 @@ cargo test --release \
     -p server-account \
     -p server-postgres \
     -- \
-    --ignored \
+    --include-ignored \
     --test-threads=1
 
 SYNC_E2E_DATABASE_URL="$database_url" \
@@ -112,7 +112,7 @@ SYNC_E2E_SERVER_URL="http://127.0.0.1:$server_port" \
 SYNC_E2E_ADMIN_PASSWORD="sync-e2e-admin-password" \
 CARGO_TARGET_DIR="$backend_target" \
 cargo test --release \
-    --manifest-path "$repo_root/client/app/Cargo.toml" \
+    --manifest-path "$repo_root/client/library-backend/Cargo.toml" \
     --lib \
     production_http_postgres_ \
     -- \

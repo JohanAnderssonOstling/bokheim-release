@@ -1,6 +1,6 @@
 //! Storage-independent state synchronization orchestration.
 
-use library_replica::{coalesce_mutations_for_push, prepare_push, StateMutation};
+use library_replica::{StateMutation, coalesce_mutations_for_push, prepare_push};
 use std::collections::HashSet;
 use std::sync::atomic::{AtomicBool, Ordering};
 use sync_common::{LibraryId, MutationId, MutationIssue, PullStateResponse, PushMutationsResponse, ReplicaId, StateCell, SyncCursor};
@@ -117,10 +117,12 @@ impl<'a, S: SyncStore> SyncEngine<'a, S> {
         let mut result = SyncOutcome { mutation_issues: remaining.untransmittable().iter().copied().map(MutationIssue::Untransmittable).collect() };
         while !remaining.is_empty() {
             let requested = remaining.next_batch();
+            let creations = requested.iter().filter(|m| m.kind == sync_common::mutation_kind::BOOK_LIFECYCLE).map(|m| (m.mutation_id, m.entity_key.clone())).collect::<Vec<_>>();
             let ids = requested.iter().map(|mutation| mutation.mutation_id).collect::<Vec<_>>();
             let credentials = self.current_credentials()?;
             let response = sync_transport::exchange_changes(self.http_client, &credentials, self.library_id, self.replica_id, requested, SyncCursor::default()).await?;
             result.mutation_issues.extend(self.apply_push_response_semantics(&ids, &response.push).await?);
+            defer_rejected_creation_fields(&mut remaining, &creations, &response.push);
         }
         Ok(result)
     }
@@ -251,6 +253,7 @@ impl<'a, S: SyncStore> SyncEngine<'a, S> {
             page_number += 1;
             let mut trace = sync_transport::PerformanceTrace::new("sync_page", "prepare_request");
             let requested = remaining.next_batch();
+            let creations = requested.iter().filter(|m| m.kind == sync_common::mutation_kind::BOOK_LIFECYCLE).map(|m| (m.mutation_id, m.entity_key.clone())).collect::<Vec<_>>();
             let requested_ids = requested.iter().map(|mutation| mutation.mutation_id).collect::<Vec<_>>();
             log::debug!(target: "sync_performance", "trace_id={} library_id={} page={page_number} push_count={} cursor={cursor:?}", trace.id(), self.library_id, requested.len());
             trace.phase("http_roundtrip");
@@ -272,6 +275,7 @@ impl<'a, S: SyncStore> SyncEngine<'a, S> {
             cursor = response.pull.next_cursor;
             trace.phase("apply_local_transaction");
             self.store.apply_exchange_response(&completed, &response.pull).await.map_err(SyncError::failed)?;
+            defer_rejected_creation_fields(remaining, &creations, &response.push);
             trace.finish(true);
             if remaining.is_empty() && !has_more {
                 return Ok(());
@@ -282,6 +286,11 @@ impl<'a, S: SyncStore> SyncEngine<'a, S> {
     fn current_credentials(&self) -> Result<sync_transport::SyncCredentials, SyncError> {
         self.credentials.clone().ok_or(SyncError::AuthenticationRequired)
     }
+}
+
+fn defer_rejected_creation_fields(remaining: &mut sync_common::PushBatcher, creations: &[(MutationId, String)], response: &PushMutationsResponse) {
+    let books = creations.iter().filter(|(id, _)| response.rejected.iter().any(|rejection| rejection.mutation_id == *id)).map(|(_, hash)| hash.clone()).collect::<Vec<_>>();
+    remaining.defer_book_fields(&books);
 }
 
 #[cfg(test)]

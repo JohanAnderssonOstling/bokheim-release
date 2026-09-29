@@ -258,7 +258,6 @@ fn moving_a_collision_numbered_folder_returns_its_final_name() {
     assert_eq!(returned, name, "the caller must receive the final projected name");
 }
 
-
 #[test]
 fn local_purge_removes_metadata_and_reimport_starts_without_it() {
     let replica = db();
@@ -410,7 +409,6 @@ fn complete_book_projection_does_not_inherit_previous_display_fields() {
     assert_eq!(book_snapshot(&old), book_snapshot(&fresh));
 }
 
-
 #[test]
 fn publication_snapshot_survives_reopen() {
     let path = std::env::temp_dir().join(format!("publication-{}.sqlite3", uuid::Uuid::new_v4()));
@@ -476,13 +474,12 @@ fn recovery_preserves_the_full_winner_across_repeated_publication_and_reopen() {
     let original = metadata("fr", 100, 7);
     let expected = library_replica::VersionKey::from_wire(&original.mutation, original.replica_id);
     replica.sync_commit_pull_response(&[], &PullStateResponse { book_creations: vec![present(1, 1)], mutations: vec![original], next_cursor: SyncCursor::default(), has_more: false }).unwrap();
-    let cells = replica.sync_inventory_page(None).unwrap();
+    let cells = replica.sync_inventory_page(None).unwrap().into_iter().filter(|cell| cell.kind == "metadata").collect::<Vec<_>>();
     for _ in 0..3 {
         replica.sync_enqueue_missing_state_cells(&cells).unwrap();
         let publications = replica.sync_publishable_mutations().unwrap();
-        assert_eq!(publications.len(), 2, "recovery republishes both lifecycle and metadata cells");
-        let metadata = publications.iter().find(|publication| publication.to_wire().unwrap().kind == "metadata").unwrap();
-        assert_eq!(library_replica::VersionKey::from_wire(&metadata.to_wire().unwrap(), uuid::Uuid::from_u128(999)), expected);
+        assert_eq!(publications.len(), 1);
+        assert_eq!(library_replica::VersionKey::from_wire(&publications[0].to_wire().unwrap(), uuid::Uuid::from_u128(999)), expected);
         let stored: (u64, String, u64, String) = replica
             .connection
             .query_row("SELECT changed_at,replica_id,replica_seq,mutation_id FROM sync_state_version WHERE state_kind='metadata'", [], |r| Ok((r.get::<_, i64>(0)? as u64, r.get(1)?, r.get::<_, i64>(2)? as u64, r.get(3)?)))
@@ -491,7 +488,7 @@ fn recovery_preserves_the_full_winner_across_repeated_publication_and_reopen() {
         let reopened = Database::open(&path).unwrap();
         reopened.initialize_library().unwrap();
         assert_eq!(reopened.sync_publishable_mutations().unwrap(), publications, "origin is part of the durable retry snapshot");
-        replica.sync_acknowledge_mutations(&publications.iter().map(|publication| publication.mutation_id).collect::<Vec<_>>()).unwrap();
+        replica.sync_acknowledge_mutations(&[publications[0].mutation_id]).unwrap();
     }
     drop(replica);
     std::fs::remove_file(path).unwrap();
@@ -511,7 +508,6 @@ fn import_retry_accepts_cycle_repair_but_rejects_a_real_rename() {
     replica.move_directory(&child, None, Some("Renamed")).unwrap();
     assert!(replica.create_directory_with_id(&child, &parent, &"Child".into()).is_err());
 }
-
 
 /// Model a server page for fixtures whose books already exist on the server.
 /// Tests of absent-book behavior intentionally call sync_commit_pull_response
@@ -534,4 +530,22 @@ impl Database {
     pub(crate) fn commit_existing_books_fixture(&self, ids: &[MutationId], page: &PullStateResponse) -> Result<bool, crate::DatabaseError> {
         self.sync_commit_pull_response(ids, &existing_books_page(page.clone()))
     }
+}
+
+/// Model server acknowledgement only after proving these publications already
+/// match its winning fields. Reconciliation must not invent a new edit/version.
+pub(super) fn acknowledge_confirmed_reconciliation(replica: &Database, server: &[ServerMutation]) {
+    let pending = replica.sync_publishable_mutations().unwrap();
+    for publication in &pending {
+        let wire = publication.to_wire().unwrap();
+        assert!(wire.book_field_owner().is_some(), "reconciliation must only publish owned fields");
+        let winner = server
+            .iter()
+            .filter(|event| (event.mutation.kind.as_str(), event.mutation.entity_key.as_str(), event.mutation.entity_subkey.as_str()) == (wire.kind.as_str(), wire.entity_key.as_str(), wire.entity_subkey.as_str()))
+            .max_by_key(|event| library_replica::VersionKey::from_wire(&event.mutation, event.replica_id))
+            .expect("publication must exist in the server fixture");
+        assert_eq!(wire.value, winner.mutation.value);
+        assert_eq!(library_replica::VersionKey::from_wire(&wire, uuid::Uuid::from_u128(999)), library_replica::VersionKey::from_wire(&winner.mutation, winner.replica_id));
+    }
+    replica.sync_acknowledge_mutations(&pending.iter().map(|m| m.mutation_id).collect::<Vec<_>>()).unwrap();
 }

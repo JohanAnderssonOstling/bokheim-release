@@ -44,8 +44,6 @@ impl PostgresSyncRepository {
         let row = sqlx::query(include_str!("sql/sync/authorize_owned_library.sql")).bind(library_id.to_string()).bind(user_id).fetch_optional(&mut **transaction).await.map_err(internal)?;
         Ok(row.is_some())
     }
-
-
 }
 
 fn pull_response(page: sync_store::FetchChangesPage) -> PullStateResponse {
@@ -240,6 +238,11 @@ mod tests {
             let table = if kind == "reading_position" { "sync_reading_state" } else { "sync_state" };
             for batch in [vec![older.clone(), winner.clone()], vec![winner.clone(), older.clone()]] {
                 sqlx::query(&format!("DELETE FROM {table} WHERE library_id=$1")).bind(library.to_string()).execute(&pool).await.unwrap();
+                if kind == "reading_position" {
+                    let mut creation = wire_mutation("book_lifecycle", &key, 1, 900);
+                    creation.blob_reference = Some(DeclaredBlobReference { present: true, content_hash: Some(sync_common::ContentHash::new(&key)) });
+                    repo.exchange(&user, &exchange_request(library, vec![creation])).await.unwrap();
+                }
                 let mut request = exchange_request(library, batch);
                 request.replica_id = publisher;
                 let response = repo.exchange(&user, &request).await.unwrap();
@@ -368,7 +371,9 @@ mod tests {
         let field = |kind, time, seq| {
             let mut value = wire_mutation(kind, &hash, time, seq);
             value.blob_reference = Some(DeclaredBlobReference { present: true, content_hash: Some(sync_common::ContentHash::new(&hash)) });
-            if kind == "annotation" { value.entity_key = "annotation-id".into(); }
+            if kind == "annotation" {
+                value.entity_key = "annotation-id".into();
+            }
             value
         };
         let fields = vec![field("metadata", 10, 1), field("annotation", 10, 2), field("reading_position", 10, 3)];
@@ -392,8 +397,7 @@ mod tests {
         assert_eq!(purged.push.accepted.len(), 2);
         assert_eq!(purged.pull.mutations.len(), 1);
         for table in ["sync_state", "sync_reading_state"] {
-            let count: i64 = sqlx::query_scalar(&format!("SELECT count(*) FROM {table} WHERE library_id=$1 AND kind!='book_lifecycle'"))
-                .bind(library.to_string()).fetch_one(&pool).await.unwrap();
+            let count: i64 = sqlx::query_scalar(&format!("SELECT count(*) FROM {table} WHERE library_id=$1 AND kind!='book_lifecycle'")).bind(library.to_string()).fetch_one(&pool).await.unwrap();
             assert_eq!(count, 0, "purge clears {table}");
         }
         // An old cursor remains valid even though all reading rows were deleted.
@@ -410,9 +414,80 @@ mod tests {
         // A delayed losing purge cannot delete fields from the current readd.
         let stale = repo.exchange(&user, &purge_request).await.unwrap();
         assert!(stale.push.rejected.is_empty());
-        let count: i64 = sqlx::query_scalar("SELECT count(*) FROM sync_state WHERE library_id=$1 AND kind!='book_lifecycle'")
-            .bind(library.to_string()).fetch_one(&pool).await.unwrap();
+        let count: i64 = sqlx::query_scalar("SELECT count(*) FROM sync_state WHERE library_id=$1 AND kind!='book_lifecycle'").bind(library.to_string()).fetch_one(&pool).await.unwrap();
         assert_eq!(count, 2);
+    }
+
+    #[tokio::test]
+    #[ignore = "requires SYNC_E2E_DATABASE_URL"]
+    async fn losing_purge_redelivers_all_owned_fields_without_changing_versions() {
+        let pool = crate::test_support::isolated_pool("losing_purge", 4).await.expect("test database");
+        let (user, library) = seed_account(&pool).await;
+        let repo = PostgresSyncRepository { pool: pool.clone() };
+        repo.set_cloud_storage(&user, &library, uuid::Uuid::new_v4(), false).await.unwrap();
+        let hash = sync_common::ContentHash::new(&"a".repeat(64));
+        let other = sync_common::ContentHash::new(&"b".repeat(64));
+        let mut creation = wire_mutation("book_lifecycle", hash.as_str(), 100, 1);
+        creation.blob_reference = Some(DeclaredBlobReference { present: true, content_hash: Some(hash) });
+        let mut other_creation = creation.clone();
+        other_creation.mutation_id = MutationId::new();
+        other_creation.entity_key = other.to_string();
+        other_creation.blob_reference.as_mut().unwrap().content_hash = Some(other);
+        let mut values = vec![creation.clone(), other_creation];
+        for (i, kind) in ["book_facts", "metadata", "description", "placement", "reading_position", "pdf_reader_metadata", "book_toc", "annotation"].into_iter().enumerate() {
+            let mut field = wire_mutation(kind, hash.as_str(), 10, i as u64 + 2);
+            field.value = vec![i as u8];
+            field.blob_reference = Some(DeclaredBlobReference { present: kind != "annotation", content_hash: Some(hash) });
+            if kind == "annotation" {
+                field.entity_key = "deleted-note".into();
+            }
+            if kind == "placement" {
+                field.entity_subkey = sync_common::ROOT_DIR_ID.to_string();
+            }
+            values.push(field);
+        }
+        let mut unrelated = wire_mutation("metadata", other.as_str(), 10, 20);
+        unrelated.blob_reference = Some(DeclaredBlobReference { present: true, content_hash: Some(other) });
+        values.push(unrelated);
+        let initial_request = exchange_request(library, values);
+        let initial = repo.exchange(&user, &initial_request).await.unwrap();
+        assert!(initial.push.rejected.is_empty());
+        assert_eq!(initial.pull.mutations.len(), 11);
+        let mut purge = creation;
+        purge.mutation_id = MutationId::new();
+        purge.changed_at = 50; // loses to the existing creation
+        purge.conflict_rank = 2;
+        purge.blob_reference = Some(DeclaredBlobReference { present: false, content_hash: None });
+        let mut request = exchange_request(library, vec![purge.clone()]);
+        request.cursor = initial.pull.next_cursor;
+        // Even rejected purge attempts must not cause field republication.
+        request.mutations[0].changed_at = crate::sync_store::server_now_ms() + sync_common::MAX_LWW_FUTURE_SKEW_MS + 60_000;
+        let rejected = repo.exchange(&user, &request).await.unwrap();
+        assert_eq!(rejected.push.rejected.len(), 1);
+        assert!(rejected.pull.mutations.is_empty());
+        assert_eq!(rejected.pull.next_cursor, request.cursor);
+        request.mutations = vec![purge];
+        let repaired = repo.exchange(&user, &request).await.unwrap();
+        assert!(repaired.push.rejected.is_empty());
+        sync_common::validate_pull_batch(&repaired.pull, request.cursor).unwrap();
+        assert_eq!(repaired.pull.mutations.len(), 9, "lifecycle plus every owned field, including deleted annotations");
+        assert_eq!(repaired.pull.book_creations.len(), 1);
+        for row in &repaired.pull.mutations {
+            let old = initial.pull.mutations.iter().find(|old| old.mutation.mutation_id == row.mutation.mutation_id).unwrap();
+            assert_eq!(row.mutation, old.mutation);
+            assert_eq!(row.replica_id, old.replica_id);
+            assert!(row.revision > old.revision);
+            assert_ne!(row.mutation.entity_key, other.as_str(), "other books must not be republished");
+        }
+        assert!(repaired.pull.next_cursor.reading_revision > request.cursor.reading_revision);
+        assert!(repaired.pull.next_cursor.state_revision > request.cursor.state_revision);
+        // Exact retries of normal values must still be revision-stable; the
+        // explicit revision-only repair must not weaken duplicate suppression.
+        let mut duplicate = initial_request;
+        duplicate.cursor = repaired.pull.next_cursor;
+        let stable = repo.exchange(&user, &duplicate).await.unwrap();
+        assert!(stable.pull.mutations.is_empty());
+        assert_eq!(stable.pull.next_cursor, duplicate.cursor);
     }
 
     async fn seed_account(pool: &PgPool) -> (String, sync_common::LibraryId) {
@@ -503,7 +578,6 @@ mod tests {
         assert!(repository.rename_library(&user, &renamed).await.unwrap().is_none());
         assert!(repository.create_library(&user, &old).await.unwrap().is_none());
     }
-
 
     /// The client pages its outbox by `MAX_PUSH_MUTATIONS`, but nothing on the
     /// wire obliges it to. The service must impose its own published bound

@@ -182,6 +182,19 @@ pub struct WireMutation {
     pub origin: Option<MutationOrigin>,
 }
 
+impl WireMutation {
+    /// Logical owner of a book field, independent of upload requirements.
+    /// Lifecycle and directory cells are not owned fields.
+    pub fn book_field_owner(&self) -> Option<&str> {
+        use mutation_kind as kind;
+        match self.kind.as_str() {
+            kind::ANNOTATION => self.blob_reference.as_ref()?.content_hash.as_ref().map(ContentHash::as_str),
+            kind::BOOK_FACTS | kind::PLACEMENT | kind::READING_POSITION | kind::METADATA | kind::DESCRIPTION | kind::PDF_READER_METADATA | kind::BOOK_TOC => Some(&self.entity_key),
+            _ => None,
+        }
+    }
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct MutationOrigin {
     pub replica_id: ReplicaId,

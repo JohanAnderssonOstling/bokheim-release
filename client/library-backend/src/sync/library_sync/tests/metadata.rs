@@ -302,7 +302,13 @@ async fn push_and_pull_pagination_advance_in_the_same_exchange_loop() {
                 assert_eq!(request.mutations.len(), 1, "the next push page shares the next pull request");
                 pull_response(vec![pulled_change(2, deleted(1))], LibraryRevision::new(2).ok(), false)
             }
-            _ => panic!("push and pull pagination should finish in two exchanges"),
+            2 => {
+                assert_eq!(request.mutations.len(), 1, "the later lifecycle declaration schedules one reconciliation");
+                assert_eq!(request.mutations[0].kind, "reading_position");
+                assert_eq!(request.mutations[0].entity_key, fixture_content_hash(1).to_string());
+                PullStateResponse { book_creations: vec![], mutations: vec![], next_cursor: request.cursor, has_more: false }
+            }
+            _ => panic!("reconciliation must finish without a publication loop"),
         };
         binary_sync_response(&SyncExchangeResponse { push: PushMutationsResponse { accepted: request.mutations.iter().map(|mutation| mutation.mutation_id).collect(), rejected: Vec::new() }, pull })
     }
@@ -328,13 +334,22 @@ async fn push_and_pull_pagination_advance_in_the_same_exchange_loop() {
         }
     }
 
+    let original = manager.database.sync_publishable_mutations().unwrap().into_iter().find(|m| m.to_wire().unwrap().entity_key == fixture_content_hash(1).to_string()).unwrap();
     let result = manager.state_engine().unwrap().exchange_events_with_server(SyncCursor::default()).await.unwrap();
 
     assert!(result.mutation_issues.is_empty());
     assert_eq!(state.0.load(std::sync::atomic::Ordering::SeqCst), 2);
     let conn = &manager.database;
-    assert!(conn.sync_publishable_mutations().unwrap().is_empty());
+    let reconciliation = conn.sync_publishable_mutations().unwrap();
+    assert_eq!(reconciliation.len(), 1);
+    assert_eq!(reconciliation[0].body, original.body);
+    assert_eq!(reconciliation[0].changed_at, original.changed_at);
+    assert_eq!(reconciliation[0].origin.as_ref().unwrap().mutation_id, original.mutation_id);
+    assert_eq!(reconciliation[0].origin.as_ref().unwrap().replica_seq, original.replica_seq);
     assert_eq!(conn.sync_pull_cursor().unwrap(), cursor(LibraryRevision::new(2).ok()));
+    manager.state_engine().unwrap().exchange_events_with_server(conn.sync_pull_cursor().unwrap()).await.unwrap();
+    assert_eq!(state.0.load(std::sync::atomic::Ordering::SeqCst), 3);
+    assert!(conn.sync_publishable_mutations().unwrap().is_empty());
     server.abort();
 }
 
@@ -497,5 +512,60 @@ async fn permanent_rejection_is_an_outcome_after_applying_the_exchange_pull_half
     assert_eq!(conn.sync_pull_cursor().unwrap(), cursor(LibraryRevision::new(2).ok()));
     let pulled_title: String = conn.book_title(&fixture_content_hash(9));
     assert_eq!(pulled_title, "Pulled despite rejection");
+    server.abort();
+}
+
+#[tokio::test]
+async fn rejected_creation_defers_its_later_fields_without_starving_other_books() {
+    #[derive(Clone, Default)]
+    struct State {
+        blocked: Arc<std::sync::Mutex<Option<String>>>,
+        retry: Arc<std::sync::atomic::AtomicBool>,
+        calls: Arc<std::sync::atomic::AtomicUsize>,
+    }
+    async fn exchange(axum::extract::State(state): axum::extract::State<State>, headers: axum::http::HeaderMap, body: axum::body::Bytes) -> axum::response::Response {
+        let request = decode_sync_exchange(&headers, &body);
+        let call = state.calls.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
+        let mut push = PushMutationsResponse { accepted: vec![], rejected: vec![] };
+        if call == 0 {
+            assert_eq!(request.mutations.len(), sync_common::MAX_PUSH_MUTATIONS);
+            assert!(request.mutations.iter().all(|m| m.kind == "book_lifecycle"));
+            *state.blocked.lock().unwrap() = Some(request.mutations[0].entity_key.clone());
+            push.rejected.push(MutationRejection { mutation_id: request.mutations[0].mutation_id, reason: MutationRejectionReason::MissingDependency });
+            push.accepted.extend(request.mutations[1..].iter().map(|m| m.mutation_id));
+        } else {
+            if !state.retry.load(std::sync::atomic::Ordering::SeqCst) {
+                let blocked = state.blocked.lock().unwrap();
+                assert!(request.mutations.iter().all(|m| m.book_field_owner() != blocked.as_deref()));
+            } else {
+                assert_eq!(request.mutations[0].kind, "book_lifecycle");
+                assert!(request.mutations.iter().any(|m| m.kind == "book_facts"));
+            }
+            push.accepted.extend(request.mutations.iter().map(|m| m.mutation_id));
+        }
+        binary_sync_response(&SyncExchangeResponse { push, pull: PullStateResponse { book_creations: vec![], mutations: vec![], next_cursor: request.cursor, has_more: false } })
+    }
+    let state = State::default();
+    let app = axum::Router::new().route("/api/sync/exchange", axum::routing::post(exchange)).with_state(state.clone());
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let address = listener.local_addr().unwrap();
+    let server = tokio::spawn(async move { axum::serve(listener, app).await.unwrap() });
+    let temp = tempfile::tempdir().unwrap();
+    std::fs::create_dir_all(temp.path().join(crate::APP_HIDDEN_DIR)).unwrap();
+    let mut manager = test_manager(temp.path());
+    manager.server_url = ServerUrl::parse(&format!("http://{address}")).unwrap();
+    manager.credentials = test_shared_credentials(&manager.server_url);
+    for index in 1..=sync_common::MAX_PUSH_MUTATIONS as u64 {
+        manager.database.seed_book(&fixture_content_hash(index), Some("Book"), 1, "epub");
+    }
+    let outcome = manager.state_engine().unwrap().exchange_events_with_server(SyncCursor::default()).await.unwrap();
+    assert_eq!(outcome.mutation_issues.len(), 1);
+    let pending = manager.database.sync_publishable_mutations().unwrap();
+    assert!(pending.iter().any(|m| matches!(m.body, MutationBody::BookFacts { .. })));
+    let blocked = state.blocked.lock().unwrap().clone().unwrap();
+    assert!(pending.iter().all(|m| { let wire = m.to_wire().unwrap(); wire.entity_key == blocked || wire.book_field_owner() == Some(&blocked) }));
+    state.retry.store(true, std::sync::atomic::Ordering::SeqCst);
+    manager.state_engine().unwrap().exchange_events_with_server(SyncCursor::default()).await.unwrap();
+    assert!(manager.database.sync_publishable_mutations().unwrap().is_empty());
     server.abort();
 }
