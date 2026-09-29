@@ -1,0 +1,112 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Hyphenation quality comparison</title>
+  <style>
+    html {
+      background: #fbfaf6;
+      color: #17212b;
+      font-family: serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 34px 42px 72px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.7em;
+      line-height: 1.08;
+    }
+
+    .intro {
+      margin: 0 0 28px;
+      color: #4c5a65;
+      font-family: sans-serif;
+      font-size: .82em;
+      line-height: 1.35;
+    }
+
+    section {
+      margin: 0 0 34px;
+      break-inside: avoid;
+    }
+
+    h2 {
+      margin: 0 0 9px;
+      color: #176b68;
+      font-family: sans-serif;
+      font-size: .72em;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    p.sample {
+      width: 100%;
+      max-width: 18em;
+      margin: 0;
+      font-size: 1.05em;
+      line-height: 1.42;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    p.stress {
+      width: 220px;
+      max-width: 100%;
+      font-family: monospace;
+      font-size: 18px;
+      letter-spacing: 0;
+      hyphens: manual;
+    }
+
+    .measure {
+      width: 100%;
+      max-width: 18em;
+      height: 3px;
+      margin-top: 12px;
+      background: #b8d8d4;
+    }
+
+    .stress + .measure {
+      width: 220px;
+    }
+
+    .note {
+      width: 21em;
+      margin: 7px 0 0;
+      color: #66737c;
+      font-family: sans-serif;
+      font-size: .67em;
+      line-height: 1.35;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hyphenation under pressure</h1>
+  <p class="intro">Resize the window horizontally. Each pane has the same source, type size, and measure.</p>
+
+  <section>
+    <h2>1 · Deterministic consecutive-hyphen stress case</h2>
+    <p class="sample stress">Go abcdefghijklmnop&#173;qr abcdefghijklm ab&#173;cd abcdefghijklm ef&#173;gh abcdefghijklm ij&#173;kl.</p>
+    <div class="measure"></div>
+    <p class="note">The artificial twelve-letter words make the web optimum continue a visible hyphen chain. Book mode interrupts it after two lines; the emergency path remains available if interruption is impossible.</p>
+  </section>
+
+  <section>
+    <h2>2 · Paragraph ending</h2>
+    <p class="sample">Typographers reconsider every opportunity because an unnecessary penultimate hyphen makes the paragraph ending feel unsettled and mechanical.</p>
+    <div class="measure"></div>
+    <p class="note">Book mode strongly discourages a hyphen immediately before the final line and lets paragraph-wide optimization choose another route.</p>
+  </section>
+
+  <section>
+    <h2>3 · Natural prose and short fragments</h2>
+    <p class="sample">International organizations characteristically institutionalize responsibilities. Away across America, ideas about typography arise amid adaptable arrangements and unusually asymmetric architecture.</p>
+    <div class="measure"></div>
+    <p class="note">Automatically generated points that leave fewer than two characters on either side are removed in book mode. Authored soft hyphens remain authoritative.</p>
+  </section>
+</body>
+</html>

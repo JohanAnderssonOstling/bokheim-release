@@ -1,0 +1,69 @@
+{
+  "changes": [
+    {
+      "id": 5566,
+      "before": "Electrical, Electronics & Communications",
+      "after": "Electrical & Electronic Engineering"
+    },
+    {
+      "id": 6078,
+      "before": "Electrodynamics, Waves & Quantum Effects",
+      "after": "Classical & Quantum Electrodynamics"
+    },
+    {
+      "id": 5909,
+      "before": "Family, Relationships & Life Transitions",
+      "after": "Christian Life & Relationships"
+    },
+    {
+      "id": 2728,
+      "before": "History of medicine. Medical expeditions",
+      "after": "Medical History & Expeditions"
+    },
+    {
+      "id": 11860,
+      "before": "Housing in Latin America & the Caribbean",
+      "after": "Latin American & Caribbean Housing"
+    },
+    {
+      "id": 5910,
+      "before": "Leadership, Vocation & Professional Life",
+      "after": "Christian Work & Leadership"
+    },
+    {
+      "id": 5736,
+      "before": "Meditation, Mysticism & Spiritual Growth",
+      "after": "Spiritual Practices & Growth"
+    },
+    {
+      "id": 11590,
+      "before": "Operations, Productivity & Supply Chains",
+      "after": "Operations & Supply Chain Management"
+    },
+    {
+      "id": 5645,
+      "before": "Public Administration & Local Government",
+      "after": "Administrative & Local Government Law"
+    },
+    {
+      "id": 7726,
+      "before": "Scandinavian-Language Children’s Fiction",
+      "after": "Kids’ Fiction in Scandinavian Languages"
+    },
+    {
+      "id": 5857,
+      "before": "Study, Philosophy & Comparative Religion",
+      "after": "Religious Studies"
+    },
+    {
+      "id": 5946,
+      "before": "Institutions, Events & Professional Life",
+      "after": "Music Institutions & Professional Life"
+    }
+  ],
+  "count": 12,
+  "over40_before": 0,
+  "over40_after": 0,
+  "aliases_added": 0,
+  "remaining_at_40": 16
+}

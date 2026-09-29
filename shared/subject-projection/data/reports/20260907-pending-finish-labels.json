@@ -1,0 +1,18 @@
+{
+  "created": [],
+  "renamed": [
+    {
+      "id": 51596,
+      "before": "Austrian History in the 20th Century",
+      "after": "20th-Century History"
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {},
+  "merged": [],
+  "empty_groupings_removed": [],
+  "verified_code_groups": 2960835,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0
+}

@@ -1,0 +1,32 @@
+[package]
+name = "server-http"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+audiobook-folder = { path = "../../../../shared/audiobook-folder" }
+uuid = { version = "1", features = ["v4"] }
+account-contract = { path = "../../../../shared/account-contract" }
+axum = { version = "0.7", features = ["ws"] }
+chrono = { version = "0.4", features = ["serde"] }
+wire = { package = "protobuf-wire", path = "../../../../shared/protobuf-wire" }
+futures-util = "0.3"
+reqwest = { version = "0.13", default-features = false, features = ["json", "rustls"] }
+server-account = { path = "../server-account" }
+server-asset-store = { path = "../server-asset-store" }
+server-postgres = { path = "../server-postgres" }
+server-wire-http = { path = "../server-wire-http" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sqlx = { version = "0.7", default-features = false, features = ["runtime-tokio", "postgres", "chrono"] }
+sync-common = { path = "../../../../shared/sync-common" }
+image = { version = "0.24.9", default-features = false, features = ["jpeg"] }
+tokio = { version = "1", features = ["io-util", "rt", "sync", "time"] }
+tokio-util = { version = "0.7", features = ["io"] }
+tower = { version = "0.5", features = ["limit", "util"] }
+tower-http = { version = "0.6", features = ["cors", "timeout"] }
+tracing = "0.1"

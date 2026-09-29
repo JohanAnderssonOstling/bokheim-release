@@ -1,0 +1,37 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH owned AS MATERIALIZED (\n    SELECT id, pg_advisory_xact_lock(hashtextextended(id, 0))\n    FROM libraries\n    WHERE id = $1 AND user_id = $2\n),\nchanged AS (\n    INSERT INTO sync_reading_position_state(\n        library_id, book_id, cfi, progress,\n        changed_at, client_id, client_seq, version_rank, event_id\n    )\n    SELECT $1, $3, $4, $5, $6, $7, $8, $9, $10\n    FROM owned\n    ON CONFLICT (library_id, book_id) DO UPDATE SET\n        cfi = EXCLUDED.cfi,\n        progress = EXCLUDED.progress,\n        changed_at = EXCLUDED.changed_at,\n        client_id = EXCLUDED.client_id,\n        client_seq = EXCLUDED.client_seq,\n        version_rank = EXCLUDED.version_rank,\n        event_id = EXCLUDED.event_id,\n        server_seq = DEFAULT\n    RETURNING 1\n)\nSELECT\n    EXISTS(SELECT 1 FROM owned) AS authorized,\n    EXISTS(SELECT 1 FROM changed) AS changed;\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "authorized",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 1,
+        "name": "changed",
+        "type_info": "Bool"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "Text",
+        "Text",
+        "Float4",
+        "Int8",
+        "Text",
+        "Int8",
+        "Int2",
+        "Text"
+      ]
+    },
+    "nullable": [
+      null,
+      null
+    ]
+  },
+  "hash": "99d476a4975b83cca9725a43bea11ef27f1ebc8271337e32d0b6d3a077210e23"
+}

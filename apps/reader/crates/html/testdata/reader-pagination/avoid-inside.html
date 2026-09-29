@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Avoid inside visual test</title>
+  <style>
+    body { margin: 44px; color: #20242b; font-family: sans-serif; }
+    h1 { margin: 0 0 14px; font-size: 32px; }
+    p { font-size: 19px; line-height: 1.4; }
+    .lead { height: 380px; border-bottom: 2px solid #cad0d8; }
+    .keep { break-inside: avoid; height: 210px; box-sizing: border-box; padding: 22px 26px; border: 8px solid #16866f; background: #ddf6ef; }
+    .label { color: #086b58; font-weight: bold; letter-spacing: 0.08em; }
+  </style>
+</head>
+<body>
+  <h1>Keep this card together</h1>
+  <div class="lead"><p>The blank space below is intentional. Only part of the green card could fit in the remaining area.</p></div>
+  <section class="keep">
+    <div class="label">INDIVISIBLE FIGURE</div>
+    <h1>One complete block</h1>
+    <p>The green border should never be cut across two pages.</p>
+  </section>
+</body>
+</html>

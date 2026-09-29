@@ -1,0 +1,1629 @@
+{
+  "exact": [
+    {
+      "code": "B",
+      "target": 4487,
+      "label": "Philosophy",
+      "reference": "Philosophy. Psychology. Religion / Philosophy (General)",
+      "estimated_uses": 3266
+    },
+    {
+      "code": "P",
+      "target": 3702,
+      "label": "Language",
+      "reference": "Language and Literature / Philology. Linguistics",
+      "estimated_uses": 2410
+    },
+    {
+      "code": "DG",
+      "target": 3319,
+      "label": "History",
+      "reference": "World History and History of Europe, Asia, Africa, Australia, New Zealand, etc. / History of Italy",
+      "estimated_uses": 1896
+    },
+    {
+      "code": "Z",
+      "target": 4671,
+      "label": "Reference & Information",
+      "reference": "Bibliography. Library Science. Information Resources (General) / Books (General). Writing. Paleography",
+      "estimated_uses": 1468
+    },
+    {
+      "code": "KZ",
+      "target": 5293,
+      "label": "International Law",
+      "reference": "Law / Law of nations",
+      "estimated_uses": 882
+    },
+    {
+      "code": "G",
+      "target": 4826,
+      "label": "Geography",
+      "reference": "Geography. Anthropology. Recreation / Geography (General)",
+      "estimated_uses": 873
+    },
+    {
+      "code": "QH",
+      "target": 4779,
+      "label": "Science & Nature",
+      "reference": "Science / Natural history (General)",
+      "estimated_uses": 768
+    },
+    {
+      "code": "GT",
+      "target": 5068,
+      "label": "Manners, Customs & Material Culture",
+      "reference": "Geography. Anthropology. Recreation / Manners and customs (General)",
+      "estimated_uses": 588
+    },
+    {
+      "code": "GR",
+      "target": 5079,
+      "label": "Folklore",
+      "reference": "Geography. Anthropology. Recreation / Folklore",
+      "estimated_uses": 572
+    },
+    {
+      "code": "BJ",
+      "target": 4494,
+      "label": "Ethics",
+      "reference": "Philosophy. Psychology. Religion / Ethics",
+      "estimated_uses": 542
+    },
+    {
+      "code": "KD",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Law of England and Wales",
+      "estimated_uses": 425
+    },
+    {
+      "code": "HE",
+      "target": 5055,
+      "label": "Social Sciences",
+      "reference": "Social Sciences / Transportation and communications",
+      "estimated_uses": 391
+    },
+    {
+      "code": "BP",
+      "target": 4549,
+      "label": "Religion",
+      "reference": "Philosophy. Psychology. Religion / Islam. Bahai Faith. Theosophy, etc.",
+      "estimated_uses": 342
+    },
+    {
+      "code": "BH",
+      "target": 11215,
+      "label": "Aesthetics",
+      "reference": "Philosophy. Psychology. Religion / Aesthetics",
+      "estimated_uses": 322
+    },
+    {
+      "code": "JX",
+      "target": 5293,
+      "label": "International Law",
+      "reference": "Political Science / International law, see JZ and KZ",
+      "estimated_uses": 305
+    },
+    {
+      "code": "HS",
+      "target": 5517,
+      "label": "Societies: secret, benevolent, etc.",
+      "reference": "Social Sciences / Societies: secret, benevolent, etc.",
+      "estimated_uses": 232
+    },
+    {
+      "code": "MT",
+      "target": 720,
+      "label": "Music",
+      "reference": "Music and Books on Music / Instruction and study",
+      "estimated_uses": 207
+    },
+    {
+      "code": "KJ",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / History of Law (Europe)",
+      "estimated_uses": 205
+    },
+    {
+      "code": "PB",
+      "target": 3702,
+      "label": "Language",
+      "reference": "Language and Literature / Modern languages. Celtic languages",
+      "estimated_uses": 174
+    },
+    {
+      "code": "KJC",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Regional comparative and uniform law (Europe)",
+      "estimated_uses": 167
+    },
+    {
+      "code": "KF",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Law of the United States (Federal)",
+      "estimated_uses": 130
+    },
+    {
+      "code": "CJ",
+      "target": 3675,
+      "label": "Numismatics",
+      "reference": "Auxiliary Sciences of History / Numismatics",
+      "estimated_uses": 114
+    },
+    {
+      "code": "PF",
+      "target": 3749,
+      "label": "Germanic Languages",
+      "reference": "Language and Literature / West Germanic",
+      "estimated_uses": 100
+    },
+    {
+      "code": "V",
+      "target": 394,
+      "label": "Military Science",
+      "reference": "Naval Science / Naval science (General)",
+      "estimated_uses": 81
+    },
+    {
+      "code": "CN",
+      "target": 3628,
+      "label": "Inscriptions & Epigraphy",
+      "reference": "Auxiliary Sciences of History / Inscriptions. Epigraphy",
+      "estimated_uses": 56
+    },
+    {
+      "code": "VM",
+      "target": 362,
+      "label": "Marine & Naval",
+      "reference": "Naval Science / Naval architecture. Shipbuilding. Marine engineering",
+      "estimated_uses": 48
+    },
+    {
+      "code": "KQ",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Africa",
+      "estimated_uses": 45
+    },
+    {
+      "code": "VK",
+      "target": 458,
+      "label": "Transportation",
+      "reference": "Naval Science / Navigation. Merchant marine",
+      "estimated_uses": 43
+    },
+    {
+      "code": "KE",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Law of Canada",
+      "estimated_uses": 36
+    },
+    {
+      "code": "VA",
+      "target": 394,
+      "label": "Military Science",
+      "reference": "Naval Science / Navies: Organization, distribution, naval situation",
+      "estimated_uses": 32
+    },
+    {
+      "code": "KJE",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Regional organization and integration (Europe)",
+      "estimated_uses": 31
+    },
+    {
+      "code": "KJV",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Law of France",
+      "estimated_uses": 29
+    },
+    {
+      "code": "SK",
+      "target": 4628,
+      "label": "Recreation",
+      "reference": "Agriculture / Hunting sports",
+      "estimated_uses": 18
+    },
+    {
+      "code": "KK",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Law of Germany",
+      "estimated_uses": 16
+    },
+    {
+      "code": "UH",
+      "target": 394,
+      "label": "Military Science",
+      "reference": "Military Science / Other services",
+      "estimated_uses": 12
+    },
+    {
+      "code": "C",
+      "target": 3514,
+      "label": "Auxiliary Sciences of History",
+      "reference": "Auxiliary Sciences of History / Auxiliary Sciences of History (General)",
+      "estimated_uses": 11
+    },
+    {
+      "code": "KM",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Asia",
+      "estimated_uses": 8
+    },
+    {
+      "code": "KG",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Latin America (General)",
+      "estimated_uses": 7
+    },
+    {
+      "code": "VG",
+      "target": 394,
+      "label": "Military Science",
+      "reference": "Naval Science / Minor services of navies",
+      "estimated_uses": 6
+    },
+    {
+      "code": "KRG",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Africa / Congo (Brazzaville)",
+      "estimated_uses": 5
+    },
+    {
+      "code": "VB",
+      "target": 394,
+      "label": "Military Science",
+      "reference": "Naval Science / Naval administration",
+      "estimated_uses": 5
+    },
+    {
+      "code": "KU",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Pacific Area",
+      "estimated_uses": 4
+    },
+    {
+      "code": "VC",
+      "target": 394,
+      "label": "Military Science",
+      "reference": "Naval Science / Naval maintenance",
+      "estimated_uses": 4
+    },
+    {
+      "code": "KBM",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Jewish law. Halakah",
+      "estimated_uses": 3
+    },
+    {
+      "code": "KQK",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Africa / Botswana",
+      "estimated_uses": 3
+    },
+    {
+      "code": "KGD",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Mexico and Central America / Guatemala",
+      "estimated_uses": 2
+    },
+    {
+      "code": "KGF",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Mexico and Central America / Mexico",
+      "estimated_uses": 2
+    },
+    {
+      "code": "KH",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / South America (General)",
+      "estimated_uses": 2
+    },
+    {
+      "code": "KHA",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / South America (General) / Argentina",
+      "estimated_uses": 2
+    },
+    {
+      "code": "KHM",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / South America (General) / French Guiana",
+      "estimated_uses": 2
+    },
+    {
+      "code": "KNQ",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Asia / South Asia. Southeast Asia. East Asia / China (People\u2019s Republic, 1949- )",
+      "estimated_uses": 2
+    },
+    {
+      "code": "KQP",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Africa / British Indian Ocean Territory",
+      "estimated_uses": 2
+    },
+    {
+      "code": "KTL",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Africa / South Africa, Republic of",
+      "estimated_uses": 2
+    },
+    {
+      "code": "KTX",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Africa / Congo (Democratic Republic)",
+      "estimated_uses": 2
+    },
+    {
+      "code": "KDK",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Law of Ireland (Eire)",
+      "estimated_uses": 1
+    },
+    {
+      "code": "KGB",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Mexico and Central America / Costa Rica",
+      "estimated_uses": 1
+    },
+    {
+      "code": "KGG",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Mexico and Central America / Nicaragua",
+      "estimated_uses": 1
+    },
+    {
+      "code": "KHH",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / South America (General) / Colombia",
+      "estimated_uses": 1
+    },
+    {
+      "code": "KMK",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Asia / Middle East. Southwest Asia / Israel",
+      "estimated_uses": 1
+    },
+    {
+      "code": "KMT",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Asia / Middle East. Southwest Asia / Saudi Arabia",
+      "estimated_uses": 1
+    },
+    {
+      "code": "KNW",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Asia / South Asia. Southeast Asia. East Asia / Indonesia",
+      "estimated_uses": 1
+    },
+    {
+      "code": "KPT",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Asia / South Asia. Southeast Asia. East Asia / Thailand",
+      "estimated_uses": 1
+    },
+    {
+      "code": "KTA",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Africa / Nigeria",
+      "estimated_uses": 1
+    },
+    {
+      "code": "KVB",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law / Pacific Area / Pacific area jurisdictions",
+      "estimated_uses": 1
+    },
+    {
+      "code": "VF",
+      "target": 394,
+      "label": "Military Science",
+      "reference": "Naval Science / Naval ordnance",
+      "estimated_uses": 1
+    },
+    {
+      "code": "K1-7720",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Law"
+    },
+    {
+      "code": "K7000-7720.22",
+      "target": 5324,
+      "label": "Private international law",
+      "reference": "Private international law. Conflict of laws"
+    },
+    {
+      "code": "KKT",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KEY",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KKH",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "A",
+      "target": 4671,
+      "label": "Reference & Information",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KIN",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KJJ",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KKC",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KJK",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KKX",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KI",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KIB",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KIP",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KKN",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KKW",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KLG",
+      "target": 5276,
+      "label": "Law",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "B829.5.A-Z",
+      "target": 4528,
+      "label": "Phenomenology",
+      "reference": "Detailed local LCC classification reference; A is General works"
+    },
+    {
+      "code": "KEB",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KEB1",
+          "KEB599",
+          "Law of Canada (British Columbia)"
+        ]
+      ]
+    },
+    {
+      "code": "KEM",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KEM1",
+          "KEM599",
+          "Law of Canada (Manitoba)"
+        ]
+      ]
+    },
+    {
+      "code": "KEP",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KEP1",
+          "KEP599",
+          "Law of Canada (Prince Edward Island)"
+        ]
+      ]
+    },
+    {
+      "code": "KES",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KES1",
+          "KES599",
+          "Law of Canada (Saskatchewan)"
+        ]
+      ]
+    },
+    {
+      "code": "KEZ",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KEZ1",
+          "KEZ9999",
+          "Law of Canada (Cities, towns, etc.)"
+        ],
+        [
+          "KEZ1001",
+          null,
+          "A"
+        ],
+        [
+          "KEZ1053",
+          null,
+          "B"
+        ],
+        [
+          "KEZ1103",
+          null,
+          "Calgary, Alberta"
+        ],
+        [
+          "KEZ1203",
+          null,
+          "Calgary to Charlottetown"
+        ]
+      ]
+    },
+    {
+      "code": "KFF",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFF1",
+          "KFF599",
+          "United States (Florida)"
+        ],
+        [
+          "KFF45",
+          null,
+          "Reports"
+        ],
+        [
+          "KFF45",
+          "KFF45.9",
+          "Supreme Court"
+        ],
+        [
+          "KFF45",
+          "KFF60",
+          "Law reports and related materials"
+        ],
+        [
+          "KFF45.A2",
+          null,
+          "Official series (1846-1948)"
+        ]
+      ]
+    },
+    {
+      "code": "KFG",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFG1",
+          "KFG599",
+          "United States (Georgia)"
+        ],
+        [
+          "KFG45",
+          null,
+          "Reports"
+        ],
+        [
+          "KFG45",
+          "KFG45.9",
+          "Supreme Court"
+        ],
+        [
+          "KFG45",
+          "KFG60",
+          "Law reports and related materials"
+        ],
+        [
+          "KFG45.A182",
+          null,
+          "Official series and predecessors"
+        ]
+      ]
+    },
+    {
+      "code": "KFH",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFH1",
+          "KFH599",
+          "United States (Hawaii)"
+        ],
+        [
+          "KFH45",
+          null,
+          "Reports"
+        ],
+        [
+          "KFH45",
+          "KFH45.9",
+          "Supreme Court"
+        ],
+        [
+          "KFH45",
+          "KFH60",
+          "Law reports and related materials"
+        ],
+        [
+          "KFH45.A2",
+          null,
+          "Hawaii Reports"
+        ]
+      ]
+    },
+    {
+      "code": "KFI",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFI1",
+          "KFI599",
+          "United States (Idaho)"
+        ],
+        [
+          "KFI1201",
+          "KFI1799",
+          "United States (Illinois)"
+        ],
+        [
+          "KFI1245",
+          null,
+          "Reports"
+        ],
+        [
+          "KFI1245",
+          "KFI1245.9",
+          "Supreme Court"
+        ],
+        [
+          "KFI1245",
+          "KFI1260",
+          "Law reports and related materials"
+        ]
+      ]
+    },
+    {
+      "code": "KFK",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFK1",
+          "KFK599",
+          "United States (Kansas)"
+        ],
+        [
+          "KFK1201",
+          "KFK1799",
+          "United States (Kentucky)"
+        ],
+        [
+          "KFK1245",
+          null,
+          "Reports"
+        ],
+        [
+          "KFK1245",
+          "KFK1245.9",
+          "Court of Appeals"
+        ],
+        [
+          "KFK1245",
+          "KFK1260",
+          "Law reports and related materials"
+        ]
+      ]
+    },
+    {
+      "code": "KFL",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFL1",
+          "KFL599",
+          "United States (Louisiana)"
+        ],
+        [
+          "KFL142",
+          "KFL148",
+          "Succession upon death"
+        ],
+        [
+          "KFL148.A",
+          "KFL148.Z",
+          "Special topics, A-Z"
+        ],
+        [
+          "KFL148.L4",
+          null,
+          "Legitime"
+        ],
+        [
+          "KFL430",
+          "KFL433",
+          "Local government"
+        ]
+      ]
+    },
+    {
+      "code": "KFM",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFM1",
+          "KFM599",
+          "United States (Maine)"
+        ],
+        [
+          "KFM1201",
+          "KFM1799",
+          "United States (Maryland)"
+        ],
+        [
+          "KFM1245",
+          null,
+          "Reports"
+        ],
+        [
+          "KFM1245",
+          "KFM1245.9",
+          "Court of Appeals"
+        ],
+        [
+          "KFM1245",
+          "KFM1260",
+          "Law reports and related materials"
+        ]
+      ]
+    },
+    {
+      "code": "KFO",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFO1",
+          "KFO599",
+          "United States (Ohio)"
+        ],
+        [
+          "KFO1201",
+          "KFO1799",
+          "United States (Oklahoma)"
+        ],
+        [
+          "KFO1245",
+          null,
+          "Reports"
+        ],
+        [
+          "KFO1245",
+          "KFO1245.9",
+          "Supreme Court"
+        ],
+        [
+          "KFO1245",
+          "KFO1260",
+          "Law reports and related materials"
+        ]
+      ]
+    },
+    {
+      "code": "KFR",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFR1",
+          "KFR599",
+          "United States (Rhode Island)"
+        ],
+        [
+          "KFR45",
+          null,
+          "Reports"
+        ],
+        [
+          "KFR45",
+          "KFR45.9",
+          "Supreme Court"
+        ],
+        [
+          "KFR45",
+          "KFR60",
+          "Law reports and related materials"
+        ],
+        [
+          "KFR45.A2",
+          null,
+          "Rhode Island reports (1828- )"
+        ]
+      ]
+    },
+    {
+      "code": "KFS",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFS1801",
+          "KFS2399",
+          "United States (South Carolina)"
+        ],
+        [
+          "KFS1845",
+          null,
+          "Reports"
+        ],
+        [
+          "KFS1845",
+          "KFS1845.9",
+          "Supreme Court (Earlier: Court of Appeals)"
+        ],
+        [
+          "KFS1845",
+          "KFS1860",
+          "Law reports and related materials"
+        ],
+        [
+          "KFS1845.A1892",
+          "KFS1845.A19",
+          "Law reports (1783-1868)"
+        ]
+      ]
+    },
+    {
+      "code": "KFT",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFT1",
+          "KFT599",
+          "United States (Tennessee)"
+        ],
+        [
+          "KFT1201",
+          "KFT1799",
+          "United States (Texas)"
+        ],
+        [
+          "KFT1245",
+          null,
+          "Reports"
+        ],
+        [
+          "KFT1245",
+          "KFT1245.9",
+          "Supreme Court"
+        ],
+        [
+          "KFT1245",
+          "KFT1260",
+          "Law reports and related materials"
+        ]
+      ]
+    },
+    {
+      "code": "KFU",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFU1",
+          "KFU599",
+          "United States (Utah)"
+        ],
+        [
+          "KFU45",
+          null,
+          "Reports"
+        ],
+        [
+          "KFU45",
+          "KFU45.9",
+          "Supreme Court"
+        ],
+        [
+          "KFU45",
+          "KFU60",
+          "Law reports and related materials"
+        ],
+        [
+          "KFU45.A2",
+          null,
+          "Utah reports (1855- )"
+        ]
+      ]
+    },
+    {
+      "code": "KFV",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFV1",
+          "KFV599",
+          "United States (Vermont)"
+        ],
+        [
+          "KFV2401",
+          "KFV2999",
+          "United States (Virginia)"
+        ],
+        [
+          "KFV2445",
+          null,
+          "Reports"
+        ],
+        [
+          "KFV2445",
+          "KFV2445.9",
+          "Supreme Court of Appeals"
+        ],
+        [
+          "KFV2445",
+          "KFV2460",
+          "Law reports and related materials"
+        ]
+      ]
+    },
+    {
+      "code": "KFZ",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KFZ1801",
+          "KFZ2399",
+          "United States (Northwest Territory)"
+        ],
+        [
+          "KFZ8601",
+          "KFZ9199",
+          "United States (Confederate States of America)"
+        ],
+        [
+          "KFZ9200.2",
+          null,
+          "Canal Zone"
+        ],
+        [
+          "KFZ9200.2",
+          "KFZ9200.32",
+          "United States (Territories)"
+        ],
+        [
+          "KFZ9200.22",
+          null,
+          "Guam"
+        ]
+      ]
+    },
+    {
+      "code": "KJN",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KJN1",
+          "KJN499",
+          "Cyprus"
+        ],
+        [
+          "KJN490.A",
+          "KJN490.Z",
+          "Cities, A-Z"
+        ],
+        [
+          "KJN490.F35",
+          null,
+          "Famagusta"
+        ],
+        [
+          "KJN490.K96",
+          null,
+          "Kyrenia"
+        ],
+        [
+          "KJN490.L37",
+          null,
+          "Larnaca"
+        ]
+      ]
+    },
+    {
+      "code": "KJP",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KJP1",
+          "KJP4999",
+          "General"
+        ],
+        [
+          "KJP1",
+          "KJP9999",
+          "Czechoslovakia (to 1993)"
+        ],
+        [
+          "KJP5001",
+          "KJP5009",
+          "Bohemia"
+        ],
+        [
+          "KJP5001",
+          "KJP5379.2",
+          "Socialist republics. States"
+        ],
+        [
+          "KJP5051",
+          "KJP5149",
+          "Czech Socialist Republic"
+        ]
+      ]
+    },
+    {
+      "code": "KJQ",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KJQ1",
+          "KJQ499",
+          "Slovakia (1993- )"
+        ],
+        [
+          "KJQ490",
+          null,
+          "Bratislava"
+        ],
+        [
+          "KJQ490",
+          "KJQ498",
+          "Cities"
+        ],
+        [
+          "KJQ492",
+          null,
+          "Kos\u030cice"
+        ],
+        [
+          "KJQ498.A",
+          "498.Z",
+          "Other cities, A-Z"
+        ]
+      ]
+    },
+    {
+      "code": "KJZ",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KJZ1.2",
+          null,
+          "Germany. West Germany. East Germany"
+        ]
+      ]
+    },
+    {
+      "code": "KKD",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KKD1.2",
+          null,
+          "Gibraltar"
+        ],
+        [
+          "KKD1.22",
+          null,
+          "Great Britain. United Kingdom"
+        ]
+      ]
+    },
+    {
+      "code": "KKG",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KKG1",
+          "KKG499",
+          "Iceland"
+        ],
+        [
+          "KKG490.A",
+          "KKG490.Z",
+          "Cities, A-Z"
+        ],
+        [
+          "KKG490.R49",
+          null,
+          "Reykjavik"
+        ],
+        [
+          "KKG9999.2",
+          null,
+          "Ireland"
+        ]
+      ]
+    },
+    {
+      "code": "KLK",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KLK499.22",
+          null,
+          "Eurasia: Krymskaia\u0361 A.S.S.R."
+        ]
+      ]
+    },
+    {
+      "code": "KLL",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KLL499.2",
+          null,
+          "Eurasia: Latvia"
+        ],
+        [
+          "KLL499.22",
+          null,
+          "Eurasia: Lithuania"
+        ],
+        [
+          "KLL499.222",
+          null,
+          "Eurasia: Moldavia (Principality)"
+        ]
+      ]
+    },
+    {
+      "code": "KME",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KME10",
+          null,
+          "General"
+        ],
+        [
+          "KME10",
+          "KME799",
+          "Asia (Middle East. Southwest Asia): Regional comparative and uniform law: Regional organization and integration"
+        ],
+        [
+          "KME151",
+          "KME199",
+          "Majlis al-Wahdah al-Iqtis adiyah al-'Arabiyah. Council of Arab Economic Unity, 1964"
+        ],
+        [
+          "KME451",
+          "KME499",
+          "Arab Common Market. Su\u0304q al-\u02bbArabi\u0304yah al-Mushtarakah"
+        ],
+        [
+          "KME51",
+          "KME99",
+          "League of Arab States, 1945"
+        ]
+      ]
+    },
+    {
+      "code": "KPK",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KPK1",
+          "KPK489",
+          "General"
+        ],
+        [
+          "KPK1",
+          "KPK490",
+          "Asia (South Asia. Southeast Asia. East Asia): Nepal"
+        ],
+        [
+          "KPK230",
+          "KPK231.5",
+          "Administrative and political divisions. Local government other than municipal"
+        ],
+        [
+          "KPK231.5.A",
+          "KPK231.5.Z",
+          "Administrative zones, A-Z"
+        ],
+        [
+          "KPK231.5.B35",
+          null,
+          "Bagmati Zone"
+        ]
+      ]
+    },
+    {
+      "code": "KTM",
+      "target": 5276,
+      "label": "Law",
+      "reference": [
+        [
+          "KTM1",
+          "KTM489",
+          "General"
+        ],
+        [
+          "KTM1",
+          "KTM500",
+          "Africa: South Sudan (2011- )"
+        ]
+      ]
+    },
+    {
+      "code": "JQ",
+      "target": 5326,
+      "label": "Politics & Government",
+      "reference": "Local LCC outline: Political institutions and public administration (Asia, Africa, Australia, Pacific Area, etc.); concurrently removed bare class recovered in final audit"
+    }
+  ],
+  "ranges": [
+    {
+      "start": "A",
+      "end": "AZ",
+      "target": 4671,
+      "label": "Reference & Information",
+      "scope": "General works"
+    },
+    {
+      "start": "B",
+      "end": "B",
+      "target": 4487,
+      "label": "Philosophy",
+      "scope": "Philosophy (General)"
+    },
+    {
+      "start": "BC",
+      "end": "BD",
+      "target": 4487,
+      "label": "Philosophy",
+      "scope": "Logic and speculative philosophy"
+    },
+    {
+      "start": "BF",
+      "end": "BF",
+      "target": 5381,
+      "label": "Psychology",
+      "scope": "Psychology"
+    },
+    {
+      "start": "BH",
+      "end": "BH",
+      "target": 11215,
+      "label": "Aesthetics",
+      "scope": "Aesthetics"
+    },
+    {
+      "start": "BJ",
+      "end": "BJ",
+      "target": 4494,
+      "label": "Ethics",
+      "scope": "Ethics"
+    },
+    {
+      "start": "BL",
+      "end": "BX",
+      "target": 4549,
+      "label": "Religion",
+      "scope": "Religion"
+    },
+    {
+      "start": "C",
+      "end": "CT",
+      "target": 3319,
+      "label": "History",
+      "scope": "Auxiliary sciences of history"
+    },
+    {
+      "start": "D",
+      "end": "DX",
+      "target": 3319,
+      "label": "History",
+      "scope": "History"
+    },
+    {
+      "start": "E",
+      "end": "F",
+      "target": 3319,
+      "label": "History",
+      "scope": "History of the Americas"
+    },
+    {
+      "start": "G",
+      "end": "GF",
+      "target": 2368,
+      "label": "Geography, Places & Travel",
+      "scope": "Geography"
+    },
+    {
+      "start": "GN",
+      "end": "GN",
+      "target": 5056,
+      "label": "Anthropology",
+      "scope": "Anthropology"
+    },
+    {
+      "start": "GR",
+      "end": "GR",
+      "target": 5079,
+      "label": "Folklore",
+      "scope": "Folklore"
+    },
+    {
+      "start": "GT",
+      "end": "GT",
+      "target": 5068,
+      "label": "Manners, Customs & Material Culture",
+      "scope": "Manners and customs"
+    },
+    {
+      "start": "GV",
+      "end": "GV",
+      "target": 4628,
+      "label": "Recreation",
+      "scope": "Recreation"
+    },
+    {
+      "start": "H",
+      "end": "HX",
+      "target": 5055,
+      "label": "Social Sciences",
+      "scope": "Social sciences"
+    },
+    {
+      "start": "J",
+      "end": "JZ",
+      "target": 5326,
+      "label": "Politics & Government",
+      "scope": "Political science"
+    },
+    {
+      "start": "JX",
+      "end": "JX",
+      "target": 5276,
+      "label": "Law",
+      "scope": "International law (legacy subclass)"
+    },
+    {
+      "start": "K",
+      "end": "KZ",
+      "target": 5276,
+      "label": "Law",
+      "scope": "Law"
+    },
+    {
+      "start": "L",
+      "end": "LT",
+      "target": 2169,
+      "label": "Education",
+      "scope": "Education"
+    },
+    {
+      "start": "M",
+      "end": "MT",
+      "target": 720,
+      "label": "Music",
+      "scope": "Music"
+    },
+    {
+      "start": "N",
+      "end": "NX",
+      "target": 510,
+      "label": "Arts & Media",
+      "scope": "Fine arts"
+    },
+    {
+      "start": "P",
+      "end": "PZ",
+      "target": 3211,
+      "label": "Humanities",
+      "scope": "Languages and literature (humanities)"
+    },
+    {
+      "start": "Q",
+      "end": "QR",
+      "target": 4779,
+      "label": "Science & Nature",
+      "scope": "Science"
+    },
+    {
+      "start": "S",
+      "end": "SF",
+      "target": 2,
+      "label": "Agriculture",
+      "scope": "Agriculture"
+    },
+    {
+      "start": "SK",
+      "end": "SK",
+      "target": 4628,
+      "label": "Recreation",
+      "scope": "Hunting sports"
+    },
+    {
+      "start": "T",
+      "end": "TX",
+      "target": 1,
+      "label": "Applied Sciences & Technology",
+      "scope": "Technology"
+    },
+    {
+      "start": "U",
+      "end": "UH",
+      "target": 394,
+      "label": "Military Science",
+      "scope": "Military science"
+    },
+    {
+      "start": "V",
+      "end": "VM",
+      "target": 1,
+      "label": "Applied Sciences & Technology",
+      "scope": "Naval science and marine technology"
+    },
+    {
+      "start": "Z",
+      "end": "ZA",
+      "target": 4671,
+      "label": "Reference & Information",
+      "scope": "Bibliography, library science and information resources"
+    },
+    {
+      "start": "HD",
+      "end": "HD",
+      "target": 5104,
+      "label": "Economics & Business",
+      "scope": "Industries, land use and labor"
+    },
+    {
+      "start": "HF",
+      "end": "HF",
+      "target": 5083,
+      "label": "Commerce",
+      "scope": "Commerce"
+    },
+    {
+      "start": "HG",
+      "end": "HG",
+      "target": 5142,
+      "label": "Finance",
+      "scope": "Finance"
+    },
+    {
+      "start": "HN",
+      "end": "HN",
+      "target": 5516,
+      "label": "Social History & Conditions",
+      "scope": "Social history and conditions"
+    },
+    {
+      "start": "HS",
+      "end": "HS",
+      "target": 5517,
+      "label": "Societies: secret, benevolent, etc.",
+      "scope": "Societies"
+    },
+    {
+      "start": "JA",
+      "end": "JA",
+      "target": 5369,
+      "label": "Political science",
+      "scope": "Political science (General)"
+    },
+    {
+      "start": "KZA",
+      "end": "KZA",
+      "target": 5302,
+      "label": "Law of the sea",
+      "scope": "KZA1002\u2013KZA5205 Law of the sea"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[package]
+name = "client-platform-native"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+websocket = ["dep:tokio-tungstenite", "dep:rustls", "dep:tokio", "dep:futures-util"]
+
+[dependencies]
+cpu-host = { path = "../../library-backend/crates/cpu-host" }
+client-platform-runtime = { path = "../runtime" }
+thumbnail = { path = "../../library-backend/crates/thumbnail" }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+tokio-tungstenite = { version = "0.28", features = ["rustls-tls-webpki-roots"], optional = true }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"], optional = true }
+tokio = { version = "1", features = ["net"], optional = true }
+futures-util = { version = "0.3", features = ["sink"], optional = true }
+tempfile = "3"
+blake3 = "1"
+libc = "0.2"
+rusqlite = { version = "0.40.0", features = ["bundled", "hooks"] }
+log = "0.4"
+
+[dev-dependencies]
+tempfile = "3"

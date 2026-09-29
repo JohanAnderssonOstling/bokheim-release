@@ -1,0 +1,3245 @@
+{
+  "version": 1,
+  "source_duplicate_groups": 662,
+  "sibling_merge_rounds": 2,
+  "components": [
+    {
+      "winner_id": "bokheim:history-lcc-full:2e7e8719-4c41-50ce-8361-0190a799beed",
+      "loser_ids": [
+        "bokheim:lcc-curated:63181467-bd0d-5b0c-a29c-ddcc7f357250"
+      ]
+    },
+    {
+      "winner_id": "bokheim:history-lcc:60a38b87-25c4-5601-9589-e20485378665",
+      "loser_ids": [
+        "bokheim:history-lcc:aec5c0b9-adbc-5ac1-91ba-7bf779b3d6a1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:history-lcc:6f7d47ed-1580-5cc5-b24f-044d024376d9",
+      "loser_ids": [
+        "bokheim:history-lcc:fe47553a-6c32-5275-9b40-e1a9a7c434ad"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:00047fa6-a904-5081-8566-d866fe6d2671",
+      "loser_ids": [
+        "bokheim:lcc-detail:1e935af9-04be-5244-909a-9afba538b2f3",
+        "bokheim:lcc-detail:58e7100a-9859-5916-a7b5-82a26a06d452",
+        "bokheim:lcc-detail:755e26eb-b61a-5f7d-95cb-41164687745e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:003f5526-751d-5512-bc5a-830df7f77697",
+      "loser_ids": [
+        "bokheim:lcc-detail:365b05e3-103a-524b-af48-10e43ef013a6",
+        "bokheim:lcc-detail:711aaccd-6261-54fc-b1a9-4c4139c1d94c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0046245c-31ad-5aee-be07-ac65547284cc",
+      "loser_ids": [
+        "bokheim:lcc-detail:2ae10f96-4783-571c-ada6-978f9fbcb84d",
+        "bokheim:lcc-detail:b8da5f35-5da4-564e-8b16-dfbbdf803882",
+        "bokheim:lcc-detail:ff3915a5-b5e0-5f93-956f-a9ff50710cb9"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:006af710-1435-54d6-b8d4-692de83b0620",
+      "loser_ids": [
+        "bokheim:lcc-detail:ea590776-3538-5090-aa8a-ccd52e6bf83f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:00ad3728-6de5-5ccb-a2e5-6147dd14d6a5",
+      "loser_ids": [
+        "bokheim:lcc-detail:baecd848-dff0-54a1-a9fd-8fb559579d3a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:00f952e3-170a-5d42-b507-4b8ad412b64f",
+      "loser_ids": [
+        "bokheim:lcc-detail:8c63913d-a4a6-5578-b4bd-490ea16bd3b1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0117ea30-eb7a-504e-9bad-52831c06030b",
+      "loser_ids": [
+        "bokheim:lcc-detail:b43a51da-1655-5978-a068-fe47229c936c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:018e7888-d31c-5bb8-866f-94d763d4f58c",
+      "loser_ids": [
+        "bokheim:lcc-detail:9a7ba091-99d2-5153-a816-d81ebe4b2c60"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:01a5a86e-c41b-5adb-b32c-ffde664ff843",
+      "loser_ids": [
+        "bokheim:lcc-detail:2bd86903-2503-5c30-a4ff-b74677a0d62a",
+        "bokheim:lcc-detail:b76a251b-78ec-50c3-a61b-b130da0c3276"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:02007a44-2421-5fbe-b8f7-38807255ca9c",
+      "loser_ids": [
+        "bokheim:lcc-detail:cb4f9a2e-09eb-5183-bbe7-961c38ebfe3e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:02304256-8345-5039-ad0a-d490e99193b0",
+      "loser_ids": [
+        "bokheim:lcc-detail:182a7d4c-1247-5b32-879f-235df1baed07"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0231f2ee-2ab1-57e2-b846-443ad124cc6d",
+      "loser_ids": [
+        "bokheim:lcc-detail:58e8c08b-6185-59c3-8ba4-f9b7eac56f3f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:025aee92-7253-5631-ba9b-30de84efc982",
+      "loser_ids": [
+        "bokheim:lcc-detail:c0028754-bda7-5a63-97d4-de52d6dfa003"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:02645716-72ae-5750-be92-3e19efea4700",
+      "loser_ids": [
+        "bokheim:lcc-detail:4ebb2bb5-99cf-5f93-9b36-ecd835ce2e4f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:027cab74-0c20-5d92-b66d-e44e5c72ec7d",
+      "loser_ids": [
+        "bokheim:lcc-detail:58e64ec8-db97-57b1-89ac-2c1b75fb1fa3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0293763d-a655-5f2d-808c-cb4a8536256e",
+      "loser_ids": [
+        "bokheim:lcc-detail:bc96fcc8-b730-5833-bb79-258b3f7ccf73"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:02f79484-5f74-541b-b216-4b5e4c2fc996",
+      "loser_ids": [
+        "bokheim:lcc-detail:73b2c9d9-0dfa-5b0b-a62f-490e26529c53",
+        "bokheim:lcc-detail:fd459173-657b-52f4-a179-0b381a25a77c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:035779bc-ea9b-5564-b214-311ceb291f6c",
+      "loser_ids": [
+        "bokheim:lcc-detail:9b14523e-0834-5368-9def-413ff3e1f027"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:03ab57c7-5e26-5e73-9b98-5b77596d0056",
+      "loser_ids": [
+        "bokheim:lcc-detail:90dc4d08-8c13-5a57-81b7-2dc5178948cd"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:03b26859-2c26-5f45-9a15-389af1cd424c",
+      "loser_ids": [
+        "bokheim:lcc-detail:92a42f7b-cc9e-556c-a144-83db136209f5"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0522361c-b322-5472-9c65-94a79e9c6eee",
+      "loser_ids": [
+        "bokheim:lcc-detail:d7273bea-a54d-57b5-98d7-11e69981d71a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:056ba633-54f1-5d9c-b5e3-4eeadf4570e3",
+      "loser_ids": [
+        "bokheim:lcc-detail:cf50d7ef-09ec-5938-b894-3f7c2486c46c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:05bc98cf-614a-5270-b4ad-add4ae442b8b",
+      "loser_ids": [
+        "bokheim:lcc-detail:5dce0f5d-0a66-5f1e-9a9c-ca43eddd45fc"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:062133cb-dee6-5b34-bd52-b8d8ca2dd37f",
+      "loser_ids": [
+        "bokheim:lcc-detail:4ebaec63-d444-5fd8-b305-d0fe16a6ad16"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:06a76f72-f8f6-5bd5-9210-d9c1b54fc8ac",
+      "loser_ids": [
+        "bokheim:lcc-detail:c40456d5-843c-5449-9325-6a25f12a6d62"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:06a79fd1-9c81-5c6c-956e-f370bff04349",
+      "loser_ids": [
+        "bokheim:lcc-detail:1a7cc6d2-cb1b-577a-bf4e-0a87c63dd004",
+        "bokheim:lcc-detail:953acfd0-9d8e-5ca5-8e1d-27149ebb904d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:06df3c0c-1b64-5710-88ee-53d215e5103c",
+      "loser_ids": [
+        "bokheim:lcc-detail:c065606d-af1f-5d87-a12f-9c78fa6c4a32"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0719f7dc-2962-5549-99db-a13a58336cdb",
+      "loser_ids": [
+        "bokheim:lcc-detail:48b3a643-9f21-5f73-a64b-0c12e0ce3187"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:07482bae-0ec4-55c4-bc3c-4c3ff8652edc",
+      "loser_ids": [
+        "bokheim:lcc-detail:3e459f9b-dd3d-5ce0-a417-b4a0684e73be",
+        "bokheim:lcc-detail:7e5d971c-d339-53d2-a15e-5ff8b236c660",
+        "bokheim:lcc-detail:e6a1d598-ff3f-5091-a1b1-f9fb94df0ba1",
+        "bokheim:lcc-detail:ede95bf5-a9a3-5fb4-9a8e-afc6e421b446"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:07753af1-c5b5-5946-bea7-6ea4366f37e2",
+      "loser_ids": [
+        "bokheim:lcc-detail:1a65a23a-9f76-5900-9b65-3b5bef0cea52"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:07eb6498-bf64-5fab-bce9-a60b48ba016b",
+      "loser_ids": [
+        "bokheim:lcc-detail:9d6b3993-c64d-5081-9d37-bd3f91064f4b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:082ec5b6-e748-5357-82d5-8fa640558824",
+      "loser_ids": [
+        "bokheim:lcc-detail:78b8d832-6d78-53ae-9065-72596424c7ab"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:08513ad2-ff5a-50b7-898a-e90bb5353770",
+      "loser_ids": [
+        "bokheim:lcc-detail:0e5dacd9-cc03-5741-8ec3-67b210707e14",
+        "bokheim:lcc-detail:2833670f-38f8-52f9-b52e-da7da80a0da4"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:087cef1c-3b50-5973-999c-26dcecca043e",
+      "loser_ids": [
+        "bokheim:lcc-detail:cc9382da-d434-5554-b120-6fb58f1d7e0d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:08ffec05-68c4-5f70-9489-9da2124b2b77",
+      "loser_ids": [
+        "bokheim:lcc-detail:ed3838e9-dfb8-51d5-a28f-93b931f05e78"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0968ad04-7069-5ea9-b2c7-8bb8d2fe2d4b",
+      "loser_ids": [
+        "bokheim:lcc-detail:b68356ed-be79-541c-9696-98de5f0730c7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:09a5e895-d895-590f-9d6f-51626a4f9637",
+      "loser_ids": [
+        "bokheim:lcc-detail:10071b63-ed31-55ee-8cff-a7e25d6097fb",
+        "bokheim:lcc-detail:a91c75a7-53c5-50a2-a77e-6a84ca0358df"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0a7b171a-c6c5-5ee6-b09c-15782ebb1528",
+      "loser_ids": [
+        "bokheim:lcc-detail:0b45d9ac-4a21-5f65-9c41-c9113aa7cfe9"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0a7ca36c-061d-5db4-81fa-6bb398df442b",
+      "loser_ids": [
+        "bokheim:lcc-detail:49341b0d-57f3-523d-9dac-b853234366ce"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0b49f148-312d-5649-b70f-04111fb8bb50",
+      "loser_ids": [
+        "bokheim:lcc-detail:297f5fc2-0b37-5c2b-8db9-12caa63b75cf"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0b59c14a-c87c-54cd-8fb0-bade4b9c3080",
+      "loser_ids": [
+        "bokheim:lcc-detail:5fe2d0f3-e1b5-5f35-8e46-40e3ce0dcbf4",
+        "bokheim:lcc-detail:b1c06b3e-c99d-5b19-a41f-f09387488f6c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0b9c8d03-59a0-57a2-a2a6-5ed789084620",
+      "loser_ids": [
+        "bokheim:lcc-detail:9054385f-8b4a-5af7-8b28-38bbdea60dae"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0ba95e4a-40a6-5bf2-9e47-ebbac7a3bfe2",
+      "loser_ids": [
+        "bokheim:lcc-detail:4e667a22-6bd6-53b2-828f-0422bc59dfdb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0baa6b59-8f63-5184-87f0-71e3d23e7b86",
+      "loser_ids": [
+        "bokheim:lcc-detail:8b79aec9-fec9-5fb3-a38d-4adca9d35222"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0ccd4cd1-b93a-5ca4-bdb6-d1f055425f7f",
+      "loser_ids": [
+        "bokheim:lcc-detail:191c643a-d5c9-5b2a-bd49-5facd5597ee8"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0d093a1e-860d-5d66-9e99-acb1e6bf7ff8",
+      "loser_ids": [
+        "bokheim:lcc-detail:1ea8524b-5f72-5fc7-abbd-e104239621af",
+        "bokheim:lcc-detail:84ad7164-6397-50ff-b6c0-56f0a5c9dfe5",
+        "bokheim:lcc-detail:b995c125-785a-5ee9-a3da-98c56543de1f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0d0e708c-7167-5b20-9255-896e5a7c643d",
+      "loser_ids": [
+        "bokheim:lcc-detail:fea057c9-c64f-572d-800a-0900de4f885c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0dfd8269-c497-5d0a-b41a-40e925984646",
+      "loser_ids": [
+        "bokheim:lcc-detail:82776ea1-bf60-5a3d-8f97-79ce267a04c7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0e8fbf19-5552-5f87-895d-2e7ebb3a58f4",
+      "loser_ids": [
+        "bokheim:lcc-detail:9d269130-8406-599d-8adb-948184559490"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0eecf8ea-6521-555c-b772-6c23a6cfe406",
+      "loser_ids": [
+        "bokheim:lcc-detail:fd7f9868-3d70-5bf1-9954-ac41449283c7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0f3c779b-358e-52d3-bd41-f9f90244a26d",
+      "loser_ids": [
+        "bokheim:lcc-detail:e98cdea0-267e-511a-bb47-58e65e9b7aab"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0f40e3ab-1da6-5930-92bd-a8eb2237d92a",
+      "loser_ids": [
+        "bokheim:lcc-detail:32661121-e81a-5598-bce9-670be16bbc50",
+        "bokheim:lcc-detail:3f326a82-ac34-565d-94b8-5a33fa5b0248",
+        "bokheim:lcc-detail:f97656b1-acc1-5a76-94b5-5ba19449ec27"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0f4b4526-268e-5804-9265-2acfee14a720",
+      "loser_ids": [
+        "bokheim:lcc-detail:3f78e451-09fa-5fb6-9676-78a7abca9e25"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0f5ad32e-56b9-56b6-9d18-593b9d3059de",
+      "loser_ids": [
+        "bokheim:lcc-detail:bbd8915c-4f8b-5ba6-b0c4-971bdd1aca19"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0f71722b-6989-583c-974d-05a9ff7280e8",
+      "loser_ids": [
+        "bokheim:lcc-detail:352244f1-8c4f-58d1-bd83-2ced6234aa3e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0f85cc39-a51b-5131-ba52-901c969099ba",
+      "loser_ids": [
+        "bokheim:lcc-detail:239a70d7-5d54-5947-b74c-e4ef40a80565",
+        "bokheim:lcc-detail:c541807b-2f33-5567-a073-da82adffcbe4",
+        "bokheim:lcc-detail:f19f1513-81ef-5b45-bc1b-9d38c5cd5f96"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0f8707ed-df05-55dd-99e4-f5b4a6281ebd",
+      "loser_ids": [
+        "bokheim:lcc-detail:9eeb47c6-d560-5a2b-8cfe-9e2a0a4d2679"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0fa9dbdc-8b2f-50ce-92b4-904725e2f884",
+      "loser_ids": [
+        "bokheim:lcc-detail:a39315fc-ed46-533b-a358-428e5d676748"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0fb5385e-75e1-5e31-bdd9-bdf91880ae83",
+      "loser_ids": [
+        "bokheim:lcc-detail:94014773-7f04-564a-ac67-e219e8746b14"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:0fe437f0-8abd-5064-bc40-b39c8096c367",
+      "loser_ids": [
+        "bokheim:lcc-detail:e8631145-7d0b-5b80-b2e0-65daa9e22784"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1090551a-d485-5689-ad86-4b630d6100b3",
+      "loser_ids": [
+        "bokheim:lcc-detail:e5301040-496f-5dc1-8a23-1a3145a4ccce"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:10d86853-dede-5d1c-9963-c4baf0eccbc5",
+      "loser_ids": [
+        "bokheim:lcc-detail:ee9e5809-2b01-5198-8b25-b410f80ff11b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:10dc8cb0-12ab-52c1-baad-98abf0f43f74",
+      "loser_ids": [
+        "bokheim:lcc-detail:37af434f-2103-54b1-bb9a-6f5233b05ed7",
+        "bokheim:lcc-detail:c7f5e0ca-c54a-5f81-aafd-42340ffa735e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1120a3af-3196-54e0-bc88-dc3151d9af46",
+      "loser_ids": [
+        "bokheim:lcc-detail:1ead6d69-e930-50a6-becd-5eec5645f17c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:115b2086-7125-5933-a622-005731c421c6",
+      "loser_ids": [
+        "bokheim:lcc-detail:c371ec76-60d2-5f24-bde0-b64edd877c63",
+        "bokheim:lcc-detail:c8308ab9-78eb-5c6c-94b7-76db0baaab66"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:116fbae6-1203-52ee-a191-16c8f5b09118",
+      "loser_ids": [
+        "bokheim:lcc-detail:83748155-6f6e-5762-9cad-3dbfa8dc477c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1181fb49-84ce-5528-897d-57df1434af45",
+      "loser_ids": [
+        "bokheim:lcc-detail:3a33d95a-93ff-59f0-b049-aea940a7ec0b",
+        "bokheim:lcc-detail:dd4df429-ec10-5ce1-bd89-a952a9b53f86"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:11bb6827-33c2-585d-b094-dfb401e4ac28",
+      "loser_ids": [
+        "bokheim:lcc-detail:4ef11fe6-2a05-5faa-8149-92949d476967",
+        "bokheim:lcc-detail:e42a6bdc-fc2e-523c-9816-38bae8a7d860"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:12621bf3-31e8-5ed4-be4d-b38a46da0284",
+      "loser_ids": [
+        "bokheim:lcc-detail:fa3d8773-bbda-5150-bee9-deca17947ca3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:12eb83be-5c9e-5704-9b2e-5e8f2a09bd02",
+      "loser_ids": [
+        "bokheim:lcc-detail:a00d6b66-70b6-54d2-9f6c-3dc25227e53d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:13239f49-a9a4-508e-ba18-d544ae8a09b3",
+      "loser_ids": [
+        "bokheim:lcc-detail:be16399d-15de-5b25-9f3e-34c1d24c5150",
+        "bokheim:lcc-detail:e73f52a1-dbe9-5f77-a266-884ed23bf0cb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:14e7ea52-51e2-5076-a2af-ec96ee8e8ff7",
+      "loser_ids": [
+        "bokheim:lcc-detail:462d173c-4de3-50a9-bef0-f655d4fb2289"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1515866c-77de-5755-874d-697ad059c74c",
+      "loser_ids": [
+        "bokheim:lcc-detail:1dde6a56-948d-5465-9c24-0605d1fbdc9a",
+        "bokheim:lcc-detail:562d8eff-1965-55eb-8e0f-536159c6137c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:15b9646a-5ddc-5ab3-9f0f-b9b3c8c3f837",
+      "loser_ids": [
+        "bokheim:lcc-detail:8293deba-70db-572c-98f6-ad35cfc6f7be"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:163cd6ab-06e6-5ffb-aac0-01ae95e9753b",
+      "loser_ids": [
+        "bokheim:lcc-detail:f7cfedab-7678-52f8-887f-3fcffa6568ec"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:16461523-68a2-5d40-9415-d6161c5beb26",
+      "loser_ids": [
+        "bokheim:lcc-detail:714d6b7a-5fd6-53e2-bbf9-8ed6aa52a14d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1657557e-005e-56f5-abaa-24c0a06a6e39",
+      "loser_ids": [
+        "bokheim:lcc-detail:e1c3dd64-2fe5-5e4a-b54f-88e1808c9f6a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1681e19b-df85-56c1-8641-07264af3b8b6",
+      "loser_ids": [
+        "bokheim:lcc-detail:911de234-97cb-5f1f-a7e3-fb6e8877a743"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:16cebd1a-8de5-5178-a1cb-8d429e2f0fca",
+      "loser_ids": [
+        "bokheim:lcc-detail:856bede3-b2a9-54d1-918d-3ffc4e93eb37"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:16dc088e-6a13-5ebe-910d-d28295c9e929",
+      "loser_ids": [
+        "bokheim:lcc-detail:cc462d67-333c-5e95-aa0a-76d8c684cdaf"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:16de17de-842e-56ce-80e7-83de0cd131e1",
+      "loser_ids": [
+        "bokheim:lcc-detail:a5117635-5cbc-574d-b787-3f7577525501"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:17170c7c-f661-58a3-90e8-e43f823ee1d5",
+      "loser_ids": [
+        "bokheim:lcc-detail:52abc465-7f41-50d5-85a8-584eb6591d5c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:17467b47-5389-51d7-82d8-673670b59cc3",
+      "loser_ids": [
+        "bokheim:lcc-detail:b618340b-545b-52c1-9ae1-953ada4931d7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:175f2289-0dfe-58f5-aed3-1878f83699fe",
+      "loser_ids": [
+        "bokheim:lcc-detail:694780a4-fce1-552c-806f-e80f97cbe400"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1769cd0f-73f1-5494-a1c7-22e988b1c513",
+      "loser_ids": [
+        "bokheim:lcc-detail:9d7d4d1e-0666-51e4-83ea-26730cdb085d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:17a38419-8114-5fae-9665-05c202abed60",
+      "loser_ids": [
+        "bokheim:lcc-detail:87105440-3e57-553b-a608-74686e02229d",
+        "bokheim:lcc-detail:962842b9-9c68-51eb-af36-0441f0f60a18",
+        "bokheim:lcc-detail:be4b41d8-0644-59d0-99ff-64e1e01d81c8"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1819d5c4-5103-5441-b235-35490bf40c40",
+      "loser_ids": [
+        "bokheim:lcc-detail:7a9e8b9b-4ed6-539e-a6bf-2e8675fde82f",
+        "bokheim:lcc-detail:b1ed4d7f-ff32-5de1-91ff-36fcf28bca62"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:186069ee-4a04-5c68-8efd-8fe09e3e103f",
+      "loser_ids": [
+        "bokheim:lcc-detail:1ec9442b-13d4-5a6b-8018-c98ed59c696f",
+        "bokheim:lcc-detail:64dbfa7b-45dc-591b-9132-c8b1f74b5f82"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:186df95b-a384-5a58-a5bf-681c133debac",
+      "loser_ids": [
+        "bokheim:lcc-detail:a04af1b2-0f15-5689-bc82-27cc22e4685f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:18836edb-72ef-5e03-aace-bf548bd2d594",
+      "loser_ids": [
+        "bokheim:lcc-detail:9067d630-dc0b-5f2c-bdb0-7635cd766e2c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1888bfed-fcab-5db5-b969-61f3287f26b8",
+      "loser_ids": [
+        "bokheim:lcc-detail:597ad844-9937-5f3a-95f8-3448c6aa8385"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:18b688e7-a072-5a1d-b614-ce5273012184",
+      "loser_ids": [
+        "bokheim:lcc-detail:456bddd2-c6e1-50f2-9f60-d5ccbc47e7e3",
+        "bokheim:lcc-detail:d8a194bf-df8b-518a-a8d7-56ba07a8163b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:18b93dbd-3f93-50e1-ae5f-f7fedfb2d77a",
+      "loser_ids": [
+        "bokheim:lcc-detail:c24298b7-34aa-5f85-a49f-b8a6485058d6",
+        "bokheim:lcc-detail:dc51d600-e879-58fd-bde5-6d8dee3e3af6"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:191192cb-d85a-5538-bf3f-d46729198977",
+      "loser_ids": [
+        "bokheim:lcc-detail:498bd68a-7971-5e17-b36d-d949640c6843"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1917623d-be9f-5948-9518-f68ea3dbf459",
+      "loser_ids": [
+        "bokheim:lcc-detail:8fd5e9fb-8abd-5ae6-b347-4c8c98b7effb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:195ea515-3681-5044-81c2-d66a8edb43ac",
+      "loser_ids": [
+        "bokheim:lcc-detail:4753722e-e1be-5c10-a265-fb430f484a80"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:19af9a68-8181-5b23-9269-86df22b1e664",
+      "loser_ids": [
+        "bokheim:lcc-detail:c22c4cd0-11a3-564f-9de1-4cc296db898a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1a7176ca-2052-5c9a-952b-b6a94cca455c",
+      "loser_ids": [
+        "bokheim:lcc-detail:1c872ebd-4b52-5ab7-8b01-98cec6954380"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1a93c3d7-1976-50c8-8796-72c75b0ffddf",
+      "loser_ids": [
+        "bokheim:lcc-detail:3e657952-e889-5ea5-b0ff-95ca61575832"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1aa0fcd5-b88e-5d0e-ae1a-fe263e926b95",
+      "loser_ids": [
+        "bokheim:lcc-detail:a1b06385-8e4c-5979-9fa9-2ab5428994bc",
+        "bokheim:lcc-detail:fca4cf8b-2540-556e-8baf-fb8a383dbe33"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1ba04a4c-ab43-59c0-a7e0-84a7f0d28258",
+      "loser_ids": [
+        "bokheim:lcc-detail:d5e47d4a-a847-58b2-859d-6b716c28dfa7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1bd83ab4-eaf4-5441-9a2c-b8b7b8a25406",
+      "loser_ids": [
+        "bokheim:lcc-detail:bc12cf84-89c0-5810-8d09-cdc8f2256d12"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1bdb3ee2-c8ce-5e45-9ee3-8a3601f0d6ff",
+      "loser_ids": [
+        "bokheim:lcc-detail:2c3fd796-0684-59c6-8ae5-fc4804d3b323",
+        "bokheim:lcc-detail:4697cad8-71cb-5356-959f-71c190e1416f",
+        "bokheim:lcc-detail:70c90b10-b267-5c43-be36-7b2882032375",
+        "bokheim:lcc-detail:f127c3a0-961a-5096-ba21-789c6e83a034"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1c0b4a08-d338-59c5-8ecd-bf5728f01b2e",
+      "loser_ids": [
+        "bokheim:lcc-detail:2df3cf05-a4c1-5822-8c31-efb37c92c3aa"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1c451ebd-7b5f-5720-9df7-a0a616cc947d",
+      "loser_ids": [
+        "bokheim:lcc-detail:54c209fd-f130-515e-9a51-042ef3521d1f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1ca0d72c-846e-5fc5-9287-080598e5864f",
+      "loser_ids": [
+        "bokheim:lcc-detail:233d8123-78c5-5ee0-b915-79cc58f948a1",
+        "bokheim:lcc-detail:cc471cc3-9625-5f1e-b80e-a97bb04a252b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1cc097d4-3dc0-5d4a-9aae-11b8bf9f9200",
+      "loser_ids": [
+        "bokheim:lcc-detail:8a248bb5-27d8-5169-83f8-bb7727ae2acb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1cc74e3f-cc19-522e-8844-20200f09246d",
+      "loser_ids": [
+        "bokheim:lcc-detail:d7ff8bb4-0f8e-5809-9f28-0d715bb2cf2a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1d473d80-0abf-5893-ad07-b632bef7fd64",
+      "loser_ids": [
+        "bokheim:lcc-detail:fce5702c-d0b5-58a0-b167-993f1af11feb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1d67a8e3-f502-55af-a9a6-364672ec075e",
+      "loser_ids": [
+        "bokheim:lcc-detail:470617c9-db77-51a9-9dba-90e7457509ae"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1e473998-aafa-56dd-9510-d7ade8e83242",
+      "loser_ids": [
+        "bokheim:lcc-detail:8527d79b-8e0c-5927-b953-1993e6cbe15f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1e70df6c-5ace-5520-baa9-c8a210ae98bb",
+      "loser_ids": [
+        "bokheim:lcc-detail:de78b3e9-3e61-5444-8942-26ac5510c50a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1e88024b-c2b1-5006-bb4c-6b8a28683aa4",
+      "loser_ids": [
+        "bokheim:lcc-detail:b07dff71-04a1-5fbe-847f-c80a972d2fbc"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1f15adb5-ee29-5474-9a67-a30d36b4d974",
+      "loser_ids": [
+        "bokheim:lcc-detail:1f3b7499-c04e-5599-923f-de9ae9ec7261",
+        "bokheim:lcc-detail:64955b57-3d57-5394-8995-ae2ff0676e30"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1f5f2ce5-1a53-5fee-95c8-59c98dd2ef2c",
+      "loser_ids": [
+        "bokheim:lcc-detail:e3c1fa09-b2bd-5dfc-b770-35ee7af11945"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:1fb087ba-d4af-56ef-9386-39a4183cd545",
+      "loser_ids": [
+        "bokheim:lcc-detail:c47a4065-c7a2-5092-b4cc-1e462cb3f328",
+        "bokheim:lcc-detail:d08f94f9-133d-5af5-80ea-38268f101164"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:20049645-f519-5991-8607-05f8f1327b72",
+      "loser_ids": [
+        "bokheim:lcc-detail:2667c18c-e16a-5911-b35b-fd52e19beb6e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2009846c-4eb5-547e-9434-4c75614a9141",
+      "loser_ids": [
+        "bokheim:lcc-detail:8217ee49-b3b2-59aa-a132-3d3bb2eeb7bc"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2051091f-0eb5-5615-8c02-1b780351a466",
+      "loser_ids": [
+        "bokheim:lcc-detail:caa32f30-6690-5b59-99a5-6cdd7a57d065"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2053e6e0-e852-5bd7-9e89-b590b36a44fc",
+      "loser_ids": [
+        "bokheim:lcc-detail:3c6dc83c-c31b-5442-a0ac-1f9b3926872a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:206e24bf-bf2d-5da1-a319-d042576118fb",
+      "loser_ids": [
+        "bokheim:lcc-detail:2dca22a5-7b52-576f-bf4e-541db5bdbfb4",
+        "bokheim:lcc-detail:d1ce8edf-54b0-5bd3-83ac-275a135a455a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:20a77086-de8f-5378-93df-0b442a7d39d9",
+      "loser_ids": [
+        "bokheim:lcc-detail:d0a679dd-a2c3-5d86-b06e-fe46b59d4079"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:20ad7f15-16a2-52de-b734-6c6277c5b802",
+      "loser_ids": [
+        "bokheim:lcc-detail:c1d0b688-360c-583b-ba63-d57c710c3230",
+        "bokheim:lcc-detail:c346cc14-9a25-5ca4-abb6-130ff804689c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:212dc478-4392-5bbb-9873-f2cb37b2d060",
+      "loser_ids": [
+        "bokheim:lcc-detail:92d8d218-e21e-544c-9b86-bee29d514edf"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:215c6949-98de-5416-bb92-fb6d2f489452",
+      "loser_ids": [
+        "bokheim:lcc-detail:368143a7-f7ad-5844-8a28-1dd8fbd74391",
+        "bokheim:lcc-detail:740cf346-fa22-5e39-b14d-f92f25140169",
+        "bokheim:lcc-detail:fd83343f-796c-5043-aff9-1f1c24f695cb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:21f2a764-084e-5fd0-be01-08e3e9818387",
+      "loser_ids": [
+        "bokheim:lcc-detail:f36ed840-109b-5a78-a706-12facc1eaa0f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:22023262-f597-5781-8335-c1ddcfcd0e37",
+      "loser_ids": [
+        "bokheim:lcc-detail:c375c632-0b4a-54ab-861d-ea9cdd774b8a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2218e48c-f570-5c9c-96e7-f50455a47ddf",
+      "loser_ids": [
+        "bokheim:lcc-detail:7c97ce65-bba6-5ff9-a5ab-f86f3f1ecb3c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:224a9bbf-a4f1-5070-b40e-09779498b9e0",
+      "loser_ids": [
+        "bokheim:lcc-detail:4733f089-984a-56fd-9ad8-15d76da31da2"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2293656b-0c22-5696-a816-c4020687a299",
+      "loser_ids": [
+        "bokheim:lcc-detail:9c1e4768-1cbb-5933-9b7b-33665029e07b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:22cd6d44-bf6a-5108-90c5-e444fa4a55a9",
+      "loser_ids": [
+        "bokheim:lcc-detail:efa17c6c-79d5-5469-8734-98fa10d82bd7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:23091506-1baf-5338-a54d-cd29845950a5",
+      "loser_ids": [
+        "bokheim:lcc-detail:34697086-fbfc-599c-b56a-7a77de729d34"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:236dd1b5-e4c9-5dd8-9aad-a70c1eebfd90",
+      "loser_ids": [
+        "bokheim:lcc-detail:ac63a3a1-3d36-59cc-9909-b776913fb0d7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2427f218-0993-57dc-98b2-e8024a6e6f5f",
+      "loser_ids": [
+        "bokheim:lcc-detail:2f1df51b-c1f5-5c5f-b321-acedf7bc7382",
+        "bokheim:lcc-detail:679a29bd-57ef-5b5b-87eb-8bb0a7491f4e",
+        "bokheim:lcc-detail:6fe2854c-662c-509d-923b-6d7d6ec8efa3",
+        "bokheim:lcc-detail:c535a1d9-adea-58b3-a3b8-9eccb8c38a61"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:245c336d-3d18-56bb-8f1e-2d5f2e56bc4a",
+      "loser_ids": [
+        "bokheim:lcc-detail:d1cf6f51-49af-5ac0-a93b-7375595da7e5"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:24984ec7-48ee-5051-bad7-943f0124b2c5",
+      "loser_ids": [
+        "bokheim:lcc-detail:cac6b90f-c37e-5eea-8682-6c7eb6cace9b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:24b3a51e-2032-5022-843b-f51d2b148728",
+      "loser_ids": [
+        "bokheim:lcc-detail:a2ebaae6-a33b-55bc-a5a1-425139fa9b70"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:24d82483-1b71-55a3-8fee-a89ecd190acb",
+      "loser_ids": [
+        "bokheim:lcc-detail:f61c4f30-e4dc-5e4d-a074-d6b13fb0950e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:256cc857-785f-5009-9137-6ac57a7d7fce",
+      "loser_ids": [
+        "bokheim:lcc-detail:87c7d79d-d753-50ca-96b7-cc90d89860ce"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:25a59a12-7dbb-52ef-b2a3-c2224e908af5",
+      "loser_ids": [
+        "bokheim:lcc-detail:78563f94-e1ca-5607-bfde-882cd92968d6"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:25ca93c3-6ac1-568e-ac2a-39887b22062e",
+      "loser_ids": [
+        "bokheim:lcc-detail:59563727-5dcc-5494-b797-e33397e17c2f",
+        "bokheim:lcc-detail:9350a6a9-37fd-5715-9789-9e15a1ac07e3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:25deabde-fbbd-559a-b1d2-6569a3d86672",
+      "loser_ids": [
+        "bokheim:lcc-detail:b1eb3c27-69de-5b8c-b05f-e4244ec45ecc"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:25e8e03a-a1fb-5c44-8411-4b5de9169bde",
+      "loser_ids": [
+        "bokheim:lcc-detail:3042c38f-c4a9-55a4-84d8-94a5ca6ecfac"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:266dea57-4221-5b01-9941-13a6836f8a96",
+      "loser_ids": [
+        "bokheim:lcc-detail:2a625df6-3489-5219-8bbd-971ddddfc17d",
+        "bokheim:lcc-detail:2e66aee6-04ca-5028-a897-19c1ca188399",
+        "bokheim:lcc-detail:6b7fd584-c0f1-5ea7-b171-0359bdb697e7",
+        "bokheim:lcc-detail:767cca5c-5051-5c14-82a7-c1d0b6681244",
+        "bokheim:lcc-detail:8267a77a-044a-5c41-949b-4ec7b6ac8205",
+        "bokheim:lcc-detail:89af8a79-8a73-52ac-a5cd-2240091a285e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:26895ee4-dd77-58b4-a1e3-56c33f6817a0",
+      "loser_ids": [
+        "bokheim:lcc-detail:421a991f-4c97-59bd-a15c-735c0cff1ed7",
+        "bokheim:lcc-detail:cdf45a98-7c19-5b3b-a05e-9d8f53be2cfc"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:26e6351a-2f73-5fc0-b199-bf31fccd7cfd",
+      "loser_ids": [
+        "bokheim:lcc-detail:a59a84db-b990-5a7c-acd0-948eb550f8e9"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:27253f53-59f0-5166-bb90-202445ecff97",
+      "loser_ids": [
+        "bokheim:lcc-detail:fbdb9730-40c6-522c-ad03-d2afd98cb0cd"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:273e79f1-95f7-5165-b031-71e7d41f8c92",
+      "loser_ids": [
+        "bokheim:lcc-detail:c113a6df-6678-5317-a73d-849008289e55"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:29372f7b-546a-5c66-bd92-3e9f3f6d283f",
+      "loser_ids": [
+        "bokheim:lcc-detail:4d37f586-f3c9-5157-8f67-b85e055bff17"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:297d6ded-43b6-5fd4-b57c-1ce88558120c",
+      "loser_ids": [
+        "bokheim:lcc-detail:5b23c82b-b337-58c9-a07c-c59633b29292",
+        "bokheim:lcc-detail:ffa669fe-0f0e-5d7e-8a2d-30b70c15ccd1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:298f615c-825d-5393-abfd-286126de7a7c",
+      "loser_ids": [
+        "bokheim:lcc-detail:60facbd7-e812-5d14-8f2d-c681531027b8"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:29abd91e-c854-5200-98eb-0125cbd10360",
+      "loser_ids": [
+        "bokheim:lcc-detail:90b4e1f1-16a6-5309-9be2-a0401d56c7d1",
+        "bokheim:lcc-detail:a8fb133c-72a5-580b-b9c7-00019d2019b7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:29edb5f8-14ae-582a-8384-0afb1d00ee9a",
+      "loser_ids": [
+        "bokheim:lcc-detail:9dcf3282-cdcd-5265-8610-52f8cc8f54cb",
+        "bokheim:lcc-detail:e7099929-2138-5603-bdfe-38e5dc087270"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2a6aac18-0722-51bd-ab16-8c8dd3ebc781",
+      "loser_ids": [
+        "bokheim:lcc-detail:d7c36499-63c2-5f13-b7d7-71659e85d821"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2adb3949-c308-5d8b-9178-935002ba38d8",
+      "loser_ids": [
+        "bokheim:lcc-detail:7a40d3a1-659b-5a5f-b115-1015f4ab1671",
+        "bokheim:lcc-detail:8c164f74-b388-5c60-8608-8dca655f8a08"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2b716204-534b-51a2-9049-95a684a75915",
+      "loser_ids": [
+        "bokheim:lcc-detail:467b1d38-d92e-52cf-999e-f61869863551",
+        "bokheim:lcc-detail:8aa85a14-0e19-54d8-bc55-b3794db735a4",
+        "bokheim:lcc-detail:f648ad57-b474-5862-ba7b-4c51d33fede3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2b96acad-7791-55d8-99ae-c5221d13e321",
+      "loser_ids": [
+        "bokheim:lcc-detail:d2b4601a-c7a1-5190-bab8-99a1b930bc2f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2c932827-ed2d-5c2b-a546-8be349d92f17",
+      "loser_ids": [
+        "bokheim:lcc-detail:3a97b3db-6353-5289-98c4-e8e4b35ab2e1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2ca97776-7476-550c-86fc-c29342e2b36a",
+      "loser_ids": [
+        "bokheim:lcc-detail:7fc597f5-6b02-5631-817b-d9a6612c93c1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2d701f84-6a02-5f7d-b92c-afa8288bc38c",
+      "loser_ids": [
+        "bokheim:lcc-detail:c3a4983b-27d3-59d7-96a6-21e1d46531ca"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2d87d901-ba52-5cdf-aeee-59f295c148b5",
+      "loser_ids": [
+        "bokheim:lcc-detail:b9f09858-546a-5cd7-a418-6c2381913359"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2ddb43fb-8dac-524a-8dc3-0594f39fa6d3",
+      "loser_ids": [
+        "bokheim:lcc-detail:6fc5cc90-42ce-5433-95f1-a1273b1ff84b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2e0674a0-c147-59bd-8262-535bfcfc42c4",
+      "loser_ids": [
+        "bokheim:lcc-detail:801f6763-efb5-5633-9cac-5569873db6a4",
+        "bokheim:lcc-detail:808a3e10-9031-5d1c-bc15-82c63e520713"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2e415d4f-b052-5174-91b2-cb288ab35f35",
+      "loser_ids": [
+        "bokheim:lcc-detail:8c64d8f8-3ecb-56a1-bc7b-de4f29658be0",
+        "bokheim:lcc-detail:ff6965e4-cae4-5b4d-8d90-ab684f344171"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2e4a234c-711c-546f-9fa5-aca5b22f77e5",
+      "loser_ids": [
+        "bokheim:lcc-detail:a6bb6b50-83fd-5074-9bb7-993b666d7f7f",
+        "bokheim:lcc-detail:ff957eab-8a41-52a1-afb7-bdcffb0e0ce2"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2e69f381-7870-5c5c-b6f8-c12065b7af50",
+      "loser_ids": [
+        "bokheim:lcc-detail:c615cd87-a341-51f5-9ca6-59770fae143b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2e8c3274-03c9-5930-aea9-cf5e64e95e04",
+      "loser_ids": [
+        "bokheim:lcc-detail:af2449da-b5ec-5577-a218-709e1e1fc562",
+        "bokheim:lcc-detail:bad46f40-9069-5b2a-8290-63b322f2efef"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2e9ba8a0-33dc-5184-9018-b70ba4427932",
+      "loser_ids": [
+        "bokheim:lcc-detail:96fdfd3d-9181-58b0-9455-c55b322251a9"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2ea04260-24fb-550e-b5c7-6990e9baccc0",
+      "loser_ids": [
+        "bokheim:lcc-detail:83a24593-2a55-5186-ba03-5a0e8f40c24b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2ea7bc81-c2af-5481-a7b3-c8985207c8c2",
+      "loser_ids": [
+        "bokheim:lcc-detail:b3218f8d-3f69-5de1-ba9d-eda66f016c0c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2ebc308b-f2c2-536f-8ede-6f72fb3dc644",
+      "loser_ids": [
+        "bokheim:lcc-detail:4befcbe9-7d5e-545a-b915-f1e6a9a18174",
+        "bokheim:lcc-detail:6e2d5cb6-741a-532f-806a-0b23029ef5a9",
+        "bokheim:lcc-detail:87b0d026-f6be-5bd1-8d68-234ef08a95e2",
+        "bokheim:lcc-detail:bf1d0e98-0a84-5393-ad75-c2049f08a6a0"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2ec088e2-e44c-53b6-8d99-8dfe05242491",
+      "loser_ids": [
+        "bokheim:lcc-detail:72220e60-a53f-53e3-b072-cc95ff8ccf89"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2ecfc219-691c-5998-be8d-8372af8b3db0",
+      "loser_ids": [
+        "bokheim:lcc-detail:96d4b0bd-7e97-539f-9dc5-034fbe6bafb4"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2f06b84a-6166-55b0-8c92-b0d68057cef5",
+      "loser_ids": [
+        "bokheim:lcc-detail:9028d6d1-9820-5c93-88ad-9963a9392205",
+        "bokheim:lcc-detail:a9197b9e-a0db-5708-8771-7cf8116ee670"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:2fb85cca-3bb0-59c7-8fb0-9a07473f9ea5",
+      "loser_ids": [
+        "bokheim:lcc-detail:b4725ea8-813a-59b3-8795-21487999f865"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:301930ef-b52b-56c5-a95b-81b1a8ed8604",
+      "loser_ids": [
+        "bokheim:lcc-detail:577b8aa1-a996-580a-a15c-0bc12c552e62"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:30f9e9d6-b63c-5869-9e64-75ee7048ac7f",
+      "loser_ids": [
+        "bokheim:lcc-detail:8bc93c47-5dbe-5a5c-add5-f5e670a1720f",
+        "bokheim:lcc-detail:dbc2e3a1-2442-58aa-a46d-1763eeef2cd4",
+        "bokheim:lcc-detail:ec9dbbe5-721d-5812-a2af-d6453cbf7f39"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:313be624-b76f-5246-bbd9-a7f01df31a59",
+      "loser_ids": [
+        "bokheim:lcc-detail:84866973-97a8-58f5-a7f7-439930c7106b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3170e9c4-3bc0-5cdf-a06a-878b75fea2fb",
+      "loser_ids": [
+        "bokheim:lcc-detail:3c138417-2d9c-5fd3-b6bc-702ecae8988d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:32717d85-4667-52a5-80b3-e916b8434e59",
+      "loser_ids": [
+        "bokheim:lcc-detail:fa9b2d7c-0f50-5fe4-9e75-69c00a3e6eab"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:33aafdca-a53a-532e-b943-53adf6282585",
+      "loser_ids": [
+        "bokheim:lcc-detail:9362b092-84d8-52a5-ac11-fcef8cbd3c77",
+        "bokheim:lcc-detail:ff2a915e-2434-584e-8a1d-54884c8a7ee8"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:33daa9e9-af90-5188-b2e1-e1ccf3227ca7",
+      "loser_ids": [
+        "bokheim:lcc-detail:dde35c2d-0167-5cb5-8033-b8b5e138bb1e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:342cb0b5-6af8-535e-bb78-38394f86e3fa",
+      "loser_ids": [
+        "bokheim:lcc-detail:4eeb3eeb-3d98-5314-bc8c-fd8464137915"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:34a5c641-0f1e-5e9d-91d7-e2e9d8ce9efb",
+      "loser_ids": [
+        "bokheim:lcc-detail:4c25beb8-3bb5-54e3-831d-17f4c89c4b2b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:34a6abea-e768-5899-af77-7c4a0a71e37f",
+      "loser_ids": [
+        "bokheim:lcc-detail:c051f13e-ce52-5392-811a-da86df71184f",
+        "bokheim:lcc-detail:e7a92d1a-f69e-5b7a-aa8b-bb124e8ad967"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:34e62b58-09f6-54d6-8255-76d8d763b0af",
+      "loser_ids": [
+        "bokheim:lcc-detail:9d5a95af-4ef8-538e-8b1f-ef8af31c8f3a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:36160aa9-c568-5288-b6bc-63002840091e",
+      "loser_ids": [
+        "bokheim:lcc-detail:d988f5f3-0512-5f4f-bb03-d575db83f26f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3626b692-1c6f-56fa-a4ac-dd5adb624a5e",
+      "loser_ids": [
+        "bokheim:lcc-detail:54711373-a554-52e8-b9c1-332672c0a3ea"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:36435f57-2610-5494-9712-ff21ee254bcc",
+      "loser_ids": [
+        "bokheim:lcc-detail:fe61b8ba-7605-5780-8310-8a807faf6072"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:36576532-6934-5ff3-9a9c-5d444ad4da1b",
+      "loser_ids": [
+        "bokheim:lcc-detail:f935d21e-a9a7-52c2-a4bb-5eb7bce11ac3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:36ef96b0-5946-5049-aff2-b5ee7ce61d15",
+      "loser_ids": [
+        "bokheim:lcc-detail:d85a0289-137c-52fd-a76a-86a42e9d5ef1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:374404af-58db-50b2-839b-b2e5cd528ae1",
+      "loser_ids": [
+        "bokheim:lcc-detail:81e65b13-85c9-5c76-a26f-96c0212da5b0"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3787f2fa-def0-523a-a34e-7f37a45abff5",
+      "loser_ids": [
+        "bokheim:lcc-detail:c1fea86f-3736-561c-b5e7-0eb350e07c9b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3788929c-5a84-56ce-8f61-c59a58ecb3a6",
+      "loser_ids": [
+        "bokheim:lcc-detail:dd17c26c-82ed-5a9d-875b-dca41306edda"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:37a170bd-560e-55a6-853b-77b02de6df66",
+      "loser_ids": [
+        "bokheim:lcc-detail:803f1a60-0e08-5338-8089-e0737ee072f2",
+        "bokheim:lcc-detail:d45f2554-5d73-5d71-bdd2-aa6cfc420b33"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:37f6aa0d-67e5-5749-b8c8-e336848ea6f8",
+      "loser_ids": [
+        "bokheim:lcc-detail:63a73b3f-d834-5c4c-a757-8662b8a3b95c",
+        "bokheim:lcc-detail:69f39540-d42d-5f12-9258-1df78dcba51b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:382f23c3-ebf5-529c-9fe4-4940eb811b34",
+      "loser_ids": [
+        "bokheim:lcc-detail:8bef5095-09ff-55ae-9820-59e436e43ba9",
+        "bokheim:lcc-detail:ca08a7e9-fa88-5f7d-a0d0-4037ee1ddf36"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:38c00f39-28a7-52cc-a378-7ee267eeb14e",
+      "loser_ids": [
+        "bokheim:lcc-detail:ecae38ea-cbe2-52eb-afe1-e5e98612f805"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:38ded260-d5d2-5915-9de8-a8dccd9d3784",
+      "loser_ids": [
+        "bokheim:lcc-detail:739f4ed9-fd5e-57df-9ed7-3fa255a527ca",
+        "bokheim:lcc-detail:a46e49e8-f2f5-559d-8619-2dacb579b0b6",
+        "bokheim:lcc-detail:b9a773f6-a6f6-543b-96ad-f94976d9e60f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:39008736-9013-5f5c-9958-9719ce442d21",
+      "loser_ids": [
+        "bokheim:lcc-detail:498d10d9-81c7-5201-a294-0c171e9994b0"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:39966481-4ae4-53fd-9068-c06a0e86ef4f",
+      "loser_ids": [
+        "bokheim:lcc-detail:96a527ae-948a-51c4-8028-df6b3078065b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:39e50aaa-f528-5bed-895a-7bd7501f53de",
+      "loser_ids": [
+        "bokheim:lcc-detail:40f2bd77-ec11-5db8-a53a-23f3c6a5232e",
+        "bokheim:lcc-detail:78f399fc-8e8c-5d5c-ad7c-d8314bb538f3",
+        "bokheim:lcc-detail:833fc5aa-eaae-5652-8405-085f4fc2afc4",
+        "bokheim:lcc-detail:90c571ff-8968-5c16-a3e0-ae9f99dd609d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3a083387-7c0c-56bc-b67f-579f8f50f4ce",
+      "loser_ids": [
+        "bokheim:lcc-detail:9539857e-f974-52f6-914c-8e75390790b2"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3a79721f-0c61-5551-aa61-3e677fcb91dd",
+      "loser_ids": [
+        "bokheim:lcc-detail:e6910ee1-48b3-5959-9431-4f926dc370ac"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3b495a0d-992b-5740-866e-bee52e8e7e93",
+      "loser_ids": [
+        "bokheim:lcc-detail:bb956087-7bf6-5526-9d3a-0cee0c47892e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3b8c3540-6ea5-5b39-8eb5-1e60201477a4",
+      "loser_ids": [
+        "bokheim:lcc-detail:9e0ea5c9-f092-5877-8521-c5157875220d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3bcace85-bfe4-58b3-b37f-2a8d66f756ef",
+      "loser_ids": [
+        "bokheim:lcc-detail:ff0c9eb5-d9aa-5a12-95e9-af2031b50bff"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3c2b6ed5-6162-5ab9-a0a8-4b3214447f9f",
+      "loser_ids": [
+        "bokheim:lcc-detail:eabf7476-bc9c-53ff-83e4-0cfd8ba70606"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3c43f9e1-9cae-5af6-a511-693cdea548d7",
+      "loser_ids": [
+        "bokheim:lcc-detail:7834b989-06c4-5d6e-893e-e189c3b121e8"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3d9ed242-8984-5981-b7d5-29893410c958",
+      "loser_ids": [
+        "bokheim:lcc-detail:70337aa2-cb6f-5876-b43f-e630485361da"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3eaa2f80-03da-5549-b0c0-67d136820428",
+      "loser_ids": [
+        "bokheim:lcc-detail:f5627c0e-7d0f-5836-9724-4b12a549d937"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3ef6d19f-1837-5d5b-9a7c-46e147849aa4",
+      "loser_ids": [
+        "bokheim:lcc-detail:9fabba70-4a20-5671-b8ab-5c6f7d17d29e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3f08e27b-789c-5234-af48-476c888f7e36",
+      "loser_ids": [
+        "bokheim:lcc-detail:cbff3284-f6d3-508e-b1a6-9307e200e631",
+        "bokheim:lcc-detail:dcf28396-8f5f-52fd-b33f-1204a2441984"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3f531aa7-77c8-5bfe-a7cd-e7ad4a85559b",
+      "loser_ids": [
+        "bokheim:lcc-detail:8b4631ab-1ddb-55e3-90dc-8d685d4d4df2",
+        "bokheim:lcc-detail:ed4d94de-1f2b-5a35-b226-302f2faf208e",
+        "bokheim:lcc-detail:ef45fa7d-5b75-5321-bc03-b1c48ce25ba7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:3f7bfafa-ecb6-5973-8132-5671571b18bd",
+      "loser_ids": [
+        "bokheim:lcc-detail:9e912a82-01d9-592a-9fc3-4226cb35fe28"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4015a91f-c11c-5c34-961d-e07636bb3bc1",
+      "loser_ids": [
+        "bokheim:lcc-detail:5cce6570-800a-55e0-96e9-75784e0e853d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:40bedb91-6228-5e98-80d4-25147f291488",
+      "loser_ids": [
+        "bokheim:lcc-detail:89fa8d1d-cf3a-51aa-844e-e6d1883545d2"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:40c2f45a-fc47-5ebf-9015-c12d812451db",
+      "loser_ids": [
+        "bokheim:lcc-detail:45e873fd-c49e-56ca-baea-bfef10204448",
+        "bokheim:lcc-detail:79ea1ea8-0cbc-5fb7-9d57-b3af4df7c6c8"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:41496081-e3ec-5655-a028-9ac22d958a4b",
+      "loser_ids": [
+        "bokheim:lcc-detail:751f238d-8f0a-56d0-ad0d-19100726e61a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4159d4fe-60b5-5bc4-b979-a9fb5c458ed5",
+      "loser_ids": [
+        "bokheim:lcc-detail:99ff2ef7-aa91-533c-bc2d-cfc5ddbaf1ae"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:41b9ae60-2088-5908-9f3d-93c48775e507",
+      "loser_ids": [
+        "bokheim:lcc-detail:7b1c03b4-64f1-513c-82e3-b55e1ee4b53c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:41d29c18-015c-5a4f-945a-7441fb349024",
+      "loser_ids": [
+        "bokheim:lcc-detail:c022cd71-ba88-5c5b-8ea2-48db6285239d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:42026a59-6550-5bdf-8887-a6d36cd8fce9",
+      "loser_ids": [
+        "bokheim:lcc-detail:af3954fe-3218-5b0c-b7fb-13fd966b0f1c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:42252050-044e-5ed6-bb4b-6c1ae696538c",
+      "loser_ids": [
+        "bokheim:lcc-detail:f9ce0e05-2483-5e5c-82ec-cb323b81a206"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:423aa3ce-4a7d-5f21-a0fb-5ec017bfc5b8",
+      "loser_ids": [
+        "bokheim:lcc-detail:f074dc3a-50d3-5395-95ae-8dcce4eb9d6e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4268539c-7be5-5e26-91e2-54c4f063fd14",
+      "loser_ids": [
+        "bokheim:lcc-detail:9a1ac4fc-d053-501e-af93-f6a51ffcd023"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:42ca328d-0fa1-5a69-851d-8c82f42f9554",
+      "loser_ids": [
+        "bokheim:lcc-detail:6a5a924f-d1f7-5105-b923-51e8c64f4866",
+        "bokheim:lcc-detail:86482796-5d1f-59f2-a67b-4c401add4708"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:42dabf4b-3c68-5fb0-8bc7-83b76e329178",
+      "loser_ids": [
+        "bokheim:lcc-detail:64dc3a1e-934e-51d1-b425-c69c3777e127"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:42ed3535-bd7e-5e53-bb5c-aa86c7726cf7",
+      "loser_ids": [
+        "bokheim:lcc-detail:839e2da9-df97-5754-a06e-b2284b909afd"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4337dee5-bc03-5e4d-b94f-5c192790ca70",
+      "loser_ids": [
+        "bokheim:lcc-detail:ca132db6-af1d-5145-a21a-35f898f6f278"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4349c7e6-e838-5540-a408-4fdf8d6843b4",
+      "loser_ids": [
+        "bokheim:lcc-detail:dbb01f4b-1edd-587d-a564-022db14d4e90"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:43614aa7-0cc8-51d4-a34d-3234e5813846",
+      "loser_ids": [
+        "bokheim:lcc-detail:a45e2b20-3aab-5c24-922c-accef5aedec5"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:43a8e49b-7eec-5612-a78c-48cdd16ae8a1",
+      "loser_ids": [
+        "bokheim:lcc-detail:db709895-cc62-55a0-af7a-87974e3764c9"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:43c4264e-3c03-5113-a629-2bb8414902b4",
+      "loser_ids": [
+        "bokheim:lcc-detail:64016cd3-8cfa-52cc-8ea0-6225187404ea"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:440a0342-f904-56c6-8b9e-8307353ef1d1",
+      "loser_ids": [
+        "bokheim:lcc-detail:51eb479b-c574-57e9-a3d6-70ce73cb4a51"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:443e4cfe-4848-539e-9a08-980aea271c51",
+      "loser_ids": [
+        "bokheim:lcc-detail:e15b354f-7d6c-55a7-b662-4369b650ecd2"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:44673a4b-d9e9-50b4-bd9e-f3c04dd270d9",
+      "loser_ids": [
+        "bokheim:lcc-detail:50b50b9f-78bf-5dcb-864d-fc49ca15f571"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4486e1be-af10-59ce-b7df-29b684f2bf45",
+      "loser_ids": [
+        "bokheim:lcc-detail:f03ae874-2b50-592e-99f9-1c4a97aae2b5"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:44e8fb44-d28e-5e10-b992-8cce5301b67c",
+      "loser_ids": [
+        "bokheim:lcc-detail:92c686e2-9583-5038-8759-e524186fd090"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:45414909-036d-519b-adb6-10746c5fab82",
+      "loser_ids": [
+        "bokheim:lcc-detail:7adafe4a-bf72-5ca0-96a4-7fab8f3796a6"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:45fa1265-e924-5011-86d3-30e9774ed6a5",
+      "loser_ids": [
+        "bokheim:lcc-detail:4bbc8bd2-9c00-5b7b-bf18-129d055dbc56"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:462a5dfc-3d17-51a3-8553-aadb23281af0",
+      "loser_ids": [
+        "bokheim:lcc-detail:946e442f-d3dd-5265-a4f3-11f497cd63ae"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:46689b4a-00a2-544e-b334-68ce8469dd85",
+      "loser_ids": [
+        "bokheim:lcc-detail:cbf451ff-e9b2-5b79-b62b-9f560101c068"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:46a415b0-4553-522d-a8df-b9aaeddac55a",
+      "loser_ids": [
+        "bokheim:lcc-detail:bbab1981-124a-5ac7-975f-63cf8714a921"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:46e56283-66b2-5c6c-8f72-2595fe531216",
+      "loser_ids": [
+        "bokheim:lcc-detail:850b5fa0-fdc4-515d-99b8-efe86733734f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:46f9ade2-1491-5941-bf65-ac15f0b17781",
+      "loser_ids": [
+        "bokheim:lcc-detail:724e7b9d-ef5a-5dae-98fc-3df935235eeb",
+        "bokheim:lcc-detail:8616aafd-f07f-5fa2-bc80-ae98e715fd2d",
+        "bokheim:lcc-detail:b8c69b98-cab8-5f42-b9ec-31ba0eb9c610"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:47526568-3608-5e71-9c01-c7fe622e9f3e",
+      "loser_ids": [
+        "bokheim:lcc-detail:66ed46af-9202-5edc-b6a3-f9689c96f9f7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:475c7094-bc92-5a58-a106-45b9b8b129d1",
+      "loser_ids": [
+        "bokheim:lcc-detail:ad650c20-c83a-5b10-b4b9-da69a3d6dc3c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:47a86d07-95f5-5149-b45c-04f78be4ceea",
+      "loser_ids": [
+        "bokheim:lcc-detail:6c093d5d-df89-5acf-8a7c-b2b6e4041538"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4843295f-f0ee-57a5-9b5d-5b7fed6b0817",
+      "loser_ids": [
+        "bokheim:lcc-detail:52393a13-e32c-5cd4-95b2-ac7c84c6b72d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:48a68b62-98cc-5e66-a482-908e9a825531",
+      "loser_ids": [
+        "bokheim:lcc-detail:c52ced67-42c6-5785-b953-399d8cd441a0"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:48ae236f-2669-5327-bbdc-5597ad2c6656",
+      "loser_ids": [
+        "bokheim:lcc-detail:62ccb969-28b8-5628-bb8b-72d1d7950e05"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:48e01c1f-2a73-5c9e-b9c1-d84b0a538bdf",
+      "loser_ids": [
+        "bokheim:lcc-detail:5b04fa14-6776-5867-9744-a34f277cc244"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4911be72-7bb2-54e7-896b-2ac7f45150a7",
+      "loser_ids": [
+        "bokheim:lcc-detail:cffca78d-f8b7-51c8-bffb-f94b131d9486"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:49323165-f47d-5488-bb85-ec7178724e4a",
+      "loser_ids": [
+        "bokheim:lcc-detail:f34f010d-a655-58a3-a0ff-27c47b183900"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:493b4b59-88c7-589e-ac27-57a46b309a30",
+      "loser_ids": [
+        "bokheim:lcc-detail:55f163d2-bb28-5a7a-acab-6705c11acbca"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:49612905-0202-542c-9586-05b383fab6ad",
+      "loser_ids": [
+        "bokheim:lcc-detail:76d7c978-27bc-5611-8dac-34b2b722f7ff"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4a46ae18-13da-5bea-b85c-269f76ed29b4",
+      "loser_ids": [
+        "bokheim:lcc-detail:4fd22c29-5d86-5ea8-9229-d52df41d0b93",
+        "bokheim:lcc-detail:cc3fedf5-11b3-5a8c-a554-42ceb3f05c2c",
+        "bokheim:lcc-detail:daafe32c-4c7a-501b-a796-86c1217ebe64"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4a9f7f07-a2a1-5101-9237-04a78e11f6ba",
+      "loser_ids": [
+        "bokheim:lcc-detail:a7ec2a99-417a-593a-ab53-28821c4a9f3e",
+        "bokheim:lcc-detail:cb397729-11ce-5484-85e7-cbb2b29fcbc5"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4abe4b9a-d693-536a-9565-7ef920cfd18d",
+      "loser_ids": [
+        "bokheim:lcc-detail:ba460121-fb6a-57da-9619-3569e2db99f8",
+        "bokheim:lcc-detail:c771e6dd-0c41-5614-be8a-276f57c2ba94",
+        "bokheim:lcc-detail:fa1c0c6b-f807-5b04-9b4d-954ff3d8d20e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4ac69bbc-5985-5692-9f18-219a52df7902",
+      "loser_ids": [
+        "bokheim:lcc-detail:d0426303-cd9b-52b2-8b02-c7885611b3db"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4b014f67-99eb-5793-97b3-0425e4a28b21",
+      "loser_ids": [
+        "bokheim:lcc-detail:8dd4283b-7926-596a-976e-b83d651e87e1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4b16a08e-2d63-557b-a84a-bf687a12e211",
+      "loser_ids": [
+        "bokheim:lcc-detail:8f04458b-bf24-58fa-88ea-82c21aa3ca2d",
+        "bokheim:lcc-detail:b69fafee-4cf3-5620-818f-1700b35aee90",
+        "bokheim:lcc-detail:db4b07af-213b-5234-9215-631b9f854977"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4b6dad0c-c15a-5622-b333-06fac2650c29",
+      "loser_ids": [
+        "bokheim:lcc-detail:c872320f-5088-558d-ba03-ea5034911950"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4bac1f19-1050-586e-8d97-8f6722053b42",
+      "loser_ids": [
+        "bokheim:lcc-detail:74e4f6eb-56eb-5594-9922-451c278e0a2c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4c07ea5b-18fa-5d34-bc52-3ed9ec5cf1fa",
+      "loser_ids": [
+        "bokheim:lcc-detail:cc0641f5-8218-5e8c-8035-d40b4f0fe1c6"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4c5057e4-2768-51de-a820-3ad241352bdc",
+      "loser_ids": [
+        "bokheim:lcc-detail:d51f7dc2-ba01-5ea3-a45d-3588d0ef362b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4cdab061-1fda-52b3-91d8-3c166cde72c0",
+      "loser_ids": [
+        "bokheim:lcc-detail:6346ada2-fcd0-5bd2-8cfb-affeaf27280b",
+        "bokheim:lcc-detail:68555b64-dd37-5be2-ac0a-5d4cd26f6c35",
+        "bokheim:lcc-detail:e05e9e93-18e6-58b2-9a29-4c92401ad27d",
+        "bokheim:lcc-detail:f71a5bd3-e603-588c-b6ea-d0566226f0fe"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4cdd8c52-f551-52d3-b989-530ef36ad653",
+      "loser_ids": [
+        "bokheim:lcc-detail:a6b7686c-4ac8-5c91-9dcd-7bd7214ccef7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4d0d9836-1b29-5487-b546-f9a4182b4b1e",
+      "loser_ids": [
+        "bokheim:lcc-detail:8052b198-1d96-55f4-8ed6-73ce75de4564"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4dc49e27-4587-546e-afc8-b2a8b1984bb7",
+      "loser_ids": [
+        "bokheim:lcc-detail:81604345-e740-579b-b8c1-8d29835fa454"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4e5547a0-2731-5f31-8798-44e15c6c2467",
+      "loser_ids": [
+        "bokheim:lcc-detail:ce4ac9c5-9095-5be1-a5ca-28467034e865"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4eae5986-126d-5c35-a264-bd13b7de3ca3",
+      "loser_ids": [
+        "bokheim:lcc-detail:b2ba6c67-1319-5653-a6e7-3d3233f7e55a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5031a10c-0017-510a-a2a8-83a6c758dfe8",
+      "loser_ids": [
+        "bokheim:lcc-detail:95d74f4e-5a18-5eeb-a2da-34318f0c7ff5"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:50d1d4c3-3bde-5908-836c-0aace2eb4f7e",
+      "loser_ids": [
+        "bokheim:lcc-detail:863688f6-323b-51db-8594-4557577302d1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:50fc8847-20ff-59b8-8f8d-6af11b52fdee",
+      "loser_ids": [
+        "bokheim:lcc-detail:77c96a09-6ef9-5e4f-a229-d343d0c6341f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:511b5d4c-0555-5319-b529-572d32d54974",
+      "loser_ids": [
+        "bokheim:lcc-detail:e50fbe45-77f3-5695-a73b-c9fbf1126ab6"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:512acec6-9981-5ca9-a4fb-2557f03a56fa",
+      "loser_ids": [
+        "bokheim:lcc-detail:730dc3be-6ad5-5801-93ee-8d8f21c69948"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:51455246-7216-52f5-9bb1-7a7b7c1ee25b",
+      "loser_ids": [
+        "bokheim:lcc-detail:7e6d3da2-868e-5efb-ae9c-d7a7a73fcbec"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5155929a-5b63-5e1e-bc67-1d5c61162338",
+      "loser_ids": [
+        "bokheim:lcc-detail:ec92eac3-8eaf-524e-b344-d4685f8fd1c6"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:516fd983-219e-58e2-8809-26d17b002aed",
+      "loser_ids": [
+        "bokheim:lcc-detail:749fd85e-c370-5549-99fa-1f37d29b7c77"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:518767d4-c09e-5f10-9abe-817859995d9a",
+      "loser_ids": [
+        "bokheim:lcc-detail:583c1342-ae7f-5504-89f3-c913f525d27b",
+        "bokheim:lcc-detail:f97c2e42-a735-506b-911a-0716259c5c06"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5191dc70-8039-5d64-bff3-6560015090d2",
+      "loser_ids": [
+        "bokheim:lcc-detail:5c597f24-e1e3-50b2-ba57-289d87141cae"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:524af585-8f59-53b8-bee5-1c271e48a96c",
+      "loser_ids": [
+        "bokheim:lcc-detail:86e4df97-8e84-5f60-ba6c-5153c38fc6eb",
+        "bokheim:lcc-detail:a080519e-e60b-5d39-93b9-f4082c3ae07a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:52ac7e4f-558c-5814-95d1-dc5afc18cdd7",
+      "loser_ids": [
+        "bokheim:lcc-detail:77587872-61c5-53c2-b17d-ebd633aa67d5"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:530c3f5d-3820-51fe-9617-3694aef83716",
+      "loser_ids": [
+        "bokheim:lcc-detail:b3fe3e89-6d97-51d4-b78e-5d1fabe72cc0"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:53c87fa0-19bd-5d8d-a40b-31a817f51f15",
+      "loser_ids": [
+        "bokheim:lcc-detail:d29437aa-a57e-5cd0-afe5-fb7e2d3a4e18"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:551be9e9-186d-5717-96fe-6046d3436d6b",
+      "loser_ids": [
+        "bokheim:lcc-detail:b2889210-ceac-5b6e-9597-47d7282e6fd5"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:55d1b789-8fb4-5ba6-85f0-eb238c9a90b5",
+      "loser_ids": [
+        "bokheim:lcc-detail:cf59aef6-98fd-51fc-90f5-583e9bc61ccc",
+        "bokheim:lcc-detail:db5e268c-c28d-59d2-aab7-4d53daa707df",
+        "bokheim:lcc-detail:fe7a88a8-7f75-543a-8183-426ce01c6958"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:56089418-756d-5ae1-9929-438cd1d48380",
+      "loser_ids": [
+        "bokheim:lcc-detail:5a976267-d6d7-5c28-9b6a-560312b66c66"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:56c17317-a59c-5ea2-be4c-04e460397bbb",
+      "loser_ids": [
+        "bokheim:lcc-detail:749e1da4-f005-5538-bba5-5d11a3d81bd9"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:57d92b6f-7ae6-5f20-b3a1-abb99034672f",
+      "loser_ids": [
+        "bokheim:lcc-detail:a43c098e-2e35-5afe-9571-aebe53ae47d0",
+        "bokheim:lcc-detail:ccb0cf27-be00-538a-bf4c-4bc470572e84",
+        "bokheim:lcc-detail:deef8b94-3a61-5355-8eed-2d5c14b01013"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:58d4d574-295e-5a41-8013-4cec1204418a",
+      "loser_ids": [
+        "bokheim:lcc-detail:6656c0c1-84d4-5d65-a819-b7157fcd3465",
+        "bokheim:lcc-detail:8bf2cf73-5d22-5831-9298-215a54468fb0",
+        "bokheim:lcc-detail:d69aeea8-54d8-5b56-a8f1-8e4665229485",
+        "bokheim:lcc-detail:ed023528-4948-5ada-9215-5eb952c72dbd"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:596d302c-96e7-5020-aaf1-46c230dc8c90",
+      "loser_ids": [
+        "bokheim:lcc-detail:d03e8f5e-0775-5891-b17b-b66c5c3a46d1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:597e8067-564e-583c-9846-94e46b9f5fa5",
+      "loser_ids": [
+        "bokheim:lcc-detail:ceff4553-ee43-5329-9c32-87ff02ab443f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:59c99e94-c7a3-5761-adc6-903720a72598",
+      "loser_ids": [
+        "bokheim:lcc-detail:cb751681-1b14-5307-8398-97462d59f086"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5a79d1c5-cacd-5532-ab32-9db689e23b6e",
+      "loser_ids": [
+        "bokheim:lcc-detail:93e27b52-808d-52ec-bd23-734c95ff7806",
+        "bokheim:lcc-detail:c5594650-9424-5959-8cc0-0768b7d9e320"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5ae6c81b-38ef-5539-af74-d44ed7aa7b9b",
+      "loser_ids": [
+        "bokheim:lcc-detail:c718d8cf-5a20-535e-94c2-917c7eeb856f",
+        "bokheim:lcc-detail:f19d19aa-2f49-5159-8b75-668946ea09f9"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5ba73afe-f4e5-57fb-ae06-d6659c3af2ca",
+      "loser_ids": [
+        "bokheim:lcc-detail:a5390f27-a9f5-5c89-9ada-fdc64343159b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5bdb27c2-e041-5650-a9e5-2b073340df96",
+      "loser_ids": [
+        "bokheim:lcc-detail:a2705865-6709-532f-99c7-5792cbaf86c8"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5c0314bb-5f75-5d7e-adbf-e3e2c48d037d",
+      "loser_ids": [
+        "bokheim:lcc-detail:b12bc53a-cd40-52bc-83e5-77d2104868b4"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5ce9227d-e26a-52e3-9002-cd3c0951a1a0",
+      "loser_ids": [
+        "bokheim:lcc-detail:b4bdd112-ddcd-5041-b669-af22efc02209"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5cfdad47-400f-5d78-9daf-8fd2a90ea517",
+      "loser_ids": [
+        "bokheim:lcc-detail:f71a8ab8-8752-5ee6-89f7-80eccbdc70cb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5d2d34f5-b5e1-528b-8d4f-4d01c6f35749",
+      "loser_ids": [
+        "bokheim:lcc-detail:d9fcbfca-3443-5821-adbc-f702108f4489"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5dc4cdb4-5d4a-5223-9520-2ee9e9702b5c",
+      "loser_ids": [
+        "bokheim:lcc-detail:b168a1ac-f795-5e2f-b2cc-6037eb683b9a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:5f29a4db-9d7e-5f0a-9082-e26607dcfd83",
+      "loser_ids": [
+        "bokheim:lcc-detail:6c193dea-1e98-5185-b5d0-f1758ee8af9f",
+        "bokheim:lcc-detail:e2f3a09d-61ec-533c-bbf8-ef1272c788fb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6064aab5-c046-5bd8-95c0-1aeec42baa1a",
+      "loser_ids": [
+        "bokheim:lcc-detail:6d404dcb-b9e5-5476-a445-18a3ee108c1e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6069c2ec-61dc-5db8-8466-543035e780a1",
+      "loser_ids": [
+        "bokheim:lcc-detail:e3a14c1a-520a-57f9-8902-9cfa88929b0d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:606ab7b2-c33b-51ff-9971-772884168674",
+      "loser_ids": [
+        "bokheim:lcc-detail:8363cb33-0ac2-558c-bf70-749cc462a0fe"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:618ea81a-0208-5d61-a5e6-fe15000afb0e",
+      "loser_ids": [
+        "bokheim:lcc-detail:eb00a418-fb25-5344-9719-72448d6bf5a4"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:61fad8b8-ac67-5160-85be-f5cca742aefc",
+      "loser_ids": [
+        "bokheim:lcc-detail:76fe0273-8989-530a-b714-48a6eda4d144",
+        "bokheim:lcc-detail:a120746c-b307-54f0-aca2-33d57dc7794d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:627bae01-57ad-5c2e-9bea-c8502a1ed517",
+      "loser_ids": [
+        "bokheim:lcc-detail:c6503d9e-d4a8-5021-b0fd-123710bf1859"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:63262b46-e70d-5782-85b7-972eeab6daf8",
+      "loser_ids": [
+        "bokheim:lcc-detail:dc187624-9484-5c04-8855-f8f509260c71"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6346b0bf-a471-5c02-897b-059e35540534",
+      "loser_ids": [
+        "bokheim:lcc-detail:92cf9bb4-3de9-57f6-94f6-a2977fe678ed",
+        "bokheim:lcc-detail:d4170237-7c10-51da-8624-f999fc4d736d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:63781cff-bed5-5df7-a9b9-960c88f2ede6",
+      "loser_ids": [
+        "bokheim:lcc-detail:f573bb38-7714-58aa-89f1-1da91632b40d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:638f5733-be7f-54ba-baff-00fdf78a09d3",
+      "loser_ids": [
+        "bokheim:lcc-detail:be6987bf-48ee-5076-b96a-b70ddb8b8050"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:63b79d00-1ecb-5d73-a44e-eeaf918bc2b0",
+      "loser_ids": [
+        "bokheim:lcc-detail:c6569d6d-2ed6-5db2-8112-53eef9cfdd9a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:63c26ef2-409d-52dd-b7c8-6d6c6ac27b71",
+      "loser_ids": [
+        "bokheim:lcc-detail:ef36ab7f-5b2e-53d3-ac71-519461572717"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:63d85b2a-85fc-55c5-8d25-4fd981c8c02f",
+      "loser_ids": [
+        "bokheim:lcc-detail:7d0e8866-1f45-5e65-893e-eb69482a4609"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:64ab3788-9afe-50e0-81bb-92950adea1d8",
+      "loser_ids": [
+        "bokheim:lcc-detail:cab44968-eb5f-5929-9d33-4a9945246884",
+        "bokheim:lcc-detail:d48dd8e9-6ada-52e4-824b-32bbd2ddf15e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6520194f-459d-5abb-b394-b7a6714121b6",
+      "loser_ids": [
+        "bokheim:lcc-detail:7b336978-0343-5035-bb0d-e4ef87ac73d2",
+        "bokheim:lcc-detail:f4d3e969-3a1a-53ed-8829-44819f0b2527"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:65ad49e6-7a6a-5a22-8134-d495450c4d7a",
+      "loser_ids": [
+        "bokheim:lcc-detail:af390365-4bc8-51ce-a919-ad07cea273a3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:65e5e4be-3eac-5de6-8bdf-8a5c2ebb09a4",
+      "loser_ids": [
+        "bokheim:lcc-detail:ceb1c91b-7819-566a-a6b3-672cf5c7f80c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:664d8217-ad07-51f8-aef0-b917dc2a9170",
+      "loser_ids": [
+        "bokheim:lcc-detail:e8954276-20fe-57d0-9b9c-cee481c0452e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:66e28736-f733-58dd-9ee0-c27ba40e5183",
+      "loser_ids": [
+        "bokheim:lcc-detail:697698d1-db9a-580a-b197-77869744aad3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6731c15e-24aa-5364-b9e0-9a894a7b9edb",
+      "loser_ids": [
+        "bokheim:lcc-detail:9d09fab2-0ee1-537f-869b-e931708cb0aa"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:68868fa0-9ffe-5508-b0db-76fddf05e057",
+      "loser_ids": [
+        "bokheim:lcc-detail:8e4a9be6-dcb4-552e-aae7-d9d9970de7ec",
+        "bokheim:lcc-detail:96d94443-b88b-572b-a50f-14277bbedb33"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6892eb56-0a56-5808-9ea9-efbfe4c5d6ee",
+      "loser_ids": [
+        "bokheim:lcc-detail:6b791a0e-09c2-57be-9b24-568756cf2620"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:69131eaa-2adb-5ea5-b8ce-3a6a0d97ac38",
+      "loser_ids": [
+        "bokheim:lcc-detail:e4601be5-d7ab-508e-9eb1-53321d836854",
+        "bokheim:lcc-detail:f76bb192-c183-5fb2-9ce6-1c064a9f3706"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:692f529e-91ab-56f8-a70a-362d35d1dc44",
+      "loser_ids": [
+        "bokheim:lcc-detail:b765df13-ac9d-5fd5-8b6f-1a283806c7b7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:69c8c2fe-75f9-585a-943a-7fe8f7f9b892",
+      "loser_ids": [
+        "bokheim:lcc-detail:95535786-55df-5fe1-ba81-5878e2488b1f",
+        "bokheim:lcc-detail:e3c49be7-d4ac-5c83-a741-59f55b79ec60"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6a2562c8-8a71-5b53-a3d1-5ff0bd990e90",
+      "loser_ids": [
+        "bokheim:lcc-detail:b09247b3-a941-5c57-9e15-6bb30857179b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6a9befea-2bdc-5b62-945b-7a36cb68bb76",
+      "loser_ids": [
+        "bokheim:lcc-detail:70e4775b-5a91-5641-b69c-da228bc32380"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6a9eecb1-4e78-5345-b95b-2c0d6a53b655",
+      "loser_ids": [
+        "bokheim:lcc-detail:d0cfc590-80c7-58df-9f0e-068158cc89d0"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6a9fd3a5-1d2c-5830-9e57-c7891a13ee90",
+      "loser_ids": [
+        "bokheim:lcc-detail:c268ed37-fb15-586a-b104-59e7c2f99122"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6ab4064b-f857-5c54-88fb-c1466c0170ea",
+      "loser_ids": [
+        "bokheim:lcc-detail:8c01eb50-2017-5516-8c0c-7aa68ac15134"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6ab498ef-0489-5b72-b1da-ac9ab9a41836",
+      "loser_ids": [
+        "bokheim:lcc-detail:ec868234-076a-5f3e-8e94-4450025a2129"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6ab74a91-6491-57f1-b8e6-02060685042e",
+      "loser_ids": [
+        "bokheim:lcc-detail:ef7db1bb-db68-5104-9840-0ddf29adf839"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6ac68a33-1f4d-515e-959a-6420dc52f60a",
+      "loser_ids": [
+        "bokheim:lcc-detail:8da479e2-c382-5fc2-a7ce-1219e6805478"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6c5f01da-bd1f-518c-9a47-c8518ea48700",
+      "loser_ids": [
+        "bokheim:lcc-detail:b3795bc5-087f-5761-bebc-3f1b2b6815ff"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6db46174-1c90-5c7a-8037-06bfdd74b9ec",
+      "loser_ids": [
+        "bokheim:lcc-detail:976527ab-1db5-5c2b-93ba-bbb935e5a4d8"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6dfd0842-eccc-552c-a67a-a2ae5967ded6",
+      "loser_ids": [
+        "bokheim:lcc-detail:959387fd-6ef8-5a54-bf3d-82dee167de18"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6dff79d1-b1a4-568b-ac16-439fa79c58b1",
+      "loser_ids": [
+        "bokheim:lcc-detail:9da2294a-ff9d-5ae8-87aa-053c70d108cc"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6e16db59-1e24-500f-a385-1d39e36b9e4b",
+      "loser_ids": [
+        "bokheim:lcc-detail:b48c5649-b9a1-5e2e-a543-05baaaad8604"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6f601cf0-a8d2-5117-88ab-741dfc0e674c",
+      "loser_ids": [
+        "bokheim:lcc-detail:749b0e67-7ebe-5742-abd3-d7aafbedc636"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6f6fdb22-eb7d-5013-9f44-7eb69876d70c",
+      "loser_ids": [
+        "bokheim:lcc-detail:e2f16a7f-a081-50d8-9aa2-179bd488759f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:6f8fa769-d7f3-5479-a6f3-803b8aefc908",
+      "loser_ids": [
+        "bokheim:lcc-detail:ca3016ca-8d5a-58b9-9a46-fbe65065f0a0"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:70123e23-b445-5198-b64e-4e70a9987053",
+      "loser_ids": [
+        "bokheim:lcc-detail:7b5555bb-fc73-5d18-ab4d-cb3eab3987de"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7025584b-5fb5-5316-b080-08c512a21648",
+      "loser_ids": [
+        "bokheim:lcc-detail:8a4bd046-7f50-5a00-9857-da1a46a58018"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:72166b0b-7323-50e1-a7eb-8089581341f8",
+      "loser_ids": [
+        "bokheim:lcc-detail:a0f16071-ecae-5af0-990d-989eca76f845"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:728863c0-903e-5ce5-8e1b-6e3c9de56eb7",
+      "loser_ids": [
+        "bokheim:lcc-detail:9fb1b445-c3a5-5768-be76-767286b29537"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:72b0e7de-0544-52b1-8120-980f13d9c249",
+      "loser_ids": [
+        "bokheim:lcc-detail:d8259516-8b4a-521f-ad7b-9da4244e25f1",
+        "bokheim:lcc-detail:dd994509-efae-5f2a-9f43-969b02e04bab"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:73f4f844-7043-58c7-b0c7-639a5c2f8d24",
+      "loser_ids": [
+        "bokheim:lcc-detail:d86021cc-b67e-56cf-9d97-897332170d93"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:73f9bc76-6e5b-5e64-bcce-4d957b715a68",
+      "loser_ids": [
+        "bokheim:lcc-detail:d2a2f686-22dc-57ac-81ef-15e0e4d7d068"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7470b429-d294-5134-8288-72ab6ccf094a",
+      "loser_ids": [
+        "bokheim:lcc-detail:cbf1a175-80e4-5833-99c8-8f8f2aa7d776"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:748b119d-99be-53eb-8fc8-e9f5e7943e2e",
+      "loser_ids": [
+        "bokheim:lcc-detail:87d3666f-8af1-556a-acb2-5eb655d1bab9"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:75532720-dc30-5d4f-8ba2-3d89f4594c5e",
+      "loser_ids": [
+        "bokheim:lcc-detail:ad8a7f77-9959-5fa3-bd94-bd6dc84233bc",
+        "bokheim:lcc-detail:db36af05-954c-5496-a69e-0493f2ba8f6c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:755d05b2-ca81-5dc5-bca4-e33909fbc6bc",
+      "loser_ids": [
+        "bokheim:lcc-detail:81b664ef-3173-5d66-9108-d19565d42760"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:75cb9352-1acf-5ac6-b3c6-e23d50c5d713",
+      "loser_ids": [
+        "bokheim:lcc-detail:ce2a15b2-17a1-513b-a718-4da36e3886bd"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:75d3f956-b606-58e8-8a9d-dc917cd2b3ac",
+      "loser_ids": [
+        "bokheim:lcc-detail:fd778a88-2d70-5b16-92e1-37edc8db79cf"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:75d70b47-35a8-58cc-ad77-eb6de0c25ab9",
+      "loser_ids": [
+        "bokheim:lcc-detail:b3172e6b-5b6b-518f-89fd-61071b2e66a2"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:76dfdc5d-f675-5d6e-85f5-4a73842f8b0c",
+      "loser_ids": [
+        "bokheim:lcc-detail:ef3af8a2-19ec-582c-b3a1-aae56e3c2992"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:779a4d90-47b7-5753-b8c6-7e66fe4fb51a",
+      "loser_ids": [
+        "bokheim:lcc-detail:9ed4d0ec-9d95-50d7-ba0d-31b088659ad2"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:785e6998-1244-596a-ad40-fc91d57d0b28",
+      "loser_ids": [
+        "bokheim:lcc-detail:946f5112-d927-5c7a-a7e8-1c92e7dfed2e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:79b96b3f-778a-5d30-8c97-4bdab2c27484",
+      "loser_ids": [
+        "bokheim:lcc-detail:f8a4fb60-5487-5e5c-91ac-80e6aa51db97"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:79e08750-6837-5437-8f79-7fc2ed0b7ecd",
+      "loser_ids": [
+        "bokheim:lcc-detail:962963b6-f9db-5955-b022-eb609a803f05"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:79e69bb1-b57a-5c9f-97a7-10c0eee4ab9f",
+      "loser_ids": [
+        "bokheim:lcc-detail:a5e98c8a-eeff-5b90-b39b-62bba2b7ea9f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:79fbc4c3-2a00-5cea-a79a-acc482bfe0b1",
+      "loser_ids": [
+        "bokheim:lcc-detail:f53585ac-e2ca-54b6-99d3-142bda7b6c7c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7a3c3f0a-23f7-52cd-9847-3dbb74caa1d5",
+      "loser_ids": [
+        "bokheim:lcc-detail:91d73740-52cd-569f-99c2-f44c082a81d5"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7a5c51a2-227d-5862-928e-03e92ec91512",
+      "loser_ids": [
+        "bokheim:lcc-detail:b721ee75-78c9-5ba6-a21b-f9cc962ef1e3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7a80e9c2-8578-5a7f-9ea4-12efa2ea5c1d",
+      "loser_ids": [
+        "bokheim:lcc-detail:edb81223-e551-5bf1-8dbd-8fa0cb39e218"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7b02c380-75ed-5f5a-a247-29ef16d39c28",
+      "loser_ids": [
+        "bokheim:lcc-detail:8c250619-4f71-5794-9507-a9cb0a095aeb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7b16df4c-aea9-5262-b192-72ee06cd9a8b",
+      "loser_ids": [
+        "bokheim:lcc-detail:7bf65e4a-c6a6-54ac-b56d-2d7c09c9d69f",
+        "bokheim:lcc-detail:e93fa7b5-7e31-5958-bd25-0fabc58e5f30"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7b24c7a3-183a-5197-834b-6a7f1a7cf311",
+      "loser_ids": [
+        "bokheim:lcc-detail:b488bdb1-d94f-565b-a2d6-dc3741cfcd39"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7be5339b-dd67-5eb8-9e4a-1af82117b316",
+      "loser_ids": [
+        "bokheim:lcc-detail:da15d4a0-29e2-5a2b-82d8-dd8582cebee6"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7c65b0a0-7468-5758-822f-58c30319d58e",
+      "loser_ids": [
+        "bokheim:lcc-detail:7ed8afd1-9b05-564d-b514-420cc9caa1cd"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7c67eb2b-e0ba-5bbd-bbf4-4bec858bbf4c",
+      "loser_ids": [
+        "bokheim:lcc-detail:9c25eccf-dc0d-5053-b97b-99d1e70c28ad"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7c9c3c1a-6668-5d34-bda2-960d0dbbea1e",
+      "loser_ids": [
+        "bokheim:lcc-detail:aa80a518-09f5-5059-a26c-61d22b8ebfad"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7dc4a212-7517-53a7-9b6a-0a8b9c4c5f48",
+      "loser_ids": [
+        "bokheim:lcc-detail:b90e29cc-e100-5dd8-94db-e1d3257efd53"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7dd2265e-c32c-5674-9bb4-bc6eaabb542d",
+      "loser_ids": [
+        "bokheim:lcc-detail:b583126e-b0ce-588f-a6a9-5503eec0f33c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7df3a755-830d-504a-b868-6c08c4caa2b6",
+      "loser_ids": [
+        "bokheim:lcc-detail:908bdd82-a1cb-5a4b-be07-f62b968b294d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7e69bda1-e5ae-5cbd-804b-7b1c3e27ab42",
+      "loser_ids": [
+        "bokheim:lcc-detail:95dd4a8c-11c0-59c4-909c-5304031e978c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:7ed32f11-ea55-5f6b-b801-2bdad951e0ad",
+      "loser_ids": [
+        "bokheim:lcc-detail:d16225cb-883e-5e28-9c0e-49bd3232d150"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:80970411-ea59-5f49-87f1-88cd7ce2672d",
+      "loser_ids": [
+        "bokheim:lcc-detail:9cf37317-5751-5bee-88c2-7c31290cec93"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:812acef4-8bf3-5172-9023-990bddaf5222",
+      "loser_ids": [
+        "bokheim:lcc-detail:88c2328e-639b-5c78-9906-36b80fa6edb9",
+        "bokheim:lcc-detail:dae554d3-9e7b-58eb-afb0-9cf4d8fa0596"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:81338526-848c-5591-985a-9aa2624765ab",
+      "loser_ids": [
+        "bokheim:lcc-detail:9e86d382-12b6-5cfa-89f8-58bb97ff4483"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:81991ffa-6b71-5839-9462-a62074b02010",
+      "loser_ids": [
+        "bokheim:lcc-detail:b474c3ae-39fb-51c9-9ffd-a947522ca3ba"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:81cc5303-07d3-54c3-9428-4da1a360f26c",
+      "loser_ids": [
+        "bokheim:lcc-detail:82d99559-2622-5100-9f29-0640d5a59414"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:827c0256-8185-54ff-92d2-a96dc69ed8c0",
+      "loser_ids": [
+        "bokheim:lcc-detail:c5d1a974-1213-5a52-85ad-2003430ad258"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8299f390-91b6-5d06-91c9-eefa1147e077",
+      "loser_ids": [
+        "bokheim:lcc-detail:fe8b2b37-26a7-5cbb-a3b6-409c0288833b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:82dc9cd4-e82a-5d3d-a745-c7b4eaa0f171",
+      "loser_ids": [
+        "bokheim:lcc-detail:acd0804a-bc60-53c2-b06f-e307af3572e7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:83848615-1b21-5774-a55a-f65c666b443c",
+      "loser_ids": [
+        "bokheim:lcc-detail:c33eda8f-13e4-5d1b-85ca-626c61088c43"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:843167a0-ea65-54e7-9605-f20b268666a0",
+      "loser_ids": [
+        "bokheim:lcc-detail:cc163d2c-a771-5908-991a-4fc478183982"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:843779ce-e20b-5485-9b46-60c03719acab",
+      "loser_ids": [
+        "bokheim:lcc-detail:ab5f29b6-3a0c-5448-a102-502cb7841f24"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:846f4d58-1380-553c-95aa-a6ef4a4414cc",
+      "loser_ids": [
+        "bokheim:lcc-detail:a1124deb-f9ac-5b65-bec6-321780201a12"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8494e954-1cf7-554b-ab6a-93932df647f8",
+      "loser_ids": [
+        "bokheim:lcc-detail:be9e36bb-33bf-5da9-9817-b09b37718673"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:84da4bb3-b6a1-5df9-9a07-be792341ef6a",
+      "loser_ids": [
+        "bokheim:lcc-detail:f79f0d2c-377d-529e-b2fb-bf414d686046"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:85c35a1e-37c1-5ed4-a661-60a2e65b21ba",
+      "loser_ids": [
+        "bokheim:lcc-detail:e8622f35-0b5b-5f8f-87b3-bd5ea97fc656"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8639a963-a58b-5f14-b654-632beab058a8",
+      "loser_ids": [
+        "bokheim:lcc-detail:913fe82c-acb9-545d-ac38-e2dfa6bda3be"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:874a3438-6bbe-5076-86be-4aa54cfbbd82",
+      "loser_ids": [
+        "bokheim:lcc-detail:aae58f28-5134-5f92-b58c-7f412dd2af1f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:874e8f18-f691-5b8d-8ebd-b762953c8afa",
+      "loser_ids": [
+        "bokheim:lcc-detail:c2f2254c-28eb-5f1e-ab4b-d896e7c27abe"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:87983384-7599-52c6-97df-c0c4cf638c80",
+      "loser_ids": [
+        "bokheim:lcc-detail:8cf1c989-488c-5ba6-92ed-2cdac993377c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:888e1bd8-fe75-54a8-bf72-e367697f64ec",
+      "loser_ids": [
+        "bokheim:lcc-detail:bc63b265-6ba6-5593-8912-1820017d6484"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:88b0c147-7fd0-5749-98f7-6157b60d1866",
+      "loser_ids": [
+        "bokheim:lcc-detail:e85e6d88-0e8d-5b33-9dad-7448225344ac"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:88c7ed42-040d-53d0-8cc2-493fd65a4b2f",
+      "loser_ids": [
+        "bokheim:lcc-detail:bdc3b43c-b9d7-5a02-b5e3-095dc7460ed8",
+        "bokheim:lcc-detail:f1095dee-33e5-5ad5-8db8-0f9e290b107b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:89441093-6818-5078-a23f-6949649b6253",
+      "loser_ids": [
+        "bokheim:lcc-detail:ab71b3e0-5f89-5b59-914f-cc385021ac66"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8aab916b-632c-5311-ab4b-28b381f74f81",
+      "loser_ids": [
+        "bokheim:lcc-detail:97fc43fc-ad5a-52b1-a6d6-90b3537140ef"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8ad01164-0b77-5258-8c5e-c4c5dc32c3af",
+      "loser_ids": [
+        "bokheim:lcc-detail:b55bff36-305a-57ab-a7b5-90b7c0ab6154"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8b3df500-837e-566e-a2e6-1d97217f1902",
+      "loser_ids": [
+        "bokheim:lcc-detail:9d945dcb-d96f-5d9a-a285-499c917f55e8"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8b4925e5-97d2-52dc-8473-8f615dc0af72",
+      "loser_ids": [
+        "bokheim:lcc-detail:98c87219-aca2-5c38-b243-76d777d40310"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8b9ce484-885b-5ece-9742-43fa36bd6084",
+      "loser_ids": [
+        "bokheim:lcc-detail:ca5cd899-b79f-55fe-a096-5495dfc8efcc",
+        "bokheim:lcc-detail:cc35dd71-c67d-5fbf-a863-8ba454f20bf3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8c68b281-0908-5571-be0b-9cf20d8d4beb",
+      "loser_ids": [
+        "bokheim:lcc-detail:a7724850-7309-5e30-9d96-f0393d605b67",
+        "bokheim:lcc-detail:dd76eb6e-5db0-572b-b865-3595a6fc8e95"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8d431a54-8978-5052-abfb-dc19efbcecda",
+      "loser_ids": [
+        "bokheim:lcc-detail:c51e0bd3-f503-5338-8382-62bb93039db1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8d5ea532-d008-53c1-95cd-6b69bd70bc38",
+      "loser_ids": [
+        "bokheim:lcc-detail:da913b88-e140-56cd-afe1-9f667ccc72a9"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8def072e-863b-58c1-b3c1-08547735fe6a",
+      "loser_ids": [
+        "bokheim:lcc-detail:f118d38c-d8d9-589c-b9b1-643882b03695"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:8df3649a-0096-5826-a48e-9d8af01f91bb",
+      "loser_ids": [
+        "bokheim:lcc-detail:bb5e3211-7704-553f-a997-768ab1c72521"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:909e3b2a-772a-58ed-9f88-9c5f4dac3b8d",
+      "loser_ids": [
+        "bokheim:lcc-detail:cd3b2991-2bd8-567d-b49a-955c13dd98ce"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:911fd3ee-8dbb-5166-8d03-55bc74515665",
+      "loser_ids": [
+        "bokheim:lcc-detail:f3f513c8-0d0c-53fd-a32c-3e6a4b3c9eb3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:91aaddc3-26be-5711-9af3-df73f896792e",
+      "loser_ids": [
+        "bokheim:lcc-detail:c5a3e739-98c4-53d1-8de9-6c992948a426"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:91fae6f3-1565-5297-937a-1aa058f93918",
+      "loser_ids": [
+        "bokheim:lcc-detail:d2f240a6-c855-5916-8a49-9065be6b1efd",
+        "bokheim:lcc-detail:e3cb25bc-04b6-5237-bd84-15afeba92116"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:920c0563-bc94-54a1-aff8-6335ea997964",
+      "loser_ids": [
+        "bokheim:lcc-detail:d34ad074-2614-501f-ae65-e72d209cd4a1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:944c7e75-d314-518c-9880-ef09a3e2583a",
+      "loser_ids": [
+        "bokheim:lcc-detail:cbd247a1-8dff-506a-aade-79dd3d2c904f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:96f02962-a4e2-57ad-9296-c9dca42c5915",
+      "loser_ids": [
+        "bokheim:lcc-detail:e9fb3df5-86f0-5e4a-adbc-b5056c542ba0"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:9813203c-bbdb-5541-9f1e-90f653ede27a",
+      "loser_ids": [
+        "bokheim:lcc-detail:d772f913-7640-5a97-9ad4-d02402a61e6b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:98e2feb4-be39-5d1b-82a8-a08f87f3b8ed",
+      "loser_ids": [
+        "bokheim:lcc-detail:ce066d20-4801-5b18-bdde-fab378f6491b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:98f00da0-cffe-509f-b81d-a9f2b0d3f734",
+      "loser_ids": [
+        "bokheim:lcc-detail:9aeba8c2-482b-5e9c-a42b-5dfc6aabce4d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:9a18c95b-cb83-559a-961d-7e08fc40be2a",
+      "loser_ids": [
+        "bokheim:lcc-detail:a79b080b-1abd-5450-b7c2-d809338b3dbc"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:9aad17d3-09af-56ec-895e-c3095c162a96",
+      "loser_ids": [
+        "bokheim:lcc-detail:b317d721-518f-5794-8fd6-725d389f86be"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:9b796788-c0a8-51fe-8b7b-452d23873acf",
+      "loser_ids": [
+        "bokheim:lcc-detail:ad88e32b-788d-5499-b938-b17da39aab27"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:9b889952-b7a8-56dd-bd90-ce7b88a73b5c",
+      "loser_ids": [
+        "bokheim:lcc-detail:ba58e0b7-1a8d-5ff2-9f24-d3d5cc566b8b"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:9c025e15-650c-5d06-accc-bfdd7fce5cac",
+      "loser_ids": [
+        "bokheim:lcc-detail:bb6cd1eb-e66b-5483-b3bf-b7a495569958"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:9d3e8e1c-bcbf-5ffe-852b-a7cea7006f57",
+      "loser_ids": [
+        "bokheim:lcc-detail:c63cf9bb-7717-5a4d-b287-3ded4c46163d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:9ea333c2-f630-5e3f-a1af-f60dc20d7816",
+      "loser_ids": [
+        "bokheim:lcc-detail:a758034d-95ad-5ceb-a560-72b86778a0c7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:9eccc6f1-6f34-5853-a7a8-3f173867fb08",
+      "loser_ids": [
+        "bokheim:lcc-detail:a9e0a64b-a7a5-5a94-9231-3e22f8b99dee"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:9f076977-539b-5449-9861-e28329643b55",
+      "loser_ids": [
+        "bokheim:lcc-detail:f3c541c7-6496-5398-8df6-ee0b576d4461"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a008c035-9b8a-5fb9-91b1-5ad4d7d774de",
+      "loser_ids": [
+        "bokheim:lcc-detail:cd7633c8-ba58-5c77-9fcc-576ee08e3e64"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a06b3e2b-ae8b-5d2b-b401-17febf7c9c99",
+      "loser_ids": [
+        "bokheim:lcc-detail:e254b123-68b0-5f69-815a-fbc5b4734286"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a0e96141-d6e9-50a5-8dd6-86c04d7da435",
+      "loser_ids": [
+        "bokheim:lcc-detail:ad6c5bab-c933-57ac-92c0-1d16d9fef725"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a133ea12-45ed-5fdf-a70c-e517b9483c61",
+      "loser_ids": [
+        "bokheim:lcc-detail:bdf5921d-0547-5b06-be41-b37f791ed208"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a13a385d-a260-5899-9e69-73892a887c22",
+      "loser_ids": [
+        "bokheim:lcc-detail:daedd8a1-4a70-5d90-8bc5-321c2a5e3945"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a17638a1-3c3b-549b-a4a3-8cc965db4ac8",
+      "loser_ids": [
+        "bokheim:lcc-detail:c93259e1-7c44-5a20-8382-18395ab3c6b2"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a1f6b84b-8e89-5f02-940e-12be3c269359",
+      "loser_ids": [
+        "bokheim:lcc-detail:b7b93b0b-1503-5824-82ee-822a4c1287b4"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a22e6623-b7ee-59fe-83d3-d8710b84f4cd",
+      "loser_ids": [
+        "bokheim:lcc-detail:c1bdd0a6-c54e-5526-b8df-d71a3bde7a68"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a3094d81-0a20-5950-bbbc-984a5aa35f89",
+      "loser_ids": [
+        "bokheim:lcc-detail:f320629c-4687-51cb-b41f-f3cbd19ce0b3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a4202d80-73d8-51ce-88e3-5ca98be01563",
+      "loser_ids": [
+        "bokheim:lcc-detail:f58a30d2-03ba-5887-9347-7441a795cf29"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a486a32a-c180-5062-aeff-a4c1378da715",
+      "loser_ids": [
+        "bokheim:lcc-detail:f54a3de9-f7ef-590b-883f-ad46a7ea6745"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a58ce4cf-0cba-574b-9693-2e24ee804702",
+      "loser_ids": [
+        "bokheim:lcc-detail:e5958c30-8200-574b-8800-78424f3abff0"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a6f4ee40-fed6-5bbe-ad38-9249a74d2196",
+      "loser_ids": [
+        "bokheim:lcc-detail:fd7dbb4f-a698-543b-b372-4cb3a3383737"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a707d2a8-2659-55bb-9b8e-07a57f25c3eb",
+      "loser_ids": [
+        "bokheim:lcc-detail:e928e77f-1015-50a8-ae2c-adceda26cedf"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a770baef-f03a-5d9f-af6a-02dccf6c8122",
+      "loser_ids": [
+        "bokheim:lcc-detail:d05bf24d-164f-53d4-a490-30ecfa26e1c8"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a7ffc4b3-f1f0-5453-9fd3-e2a4827f7ded",
+      "loser_ids": [
+        "bokheim:lcc-detail:d4acd259-7ac2-57d7-b8cb-66c214904114"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a83f5318-5444-5678-a4b8-ee4f42d5027e",
+      "loser_ids": [
+        "bokheim:lcc-detail:e12b7f0e-8205-5797-860f-e13ecc0812f3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a861425d-6782-5fb8-9166-1ad9b4c73daf",
+      "loser_ids": [
+        "bokheim:lcc-detail:ed55ad50-4c43-5b53-9714-9a0555a5d5bc"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a88e7ab6-be06-55b0-b43c-b886465fa3d9",
+      "loser_ids": [
+        "bokheim:lcc-detail:d4d15ee7-dae5-55b3-8292-dcf5eabc4bd1"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a8b4b006-96d6-57b6-b140-077633c510bf",
+      "loser_ids": [
+        "bokheim:lcc-detail:af2a5eca-e9a2-5e57-a748-d3d684f57c9e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:a931e60b-a995-5f0b-89e2-4ce4ab11fde7",
+      "loser_ids": [
+        "bokheim:lcc-detail:e0800843-fcad-5532-bf87-f79d537951c6"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:aa24299a-4236-5fac-ba7a-38b3cf35a122",
+      "loser_ids": [
+        "bokheim:lcc-detail:c2dfae5b-6ad8-54d5-8f20-1ee73803d19f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:aa944ae1-aa3a-575d-a7d6-6ac855aac739",
+      "loser_ids": [
+        "bokheim:lcc-detail:ad2d6172-cf64-5798-8a49-46bbe8c63740"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:aa99aad5-52a4-5df0-b542-0b7bdaad2546",
+      "loser_ids": [
+        "bokheim:lcc-detail:f1be28c1-1582-53fd-b216-34d333c1f08a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:aaf3de9b-41b1-5d58-ad79-631d6d9b460c",
+      "loser_ids": [
+        "bokheim:lcc-detail:e31423c9-1287-50a7-ad4f-7b70e97b56bb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:ab9f23c4-af6c-55d7-8a10-d46640233f0f",
+      "loser_ids": [
+        "bokheim:lcc-detail:cfd54107-dc39-5c9a-ba6b-2016226916bb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:ac9fb66a-630b-5bbe-8c2b-028f0038e83a",
+      "loser_ids": [
+        "bokheim:lcc-detail:cb7d08c9-f68e-5489-ade8-9794c82d7b36"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:ad3bce7e-68ea-53d9-8eea-9bc7832d3fac",
+      "loser_ids": [
+        "bokheim:lcc-detail:fb89e928-b338-591b-a036-5c355e930ee3"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:ad4d5442-e3d9-5eab-ac48-cee2f5491fd0",
+      "loser_ids": [
+        "bokheim:lcc-detail:dc4d7d2c-7e34-5940-89a0-a3a876b8cd79"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:adbff832-4800-5a52-b843-e1e6ef848f17",
+      "loser_ids": [
+        "bokheim:lcc-detail:f1266bed-5f6f-50d8-a01c-1f8100800dd6"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:adf04888-cc18-54e2-91ba-adcc53a728b7",
+      "loser_ids": [
+        "bokheim:lcc-detail:f7ce5582-b1de-556e-b196-8eeb0fc23888"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:ae93ff44-dd1a-5fb0-9ab4-df553fa9eb60",
+      "loser_ids": [
+        "bokheim:lcc-detail:c91e0fa1-7abd-555d-b429-110c2b1ec507"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:af255c6e-303d-542b-8dba-5e6d6df12624",
+      "loser_ids": [
+        "bokheim:lcc-detail:eb2daa13-b77c-5ac5-9b2a-0a1676aa4ce7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:afbb5a00-7fce-56c7-9a3b-bd52ebdeed57",
+      "loser_ids": [
+        "bokheim:lcc-detail:e6833ef4-b10f-5825-b6b1-75eadbe6ac29"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:b09fb243-a683-5d16-8679-e64ee1f8b882",
+      "loser_ids": [
+        "bokheim:lcc-detail:e2cb1bd3-af8b-5e85-8252-bb50774006db"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:b0bacbda-70f0-5f1f-b4be-f665bc6b1ba8",
+      "loser_ids": [
+        "bokheim:lcc-detail:d51afb4a-3d6f-5991-b38d-701b730b2356"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:b2ad8868-8c09-5a2a-82db-a1c734b4eded",
+      "loser_ids": [
+        "bokheim:lcc-detail:dddefd3a-f960-5318-a771-adf04d1ce63f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:b3dff352-78c1-5f41-9ec6-3f9a8abfa4af",
+      "loser_ids": [
+        "bokheim:lcc-detail:ea4e0efb-575a-5501-917e-b2d0621b7f67"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:b4a26af5-40db-5bad-8cae-1403d780e470",
+      "loser_ids": [
+        "bokheim:lcc-detail:d6b63460-1605-5f69-a7a8-365bcbae2cf7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:b54be8b3-a666-5a2d-b1f5-5e311225d083",
+      "loser_ids": [
+        "bokheim:lcc-detail:d94742d9-53d6-5aaf-b156-e5feab6c1f5a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:b90c9142-91bc-593b-842b-608b11c755f0",
+      "loser_ids": [
+        "bokheim:lcc-detail:f048fedb-57d7-5eaa-b2d0-e3dc9e5b2f1f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:b95712dd-ff24-5b05-bfcc-b3416cddcc2a",
+      "loser_ids": [
+        "bokheim:lcc-detail:de0c4f51-180a-5a26-8f28-6e0eab2cff5d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:b9f5d73b-4f28-5f5a-8263-33b15c588b7b",
+      "loser_ids": [
+        "bokheim:lcc-detail:d38fc7e0-43f8-5ce8-865c-eb11da85fb26"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:ba0651e6-cdcc-53a6-98ba-1e6f8a0c0a82",
+      "loser_ids": [
+        "bokheim:lcc-detail:d096adf5-0f4f-5c4f-ad79-71c2dfd0d0ab",
+        "bokheim:lcc-detail:f1f3e482-5e71-58ab-bf67-fa3f32ed5e3e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:ba0742a7-29c6-5c8b-862a-f2a90fe92be1",
+      "loser_ids": [
+        "bokheim:lcc-detail:c4ed122f-b405-5709-a47a-b391efbca181"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:bb6c6db1-db3f-5d0c-b7b2-54031db33265",
+      "loser_ids": [
+        "bokheim:lcc-detail:bbde618f-78b6-5b5c-921c-f3d09240483e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:bd8630a4-6c34-5c5a-9605-dd6a486f402c",
+      "loser_ids": [
+        "bokheim:lcc-detail:c68b9ddb-2bf2-572e-8694-ebc090cd75bb"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:bdfd47f6-9ef8-5b0b-badb-5bc239e59d61",
+      "loser_ids": [
+        "bokheim:lcc-detail:d34b6148-a826-529b-b3ce-5425fc7a2892"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:be41dff4-3a89-5e8d-a1db-f1da77af92dd",
+      "loser_ids": [
+        "bokheim:lcc-detail:fd988a1a-240a-5e1a-b8ab-e62e75d7c217"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:beb6de62-498f-51cc-abf8-f19bc13b3fa7",
+      "loser_ids": [
+        "bokheim:lcc-detail:ea3e87c9-02a0-57f7-9bbe-5c1db9122283"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:c040bf6d-ff56-5ee1-9920-b0fdfc31e89f",
+      "loser_ids": [
+        "bokheim:lcc-detail:fd023ce8-411e-55ef-9729-25188a101e6d"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:c0ba3500-cc47-5d27-b70f-ab98cd933e82",
+      "loser_ids": [
+        "bokheim:lcc-detail:fedfe726-1a58-56c8-adc8-620e57427861"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:c2a3dccd-7cce-54a8-9552-4f328d134f94",
+      "loser_ids": [
+        "bokheim:lcc-detail:f3ad445c-947b-5317-8be5-78238f5e98b6"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:c3a3767f-f16e-5caf-a5be-cb1af7d56492",
+      "loser_ids": [
+        "bokheim:lcc-detail:f598ae99-4002-56fe-84c2-3a34984c7b36"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:c4ffc600-2d53-5e46-912d-4ee243206702",
+      "loser_ids": [
+        "bokheim:lcc-detail:cc6c5a39-10d4-5406-a56d-d162ea9a07e6"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:c5ee2af7-c5df-571d-877e-0169e19ce600",
+      "loser_ids": [
+        "bokheim:lcc-detail:d7dceb17-e6b8-5640-af0d-f1aaa38f4f11"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:c636ef87-7fd9-5b0f-8e09-ea4489c42d26",
+      "loser_ids": [
+        "bokheim:lcc-detail:fd4192e2-ae99-5eb2-9178-1229c8e63f7f"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:c65a6455-d42e-53ab-967b-a73ef5e4edb6",
+      "loser_ids": [
+        "bokheim:lcc-detail:dee39ab5-68c9-5d08-a8d1-7f172df8dafa"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:c7f1e906-0908-59d4-a837-54778664d5ee",
+      "loser_ids": [
+        "bokheim:lcc-detail:d9277cb9-c707-547f-93ce-7026f0d383de"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:c81f4a68-760e-5fe1-bd15-14e830360ad4",
+      "loser_ids": [
+        "bokheim:lcc-detail:e32a0f2a-2e82-58f5-b8f7-32ab971ccc07"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:caef7608-d91b-51c1-84f8-13812e5dd924",
+      "loser_ids": [
+        "bokheim:lcc-detail:fb70038f-b1a1-5aea-854f-03c75af11a7c"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:cc450a57-7989-5ea7-b708-51ff2d5439cb",
+      "loser_ids": [
+        "bokheim:lcc-detail:fd55d2d3-1bbd-5d26-a74f-1bde6b6b6c95"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:ccbf4e26-2aba-520c-a97c-d317c6ba3c95",
+      "loser_ids": [
+        "bokheim:lcc-detail:ec825289-7ac0-543e-a3fc-efe9f6534dda"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:ce5ec5ca-f593-5572-87d4-90a87a1cf647",
+      "loser_ids": [
+        "bokheim:lcc-detail:e8073b4a-a35e-548a-8f50-a113c7f749a8"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:d0095a7c-c80c-5908-8c1b-6254a82468de",
+      "loser_ids": [
+        "bokheim:lcc-detail:f81110c5-c771-5086-af1d-2ca42443aab2"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:d2a9e1df-a2be-5e70-90c5-7df45fcf3c89",
+      "loser_ids": [
+        "bokheim:lcc-detail:ed68f23c-81fd-5b4b-bb11-fbc8eb75ba78"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:d2ba7896-53ef-5081-9ee9-56f6c748089b",
+      "loser_ids": [
+        "bokheim:lcc-detail:ef488274-458b-5410-9ccb-99c94f71d861"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:d61835cc-6091-5c4a-86b5-693c51e44546",
+      "loser_ids": [
+        "bokheim:lcc-detail:d8fd2c60-e868-5755-a4c2-05b51596b637"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:d650d639-6258-5894-beb0-ed5e7252d05f",
+      "loser_ids": [
+        "bokheim:lcc-detail:ea89604c-abd1-5081-b1a9-793889ea7c63"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:d69661f7-9b3c-54b0-a2fc-58c167c494f6",
+      "loser_ids": [
+        "bokheim:lcc-detail:e60189fd-2630-51b8-a696-5e8db4025ee9"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:dbc591fc-6879-5864-b9ba-713c502d5ca9",
+      "loser_ids": [
+        "bokheim:lcc-detail:ed03b8f7-c532-58cb-85d1-1da9128a490e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:dc3b1bed-5869-54c8-a8e1-b1dd83336b8a",
+      "loser_ids": [
+        "bokheim:lcc-detail:f3f50453-a131-5b27-ab03-a74a45655a13"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:e8ad811a-5291-55ac-a84e-791998fe9647",
+      "loser_ids": [
+        "bokheim:lcc-detail:f2e54dd9-3b18-5ac6-b0a8-3cb770446f18"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:f0c91f16-e215-5738-b32a-0126000b9396",
+      "loser_ids": [
+        "bokheim:lcc-detail:f2f168ba-147a-5c12-8fb1-82a6d3a48b63"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:f227e2f2-3d3d-51a1-838d-ad20a1646d59",
+      "loser_ids": [
+        "bokheim:lcc-detail:ff2cef5d-f044-5919-9ba3-9b0f779fdf81"
+      ]
+    },
+    {
+      "winner_id": "unified:20b71263-7e5d-5453-b845-dd969aa0088c",
+      "loser_ids": [
+        "bokheim:history-lcc:615ccd73-a25d-50e6-9621-bbe11e6eb3bb"
+      ]
+    },
+    {
+      "winner_id": "unified:29568c3f-a319-50fe-9d3f-c3103e6bd425",
+      "loser_ids": [
+        "unified:ace7c172-e2e8-5f80-be12-cdeedb378d67",
+        "unified:cb0902eb-83f3-5c1f-b4b5-a025c92b3ddc"
+      ]
+    },
+    {
+      "winner_id": "unified:815bc31e-9deb-52b4-a1ab-d321c06cd731",
+      "loser_ids": [
+        "unified:b3b93756-0d13-52ce-8e70-24fc118976bc"
+      ]
+    },
+    {
+      "winner_id": "unified:9e48978f-3e57-5f22-ab9c-5cb64f74e1aa",
+      "loser_ids": [
+        "unified:bf0dbb96-20dd-5e4b-ac85-4f33453fac7a"
+      ]
+    },
+    {
+      "winner_id": "unified:d8f37fe4-189e-5caf-a460-2b4ce25c20a0",
+      "loser_ids": [
+        "bokheim:lcc-detail:321eca15-2fe2-53e1-8234-e23c8a071cc8"
+      ]
+    }
+  ],
+  "removed_concepts": 643,
+  "added_edges": 645,
+  "transferred_selectors": 158,
+  "transferred_labels": 7,
+  "renamed_concepts": 5
+}

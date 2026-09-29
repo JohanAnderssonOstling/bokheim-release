@@ -1,0 +1,62 @@
+{
+  "scope": "Two proposals only, under context-preservation rule. Retain substantive parent subjects and their disciplinary context. No changes applied.",
+  "candidates": [
+    {
+      "number": 1,
+      "source": 53140,
+      "source_label": "Human-Computer Interaction Studies",
+      "target": 98,
+      "target_label": "Human-Computer Interaction",
+      "children": [],
+      "codes": {
+        "lcc_selector": [
+          [
+            53140,
+            "QA76.9.H85"
+          ]
+        ],
+        "lcc_range": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "action": "Merge redundant child into parent, transfer all codes, promote any children, add no aliases."
+    },
+    {
+      "number": 2,
+      "source": 561,
+      "source_label": "Buildings",
+      "target": 5699,
+      "target_label": "Buildings by Type & Use",
+      "children": [
+        {
+          "id": 562,
+          "label": "Landmarks & Monuments"
+        },
+        {
+          "id": 563,
+          "label": "Nonresidential Buildings"
+        },
+        {
+          "id": 564,
+          "label": "Religious Buildings"
+        },
+        {
+          "id": 565,
+          "label": "Residential"
+        }
+      ],
+      "codes": {
+        "lcc_selector": [],
+        "lcc_range": [],
+        "bisac_selector": [
+          [
+            561,
+            "ARC024000"
+          ]
+        ],
+        "ddc_selector": []
+      },
+      "action": "Merge redundant child into parent, transfer all codes, promote any children, add no aliases."
+    }
+  ]
+}

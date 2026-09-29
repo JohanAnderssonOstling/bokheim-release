@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Semantic table placement visual test</title>
+  <style>
+    body { margin: 44px; color: #20242b; font-family: sans-serif; }
+    h1 { margin: 0 0 14px; font-size: 32px; }
+    .lead { height: 330px; border-bottom: 2px solid #cad0d8; font-size: 19px; }
+    table { width: 560px; border: 8px solid #17788a; border-spacing: 0; background: #d9f3f6; font-size: 20px; }
+    caption { padding: 10px; background: #8bd3df; font-size: 22px; font-weight: bold; }
+    th, td { padding: 9px 14px; border-bottom: 2px solid #72bdca; text-align: left; }
+  </style>
+</head>
+<body>
+  <h1>Semantic table placement</h1>
+  <div class="lead">Only part of this compact table would fit at the bottom of the page.</div>
+  <table>
+    <caption>Table 1. A compact comparison</caption>
+    <tr><th>Mode</th><th>Result</th></tr>
+    <tr><td>Book optimized</td><td>Kept together</td></tr>
+    <tr><td>Web compatible</td><td>Normal flow</td></tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,76 @@
+{
+  "merges": {
+    "52685": {
+      "into": 5510,
+      "old_label": "History of Philanthropy",
+      "surviving_label": "Philanthropy & Charity"
+    },
+    "5485": {
+      "into": 5510,
+      "old_label": "The church & charity",
+      "surviving_label": "Philanthropy & Charity"
+    },
+    "5487": {
+      "into": 5510,
+      "old_label": "Women & charity",
+      "surviving_label": "Philanthropy & Charity"
+    },
+    "5477": {
+      "into": 5467,
+      "old_label": "International social work",
+      "surviving_label": "Social Work"
+    },
+    "52877": {
+      "into": 12795,
+      "old_label": "Fresh-Air Funds",
+      "surviving_label": "Child Welfare"
+    },
+    "51575": {
+      "into": 12788,
+      "old_label": "Military Fitness & Sports",
+      "surviving_label": "Military Service"
+    },
+    "51576": {
+      "into": 12788,
+      "old_label": "Military Field Orders",
+      "surviving_label": "Military Service"
+    },
+    "51577": {
+      "into": 12791,
+      "old_label": "Military Ceremonies & Honors",
+      "surviving_label": "Military Life & Customs"
+    },
+    "51578": {
+      "into": 12788,
+      "old_label": "Garrison Service",
+      "surviving_label": "Military Service"
+    },
+    "51579": {
+      "into": 12788,
+      "old_label": "Army Safety",
+      "surviving_label": "Military Service"
+    },
+    "51580": {
+      "into": 5254,
+      "old_label": "Military Research",
+      "surviving_label": "Military Studies"
+    },
+    "12953": {
+      "into": 5520,
+      "old_label": "Statistical Services & Bureaus",
+      "surviving_label": "Statistics"
+    },
+    "12945": {
+      "into": 5492,
+      "old_label": "Reference",
+      "surviving_label": "Archaeology"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "User-selected table rows 1–8: thirteen subject merges. Family-history, adultery and customs candidates remain unapplied.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

@@ -1,0 +1,75 @@
+{
+  "merges": {
+    "5057": {
+      "into": 5056,
+      "old_label": "Fields",
+      "surviving_label": "Anthropology"
+    },
+    "5244": {
+      "into": 5238,
+      "old_label": "Family, Gender & Life Course",
+      "surviving_label": "Family, Population & Migration"
+    },
+    "12879": {
+      "into": 5239,
+      "old_label": "General Demography",
+      "surviving_label": "Demography"
+    },
+    "52937": {
+      "into": 12321,
+      "old_label": "Sociology Study & Research",
+      "surviving_label": "Study, Teaching & Research"
+    },
+    "5080": {
+      "into": 5079,
+      "old_label": "Folklore & Mythology",
+      "surviving_label": "Folklore"
+    },
+    "5513": {
+      "into": 5371,
+      "old_label": "Privacy & Surveillance",
+      "surviving_label": "Privacy & Surveillance"
+    },
+    "5339": {
+      "into": 5151,
+      "old_label": "Globalization",
+      "surviving_label": "Globalization"
+    }
+  },
+  "renamed": {
+    "5238": {
+      "before": "Family, Population & Migration",
+      "after": "Family, Population & Gender"
+    },
+    "5079": {
+      "before": "Folklore",
+      "after": "Folklore & Mythology"
+    }
+  },
+  "moved": [
+    {
+      "id": 5371,
+      "before": [
+        5695
+      ],
+      "after": [
+        5695,
+        5663
+      ]
+    },
+    {
+      "id": 5151,
+      "before": [
+        5601
+      ],
+      "after": [
+        5601,
+        5693
+      ]
+    }
+  ],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

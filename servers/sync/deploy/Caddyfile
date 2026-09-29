@@ -1,0 +1,129 @@
+{
+	email {$ACME_EMAIL}
+	grace_period 35s
+	servers {
+		timeouts {
+			read_header 10s
+			read_body 2h
+			write 2h
+			idle 2m
+		}
+		max_header_size 64KB
+	}
+}
+
+{$BOKHEIM_DOMAIN} {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		-Server
+	}
+
+	reverse_proxy unix//run/bokheim/sync.sock
+}
+
+{$BOKHEIM_APP_DOMAIN:app.bokheim.se} {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		Cross-Origin-Opener-Policy "same-origin"
+		Cross-Origin-Embedder-Policy "require-corp"
+		X-Content-Type-Options "nosniff"
+		-Server
+	}
+
+	# Compress the GPUI JavaScript and WebAssembly bundle in transit.
+	encode zstd gzip
+
+	# The HTML shell always revalidates, while each build's versioned bundle is
+	# immutable. A new deployment changes the bundle URL, so cached JavaScript
+	# can never be paired with WebAssembly from another build.
+	@immutable path /pkg/*
+	header @immutable Cache-Control "public, max-age=31536000, immutable"
+
+	@revalidate not {
+		path /api/* /admin/* /pkg/*
+	}
+	header @revalidate Cache-Control "no-cache"
+
+	# Credential associations must be JSON, never the SPA fallback or a redirect.
+	handle /.well-known/assetlinks.json {
+		root * /usr/local/share/bokheim-web/current
+		header Content-Type application/json
+		file_server
+	}
+
+	handle /api/* {
+		reverse_proxy unix//run/bokheim/sync.sock
+	}
+
+	redir /admin /admin/
+
+	handle_path /admin/* {
+		header {
+			Cache-Control "no-store"
+			Content-Security-Policy "default-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"
+		}
+		root * /usr/local/share/bokheim-web/current/admin
+		try_files {path} /index.html
+		file_server
+	}
+
+	handle {
+		root * /usr/local/share/bokheim-web/current
+		try_files {path} /index.html
+		file_server
+	}
+}
+
+{$BOKHEIM_METADATA_DOMAIN:meta.bokheim.se} {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		-Server
+	}
+
+	@metadata_api path /health /v1/enrichment /v2/enrichment /v2/edition-identities /v2/audiobooks/audible
+	handle @metadata_api {
+		reverse_proxy 127.0.0.1:8091
+	}
+
+	respond 404
+}
+
+{$BOKHEIM_TAXONOMY_DOMAIN:taxonomy.bokheim.se} {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		-Server
+	}
+
+	handle /releases/* {
+		root * /srv/bokheim-updates/public/taxonomy
+		header Cache-Control "public, max-age=31536000, immutable"
+		header Access-Control-Allow-Origin "*"
+		file_server
+	}
+
+	handle {
+		reverse_proxy 127.0.0.1:8093
+	}
+}
+
+{$BOKHEIM_UPDATES_DOMAIN:updates.bokheim.se} {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Access-Control-Allow-Origin "*"
+		-Server
+	}
+	root * /srv/bokheim-updates/public/updates
+	handle /v1/* {
+		header Content-Type application/json
+		header Cache-Control "no-cache"
+		file_server
+	}
+	handle /releases/* {
+		header Cache-Control "public, max-age=31536000, immutable"
+		file_server
+	}
+	respond 404
+}

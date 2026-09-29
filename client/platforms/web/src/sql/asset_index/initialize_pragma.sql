@@ -1,0 +1,1 @@
+PRAGMA synchronous=FULL; CREATE TABLE IF NOT EXISTS asset_file(name TEXT PRIMARY KEY, physical_name TEXT NOT NULL, byte_length INTEGER NOT NULL); CREATE INDEX IF NOT EXISTS asset_file_physical ON asset_file(physical_name); CREATE TABLE IF NOT EXISTS asset_revision(physical_name TEXT PRIMARY KEY, checksum TEXT NOT NULL);

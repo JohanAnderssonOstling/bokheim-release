@@ -1,0 +1,51 @@
+{
+  "merges": {
+    "13841": {
+      "into": 4581,
+      "old_label": "Christian Theology Reference",
+      "surviving_label": "Christian Theology"
+    },
+    "13017": {
+      "into": 5751,
+      "old_label": "Special Buddhist Doctrines",
+      "surviving_label": "Teachings & Doctrine"
+    },
+    "5757": {
+      "into": 4553,
+      "old_label": "Biography, Reference & Research",
+      "surviving_label": "Buddhism"
+    },
+    "6314": {
+      "into": 3220,
+      "old_label": "Modern Biography History",
+      "surviving_label": "Biography & Biographer History"
+    },
+    "9204": {
+      "into": 4715,
+      "old_label": "Collective",
+      "surviving_label": "Bibliographers"
+    },
+    "52740": {
+      "into": 11595,
+      "old_label": "Special-Enterprise Management",
+      "surviving_label": "Enterprise & Project Management"
+    },
+    "52741": {
+      "into": 11595,
+      "old_label": "International Enterprise Management",
+      "surviving_label": "Enterprise & Project Management"
+    },
+    "8843": {
+      "into": 5901,
+      "old_label": "Culinary Communication",
+      "surviving_label": "History, People, Media & Reference"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply candidates 1–8 only. Promote the five Special-Enterprise Management children into Enterprise & Project Management. Candidates 9–12 and RC705/PN4500 scope corrections remain pending.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

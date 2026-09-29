@@ -1,0 +1,133 @@
+{
+  "changes": [
+    {
+      "id": 13317,
+      "before": "History of Judaism by Country or Region",
+      "after": "Regional Jewish History"
+    },
+    {
+      "id": 13141,
+      "before": "Mathematical Optimization & Programming",
+      "after": "Mathematical Optimization"
+    },
+    {
+      "id": 6703,
+      "before": "Mechanotherapy. Massage, exercise, etc.",
+      "after": "Mechanotherapy"
+    },
+    {
+      "id": 10304,
+      "before": "Medical Services, Hospitals & Red Cross",
+      "after": "WWII Medical Services"
+    },
+    {
+      "id": 10451,
+      "before": "Methodology. Relation to other sciences",
+      "after": "World History Methods"
+    },
+    {
+      "id": 2575,
+      "before": "Practice of dentistry. Dental economics",
+      "after": "Dental Practice & Economics"
+    },
+    {
+      "id": 5928,
+      "before": "Professional Roles, Leadership & Ethics",
+      "after": "Nursing Practice & Ethics"
+    },
+    {
+      "id": 5454,
+      "before": "Psychotropic drugs and other substances",
+      "after": "Psychoactive Substances"
+    },
+    {
+      "id": 9458,
+      "before": "Reactor fuels. Enrichment. Reprocessing",
+      "after": "Nuclear Fuel Processing"
+    },
+    {
+      "id": 7628,
+      "before": "Reagents, indicators, test papers, etc.",
+      "after": "Chemical Reagents & Indicators"
+    },
+    {
+      "id": 307,
+      "before": "Sewage collection and disposal systems.",
+      "after": "Sewage Collection & Disposal"
+    },
+    {
+      "id": 309,
+      "before": "Street cleaning. Litter and its removal",
+      "after": "Street Cleaning"
+    },
+    {
+      "id": 4729,
+      "before": "Titles of honor, rank, precedence, etc.",
+      "after": "Titles, Rank & Precedence"
+    },
+    {
+      "id": 13092,
+      "before": "U.S. Teachers Colleges & Normal Schools",
+      "after": "U.S. Teacher Training Colleges"
+    },
+    {
+      "id": 370,
+      "before": "Agricultural machinery. Farm machinery",
+      "after": "Farm Machinery"
+    },
+    {
+      "id": 9704,
+      "before": "Animal weapons for defense and offense",
+      "after": "Animal Weaponry"
+    },
+    {
+      "id": 9476,
+      "before": "Art study in universities and colleges",
+      "after": "University Art Education"
+    },
+    {
+      "id": 9859,
+      "before": "Art teacher training, recruiting, etc.",
+      "after": "Art Teacher Training & Hiring"
+    },
+    {
+      "id": 9821,
+      "before": "Audiology. Hearing disorders. Deafness",
+      "after": "Audiology & Hearing Disorders"
+    },
+    {
+      "id": 5085,
+      "before": "Boards of trade. Chambers of commerce.",
+      "after": "Chambers of Commerce"
+    },
+    {
+      "id": 5093,
+      "before": "Business cycles. Economic fluctuations",
+      "after": "Business Cycles"
+    },
+    {
+      "id": 9613,
+      "before": "Chronobiology. Periodicity. Biorhythms",
+      "after": "Biological Rhythms"
+    },
+    {
+      "id": 443,
+      "before": "Communication of technical information",
+      "after": "Technical Communication"
+    },
+    {
+      "id": 8510,
+      "before": "Conservation and restoration of prints",
+      "after": "Print Conservation"
+    },
+    {
+      "id": 6190,
+      "before": "Disinfection & Decontamination Methods",
+      "after": "Disinfection & Decontamination"
+    }
+  ],
+  "count": 25,
+  "over40_before": 1,
+  "over40_after": 1,
+  "aliases_added": 0
+}

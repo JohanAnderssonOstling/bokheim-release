@@ -1,0 +1,23 @@
+[package]
+name = "remote-file-browser-test"
+version = "0.0.0"
+edition = "2021"
+publish = false
+[workspace]
+[lib]
+path = "lib.rs"
+crate-type = ["cdylib"]
+[dependencies]
+book-access = { path = "../.." }
+wasm-bindgen = "=0.2.126"
+wasm-bindgen-futures = "0.4"
+wasm_thread = { git = "https://github.com/zed-industries/wasm_thread", rev = "0cf96c7708dfb97ccf3da50347e25edcf75d6937", features = ["es_modules"] }
+js-sys = "0.3"
+web-sys = { version = "0.3", features = ["WorkerGlobalScope"] }
+reqwest = { version = "0.11", default-features = false, features = ["stream"] }
+serde = { version = "1", features = ["derive"] }
+crossbeam-channel = "0.5"
+futures-util = "0.3"
+futures-channel = "0.3"
+tokio = { version = "1", features = ["sync", "macros"] }
+epub_provider = { path = "../../../../../../shared/epub" }

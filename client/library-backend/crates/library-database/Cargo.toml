@@ -1,0 +1,43 @@
+[package]
+name = "library-database"
+version = "0.1.0"
+edition = "2024"
+publish = false
+# SQL fixture tests run as crate modules so their raw SQL stays private.
+autotests = false
+
+[features]
+scanner = []
+fixture-sql = []
+
+[dependencies]
+client-runtime = { path = "../../../client-runtime" }
+book-model = { path = "../../../../shared/book-model" }
+book-enrichment = { path = "../book-enrichment" }
+client-platform-runtime = { path = "../../../platforms/runtime" }
+device-sqlite = { path = "../../../device-sqlite" }
+library-model = { path = "../../../library-model", default-features = false }
+library-replica = { path = "../library-replica", default-features = false }
+sync-common = { path = "../../../../shared/sync-common", default-features = false }
+subject-projection = { path = "../../../../shared/subject-projection" }
+metadata-contract = { path = "../../../../shared/metadata-contract" }
+book-metadata = { path = "../book-metadata" }
+pdf-view-common = { path = "../../../../shared/pdf-view-common" }
+rusqlite = { version = "0.40.0", features = ["bundled", "functions", "hooks"] }
+include-sqlite-sql = "0.2.1"
+log = "0.4"
+serde_json = "1"
+serde = { version = "1", features = ["derive"] }
+uuid = { version = "1", features = ["v4"] }
+web-time = "1"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+client-platform-web = { path = "../../../platforms/web" }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+client-platform-native = { path = "../../../platforms/native" }
+
+[target.'cfg(target_arch = "wasm32")'.dev-dependencies]
+library-registry = { path = "../../../app/crates/library-registry" }
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"

@@ -1,0 +1,12 @@
+{
+  "endpoint": "https://updates.bokheim.se/v1/stable",
+  "channel": "stable",
+  "trusted_keys": {
+    "release-1": "REPLACE_WITH_64_HEXADECIMAL_CHARACTERS_OF_PUBLIC_KEY"
+  },
+  "external_artifact_prefixes": [],
+  "origins": {
+    "https://updates.bokheim.se": "updates",
+    "https://taxonomy.bokheim.se": "taxonomy"
+  }
+}

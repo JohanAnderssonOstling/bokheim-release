@@ -1,0 +1,20 @@
+[package]
+name = "test-support"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+sync-common = { path = "../../shared/sync-common", features = ["test-support"] }
+uuid = "1"
+
+[lints]
+workspace = true
+
+[features]
+pdf-fixtures = ["dep:lopdf"]
+
+[dependencies.lopdf]
+version = "0.44"
+default-features = false
+optional = true

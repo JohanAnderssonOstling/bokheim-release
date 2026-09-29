@@ -1,0 +1,27 @@
+[package]
+name = "web-gpui"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[lib]
+crate-type = ["rlib", "cdylib"]
+
+[dependencies]
+app = { path = "../../client/app", default-features = false }
+application-shell = { path = "../application-shell", default-features = false, features = ["audiobooks"] }
+
+[target.'cfg(target_family = "wasm")'.dependencies]
+browser-ui = { path = "../browser", default-features = false }
+console_error_panic_hook = "0.1"
+gpui.workspace = true
+gpui_platform.workspace = true
+gpui-component.workspace = true
+js-sys = "0.3"
+uuid = { version = "1", features = ["v4", "js"] }
+log = "0.4"
+reader-ui = { path = "../reader", default-features = false, features = ["audiobooks"] }
+ui-components = { path = "../components" }
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+web-sys = { version = "0.3", features = ["Window"] }

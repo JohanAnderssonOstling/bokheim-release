@@ -1,0 +1,30 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH claimed AS (\n    INSERT INTO user_blob_charge(user_id, content_hash)\n    SELECT $1, content_hash\n    FROM UNNEST($2::TEXT[]) AS value(content_hash)\n    ON CONFLICT (user_id, content_hash) DO NOTHING\n    RETURNING content_hash\n),\naccount AS (\n    UPDATE user_storage_account\n    SET used_bytes=used_bytes+$3\n    WHERE user_id=$1\n    RETURNING user_id\n)\nSELECT (SELECT COUNT(*) FROM claimed)::BIGINT AS claimed_count,\n       (SELECT COUNT(*) FROM account)::BIGINT AS account_count;\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "claimed_count",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 1,
+        "name": "account_count",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "TextArray",
+        "Int8"
+      ]
+    },
+    "nullable": [
+      null,
+      null
+    ]
+  },
+  "hash": "26ff4058c1cb619862b7ec8e5cab83f3aa56ed51c66e3075388548e8ccd380d4"
+}

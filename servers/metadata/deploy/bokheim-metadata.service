@@ -1,0 +1,59 @@
+[Unit]
+Description=Bokheim Open Library metadata server
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=2min
+StartLimitBurst=5
+
+[Service]
+Type=exec
+User=johan
+Group=johan
+ExecStart=/usr/local/bin/metadata-server
+Environment=BOKHEIM_METADATA_BIND=127.0.0.1:8091
+Environment=BOKHEIM_METADATA_DATABASE=/home/johan/data/openlibrary/current.sqlite
+# Optional workload-isolated snapshots. Uncomment only after generating all
+# three from the same source with `metadata-server split-snapshot`.
+# Environment=BOKHEIM_METADATA_SUBJECT_DATABASE=/home/johan/data/openlibrary/subjects-current.sqlite
+# Environment=BOKHEIM_METADATA_SUBJECT_INDEX=/home/johan/data/openlibrary/subjects-current.idx
+# Environment=BOKHEIM_METADATA_RICH_DATABASE=/home/johan/data/openlibrary/rich-current.sqlite
+# Environment=BOKHEIM_METADATA_IDENTITY_DATABASE=/home/johan/data/openlibrary/identities-current.sqlite
+# Optional LibraryThing fallback; keep its API key outside the repository.
+# The environment file sets BOKHEIM_LIBRARYTHING_KEY_FILE and
+# BOKHEIM_LIBRARYTHING_CACHE=/var/lib/bokheim-metadata/librarything.sqlite.
+EnvironmentFile=-/home/johan/.config/bokheim/metadata.env
+StateDirectory=bokheim-metadata
+StateDirectoryMode=0700
+Environment=RUST_LOG=info
+Environment=MALLOC_ARENA_MAX=2
+Environment=MALLOC_TRIM_THRESHOLD_=131072
+Restart=on-failure
+RestartSec=5s
+TimeoutStopSec=35s
+KillSignal=SIGTERM
+OOMPolicy=kill
+MemoryHigh=768M
+MemoryMax=1G
+TasksMax=128
+LimitNOFILE=4096
+
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHome=read-only
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectProc=invisible
+ProtectSystem=strict
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=true
+RestrictRealtime=true
+SystemCallArchitectures=native
+UMask=0022
+
+[Install]
+WantedBy=multi-user.target

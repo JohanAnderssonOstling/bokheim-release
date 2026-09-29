@@ -1,0 +1,6344 @@
+{
+  "before_sha256": "00aa3cb519013ffaa55fff0c95fc190ffe047e194b018e651f3f939cad238015",
+  "after_sha256": "c8ef55e003302aa032af790fde30eb373bed304c3013cedb7ffd3c8f675d2777",
+  "original_pairs": 55,
+  "dispositions": {
+    "retained": 19,
+    "repaired": 30,
+    "already_removed": 1,
+    "consolidation_review": 3,
+    "historical_endpoint_review": 2
+  },
+  "lcc_probes": 11223,
+  "non_lcc_control_probes": 6006,
+  "changed_probes": 537,
+  "new_unresolved": 0,
+  "non_lcc_changes": 0,
+  "pairs": [
+    {
+      "a": {
+        "concept_id": 4510,
+        "label": "Modern Philosophy",
+        "range": "B790..B5802"
+      },
+      "b": {
+        "concept_id": 4538,
+        "label": "Philosophy of Religion",
+        "range": "B5800..B5802.2"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "B5800",
+      "pair": 1,
+      "disposition": "retained",
+      "review": "Judaism and its history win within the overlap; no incorrect destination demonstrated.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+        "sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+        "pages": [
+          138
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "B5800",
+        "resolved": "11086",
+        "candidates": "11086"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "B5800",
+        "resolved": "11086",
+        "candidates": "11086"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 54691,
+        "label": "Political & Foreign Relations",
+        "range": "DA45..DA47.9"
+      },
+      "b": {
+        "concept_id": 51452,
+        "label": "British Diplomacy by Country",
+        "range": "DA47..DA47.999"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DA47",
+      "pair": 2,
+      "disposition": "retained",
+      "review": "Country-specific diplomacy wins over general foreign relations; retained.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+        "sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+        "pages": [
+          76
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DA47",
+        "resolved": "51452",
+        "candidates": "51452"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DA47",
+        "resolved": "51452",
+        "candidates": "51452"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 53071,
+        "label": "England Travel",
+        "range": "DA600..DA667"
+      },
+      "b": {
+        "concept_id": 13834,
+        "label": "Historic Places & Monuments",
+        "range": "DA660..DA669"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DA660",
+      "pair": 3,
+      "disposition": "repaired",
+      "review": "Historic buildings end at DA664; watering places and scenery return to travel, and disasters no longer match monuments.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+        "sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+        "pages": [
+          97
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DA660",
+        "resolved": "13834",
+        "candidates": "13834"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DA660",
+        "resolved": "13834",
+        "candidates": "13834"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 52292,
+        "label": "20th-Century French",
+        "range": "DC356..DC424.9"
+      },
+      "b": {
+        "concept_id": 11465,
+        "label": "Fifth Republic, 1958–Present",
+        "range": "DC424..DC424.999"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DC424",
+      "pair": 4,
+      "disposition": "retained",
+      "review": "Fifth Republic wins in the overlap with the twentieth-century grouping; retained.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+        "sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+        "pages": [
+          187,
+          188
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DC424",
+        "resolved": "11465",
+        "candidates": "11465"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DC424",
+        "resolved": "11465",
+        "candidates": "11465"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 51789,
+        "label": "Belgian Biographies",
+        "range": "DH511..DH519.Z"
+      },
+      "b": {
+        "concept_id": 3577,
+        "label": "Belgian",
+        "range": "DH517..DH521"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DH517",
+      "pair": 5,
+      "disposition": "repaired",
+      "review": "Collective biography is DH513-DH516, excluding dictionaries, study and general history. Added the Belgian country parent.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+        "sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+        "pages": [
+          366
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DH517",
+        "resolved": "3577",
+        "candidates": "3577"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DH517",
+        "resolved": "3577",
+        "candidates": "3577"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 13946,
+        "label": "Culture",
+        "range": "DK503.3..DK503.69.Z"
+      },
+      "b": {
+        "concept_id": 51842,
+        "label": "Political & Foreign Relations",
+        "range": "DK503.67..DK503.69"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DK503.67",
+      "pair": 6,
+      "disposition": "repaired",
+      "review": "Separated Estonian cultural detail from general history and foreign relations; retained country coverage.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+        "sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+        "pages": [
+          402,
+          403
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DK503.67",
+        "resolved": "51842",
+        "candidates": "51842"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DK503.67",
+        "resolved": "51842",
+        "candidates": "51842"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 13950,
+        "label": "Culture",
+        "range": "DK504.3..DK504.69.Z"
+      },
+      "b": {
+        "concept_id": 51851,
+        "label": "Political & Foreign Relations",
+        "range": "DK504.67..DK504.69"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DK504.67",
+      "pair": 7,
+      "disposition": "repaired",
+      "review": "Separated Latvian cultural detail from general history and foreign relations; retained country coverage.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+        "sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+        "pages": [
+          405,
+          406
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DK504.67",
+        "resolved": "51851",
+        "candidates": "51851"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DK504.67",
+        "resolved": "51851",
+        "candidates": "51851"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 13954,
+        "label": "Culture",
+        "range": "DK505.3..DK505.69.Z"
+      },
+      "b": {
+        "concept_id": 51860,
+        "label": "Political & Foreign Relations",
+        "range": "DK505.67..DK505.69"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DK505.67",
+      "pair": 8,
+      "disposition": "repaired",
+      "review": "Separated Lithuanian cultural detail from general history and foreign relations; retained country coverage.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+        "sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+        "pages": [
+          408,
+          409
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DK505.67",
+        "resolved": "51860",
+        "candidates": "51860"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DK505.67",
+        "resolved": "51860",
+        "candidates": "51860"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 11390,
+        "label": "Russian Imperial Rule, 1795–1917",
+        "range": "DK507.727..DK507.729"
+      },
+      "b": {
+        "concept_id": 11346,
+        "label": "20th century",
+        "range": "DK507.729..DK507.73"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DK507.729",
+      "pair": 9,
+      "disposition": "repaired",
+      "review": "Imperial Belarus ends at DK507.7293; twentieth-century coverage starts at .7295. Moved the incorrect DK507.73 exact selector.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+        "sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+        "pages": [
+          412,
+          413
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DK507.729",
+        "resolved": "11390",
+        "candidates": "11390"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DK507.729",
+        "resolved": "11390",
+        "candidates": "11390"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 10295,
+        "label": "Scandinavian Empire, to 1397",
+        "range": "DL61..DL65"
+      },
+      "b": {
+        "concept_id": 10276,
+        "label": "Vikings",
+        "range": "DL65..DL66"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DL65",
+      "pair": 10,
+      "disposition": "retained",
+      "review": "Vikings wins at DL65 and above. Source scopes overlap; no change.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+        "sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+        "pages": [
+          490
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DL65",
+        "resolved": "10276",
+        "candidates": "10276"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DL65",
+        "resolved": "10276",
+        "candidates": "10276"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 10352,
+        "label": "Reformation–Consolidation, 1516–1648",
+        "range": "DQ113..DQ188.2"
+      },
+      "b": {
+        "concept_id": 10180,
+        "label": "Early Federal State, 1848–1900",
+        "range": "DQ171..DQ191"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DQ171",
+      "pair": 11,
+      "disposition": "repaired",
+      "review": "DQ188.2 was an erroneous early-modern endpoint; corrected to DQ118 and restored the encompassing DQ111-DQ123 period.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+        "sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+        "pages": [
+          561,
+          562,
+          563
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DQ171",
+        "resolved": "10180",
+        "candidates": "10180"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DQ171",
+        "resolved": "10180",
+        "candidates": "10180"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 10485,
+        "label": "19th-20th centuries",
+        "range": "DS361..DS371.3"
+      },
+      "b": {
+        "concept_id": 10597,
+        "label": "1989-2001",
+        "range": "DS371.3..DS371.33"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DS371.3",
+      "pair": 12,
+      "disposition": "retained",
+      "review": "The specific 1989-2001 period wins at the shared Afghanistan boundary.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+        "sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+        "pages": [
+          63,
+          64
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DS371.3",
+        "resolved": "10597",
+        "candidates": "10597"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DS371.3",
+        "resolved": "10597",
+        "candidates": "10597"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 10483,
+        "label": "Earliest to 1600",
+        "range": "DS849.7..DS869.6"
+      },
+      "b": {
+        "concept_id": 10648,
+        "label": "Medieval–Early Modern, 1185–1603",
+        "range": "DS856.75..DS869.7"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DS856.75",
+      "pair": 13,
+      "disposition": "retained",
+      "review": "Medieval/early-modern Japan wins over the broader early-history grouping. Source headings themselves span slightly different end years.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+        "sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+        "pages": [
+          162,
+          163,
+          164
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DS856.75",
+        "resolved": "10648",
+        "candidates": "10648"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DS856.75",
+        "resolved": "10648",
+        "candidates": "10648"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 10483,
+        "label": "Earliest to 1600",
+        "range": "DS849.7..DS869.6"
+      },
+      "b": {
+        "concept_id": 10648,
+        "label": "Medieval–Early Modern, 1185–1603",
+        "range": "DS863.75..DS869.7"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DS863.75",
+      "pair": 14,
+      "disposition": "retained",
+      "review": "Same source-supported Japan overlap through the Muromachi subrange; retained.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+        "sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+        "pages": [
+          162,
+          163,
+          164
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DS863.75",
+        "resolved": "10648",
+        "candidates": "10648"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DS863.75",
+        "resolved": "10648",
+        "candidates": "10648"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 10483,
+        "label": "Earliest to 1600",
+        "range": "DS849.7..DS869.6"
+      },
+      "b": {
+        "concept_id": 10648,
+        "label": "Medieval–Early Modern, 1185–1603",
+        "range": "DS868..DS869.7"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DS868",
+      "pair": 15,
+      "disposition": "retained",
+      "review": "Same source-supported Japan overlap through the civil-wars subrange; retained.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+        "sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+        "pages": [
+          163,
+          164
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DS868",
+        "resolved": "10648",
+        "candidates": "10648"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DS868",
+        "resolved": "10648",
+        "candidates": "10648"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 13860,
+        "label": "Society",
+        "range": "DU118..DU145"
+      },
+      "b": {
+        "concept_id": 54741,
+        "label": "Other",
+        "range": "DU145..DU398"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "DU145",
+      "pair": 16,
+      "disposition": "repaired",
+      "review": "Australian society/ethnography ends at DU135; Canberra remains a place at DU145.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+        "sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+        "pages": [
+          324,
+          325,
+          326
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "DU145",
+        "resolved": "54736",
+        "candidates": "54736"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "DU145",
+        "resolved": "54736",
+        "candidates": "54736"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 52607,
+        "label": "Love, Courtship & Sexual Customs",
+        "range": "GT2600..GT2796"
+      },
+      "b": {
+        "concept_id": 52608,
+        "label": "Marriage Customs",
+        "range": "GT2660..GT2810"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "GT2660",
+      "pair": 17,
+      "disposition": "retained",
+      "review": "Marriage customs wins against the broader private-life grouping; no incorrect destination demonstrated.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+        "sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+        "pages": [
+          420,
+          421
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "GT2660",
+        "resolved": "52608",
+        "candidates": "52608"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "GT2660",
+        "resolved": "52608",
+        "candidates": "52608"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 52506,
+        "label": "Corporations by Country",
+        "range": "HD2807..HD2930.9"
+      },
+      "b": {
+        "concept_id": 12330,
+        "label": "Industry — General",
+        "range": "HD2930.8..HD2950.9"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "HD2930.8",
+      "pair": 18,
+      "disposition": "already_removed",
+      "review": "The obsolete Industry - General concept and offending range had already been removed before this review's first snapshot.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+        "sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+        "pages": [
+          75
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "HD2930.8",
+        "resolved": "52506",
+        "candidates": "52506"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "HD2930.8",
+        "resolved": "52506",
+        "candidates": "52506"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 12257,
+        "label": "Groups & Dynamics",
+        "range": "HM711..HM740.9"
+      },
+      "b": {
+        "concept_id": 52374,
+        "label": "Social Groups & Association",
+        "range": "HM716..HM753.2"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "HM716",
+      "pair": 19,
+      "disposition": "consolidation_review",
+      "review": "Groups & Dynamics and Social Groups & Association overlap semantically. Current destinations fit the codes; consolidation needs a separate whole-concept review.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+        "sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+        "pages": [
+          441,
+          442
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "HM716",
+        "resolved": "12257",
+        "candidates": "12257"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "HM716",
+        "resolved": "12257",
+        "candidates": "12257"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 52374,
+        "label": "Social Groups & Association",
+        "range": "HM716..HM753.2"
+      },
+      "b": {
+        "concept_id": 12298,
+        "label": "Group & Social Identity",
+        "range": "HM753..HM755"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "HM753",
+      "pair": 20,
+      "disposition": "retained",
+      "review": "Group & Social Identity wins over the social-groups grouping; retained.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+        "sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+        "pages": [
+          442
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "HM753",
+        "resolved": "12298",
+        "candidates": "12298"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "HM753",
+        "resolved": "12298",
+        "candidates": "12298"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 52571,
+        "label": "Sex Crimes",
+        "range": "HV6556..HV6593"
+      },
+      "b": {
+        "concept_id": 52572,
+        "label": "Kidnapping & Abduction",
+        "range": "HV6571..HV6604"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "HV6571",
+      "pair": 21,
+      "disposition": "repaired",
+      "review": "Split abduction HV6571-HV6574 from kidnapping HV6595-HV6604 so intervening sex crimes and stalking are not swallowed.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+        "sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+        "pages": [
+          582,
+          583
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "HV6571",
+        "resolved": "52572",
+        "candidates": "52572"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "HV6571",
+        "resolved": "52572",
+        "candidates": "52572"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 10014,
+        "label": "Police & Detectives",
+        "range": "HV7551..HV8280.7"
+      },
+      "b": {
+        "concept_id": 52655,
+        "label": "Policing outside the U.S.",
+        "range": "HV8157..HV8280.9"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "HV8157",
+      "pair": 22,
+      "disposition": "retained",
+      "review": "The non-U.S. policing subject wins within the shared geographic range.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+        "sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+        "pages": [
+          591,
+          602
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "HV8157",
+        "resolved": "52655",
+        "candidates": "52655"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "HV8157",
+        "resolved": "52655",
+        "candidates": "52655"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 52801,
+        "label": "English-Speaking Africa",
+        "range": "JQ1880..JQ3185"
+      },
+      "b": {
+        "concept_id": 52806,
+        "label": "Indian Ocean Islands",
+        "range": "JQ3158..JQ3188"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "JQ3158",
+      "pair": 23,
+      "disposition": "retained",
+      "review": "Indian Ocean Islands wins over the broader Africa grouping; retained.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_J2025TEXT.pdf",
+        "sha256": "08f51d0de6854af2be53b522db3d92cc9672f9f7f67809ad688bdc573d4f1138",
+        "pages": [
+          102
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "JQ3158",
+        "resolved": "52806",
+        "candidates": "52806"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "JQ3158",
+        "resolved": "52806",
+        "candidates": "52806"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5314,
+        "label": "Private & Civil Law",
+        "range": "K600..K615"
+      },
+      "b": {
+        "concept_id": 11731,
+        "label": "Private Law Unification",
+        "range": "K605..K615.23"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "K605",
+      "pair": 24,
+      "disposition": "retained",
+      "review": "Private-law unification wins over general private law; no demonstrated misclassification.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_K2025TEXT.pdf",
+        "sha256": "d04edd803ba888ae14a129b3f9c87fabff564b834f759ade3faa6d921c607380",
+        "pages": [
+          16
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "K605",
+        "resolved": "11731",
+        "candidates": "11731"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "K605",
+        "resolved": "11731",
+        "candidates": "11731"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 11737,
+        "label": "Commercial Law",
+        "range": "K1001..K1395"
+      },
+      "b": {
+        "concept_id": 5619,
+        "label": "Industry & Economic Regulation",
+        "range": "K1370..K1397"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "K1370",
+      "pair": 25,
+      "disposition": "retained",
+      "review": "Insolvency codes resolve under business/economic regulation. The label is broad but the overlap alone does not establish an incorrect topic.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_K2025TEXT.pdf",
+        "sha256": "d04edd803ba888ae14a129b3f9c87fabff564b834f759ade3faa6d921c607380",
+        "pages": [
+          32
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "K1370",
+        "resolved": "5619",
+        "candidates": "5619"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "K1370",
+        "resolved": "5619",
+        "candidates": "5619"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 11741,
+        "label": "Patents & Trademarks",
+        "range": "K1500..K1578"
+      },
+      "b": {
+        "concept_id": 5710,
+        "label": "Specialized Courts & Proceedings",
+        "range": "K1571..K1578.23"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "K1571",
+      "pair": 26,
+      "disposition": "repaired",
+      "review": "Unfair competition moved from specialized procedure to IP & Competition Law. The same misassigned owner's adjacent patent/trademark ranges moved to Patents & Trademarks.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_K2025TEXT.pdf",
+        "sha256": "d04edd803ba888ae14a129b3f9c87fabff564b834f759ade3faa6d921c607380",
+        "pages": [
+          36,
+          37
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "K1571",
+        "resolved": "5710",
+        "candidates": "5710"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "K1571",
+        "resolved": "13314",
+        "candidates": "13314"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 11743,
+        "label": "Courts & Civil Procedure",
+        "range": "K2100..K2385"
+      },
+      "b": {
+        "concept_id": 13308,
+        "label": "Courts, Organization & Procedure",
+        "range": "K2201..K2385.2"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "K2201",
+      "pair": 27,
+      "disposition": "consolidation_review",
+      "review": "The two court/civil-procedure concepts overlap in meaning; no wrong-topic result established. Whole-concept consolidation remains separate.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_K2025TEXT.pdf",
+        "sha256": "d04edd803ba888ae14a129b3f9c87fabff564b834f759ade3faa6d921c607380",
+        "pages": [
+          41,
+          43
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "K2201",
+        "resolved": "11743",
+        "candidates": "11743"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "K2201",
+        "resolved": "11743",
+        "candidates": "11743"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 11749,
+        "label": "Health, Education & Cultural Law",
+        "range": "K3661..K3674"
+      },
+      "b": {
+        "concept_id": 5299,
+        "label": "Public safety",
+        "range": "K3663..K3674.2"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "K3663",
+      "pair": 28,
+      "disposition": "repaired",
+      "review": "Public-safety range removed from health/education/culture and assigned to Public safety without extending the original endpoint.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_K2025TEXT.pdf",
+        "sha256": "d04edd803ba888ae14a129b3f9c87fabff564b834f759ade3faa6d921c607380",
+        "pages": [
+          55
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "K3663",
+        "resolved": "5299",
+        "candidates": "5299"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "K3663",
+        "resolved": "5299",
+        "candidates": "5299"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5319,
+        "label": "Comparative Religious Law",
+        "range": "KB1..KB4855"
+      },
+      "b": {
+        "concept_id": 12990,
+        "label": "Canon Criminal Law",
+        "range": "KB3817..KB38318"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KB3817",
+      "pair": 29,
+      "disposition": "repaired",
+      "review": "Corrected KB38318 to KB3818; renamed the concept for comparative religious criminal law and attached its full KB3790-KB4855 chapter and religious-law ancestry.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KB2025TEXT.pdf",
+        "sha256": "2e396a3572cc08c78648f453d38c7b33f88c4a76e4574ff4890b0a03b8b71a20",
+        "pages": [
+          23,
+          24,
+          27
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KB3817",
+        "resolved": "5319",
+        "candidates": "5319"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KB3817",
+        "resolved": "12990",
+        "candidates": "12990"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5319,
+        "label": "Comparative Religious Law",
+        "range": "KB400..KB4855"
+      },
+      "b": {
+        "concept_id": 12990,
+        "label": "Canon Criminal Law",
+        "range": "KB3817..KB38318"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KB3817",
+      "pair": 30,
+      "disposition": "repaired",
+      "review": "Same malformed religious-law endpoint; corrected without allowing nonexistent five-digit numbers to match criminal law.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KB2025TEXT.pdf",
+        "sha256": "2e396a3572cc08c78648f453d38c7b33f88c4a76e4574ff4890b0a03b8b71a20",
+        "pages": [
+          23,
+          24,
+          27
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KB3817",
+        "resolved": "5319",
+        "candidates": "5319"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KB3817",
+        "resolved": "12990",
+        "candidates": "12990"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5319,
+        "label": "Comparative Religious Law",
+        "range": "KB3790..KB4855"
+      },
+      "b": {
+        "concept_id": 12990,
+        "label": "Canon Criminal Law",
+        "range": "KB3817..KB38318"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KB3817",
+      "pair": 31,
+      "disposition": "repaired",
+      "review": "Same malformed endpoint and chapter ownership repair; retained valid criminal-law coverage.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KB2025TEXT.pdf",
+        "sha256": "2e396a3572cc08c78648f453d38c7b33f88c4a76e4574ff4890b0a03b8b71a20",
+        "pages": [
+          23,
+          24,
+          27
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KB3817",
+        "resolved": "5319",
+        "candidates": "5319"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KB3817",
+        "resolved": "12990",
+        "candidates": "12990"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5297,
+        "label": "Jewish Law",
+        "range": "KBM1..KBM4855"
+      },
+      "b": {
+        "concept_id": 5619,
+        "label": "Industry & Economic Regulation",
+        "range": "KBM1040..KBM11147"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KBM1040",
+      "pair": 32,
+      "disposition": "repaired",
+      "review": "Corrected KBM11147 to KBM1147; retained the valid Jewish private-law destination while removing out-of-schedule coverage.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KB2025TEXT.pdf",
+        "sha256": "2e396a3572cc08c78648f453d38c7b33f88c4a76e4574ff4890b0a03b8b71a20",
+        "pages": [
+          74,
+          75
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KBM1040",
+        "resolved": "13246",
+        "candidates": "13246"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KBM1040",
+        "resolved": "13246",
+        "candidates": "13246"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5297,
+        "label": "Jewish Law",
+        "range": "KBM1..KBM4855"
+      },
+      "b": {
+        "concept_id": 12991,
+        "label": "Jewish Criminal Law",
+        "range": "KBM3800..KBM4855.22"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KBM3800",
+      "pair": 33,
+      "disposition": "historical_endpoint_review",
+      "review": "Jewish Criminal Law wins within valid criminal-law codes. The legacy .22 endpoint is not independently established by the printed page; preserved pending historical/table evidence.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KB2025TEXT.pdf",
+        "sha256": "2e396a3572cc08c78648f453d38c7b33f88c4a76e4574ff4890b0a03b8b71a20",
+        "pages": [
+          91,
+          97
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KBM3800",
+        "resolved": "12991",
+        "candidates": "12991"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KBM3800",
+        "resolved": "12991",
+        "candidates": "12991"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 13246,
+        "label": "Jewish Private Law",
+        "range": "KBM900..KBM1269.9"
+      },
+      "b": {
+        "concept_id": 5619,
+        "label": "Industry & Economic Regulation",
+        "range": "KBM1040..KBM11147"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KBM1040",
+      "pair": 34,
+      "disposition": "repaired",
+      "review": "Same malformed corporations endpoint; no longer extends beyond Jewish private law.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KB2025TEXT.pdf",
+        "sha256": "2e396a3572cc08c78648f453d38c7b33f88c4a76e4574ff4890b0a03b8b71a20",
+        "pages": [
+          74,
+          75
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KBM1040",
+        "resolved": "13246",
+        "candidates": "13246"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KBM1040",
+        "resolved": "13246",
+        "candidates": "13246"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 13251,
+        "label": "Jewish Economic & Criminal Law",
+        "range": "KBM3190..KBM4855"
+      },
+      "b": {
+        "concept_id": 12991,
+        "label": "Jewish Criminal Law",
+        "range": "KBM3800..KBM4855.22"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KBM3800",
+      "pair": 35,
+      "disposition": "historical_endpoint_review",
+      "review": "Same unverified KBM4855.22 endpoint. The broader economic/criminal grouping does not demonstrate a wrong valid-code result.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KB2025TEXT.pdf",
+        "sha256": "2e396a3572cc08c78648f453d38c7b33f88c4a76e4574ff4890b0a03b8b71a20",
+        "pages": [
+          85,
+          91,
+          97
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KBM3800",
+        "resolved": "12991",
+        "candidates": "12991"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KBM3800",
+        "resolved": "12991",
+        "candidates": "12991"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5562,
+        "label": "Other Specialized Law",
+        "range": "KBP3344..KBP3367"
+      },
+      "b": {
+        "concept_id": 5558,
+        "label": "Environment & Resource Law",
+        "range": "KBP3365.9..KBP3369"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KBP3365.9",
+      "pair": 36,
+      "disposition": "retained",
+      "review": "Resource-law detail wins within mining/resource overlap; source scopes are compatible.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KB2025TEXT.pdf",
+        "sha256": "2e396a3572cc08c78648f453d38c7b33f88c4a76e4574ff4890b0a03b8b71a20",
+        "pages": [
+          150
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KBP3365.9",
+        "resolved": "5558",
+        "candidates": "5558"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KBP3365.9",
+        "resolved": "5558",
+        "candidates": "5558"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5277,
+        "label": "Canon law of Eastern Churches",
+        "range": "KBS3..KBS4010"
+      },
+      "b": {
+        "concept_id": 5309,
+        "label": "Orthodox Eastern Church",
+        "range": "KBS371..KBS4130"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KBS371",
+      "pair": 37,
+      "disposition": "retained",
+      "review": "Orthodox law wins within Eastern-church canon law. A potential browsing-parent improvement is not needed to fix the sampled matches.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KB2025TEXT.pdf",
+        "sha256": "2e396a3572cc08c78648f453d38c7b33f88c4a76e4574ff4890b0a03b8b71a20",
+        "pages": [
+          244,
+          247,
+          256
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KBS371",
+        "resolved": "5309",
+        "candidates": "5309"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KBS371",
+        "resolved": "5309",
+        "candidates": "5309"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 51566,
+        "label": "Arctic Indigenous Law",
+        "range": "KIA201..KIA1999"
+      },
+      "b": {
+        "concept_id": 5562,
+        "label": "Other Specialized Law",
+        "range": "KIA313..KIA3317"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KIA313",
+      "pair": 38,
+      "disposition": "repaired",
+      "review": "Corrected transport/communication to KIA313-KIA320, preserving Arctic Indigenous Law rather than generic specialized-law capture.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KI-KIL2025TEXT.pdf",
+        "sha256": "e1d0b0bce84645e210f0695f890095d7f9a0590c87447658428c720c26db341f",
+        "pages": [
+          17
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KIA313",
+        "resolved": "51566",
+        "candidates": "51566"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KIA313",
+        "resolved": "51566",
+        "candidates": "51566"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5562,
+        "label": "Other Specialized Law",
+        "range": "KIA313..KIA3317"
+      },
+      "b": {
+        "concept_id": 51566,
+        "label": "Arctic Indigenous Law",
+        "range": "KIA2001..KIA8580.2"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KIA2001",
+      "pair": 39,
+      "disposition": "repaired",
+      "review": "Same oversized range no longer captures Alaska beginning at KIA2001.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KI-KIL2025TEXT.pdf",
+        "sha256": "e1d0b0bce84645e210f0695f890095d7f9a0590c87447658428c720c26db341f",
+        "pages": [
+          17,
+          25
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KIA2001",
+        "resolved": "5562",
+        "candidates": "5562"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KIA2001",
+        "resolved": "51566",
+        "candidates": "51566"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5619,
+        "label": "Industry & Economic Regulation",
+        "range": "KJC2256..KJC2289"
+      },
+      "b": {
+        "concept_id": 5553,
+        "label": "International & Comparative Law",
+        "range": "KJC2260..KJC2666"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KJC2260",
+      "pair": 40,
+      "disposition": "repaired",
+      "review": "Affreightment ends at KJC2266, not KJC2666; removed the erroneous cross-topic reach.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KJ-KKZ2025TEXT.pdf",
+        "sha256": "2490bb81dfcefa6062202460974fc67289aecb9930c69ce8fae962e2e51c9842",
+        "pages": [
+          74
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KJC2260",
+        "resolved": "5619",
+        "candidates": "5619"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KJC2260",
+        "resolved": "5619",
+        "candidates": "5619"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5553,
+        "label": "International & Comparative Law",
+        "range": "KJC2260..KJC2666"
+      },
+      "b": {
+        "concept_id": 5710,
+        "label": "Specialized Courts & Proceedings",
+        "range": "KJC2655..KJC2700"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KJC2655",
+      "pair": 41,
+      "disposition": "repaired",
+      "review": "Corrected affreightment boundary and moved copyright from specialized procedure to IP & Competition Law.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KJ-KKZ2025TEXT.pdf",
+        "sha256": "2490bb81dfcefa6062202460974fc67289aecb9930c69ce8fae962e2e51c9842",
+        "pages": [
+          74,
+          76,
+          77
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KJC2655",
+        "resolved": "5710",
+        "candidates": "5710"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KJC2655",
+        "resolved": "13314",
+        "candidates": "13314"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5553,
+        "label": "International & Comparative Law",
+        "range": "KJC2260..KJC2666"
+      },
+      "b": {
+        "concept_id": 13314,
+        "label": "IP & Competition Law",
+        "range": "KJC2655.2..KJC2700"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KJC2655.2",
+      "pair": 42,
+      "disposition": "repaired",
+      "review": "Same affreightment repair removes the false overlap with copyright detail.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KJ-KKZ2025TEXT.pdf",
+        "sha256": "2490bb81dfcefa6062202460974fc67289aecb9930c69ce8fae962e2e51c9842",
+        "pages": [
+          74,
+          76,
+          77
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KJC2655.2",
+        "resolved": "13314",
+        "candidates": "13314"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KJC2655.2",
+        "resolved": "13314",
+        "candidates": "13314"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 13294,
+        "label": "Comparative European Court Proc.",
+        "range": "KJC3449..KJC4439.9"
+      },
+      "b": {
+        "concept_id": 13327,
+        "label": "National Constitutional Law",
+        "range": "KJC4420..KJC4447"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KJC4420",
+      "pair": 43,
+      "disposition": "repaired",
+      "review": "Court-procedure aggregate ends at KJC4353; removed the national-law aggregate spanning general state/constitutional topics.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KJ-KKZ2025TEXT.pdf",
+        "sha256": "2490bb81dfcefa6062202460974fc67289aecb9930c69ce8fae962e2e51c9842",
+        "pages": [
+          85,
+          86
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KJC4420",
+        "resolved": "13327",
+        "candidates": "13327"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KJC4420",
+        "resolved": "5643",
+        "candidates": "5643"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5317,
+        "label": "European Comparative Law",
+        "range": "KJC4413..KJC4428"
+      },
+      "b": {
+        "concept_id": 13327,
+        "label": "National Constitutional Law",
+        "range": "KJC4420..KJC4447"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KJC4420",
+      "pair": 44,
+      "disposition": "repaired",
+      "review": "Preserved the existing state/foundations range; general public law no longer resolves to court procedure or a national-law aggregate.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KJ-KKZ2025TEXT.pdf",
+        "sha256": "2490bb81dfcefa6062202460974fc67289aecb9930c69ce8fae962e2e51c9842",
+        "pages": [
+          85,
+          86
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KJC4420",
+        "resolved": "13327",
+        "candidates": "13327"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KJC4420",
+        "resolved": "5643",
+        "candidates": "5643"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 13327,
+        "label": "National Constitutional Law",
+        "range": "KJC4420..KJC4447"
+      },
+      "b": {
+        "concept_id": 13295,
+        "label": "European Comparative Const. Law",
+        "range": "KJC4440..KJC5599.9"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KJC4440",
+      "pair": 45,
+      "disposition": "repaired",
+      "review": "Comparative constitutional coverage starts at KJC4431; specific foundations topics remain specific without the misleading national-law aggregate.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KJ-KKZ2025TEXT.pdf",
+        "sha256": "2490bb81dfcefa6062202460974fc67289aecb9930c69ce8fae962e2e51c9842",
+        "pages": [
+          85,
+          86
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KJC4440",
+        "resolved": "13327",
+        "candidates": "13327"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KJC4440",
+        "resolved": "13295",
+        "candidates": "13295"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 5647,
+        "label": "Public Policy & Regulation Law",
+        "range": "KJE6848..KJE6852"
+      },
+      "b": {
+        "concept_id": 5558,
+        "label": "Environment & Resource Law",
+        "range": "KJE6852..KJE6858"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KJE6852",
+      "pair": 46,
+      "disposition": "retained",
+      "review": "Electricity can fall under public energy policy; other source-of-power codes fall under resource law. No incorrect topic established.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KJ-KKZ2025TEXT.pdf",
+        "sha256": "2490bb81dfcefa6062202460974fc67289aecb9930c69ce8fae962e2e51c9842",
+        "pages": [
+          140
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KJE6852",
+        "resolved": "5647",
+        "candidates": "5647"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KJE6852",
+        "resolved": "5647",
+        "candidates": "5647"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 12995,
+        "label": "German Criminal Law",
+        "range": "KK745..KK752"
+      },
+      "b": {
+        "concept_id": 5881,
+        "label": "Legal Sources & Constitutions",
+        "range": "KK752..KK752.8"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "KK752",
+      "pair": 47,
+      "disposition": "retained",
+      "review": "The specific historical legal source wins within criminal-law sources; retained.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KK-KKC2025TEXT.pdf",
+        "sha256": "04ba192e694b37e3be64345a3f6843c0f8b9395f5affc4278528f375cb6a64e2",
+        "pages": [
+          33,
+          34
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "KK752",
+        "resolved": "5881",
+        "candidates": "5881"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "KK752",
+        "resolved": "5881",
+        "candidates": "5881"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 6738,
+        "label": "Reading",
+        "range": "LB1049.9..LB1050.75"
+      },
+      "b": {
+        "concept_id": 2199,
+        "label": "Educational Psychology",
+        "range": "LB1050..LB1099.99"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "LB1050",
+      "pair": 48,
+      "disposition": "repaired",
+      "review": "Educational psychology starts at LB1050.9; reading and its tests remain below that boundary.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_L2025TEXT.pdf",
+        "sha256": "b596eeb2eb1d5c36c59de0e3f9a6a22c18bbe895bbc31858953d74be26452dc8",
+        "pages": [
+          48,
+          49
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "LB1050",
+        "resolved": "6738",
+        "candidates": "6738"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "LB1050",
+        "resolved": "6738",
+        "candidates": "6738"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 53251,
+        "label": "Primary Vocational Education & Study Methods",
+        "range": "LB1594..LB1602"
+      },
+      "b": {
+        "concept_id": 2327,
+        "label": "Secondary Education",
+        "range": "LB1600..LB1704.99"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "LB1600",
+      "pair": 49,
+      "disposition": "repaired",
+      "review": "Secondary education starts at LB1603, excluding elementary study methods and school memoirs.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_L2025TEXT.pdf",
+        "sha256": "b596eeb2eb1d5c36c59de0e3f9a6a22c18bbe895bbc31858953d74be26452dc8",
+        "pages": [
+          62
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "LB1600",
+        "resolved": "53251",
+        "candidates": "53251"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "LB1600",
+        "resolved": "53251",
+        "candidates": "53251"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 9038,
+        "label": "Special Education",
+        "range": "LC3950..LC4803"
+      },
+      "b": {
+        "concept_id": 2268,
+        "label": "Special Education",
+        "range": "LC4001..LC4806.5"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "LC4001",
+      "pair": 50,
+      "disposition": "consolidation_review",
+      "review": "Two Special Education concepts have overlapping scopes and different identities/routes. Matching labels are appropriate; consolidation requires reviewing children and other selectors.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_L2025TEXT.pdf",
+        "sha256": "b596eeb2eb1d5c36c59de0e3f9a6a22c18bbe895bbc31858953d74be26452dc8",
+        "pages": [
+          153,
+          154
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "LC4001",
+        "resolved": "2268",
+        "candidates": "2268"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "LC4001",
+        "resolved": "2268",
+        "candidates": "2268"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 7378,
+        "label": "16th century",
+        "range": "PQ1600..PQ1713"
+      },
+      "b": {
+        "concept_id": 7911,
+        "label": "17th century",
+        "range": "PQ1710..PQ1935"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "PQ1710",
+      "pair": 51,
+      "disposition": "repaired",
+      "review": "Sixteenth-century author range ends at PQ1709; PQ1710 onward belongs to seventeenth-century literature.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PQ2025TEXT.pdf",
+        "sha256": "e9ce80ecbe345d72b5200666f253230c2269907a09658ba5f8384a04e1f6a0f7",
+        "pages": [
+          63,
+          64
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "PQ1710",
+        "resolved": "7378",
+        "candidates": "7378"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "PQ1710",
+        "resolved": "7911",
+        "candidates": "7911"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 50826,
+        "label": "English Literary History",
+        "range": "PR80.2..PR110.Z"
+      },
+      "b": {
+        "concept_id": 6614,
+        "label": "English Literary Landmarks",
+        "range": "PR109..PR110"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "PR109",
+      "pair": 52,
+      "disposition": "repaired",
+      "review": "Moved literary landmarks from essay/letter/oratory parents to English Literary History so specific landmarks win.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PR-PS_PZ2025TEXT.pdf",
+        "sha256": "6fd4ecbe10d0b2972bda2de6f1100d93dd5bdfdbefe81b2f21343e00bd4731d5",
+        "pages": [
+          2
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "PR109",
+        "resolved": "50826",
+        "candidates": "50826"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "PR109",
+        "resolved": "6614",
+        "candidates": "6614"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 13681,
+        "label": "American Criticism by Period",
+        "range": "PS80..PS96"
+      },
+      "b": {
+        "concept_id": 13852,
+        "label": "General Literary History",
+        "range": "PS84.2..PS229"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "PS84.2",
+      "pair": 53,
+      "disposition": "repaired",
+      "review": "Criticism range ends at PS81; PS85-PS96 returns to general American literary history.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PR-PS_PZ2025TEXT.pdf",
+        "sha256": "6fd4ecbe10d0b2972bda2de6f1100d93dd5bdfdbefe81b2f21343e00bd4731d5",
+        "pages": [
+          263
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "PS84.2",
+        "resolved": "13681",
+        "candidates": "13681"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "PS84.2",
+        "resolved": "13852",
+        "candidates": "13852"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 13852,
+        "label": "General Literary History",
+        "range": "PS84.2..PS229"
+      },
+      "b": {
+        "concept_id": 13638,
+        "label": "U.S. Lit. History by Period",
+        "range": "PS185..PS231"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "PS185",
+      "pair": 54,
+      "disposition": "retained",
+      "review": "History-by-period already wins against general literary history; preserved.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PR-PS_PZ2025TEXT.pdf",
+        "sha256": "6fd4ecbe10d0b2972bda2de6f1100d93dd5bdfdbefe81b2f21343e00bd4731d5",
+        "pages": [
+          269,
+          275
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "PS185",
+        "resolved": "13638",
+        "candidates": "13638"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "PS185",
+        "resolved": "13638",
+        "candidates": "13638"
+      }
+    },
+    {
+      "a": {
+        "concept_id": 9909,
+        "label": "Teaching techniques",
+        "range": "R834..R837.8"
+      },
+      "b": {
+        "concept_id": 7986,
+        "label": "Premedical education",
+        "range": "R837.8..R838"
+      },
+      "relationship": "unrelated_concepts",
+      "witness": "R837.8",
+      "pair": 55,
+      "disposition": "repaired",
+      "review": "Medical teaching techniques end at R837; premedical education starts at R837.8.",
+      "source": {
+        "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf",
+        "sha256": "889d4c6492f9ac80dd433ed4e419157395e0303220c3d04838708ae087c7b5a3",
+        "pages": [
+          16
+        ]
+      },
+      "witness_before": {
+        "system": "lcc",
+        "code": "R837.8",
+        "resolved": "7986",
+        "candidates": "7986"
+      },
+      "witness_after": {
+        "system": "lcc",
+        "code": "R837.8",
+        "resolved": "7986",
+        "candidates": "7986"
+      }
+    }
+  ],
+  "changes": [
+    {
+      "system": "lcc",
+      "code": "DA660-DA669",
+      "before": "13834",
+      "after": "3521",
+      "before_candidates": "13834",
+      "after_candidates": "3521"
+    },
+    {
+      "system": "lcc",
+      "code": "DA664.5",
+      "before": "13834",
+      "after": "53071",
+      "before_candidates": "13834",
+      "after_candidates": "53071"
+    },
+    {
+      "system": "lcc",
+      "code": "DA665",
+      "before": "13834",
+      "after": "53071",
+      "before_candidates": "13834",
+      "after_candidates": "53071"
+    },
+    {
+      "system": "lcc",
+      "code": "DA667",
+      "before": "13834",
+      "after": "53071",
+      "before_candidates": "13834",
+      "after_candidates": "53071"
+    },
+    {
+      "system": "lcc",
+      "code": "DA667.01",
+      "before": "13834",
+      "after": "3521",
+      "before_candidates": "13834",
+      "after_candidates": "3521"
+    },
+    {
+      "system": "lcc",
+      "code": "DA668",
+      "before": "13834",
+      "after": "3521",
+      "before_candidates": "13834",
+      "after_candidates": "3521"
+    },
+    {
+      "system": "lcc",
+      "code": "DA669",
+      "before": "13834",
+      "after": "3521",
+      "before_candidates": "13834",
+      "after_candidates": "3521"
+    },
+    {
+      "system": "lcc",
+      "code": "DH511",
+      "before": "51789",
+      "after": "3577",
+      "before_candidates": "51789",
+      "after_candidates": "3577"
+    },
+    {
+      "system": "lcc",
+      "code": "DH511-DH519.Z",
+      "before": "51789",
+      "after": "3577",
+      "before_candidates": "51789",
+      "after_candidates": "3577"
+    },
+    {
+      "system": "lcc",
+      "code": "DH516.5",
+      "before": "51789",
+      "after": "3577",
+      "before_candidates": "51789",
+      "after_candidates": "3577"
+    },
+    {
+      "system": "lcc",
+      "code": "DH516.6.A",
+      "before": "51789",
+      "after": "3577",
+      "before_candidates": "51789",
+      "after_candidates": "3577"
+    },
+    {
+      "system": "lcc",
+      "code": "DH519",
+      "before": "51789",
+      "after": "3577",
+      "before_candidates": "51789",
+      "after_candidates": "3577"
+    },
+    {
+      "system": "lcc",
+      "code": "DH519.Z",
+      "before": "51789",
+      "after": "3577",
+      "before_candidates": "51789",
+      "after_candidates": "3577"
+    },
+    {
+      "system": "lcc",
+      "code": "DH519.Z1",
+      "before": "51789",
+      "after": "3577",
+      "before_candidates": "51789",
+      "after_candidates": "3577"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.3-DK503.69.Z",
+      "before": "13946",
+      "after": "11216",
+      "before_candidates": "13946",
+      "after_candidates": "11216"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.37",
+      "before": "13946",
+      "after": "11216",
+      "before_candidates": "13946",
+      "after_candidates": "11216"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.49",
+      "before": "13946",
+      "after": "11216",
+      "before_candidates": "13946",
+      "after_candidates": "11216"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.495",
+      "before": "13946",
+      "after": "11216",
+      "before_candidates": "13946",
+      "after_candidates": "11216"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.5.A",
+      "before": "13946",
+      "after": "11216",
+      "before_candidates": "13946",
+      "after_candidates": "11216"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.52",
+      "before": "13946",
+      "after": "11216",
+      "before_candidates": "13946",
+      "after_candidates": "11216"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.53",
+      "before": "13946",
+      "after": "11216",
+      "before_candidates": "13946",
+      "after_candidates": "11216"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.54",
+      "before": "13946",
+      "after": "11216",
+      "before_candidates": "13946",
+      "after_candidates": "11216"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.55",
+      "before": "13946",
+      "after": "11216",
+      "before_candidates": "13946",
+      "after_candidates": "11216"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.56",
+      "before": "13946",
+      "after": "11216",
+      "before_candidates": "13946",
+      "after_candidates": "11216"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.57",
+      "before": "13946",
+      "after": "11216",
+      "before_candidates": "13946",
+      "after_candidates": "11216"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.6",
+      "before": "13946",
+      "after": "54521",
+      "before_candidates": "13946",
+      "after_candidates": "54521"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.62",
+      "before": "13946",
+      "after": "54521",
+      "before_candidates": "13946",
+      "after_candidates": "54521"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.63",
+      "before": "13946",
+      "after": "54521",
+      "before_candidates": "13946",
+      "after_candidates": "54521"
+    },
+    {
+      "system": "lcc",
+      "code": "DK503.64",
+      "before": "13946",
+      "after": "54521",
+      "before_candidates": "13946",
+      "after_candidates": "54521"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.3-DK504.69.Z",
+      "before": "13950",
+      "after": "11217",
+      "before_candidates": "13950",
+      "after_candidates": "11217"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.37",
+      "before": "13950",
+      "after": "11217",
+      "before_candidates": "13950",
+      "after_candidates": "11217"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.49",
+      "before": "13950",
+      "after": "11217",
+      "before_candidates": "13950",
+      "after_candidates": "11217"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.495",
+      "before": "13950",
+      "after": "11217",
+      "before_candidates": "13950",
+      "after_candidates": "11217"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.5.A",
+      "before": "13950",
+      "after": "11217",
+      "before_candidates": "13950",
+      "after_candidates": "11217"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.52",
+      "before": "13950",
+      "after": "11217",
+      "before_candidates": "13950",
+      "after_candidates": "11217"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.53",
+      "before": "13950",
+      "after": "11217",
+      "before_candidates": "13950",
+      "after_candidates": "11217"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.54",
+      "before": "13950",
+      "after": "11217",
+      "before_candidates": "13950",
+      "after_candidates": "11217"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.55",
+      "before": "13950",
+      "after": "11217",
+      "before_candidates": "13950",
+      "after_candidates": "11217"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.56",
+      "before": "13950",
+      "after": "11217",
+      "before_candidates": "13950",
+      "after_candidates": "11217"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.57",
+      "before": "13950",
+      "after": "11217",
+      "before_candidates": "13950",
+      "after_candidates": "11217"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.6",
+      "before": "13950",
+      "after": "54524",
+      "before_candidates": "13950",
+      "after_candidates": "54524"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.62",
+      "before": "13950",
+      "after": "54524",
+      "before_candidates": "13950",
+      "after_candidates": "54524"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.63",
+      "before": "13950",
+      "after": "54524",
+      "before_candidates": "13950",
+      "after_candidates": "54524"
+    },
+    {
+      "system": "lcc",
+      "code": "DK504.64",
+      "before": "13950",
+      "after": "54524",
+      "before_candidates": "13950",
+      "after_candidates": "54524"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.3-DK505.69.Z",
+      "before": "13954",
+      "after": "11221",
+      "before_candidates": "13954",
+      "after_candidates": "11221"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.37",
+      "before": "13954",
+      "after": "11221",
+      "before_candidates": "13954",
+      "after_candidates": "11221"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.49",
+      "before": "13954",
+      "after": "11221",
+      "before_candidates": "13954",
+      "after_candidates": "11221"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.495",
+      "before": "13954",
+      "after": "11221",
+      "before_candidates": "13954",
+      "after_candidates": "11221"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.5.A",
+      "before": "13954",
+      "after": "11221",
+      "before_candidates": "13954",
+      "after_candidates": "11221"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.52",
+      "before": "13954",
+      "after": "11221",
+      "before_candidates": "13954",
+      "after_candidates": "11221"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.53",
+      "before": "13954",
+      "after": "11221",
+      "before_candidates": "13954",
+      "after_candidates": "11221"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.54",
+      "before": "13954",
+      "after": "11221",
+      "before_candidates": "13954",
+      "after_candidates": "11221"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.55",
+      "before": "13954",
+      "after": "11221",
+      "before_candidates": "13954",
+      "after_candidates": "11221"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.56",
+      "before": "13954",
+      "after": "11221",
+      "before_candidates": "13954",
+      "after_candidates": "11221"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.57",
+      "before": "13954",
+      "after": "11221",
+      "before_candidates": "13954",
+      "after_candidates": "11221"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.6",
+      "before": "13954",
+      "after": "54527",
+      "before_candidates": "13954",
+      "after_candidates": "54527"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.62",
+      "before": "13954",
+      "after": "54527",
+      "before_candidates": "13954",
+      "after_candidates": "54527"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.63",
+      "before": "13954",
+      "after": "54527",
+      "before_candidates": "13954",
+      "after_candidates": "54527"
+    },
+    {
+      "system": "lcc",
+      "code": "DK505.64",
+      "before": "13954",
+      "after": "54527",
+      "before_candidates": "13954",
+      "after_candidates": "54527"
+    },
+    {
+      "system": "lcc",
+      "code": "DK507.729-DK507.73",
+      "before": "11346",
+      "after": "3587",
+      "before_candidates": "11346",
+      "after_candidates": "3587"
+    },
+    {
+      "system": "lcc",
+      "code": "DK507.729.A",
+      "before": "11346",
+      "after": "11390",
+      "before_candidates": "11346",
+      "after_candidates": "11390"
+    },
+    {
+      "system": "lcc",
+      "code": "DK507.7292",
+      "before": "11346",
+      "after": "11390",
+      "before_candidates": "11346",
+      "after_candidates": "11390"
+    },
+    {
+      "system": "lcc",
+      "code": "DK507.7293",
+      "before": "11346",
+      "after": "11390",
+      "before_candidates": "11346",
+      "after_candidates": "11390"
+    },
+    {
+      "system": "lcc",
+      "code": "DK507.73",
+      "before": "11390",
+      "after": "11346",
+      "before_candidates": "11390",
+      "after_candidates": "11346"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ113-DQ188.2",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ121",
+      "before": "10352",
+      "after": "10097",
+      "before_candidates": "10352",
+      "after_candidates": "10097"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ121.8.A",
+      "before": "10352",
+      "after": "10097",
+      "before_candidates": "10352",
+      "after_candidates": "10097"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ121.8.T6",
+      "before": "10352",
+      "after": "10097",
+      "before_candidates": "10352",
+      "after_candidates": "10097"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ122",
+      "before": "10352",
+      "after": "10097",
+      "before_candidates": "10352",
+      "after_candidates": "10097"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ123.A2",
+      "before": "10352",
+      "after": "10097",
+      "before_candidates": "10352",
+      "after_candidates": "10097"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ123.A3",
+      "before": "10352",
+      "after": "10097",
+      "before_candidates": "10352",
+      "after_candidates": "10097"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ123.L4",
+      "before": "10352",
+      "after": "10097",
+      "before_candidates": "10352",
+      "after_candidates": "10097"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ123.S3",
+      "before": "10352",
+      "after": "10097",
+      "before_candidates": "10352",
+      "after_candidates": "10097"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ123.Z4",
+      "before": "10352",
+      "after": "10097",
+      "before_candidates": "10352",
+      "after_candidates": "10097"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ124",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ128",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ129.A",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ129.B7",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ129.D8",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ129.R4",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ129.S8",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ129.W3",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ131",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ136",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ137",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ139",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ140.A",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ140.G3",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ140.S25",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ150.6",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ151",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ154",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ156",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ157",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ158",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DQ158.9",
+      "before": "10352",
+      "after": "3602",
+      "before_candidates": "10352",
+      "after_candidates": "3602"
+    },
+    {
+      "system": "lcc",
+      "code": "DU118-DU145",
+      "before": "13860",
+      "after": "3319",
+      "before_candidates": "13860",
+      "after_candidates": "3319"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6571-HV6604",
+      "before": "52572",
+      "after": "52568",
+      "before_candidates": "52572",
+      "after_candidates": "52568"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6574.5",
+      "before": "52572",
+      "after": "52571",
+      "before_candidates": "52572",
+      "after_candidates": "52571"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6575",
+      "before": "52572",
+      "after": "52571",
+      "before_candidates": "52572",
+      "after_candidates": "52571"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6575.3.A",
+      "before": "52572",
+      "after": "52571",
+      "before_candidates": "52572",
+      "after_candidates": "52571"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6584",
+      "before": "52572",
+      "after": "52571",
+      "before_candidates": "52572",
+      "after_candidates": "52571"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6587.5",
+      "before": "52572",
+      "after": "52571",
+      "before_candidates": "52572",
+      "after_candidates": "52571"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6587.A",
+      "before": "52572",
+      "after": "52571",
+      "before_candidates": "52572",
+      "after_candidates": "52571"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6589.A",
+      "before": "52572",
+      "after": "52571",
+      "before_candidates": "52572",
+      "after_candidates": "52571"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6592",
+      "before": "52572",
+      "after": "52571",
+      "before_candidates": "52572",
+      "after_candidates": "52571"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6593",
+      "before": "52572",
+      "after": "52571",
+      "before_candidates": "52572",
+      "after_candidates": "52571"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6593.01",
+      "before": "52572",
+      "after": "52568",
+      "before_candidates": "52572",
+      "after_candidates": "52568"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6593.A",
+      "before": "52572",
+      "after": "52571",
+      "before_candidates": "52572",
+      "after_candidates": "52571"
+    },
+    {
+      "system": "lcc",
+      "code": "HV6594.4.A",
+      "before": "52572",
+      "after": "52568",
+      "before_candidates": "52572",
+      "after_candidates": "52568"
+    },
+    {
+      "system": "lcc",
+      "code": "K1501",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1506",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1508",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1512",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1514.A",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1516",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1517",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1519.A",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1519.A8",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1519.B54",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1519.C45",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1519.C6",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1519.D78",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1519.F6",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1519.M5",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1519.N36",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1521",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1525",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1528",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1530",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1532",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1536",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1539",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1544.A485",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1544.A5",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1551",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1557",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1559",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1562",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1565",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1567",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1568",
+      "before": "5710",
+      "after": "11741",
+      "before_candidates": "5710",
+      "after_candidates": "11741"
+    },
+    {
+      "system": "lcc",
+      "code": "K1571",
+      "before": "5710",
+      "after": "13314",
+      "before_candidates": "5710",
+      "after_candidates": "13314"
+    },
+    {
+      "system": "lcc",
+      "code": "K1571-K1578.23",
+      "before": "5710",
+      "after": "13314",
+      "before_candidates": "5710",
+      "after_candidates": "13314"
+    },
+    {
+      "system": "lcc",
+      "code": "K1574.615",
+      "before": "5710",
+      "after": "13314",
+      "before_candidates": "5710",
+      "after_candidates": "13314"
+    },
+    {
+      "system": "lcc",
+      "code": "K1577",
+      "before": "5710",
+      "after": "13314",
+      "before_candidates": "5710",
+      "after_candidates": "13314"
+    },
+    {
+      "system": "lcc",
+      "code": "K1577.5",
+      "before": "5710",
+      "after": "13314",
+      "before_candidates": "5710",
+      "after_candidates": "13314"
+    },
+    {
+      "system": "lcc",
+      "code": "K1578",
+      "before": "5710",
+      "after": "13314",
+      "before_candidates": "5710",
+      "after_candidates": "13314"
+    },
+    {
+      "system": "lcc",
+      "code": "K1578.01",
+      "before": "5710",
+      "after": "13314",
+      "before_candidates": "5710",
+      "after_candidates": "13314"
+    },
+    {
+      "system": "lcc",
+      "code": "K1578.23",
+      "before": "5710",
+      "after": "13314",
+      "before_candidates": "5710",
+      "after_candidates": "13314"
+    },
+    {
+      "system": "lcc",
+      "code": "K3661-K3674",
+      "before": "11749",
+      "after": "5299",
+      "before_candidates": "11749",
+      "after_candidates": "5299"
+    },
+    {
+      "system": "lcc",
+      "code": "KB21067.5",
+      "before": "12990",
+      "after": "5276",
+      "before_candidates": "12990",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3790-KB4855",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3791",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3817",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3817-KB38318",
+      "before": "12990",
+      "after": "5276",
+      "before_candidates": "12990",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3818",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3821",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3823.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3824",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB38318",
+      "before": "12990",
+      "after": "5276",
+      "before_candidates": "12990",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3838",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3840",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3852",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3854",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3855",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3856",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3857",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3858",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3859",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3861",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3867",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3878",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3882",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3884",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3886",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3886.5",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3892.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3896",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3897",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3902",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3922",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3946",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3950",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3952",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3954",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3980.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3980.B43",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3980.B78",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3980.F57",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3980.M87",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3980.S85",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3982",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3993.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3993.B35",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3993.I47",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB3993.I54",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4012",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4023.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4023.A25",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4023.A35",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4034",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4038",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4048",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4050",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4058",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4070",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4074",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4076",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4116",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4120",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4121",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4147",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4172",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4230",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4235",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4250",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4254",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4256",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4258",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4305",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4322.5",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4330",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4351.5",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4351.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4354",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4364",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4368",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4377",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4380",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4384",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4415",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4417",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4442",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4447.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4470",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4514",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4538",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4540",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4541",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4543",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4545",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4601",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4624",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4630.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4630.A25",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4630.A253",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4630.D43",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4630.V52",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4632",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4636",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4648",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4650",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4664",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4666",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4667.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4673",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4675",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4687",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4689",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4692",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4700",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4709.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4709.A45",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4709.C57",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4709.D63",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4709.O28",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4709.R48",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4709.T47",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4710",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4720",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4738",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4742.57",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4742.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4742.A27",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4742.C66",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4753",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4754",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4768.A",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4770",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4795",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4855",
+      "before": "5319",
+      "after": "12990",
+      "before_candidates": "5319",
+      "after_candidates": "12990"
+    },
+    {
+      "system": "lcc",
+      "code": "KB4855.01",
+      "before": "12990",
+      "after": "5276",
+      "before_candidates": "12990",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KBM1040-KBM11147",
+      "before": "5619",
+      "after": "5276",
+      "before_candidates": "5619",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KBM11147",
+      "before": "5619",
+      "after": "5276",
+      "before_candidates": "5619",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KBM4855.23",
+      "before": "5619",
+      "after": "5276",
+      "before_candidates": "5619",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KBM6093.5",
+      "before": "5619",
+      "after": "5276",
+      "before_candidates": "5619",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA1999.01",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2001",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2006",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2006.2.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2006.2.A43",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2006.2.A45",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2006.2.T36",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2007.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2007.C46",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2007.C68",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2007.I68",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2026.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2026.F57",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2031",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2032",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2033",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2035",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2040",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2042",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2043",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2045.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2070",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2072",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2098",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2100",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2104",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2106",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2108",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2110.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2120",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2122",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2126.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2126.B36",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2126.C37",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2126.N44",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2126.S35",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2130",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2132.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2132.P47",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2134",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2140",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2142",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2144",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2148",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2150",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2228",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2230",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2234.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2234.W43",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2236",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2240",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2244",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2246",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2250",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2254",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2256.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2260",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2262.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2270",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2280",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2282",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2284",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2285",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2286.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2286.D53",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2292",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2300",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2314",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2338",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2340",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2350",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2370",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2372",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2374",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2378",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2390",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2436",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2440",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2442",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2444",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2445",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2447",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2447.3",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2448",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2448.2.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2449",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2449.2",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2449.3",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2449.4",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2450",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2451",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2452",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2453",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2453.2",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2454",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2454.2",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2455",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2455.2",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2456",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2456.2",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2457.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2458",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2460",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2472",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2473.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2473.A43",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2474",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2476",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2478",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2480",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2482",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2484",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2486",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2490.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2490.A67",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2490.F36",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2490.H43",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2490.I58",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2490.S87",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2490.T48",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2490.T73",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2490.T75",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2500",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2506.A",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2506.A36",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2506.C48",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2506.M38",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2506.P38",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2516",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2620",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2622",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2624",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2626",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2628",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA2630",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3041",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3061",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3081",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3101",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3121",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA313-KIA3317",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3141",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3161",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3181",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3201",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3221",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3241",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3261",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3281",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3301",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KIA3317",
+      "before": "5562",
+      "after": "51566",
+      "before_candidates": "5562",
+      "after_candidates": "51566"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC2260-KJC2666",
+      "before": "5553",
+      "after": "5276",
+      "before_candidates": "5553",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC2655",
+      "before": "5710",
+      "after": "13314",
+      "before_candidates": "5710",
+      "after_candidates": "13314"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC2655-KJC2700",
+      "before": "5710",
+      "after": "13314",
+      "before_candidates": "5710",
+      "after_candidates": "13314"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC3449-KJC4439.9",
+      "before": "13294",
+      "after": "5276",
+      "before_candidates": "13294",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4413",
+      "before": "13294",
+      "after": "5317",
+      "before_candidates": "13294",
+      "after_candidates": "5317"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4413-KJC4428",
+      "before": "13294",
+      "after": "5317",
+      "before_candidates": "13294",
+      "after_candidates": "5317"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4420",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4420-KJC4447",
+      "before": "13327",
+      "after": "5276",
+      "before_candidates": "13327",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4420.5",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4425",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4425.5",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4426",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4427",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4428",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4428.01",
+      "before": "13327",
+      "after": "5276",
+      "before_candidates": "13327",
+      "after_candidates": "5276"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4428.A",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4431",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4432",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4433",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4433.5",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4434.2",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4434.5",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4434.5.A4",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4435",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4435.2",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4435.5.A",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4435.5.C65",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4435.55",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4435.7",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4435.8",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4436",
+      "before": "13327",
+      "after": "13295",
+      "before_candidates": "13327",
+      "after_candidates": "13295"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4439.9",
+      "before": "13327",
+      "after": "13295",
+      "before_candidates": "13327",
+      "after_candidates": "13295"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4439.91",
+      "before": "13327",
+      "after": "13295",
+      "before_candidates": "13327",
+      "after_candidates": "13295"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4440",
+      "before": "13327",
+      "after": "13295",
+      "before_candidates": "13327",
+      "after_candidates": "13295"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4441",
+      "before": "13327",
+      "after": "13295",
+      "before_candidates": "13327",
+      "after_candidates": "13295"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4441.3",
+      "before": "13327",
+      "after": "13295",
+      "before_candidates": "13327",
+      "after_candidates": "13295"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4444",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4444.4",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4444.5",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4444.52",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4444.53",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4444.8",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4444.9",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4445",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "KJC4447",
+      "before": "13327",
+      "after": "5643",
+      "before_candidates": "13327",
+      "after_candidates": "5643"
+    },
+    {
+      "system": "lcc",
+      "code": "LB1050-LB1099.99",
+      "before": "2199",
+      "after": "2315",
+      "before_candidates": "2199",
+      "after_candidates": "2315"
+    },
+    {
+      "system": "lcc",
+      "code": "LB1050.76",
+      "before": "2199",
+      "after": "2315",
+      "before_candidates": "2199",
+      "after_candidates": "2315"
+    },
+    {
+      "system": "lcc",
+      "code": "LB1600-LB1704.99",
+      "before": "2327",
+      "after": "2315",
+      "before_candidates": "2327",
+      "after_candidates": "2315"
+    },
+    {
+      "system": "lcc",
+      "code": "LB1602.01",
+      "before": "2327",
+      "after": "2315",
+      "before_candidates": "2327",
+      "after_candidates": "2315"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1600-PQ1713",
+      "before": "7378",
+      "after": "4241",
+      "before_candidates": "7378",
+      "after_candidates": "4241"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1710",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A25",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A47",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A5",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A62",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A63",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A65",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A7",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A73",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A8",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A82",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A84",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A85",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A87",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.A88",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1711.B3",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.A6",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.A8",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.B2",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.E3",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.E4",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.H2",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.L2",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.L25",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.L3",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.L4",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.L5",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.L6",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.L7",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.L8",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.L9",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.L9E5",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.S7",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PQ1713.Z5",
+      "before": "7378",
+      "after": "7911",
+      "before_candidates": "7378",
+      "after_candidates": "7911"
+    },
+    {
+      "system": "lcc",
+      "code": "PR109",
+      "before": "50826",
+      "after": "6614",
+      "before_candidates": "50826",
+      "after_candidates": "6614"
+    },
+    {
+      "system": "lcc",
+      "code": "PR109.5",
+      "before": "50826",
+      "after": "6614",
+      "before_candidates": "50826",
+      "after_candidates": "6614"
+    },
+    {
+      "system": "lcc",
+      "code": "PR110",
+      "before": "50826",
+      "after": "6614",
+      "before_candidates": "50826",
+      "after_candidates": "6614"
+    },
+    {
+      "system": "lcc",
+      "code": "PR110.A",
+      "before": "50826",
+      "after": "6614",
+      "before_candidates": "50826",
+      "after_candidates": "6614"
+    },
+    {
+      "system": "lcc",
+      "code": "PR110.Z",
+      "before": "50826",
+      "after": "6614",
+      "before_candidates": "50826",
+      "after_candidates": "6614"
+    },
+    {
+      "system": "lcc",
+      "code": "PR110.Z1",
+      "before": "50826",
+      "after": "6614",
+      "before_candidates": "50826",
+      "after_candidates": "6614"
+    },
+    {
+      "system": "lcc",
+      "code": "PS80-PS96",
+      "before": "13681",
+      "after": "3702",
+      "before_candidates": "13681",
+      "after_candidates": "3702"
+    },
+    {
+      "system": "lcc",
+      "code": "PS84.2",
+      "before": "13681",
+      "after": "13852",
+      "before_candidates": "13681",
+      "after_candidates": "13852"
+    },
+    {
+      "system": "lcc",
+      "code": "PS85",
+      "before": "13681",
+      "after": "13852",
+      "before_candidates": "13681",
+      "after_candidates": "13852"
+    },
+    {
+      "system": "lcc",
+      "code": "PS88",
+      "before": "13681",
+      "after": "13852",
+      "before_candidates": "13681",
+      "after_candidates": "13852"
+    },
+    {
+      "system": "lcc",
+      "code": "PS92",
+      "before": "13681",
+      "after": "13852",
+      "before_candidates": "13681",
+      "after_candidates": "13852"
+    },
+    {
+      "system": "lcc",
+      "code": "PS94",
+      "before": "13681",
+      "after": "13852",
+      "before_candidates": "13681",
+      "after_candidates": "13852"
+    },
+    {
+      "system": "lcc",
+      "code": "PS96",
+      "before": "13681",
+      "after": "13852",
+      "before_candidates": "13681",
+      "after_candidates": "13852"
+    },
+    {
+      "system": "lcc",
+      "code": "R834-R837.8",
+      "before": "9909",
+      "after": "2729",
+      "before_candidates": "9909",
+      "after_candidates": "2729"
+    }
+  ]
+}

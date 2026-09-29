@@ -1,0 +1,27 @@
+[package]
+name = "filesystem-scanner"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+audiobook-folder = { path = "../../../../shared/audiobook-folder" }
+blake3 = "1"
+book-identity = { path = "../../../../shared/book-identity", features = ["native-write"] }
+book-inspection = { path = "../book-inspection" }
+book-model = { path = "../../../../shared/book-model" }
+client-platform-runtime = { path = "../../../platforms/runtime" }
+cpu-host = { path = "../cpu-host" }
+futures-util = "0.3"
+library-database = { path = "../library-database" }
+library-files = { path = "../library-files" }
+log = "0.4"
+sync-common = { path = "../../../../shared/sync-common" }
+tempfile = "3"
+
+[dev-dependencies]
+book-metadata = { path = "../book-metadata" }
+client-runtime = { path = "../../../client-runtime" }
+lopdf = { version = "0.44", default-features = false }
+tempfile = "3"
+tokio = { version = "1", features = ["macros", "rt"] }

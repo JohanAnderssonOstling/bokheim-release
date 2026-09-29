@@ -1,0 +1,130 @@
+{
+  "observed_comparison": "Probes=11977153 changed=9749 losses=0 gains=0",
+  "boundary_comparison": "Probes=41105 changed=20 losses=0 gains=0",
+  "regression_tests": "9 passed",
+  "library_tests": "249 passed, 4 pre-existing failures (same baseline and final)",
+  "concept_count": 16909,
+  "usage_rows": 14085,
+  "database_sha256": "82bdea5b71ced4f68a65298e8a98a7ecefd98d762e02684d3d47df3f3639505c",
+  "changes_by_destination": [
+    {
+      "before": "4504",
+      "after": "4494",
+      "codes": 4617,
+      "example": "BJ1461"
+    },
+    {
+      "before": "2768",
+      "after": "2747",
+      "codes": 1447,
+      "example": "RT120.I5"
+    },
+    {
+      "before": "12878",
+      "after": "3784",
+      "codes": 1359,
+      "example": "BF455"
+    },
+    {
+      "before": "2768",
+      "after": "2757",
+      "codes": 743,
+      "example": "RT89"
+    },
+    {
+      "before": "12878",
+      "after": "5389",
+      "codes": 618,
+      "example": "BF468"
+    },
+    {
+      "before": "2768",
+      "after": "2755",
+      "codes": 611,
+      "example": "RT98"
+    },
+    {
+      "before": "12875",
+      "after": "5389",
+      "codes": 316,
+      "example": "BF353.5.N37"
+    },
+    {
+      "before": "3784|12878",
+      "after": "3784",
+      "codes": 14,
+      "example": "P37-37.5BF455-463"
+    },
+    {
+      "before": "12877",
+      "after": "5389",
+      "codes": 10,
+      "example": "BF435 .M8 1999"
+    },
+    {
+      "before": "3784|5381|12878",
+      "after": "3784|5381",
+      "codes": 4,
+      "example": "BF1-990P37-37.5BF455"
+    },
+    {
+      "before": "2707|3784|12878",
+      "after": "2707|3784",
+      "codes": 2,
+      "example": "P37-37.5BF455-463RC4"
+    },
+    {
+      "before": "3778|3784|12878",
+      "after": "3778|3784",
+      "codes": 1,
+      "example": "P1-1091P37-37.5BF455"
+    },
+    {
+      "before": "3784|10966|12878",
+      "after": "3784|10966",
+      "codes": 1,
+      "example": "B53P37-37.5BF455-463"
+    },
+    {
+      "before": "3784|11092|12878",
+      "after": "3784|11092",
+      "codes": 1,
+      "example": "B67P37-37.5BF455-463"
+    },
+    {
+      "before": "2284|3784|12878",
+      "after": "2284|3784",
+      "codes": 1,
+      "example": "P37-37.5BF455-463LC8"
+    },
+    {
+      "before": "3749|3784|12878",
+      "after": "3749|3784",
+      "codes": 1,
+      "example": "P37-37.5BF455-463PD7"
+    },
+    {
+      "before": "3784|4947|12878",
+      "after": "3784|4947",
+      "codes": 1,
+      "example": "P37-37.5BF455-463QA8"
+    },
+    {
+      "before": "3784|4879|12878",
+      "after": "3784|4879",
+      "codes": 1,
+      "example": "P37-37.5BF455-463QH4"
+    },
+    {
+      "before": "2768|2811|52684",
+      "after": "2747|2811|52684",
+      "codes": 1,
+      "example": "RT89-120RJ506.L4HV15"
+    }
+  ],
+  "viewer_verified": true,
+  "observed_destination_groups_reviewed": 19,
+  "migration_replay_matches_preview": true,
+  "integrity_and_foreign_keys_pass": true,
+  "cycle_and_sibling_collision_checks_pass": true
+}

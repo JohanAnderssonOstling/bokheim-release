@@ -1,0 +1,39 @@
+{
+  "empty_groupings_removed": 45,
+  "duplicate_groupings_merged": 3,
+  "new_subjects": 28,
+  "existing_subjects_relabelled": 198,
+  "names_over30_at_start": 769,
+  "names_over30_now": 691,
+  "names_over35_now": 47,
+  "subjects_now": 14423,
+  "aliases_added": 0,
+  "validation": "All six batches preserved selector strings, range bounds, aliases and observed code coverage. Live labels, removed groups, new subjects, integrity and foreign keys verified.",
+  "verified_code_groups_by_batch": [
+    2960788,
+    2960788,
+    2960788,
+    2960849,
+    2960849,
+    2960849
+  ],
+  "retained_examples": {
+    "38": "Computer Vision & Pattern Recognition",
+    "5228": "Workplace Harassment & Discrimination",
+    "5565": "Mechanical & Industrial Engineering",
+    "5566": "Electrical & Electronic Engineering",
+    "13295": "European Comparative Constitutional Law",
+    "13293": "European Comparative Labor & Social Law",
+    "13294": "Comparative European Court Procedure",
+    "180": "Virtualization & Containerization",
+    "780": "Instrumentation & Orchestration"
+  },
+  "reports": [
+    "20260907-compound-review-30.json",
+    "20260907-compound-review-30b.json",
+    "20260907-compound-review-30c.json",
+    "20260907-compound-review-30d.json",
+    "20260907-compound-review-30e.json",
+    "20260907-compound-review-30f.json"
+  ]
+}

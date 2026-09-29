@@ -1,0 +1,518 @@
+{
+  "changes": [
+    {
+      "id": 7490,
+      "before": "Acoustical telecommunication systems",
+      "after": "Acoustic Telecommunications"
+    },
+    {
+      "id": 405,
+      "before": "Aeronautics. Aeronautical engineering",
+      "after": "Aeronautical Engineering"
+    },
+    {
+      "id": 6831,
+      "before": "Afghan (Pashto, Pushto, Pushtu, etc.)",
+      "after": "Pashto"
+    },
+    {
+      "id": 50851,
+      "before": "African American Biography & Genealogy",
+      "after": "Afro-American Biography & Genealogy"
+    },
+    {
+      "id": 7204,
+      "before": "Airplane industry (Technical aspects)",
+      "after": "Aircraft Manufacturing"
+    },
+    {
+      "id": 3851,
+      "before": "American humor and satire in English",
+      "after": "American Humor & Satire"
+    },
+    {
+      "id": 13205,
+      "before": "Biographies of Christian Philosophers",
+      "after": "Christian Philosopher Biographies"
+    },
+    {
+      "id": 3217,
+      "before": "Biography as an art or literary form",
+      "after": "Biography as Literature"
+    },
+    {
+      "id": 13555,
+      "before": "Audiovisual aids in science teaching",
+      "after": "Science Teaching Aids"
+    },
+    {
+      "id": 7081,
+      "before": "Automobile purchasing. Buyers' guides",
+      "after": "Car Buying Guides"
+    },
+    {
+      "id": 9715,
+      "before": "Automobiles for freight, etc. Trucks",
+      "after": "Trucks"
+    },
+    {
+      "id": 11888,
+      "before": "Bhutanese Government & Administration",
+      "after": "Bhutanese Government"
+    },
+    {
+      "id": 11918,
+      "before": "Canadian Government & Administration",
+      "after": "Canadian Government"
+    },
+    {
+      "id": 11919,
+      "before": "Caribbean Government & Administration",
+      "after": "Caribbean Government"
+    },
+    {
+      "id": 5368,
+      "before": "European Government & Administration",
+      "after": "European Government"
+    },
+    {
+      "id": 11892,
+      "before": "Hong Kong Government & Administration",
+      "after": "Hong Kong Government"
+    },
+    {
+      "id": 11894,
+      "before": "Japanese Government & Administration",
+      "after": "Japanese Government"
+    },
+    {
+      "id": 11897,
+      "before": "Maldivian Government & Administration",
+      "after": "Maldivian Government"
+    },
+    {
+      "id": 11899,
+      "before": "Mongolian Government & Administration",
+      "after": "Mongolian Government"
+    },
+    {
+      "id": 11900,
+      "before": "Nepalese Government & Administration",
+      "after": "Nepalese Government"
+    },
+    {
+      "id": 11902,
+      "before": "Pakistani Government & Administration",
+      "after": "Pakistani Government"
+    },
+    {
+      "id": 11903,
+      "before": "Philippine Government & Administration",
+      "after": "Philippine Government"
+    },
+    {
+      "id": 11905,
+      "before": "Sri Lankan Government & Administration",
+      "after": "Sri Lankan Government"
+    },
+    {
+      "id": 11906,
+      "before": "Taiwanese Government & Administration",
+      "after": "Taiwanese Government"
+    },
+    {
+      "id": 6749,
+      "before": "Cancer and other malignant neoplasms",
+      "after": "Cancer"
+    },
+    {
+      "id": 6589,
+      "before": "Care and rehabilitation of alcoholics",
+      "after": "Alcohol Rehabilitation"
+    },
+    {
+      "id": 2276,
+      "before": "Christian education. Church education",
+      "after": "Christian Education"
+    },
+    {
+      "id": 10854,
+      "before": "Christian etiquette. Church etiquette",
+      "after": "Christian Etiquette"
+    },
+    {
+      "id": 8990,
+      "before": "Clothing for people with disabilities",
+      "after": "Adaptive Clothing"
+    },
+    {
+      "id": 6694,
+      "before": "Colored wood engravings and woodcuts",
+      "after": "Color Woodcuts & Engravings"
+    },
+    {
+      "id": 9594,
+      "before": "Computer production of music notation",
+      "after": "Digital Music Notation"
+    },
+    {
+      "id": 72,
+      "before": "Database Administration & Management",
+      "after": "Database Management"
+    },
+    {
+      "id": 7280,
+      "before": "Cryotherapy. Therapeutic use of cold",
+      "after": "Cryotherapy"
+    },
+    {
+      "id": 5096,
+      "before": "Demography. Population. Vital events",
+      "after": "Demography"
+    },
+    {
+      "id": 2811,
+      "before": "Diseases of children and adolescents",
+      "after": "Pediatric Diseases"
+    },
+    {
+      "id": 8952,
+      "before": "Disorders of occlusion. Malocclusion",
+      "after": "Malocclusion"
+    },
+    {
+      "id": 9716,
+      "before": "Egyptian writing and its decipherment",
+      "after": "Egyptian Script Decipherment"
+    },
+    {
+      "id": 9556,
+      "before": "Electric equipment on space vehicles",
+      "after": "Spacecraft Electrical Equipment"
+    },
+    {
+      "id": 10887,
+      "before": "Ethics for young men and young women",
+      "after": "Youth Ethics"
+    },
+    {
+      "id": 10914,
+      "before": "Expression of the emotions in humans",
+      "after": "Human Emotional Expression"
+    },
+    {
+      "id": 6482,
+      "before": "Fantastic, The (Aesthetics). Fantasy",
+      "after": "Fantasy in Art"
+    },
+    {
+      "id": 2827,
+      "before": "Formularies. Collected prescriptions",
+      "after": "Prescription Formularies"
+    },
+    {
+      "id": 5404,
+      "before": "Gestalt psychology. Gestalt perception",
+      "after": "Gestalt Psychology"
+    },
+    {
+      "id": 6826,
+      "before": "Health facilities. Hospital buildings",
+      "after": "Healthcare Buildings"
+    },
+    {
+      "id": 1035,
+      "before": "Illuminating of manuscripts and books",
+      "after": "Manuscript & Book Illumination"
+    },
+    {
+      "id": 4499,
+      "before": "Individual ethics. Character. Virtue",
+      "after": "Character & Virtue Ethics"
+    },
+    {
+      "id": 448,
+      "before": "Industrial safety. Industrial accident",
+      "after": "Industrial Safety"
+    },
+    {
+      "id": 8864,
+      "before": "Inorganic polymers and polymerization",
+      "after": "Inorganic Polymers"
+    },
+    {
+      "id": 655,
+      "before": "Interior decoration. House decoration",
+      "after": "Interior Decoration"
+    },
+    {
+      "id": 10065,
+      "before": "Iron and steel building construction",
+      "after": "Iron & Steel Construction"
+    },
+    {
+      "id": 9240,
+      "before": "Munda languages (Kolarian languages)",
+      "after": "Munda Languages"
+    },
+    {
+      "id": 4376,
+      "before": "Journalism. The periodical press, etc",
+      "after": "Journalism & Periodicals"
+    },
+    {
+      "id": 4766,
+      "before": "Library & Archive Personnel Management",
+      "after": "Library & Archive Staffing"
+    },
+    {
+      "id": 225,
+      "before": "Low temperature engineering. Cryogenic",
+      "after": "Cryogenic Engineering"
+    },
+    {
+      "id": 361,
+      "before": "Manufacturing & Industrial Production",
+      "after": "Industrial Production"
+    },
+    {
+      "id": 2412,
+      "before": "Marine pollution. Sea water pollution",
+      "after": "Marine Pollution"
+    },
+    {
+      "id": 8532,
+      "before": "Maternal care. Prenatal care services",
+      "after": "Maternal & Prenatal Care"
+    },
+    {
+      "id": 8426,
+      "before": "Medals, badges, decorations of honor",
+      "after": "WWI Medals & Honors"
+    },
+    {
+      "id": 10452,
+      "before": "Medals, badges, decorations of honor",
+      "after": "WWII Medals & Honors"
+    },
+    {
+      "id": 2737,
+      "before": "Medicine as a profession. Physicians",
+      "after": "Medical Profession"
+    },
+    {
+      "id": 8527,
+      "before": "Microelectronics. Integrated circuits",
+      "after": "Microelectronics"
+    },
+    {
+      "id": 2818,
+      "before": "Nursing of children. Pediatric nursing",
+      "after": "Pediatric Nursing"
+    },
+    {
+      "id": 6429,
+      "before": "Ocean routes. Sea routes. Steam lanes",
+      "after": "Shipping Routes"
+    },
+    {
+      "id": 6323,
+      "before": "Operation of space vehicles. Piloting",
+      "after": "Spacecraft Piloting"
+    },
+    {
+      "id": 2570,
+      "before": "Oral and dental anatomy and physiology",
+      "after": "Oral Anatomy & Physiology"
+    },
+    {
+      "id": 8542,
+      "before": "Organometallic chemistry and compounds",
+      "after": "Organometallic Chemistry"
+    },
+    {
+      "id": 9958,
+      "before": "Philosophic grammar. Universal grammar",
+      "after": "Universal & Philosophical Grammar"
+    },
+    {
+      "id": 7826,
+      "before": "Physical measurements. Anthropometry",
+      "after": "Anthropometry"
+    },
+    {
+      "id": 2820,
+      "before": "Physiology of children and adolescents",
+      "after": "Pediatric Physiology"
+    },
+    {
+      "id": 13581,
+      "before": "Pictures and sound. Talking pictures",
+      "after": "Sound Films"
+    },
+    {
+      "id": 6487,
+      "before": "Positioning in surgery and anesthesia",
+      "after": "Surgical & Anesthetic Positioning"
+    },
+    {
+      "id": 6872,
+      "before": "Prefabricated and portable buildings",
+      "after": "Prefab & Portable Buildings"
+    },
+    {
+      "id": 4688,
+      "before": "Printers and printing establishments",
+      "after": "Printers & Printing Houses"
+    },
+    {
+      "id": 7588,
+      "before": "Protection of buildings from lightning",
+      "after": "Building Lightning Protection"
+    },
+    {
+      "id": 9321,
+      "before": "Psychoanalytic theories of development",
+      "after": "Psychoanalytic Development Theory"
+    },
+    {
+      "id": 4669,
+      "before": "Recreation Leadership & Administration",
+      "after": "Recreation Management"
+    },
+    {
+      "id": 9423,
+      "before": "Safety measures. Accident prevention",
+      "after": "Accident Prevention"
+    },
+    {
+      "id": 9847,
+      "before": "Stage photography. Theater photography",
+      "after": "Theater Photography"
+    },
+    {
+      "id": 6705,
+      "before": "Standard language. Literary language",
+      "after": "Standard & Literary Language"
+    },
+    {
+      "id": 8420,
+      "before": "Submarine telegraph. Submarine cables",
+      "after": "Submarine Communication Cables"
+    },
+    {
+      "id": 7473,
+      "before": "Surgery in infancy. Neonatal surgery",
+      "after": "Infant & Neonatal Surgery"
+    },
+    {
+      "id": 451,
+      "before": "Technical education. Technical schools",
+      "after": "Technical Education"
+    },
+    {
+      "id": 6441,
+      "before": "Thermotherapy. Therapeutic use of heat",
+      "after": "Thermotherapy"
+    },
+    {
+      "id": 8432,
+      "before": "Toothache and related orofacial pain",
+      "after": "Toothache & Orofacial Pain"
+    },
+    {
+      "id": 8748,
+      "before": "Watermarks, trademarks, etc. (Modern)",
+      "after": "Modern Paper Watermarks & Brands"
+    },
+    {
+      "id": 8506,
+      "before": "Woodpulp industry. Pulping processes",
+      "after": "Wood Pulp Production"
+    },
+    {
+      "id": 7176,
+      "before": "Working Drawings & Blueprint Reading",
+      "after": "Working Drawings & Blueprints"
+    },
+    {
+      "id": 13094,
+      "before": "University & College Teacher Training",
+      "after": "Higher Education Teacher Training"
+    },
+    {
+      "id": 7808,
+      "before": "Social and political aspects of music",
+      "after": "Music, Society & Politics"
+    },
+    {
+      "id": 8467,
+      "before": "Special kinds of poetry. Poetic genres",
+      "after": "Poetic Genres"
+    },
+    {
+      "id": 13637,
+      "before": "American Literary Biography & Memoirs",
+      "after": "U.S. Literary Biography & Memoirs"
+    },
+    {
+      "id": 13054,
+      "before": "Classical Greek Philology & Language",
+      "after": "Classical Greek Language Studies"
+    },
+    {
+      "id": 13052,
+      "before": "Historical Evidence for Christianity",
+      "after": "Evidence for Christianity"
+    },
+    {
+      "id": 9834,
+      "before": "History of modern Icelandic literature",
+      "after": "Modern Icelandic Literary History"
+    },
+    {
+      "id": 7289,
+      "before": "History of vocal instruction and study",
+      "after": "History of Voice Teaching"
+    },
+    {
+      "id": 5155,
+      "before": "Human Resources & Personnel Management",
+      "after": "Human Resources Management"
+    },
+    {
+      "id": 11917,
+      "before": "Government of the Americas — General",
+      "after": "Government of the Americas"
+    },
+    {
+      "id": 13016,
+      "before": "General & Systematic Buddhist Doctrine",
+      "after": "Buddhist Doctrine"
+    },
+    {
+      "id": 10380,
+      "before": "Tokugawa period, 1600-1868. Edo period",
+      "after": "Tokugawa Era, 1600–1868"
+    },
+    {
+      "id": 3619,
+      "before": "Period between World Wars (1919-1939)",
+      "after": "Interwar Period, 1919–1939"
+    },
+    {
+      "id": 10563,
+      "before": "Arab nationalism. Arabism. Panarabism",
+      "after": "Arab Nationalism & Pan-Arabism"
+    }
+  ],
+  "count": 101,
+  "over40_before": 6,
+  "over40_after": 6,
+  "aliases_added": 0,
+  "deferred_duplicate_ids": [
+    2577,
+    4960
+  ],
+  "current_over35": 390
+}

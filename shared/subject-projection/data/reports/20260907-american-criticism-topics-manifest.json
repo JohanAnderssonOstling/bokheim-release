@@ -1,0 +1,239 @@
+{
+  "entries": [
+    {
+      "name": "American Mystery Fiction Studies",
+      "target": 52375,
+      "source": 4311,
+      "parent": 4311,
+      "parents": [
+        4311,
+        4354
+      ],
+      "code": "PS374.D4",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 200706,
+          "caption": "Detective and mystery stories",
+          "hierarchy": [
+            "American literature",
+            "History of American literature",
+            "Special forms",
+            "Prose",
+            "Prose fiction",
+            "Special forms and topics, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "American Science Fiction Studies",
+      "target": 52376,
+      "source": 4311,
+      "parent": 4311,
+      "parents": [
+        4311,
+        4358
+      ],
+      "code": "PS374.S35",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 200811,
+          "caption": "Science fiction",
+          "hierarchy": [
+            "American literature",
+            "History of American literature",
+            "Special forms",
+            "Prose",
+            "Prose fiction",
+            "Special forms and topics, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Indigenous American Literature Studies",
+      "target": 52377,
+      "source": 4311,
+      "parent": 4311,
+      "parents": [
+        4311,
+        4342
+      ],
+      "code": "PS153.I52",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 200230,
+          "caption": "Indians, American",
+          "hierarchy": [
+            "American literature",
+            "History of American literature",
+            "Special classes of authors",
+            "Other classes of authors, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mexican American Literature Studies",
+      "target": 52378,
+      "source": 4311,
+      "parent": 4314,
+      "parents": [
+        4314
+      ],
+      "code": "PS153.M4",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 200236,
+          "caption": "Mexican-Americans",
+          "hierarchy": [
+            "American literature",
+            "History of American literature",
+            "Special classes of authors",
+            "Other classes of authors, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Women in American Fiction",
+      "target": 52379,
+      "source": 4311,
+      "parent": 4311,
+      "parents": [
+        4311
+      ],
+      "code": "PS374.W6",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 200851,
+          "caption": "Women",
+          "hierarchy": [
+            "American literature",
+            "History of American literature",
+            "Special forms",
+            "Prose",
+            "Prose fiction",
+            "Special forms and topics, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Asian American & Pacific Islander",
+      "target": 4313,
+      "source": 4311,
+      "parent": 4311,
+      "parents": [
+        4311
+      ],
+      "code": "PS153.A84",
+      "end": null,
+      "new": false,
+      "reference_records": [
+        {
+          "record_id": 200225,
+          "caption": "Asian Americans",
+          "hierarchy": [
+            "American literature",
+            "History of American literature",
+            "Special classes of authors",
+            "Other classes of authors, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Minority Authors in American Literature",
+      "target": 52380,
+      "source": 4311,
+      "parent": 4311,
+      "parents": [
+        4311
+      ],
+      "code": "PS153.M56",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 200237,
+          "caption": "Minorities",
+          "hierarchy": [
+            "American literature",
+            "History of American literature",
+            "Special classes of authors",
+            "Other classes of authors, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hispanic & Latino",
+      "target": 4314,
+      "source": 4311,
+      "parent": 4311,
+      "parents": [
+        4311
+      ],
+      "code": "PS153.H56",
+      "end": null,
+      "new": false,
+      "reference_records": [
+        {
+          "record_id": 200229,
+          "caption": "Hispanic Americans",
+          "hierarchy": [
+            "American literature",
+            "History of American literature",
+            "Special classes of authors",
+            "Other classes of authors, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jewish American Literature Studies",
+      "target": 52381,
+      "source": 4311,
+      "parent": 4311,
+      "parents": [
+        4311,
+        4343
+      ],
+      "code": "PS153.J4",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 200234,
+          "caption": "Jewish",
+          "hierarchy": [
+            "American literature",
+            "History of American literature",
+            "Special classes of authors",
+            "Other classes of authors, A-Z"
+          ]
+        }
+      ]
+    }
+  ],
+  "new_ids": [
+    52375,
+    52376,
+    52377,
+    52378,
+    52379,
+    52380,
+    52381
+  ]
+}

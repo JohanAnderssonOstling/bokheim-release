@@ -1,0 +1,1775 @@
+{
+  "reviewed_candidates": [
+    {
+      "lcc_code": "PS153.N5",
+      "concept_id": "unified:36c064c1-31ba-5547-88dd-dc4161565214",
+      "subject": "African American & Black",
+      "reference_record_id": "631254",
+      "schedule_path": "American literature / History of American literature / Special classes of authors",
+      "anchor_path": "Literature / Studies / Criticism / Regions & Literary Traditions / American / African American & Black",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject; historical caption in 2025 reference_entry identifies African American/Black authors or topics"
+    },
+    {
+      "lcc_code": "PQ4390",
+      "concept_id": "unified:4acef480-967a-56b1-8155-7dc47592254a",
+      "subject": "Italian literature",
+      "reference_record_id": "324754",
+      "schedule_path": "Italian literature / Individual authors / Individual authors and works to 1400 / Dante Alighieri, 1265-1321 / Biography and criticism / Criticism and interpretation",
+      "anchor_path": "Literature / By Language / Romance / Italian, Romanian & related literatures / Italian literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.T42",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91419",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Other, A-Z / Technological innovations. Technology",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PA6825",
+      "concept_id": "unified:3fccb207-a2ef-5541-8ebe-90f6df3953fa",
+      "subject": "Roman literature",
+      "reference_record_id": "334316",
+      "schedule_path": "Roman literature / Individual authors / Vergilius Maro, Publius (Virgil) / Criticism and interpretation / Modern / 1800-",
+      "anchor_path": "Literature / By Language / Classical / Latin & related Italic literatures / Roman literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN45-57",
+      "concept_id": "unified:3a7aa472-aa2e-5910-9fd8-9a3ef391ad07",
+      "subject": "Theory",
+      "reference_record_id": "189511",
+      "schedule_path": "Literature (General) / Theory. Philosophy. Esthetics / General works. Ideals, content, etc. Plots, motives",
+      "anchor_path": "Literature / Studies / Theory",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PZ3",
+      "concept_id": "bokheim:subject:literature:english",
+      "subject": "English",
+      "reference_record_id": "204181",
+      "schedule_path": "Fiction and juvenile belles lettres / Fiction in English / Individual authors",
+      "anchor_path": "Literature / By Language / English",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN770-779",
+      "concept_id": "unified:70b3087b-1a72-5fae-b1e6-97b9b7f739c2",
+      "subject": "History",
+      "reference_record_id": "190477",
+      "schedule_path": "Literature (General) / Literary history / By period / Modern / 20th century",
+      "anchor_path": "Literature / Studies / History",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PQ4804",
+      "concept_id": "unified:4acef480-967a-56b1-8155-7dc47592254a",
+      "subject": "Italian literature",
+      "reference_record_id": "644469",
+      "schedule_path": "Italian literature / Individual authors / Individual authors, 1900-1960 / Annunzio, Gabriele d', 1863-1938",
+      "anchor_path": "Literature / By Language / Romance / Italian, Romanian & related literatures / Italian literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5684",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "196090",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Trollope, Anthony",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN1560-1590",
+      "concept_id": "unified:c7dd84b7-b091-523a-970a-a50761a4ab13",
+      "subject": "The performing arts. Show business",
+      "reference_record_id": "190854",
+      "schedule_path": "The Performing arts. Show business / Periodicals. Serials / Early through 1800",
+      "anchor_path": "Literature / Studies / General / Drama / The performing arts. Show business",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN41",
+      "concept_id": "unified:bbcf0a3c-e484-5778-ab84-70596d1c59c9",
+      "subject": "General",
+      "reference_record_id": "189506",
+      "schedule_path": "Literature (General) / Encyclopedias. Dictionaries / General",
+      "anchor_path": "Literature / Studies / General",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4168",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194089",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Bronte\u0308, Charlotte",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P129-138.7222",
+      "concept_id": "unified:0f362cc7-fa35-5e97-8772-4431817aa462",
+      "subject": "Linguistic Theory & Comparative Grammar",
+      "reference_record_id": "91518",
+      "schedule_path": "Philology. Linguistics / Language. Linguistic theory. Comparative grammar / Science of language (Linguistics) / Applied linguistics / General works",
+      "anchor_path": "Humanities / Language / Linguistics / Language Structure & Meaning / Linguistic Theory & Comparative Grammar",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR3588",
+      "concept_id": "unified:7a27d79a-7b57-5559-a19b-e6738ae4626b",
+      "subject": "17th and 18th centuries (1640-1770)",
+      "reference_record_id": "199926",
+      "schedule_path": "English literature / 17th and 18th centuries (1640-1770) / Individual authors / Milton, John",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 17th and 18th centuries (1640-1770)",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS2124",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202599",
+      "schedule_path": "American literature / Individual authors / 19th century / James, Henry",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5823",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "19933",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Wilde, Oscar / Biography, criticism, etc.",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN760.5-769",
+      "concept_id": "unified:70b3087b-1a72-5fae-b1e6-97b9b7f739c2",
+      "subject": "History",
+      "reference_record_id": "190479",
+      "schedule_path": "Literature (General) / Literary history / By period / Modern / 19th century / Polyglot",
+      "anchor_path": "Literature / Studies / History",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4622",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194357",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Doyle, Sir Arthur Conan",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5774",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "196121",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Wells, Herbert George",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT1141",
+      "concept_id": "unified:03a138ff-b2da-58b0-b6b9-d3c47edd8ca1",
+      "subject": "German & Related Literatures",
+      "reference_record_id": "406005",
+      "schedule_path": "German literature / Collections of German literature / By period",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / German & Related Literatures",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4588",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194320",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Dickens, Charles",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4624",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194357",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Doyle, Sir Arthur Conan",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5397",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "195832",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Shelley, Mary Wollstonecraft Godwin, 1797-1851",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4581",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194320",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Dickens, Charles",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4754",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194474",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Hardy, Thomas",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS2116",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202601",
+      "schedule_path": "American literature / Individual authors / 19th century / James, Henry / Novels and tales",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.I5",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91398",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Other, A-Z / International cooperation. International communication",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN1600-3307.2",
+      "concept_id": "unified:2c50da2c-5468-585b-868b-a563e111e205",
+      "subject": "Drama",
+      "reference_record_id": "432070",
+      "schedule_path": "Drama / Periodicals. Serials / Early through 1800",
+      "anchor_path": "Literature / Studies / General / Drama",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P101-120",
+      "concept_id": "unified:0f362cc7-fa35-5e97-8772-4431817aa462",
+      "subject": "Linguistic Theory & Comparative Grammar",
+      "reference_record_id": "91454",
+      "schedule_path": "Philology. Linguistics / Language. Linguistic theory. Comparative grammar / Philosophy, origin, etc. of language / General works / Through 1800",
+      "anchor_path": "Humanities / Language / Linguistics / Language Structure & Meaning / Linguistic Theory & Comparative Grammar",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS1331",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "201998",
+      "schedule_path": "American literature / Individual authors / 19th century / Clemens, Samuel Langhorne (\"Mark Twain\")",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PZ3.C86153",
+      "concept_id": "bokheim:subject:literature:english",
+      "subject": "English",
+      "reference_record_id": "204181",
+      "schedule_path": "Fiction and juvenile belles lettres / Fiction in English / Individual authors",
+      "anchor_path": "Literature / By Language / English",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS374.N4",
+      "concept_id": "unified:36c064c1-31ba-5547-88dd-dc4161565214",
+      "subject": "African American & Black",
+      "reference_record_id": "200668",
+      "schedule_path": "American literature / History of American literature / Special forms / Prose / Prose fiction",
+      "anchor_path": "Literature / Studies / Criticism / Regions & Literary Traditions / American / African American & Black",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject; historical caption in 2025 reference_entry identifies African American/Black authors or topics"
+    },
+    {
+      "lcc_code": "P96.L34",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91401",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Other, A-Z / Language",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR3533",
+      "concept_id": "unified:7a27d79a-7b57-5559-a19b-e6738ae4626b",
+      "subject": "17th and 18th centuries (1640-1770)",
+      "reference_record_id": "199833",
+      "schedule_path": "English literature / 17th and 18th centuries (1640-1770) / Individual authors / Johnson, Samuel",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 17th and 18th centuries (1640-1770)",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4147",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194063",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Blake, William",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS374",
+      "concept_id": "unified:11e637ca-b753-50aa-8d1c-bfccf82ceb6e",
+      "subject": "American",
+      "reference_record_id": "200668",
+      "schedule_path": "American literature / History of American literature / Special forms / Prose / Prose fiction",
+      "anchor_path": "Literature / Studies / Criticism / Regions & Literary Traditions / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS153",
+      "concept_id": "unified:11e637ca-b753-50aa-8d1c-bfccf82ceb6e",
+      "subject": "American",
+      "reference_record_id": "631254",
+      "schedule_path": "American literature / History of American literature / Special classes of authors",
+      "anchor_path": "Literature / Studies / Criticism / Regions & Literary Traditions / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN37",
+      "concept_id": "unified:aeec07de-7d62-59b5-90c5-f775cf9f888c",
+      "subject": "Literary Collections",
+      "reference_record_id": "189504",
+      "schedule_path": "Literature (General) / Collections / Collected works, papers, essays, of individual authors",
+      "anchor_path": "Literature / Genres / Literary Collections",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN849.C3",
+      "concept_id": "unified:70b3087b-1a72-5fae-b1e6-97b9b7f739c2",
+      "subject": "History",
+      "reference_record_id": "190545",
+      "schedule_path": "Literature (General) / Literary history / Literatures. By region or country / Other regions or countries, A-Z / Caribbean Area. West Indies",
+      "anchor_path": "Literature / Studies / History",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P94.5.W65",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91352",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Relation to special groups of people, A-Z / Women",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5366",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "195814",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Shaw, George Bernard",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT9876.23.A49",
+      "concept_id": "unified:b78616d5-1273-57e7-86f4-f874ae99e2cd",
+      "subject": "Swedish literature",
+      "reference_record_id": "415259",
+      "schedule_path": "Swedish literature / Individual authors or works / 1961-2000",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / Scandinavian literature / Swedish literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5906",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "196223",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Yeats, William Butler",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4381",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194176",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Byron, George Gordon",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.E25",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91386",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Other, A-Z / Economic aspects",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN715-749",
+      "concept_id": "unified:70b3087b-1a72-5fae-b1e6-97b9b7f739c2",
+      "subject": "History",
+      "reference_record_id": "190437",
+      "schedule_path": "Literature (General) / Literary history / By period / Modern / Renaissance (1500-1700) / Collections",
+      "anchor_path": "Literature / Studies / History",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4167",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194089",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Bronte\u0308, Charlotte",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P85.B33",
+      "concept_id": "unified:ebdaebd5-a59a-50b3-aea4-6cfabc06d27a",
+      "subject": "Linguistics",
+      "reference_record_id": "91307",
+      "schedule_path": "Philology. Linguistics / Biography of philologists",
+      "anchor_path": "Humanities / Language / Linguistics",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4837",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194586",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Keats, John",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4612",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194349",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Dodgson, Charles Lutwidge (Lewis Carroll)",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PZ3.S5892",
+      "concept_id": "bokheim:subject:literature:english",
+      "subject": "English",
+      "reference_record_id": "204181",
+      "schedule_path": "Fiction and juvenile belles lettres / Fiction in English / Individual authors",
+      "anchor_path": "Literature / By Language / English",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS2631",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202956",
+      "schedule_path": "American literature / Individual authors / 19th century / Poe, Edgar Allan",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN43",
+      "concept_id": "unified:bbcf0a3c-e484-5778-ab84-70596d1c59c9",
+      "subject": "General",
+      "reference_record_id": "189507",
+      "schedule_path": "Literature (General) / Encyclopedias. Dictionaries / Miscellaneous and special",
+      "anchor_path": "Literature / Studies / General",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4611",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194349",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Dodgson, Charles Lutwidge (Lewis Carroll)",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4621",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194357",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Doyle, Sir Arthur Conan",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG1418.A6",
+      "concept_id": "unified:9517d5cc-0561-579a-8e14-4d3a3509778a",
+      "subject": "Slavic. Baltic. Albanian",
+      "reference_record_id": "225549",
+      "schedule_path": "Slavic. Baltic. Albanian / Serbo-Croatian literature / Individual authors and works",
+      "anchor_path": "Literature / By Language / Slavic & Eurasian / Slavic. Baltic. Albanian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN44.5",
+      "concept_id": "unified:bbcf0a3c-e484-5778-ab84-70596d1c59c9",
+      "subject": "General",
+      "reference_record_id": "189509",
+      "schedule_path": "Literature (General) / Terminology",
+      "anchor_path": "Literature / Studies / General",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN695-779",
+      "concept_id": "unified:70b3087b-1a72-5fae-b1e6-97b9b7f739c2",
+      "subject": "History",
+      "reference_record_id": "190421",
+      "schedule_path": "Literature (General) / Literary history / By period / Modern / Collections",
+      "anchor_path": "Literature / Studies / History",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4753",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194474",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Hardy, Thomas",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN2100-2193",
+      "concept_id": "unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d",
+      "subject": "Dramatic representation. The theater",
+      "reference_record_id": "432161",
+      "schedule_path": "Drama / Dramatic representation. The theater / History / Comprehensive works / Early through 1800",
+      "anchor_path": "Literature / Studies / General / Drama / Dramatic representation. The theater",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS2384",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202817",
+      "schedule_path": "American literature / Individual authors / 19th century / Melville, Herman",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG2021",
+      "concept_id": "unified:64083454-284e-53f9-b094-bd4337a40fa6",
+      "subject": "Russian",
+      "reference_record_id": "225824",
+      "schedule_path": "Slavic. Baltic. Albanian / Russian / Philology",
+      "anchor_path": "Humanities / Language / Languages & Language Families / Indo-European Languages / Slavic Languages / Russian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5398",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "195832",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Shelley, Mary Wollstonecraft Godwin, 1797-1851",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR3581",
+      "concept_id": "unified:7a27d79a-7b57-5559-a19b-e6738ae4626b",
+      "subject": "17th and 18th centuries (1640-1770)",
+      "reference_record_id": "199926",
+      "schedule_path": "English literature / 17th and 18th centuries (1640-1770) / Individual authors / Milton, John",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 17th and 18th centuries (1640-1770)",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PZ4",
+      "concept_id": "bokheim:subject:literature:english",
+      "subject": "English",
+      "reference_record_id": "204181",
+      "schedule_path": "Fiction and juvenile belles lettres / Fiction in English / Individual authors",
+      "anchor_path": "Literature / By Language / English",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5888",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "196200",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Wordsworth, William",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS2387",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202817",
+      "schedule_path": "American literature / Individual authors / 19th century / Melville, Herman",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS2638",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202956",
+      "schedule_path": "American literature / Individual authors / 19th century / Poe, Edgar Allan",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT403",
+      "concept_id": "unified:b01b38e5-0821-591b-b325-af8588f9ebb1",
+      "subject": "History of German literature",
+      "reference_record_id": "405810",
+      "schedule_path": "German literature / History of German literature / By period / Modern / 20th century",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / German & Related Literatures / History of German literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PQ6439",
+      "concept_id": "unified:d43f1490-5dbd-5bd8-8bb4-e9ba924c59b2",
+      "subject": "Spanish",
+      "reference_record_id": "327020",
+      "schedule_path": "Spanish literature / Individual authors / Individual authors and works to 1700 / Vega Carpio, Lope Fe\u0301lix de, 1562-1635",
+      "anchor_path": "Literature / By Language / Spanish",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.P75",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91411",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Other, A-Z / Psychological aspects",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN6120.A5",
+      "concept_id": "unified:29bc087e-9658-5f18-bd28-48a58c4e5ed3",
+      "subject": "Anthologies",
+      "reference_record_id": "193573",
+      "schedule_path": "Collections of general literature / Drama",
+      "anchor_path": "Literature / Genres / Drama / Anthologies",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4172",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194092",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Bronte\u0308, Emily",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS3231",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "203575",
+      "schedule_path": "American literature / Individual authors / 19th century / Whitman, Walt",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT921",
+      "concept_id": "unified:2fd7032e-7caf-5db9-8965-5c22afdcacc9",
+      "subject": "Folk literature",
+      "reference_record_id": "405915",
+      "schedule_path": "German literature / Folk literature",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / German & Related Literatures / Folk literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.A83",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91374",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Other, A-Z / Audiences",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS3053",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "203331",
+      "schedule_path": "American literature / Individual authors / 19th century / Thoreau, Henry David / Biography, criticism, etc.",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PQ4715",
+      "concept_id": "unified:4acef480-967a-56b1-8155-7dc47592254a",
+      "subject": "Italian literature",
+      "reference_record_id": "330258",
+      "schedule_path": "Italian literature / Individual authors / Individual authors, 1701-1900 / Manzoni, Alessandro, 1785-1873 / Biography and criticism",
+      "anchor_path": "Literature / By Language / Romance / Italian, Romanian & related literatures / Italian literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5438",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "195833",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Shelley, Percy Bysshe",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN851-884",
+      "concept_id": "unified:44ae8beb-f04b-5d42-9cc2-7e82e954fd5a",
+      "subject": "Comparative Literature",
+      "reference_record_id": "190561",
+      "schedule_path": "Literature (General) / Literary history / Comparative literature / Periodicals. Serials",
+      "anchor_path": "Literature / Studies / Criticism / Theory, Comparison & Reading / Comparative Literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5881",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "196200",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Wordsworth, William",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS2123",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202599",
+      "schedule_path": "American literature / Individual authors / 19th century / James, Henry",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT105",
+      "concept_id": "unified:b01b38e5-0821-591b-b325-af8588f9ebb1",
+      "subject": "History of German literature",
+      "reference_record_id": "404732",
+      "schedule_path": "German literature / History of German literature / General",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / German & Related Literatures / History of German literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG2585",
+      "concept_id": "unified:64083454-284e-53f9-b094-bd4337a40fa6",
+      "subject": "Russian",
+      "reference_record_id": "33361",
+      "schedule_path": "Slavic. Baltic. Albanian / Russian / Language / Etymology",
+      "anchor_path": "Humanities / Language / Languages & Language Families / Indo-European Languages / Slavic Languages / Russian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN661-694",
+      "concept_id": "unified:70b3087b-1a72-5fae-b1e6-97b9b7f739c2",
+      "subject": "History",
+      "reference_record_id": "190271",
+      "schedule_path": "Literature (General) / Literary history / By period / Medieval (to 1500) / Periodicals and societies",
+      "anchor_path": "Literature / Studies / History",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS508.N3",
+      "concept_id": "unified:12c534a8-e7e1-5e46-a188-887955162cf2",
+      "subject": "African American & Black",
+      "reference_record_id": "200904",
+      "schedule_path": "American literature / Collections of American literature",
+      "anchor_path": "Literature / Genres / Literary Collections / African American & Black",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject; historical caption in 2025 reference_entry identifies African American/Black authors or topics"
+    },
+    {
+      "lcc_code": "PG2129.E5",
+      "concept_id": "unified:64083454-284e-53f9-b094-bd4337a40fa6",
+      "subject": "Russian",
+      "reference_record_id": "225836",
+      "schedule_path": "Slavic. Baltic. Albanian / Russian / Language / Grammar",
+      "anchor_path": "Humanities / Language / Languages & Language Families / Indo-European Languages / Slavic Languages / Russian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4169",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194089",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Bronte\u0308, Charlotte",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.L342",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91333",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PZ90.H3",
+      "concept_id": "unified:170b17af-be96-56f7-a9b5-052b985037b5",
+      "subject": "Juvenile Fiction",
+      "reference_record_id": "47627",
+      "schedule_path": "Fiction and juvenile belles lettres / Juvenile belles lettres",
+      "anchor_path": "Children & Young Adult / Juvenile Fiction",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR3726",
+      "concept_id": "unified:7a27d79a-7b57-5559-a19b-e6738ae4626b",
+      "subject": "17th and 18th centuries (1640-1770)",
+      "reference_record_id": "200086",
+      "schedule_path": "English literature / 17th and 18th centuries (1640-1770) / Individual authors / Swift, Jonathan",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 17th and 18th centuries (1640-1770)",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.E252",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91333",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS3238",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "203575",
+      "schedule_path": "American literature / Individual authors / 19th century / Whitman, Walt",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P95.82.U6",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91364",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Political aspects. Policy",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG2121",
+      "concept_id": "unified:64083454-284e-53f9-b094-bd4337a40fa6",
+      "subject": "Russian",
+      "reference_record_id": "225836",
+      "schedule_path": "Slavic. Baltic. Albanian / Russian / Language / Grammar",
+      "anchor_path": "Humanities / Language / Languages & Language Families / Indo-European Languages / Slavic Languages / Russian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN849.E9",
+      "concept_id": "unified:70b3087b-1a72-5fae-b1e6-97b9b7f739c2",
+      "subject": "History",
+      "reference_record_id": "190548",
+      "schedule_path": "Literature (General) / Literary history / Literatures. By region or country / Other regions or countries, A-Z / Europe, Eastern",
+      "anchor_path": "Literature / Studies / History",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4854",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194598",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Kipling, Rudyard",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4483",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194246",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Coleridge, Samuel Taylor",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PA6276",
+      "concept_id": "unified:3fccb207-a2ef-5541-8ebe-90f6df3953fa",
+      "subject": "Roman literature",
+      "reference_record_id": "306669",
+      "schedule_path": "Roman literature / Individual authors / Catullus, C. Valerius, ca. 87-ca. 54 (or 82-52?) B.C.",
+      "anchor_path": "Literature / By Language / Classical / Latin & related Italic literatures / Roman literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PQ9261",
+      "concept_id": "unified:bafae632-35f8-5413-8479-221c5d04599c",
+      "subject": "Portuguese literature",
+      "reference_record_id": "323448",
+      "schedule_path": "Portuguese literature / Individual authors",
+      "anchor_path": "Literature / By Language / Romance / Spanish & Portuguese literatures / Portuguese literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.W35",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91426",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Other, A-Z / War",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P85.C47",
+      "concept_id": "unified:ebdaebd5-a59a-50b3-aea4-6cfabc06d27a",
+      "subject": "Linguistics",
+      "reference_record_id": "91307",
+      "schedule_path": "Philology. Linguistics / Biography of philologists",
+      "anchor_path": "Humanities / Language / Linguistics",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG2175",
+      "concept_id": "unified:64083454-284e-53f9-b094-bd4337a40fa6",
+      "subject": "Russian",
+      "reference_record_id": "225836",
+      "schedule_path": "Slavic. Baltic. Albanian / Russian / Language / Grammar",
+      "anchor_path": "Humanities / Language / Languages & Language Families / Indo-European Languages / Slavic Languages / Russian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4484",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "53655",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Coleridge, Samuel Taylor / Criticism",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4710",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194427",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Gaskell, Mrs. Elizabeth",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG2112",
+      "concept_id": "unified:64083454-284e-53f9-b094-bd4337a40fa6",
+      "subject": "Russian",
+      "reference_record_id": "225836",
+      "schedule_path": "Slavic. Baltic. Albanian / Russian / Language / Grammar",
+      "anchor_path": "Humanities / Language / Languages & Language Families / Indo-European Languages / Slavic Languages / Russian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG2271",
+      "concept_id": "unified:64083454-284e-53f9-b094-bd4337a40fa6",
+      "subject": "Russian",
+      "reference_record_id": "225836",
+      "schedule_path": "Slavic. Baltic. Albanian / Russian / Language / Grammar",
+      "anchor_path": "Humanities / Language / Languages & Language Families / Indo-European Languages / Slavic Languages / Russian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P94.5.M552",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91333",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.M4",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "435184",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Other, A-Z / Media literacy",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN1991.3.U6",
+      "concept_id": "unified:f49e8c68-5000-55fd-beb4-60b3519e09c2",
+      "subject": "Radio",
+      "reference_record_id": "191110",
+      "schedule_path": "Drama / Broadcasting / Radio broadcasts",
+      "anchor_path": "Arts & Media / Performing Arts / Radio",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN849.R9",
+      "concept_id": "unified:70b3087b-1a72-5fae-b1e6-97b9b7f739c2",
+      "subject": "History",
+      "reference_record_id": "190555",
+      "schedule_path": "Literature (General) / Literary history / Literatures. By region or country / Other regions or countries, A-Z / Russia. Soviet Union",
+      "anchor_path": "Literature / Studies / History",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT8951.24.E83",
+      "concept_id": "unified:afb8f9d2-0a9d-569d-9655-ad757dd30d97",
+      "subject": "Norwegian literature",
+      "reference_record_id": "10931",
+      "schedule_path": "Norwegian literature / Individual authors or works / 1961-2000",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / Scandinavian literature / Norwegian literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PQ6337",
+      "concept_id": "unified:d43f1490-5dbd-5bd8-8bb4-e9ba924c59b2",
+      "subject": "Spanish",
+      "reference_record_id": "326406",
+      "schedule_path": "Spanish literature / Individual authors / Individual authors and works to 1700 / Cervantes Saavedra, Miguel de, 1547-1616 / Biography",
+      "anchor_path": "Literature / By Language / Spanish",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4688",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194376",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Eliot, George, 1819-1880",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5263",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "19914",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Ruskin, John / Biography, criticism, etc.",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4750",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194476",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Hardy, Thomas / Separate works",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4494",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194257",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Collins, Wilkie",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4623",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194357",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Doyle, Sir Arthur Conan",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5431",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "195833",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Shelley, Percy Bysshe",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR1119",
+      "concept_id": "bokheim:subject:literature:english",
+      "subject": "English",
+      "reference_record_id": "197087",
+      "schedule_path": "English literature / Collections of English literature / By period",
+      "anchor_path": "Literature / By Language / English",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4388",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194176",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Byron, George Gordon",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS1631",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202215",
+      "schedule_path": "American literature / Individual authors / 19th century / Emerson, Ralph Waldo",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT8176.28.I32",
+      "concept_id": "unified:4413392f-d05c-5d01-8672-77687b791afd",
+      "subject": "Danish literature",
+      "reference_record_id": "417303",
+      "schedule_path": "Danish literature / Individual authors or works / 1961-2000",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / Scandinavian literature / Danish literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS1638",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202215",
+      "schedule_path": "American literature / Individual authors / 19th century / Emerson, Ralph Waldo",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P40.5.L382",
+      "concept_id": "unified:5bdf395c-118a-517a-ad84-5996cecdbad8",
+      "subject": "Sociolinguistics",
+      "reference_record_id": "91229",
+      "schedule_path": "Philology. Linguistics / Theory. Method / Relation to sociology. Sociolinguistics",
+      "anchor_path": "Humanities / Language / Linguistics / Language, Society & Signs / Sociolinguistics",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P94.5.W652",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91333",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5397.F73",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "195832",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Shelley, Mary Wollstonecraft Godwin, 1797-1851",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT5881.24.O55",
+      "concept_id": "unified:dd5cf6f3-7d2c-5ca9-aeac-758a3e118b26",
+      "subject": "Dutch literature",
+      "reference_record_id": "415809",
+      "schedule_path": "Dutch literature / Individual authors or works / 1961-2000",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / Dutch literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PZ3.C247",
+      "concept_id": "bokheim:subject:literature:english",
+      "subject": "English",
+      "reference_record_id": "204181",
+      "schedule_path": "Fiction and juvenile belles lettres / Fiction in English / Individual authors",
+      "anchor_path": "Literature / By Language / English",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91333",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4572",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194321",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Dickens, Charles / Separate works",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4681",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194376",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Eliot, George, 1819-1880",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.V5",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91424",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Other, A-Z / Violence",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4856",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194598",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Kipling, Rudyard",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4146",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194063",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Blake, William",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4717",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194437",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Gissing, George",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4836",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194586",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Keats, John",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS2112",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202599",
+      "schedule_path": "American literature / Individual authors / 19th century / James, Henry",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4731",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194444",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Haggard, Sir Henry Rider",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4331",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "20051",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Burns, Robert / Biography, criticism, etc.",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4433",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194205",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Carlyle, Thomas",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4620",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194357",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Doyle, Sir Arthur Conan",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG2567",
+      "concept_id": "unified:64083454-284e-53f9-b094-bd4337a40fa6",
+      "subject": "Russian",
+      "reference_record_id": "225833",
+      "schedule_path": "Slavic. Baltic. Albanian / Russian / Language",
+      "anchor_path": "Humanities / Language / Languages & Language Families / Indo-European Languages / Slavic Languages / Russian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR3634",
+      "concept_id": "unified:7a27d79a-7b57-5559-a19b-e6738ae4626b",
+      "subject": "17th and 18th centuries (1640-1770)",
+      "reference_record_id": "199983",
+      "schedule_path": "English literature / 17th and 18th centuries (1640-1770) / Individual authors / Pope, Alexander",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 17th and 18th centuries (1640-1770)",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5363",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "195814",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Shaw, George Bernard",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG1618.K69",
+      "concept_id": "unified:9517d5cc-0561-579a-8e14-4d3a3509778a",
+      "subject": "Slavic. Baltic. Albanian",
+      "reference_record_id": "661967",
+      "schedule_path": "Serbo-Croatian literature / Croatian literature / Individual authors / Through 1960, A-Z / Krle\u017ea, Miroslav, 1893-1981",
+      "anchor_path": "Literature / By Language / Slavic & Eurasian / Slavic. Baltic. Albanian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN879.C5",
+      "concept_id": "unified:44ae8beb-f04b-5d42-9cc2-7e82e954fd5a",
+      "subject": "Comparative Literature",
+      "reference_record_id": "190574",
+      "schedule_path": "Literature (General) / Literary history / Comparative literature / General works / 1801-",
+      "anchor_path": "Literature / Studies / Criticism / Theory, Comparison & Reading / Comparative Literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5588",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "196006",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Tennyson, Alfred Lord",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN750-759",
+      "concept_id": "unified:70b3087b-1a72-5fae-b1e6-97b9b7f739c2",
+      "subject": "History",
+      "reference_record_id": "432031",
+      "schedule_path": "Literature (General) / Literary history / By period / Modern / 18th (and early 19th) century. Romanticism / Early through 1800",
+      "anchor_path": "Literature / Studies / History",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.C74",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91378",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Other, A-Z / Crime and criminals",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P85.S18",
+      "concept_id": "unified:ebdaebd5-a59a-50b3-aea4-6cfabc06d27a",
+      "subject": "Linguistics",
+      "reference_record_id": "91307",
+      "schedule_path": "Philology. Linguistics / Biography of philologists",
+      "anchor_path": "Humanities / Language / Linguistics",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PA6675",
+      "concept_id": "unified:3fccb207-a2ef-5541-8ebe-90f6df3953fa",
+      "subject": "Roman literature",
+      "reference_record_id": "316786",
+      "schedule_path": "Roman literature / Individual authors / Seneca, Lucius Annaeus, ca. 4 B.C.-65 A.D.",
+      "anchor_path": "Literature / By Language / Classical / Latin & related Italic literatures / Roman literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG1419.21.I8",
+      "concept_id": "unified:9517d5cc-0561-579a-8e14-4d3a3509778a",
+      "subject": "Slavic. Baltic. Albanian",
+      "reference_record_id": "225553",
+      "schedule_path": "Slavic. Baltic. Albanian / Serbo-Croatian literature / Individual authors and works / 1961-2000",
+      "anchor_path": "Literature / By Language / Slavic & Eurasian / Slavic. Baltic. Albanian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN75.F7",
+      "concept_id": "unified:96c1b9c6-90b2-5dbd-ac52-84626372c0cb",
+      "subject": "Criticism",
+      "reference_record_id": "190004",
+      "schedule_path": "Literature (General) / Biography of literary critics and historians",
+      "anchor_path": "Literature / Studies / Criticism",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PQ6287",
+      "concept_id": "unified:d43f1490-5dbd-5bd8-8bb4-e9ba924c59b2",
+      "subject": "Spanish",
+      "reference_record_id": "326106",
+      "schedule_path": "Spanish literature / Individual authors / Individual authors and works to 1700 / Calderon de la Barca, Pedro, 1600-1681 / Partial editions",
+      "anchor_path": "Literature / By Language / Spanish",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS1018",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "201684",
+      "schedule_path": "American literature / Individual authors / 19th century / Alcott, Louisa May",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4024",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "193998",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Arnold, Matthew",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS1338",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "201998",
+      "schedule_path": "American literature / Individual authors / 19th century / Clemens, Samuel Langhorne (\"Mark Twain\")",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT2379",
+      "concept_id": "unified:b4af9965-bee1-538b-904d-e13de5d02402",
+      "subject": "1700-ca. 1860/70",
+      "reference_record_id": "400764",
+      "schedule_path": "German literature / Individual authors or works / 1700-ca. 1860/70 / Kleist, Heinrich von, 1777-1811",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / German & Related Literatures / 1700-ca. 1860/70",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR3404",
+      "concept_id": "unified:7a27d79a-7b57-5559-a19b-e6738ae4626b",
+      "subject": "17th and 18th centuries (1640-1770)",
+      "reference_record_id": "199712",
+      "schedule_path": "English literature / 17th and 18th centuries (1640-1770) / Individual authors / Defoe, Daniel / Separate works",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 17th and 18th centuries (1640-1770)",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR3727",
+      "concept_id": "unified:7a27d79a-7b57-5559-a19b-e6738ae4626b",
+      "subject": "17th and 18th centuries (1640-1770)",
+      "reference_record_id": "200086",
+      "schedule_path": "English literature / 17th and 18th centuries (1640-1770) / Individual authors / Swift, Jonathan",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 17th and 18th centuries (1640-1770)",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4231",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194107",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Browning, Robert",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PA6484",
+      "concept_id": "unified:3fccb207-a2ef-5541-8ebe-90f6df3953fa",
+      "subject": "Roman literature",
+      "reference_record_id": "312315",
+      "schedule_path": "Roman literature / Individual authors / Lucretius Carus, Titus. De rerum natura / Criticism, interpretation, etc.",
+      "anchor_path": "Literature / By Language / Classical / Latin & related Italic literatures / Roman literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG59",
+      "concept_id": "unified:59ea88de-b53a-5e3a-aadf-1108714711d4",
+      "subject": "Slavic Languages",
+      "reference_record_id": "224788",
+      "schedule_path": "Slavic. Baltic. Albanian / Slavic philology and languages / General / Languages / Grammar",
+      "anchor_path": "Humanities / Language / Languages & Language Families / Indo-European Languages / Slavic Languages",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4711",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194427",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Gaskell, Mrs. Elizabeth",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS1918",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202471",
+      "schedule_path": "American literature / Individual authors / 19th century / Hearn, Lafcadio",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG1419.26.A78",
+      "concept_id": "unified:9517d5cc-0561-579a-8e14-4d3a3509778a",
+      "subject": "Slavic. Baltic. Albanian",
+      "reference_record_id": "225553",
+      "schedule_path": "Slavic. Baltic. Albanian / Serbo-Croatian literature / Individual authors and works / 1961-2000",
+      "anchor_path": "Literature / By Language / Slavic & Eurasian / Slavic. Baltic. Albanian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS1888",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202449",
+      "schedule_path": "American literature / Individual authors / 19th century / Hawthorne, Nathaniel",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS2384.M62",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202817",
+      "schedule_path": "American literature / Individual authors / 19th century / Melville, Herman",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR3724",
+      "concept_id": "unified:7a27d79a-7b57-5559-a19b-e6738ae4626b",
+      "subject": "17th and 18th centuries (1640-1770)",
+      "reference_record_id": "200086",
+      "schedule_path": "English literature / 17th and 18th centuries (1640-1770) / Individual authors / Swift, Jonathan",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 17th and 18th centuries (1640-1770)",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR4238",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "194107",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Browning, Robert",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT9876.22.A6933",
+      "concept_id": "unified:b78616d5-1273-57e7-86f4-f874ae99e2cd",
+      "subject": "Swedish literature",
+      "reference_record_id": "415259",
+      "schedule_path": "Swedish literature / Individual authors or works / 1961-2000",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / Scandinavian literature / Swedish literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P96.M34",
+      "concept_id": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+      "subject": "Communication. Mass media",
+      "reference_record_id": "91405",
+      "schedule_path": "Philology. Linguistics / Communication. Mass media / Special aspects / Other, A-Z / Management",
+      "anchor_path": "Humanities / Language / Communication & Rhetoric / Communication. Mass media",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PQ4708",
+      "concept_id": "unified:4acef480-967a-56b1-8155-7dc47592254a",
+      "subject": "Italian literature",
+      "reference_record_id": "329133",
+      "schedule_path": "Italian literature / Individual authors / Individual authors, 1701-1900 / Leopardi, Giacomo, conte, 1798-1837",
+      "anchor_path": "Literature / By Language / Romance / Italian, Romanian & related literatures / Italian literature",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR3508",
+      "concept_id": "unified:7a27d79a-7b57-5559-a19b-e6738ae4626b",
+      "subject": "17th and 18th centuries (1640-1770)",
+      "reference_record_id": "199831",
+      "schedule_path": "English literature / 17th and 18th centuries (1640-1770) / Individual authors / Herbert, George",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 17th and 18th centuries (1640-1770)",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS1017",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "201684",
+      "schedule_path": "American literature / Individual authors / 19th century / Alcott, Louisa May",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT1863",
+      "concept_id": "unified:b4af9965-bee1-538b-904d-e13de5d02402",
+      "subject": "1700-ca. 1860/70",
+      "reference_record_id": "406490",
+      "schedule_path": "German literature / Individual authors or works / 1700-ca. 1860/70",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / German & Related Literatures / 1700-ca. 1860/70",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P35.5.R9",
+      "concept_id": "unified:ebdaebd5-a59a-50b3-aea4-6cfabc06d27a",
+      "subject": "Linguistics",
+      "reference_record_id": "91214",
+      "schedule_path": "Philology. Linguistics / Theory. Method / Relation to anthropology, ethnology and culture",
+      "anchor_path": "Humanities / Language / Linguistics",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS1302",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "201998",
+      "schedule_path": "American literature / Individual authors / 19th century / Clemens, Samuel Langhorne (\"Mark Twain\")",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5581",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "196006",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Tennyson, Alfred Lord",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "P40.5.L352",
+      "concept_id": "unified:5bdf395c-118a-517a-ad84-5996cecdbad8",
+      "subject": "Sociolinguistics",
+      "reference_record_id": "91229",
+      "schedule_path": "Philology. Linguistics / Theory. Method / Relation to sociology. Sociolinguistics",
+      "anchor_path": "Humanities / Language / Linguistics / Language, Society & Signs / Sociolinguistics",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5238",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "195701",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Rossetti, Christina",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PZ3.W817",
+      "concept_id": "bokheim:subject:literature:english",
+      "subject": "English",
+      "reference_record_id": "204181",
+      "schedule_path": "Fiction and juvenile belles lettres / Fiction in English / Individual authors",
+      "anchor_path": "Literature / By Language / English",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5083",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "19892",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Morris, William / Biography, criticism, etc.",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PS2386",
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American",
+      "reference_record_id": "202817",
+      "schedule_path": "American literature / Individual authors / 19th century / Melville, Herman",
+      "anchor_path": "Literature / By Language / English / By Region / American",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PT1526",
+      "concept_id": "unified:03a138ff-b2da-58b0-b6b9-d3c47edd8ca1",
+      "subject": "German & Related Literatures",
+      "reference_record_id": "401457",
+      "schedule_path": "German literature / Individual authors or works / Middle High German, ca. 1050-1450/1500 / Gottfried von Strassburg, 13th cent.",
+      "anchor_path": "Literature / By Language / Germanic & Nordic / German & Related Literatures",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PN6120.95.L7",
+      "concept_id": "unified:aeec07de-7d62-59b5-90c5-f775cf9f888c",
+      "subject": "Literary Collections",
+      "reference_record_id": "644583",
+      "schedule_path": "Collections of general literature / Fiction",
+      "anchor_path": "Literature / Genres / Literary Collections",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR3724.G8",
+      "concept_id": "unified:7a27d79a-7b57-5559-a19b-e6738ae4626b",
+      "subject": "17th and 18th centuries (1640-1770)",
+      "reference_record_id": "200086",
+      "schedule_path": "English literature / 17th and 18th centuries (1640-1770) / Individual authors / Swift, Jonathan",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 17th and 18th centuries (1640-1770)",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PR5776",
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900",
+      "reference_record_id": "196121",
+      "schedule_path": "English literature / 19th century, 1770/1800-1890/1900 / Individual authors / Wells, Herbert George",
+      "anchor_path": "Literature / By Language / English / English & Old English Literatures / By period / 19th century, 1770/1800-1890/1900",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PG2369",
+      "concept_id": "unified:64083454-284e-53f9-b094-bd4337a40fa6",
+      "subject": "Russian",
+      "reference_record_id": "36282",
+      "schedule_path": "Slavic. Baltic. Albanian / Russian / Language / Grammar / Syntax",
+      "anchor_path": "Humanities / Language / Languages & Language Families / Indo-European Languages / Slavic Languages / Russian",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    },
+    {
+      "lcc_code": "PZ3.S85166",
+      "concept_id": "bokheim:subject:literature:english",
+      "subject": "English",
+      "reference_record_id": "204181",
+      "schedule_path": "Fiction and juvenile belles lettres / Fiction in English / Individual authors",
+      "anchor_path": "Literature / By Language / English",
+      "evidence": "Reviewed local LCC schedule ancestor; exact observed notation attached to retained subject"
+    }
+  ],
+  "held": [
+    {
+      "code": "PN849.E87-.E872",
+      "reason": "Malformed notation or range not confirmed in current schedule",
+      "occurrences": "450"
+    },
+    {
+      "code": "PN1990-1997",
+      "reason": "Malformed notation or range not confirmed in current schedule",
+      "occurrences": "290"
+    },
+    {
+      "code": "PN1560-2924",
+      "reason": "Malformed notation or range not confirmed in current schedule",
+      "occurrences": "177"
+    },
+    {
+      "code": "P121-143.3",
+      "reason": "Malformed notation or range not confirmed in current schedule",
+      "occurrences": "130"
+    },
+    {
+      "code": "PK2916+",
+      "reason": "Malformed notation or range not confirmed in current schedule",
+      "occurrences": "112"
+    },
+    {
+      "code": "PT5040-5044",
+      "reason": "Malformed notation or range not confirmed in current schedule",
+      "occurrences": "107"
+    },
+    {
+      "code": "PK2042+",
+      "reason": "Malformed notation or range not confirmed in current schedule",
+      "occurrences": "105"
+    },
+    {
+      "code": "P94.6-.65",
+      "reason": "Malformed notation or range not confirmed in current schedule",
+      "occurrences": "102"
+    },
+    {
+      "code": "PF1-979",
+      "reason": "Malformed notation or range not confirmed in current schedule",
+      "occurrences": "102"
+    },
+    {
+      "code": "PN849.G74PN760.5-PN7",
+      "reason": "Malformed notation or range not confirmed in current schedule",
+      "occurrences": "100"
+    }
+  ]
+}

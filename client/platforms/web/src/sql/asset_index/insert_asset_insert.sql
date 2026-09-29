@@ -1,0 +1,1 @@
+INSERT INTO asset_file(name,physical_name) VALUES(?1,?2)

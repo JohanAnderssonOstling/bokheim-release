@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <base href="/" />
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+        <title>Bokheim</title>
+        <script type="module">
+            globalThis.__BOKHEIM_ASSET_BASE__ = "./pkg";
+            import {checkCompatibility, compatibilityMessage} from "./compatibility.mjs";
+
+            import {startApplication} from "./startup.mjs";
+            const panel = document.getElementById('startup-status');
+            const issues = await checkCompatibility();
+            if (issues.length) {
+                console.error('Bokheim compatibility check failed', issues);
+                panel.textContent = compatibilityMessage(navigator.userAgent);
+            } else {
+                await startApplication(panel, async () => {
+                    const {default: initialize} = await import("./pkg/web_gpui.js");
+                    await initialize();
+                });
+            }
+        </script>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            canvas {
+                display: block;
+                width: 100%;
+                height: 100%;
+                touch-action: none;
+                outline: none;
+                user-select: none;
+            }
+
+            #startup-status {
+                position: fixed;
+                inset: 0;
+                overflow: auto;
+                padding: max(24px, 6vw);
+                background: #f5f1e7;
+                color: #243c30;
+                font: 18px/1.6 system-ui, sans-serif;
+                z-index: 1000;
+            }
+
+            #startup-status h1 { font-size: 26px; }
+            #startup-status li { margin-block: 12px; max-width: 65ch; }
+        </style>
+    </head>
+    <body><main id="startup-status" role="status" aria-live="polite">Checking browser compatibility…</main></body>
+</html>

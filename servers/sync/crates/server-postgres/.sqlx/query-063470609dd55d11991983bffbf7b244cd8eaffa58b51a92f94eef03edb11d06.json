@@ -1,0 +1,23 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "DELETE FROM book_upload_reservation WHERE user_id=$1 AND content_hash=$2 RETURNING size_bytes\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "size_bytes",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "063470609dd55d11991983bffbf7b244cd8eaffa58b51a92f94eef03edb11d06"
+}

@@ -1,0 +1,2187 @@
+[
+  {
+    "ids": [
+      5295,
+      5296
+    ],
+    "subjects": [
+      "Islamic",
+      "Islamic Law"
+    ],
+    "priority": "Recommended",
+    "proposal": "Merge Islamic into Islamic Law",
+    "reason": "BISAC LAW119000 and the KBP-led subject describe the same field.",
+    "evidence": {
+      "5295": {
+        "lcc_range": [],
+        "lcc_selector": [],
+        "bisac_selector": [
+          [
+            5295,
+            "LAW119000"
+          ]
+        ],
+        "ddc_selector": []
+      },
+      "5296": {
+        "lcc_range": [
+          [
+            "KBP1",
+            "KBP4860",
+            5296
+          ],
+          [
+            "KBP10",
+            "KBP14.5",
+            5296
+          ],
+          [
+            "KBP100",
+            "KBP133.5",
+            5296
+          ],
+          [
+            "KBP100",
+            "KBP136.8",
+            5296
+          ],
+          [
+            "KBP11",
+            "KBP14.5",
+            5296
+          ],
+          [
+            "KBP1155",
+            "KBP1194",
+            5296
+          ],
+          [
+            "KBP1234",
+            "KBP1259",
+            5296
+          ],
+          [
+            "KBP1270",
+            "KBP1467",
+            5296
+          ],
+          [
+            "KBP1468",
+            "KBP1569",
+            5296
+          ],
+          [
+            "KBP1572",
+            "KBP1942",
+            5296
+          ],
+          [
+            "KBP174",
+            "KBP190.5",
+            5296
+          ],
+          [
+            "KBP176",
+            "KBP181",
+            5296
+          ],
+          [
+            "KBP182",
+            "KBP182.2",
+            5296
+          ],
+          [
+            "KBP184",
+            "KBP184.9",
+            5296
+          ],
+          [
+            "KBP184.95",
+            "KBP184.96",
+            5296
+          ],
+          [
+            "KBP186.97",
+            "KBP186.98",
+            5296
+          ],
+          [
+            "KBP188.5",
+            "KBP189.68",
+            5296
+          ],
+          [
+            "KBP2.2",
+            "KBP8",
+            5296
+          ],
+          [
+            "KBP2000",
+            "KBP2035",
+            5296
+          ],
+          [
+            "KBP2101",
+            "KBP2612",
+            5296
+          ],
+          [
+            "KBP250",
+            "KBP420",
+            5296
+          ],
+          [
+            "KBP255",
+            "KBP275",
+            5296
+          ],
+          [
+            "KBP2730",
+            "KBP2968",
+            5296
+          ],
+          [
+            "KBP285",
+            "KBP435",
+            5296
+          ],
+          [
+            "KBP3",
+            "KBP3.22",
+            5296
+          ],
+          [
+            "KBP3000",
+            "KBP3037",
+            5296
+          ],
+          [
+            "KBP3040.5",
+            "KBP3072",
+            5296
+          ],
+          [
+            "KBP3075",
+            "KBP3096.5",
+            5296
+          ],
+          [
+            "KBP3098",
+            "KBP3121.5",
+            5296
+          ],
+          [
+            "KBP3123",
+            "KBP3123.5",
+            5296
+          ],
+          [
+            "KBP3124",
+            "KBP3125",
+            5296
+          ],
+          [
+            "KBP3127",
+            "KBP3135",
+            5296
+          ],
+          [
+            "KBP3137",
+            "KBP3183.3",
+            5296
+          ],
+          [
+            "KBP3190",
+            "KBP3437",
+            5296
+          ],
+          [
+            "KBP3440",
+            "KBP3512",
+            5296
+          ],
+          [
+            "KBP3515",
+            "KBP3521",
+            5296
+          ],
+          [
+            "KBP3526",
+            "KBP3705",
+            5296
+          ],
+          [
+            "KBP3709",
+            "KBP3727",
+            5296
+          ],
+          [
+            "KBP3738",
+            "KBP3785",
+            5296
+          ],
+          [
+            "KBP3790",
+            "KBP4860",
+            5296
+          ],
+          [
+            "KBP4",
+            "KBP8",
+            5296
+          ],
+          [
+            "KBP42",
+            "KBP43",
+            5296
+          ],
+          [
+            "KBP425",
+            "KBP466.3",
+            5296
+          ],
+          [
+            "KBP442",
+            "KBP448",
+            5296
+          ],
+          [
+            "KBP449",
+            "KBP458",
+            5296
+          ],
+          [
+            "KBP461",
+            "KBP462",
+            5296
+          ],
+          [
+            "KBP480",
+            "KBP485",
+            5296
+          ],
+          [
+            "KBP482",
+            "KBP485",
+            5296
+          ],
+          [
+            "KBP490",
+            "KBP4860",
+            5296
+          ],
+          [
+            "KBP491",
+            "KBP497.95",
+            5296
+          ],
+          [
+            "KBP50",
+            "KBP69",
+            5296
+          ],
+          [
+            "KBP500",
+            "KBP509.8",
+            5296
+          ],
+          [
+            "KBP524",
+            "KBP638",
+            5296
+          ],
+          [
+            "KBP53.5",
+            "KBP54.5",
+            5296
+          ],
+          [
+            "KBP55",
+            "KBP60",
+            5296
+          ],
+          [
+            "KBP62",
+            "KBP69",
+            5296
+          ],
+          [
+            "KBP639",
+            "KBP1154",
+            5296
+          ],
+          [
+            "KBP70",
+            "KBP74",
+            5296
+          ],
+          [
+            "KBP70",
+            "KBP75.4",
+            5296
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5296,
+            "KBP10"
+          ],
+          [
+            5296,
+            "KBP144"
+          ],
+          [
+            5296,
+            "KBP15"
+          ],
+          [
+            5296,
+            "KBP18"
+          ],
+          [
+            5296,
+            "KBP182.5"
+          ],
+          [
+            5296,
+            "KBP185"
+          ],
+          [
+            5296,
+            "KBP185.12"
+          ],
+          [
+            5296,
+            "KBP190"
+          ],
+          [
+            5296,
+            "KBP2.4"
+          ],
+          [
+            5296,
+            "KBP252"
+          ],
+          [
+            5296,
+            "KBP2970"
+          ],
+          [
+            5296,
+            "KBP3.3"
+          ],
+          [
+            5296,
+            "KBP3122"
+          ],
+          [
+            5296,
+            "KBP40"
+          ],
+          [
+            5296,
+            "KBP40.2"
+          ],
+          [
+            5296,
+            "KBP40.5"
+          ],
+          [
+            5296,
+            "KBP41"
+          ],
+          [
+            5296,
+            "KBP430"
+          ],
+          [
+            5296,
+            "KBP463"
+          ],
+          [
+            5296,
+            "KBP465"
+          ],
+          [
+            5296,
+            "KBP466"
+          ],
+          [
+            5296,
+            "KBP469"
+          ],
+          [
+            5296,
+            "KBP470"
+          ],
+          [
+            5296,
+            "KBP481"
+          ],
+          [
+            5296,
+            "KBP69.5"
+          ],
+          [
+            5296,
+            "KBP9.5"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      5280,
+      5281
+    ],
+    "subjects": [
+      "Comparative",
+      "Comparative & Uniform Law"
+    ],
+    "priority": "Recommended",
+    "proposal": "Merge Comparative into Comparative & Uniform Law",
+    "reason": "Combine general comparative-law BISAC LAW016000 with the developed LCC branch.",
+    "evidence": {
+      "5280": {
+        "lcc_range": [],
+        "lcc_selector": [],
+        "bisac_selector": [
+          [
+            5280,
+            "LAW016000"
+          ]
+        ],
+        "ddc_selector": []
+      },
+      "5281": {
+        "lcc_range": [
+          [
+            "K1403",
+            "K1404",
+            5281
+          ],
+          [
+            "K3823",
+            "K3824.52",
+            5281
+          ],
+          [
+            "K3826",
+            "K3835.55",
+            5281
+          ],
+          [
+            "K3840",
+            "K4375",
+            5281
+          ],
+          [
+            "K3842",
+            "K3862",
+            5281
+          ],
+          [
+            "K3926",
+            "K3935",
+            5281
+          ],
+          [
+            "K3978",
+            "K3992.2",
+            5281
+          ],
+          [
+            "K4011",
+            "K4343.2",
+            5281
+          ],
+          [
+            "K4430",
+            "K4675",
+            5281
+          ],
+          [
+            "K4431",
+            "K4435",
+            5281
+          ],
+          [
+            "K4440",
+            "K4442",
+            5281
+          ],
+          [
+            "K4448",
+            "K4450",
+            5281
+          ],
+          [
+            "K4453",
+            "K4640",
+            5281
+          ],
+          [
+            "K4725",
+            "K4734",
+            5281
+          ],
+          [
+            "K4740",
+            "K4760",
+            5281
+          ],
+          [
+            "K524",
+            "K525",
+            5281
+          ],
+          [
+            "K542",
+            "K545",
+            5281
+          ],
+          [
+            "K546",
+            "K546.2",
+            5281
+          ],
+          [
+            "K578",
+            "K579",
+            5281
+          ],
+          [
+            "K583",
+            "K591",
+            5281
+          ],
+          [
+            "K585",
+            "K587",
+            5281
+          ],
+          [
+            "K592",
+            "K597",
+            5281
+          ],
+          [
+            "K840",
+            "K917",
+            5281
+          ],
+          [
+            "K923",
+            "K968",
+            5281
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5281,
+            "K1402"
+          ],
+          [
+            5281,
+            "K1405"
+          ],
+          [
+            5281,
+            "K1408"
+          ],
+          [
+            5281,
+            "K1409"
+          ],
+          [
+            5281,
+            "K1488"
+          ],
+          [
+            5281,
+            "K1490"
+          ],
+          [
+            5281,
+            "K2000"
+          ],
+          [
+            5281,
+            "K3372"
+          ],
+          [
+            5281,
+            "K3460"
+          ],
+          [
+            5281,
+            "K3465"
+          ],
+          [
+            5281,
+            "K3571"
+          ],
+          [
+            5281,
+            "K3572"
+          ],
+          [
+            5281,
+            "K3573"
+          ],
+          [
+            5281,
+            "K3598.22"
+          ],
+          [
+            5281,
+            "K3608"
+          ],
+          [
+            5281,
+            "K3623"
+          ],
+          [
+            5281,
+            "K3624"
+          ],
+          [
+            5281,
+            "K3624.A"
+          ],
+          [
+            5281,
+            "K3624.Z"
+          ],
+          [
+            5281,
+            "K3649"
+          ],
+          [
+            5281,
+            "K3674.22"
+          ],
+          [
+            5281,
+            "K3710"
+          ],
+          [
+            5281,
+            "K3712"
+          ],
+          [
+            5281,
+            "K3716"
+          ],
+          [
+            5281,
+            "K3788"
+          ],
+          [
+            5281,
+            "K3791"
+          ],
+          [
+            5281,
+            "K3793"
+          ],
+          [
+            5281,
+            "K3795"
+          ],
+          [
+            5281,
+            "K3821"
+          ],
+          [
+            5281,
+            "K3825"
+          ],
+          [
+            5281,
+            "K3825.5"
+          ],
+          [
+            5281,
+            "K3836"
+          ],
+          [
+            5281,
+            "K4430.5"
+          ],
+          [
+            5281,
+            "K4444"
+          ],
+          [
+            5281,
+            "K4447"
+          ],
+          [
+            5281,
+            "K4450.5"
+          ],
+          [
+            5281,
+            "K4451"
+          ],
+          [
+            5281,
+            "K4452"
+          ],
+          [
+            5281,
+            "K4780"
+          ],
+          [
+            5281,
+            "K520"
+          ],
+          [
+            5281,
+            "K525.2"
+          ],
+          [
+            5281,
+            "K526"
+          ],
+          [
+            5281,
+            "K526.2"
+          ],
+          [
+            5281,
+            "K526.5"
+          ],
+          [
+            5281,
+            "K528"
+          ],
+          [
+            5281,
+            "K535"
+          ],
+          [
+            5281,
+            "K538"
+          ],
+          [
+            5281,
+            "K538.A"
+          ],
+          [
+            5281,
+            "K538.Z"
+          ],
+          [
+            5281,
+            "K540"
+          ],
+          [
+            5281,
+            "K552"
+          ],
+          [
+            5281,
+            "K555"
+          ],
+          [
+            5281,
+            "K556"
+          ],
+          [
+            5281,
+            "K557"
+          ],
+          [
+            5281,
+            "K558"
+          ],
+          [
+            5281,
+            "K559"
+          ],
+          [
+            5281,
+            "K560"
+          ],
+          [
+            5281,
+            "K561"
+          ],
+          [
+            5281,
+            "K563"
+          ],
+          [
+            5281,
+            "K563.A"
+          ],
+          [
+            5281,
+            "K563.Z"
+          ],
+          [
+            5281,
+            "K564"
+          ],
+          [
+            5281,
+            "K564.A"
+          ],
+          [
+            5281,
+            "K564.Z"
+          ],
+          [
+            5281,
+            "K566"
+          ],
+          [
+            5281,
+            "K572"
+          ],
+          [
+            5281,
+            "K574"
+          ],
+          [
+            5281,
+            "K602"
+          ],
+          [
+            5281,
+            "K920"
+          ],
+          [
+            5281,
+            "K970"
+          ],
+          [
+            5281,
+            "K971"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      5290,
+      5278
+    ],
+    "subjects": [
+      "General Comparative",
+      "Eastern Catholic Canon Law"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb General Comparative into Eastern Catholic Canon Law",
+    "reason": "Its sole code KBT130 belongs to that religious-law schedule; current placement under general comparative law is misleading.",
+    "evidence": {
+      "5290": {
+        "lcc_range": [],
+        "lcc_selector": [
+          [
+            5290,
+            "KBT130"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5278": {
+        "lcc_range": [
+          [
+            "KBT102",
+            "KBT108",
+            5278
+          ],
+          [
+            "KBT28",
+            "KBT42",
+            5278
+          ],
+          [
+            "KBT3",
+            "KBT4300",
+            5278
+          ],
+          [
+            "KBT3",
+            "KBT7",
+            5278
+          ],
+          [
+            "KBT30",
+            "KBT31",
+            5278
+          ],
+          [
+            "KBT32",
+            "KBT35",
+            5278
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      5897,
+      5462
+    ],
+    "subjects": [
+      "Social Welfare",
+      "Social Welfare & Services"
+    ],
+    "priority": "Recommended",
+    "proposal": "Merge Social Welfare into Social Welfare & Services",
+    "reason": "Transfer DDC362 and HV selectors, promoting all children; this removes a repeated broad layer.",
+    "evidence": {
+      "5897": {
+        "lcc_range": [],
+        "lcc_selector": [
+          [
+            5897,
+            "HV3025-HV3163"
+          ],
+          [
+            5897,
+            "HV3165-HV3173"
+          ],
+          [
+            5897,
+            "HV3174"
+          ],
+          [
+            5897,
+            "HV544"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": [
+          [
+            "362",
+            5897
+          ]
+        ]
+      },
+      "5462": {
+        "lcc_range": [],
+        "lcc_selector": [
+          [
+            5462,
+            "HV"
+          ],
+          [
+            5462,
+            "HV1-9960"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": [
+          [
+            "360",
+            5462
+          ],
+          [
+            "361",
+            5462
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "ids": [
+      52684,
+      5462
+    ],
+    "subjects": [
+      "Social-Welfare Reference & Education",
+      "Social Welfare & Services"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Social-Welfare Reference & Education into its parent",
+    "reason": "Mixed general/reference material HV1–HV15 does not need a separate navigation leaf at the requested granularity.",
+    "evidence": {
+      "52684": {
+        "lcc_range": [
+          [
+            "HV1",
+            "HV15",
+            52684
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5462": {
+        "lcc_range": [],
+        "lcc_selector": [
+          [
+            5462,
+            "HV"
+          ],
+          [
+            5462,
+            "HV1-9960"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": [
+          [
+            "360",
+            5462
+          ],
+          [
+            "361",
+            5462
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "ids": [
+      52686,
+      5462
+    ],
+    "subjects": [
+      "Social-Welfare Biography & Information",
+      "Social Welfare & Services"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Social-Welfare Biography & Information into its parent",
+    "reason": "Mixed general bucket HV27–HV31; preserve coverage.",
+    "evidence": {
+      "52686": {
+        "lcc_range": [
+          [
+            "HV27",
+            "HV31",
+            52686
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5462": {
+        "lcc_range": [],
+        "lcc_selector": [
+          [
+            5462,
+            "HV"
+          ],
+          [
+            5462,
+            "HV1-9960"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": [
+          [
+            "360",
+            5462
+          ],
+          [
+            "361",
+            5462
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "ids": [
+      5063,
+      5079
+    ],
+    "subjects": [
+      "Folklore Topics",
+      "Folklore & Mythology"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Folklore Topics into Folklore & Mythology",
+    "reason": "GR420–GR950 overlaps existing named topical branches; preserve those specialist subjects.",
+    "evidence": {
+      "5063": {
+        "lcc_range": [
+          [
+            "GR420",
+            "GR950",
+            5063
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5079": {
+        "lcc_range": [
+          [
+            "GR",
+            "GR",
+            5079
+          ],
+          [
+            "GR1",
+            "GR950",
+            5079
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5079,
+            "GR"
+          ]
+        ],
+        "bisac_selector": [
+          [
+            5079,
+            "SOC011000"
+          ]
+        ],
+        "ddc_selector": [
+          [
+            "398",
+            5079
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "ids": [
+      13223,
+      5079
+    ],
+    "subjects": [
+      "Folklore Studies",
+      "Folklore & Mythology"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Folklore Studies into Folklore & Mythology",
+    "reason": "GR1–GR419.9 is a broad general-study bucket.",
+    "evidence": {
+      "13223": {
+        "lcc_range": [
+          [
+            "GR1",
+            "GR419.9",
+            13223
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5079": {
+        "lcc_range": [
+          [
+            "GR",
+            "GR",
+            5079
+          ],
+          [
+            "GR1",
+            "GR950",
+            5079
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5079,
+            "GR"
+          ]
+        ],
+        "bisac_selector": [
+          [
+            5079,
+            "SOC011000"
+          ]
+        ],
+        "ddc_selector": [
+          [
+            "398",
+            5079
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "ids": [
+      52610,
+      52609
+    ],
+    "subjects": [
+      "Food & Beverage Customs",
+      "Eating & Drinking Customs"
+    ],
+    "priority": "Recommended",
+    "proposal": "Merge Food & Beverage Customs into Eating & Drinking Customs",
+    "reason": "GT2855–GT2930 is contained within GT2850–GT2960; both are sibling leaves.",
+    "evidence": {
+      "52610": {
+        "lcc_range": [
+          [
+            "GT2855",
+            "GT2930",
+            52610
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "52609": {
+        "lcc_range": [
+          [
+            "GT2850",
+            "GT2960",
+            52609
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      12418,
+      5516
+    ],
+    "subjects": [
+      "Other Regional Social History",
+      "Social History & Conditions"
+    ],
+    "priority": "Recommended",
+    "proposal": "Remove Other Regional Social History wrapper; promote its children",
+    "reason": "Code-free wrapper puts some countries an extra level below their peers. Developing Countries is a cross-regional grouping, not a country.",
+    "evidence": {
+      "12418": {
+        "lcc_range": [],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5516": {
+        "lcc_range": [],
+        "lcc_selector": [
+          [
+            5516,
+            "HN"
+          ],
+          [
+            5516,
+            "HN1-995"
+          ],
+          [
+            5516,
+            "HN31"
+          ],
+          [
+            5516,
+            "HN32"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      6222,
+      5472
+    ],
+    "subjects": [
+      "Criminal Justice Associations",
+      "Criminal Justice"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Criminal Justice Associations into Criminal Justice",
+    "reason": "Publication, reference, institutional or information category; transfer its HV code coverage to the parent.",
+    "evidence": {
+      "6222": {
+        "lcc_range": [
+          [
+            "HV7240",
+            "HV7242",
+            6222
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5472": {
+        "lcc_range": [
+          [
+            "HV7231",
+            "HV9960",
+            5472
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5472,
+            "HV7431"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      7035,
+      5472
+    ],
+    "subjects": [
+      "Statistics Monographs",
+      "Criminal Justice"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Statistics Monographs into Criminal Justice",
+    "reason": "Publication, reference, institutional or information category; transfer its HV code coverage to the parent.",
+    "evidence": {
+      "7035": {
+        "lcc_range": [
+          [
+            "HV7415",
+            "HV7418",
+            7035
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5472": {
+        "lcc_range": [
+          [
+            "HV7231",
+            "HV9960",
+            5472
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5472,
+            "HV7431"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      7932,
+      5472
+    ],
+    "subjects": [
+      "Criminal Justice Documents",
+      "Criminal Justice"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Criminal Justice Documents into Criminal Justice",
+    "reason": "Publication, reference, institutional or information category; transfer its HV code coverage to the parent.",
+    "evidence": {
+      "7932": {
+        "lcc_range": [
+          [
+            "HV7245",
+            "HV7400",
+            7932
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5472": {
+        "lcc_range": [
+          [
+            "HV7231",
+            "HV9960",
+            5472
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5472,
+            "HV7431"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      9434,
+      5472
+    ],
+    "subjects": [
+      "Congresses International",
+      "Criminal Justice"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Congresses International into Criminal Justice",
+    "reason": "Publication, reference, institutional or information category; transfer its HV code coverage to the parent.",
+    "evidence": {
+      "9434": {
+        "lcc_range": [],
+        "lcc_selector": [
+          [
+            9434,
+            "HV7243"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5472": {
+        "lcc_range": [
+          [
+            "HV7231",
+            "HV9960",
+            5472
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5472,
+            "HV7431"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      9592,
+      5472
+    ],
+    "subjects": [
+      "Communication of information",
+      "Criminal Justice"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Communication of information into Criminal Justice",
+    "reason": "Publication, reference, institutional or information category; transfer its HV code coverage to the parent.",
+    "evidence": {
+      "9592": {
+        "lcc_range": [
+          [
+            "HV7412",
+            "HV7412.4",
+            9592
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5472": {
+        "lcc_range": [
+          [
+            "HV7231",
+            "HV9960",
+            5472
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5472,
+            "HV7431"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      52706,
+      5252
+    ],
+    "subjects": [
+      "Family Treatises & Home Life",
+      "Family & Relationships"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Family Treatises & Home Life into Family & Relationships",
+    "reason": "General family works HQ728–HQ743 already sit inside the parent scope; specific Family Research HQ728 remains.",
+    "evidence": {
+      "52706": {
+        "lcc_range": [
+          [
+            "HQ728",
+            "HQ743",
+            52706
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5252": {
+        "lcc_range": [
+          [
+            "HQ503",
+            "HQ1064",
+            5252
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5252,
+            "HQ503-1064"
+          ],
+          [
+            5252,
+            "HQ503-744.9"
+          ],
+          [
+            5252,
+            "HQ520"
+          ],
+          [
+            5252,
+            "HQ728-743"
+          ],
+          [
+            5252,
+            "HQ744"
+          ],
+          [
+            5252,
+            "HQ746"
+          ],
+          [
+            5252,
+            "HQ746-749.9"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      12780,
+      5254
+    ],
+    "subjects": [
+      "Military Reference",
+      "Military Studies"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Military Reference into Military Studies",
+    "reason": "U1–U20.9 is general reference material.",
+    "evidence": {
+      "12780": {
+        "lcc_range": [
+          [
+            "U1",
+            "U20.9",
+            12780
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5254": {
+        "lcc_range": [],
+        "lcc_selector": [
+          [
+            5254,
+            "U"
+          ],
+          [
+            5254,
+            "UG"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": [
+          [
+            "355",
+            5254
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "ids": [
+      12939,
+      5849
+    ],
+    "subjects": [
+      "Air Force History & Reference",
+      "Air & Space Forces"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Air Force History & Reference into Air & Space Forces",
+    "reason": "Mixed history/reference category UG622–UG636.9, rather than a specific period or operational subject.",
+    "evidence": {
+      "12939": {
+        "lcc_range": [
+          [
+            "UG622",
+            "UG636.9",
+            12939
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5849": {
+        "lcc_range": [],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": [
+          [
+            "358",
+            5849
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "ids": [
+      12955,
+      5520
+    ],
+    "subjects": [
+      "Universal Statistical Data",
+      "Statistics"
+    ],
+    "priority": "Recommended",
+    "proposal": "Absorb Universal Statistical Data into Statistics",
+    "reason": "General data compilations HA154–HA174.9; retain Statistics by Region and methodological subjects.",
+    "evidence": {
+      "12955": {
+        "lcc_range": [
+          [
+            "HA154",
+            "HA174.9",
+            12955
+          ]
+        ],
+        "lcc_selector": [
+          [
+            12955,
+            "HA154-HA155"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5520": {
+        "lcc_range": [
+          [
+            "HA1",
+            "HA28.9",
+            5520
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5520,
+            "HA"
+          ],
+          [
+            5520,
+            "HA1-HA4737"
+          ],
+          [
+            5520,
+            "HA154-HA4737"
+          ]
+        ],
+        "bisac_selector": [
+          [
+            5520,
+            "SOC027000"
+          ]
+        ],
+        "ddc_selector": [
+          [
+            "310",
+            5520
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "ids": [
+      12280
+    ],
+    "subjects": [
+      "Size"
+    ],
+    "priority": "Label correction",
+    "proposal": "Rename Size to Family Size & Planning",
+    "reason": "HQ760–HQ767.7 includes family size, family planning and birth control; LCC HQ page 467 confirms the scope.",
+    "evidence": {
+      "12280": {
+        "lcc_range": [
+          [
+            "HQ760",
+            "HQ767.7",
+            12280
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      5484
+    ],
+    "subjects": [
+      "Special classes"
+    ],
+    "priority": "Keep grouping; improve label",
+    "proposal": "Rename Special classes to Welfare by Population Group",
+    "reason": "Seven children distinguish families, children, young adults, women, LGBTQ+ people, older people and people with disabilities. This is useful grouping, not empty depth.",
+    "evidence": {
+      "5484": {
+        "lcc_range": [],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      11757,
+      11785
+    ],
+    "subjects": [
+      "Political Parties",
+      "Political Parties"
+    ],
+    "priority": "Keep separate; clarify",
+    "proposal": "Rename the U.S. subject U.S. Political Parties",
+    "reason": "JK2250–JK2399 is U.S.-specific; JF2011–JF2112 and POL015000 cover the general topic.",
+    "evidence": {
+      "11757": {
+        "lcc_range": [
+          [
+            "JK2250",
+            "JK2399",
+            11757
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "11785": {
+        "lcc_range": [
+          [
+            "JF2011",
+            "JF2112",
+            11785
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [
+          [
+            11785,
+            "POL015000"
+          ]
+        ],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      5343,
+      5348
+    ],
+    "subjects": [
+      "Intergovernmental Organizations",
+      "International Organizations"
+    ],
+    "priority": "Placement review",
+    "proposal": "Place Intergovernmental Organizations under International Organizations",
+    "reason": "JZ4835–JZ4840 includes international organizations generally, including NGOs; JZ4850+ is the narrower intergovernmental class. Do not merge as synonyms.",
+    "evidence": {
+      "5343": {
+        "lcc_range": [
+          [
+            "JZ4850",
+            "JZ5490.2",
+            5343
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [
+          [
+            5343,
+            "POL048000"
+          ]
+        ],
+        "ddc_selector": []
+      },
+      "5348": {
+        "lcc_range": [
+          [
+            "JZ4835",
+            "JZ4840.Z",
+            5348
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      5482,
+      5464
+    ],
+    "subjects": [
+      "Relief in case of disasters",
+      "Disasters & Disaster Relief"
+    ],
+    "priority": "Scope review",
+    "proposal": "Consider absorbing the disaster-relief child into Disasters & Disaster Relief",
+    "reason": "HV560–HV583 includes Red Cross material; HV599–HV639 covers types of disasters. Parent HV650–HV670 also deserves source review before presenting this as a simple duplicate.",
+    "evidence": {
+      "5482": {
+        "lcc_range": [
+          [
+            "HV560",
+            "HV583",
+            5482
+          ],
+          [
+            "HV599",
+            "HV639",
+            5482
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5464": {
+        "lcc_range": [
+          [
+            "HV650",
+            "HV670",
+            5464
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [
+          [
+            5464,
+            "SOC040000"
+          ]
+        ],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      12409,
+      52691
+    ],
+    "subjects": [
+      "U.S. Social History",
+      "U.S. Social Conditions"
+    ],
+    "priority": "Scope review",
+    "proposal": "Consider U.S. Social History & Conditions as one subject",
+    "reason": "E169.1/E169.12 versus HN51–HN90 overlap in browsing intent, but historical/cultural coverage differs; inspect source scope before merging.",
+    "evidence": {
+      "12409": {
+        "lcc_range": [],
+        "lcc_selector": [
+          [
+            12409,
+            "E169.1"
+          ],
+          [
+            12409,
+            "E169.12"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "52691": {
+        "lcc_range": [
+          [
+            "HN51",
+            "HN90",
+            52691
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      51576,
+      12785
+    ],
+    "subjects": [
+      "Military Field Orders",
+      "Logistics & Field Operations"
+    ],
+    "priority": "Optional narrow-topic compaction",
+    "proposal": "Absorb Military Field Orders into Logistics & Field Operations",
+    "reason": "Administrative/operational detail can be coarsened, but the destination should be confirmed against U330–U349.99.",
+    "evidence": {
+      "51576": {
+        "lcc_range": [
+          [
+            "U330",
+            "U349.99",
+            51576
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "12785": {
+        "lcc_range": [
+          [
+            "U168",
+            "U239.9",
+            12785
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      51577,
+      12791
+    ],
+    "subjects": [
+      "Military Ceremonies & Honors",
+      "Military Life & Customs"
+    ],
+    "priority": "Optional narrow-topic compaction",
+    "proposal": "Absorb Military Ceremonies & Honors into Military Life & Customs",
+    "reason": "Related practices; broader destination should retain ceremonial and honors coverage.",
+    "evidence": {
+      "51577": {
+        "lcc_range": [
+          [
+            "U350",
+            "U369.99",
+            51577
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "12791": {
+        "lcc_range": [
+          [
+            "U750",
+            "U789.9",
+            12791
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": [
+          [
+            "399",
+            12791
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "ids": [
+      52816,
+      5325
+    ],
+    "subjects": [
+      "Penological Theory",
+      "Penology"
+    ],
+    "priority": "Optional narrow-topic compaction",
+    "proposal": "Absorb Penological Theory into Penology",
+    "reason": "HV8661–HV8692.2 is theory within the broad punishment field; retain prisons and meaningful historical distinctions.",
+    "evidence": {
+      "52816": {
+        "lcc_range": [
+          [
+            "HV8661",
+            "HV8692.2",
+            52816
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "5325": {
+        "lcc_range": [
+          [
+            "HV8301",
+            "HV9920.7",
+            5325
+          ]
+        ],
+        "lcc_selector": [
+          [
+            5325,
+            "HV8301-9920.7"
+          ]
+        ],
+        "bisac_selector": [
+          [
+            5325,
+            "SOC030000"
+          ]
+        ],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      5131,
+      12554
+    ],
+    "subjects": [
+      "Decision-Making & Problem Solving",
+      "Decision Making"
+    ],
+    "priority": "Scope review",
+    "proposal": "Consider one Decision-Making & Problem Solving subject",
+    "reason": "BUS019000 versus HD30.23/BF448; preserve psychology access and check coverage of problem solving before merging.",
+    "evidence": {
+      "5131": {
+        "lcc_range": [],
+        "lcc_selector": [],
+        "bisac_selector": [
+          [
+            5131,
+            "BUS019000"
+          ]
+        ],
+        "ddc_selector": []
+      },
+      "12554": {
+        "lcc_range": [
+          [
+            "HD30.23",
+            "HD30.23",
+            12554
+          ]
+        ],
+        "lcc_selector": [
+          [
+            12554,
+            "BF448"
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": []
+      }
+    }
+  },
+  {
+    "ids": [
+      12552,
+      134
+    ],
+    "subjects": [
+      "Management Information Systems",
+      "Management Information Systems"
+    ],
+    "priority": "Source scope review",
+    "proposal": "Reconcile two Management Information Systems subjects",
+    "reason": "HD30.2–HD30.215 is broader than its label: includes data processing, AI, knowledge management and statistical methods. T58.6–T58.62/COM039000 is another systems subject. Correct scope before merging.",
+    "evidence": {
+      "12552": {
+        "lcc_range": [
+          [
+            "HD30.2",
+            "HD30.215",
+            12552
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "134": {
+        "lcc_range": [
+          [
+            "T58.6",
+            "T58.62",
+            134
+          ]
+        ],
+        "lcc_selector": [],
+        "bisac_selector": [
+          [
+            134,
+            "COM039000"
+          ]
+        ],
+        "ddc_selector": []
+      }
+    }
+  }
+]

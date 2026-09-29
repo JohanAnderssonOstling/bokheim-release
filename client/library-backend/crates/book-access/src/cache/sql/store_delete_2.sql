@@ -1,0 +1,1 @@
+DELETE FROM source WHERE NOT EXISTS(SELECT 1 FROM block WHERE block.hash=source.hash)

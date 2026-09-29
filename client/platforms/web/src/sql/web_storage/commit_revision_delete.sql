@@ -1,0 +1,1 @@
+DELETE FROM asset_revision WHERE NOT EXISTS(SELECT 1 FROM asset_file WHERE asset_file.physical_name=asset_revision.physical_name)

@@ -1,0 +1,51 @@
+{
+  "merges": {
+    "51369": {
+      "into": 50921,
+      "old_label": "Statue of Liberty",
+      "surviving_label": "City"
+    },
+    "51383": {
+      "into": 50911,
+      "old_label": "White House",
+      "surviving_label": "Washington, D.C."
+    },
+    "51288": {
+      "into": 50911,
+      "old_label": "Neighborhoods",
+      "surviving_label": "Washington, D.C."
+    },
+    "51289": {
+      "into": 50911,
+      "old_label": "D.C. Places & Monuments",
+      "surviving_label": "Washington, D.C."
+    },
+    "51290": {
+      "into": 50911,
+      "old_label": "Buildings",
+      "surviving_label": "Washington, D.C."
+    },
+    "51427": {
+      "into": 13835,
+      "old_label": "East End of",
+      "surviving_label": "London"
+    },
+    "51536": {
+      "into": 12745,
+      "old_label": "Social & Cultural",
+      "surviving_label": "Paris"
+    },
+    "51484": {
+      "into": 11448,
+      "old_label": "Social & Cultural",
+      "surviving_label": "Berlin"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "rule": "History cities are leaves; regions, provinces and states can retain geographic children.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

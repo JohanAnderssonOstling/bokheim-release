@@ -1,0 +1,157 @@
+name: Client platform release checks
+on:
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+    paths:
+      - 'client/**'
+      - 'apps/**'
+      - 'shared/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'rust-toolchain.toml'
+      - '.cargo/**'
+      - 'scripts/ci/**'
+      - '.github/workflows/client-platforms.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'client/**'
+      - 'apps/**'
+      - 'shared/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'rust-toolchain.toml'
+      - '.cargo/**'
+      - 'scripts/ci/**'
+      - '.github/workflows/client-platforms.yml'
+permissions:
+  contents: read
+concurrency:
+  group: client-platforms-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  checks:
+    name: Release ${{ matrix.platform }}
+    # Pull requests use disposable hosted machines; trusted Linux checks run locally.
+    runs-on: ${{ matrix.os == 'windows-2025' && 'windows-2025' || (github.event_name == 'pull_request' && 'ubuntu-24.04' || fromJSON('["self-hosted","linux","x64","bokheim-local"]')) }}
+    timeout-minutes: ${{ matrix.platform == 'web' && 90 || 30 }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { platform: native, os: ubuntu-24.04 }
+          - { platform: native, os: windows-2025 }
+          - { platform: web, os: ubuntu-24.04 }
+          - { platform: android, os: ubuntu-24.04 }
+    defaults:
+      run:
+        working-directory: bokheim
+        shell: bash
+    env:
+      RUSTUP_TOOLCHAIN: '1.95.0'
+      RUSTC_BOOTSTRAP: '1'
+      CARGO_BUILD_JOBS: '1'
+      CARGO_TERM_COLOR: always
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: bokheim
+      # Match the pinned sibling sources used by desktop-release.yml.
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/GPUI-Fork
+          ref: cb2f5b981889d421153d5804526929e32c0788fd
+          path: GPUI-Fork
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/HtmlEngine
+          ref: 91766fb2db8d56b38dc0336ddf74972da9872520
+          path: HtmlEngine
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/HtmlViewCore
+          ref: 0d407738fd6ecfd6d6ea84f1a9ce0a488e3dfaf7
+          path: HtmlViewCore
+      - name: Install Rust and build dependencies
+        run: |
+          rustup toolchain install 1.95.0 --profile minimal
+          rustup target add wasm32-unknown-unknown aarch64-linux-android
+          if [ "$RUNNER_OS" = Linux ] && [ "${{ runner.environment }}" = github-hosted ]; then
+            sudo apt-get update
+            sudo apt-get install -y build-essential clang pkg-config libssl-dev
+          fi
+      - uses: actions/setup-python@v6
+        if: matrix.platform == 'native' && runner.environment == 'github-hosted'
+        with:
+          python-version: '3.12'
+      - name: Prepare native PDFium
+        if: matrix.platform == 'native'
+        run: |
+          target=$(rustc -vV | sed -n 's/^host: //p')
+          python shared/pdfium/prepare.py --target "$target"
+      - name: Windows standalone PDF runtime
+        if: matrix.platform == 'native' && runner.os == 'Windows'
+        run: cargo test --release -p pdf-reader-core --test packaged_runtime
+      - name: Native platform tests
+        if: matrix.platform == 'native'
+        run: cargo test --release -p client-platform-native -p client-platform-desktop --features client-platform-native/websocket
+      - name: Linux update activation and recovery
+        if: matrix.platform == 'native' && runner.os == 'Linux'
+        run: cargo test --release -p linux-update-host
+      - name: Windows update storage and recovery
+        if: matrix.platform == 'native' && runner.os == 'Windows'
+        run: |
+          for module in native_files activation supervisor windows_package; do
+            cargo test --release -p update-client --features native-state "${module}::"
+          done
+          cargo test --release -p linux-update-host windows
+          cargo run --release -p linux-update-host --example windows_update_trial
+      - name: Standalone web platform check
+        if: matrix.platform == 'web'
+        run: cargo check --release -p client-platform-web --target wasm32-unknown-unknown --features web-runtime-tests
+      - name: Worker entry-point type checks
+        if: matrix.platform == 'web'
+        run: |
+          cargo check --release -p web-backend-worker --features web-runtime-tests --example cpu_worker --example sync_coordinator --target wasm32-unknown-unknown
+          cargo check --release -p web-backend-worker -p web-gpui --target wasm32-unknown-unknown
+      - uses: actions/setup-node@v4
+        if: matrix.platform == 'web'
+        with:
+          node-version: '24'
+      - name: Isolated shared-memory helper tests
+        if: matrix.platform == 'web'
+        run: node --test client/platforms/web/tests/signal.mjs
+      - name: Browser startup recovery
+        if: matrix.platform == 'web'
+        run: |
+          npm install --prefix "$RUNNER_TEMP/bokheim-browser-tests" --no-package-lock --ignore-scripts playwright@1.61.1
+          if [ "${{ runner.environment }}" = github-hosted ]; then browser_deps=--with-deps; else browser_deps=; fi
+          node "$RUNNER_TEMP/bokheim-browser-tests/node_modules/playwright/cli.js" install $browser_deps firefox
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/bokheim-browser-tests/node_modules/playwright/index.mjs" node apps/web-gpui/scripts/startup.browser-test.mjs
+      - name: Prepare optimized browser build tools
+        if: matrix.platform == 'web'
+        run: |
+          rustup component add rust-src
+          if [ "${{ runner.environment }}" = github-hosted ]; then sudo apt-get install -y binaryen; else command -v wasm-opt; fi
+          bindgen_version=$(python3 -c 'import tomllib; lock=tomllib.load(open("Cargo.lock", "rb")); print(next(p["version"] for p in lock["package"] if p["name"] == "wasm-bindgen"))')
+          cargo install --locked wasm-bindgen-cli --version "$bindgen_version" --root "$RUNNER_TEMP/bokheim-wasm-bindgen"
+          echo "$RUNNER_TEMP/bokheim-wasm-bindgen/bin" >> "$GITHUB_PATH"
+          if [ "${{ runner.environment }}" = github-hosted ]; then browser_deps=--with-deps; else browser_deps=; fi
+          node "$RUNNER_TEMP/bokheim-browser-tests/node_modules/playwright/cli.js" install $browser_deps chromium
+      - name: Build browser release
+        if: matrix.platform == 'web'
+        run: |
+          BOKHEIM_WEB_OUTPUT_DIR="$RUNNER_TEMP/bokheim-web-release" bash apps/web-gpui/scripts/build.sh
+      - name: Browser release updates
+        if: matrix.platform == 'web'
+        run: |
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/bokheim-browser-tests/node_modules/playwright/index.mjs"
+          CHROMIUM_PATH=$(node --input-type=module -e 'const {chromium}=await import(process.env.PLAYWRIGHT_MODULE); process.stdout.write(chromium.executablePath());')
+          export CHROMIUM_PATH
+          export BOKHEIM_TEST_DIST="$RUNNER_TEMP/bokheim-web-release"
+          export WASM_BINDGEN="$RUNNER_TEMP/bokheim-wasm-bindgen/bin/wasm-bindgen"
+          node apps/web-gpui/scripts/deployment.browser-test.mjs
+      - name: Android platform cross-check
+        if: matrix.platform == 'android'
+        run: cargo check --release -p client-platform-android --target aarch64-linux-android

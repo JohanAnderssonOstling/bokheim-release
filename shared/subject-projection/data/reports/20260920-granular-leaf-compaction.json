@@ -1,0 +1,146 @@
+{
+  "merges": {
+    "9077": {
+      "into": 3074,
+      "old_label": "Plywood working",
+      "surviving_label": "Woodworking & Upholstery"
+    },
+    "7439": {
+      "into": 3074,
+      "old_label": "Bamboo work",
+      "surviving_label": "Woodworking & Upholstery"
+    },
+    "7099": {
+      "into": 3068,
+      "old_label": "Ornamental & Geometric Turning",
+      "surviving_label": "Lathework"
+    },
+    "6232": {
+      "into": 3072,
+      "old_label": "Graining & marbling",
+      "surviving_label": "Painting. Wood finishing"
+    },
+    "6908": {
+      "into": 3073,
+      "old_label": "Slipcovers",
+      "surviving_label": "Soft home furnishings"
+    },
+    "9035": {
+      "into": 3073,
+      "old_label": "Pillows & cushions",
+      "surviving_label": "Soft home furnishings"
+    },
+    "6620": {
+      "into": 663,
+      "old_label": "Awards & Prizes",
+      "surviving_label": "Commercial & Advertising Art"
+    },
+    "8772": {
+      "into": 663,
+      "old_label": "Commercial art as a profession",
+      "surviving_label": "Commercial & Advertising Art"
+    },
+    "8800": {
+      "into": 663,
+      "old_label": "Economics of commercial art",
+      "surviving_label": "Commercial & Advertising Art"
+    },
+    "7457": {
+      "into": 653,
+      "old_label": "Architect-designed furniture",
+      "surviving_label": "Furniture"
+    },
+    "9665": {
+      "into": 652,
+      "old_label": "Design Business Management",
+      "surviving_label": "Decorative Design"
+    },
+    "9811": {
+      "into": 652,
+      "old_label": "Vocational guidance",
+      "surviving_label": "Decorative Design"
+    },
+    "7625": {
+      "into": 449,
+      "old_label": "Drafting Office Management",
+      "surviving_label": "Engineering Drawing"
+    },
+    "7176": {
+      "into": 449,
+      "old_label": "Working Drawings",
+      "surviving_label": "Engineering Drawing"
+    },
+    "7638": {
+      "into": 450,
+      "old_label": "Patent Designs & Models",
+      "surviving_label": "Patents. Trademarks"
+    },
+    "8330": {
+      "into": 450,
+      "old_label": "Theory of patents",
+      "surviving_label": "Patents. Trademarks"
+    },
+    "8759": {
+      "into": 447,
+      "old_label": "Management. Organization",
+      "surviving_label": "Industrial R&D"
+    },
+    "8871": {
+      "into": 4970,
+      "old_label": "Multiplication tables",
+      "surviving_label": "Tables"
+    },
+    "7431": {
+      "into": 4934,
+      "old_label": "Calculation Shortcuts",
+      "surviving_label": "Basic Math"
+    },
+    "9820": {
+      "into": 4923,
+      "old_label": "Newton’s Principia",
+      "surviving_label": "Analytic mechanics"
+    },
+    "53111": {
+      "into": 4957,
+      "old_label": "Radial Basis Functions",
+      "surviving_label": "Approximation Theory"
+    },
+    "53106": {
+      "into": 6518,
+      "old_label": "Spin Geometry",
+      "surviving_label": "Differential geometry"
+    },
+    "53201": {
+      "into": 4956,
+      "old_label": "Arakelov Theory",
+      "surviving_label": "Number Theory"
+    },
+    "8741": {
+      "into": 4808,
+      "old_label": "Pressure Effects in Chemistry",
+      "surviving_label": "Physical & Theoretical Chem."
+    },
+    "7773": {
+      "into": 4808,
+      "old_label": "Excited state chemistry",
+      "surviving_label": "Physical & Theoretical Chem."
+    },
+    "7660": {
+      "into": 4961,
+      "old_label": "Ranking & selection",
+      "surviving_label": "Probability & Statistics"
+    },
+    "9734": {
+      "into": 447,
+      "old_label": "Research parks",
+      "surviving_label": "Industrial R&D"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply all 20 approved granular-leaf groups, merging 27 leaves into their existing parents. Geopolitics placement is outside this numbered batch and unchanged.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO account_preferences (user_id, value)\nVALUES ($1, $2)\nON CONFLICT (user_id) DO NOTHING;\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Bytea"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "0d4081bd8f2498c84372eb847a1e889c2dedf6b1ff107e4683c103d0bc5e88f4"
+}

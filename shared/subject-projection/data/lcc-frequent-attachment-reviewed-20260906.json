@@ -1,0 +1,102 @@
+{
+  "subjects": {
+    "literature": "unified:6aaa3a4d-bf1d-5bb0-8cda-617aff1c5854",
+    "linguistics": "unified:ebdaebd5-a59a-50b3-aea4-6cfabc06d27a",
+    "communication": "unified:ff40aa93-19fa-5ca1-865d-8189e74d4259",
+    "english20": "unified:dbdd98f4-fb2c-592d-b8f9-4bd8c1dba05f",
+    "englishlate": "unified:c1fa47bd-b73b-5133-9a7d-153d7f0f49f7",
+    "english21": "unified:848e41f5-0e1e-5721-8a62-a5a603c452fb",
+    "english19": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+    "american": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+    "canadian": "unified:41899964-8fb9-5d37-8981-6330055f2964",
+    "film": "unified:3a5d2554-58b3-548b-8c98-54f02e7a0e87",
+    "filmhistory": "unified:fc752935-9d26-51f2-829c-195160e8c691",
+    "screenplays": "unified:d832b7ca-1810-5c0b-9179-afcb3e6ee753",
+    "television": "unified:4bc8ddaf-719e-53d7-88de-35175860f07f",
+    "dutch": "unified:dd5cf6f3-7d2c-5ca9-aeac-758a3e118b26",
+    "poetry": "unified:49f889ee-674e-5f51-aa98-20d9544877fa",
+    "prose": "unified:20a04a96-7384-57af-aadf-bc514073d77c",
+    "history": "unified:70b3087b-1a72-5fae-b1e6-97b9b7f739c2",
+    "journalism": "unified:53df7ee7-5766-56b5-a7ad-92545876ca2f",
+    "nlp": "unified:fb6d341b-2ef6-571a-a2e6-581de9660f55",
+    "sociolinguistics": "unified:5bdf395c-118a-517a-ad84-5996cecdbad8",
+    "psycholinguistics": "unified:d3fe8735-ba8b-5258-9499-b41b839abc82",
+    "semiotics": "unified:55b2a77e-73ef-5f27-9ac6-13f38c1283f0",
+    "translation": "unified:78e7d9d7-06a9-5666-ae0f-1c39bb606ec0",
+    "comics": "bokheim:lcc-detail:2767854c-576a-5035-bf03-db9a8fbbb465"
+  },
+  "printed_spans": [
+    [
+      "('PN', 1, 6790)",
+      "literature"
+    ],
+    [
+      "('P', 1, 1091)",
+      "linguistics"
+    ],
+    [
+      "('P', 87, 96)",
+      "communication"
+    ],
+    [
+      "('PT', 5001, 5980)",
+      "dutch"
+    ],
+    [
+      "('P', 51, 59.4)",
+      "linguistics"
+    ],
+    [
+      "('PN', 3311, 3503)",
+      "prose"
+    ],
+    [
+      "('PN', 1010, 1551)",
+      "poetry"
+    ],
+    [
+      "('PN', 1993, 1999)",
+      "film"
+    ],
+    [
+      "('PN', 4699, 5650)",
+      "journalism"
+    ],
+    [
+      "('PN', 441, 1009.5)",
+      "history"
+    ],
+    [
+      "('PN', 843, 846)",
+      "history"
+    ],
+    [
+      "('PN', 843, 849)",
+      "history"
+    ],
+    [
+      "('P', 40, 40.5)",
+      "sociolinguistics"
+    ],
+    [
+      "('P', 98, 98.5)",
+      "nlp"
+    ],
+    [
+      "('P', 99, 99.4)",
+      "semiotics"
+    ],
+    [
+      "('P', 37, 37.5)",
+      "psycholinguistics"
+    ],
+    [
+      "('P', 306, 310)",
+      "translation"
+    ],
+    [
+      "('PN', 6700, 6790)",
+      "comics"
+    ]
+  ]
+}

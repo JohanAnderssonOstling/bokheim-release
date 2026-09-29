@@ -1,0 +1,1576 @@
+[
+  {
+    "id": 12249,
+    "label": "Women — General Works",
+    "target": 5253,
+    "target_label": "Women & Feminism",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "General works can resolve to Women & Feminism; retain its specialized children.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HQ1200",
+          "HQ1235.9",
+          12249
+        ]
+      ],
+      "lcc_selector": [
+        [
+          12249,
+          "HQ1201-HQ1229"
+        ],
+        [
+          12249,
+          "HQ1233"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12330,
+    "label": "Industry — General",
+    "target": 5233,
+    "target_label": "Industry & Organization",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Absorb the general/remainder ranges into Industry & Organization; do not remove specialist industries.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HD2321",
+          "HD2328.9",
+          12330
+        ],
+        [
+          "HD2340",
+          "HD2340.79",
+          12330
+        ],
+        [
+          "HD2346.6",
+          "HD2350.79",
+          12330
+        ],
+        [
+          "HD2356.1",
+          "HD2364.9",
+          12330
+        ],
+        [
+          "HD2385.1",
+          "HD2420.9",
+          12330
+        ],
+        [
+          "HD2429.1",
+          "HD2708.9",
+          12330
+        ],
+        [
+          "HD2930.8",
+          "HD2950.9",
+          12330
+        ],
+        [
+          "HD3575.1",
+          "HD3610.9",
+          12330
+        ]
+      ],
+      "lcc_selector": [
+        [
+          12330,
+          "HD2321"
+        ],
+        [
+          12330,
+          "HD2324"
+        ],
+        [
+          12330,
+          "HD2326"
+        ],
+        [
+          12330,
+          "HD2328"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12391,
+    "label": "General Banking",
+    "target": 5229,
+    "target_label": "Banking",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Promote banking reference, history, statistics and other children; transfer BUS004000 and HG selectors.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          12391,
+          "HG1501-1614.9"
+        ]
+      ],
+      "bisac_selector": [
+        [
+          12391,
+          "BUS004000"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12427,
+    "label": "General Agricultural Economics",
+    "target": 5231,
+    "target_label": "Agricultural Economics",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "General agricultural economics can resolve to the parent.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HD1401",
+          "HD1469.9",
+          12427
+        ]
+      ],
+      "lcc_selector": [
+        [
+          12427,
+          "HD1428"
+        ],
+        [
+          12427,
+          "HD1428-HD1431"
+        ],
+        [
+          12427,
+          "HD1429"
+        ],
+        [
+          12427,
+          "HD1431"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12772,
+    "label": "Land Use: General & History",
+    "target": 5235,
+    "target_label": "Land Use",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "General and historical land-use material can resolve to Land Use; no children lost.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HD101",
+          "HD165.9",
+          12772
+        ]
+      ],
+      "lcc_selector": [
+        [
+          12772,
+          "HD101"
+        ],
+        [
+          12772,
+          "HD103"
+        ],
+        [
+          12772,
+          "HD105"
+        ],
+        [
+          12772,
+          "HD107.7"
+        ],
+        [
+          12772,
+          "HD107.8"
+        ],
+        [
+          12772,
+          "HD108-HD108.8"
+        ],
+        [
+          12772,
+          "HD109-HD109.5"
+        ],
+        [
+          12772,
+          "HD110-HD110.5"
+        ],
+        [
+          12772,
+          "HD111"
+        ],
+        [
+          12772,
+          "HD113-HD156"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12801,
+    "label": "General Marketing",
+    "target": 5189,
+    "target_label": "Marketing",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Promote management, customer relations, distribution and pricing into Marketing; transfer BUS043000.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HF5410",
+          "HF5415.1259",
+          12801
+        ]
+      ],
+      "lcc_selector": [
+        [
+          12801,
+          "HF5410-5417.5"
+        ]
+      ],
+      "bisac_selector": [
+        [
+          12801,
+          "BUS043000"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12847,
+    "label": "General, History & Study",
+    "target": 5071,
+    "target_label": "Prehistoric",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Absorb the mixed general/history/study bucket into Prehistoric archaeology.",
+    "codes": {
+      "lcc_range": [
+        [
+          "GN700",
+          "GN767.9",
+          12847
+        ]
+      ],
+      "lcc_selector": [
+        [
+          12847,
+          "GN700"
+        ],
+        [
+          12847,
+          "GN701"
+        ],
+        [
+          12847,
+          "GN705"
+        ],
+        [
+          12847,
+          "GN710"
+        ],
+        [
+          12847,
+          "GN720-GN722"
+        ],
+        [
+          12847,
+          "GN733-GN740"
+        ],
+        [
+          12847,
+          "GN741"
+        ],
+        [
+          12847,
+          "GN743"
+        ],
+        [
+          12847,
+          "GN744"
+        ],
+        [
+          12847,
+          "GN746"
+        ],
+        [
+          12847,
+          "GN750-GN751"
+        ],
+        [
+          12847,
+          "GN755"
+        ],
+        [
+          12847,
+          "GN761"
+        ],
+        [
+          12847,
+          "GN766"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12918,
+    "label": "General, Methodology & History",
+    "target": 5877,
+    "target_label": "Legal Philosophy",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Absorb mixed general/methodology/history bucket into Legal Philosophy, including LAW052000.",
+    "codes": {
+      "lcc_range": [
+        [
+          "K201",
+          "K236.9",
+          12918
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          12918,
+          "LAW052000"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12951,
+    "label": "General Statistics",
+    "target": 5520,
+    "target_label": "Statistics",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Absorb general statistics and its HA, SOC027000 and DDC310 coverage; retain methods and regional branches.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HA1",
+          "HA28.9",
+          12951
+        ]
+      ],
+      "lcc_selector": [
+        [
+          12951,
+          "HA"
+        ]
+      ],
+      "bisac_selector": [
+        [
+          12951,
+          "SOC027000"
+        ]
+      ],
+      "ddc_selector": [
+        [
+          "310",
+          12951
+        ]
+      ]
+    }
+  },
+  {
+    "id": 12979,
+    "label": "General Ethnology",
+    "target": 5058,
+    "target_label": "Cultural & Social",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Promote ethnology methods and general works into Cultural & Social anthropology; coordinate with candidate 53302.",
+    "codes": {
+      "lcc_range": [
+        [
+          "GN303",
+          "GN304",
+          12979
+        ],
+        [
+          "GN307.5",
+          "GN307.7",
+          12979
+        ],
+        [
+          "GN307.8",
+          "GN307.82",
+          12979
+        ],
+        [
+          "GN308",
+          "GN308.3",
+          12979
+        ]
+      ],
+      "lcc_selector": [
+        [
+          12979,
+          "GN301"
+        ],
+        [
+          12979,
+          "GN302"
+        ],
+        [
+          12979,
+          "GN303-GN304"
+        ],
+        [
+          12979,
+          "GN307"
+        ],
+        [
+          12979,
+          "GN307.3"
+        ],
+        [
+          12979,
+          "GN307.5-GN307.7"
+        ],
+        [
+          12979,
+          "GN307.8-GN307.82"
+        ],
+        [
+          12979,
+          "GN308-GN308.3"
+        ],
+        [
+          12979,
+          "GN320"
+        ],
+        [
+          12979,
+          "GN323"
+        ],
+        [
+          12979,
+          "GN325"
+        ],
+        [
+          12979,
+          "GN330"
+        ],
+        [
+          12979,
+          "GN333"
+        ],
+        [
+          12979,
+          "GN340"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13001,
+    "label": "General Physical Anthropology",
+    "target": 5069,
+    "target_label": "Physical",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Absorb general physical anthropology; retain specific physical topics.",
+    "codes": {
+      "lcc_range": [
+        [
+          "GN49",
+          "GN62.7",
+          13001
+        ]
+      ],
+      "lcc_selector": [
+        [
+          13001,
+          "GN49"
+        ],
+        [
+          13001,
+          "GN50"
+        ],
+        [
+          13001,
+          "GN50.2"
+        ],
+        [
+          13001,
+          "GN50.3"
+        ],
+        [
+          13001,
+          "GN50.4-GN50.45"
+        ],
+        [
+          13001,
+          "GN50.5-GN50.6"
+        ],
+        [
+          13001,
+          "GN50.8-GN59"
+        ],
+        [
+          13001,
+          "GN51-GN59"
+        ],
+        [
+          13001,
+          "GN59.6"
+        ],
+        [
+          13001,
+          "GN59.8-GN59.82"
+        ],
+        [
+          13001,
+          "GN60"
+        ],
+        [
+          13001,
+          "GN62"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13128,
+    "label": "Income & Factor Shares—General",
+    "target": 5099,
+    "target_label": "Income. Factor shares",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Promote Income Distribution & Distributive Justice and absorb general income codes.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HB522",
+          "HB534.9",
+          13128
+        ]
+      ],
+      "lcc_selector": [
+        [
+          13128,
+          "HB522"
+        ],
+        [
+          13128,
+          "HB525"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13145,
+    "label": "Business Cycles—General",
+    "target": 5093,
+    "target_label": "Business Cycles",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Absorb general business cycles into Business Cycles.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HB3711",
+          "HB3715.9",
+          13145
+        ]
+      ],
+      "lcc_selector": [
+        [
+          13145,
+          "HB3711"
+        ],
+        [
+          13145,
+          "HB3714"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13210,
+    "label": "Societies—General",
+    "target": 5517,
+    "target_label": "Secret & Benevolent Societies",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Absorb general societies into Secret & Benevolent Societies; keep specialist societies.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HS1",
+          "HS100.9",
+          13210
+        ]
+      ],
+      "lcc_selector": [
+        [
+          13210,
+          "HS1-HS89"
+        ]
+      ],
+      "bisac_selector": [
+        [
+          13210,
+          "SOC038000"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13319,
+    "label": "Economic Methodology—General",
+    "target": 5100,
+    "target_label": "Economic Research Methods",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Absorb general economic methodology into Economic Research Methods.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HB131",
+          "HB132.9",
+          13319
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52928,
+    "label": "Computer Crime — General",
+    "target": 12731,
+    "target_label": "Computer Crime",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Absorb general computer crime; keep more specific cybercrime subjects.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HV6772",
+          "HV6773.19",
+          52928
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52948,
+    "label": "General Folk Literature",
+    "target": 5065,
+    "target_label": "Folk literature",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Absorb general folk literature; retain specialist forms.",
+    "codes": {
+      "lcc_range": [
+        [
+          "GR72",
+          "GR73.19",
+          52948
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 53302,
+    "label": "Ethnology General Works & Textbooks",
+    "target": 5058,
+    "target_label": "Cultural & Social",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Absorb the general works/textbooks bucket during the General Ethnology merge; preserve GN310–GN316.",
+    "codes": {
+      "lcc_range": [
+        [
+          "GN310",
+          "GN316",
+          53302
+        ]
+      ],
+      "lcc_selector": [
+        [
+          53302,
+          "GN310-GN316"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12265,
+    "label": "Business — General & Reference",
+    "target": 5086,
+    "target_label": "Business",
+    "action": "Merge into parent / broader subject",
+    "priority": "Recommended next batch",
+    "note": "Promote directories, history and handbooks; absorb all general/remainder HF ranges into Business.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HF5001",
+          "HF5379.9",
+          12265
+        ],
+        [
+          "HF5389.4",
+          "HF5409.9",
+          12265
+        ],
+        [
+          "HF5417.6",
+          "HF5418.9",
+          12265
+        ],
+        [
+          "HF5422.1",
+          "HF5427.9",
+          12265
+        ],
+        [
+          "HF5430.7",
+          "HF5436.9",
+          12265
+        ],
+        [
+          "HF5495.1",
+          "HF5500.9",
+          12265
+        ],
+        [
+          "HF5511.24",
+          "HF5519.9",
+          12265
+        ],
+        [
+          "HF5541.1",
+          "HF5545.9",
+          12265
+        ],
+        [
+          "HF5548.86",
+          "HF5548.99",
+          12265
+        ],
+        [
+          "HF5549.6",
+          "HF5550.9",
+          12265
+        ],
+        [
+          "HF5585.1",
+          "HF5600.9",
+          12265
+        ],
+        [
+          "HF5689.1",
+          "HF5690.9",
+          12265
+        ],
+        [
+          "HF5734.8",
+          "HF5734.9",
+          12265
+        ],
+        [
+          "HF5746.1",
+          "HF5760.9",
+          12265
+        ],
+        [
+          "HF5780.1",
+          "HF5800.9",
+          12265
+        ]
+      ],
+      "lcc_selector": [
+        [
+          12265,
+          "HF5001"
+        ],
+        [
+          12265,
+          "HF5030-HF5335.22"
+        ],
+        [
+          12265,
+          "HF5350"
+        ],
+        [
+          12265,
+          "HF5371"
+        ],
+        [
+          12265,
+          "HF5392"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5260,
+    "label": "General Military Studies",
+    "target": 5254,
+    "target_label": "Military Studies",
+    "action": "Merge general branch; promote its children",
+    "priority": "Review breadth",
+    "note": "Removes a level for 19 children but raises the Military Studies child count from 6 to 24. Consider this navigation tradeoff before applying.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          5260,
+          "U"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13311,
+    "label": "Legal History—General",
+    "target": 5878,
+    "target_label": "Legal History & Roman Law",
+    "action": "Merge general legal-history child",
+    "priority": "Source scope review",
+    "note": "Many regional K/KJV/KK/KL ranges, including very broad spans, make this more than a simple general leaf. Consider renaming parent Legal History while retaining Roman Law.",
+    "codes": {
+      "lcc_range": [
+        [
+          "K140",
+          "K165",
+          13311
+        ],
+        [
+          "KJV247",
+          "KJV250",
+          13311
+        ],
+        [
+          "KJV253.92",
+          "KJV282",
+          13311
+        ],
+        [
+          "KK175",
+          "KK175.8",
+          13311
+        ],
+        [
+          "KK179",
+          "KK181.2",
+          13311
+        ],
+        [
+          "KK194.2",
+          "KK862",
+          13311
+        ],
+        [
+          "KL1001",
+          "KL1299",
+          13311
+        ],
+        [
+          "KL147",
+          "KL177",
+          13311
+        ],
+        [
+          "KL1601",
+          "KL1899",
+          13311
+        ],
+        [
+          "KL169.2",
+          "KL177",
+          13311
+        ],
+        [
+          "KL190",
+          "KL420",
+          13311
+        ],
+        [
+          "KL195",
+          "KL420",
+          13311
+        ],
+        [
+          "KL2",
+          "KL135",
+          13311
+        ],
+        [
+          "KL2",
+          "KL9299",
+          13311
+        ],
+        [
+          "KL2201",
+          "KL2499",
+          13311
+        ],
+        [
+          "KL2801",
+          "KL3099",
+          13311
+        ],
+        [
+          "KL2807",
+          "KL2815",
+          13311
+        ],
+        [
+          "KL3501",
+          "KL3799",
+          13311
+        ],
+        [
+          "KL4101",
+          "KL4399",
+          13311
+        ],
+        [
+          "KL4107",
+          "KL4115",
+          13311
+        ],
+        [
+          "KL4701",
+          "KL4999",
+          13311
+        ],
+        [
+          "KL5301",
+          "KL5599",
+          13311
+        ],
+        [
+          "KL5307",
+          "KL5315",
+          13311
+        ],
+        [
+          "KL5901",
+          "KL6199",
+          13311
+        ],
+        [
+          "KL5907",
+          "KL5915",
+          13311
+        ],
+        [
+          "KL701",
+          "KL2499",
+          13311
+        ]
+      ],
+      "lcc_selector": [
+        [
+          13311,
+          "KJV246.3"
+        ],
+        [
+          13311,
+          "KJV250.3"
+        ],
+        [
+          13311,
+          "KK177"
+        ],
+        [
+          13311,
+          "KL"
+        ]
+      ],
+      "bisac_selector": [
+        [
+          13311,
+          "LAW060000"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52931,
+    "label": "General Intelligence Services",
+    "target": 5342,
+    "target_label": "Intelligence & Espionage",
+    "action": "Merge general intelligence-services child",
+    "priority": "Source scope review",
+    "note": "JF1525.I6 is institution-focused; parent also covers espionage. Decide whether that distinction warrants a child.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          52931,
+          "JF1525.I6"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13040,
+    "label": "Thinking",
+    "target": 9977,
+    "target_label": "Thought & Reasoning",
+    "action": "Merge Thinking into Thought & Reasoning",
+    "priority": "Likely useful",
+    "note": "BF441–BF442.9 appears to provide general thinking coverage; keep Reasoning & Judgment and Abstraction & Conceptualization.",
+    "codes": {
+      "lcc_range": [
+        [
+          "BF441",
+          "BF442.9",
+          13040
+        ]
+      ],
+      "lcc_selector": [
+        [
+          13040,
+          "BF442"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 6964,
+    "label": "Social Degeneration Topics",
+    "target": 5473,
+    "target_label": "Degeneration",
+    "action": "Merge generic Topics child",
+    "priority": "Likely useful",
+    "note": "Social Degeneration Topics is a generic subset of Degeneration, HV4973–HV4993; historical terminology also merits review.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HV4973",
+          "HV4993",
+          6964
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52373,
+    "label": "Culture & Social Progress",
+    "target": 5662,
+    "target_label": "Culture, Media & Belief",
+    "action": "Remove shared wrapper and preserve useful topic routes",
+    "priority": "Review placement",
+    "note": "Code-free Culture & Social Progress has parents Culture, Media & Belief and Social Change & Development. Place its three children deliberately; do not blindly copy both parents to every child.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 53301,
+    "label": "Urban Ecology",
+    "target": 5077,
+    "target_label": "Cities & Urban Studies",
+    "action": "Move Urban Ecology directly under Cities & Urban Studies",
+    "priority": "Recommended placement fix",
+    "note": "HT241 is currently under Urban Culture & Recreation whose ranges start at HT251. Ecology is not a natural subdivision of recreation.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          53301,
+          "HT241"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5082,
+    "label": "Race & Ethnic Relations",
+    "target": 5075,
+    "target_label": "Race & Race Relations",
+    "action": "Consolidate Race & Ethnic Relations and Race & Race Relations",
+    "priority": "Scope review",
+    "note": "Unify BISAC SOC070000 with the LCC-led branch if ethnic relations scope is adequately retained; preserve anthropology and sociology access.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          5082,
+          "SOC070000"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5505,
+    "label": "Human Sexuality",
+    "target": 5250,
+    "target_label": "Sexuality",
+    "action": "Consolidate sociology Human Sexuality with Sexuality",
+    "priority": "Scope review",
+    "note": "SOC065000 general subject versus the developed HQ branch. Preserve sociology access; distinguish psychology before merging that subject too.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          5505,
+          "SOC065000"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5408,
+    "label": "Human Sexuality",
+    "target": 5250,
+    "target_label": "Sexuality",
+    "action": "Consider shared Human Sexuality subject",
+    "priority": "Scope review",
+    "note": "PSY016000 is a psychological perspective. Decide on one cross-disciplinary subject versus a specifically labeled psychology branch.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          5408,
+          "PSY016000"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5507,
+    "label": "LGBTQ+ Studies",
+    "target": 12403,
+    "target_label": "Sexual Orientation & Minorities",
+    "action": "Consolidate LGBTQ+ Studies and Sexual Orientation & Minorities",
+    "priority": "Scope review",
+    "note": "The developed branch already includes transgender and intersex studies. Choose an inclusive label and retain specialist children and BISAC coverage.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          5507,
+          "SOC012000"
+        ],
+        [
+          5507,
+          "SOC017000"
+        ],
+        [
+          5507,
+          "SOC064000"
+        ],
+        [
+          5507,
+          "SOC064010"
+        ],
+        [
+          5507,
+          "SOC064020"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13202,
+    "label": "Political Anthropology",
+    "target": 13820,
+    "target_label": "Political Anthropology",
+    "action": "Consider shared Political Anthropology subject",
+    "priority": "Source scope review",
+    "note": "GN492–GN495.3 versus JC21–JC31; matching names alone are insufficient.",
+    "codes": {
+      "lcc_range": [
+        [
+          "GN492",
+          "GN495.3",
+          13202
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12915,
+    "label": "Economic Thought by Period",
+    "target": 13771,
+    "target_label": "Economic Thought by Period",
+    "action": "Resolve duplicate Economic Thought by Period labels",
+    "priority": "Source scope review",
+    "note": "HB77–HB89.9 versus HB151–181; source captions must establish whether these are actually equivalent.",
+    "codes": {
+      "lcc_range": [
+        [
+          "HB77",
+          "HB89.9",
+          12915
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52693,
+    "label": "European Social Conditions",
+    "target": 5516,
+    "target_label": "Social History & Conditions",
+    "action": "Remove longer route through Social Conditions outside the U.S.",
+    "priority": "Review regional grouping",
+    "note": "Europe already has a direct parent route. Retain broad non-U.S. code coverage and meaningful regional grouping; avoid deleting a coded region merely because it has one child.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          52693,
+          "HN373"
+        ],
+        [
+          52693,
+          "HN373.5"
+        ],
+        [
+          52693,
+          "HN523.5"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5078,
+    "label": "Customs & Traditions",
+    "target": 5056,
+    "target_label": "Anthropology",
+    "action": "Remove longer route through Manners, Customs & Material Culture",
+    "priority": "Review scope",
+    "note": "Customs & Traditions already has a direct Anthropology route. Inspect its relation to the broader GT wrapper before deleting any subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "GT1",
+          "GT164.9",
+          5078
+        ],
+        [
+          "GT2370.1",
+          "GT2399.9",
+          5078
+        ],
+        [
+          "GT3390.6",
+          "GT3399.9",
+          5078
+        ],
+        [
+          "GT476.1",
+          "GT484.9",
+          5078
+        ],
+        [
+          "GT485.1",
+          "GT494.9",
+          5078
+        ],
+        [
+          "GT499.1",
+          "GT499.9",
+          5078
+        ],
+        [
+          "GT5090.1",
+          "GT5219.9",
+          5078
+        ],
+        [
+          "GT5286.1",
+          "GT5319.9",
+          5078
+        ],
+        [
+          "GT6737.1",
+          "GT7070",
+          5078
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          5078,
+          "SOC005000"
+        ]
+      ],
+      "ddc_selector": [
+        [
+          "390",
+          5078
+        ]
+      ]
+    }
+  },
+  {
+    "id": 5288,
+    "label": "Family Law",
+    "target": 5550,
+    "target_label": "Civil & Private Law",
+    "action": "Keep direct Family Law route; review Persons wrapper",
+    "priority": "Review scope",
+    "note": "Persons has only Family Law as a child, but legal personhood is broader. Do not merge solely because there is one child.",
+    "codes": {
+      "lcc_range": [
+        [
+          "K670",
+          "K709",
+          5288
+        ],
+        [
+          "KEQ237",
+          "KEQ258",
+          5288
+        ],
+        [
+          "KIA2050",
+          "KIA2067",
+          5288
+        ],
+        [
+          "KIA237",
+          "KIA247",
+          5288
+        ],
+        [
+          "KIA35",
+          "KIA38",
+          5288
+        ],
+        [
+          "KJA2238",
+          "KJA2242",
+          5288
+        ],
+        [
+          "KJA2252",
+          "KJA2260",
+          5288
+        ],
+        [
+          "KJA2262",
+          "KJA2267",
+          5288
+        ],
+        [
+          "KJV622",
+          "KJV861.2",
+          5288
+        ],
+        [
+          "KK1100",
+          "KK1248",
+          5288
+        ],
+        [
+          "KKA1100.5",
+          "KKA1213",
+          5288
+        ]
+      ],
+      "lcc_selector": [
+        [
+          5288,
+          "KJA2233.5"
+        ],
+        [
+          5288,
+          "KJA2234"
+        ],
+        [
+          5288,
+          "KJA2235"
+        ],
+        [
+          5288,
+          "KJA2236"
+        ],
+        [
+          5288,
+          "KJA2237"
+        ],
+        [
+          5288,
+          "KJA2243"
+        ],
+        [
+          5288,
+          "KJA2244"
+        ],
+        [
+          5288,
+          "KJA2246"
+        ],
+        [
+          5288,
+          "KJA2250"
+        ],
+        [
+          5288,
+          "KJA2269"
+        ],
+        [
+          5288,
+          "KJC1247"
+        ]
+      ],
+      "bisac_selector": [
+        [
+          5288,
+          "LAW038000"
+        ],
+        [
+          5288,
+          "LAW038010"
+        ],
+        [
+          5288,
+          "LAW038020"
+        ],
+        [
+          5288,
+          "LAW038030"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 11762,
+    "label": "Conservatism & Liberalism",
+    "target": 5364,
+    "target_label": "Ideologies",
+    "action": "Promote Conservatism and Liberalism; retain combined code coverage",
+    "priority": "Optional flattening",
+    "note": "The pair has its own BISAC POL042020. Its removal requires an explicit destination for combined-topic works; do not map that code to just one ideology.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          11762,
+          "POL042020"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 11764,
+    "label": "Fascism & Totalitarianism",
+    "target": 5364,
+    "target_label": "Ideologies",
+    "action": "Promote Fascism and Totalitarianism; retain combined code coverage",
+    "priority": "Optional flattening",
+    "note": "The pair has BISAC POL042030. Preserve distinct ideologies and combined-topic classification.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          11764,
+          "POL042030"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 11766,
+    "label": "Nationalism & Patriotism",
+    "target": 5364,
+    "target_label": "Ideologies",
+    "action": "Promote Nationalism and Patriotism; retain combined code coverage",
+    "priority": "Optional flattening",
+    "note": "The pair has BISAC POL031000. Do not treat the two ideologies as synonyms.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          11766,
+          "POL031000"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  }
+]

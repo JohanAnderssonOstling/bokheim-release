@@ -1,0 +1,129 @@
+{
+  "changes": [
+    {
+      "id": 571,
+      "before": "Design, Drafting, Drawing & Presentation",
+      "after": "Architectural Design & Drawing"
+    },
+    {
+      "id": 13241,
+      "before": "EU Administrative & Cultural-Affairs Law",
+      "after": "EU Administration & Culture Law"
+    },
+    {
+      "id": 12346,
+      "before": "Earlier Literature, through Ming Dynasty",
+      "after": "Chinese Literature through Ming"
+    },
+    {
+      "id": 11432,
+      "before": "French Mandate and occupation, 1919-1945",
+      "after": "French Mandate & Occupation, 1919–1945"
+    },
+    {
+      "id": 13087,
+      "before": "Human Settlements & Population Geography",
+      "after": "Population & Settlement Geography"
+    },
+    {
+      "id": 449,
+      "before": "Mechanical drawing. Engineering graphics",
+      "after": "Engineering Drawing"
+    },
+    {
+      "id": 383,
+      "before": "Mechanics applied to machinery. Dynamics",
+      "after": "Machine Mechanics"
+    },
+    {
+      "id": 399,
+      "before": "Mineral deposits. Metallic ore deposits.",
+      "after": "Mineral Deposits"
+    },
+    {
+      "id": 9882,
+      "before": "Miscellaneous articles of iron and steel",
+      "after": "Iron & Steel Products"
+    },
+    {
+      "id": 2868,
+      "before": "Operating Rooms, Equipment & Instruments",
+      "after": "Operating Rooms & Equipment"
+    },
+    {
+      "id": 9695,
+      "before": "Photographic Reproduction & Photocopying",
+      "after": "Photographic Copying"
+    },
+    {
+      "id": 6524,
+      "before": "Picture study in the school and the home",
+      "after": "Picture Study in Art Education"
+    },
+    {
+      "id": 10907,
+      "before": "Preexistence of the soul. Transmigration",
+      "after": "Soul Preexistence & Transmigration"
+    },
+    {
+      "id": 13335,
+      "before": "Prime Distribution & Numerical Functions",
+      "after": "Prime Numbers & Number Functions"
+    },
+    {
+      "id": 12988,
+      "before": "Public, Reference & Circulation Services",
+      "after": "Library Reader Services"
+    },
+    {
+      "id": 7979,
+      "before": "Reading circles and correspondence clubs",
+      "after": "Reading & Correspondence Clubs"
+    },
+    {
+      "id": 13838,
+      "before": "Reference, Organizations & General Works",
+      "after": "Sociology Reference & Institutions"
+    },
+    {
+      "id": 12645,
+      "before": "School Leadership & Administrative Staff",
+      "after": "School Leadership & Staffing"
+    },
+    {
+      "id": 1907,
+      "before": "Short Stories, Collections & Anthologies",
+      "after": "YA Short Stories & Anthologies"
+    },
+    {
+      "id": 13184,
+      "before": "Soil Science—General, History & Research",
+      "after": "Soil Science Foundations"
+    },
+    {
+      "id": 6463,
+      "before": "Special classes. By race or ethnic group",
+      "after": "Welfare by Race & Ethnicity"
+    },
+    {
+      "id": 2860,
+      "before": "Surgical Treatment of Locomotor Diseases",
+      "after": "Musculoskeletal Surgery"
+    },
+    {
+      "id": 8902,
+      "before": "Women and literature. Feminine influence",
+      "after": "Women & U.S. Literature"
+    },
+    {
+      "id": 10086,
+      "before": "Women and literature. Feminine influence",
+      "after": "Women & English Literature"
+    }
+  ],
+  "count": 24,
+  "over40_before": 0,
+  "over40_after": 0,
+  "aliases_added": 0,
+  "remaining_40": 28
+}

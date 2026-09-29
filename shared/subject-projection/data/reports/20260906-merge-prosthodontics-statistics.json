@@ -1,0 +1,16 @@
+{
+  "merges": {
+    "2578": 2577,
+    "4960": 4961
+  },
+  "renames": [
+    {
+      "id": 2577,
+      "before": "Prosthetic dentistry. Prosthodontics",
+      "after": "Prosthodontics"
+    }
+  ],
+  "renamed_count": 1,
+  "verified_code_groups": 2961373,
+  "aliases_added": 0
+}

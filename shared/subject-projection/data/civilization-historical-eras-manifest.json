@@ -1,0 +1,1063 @@
+{
+  "version": 1,
+  "source": "Library of Congress MDSConnect Classification 2016 retrospective",
+  "new_nodes": [
+    {
+      "concept_id": "bokheim:lcc-curated:0319a29c-5e7f-5b15-b7e3-e9e6113efa96",
+      "preferred_label": "Renaissance & Reformation"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:0fd39bdb-5586-5876-bd50-cbd52742dc28",
+      "preferred_label": "Political & Diplomatic History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:1098b43f-2360-54b4-b3dd-f5f6c7ebc277",
+      "preferred_label": "Military History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:13f51d32-92b0-5b13-82b4-630c98aec517",
+      "preferred_label": "Buddhist Civilization"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:16c74563-89cc-5604-8382-616799a3aef8",
+      "preferred_label": "Netherlands Campaigns, 1743–1748"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:1a00c0fb-f812-5c23-9ac8-3fe70e5ae1b2",
+      "preferred_label": "10th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:1fb88d5f-24bf-568b-bf5c-b9a02d73af31",
+      "preferred_label": "Peace of Aix-la-Chapelle, 1748"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:24046f4b-f1aa-5196-b6d0-532fd2ccb955",
+      "preferred_label": "1551–1600"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:25d70a48-633c-5d7f-be8a-2c109d92e8b5",
+      "preferred_label": "Political & Diplomatic History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:2676b6ae-73c6-5938-ae1e-c7abf2f8d627",
+      "preferred_label": "Revolutions of 1848"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:2f4a63e8-0a05-5704-b0a8-9049b1b02e5e",
+      "preferred_label": "Developing Regions & Postcolonial Societies"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:2f7c0d65-e860-538a-bc61-aba89facdff1",
+      "preferred_label": "Western Civilizations"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:316d6b25-6776-580e-9132-47f8cbf0b8ea",
+      "preferred_label": "North Atlantic Treaty"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:34a215de-9b2b-5420-ba26-fad8ab9921e7",
+      "preferred_label": "Confucian Civilization"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:35198de0-5ad3-596d-b0ab-4a50778e7b8d",
+      "preferred_label": "East–West Interactions"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:383008db-d8ae-5895-91ce-f7e0535d5b9a",
+      "preferred_label": "Colonial and Naval Operations, 1739–1748"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:383cdd3d-03e8-54c1-8755-7ca09f92ff80",
+      "preferred_label": "18th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:38e27107-53f0-5e75-bbef-c487e3d64d31",
+      "preferred_label": "Central Asian Question"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:3a2ad6ad-00bd-5b48-b986-30c974823d53",
+      "preferred_label": "Italian Campaigns, 1741–1748"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:3d73f689-a77a-5b86-917b-9ff4d65a7c4e",
+      "preferred_label": "War of the Austrian Succession, 1740–1748"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:562555d2-a633-5528-94a4-816108d1506a",
+      "preferred_label": "Europe, 1801–1914"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:59657820-7b9c-562d-ab51-d77a17a484ac",
+      "preferred_label": "Political & Diplomatic History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:5d03aecd-4e9b-5f1e-b87c-6aa4078bcb9f",
+      "preferred_label": "1860–1870"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:63181467-bd0d-5b0c-a29c-ddcc7f357250",
+      "preferred_label": "1900–1970"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:637114d5-f9ab-5bf0-86eb-2e971061c2c1",
+      "preferred_label": "7th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:67a7cc87-c62c-5b07-ae83-da2f5ba1d882",
+      "preferred_label": "Seven Years’ War, 1756–1763"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6bf8dc35-dc65-52a9-9e6a-41d7feaaec64",
+      "preferred_label": "Social & Intellectual History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6d0f3ead-dd71-5356-a4cb-fb224fb058f3",
+      "preferred_label": "Rome–Berlin Axis"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6eb469ff-0e1b-5117-83e4-9a5bc932bc44",
+      "preferred_label": "Military History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6f65846d-c6af-5095-9515-ad2599859c08",
+      "preferred_label": "13th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:736c0121-c6e6-53d6-bd98-9f0ff76474c7",
+      "preferred_label": "Political & Diplomatic History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:73b60750-7d4f-50b0-abf6-bace6429a122",
+      "preferred_label": "Social Life & Customs"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:74f3b628-20e0-5216-b475-a5cbe3dbde8b",
+      "preferred_label": "19th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:7554487a-aedd-5046-956d-78063dc76e84",
+      "preferred_label": "Warsaw Pact"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:7bf1641b-fa42-5d2f-a475-9ac335715abf",
+      "preferred_label": "8th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:7f6d4848-d6cb-5ccb-98c4-9a6651a357c4",
+      "preferred_label": "11th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:83f4f8c7-5436-5ca4-8212-57d8294ccef6",
+      "preferred_label": "Conference of Berlin, 1878"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:8de4987b-d969-58b6-a7b2-8f17c7b72719",
+      "preferred_label": "Military History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:91caef23-9dfe-5ee2-90dd-4c8d76c95eec",
+      "preferred_label": "16th–17th Centuries"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:93baeef5-67d4-5e5f-9f6b-f19cddac9c00",
+      "preferred_label": "Eastern Question"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:9bd706c0-66de-529b-8ad2-69c00091270d",
+      "preferred_label": "Silesian Campaigns & International Relations"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:a2a73989-a698-563a-9f7e-d74c673d39ae",
+      "preferred_label": "Congress of Vienna and Aftermath, 1815–1830"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:a86d3dad-9572-55e3-a692-09be82627886",
+      "preferred_label": "Soviet Bloc"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:abdd064f-a2e9-51d5-84aa-67fa35e4b865",
+      "preferred_label": "1848–1859"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:adebc028-c4fd-5086-baea-0e7ef1323e14",
+      "preferred_label": "NATO"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b1a876f9-fc40-5012-aa50-9094dcc59e78",
+      "preferred_label": "Far Eastern Question"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b38b023d-79b3-503b-924d-97174efa6561",
+      "preferred_label": "Political & Diplomatic History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b4f65a42-712c-56f7-b83e-1ef15354e499",
+      "preferred_label": "19th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b80dad22-6cd2-5477-b5dd-b353c4dbaa1f",
+      "preferred_label": "Eastern Civilizations"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:cd7b8ad1-e666-56c2-89e3-9a8484489fb4",
+      "preferred_label": "12th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d1423d7b-6e8c-5ca0-933f-14d8ddab4702",
+      "preferred_label": "Origins to 1800"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d23e821e-c735-5506-b756-1d7e16ef5be2",
+      "preferred_label": "13th–14th Centuries"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d53d8b5d-01ef-568d-9a3b-26658b333f1c",
+      "preferred_label": "Rhine and Danube Campaigns, 1741–1744"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d8a6b6f2-3cb1-511b-945f-cf3e46c6e50c",
+      "preferred_label": "1971–Present"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dc79e966-fdc2-5dfe-841d-b3ac2f238050",
+      "preferred_label": "1401–1550"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dcc87a15-46f9-5b26-80ca-bb7a126d64be",
+      "preferred_label": "Race and Civilization in Historical Thought"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e31e9710-1862-5849-9759-5f470cb637a3",
+      "preferred_label": "Later 19th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e5a0c33d-3db0-54df-b014-367fdd95c743",
+      "preferred_label": "Naval History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e5cf944b-8060-5361-b47d-4544b7784900",
+      "preferred_label": "Panslavism"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e6275300-72ee-59b6-817b-0eb4dafbba4f",
+      "preferred_label": "1830–1848"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e6c9f89b-694a-5b0d-b87b-0601d18da39a",
+      "preferred_label": "Historiography"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:fafd0e9d-4eed-589a-9ce0-e32def7205ec",
+      "preferred_label": "Soviet Bloc"
+    }
+  ],
+  "edges": [
+    {
+      "child_id": "bokheim:lcc-curated:adebc028-c4fd-5086-baea-0e7ef1323e14",
+      "parent_id": "bokheim:lcc-curated:316d6b25-6776-580e-9132-47f8cbf0b8ea"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:9bd706c0-66de-529b-8ad2-69c00091270d",
+      "parent_id": "bokheim:lcc-curated:3d73f689-a77a-5b86-917b-9ff4d65a7c4e"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:d53d8b5d-01ef-568d-9a3b-26658b333f1c",
+      "parent_id": "bokheim:lcc-curated:3d73f689-a77a-5b86-917b-9ff4d65a7c4e"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:3a2ad6ad-00bd-5b48-b986-30c974823d53",
+      "parent_id": "bokheim:lcc-curated:3d73f689-a77a-5b86-917b-9ff4d65a7c4e"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:16c74563-89cc-5604-8382-616799a3aef8",
+      "parent_id": "bokheim:lcc-curated:3d73f689-a77a-5b86-917b-9ff4d65a7c4e"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:383008db-d8ae-5895-91ce-f7e0535d5b9a",
+      "parent_id": "bokheim:lcc-curated:3d73f689-a77a-5b86-917b-9ff4d65a7c4e"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:1fb88d5f-24bf-568b-bf5c-b9a02d73af31",
+      "parent_id": "bokheim:lcc-curated:3d73f689-a77a-5b86-917b-9ff4d65a7c4e"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:fafd0e9d-4eed-589a-9ce0-e32def7205ec",
+      "parent_id": "bokheim:lcc-curated:736c0121-c6e6-53d6-bd98-9f0ff76474c7"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:d1423d7b-6e8c-5ca0-933f-14d8ddab4702",
+      "parent_id": "bokheim:lcc-curated:93baeef5-67d4-5e5f-9f6b-f19cddac9c00"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:b4f65a42-712c-56f7-b83e-1ef15354e499",
+      "parent_id": "bokheim:lcc-curated:93baeef5-67d4-5e5f-9f6b-f19cddac9c00"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:e5cf944b-8060-5361-b47d-4544b7784900",
+      "parent_id": "bokheim:lcc-curated:93baeef5-67d4-5e5f-9f6b-f19cddac9c00"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:38e27107-53f0-5e75-bbef-c487e3d64d31",
+      "parent_id": "bokheim:lcc-curated:93baeef5-67d4-5e5f-9f6b-f19cddac9c00"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:b1a876f9-fc40-5012-aa50-9094dcc59e78",
+      "parent_id": "bokheim:lcc-curated:93baeef5-67d4-5e5f-9f6b-f19cddac9c00"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:7554487a-aedd-5046-956d-78063dc76e84",
+      "parent_id": "bokheim:lcc-curated:a86d3dad-9572-55e3-a692-09be82627886"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:316d6b25-6776-580e-9132-47f8cbf0b8ea",
+      "parent_id": "bokheim:lcc-curated:b38b023d-79b3-503b-924d-97174efa6561"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:a86d3dad-9572-55e3-a692-09be82627886",
+      "parent_id": "bokheim:lcc-curated:b38b023d-79b3-503b-924d-97174efa6561"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:83f4f8c7-5436-5ca4-8212-57d8294ccef6",
+      "parent_id": "bokheim:lcc-curated:b4f65a42-712c-56f7-b83e-1ef15354e499"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:1098b43f-2360-54b4-b3dd-f5f6c7ebc277",
+      "parent_id": "bokheim:lcc-curated:e31e9710-1862-5849-9759-5f470cb637a3"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:25d70a48-633c-5d7f-be8a-2c109d92e8b5",
+      "parent_id": "bokheim:lcc-curated:e31e9710-1862-5849-9759-5f470cb637a3"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:2676b6ae-73c6-5938-ae1e-c7abf2f8d627",
+      "parent_id": "bokheim:lcc-curated:e6275300-72ee-59b6-817b-0eb4dafbba4f"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:b38b023d-79b3-503b-924d-97174efa6561",
+      "parent_id": "bokheim:lcc-detail:620181de-e920-5461-8dec-9822a61824b4"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:2f7c0d65-e860-538a-bc61-aba89facdff1",
+      "parent_id": "bokheim:lcc-detail:83d1abbe-f7fe-5bc7-a3e3-480ea4d47b39"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:35198de0-5ad3-596d-b0ab-4a50778e7b8d",
+      "parent_id": "bokheim:lcc-detail:83d1abbe-f7fe-5bc7-a3e3-480ea4d47b39"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:b80dad22-6cd2-5477-b5dd-b353c4dbaa1f",
+      "parent_id": "bokheim:lcc-detail:83d1abbe-f7fe-5bc7-a3e3-480ea4d47b39"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:13f51d32-92b0-5b13-82b4-630c98aec517",
+      "parent_id": "bokheim:lcc-detail:83d1abbe-f7fe-5bc7-a3e3-480ea4d47b39"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:34a215de-9b2b-5420-ba26-fad8ab9921e7",
+      "parent_id": "bokheim:lcc-detail:83d1abbe-f7fe-5bc7-a3e3-480ea4d47b39"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:2f4a63e8-0a05-5704-b0a8-9049b1b02e5e",
+      "parent_id": "bokheim:lcc-detail:83d1abbe-f7fe-5bc7-a3e3-480ea4d47b39"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:0319a29c-5e7f-5b15-b7e3-e9e6113efa96",
+      "parent_id": "bokheim:lcc-detail:987dfd72-7a3f-5b56-8285-f9c107c495e0"
+    },
+    {
+      "child_id": "unified:1a62f114-665e-51e7-ab42-5140dd2672fc",
+      "parent_id": "bokheim:lcc-detail:987dfd72-7a3f-5b56-8285-f9c107c495e0"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:91caef23-9dfe-5ee2-90dd-4c8d76c95eec",
+      "parent_id": "bokheim:lcc-detail:987dfd72-7a3f-5b56-8285-f9c107c495e0"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:383cdd3d-03e8-54c1-8755-7ca09f92ff80",
+      "parent_id": "bokheim:lcc-detail:987dfd72-7a3f-5b56-8285-f9c107c495e0"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:74f3b628-20e0-5216-b475-a5cbe3dbde8b",
+      "parent_id": "bokheim:lcc-detail:987dfd72-7a3f-5b56-8285-f9c107c495e0"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:63181467-bd0d-5b0c-a29c-ddcc7f357250",
+      "parent_id": "bokheim:lcc-detail:987dfd72-7a3f-5b56-8285-f9c107c495e0"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:d8a6b6f2-3cb1-511b-945f-cf3e46c6e50c",
+      "parent_id": "bokheim:lcc-detail:987dfd72-7a3f-5b56-8285-f9c107c495e0"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:637114d5-f9ab-5bf0-86eb-2e971061c2c1",
+      "parent_id": "bokheim:lcc-detail:a410cc0b-a04b-5941-b8a7-91d6d83f2b06"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:7bf1641b-fa42-5d2f-a475-9ac335715abf",
+      "parent_id": "bokheim:lcc-detail:a410cc0b-a04b-5941-b8a7-91d6d83f2b06"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:1a00c0fb-f812-5c23-9ac8-3fe70e5ae1b2",
+      "parent_id": "bokheim:lcc-detail:a410cc0b-a04b-5941-b8a7-91d6d83f2b06"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:7f6d4848-d6cb-5ccb-98c4-9a6651a357c4",
+      "parent_id": "bokheim:lcc-detail:a410cc0b-a04b-5941-b8a7-91d6d83f2b06"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:cd7b8ad1-e666-56c2-89e3-9a8484489fb4",
+      "parent_id": "bokheim:lcc-detail:a410cc0b-a04b-5941-b8a7-91d6d83f2b06"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:6f65846d-c6af-5095-9515-ad2599859c08",
+      "parent_id": "bokheim:lcc-detail:a410cc0b-a04b-5941-b8a7-91d6d83f2b06"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:736c0121-c6e6-53d6-bd98-9f0ff76474c7",
+      "parent_id": "bokheim:lcc-detail:baa859f3-fb35-5355-a3de-b630411836c7"
+    },
+    {
+      "child_id": "bokheim:lcc-detail:637e5d44-3139-55c8-92fc-1bada6869c42",
+      "parent_id": "bokheim:lcc-detail:bde19a4d-40c4-5b6e-9003-a30f6916b2af"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:6bf8dc35-dc65-52a9-9e6a-41d7feaaec64",
+      "parent_id": "bokheim:lcc-detail:f0d8ac63-12d8-5b2f-bed6-8644c8aa15f2"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:8de4987b-d969-58b6-a7b2-8f17c7b72719",
+      "parent_id": "bokheim:lcc-detail:f0d8ac63-12d8-5b2f-bed6-8644c8aa15f2"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:59657820-7b9c-562d-ab51-d77a17a484ac",
+      "parent_id": "bokheim:lcc-detail:f0d8ac63-12d8-5b2f-bed6-8644c8aa15f2"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:3d73f689-a77a-5b86-917b-9ff4d65a7c4e",
+      "parent_id": "unified:15f9e11b-46f6-5b73-ad4c-937b428b8e48"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:67a7cc87-c62c-5b07-ae83-da2f5ba1d882",
+      "parent_id": "unified:15f9e11b-46f6-5b73-ad4c-937b428b8e48"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:d23e821e-c735-5506-b756-1d7e16ef5be2",
+      "parent_id": "unified:1a62f114-665e-51e7-ab42-5140dd2672fc"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:dc79e966-fdc2-5dfe-841d-b3ac2f238050",
+      "parent_id": "unified:1a62f114-665e-51e7-ab42-5140dd2672fc"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:24046f4b-f1aa-5196-b6d0-532fd2ccb955",
+      "parent_id": "unified:1a62f114-665e-51e7-ab42-5140dd2672fc"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:e6c9f89b-694a-5b0d-b87b-0601d18da39a",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:562555d2-a633-5528-94a4-816108d1506a",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:73b60750-7d4f-50b0-abf6-bace6429a122",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:6eb469ff-0e1b-5117-83e4-9a5bc932bc44",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:e5a0c33d-3db0-54df-b014-367fdd95c743",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:0fd39bdb-5586-5876-bd50-cbd52742dc28",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:93baeef5-67d4-5e5f-9f6b-f19cddac9c00",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:a2a73989-a698-563a-9f7e-d74c673d39ae",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:e6275300-72ee-59b6-817b-0eb4dafbba4f",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:abdd064f-a2e9-51d5-84aa-67fa35e4b865",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:5d03aecd-4e9b-5f1e-b87c-6aa4078bcb9f",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:e31e9710-1862-5849-9759-5f470cb637a3",
+      "parent_id": "unified:89429483-701a-58e4-be01-ddf01d05172a"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:6d0f3ead-dd71-5356-a4cb-fb224fb058f3",
+      "parent_id": "unified:9f7da15c-2250-59f8-9ea9-8e174130ce0b"
+    },
+    {
+      "child_id": "bokheim:lcc-curated:dcc87a15-46f9-5b26-80ca-bb7a126d64be",
+      "parent_id": "unified:d09ebc56-2e38-52e2-87a2-354274c8bae9"
+    }
+  ],
+  "selectors": [
+    {
+      "concept_id": "bokheim:lcc-curated:0319a29c-5e7f-5b15-b7e3-e9e6113efa96",
+      "selector": "CB359..CB359@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:0fd39bdb-5586-5876-bd50-cbd52742dc28",
+      "selector": "D363..D363@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:1098b43f-2360-54b4-b3dd-f5f6c7ebc277",
+      "selector": "D396..D396@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:13f51d32-92b0-5b13-82b4-630c98aec517",
+      "selector": "CB255..CB255@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:16c74563-89cc-5604-8382-616799a3aef8",
+      "selector": "D293.6..D293.7@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:1a00c0fb-f812-5c23-9ac8-3fe70e5ae1b2",
+      "selector": "CB354..CB354@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:1fb88d5f-24bf-568b-bf5c-b9a02d73af31",
+      "selector": "D294..D294@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:24046f4b-f1aa-5196-b6d0-532fd2ccb955",
+      "selector": "CB369..CB369@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:25d70a48-633c-5d7f-be8a-2c109d92e8b5",
+      "selector": "D397..D397@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:2676b6ae-73c6-5938-ae1e-c7abf2f8d627",
+      "selector": "D387..D387@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:2f4a63e8-0a05-5704-b0a8-9049b1b02e5e",
+      "selector": "CB271..CB271@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:2f7c0d65-e860-538a-bc61-aba89facdff1",
+      "selector": "CB245..CB245@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:316d6b25-6776-580e-9132-47f8cbf0b8ea",
+      "selector": "D845..D845@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:34a215de-9b2b-5420-ba26-fad8ab9921e7",
+      "selector": "CB256..CB256@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:35198de0-5ad3-596d-b0ab-4a50778e7b8d",
+      "selector": "CB251..CB251@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:383008db-d8ae-5895-91ce-f7e0535d5b9a",
+      "selector": "D293.8..D293.9@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:383cdd3d-03e8-54c1-8755-7ca09f92ff80",
+      "selector": "CB411..CB411@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:38e27107-53f0-5e75-bbef-c487e3d64d31",
+      "selector": "D378..D378.5@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:3a2ad6ad-00bd-5b48-b986-30c974823d53",
+      "selector": "D293.4..D293.55@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:3d73f689-a77a-5b86-917b-9ff4d65a7c4e",
+      "selector": "D291..D294@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:562555d2-a633-5528-94a4-816108d1506a",
+      "selector": "D359..D359@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:59657820-7b9c-562d-ab51-d77a17a484ac",
+      "selector": "D860..D860@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:5d03aecd-4e9b-5f1e-b87c-6aa4078bcb9f",
+      "selector": "D391..D392@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:63181467-bd0d-5b0c-a29c-ddcc7f357250",
+      "selector": "CB425..CB425@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:637114d5-f9ab-5bf0-86eb-2e971061c2c1",
+      "selector": "CB353.7..CB353.7@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:67a7cc87-c62c-5b07-ae83-da2f5ba1d882",
+      "selector": "D297..D297@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6bf8dc35-dc65-52a9-9e6a-41d7feaaec64",
+      "selector": "D857..D857@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6d0f3ead-dd71-5356-a4cb-fb224fb058f3",
+      "selector": "D728..D728@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6eb469ff-0e1b-5117-83e4-9a5bc932bc44",
+      "selector": "D361..D361@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6f65846d-c6af-5095-9515-ad2599859c08",
+      "selector": "CB355..CB355@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:736c0121-c6e6-53d6-bd98-9f0ff76474c7",
+      "selector": "D849..D850@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:73b60750-7d4f-50b0-abf6-bace6429a122",
+      "selector": "D360..D360@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:74f3b628-20e0-5216-b475-a5cbe3dbde8b",
+      "selector": "CB415..CB415@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:7554487a-aedd-5046-956d-78063dc76e84",
+      "selector": "D847.2..D847.2@7"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:7bf1641b-fa42-5d2f-a475-9ac335715abf",
+      "selector": "CB353.8..CB353.8@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:7f6d4848-d6cb-5ccb-98c4-9a6651a357c4",
+      "selector": "CB354.3..CB354.3@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:83f4f8c7-5436-5ca4-8212-57d8294ccef6",
+      "selector": "D375.3..D375.3@7"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:8de4987b-d969-58b6-a7b2-8f17c7b72719",
+      "selector": "D858..D858@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:91caef23-9dfe-5ee2-90dd-4c8d76c95eec",
+      "selector": "CB401..CB401@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:93baeef5-67d4-5e5f-9f6b-f19cddac9c00",
+      "selector": "D371..D379@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:9bd706c0-66de-529b-8ad2-69c00091270d",
+      "selector": "D293..D293@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:a2a73989-a698-563a-9f7e-d74c673d39ae",
+      "selector": "D383..D383@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:a86d3dad-9572-55e3-a692-09be82627886",
+      "selector": "D847..D847.2@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:abdd064f-a2e9-51d5-84aa-67fa35e4b865",
+      "selector": "D388..D389@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:adebc028-c4fd-5086-baea-0e7ef1323e14",
+      "selector": "D845.2..D845.2@7"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b1a876f9-fc40-5012-aa50-9094dcc59e78",
+      "selector": "D379..D379@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b38b023d-79b3-503b-924d-97174efa6561",
+      "selector": "D843..D847.2@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b4f65a42-712c-56f7-b83e-1ef15354e499",
+      "selector": "D374..D375.3@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b80dad22-6cd2-5477-b5dd-b353c4dbaa1f",
+      "selector": "CB253..CB256@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:cd7b8ad1-e666-56c2-89e3-9a8484489fb4",
+      "selector": "CB354.6..CB354.6@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d1423d7b-6e8c-5ca0-933f-14d8ddab4702",
+      "selector": "D373..D373@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d23e821e-c735-5506-b756-1d7e16ef5be2",
+      "selector": "CB365..CB365@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d53d8b5d-01ef-568d-9a3b-26658b333f1c",
+      "selector": "D293.2..D293.3@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d8a6b6f2-3cb1-511b-945f-cf3e46c6e50c",
+      "selector": "CB428..CB428@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dc79e966-fdc2-5dfe-841d-b3ac2f238050",
+      "selector": "CB367..CB367@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dcc87a15-46f9-5b26-80ca-bb7a126d64be",
+      "selector": "CB201..CB241.21@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e31e9710-1862-5849-9759-5f470cb637a3",
+      "selector": "D394..D400@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e5a0c33d-3db0-54df-b014-367fdd95c743",
+      "selector": "D362..D362@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e5cf944b-8060-5361-b47d-4544b7784900",
+      "selector": "D377.3..D377.5@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e6275300-72ee-59b6-817b-0eb4dafbba4f",
+      "selector": "D385..D387@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e6c9f89b-694a-5b0d-b87b-0601d18da39a",
+      "selector": "D352.9..D352.9@5"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:fafd0e9d-4eed-589a-9ce0-e32def7205ec",
+      "selector": "D850..D850@6"
+    },
+    {
+      "concept_id": "bokheim:lcc-detail:637e5d44-3139-55c8-92fc-1bada6869c42",
+      "selector": "D726.5..D726.5@5"
+    },
+    {
+      "concept_id": "unified:1a62f114-665e-51e7-ab42-5140dd2672fc",
+      "selector": "CB361..CB361@5"
+    }
+  ],
+  "labels": [
+    {
+      "concept_id": "bokheim:lcc-curated:0319a29c-5e7f-5b15-b7e3-e9e6113efa96",
+      "label": "Renaissance and Reformation"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:0fd39bdb-5586-5876-bd50-cbd52742dc28",
+      "label": "Political & Diplomatic History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:1098b43f-2360-54b4-b3dd-f5f6c7ebc277",
+      "label": "Military History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:13f51d32-92b0-5b13-82b4-630c98aec517",
+      "label": "Buddhist"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:16c74563-89cc-5604-8382-616799a3aef8",
+      "label": "Netherlands, 1743-1748"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:1a00c0fb-f812-5c23-9ac8-3fe70e5ae1b2",
+      "label": "10th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:1fb88d5f-24bf-568b-bf5c-b9a02d73af31",
+      "label": "Peace of Aix-la-Chapelle, 1748"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:24046f4b-f1aa-5196-b6d0-532fd2ccb955",
+      "label": "1551-1600"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:25d70a48-633c-5d7f-be8a-2c109d92e8b5",
+      "label": "Political & Diplomatic History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:2676b6ae-73c6-5938-ae1e-c7abf2f8d627",
+      "label": "1848"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:2f4a63e8-0a05-5704-b0a8-9049b1b02e5e",
+      "label": "Developing countries. Third world"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:2f7c0d65-e860-538a-bc61-aba89facdff1",
+      "label": "Occidental. Western"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:316d6b25-6776-580e-9132-47f8cbf0b8ea",
+      "label": "North Atlantic Treaty"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:34a215de-9b2b-5420-ba26-fad8ab9921e7",
+      "label": "Confucian"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:35198de0-5ad3-596d-b0ab-4a50778e7b8d",
+      "label": "Eastern and Western"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:383008db-d8ae-5895-91ce-f7e0535d5b9a",
+      "label": "Colonial, 1739-1748. Naval operations"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:383cdd3d-03e8-54c1-8755-7ca09f92ff80",
+      "label": "18th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:38e27107-53f0-5e75-bbef-c487e3d64d31",
+      "label": "Central Asian Question"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:3a2ad6ad-00bd-5b48-b986-30c974823d53",
+      "label": "Italy, 1741-1748"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:3d73f689-a77a-5b86-917b-9ff4d65a7c4e",
+      "label": "War of Austrian Succession, 1740-1748"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:562555d2-a633-5528-94a4-816108d1506a",
+      "label": "Europe in the 19th century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:59657820-7b9c-562d-ab51-d77a17a484ac",
+      "label": "Political & Diplomatic History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:5d03aecd-4e9b-5f1e-b87c-6aa4078bcb9f",
+      "label": "1860-1870"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:63181467-bd0d-5b0c-a29c-ddcc7f357250",
+      "label": "1900-1970"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:637114d5-f9ab-5bf0-86eb-2e971061c2c1",
+      "label": "7th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:67a7cc87-c62c-5b07-ae83-da2f5ba1d882",
+      "label": "General international aspects, results, etc. Peace of Paris, 1763"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:67a7cc87-c62c-5b07-ae83-da2f5ba1d882",
+      "label": "Seven Years' War, 1756-1763"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6bf8dc35-dc65-52a9-9e6a-41d7feaaec64",
+      "label": "Social & Intellectual History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6d0f3ead-dd71-5356-a4cb-fb224fb058f3",
+      "label": "Rome-Berlin axis"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6eb469ff-0e1b-5117-83e4-9a5bc932bc44",
+      "label": "Military History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:6f65846d-c6af-5095-9515-ad2599859c08",
+      "label": "13th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:736c0121-c6e6-53d6-bd98-9f0ff76474c7",
+      "label": "Political & Diplomatic History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:73b60750-7d4f-50b0-abf6-bace6429a122",
+      "label": "Social Life & Customs"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:74f3b628-20e0-5216-b475-a5cbe3dbde8b",
+      "label": "19th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:7554487a-aedd-5046-956d-78063dc76e84",
+      "label": "Warsaw Pact"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:7bf1641b-fa42-5d2f-a475-9ac335715abf",
+      "label": "8th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:7f6d4848-d6cb-5ccb-98c4-9a6651a357c4",
+      "label": "11th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:83f4f8c7-5436-5ca4-8212-57d8294ccef6",
+      "label": "Conference of Berlin, 1878"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:8de4987b-d969-58b6-a7b2-8f17c7b72719",
+      "label": "Military History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:91caef23-9dfe-5ee2-90dd-4c8d76c95eec",
+      "label": "16th-17th centuries"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:93baeef5-67d4-5e5f-9f6b-f19cddac9c00",
+      "label": "Eastern Question"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:9bd706c0-66de-529b-8ad2-69c00091270d",
+      "label": "Silesian campaigns. International relations"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:a2a73989-a698-563a-9f7e-d74c673d39ae",
+      "label": "Congress of Vienna. 1815-1830"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:a86d3dad-9572-55e3-a692-09be82627886",
+      "label": "Soviet Bloc"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:abdd064f-a2e9-51d5-84aa-67fa35e4b865",
+      "label": "1848-1859"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:adebc028-c4fd-5086-baea-0e7ef1323e14",
+      "label": "NATO"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b1a876f9-fc40-5012-aa50-9094dcc59e78",
+      "label": "Far East"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b38b023d-79b3-503b-924d-97174efa6561",
+      "label": "Political & Diplomatic History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b4f65a42-712c-56f7-b83e-1ef15354e499",
+      "label": "19th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:b80dad22-6cd2-5477-b5dd-b353c4dbaa1f",
+      "label": "Oriental. Eastern"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:cd7b8ad1-e666-56c2-89e3-9a8484489fb4",
+      "label": "12th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d1423d7b-6e8c-5ca0-933f-14d8ddab4702",
+      "label": "Early to 1800"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d23e821e-c735-5506-b756-1d7e16ef5be2",
+      "label": "13th-14th centuries"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d53d8b5d-01ef-568d-9a3b-26658b333f1c",
+      "label": "Rhine and Danube, 1741-1744"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:d8a6b6f2-3cb1-511b-945f-cf3e46c6e50c",
+      "label": "1971-"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dc79e966-fdc2-5dfe-841d-b3ac2f238050",
+      "label": "1401-1550"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dcc87a15-46f9-5b26-80ca-bb7a126d64be",
+      "label": "Alpine. Celtic"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dcc87a15-46f9-5b26-80ca-bb7a126d64be",
+      "label": "Black"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dcc87a15-46f9-5b26-80ca-bb7a126d64be",
+      "label": "Caucasian. Aryan"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dcc87a15-46f9-5b26-80ca-bb7a126d64be",
+      "label": "Mediterranean. Latin"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dcc87a15-46f9-5b26-80ca-bb7a126d64be",
+      "label": "Nordic"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dcc87a15-46f9-5b26-80ca-bb7a126d64be",
+      "label": "Northern and Southern"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:dcc87a15-46f9-5b26-80ca-bb7a126d64be",
+      "label": "Semitic"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e31e9710-1862-5849-9759-5f470cb637a3",
+      "label": "Later 19th Century"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e5a0c33d-3db0-54df-b014-367fdd95c743",
+      "label": "Naval History"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e5cf944b-8060-5361-b47d-4544b7784900",
+      "label": "Panslavism"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e6275300-72ee-59b6-817b-0eb4dafbba4f",
+      "label": "1830-1848"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:e6c9f89b-694a-5b0d-b87b-0601d18da39a",
+      "label": "Historiography"
+    },
+    {
+      "concept_id": "bokheim:lcc-curated:fafd0e9d-4eed-589a-9ce0-e32def7205ec",
+      "label": "Soviet Bloc"
+    },
+    {
+      "concept_id": "bokheim:lcc-detail:637e5d44-3139-55c8-92fc-1bada6869c42",
+      "label": "Fascism"
+    },
+    {
+      "concept_id": "unified:1a62f114-665e-51e7-ab42-5140dd2672fc",
+      "label": "Renaissance"
+    }
+  ],
+  "excluded": [
+    "bibliographic and form subdivisions",
+    "alphabetic filing records",
+    "named-person and named-work records",
+    "generic Comprehensive works and Other records",
+    "military unit and formation schedules"
+  ]
+}

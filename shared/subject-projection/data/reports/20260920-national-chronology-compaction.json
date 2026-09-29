@@ -1,0 +1,158 @@
+{
+  "merges": {
+    "51530": {
+      "into": 11465,
+      "old_label": "Charles de Gaulle, 1958–1969",
+      "surviving_label": "Fifth Republic, 1958–Present"
+    },
+    "51531": {
+      "into": 11465,
+      "old_label": "Georges Pompidou, 1969–1974",
+      "surviving_label": "Fifth Republic, 1958–Present"
+    },
+    "51532": {
+      "into": 11465,
+      "old_label": "Valéry Giscard d’Estaing, 1974–1981",
+      "surviving_label": "Fifth Republic, 1958–Present"
+    },
+    "51533": {
+      "into": 11465,
+      "old_label": "François Mitterrand, 1981–1995",
+      "surviving_label": "Fifth Republic, 1958–Present"
+    },
+    "51534": {
+      "into": 11465,
+      "old_label": "Jacques Chirac, 1995–2007",
+      "surviving_label": "Fifth Republic, 1958–Present"
+    },
+    "10116": {
+      "into": 3557,
+      "old_label": "Hohenstaufen period, 1125-1273",
+      "surviving_label": "Early & Medieval, 481–1519"
+    },
+    "10133": {
+      "into": 3557,
+      "old_label": "Habsburg & Luxemburg, 1273–1519",
+      "surviving_label": "Early & Medieval, 481–1519"
+    },
+    "10211": {
+      "into": 3557,
+      "old_label": "House of Saxony, 919-1024",
+      "surviving_label": "Early & Medieval, 481–1519"
+    },
+    "10215": {
+      "into": 3557,
+      "old_label": "House of Franconia, 1024-1125",
+      "surviving_label": "Early & Medieval, 481–1519"
+    },
+    "11560": {
+      "into": 3558,
+      "old_label": "Late DDR, 1971–1990",
+      "surviving_label": "Democratic Republic, 1949–1990"
+    },
+    "11566": {
+      "into": 3558,
+      "old_label": "Early DDR, 1949–1961",
+      "surviving_label": "Democratic Republic, 1949–1990"
+    },
+    "51455": {
+      "into": 12631,
+      "old_label": "Russia in the 19th Century",
+      "surviving_label": "Romanov Era, 1613–1917"
+    },
+    "51456": {
+      "into": 12631,
+      "old_label": "Nicholas II, 1894–1917",
+      "surviving_label": "Romanov Era, 1613–1917"
+    },
+    "51457": {
+      "into": 12633,
+      "old_label": "Early Soviet Period, 1918–1924",
+      "surviving_label": "Soviet Era, 1918–1991"
+    },
+    "51458": {
+      "into": 12633,
+      "old_label": "Stalin Period, 1925–1953",
+      "surviving_label": "Soviet Era, 1918–1991"
+    },
+    "51459": {
+      "into": 12633,
+      "old_label": "Soviet Union, 1953–1985",
+      "surviving_label": "Soviet Era, 1918–1991"
+    },
+    "52161": {
+      "into": 10425,
+      "old_label": "China, 1912–1928",
+      "surviving_label": "Republican China, 1912–1949"
+    },
+    "52162": {
+      "into": 10425,
+      "old_label": "China, 1928–1937",
+      "surviving_label": "Republican China, 1912–1949"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "preserved": {
+    "France": [
+      11457,
+      10409,
+      11458,
+      11459,
+      11460,
+      11461,
+      11462,
+      11463,
+      11464,
+      11465
+    ],
+    "Germany": [
+      11453,
+      3558,
+      3559,
+      3556,
+      10141,
+      10152,
+      10181,
+      10218,
+      3561,
+      3563,
+      3564,
+      13706,
+      13901
+    ],
+    "Russia": [
+      12630,
+      12631,
+      12632,
+      12633,
+      51460,
+      11342,
+      11366,
+      11385
+    ],
+    "China": [
+      10446,
+      10702,
+      10713,
+      10544,
+      10425,
+      52163,
+      52164,
+      10421,
+      52103,
+      52098,
+      10587
+    ]
+  },
+  "decisions": {
+    "biographies": "Merge dated French presidency subjects (their LCC ranges cover life and administration); keep standalone biography topics such as Hitler, Stalin, Trotsky, Putin, Mao, Deng and Zhou. Stalin moves to the surviving Soviet parent when its narrower period is merged.",
+    "China": "No individual-emperor subdivisions exist in the inspected chronology. Retain existing broad dynasty/era groups. DS777.53 covers Sino-Japanese War and DS777.54 covers Civil War; retain their enclosing 1937–1945 and 1945–1949 phases.",
+    "date_policy": "Approximate era boundaries accepted by user; original code intervals retained."
+  },
+  "validation": "Deferred until user declares chronological batch finished.",
+  "usage_refresh": "Deferred with validation; viewer structure only is regenerated."
+}

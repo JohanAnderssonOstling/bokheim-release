@@ -1,0 +1,80 @@
+{
+  "merges": {
+    "275": {
+      "into": 5475,
+      "old_label": "Emergency Management",
+      "surviving_label": "Emergency management"
+    },
+    "51343": {
+      "into": 13275,
+      "old_label": "Child Abuse",
+      "surviving_label": "Child Abuse"
+    },
+    "5201": {
+      "into": 411,
+      "old_label": "Operations Research",
+      "surviving_label": "Operations Research"
+    },
+    "5471": {
+      "into": 12795,
+      "old_label": "Children",
+      "surviving_label": "Children"
+    }
+  },
+  "renamed": {
+    "5475": {
+      "before": "Emergency management",
+      "after": "Emergency Management"
+    },
+    "12795": {
+      "before": "Children",
+      "after": "Child Welfare"
+    }
+  },
+  "moved": [
+    {
+      "id": 5475,
+      "before": [
+        5464
+      ],
+      "after": [
+        5464,
+        5568
+      ]
+    },
+    {
+      "id": 13275,
+      "before": [
+        5463
+      ],
+      "after": [
+        5463,
+        5806
+      ]
+    },
+    {
+      "id": 411,
+      "before": [
+        5565
+      ],
+      "after": [
+        5565,
+        5599
+      ]
+    },
+    {
+      "id": 12795,
+      "before": [
+        5484
+      ],
+      "after": [
+        5484
+      ]
+    }
+  ],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Four recommended duplicate groups. Operations Research 13516 with Q500–Q510 remains pending source review. Child Welfare uses the existing population grouping rather than redundant direct welfare access.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

@@ -1,0 +1,251 @@
+{
+  "source": "/home/johan/data/openlibrary/metadata-openlibrary-core-2026-07-31-isbn-reverse.sqlite",
+  "source_bytes": 19334115328,
+  "snapshot": {
+    "singleton": 1,
+    "schema_version": 7,
+    "dump_date": "2026-07-31",
+    "imported_at_ms": 1786905652000,
+    "edition_records": 56615822,
+    "work_records": 41504065,
+    "author_records": 15380614
+  },
+  "counts": [
+    {
+      "status": "ddc_only",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 1,
+      "editions": 791476
+    },
+    {
+      "status": "ddc_only",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 1,
+      "editions": 96157
+    },
+    {
+      "status": "ddc_only",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 1,
+      "editions": 19
+    },
+    {
+      "status": "ddc_only",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 1,
+      "editions": 36639
+    },
+    {
+      "status": "lcc_all_unusable",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 0,
+      "editions": 144556
+    },
+    {
+      "status": "lcc_all_unusable",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 1,
+      "editions": 16787
+    },
+    {
+      "status": "lcc_all_unusable",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 0,
+      "editions": 12712
+    },
+    {
+      "status": "lcc_all_unusable",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 1,
+      "editions": 1944
+    },
+    {
+      "status": "lcc_all_unusable",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 0,
+      "editions": 3
+    },
+    {
+      "status": "lcc_all_unusable",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 0,
+      "editions": 1972
+    },
+    {
+      "status": "lcc_all_unusable",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 1,
+      "editions": 274
+    },
+    {
+      "status": "lcc_all_usable",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 0,
+      "editions": 6323902
+    },
+    {
+      "status": "lcc_all_usable",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 1,
+      "editions": 2860255
+    },
+    {
+      "status": "lcc_all_usable",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 0,
+      "editions": 45970
+    },
+    {
+      "status": "lcc_all_usable",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 1,
+      "editions": 154429
+    },
+    {
+      "status": "lcc_all_usable",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 0,
+      "editions": 60
+    },
+    {
+      "status": "lcc_all_usable",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 1,
+      "editions": 100
+    },
+    {
+      "status": "lcc_all_usable",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 0,
+      "editions": 656975
+    },
+    {
+      "status": "lcc_all_usable",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 1,
+      "editions": 680005
+    },
+    {
+      "status": "lcc_mixed",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 0,
+      "editions": 64492
+    },
+    {
+      "status": "lcc_mixed",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 1,
+      "editions": 38678
+    },
+    {
+      "status": "lcc_mixed",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 0,
+      "editions": 5663
+    },
+    {
+      "status": "lcc_mixed",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 1,
+      "editions": 2758
+    },
+    {
+      "status": "lcc_mixed",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 0,
+      "editions": 4566
+    },
+    {
+      "status": "lcc_mixed",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 1,
+      "editions": 4971
+    },
+    {
+      "status": "no_direct_classification",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 0,
+      "editions": 23563022
+    },
+    {
+      "status": "no_direct_classification",
+      "work_has_matching_lcc": 0,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 0,
+      "editions": 164777
+    },
+    {
+      "status": "no_direct_classification",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 0,
+      "direct_ddc_present": 0,
+      "editions": 461
+    },
+    {
+      "status": "no_direct_classification",
+      "work_has_matching_lcc": 1,
+      "work_within_import_threshold": 1,
+      "direct_ddc_present": 0,
+      "editions": 440061
+    }
+  ],
+  "limitations": [
+    "Editions retained by this imported snapshot, not all records read from the dump.",
+    "LCC usability means at least one subject from the audited taxonomy matcher.",
+    "DDC presence is reported, not treated as a verified subject match.",
+    "Work matching is a recovery signal, not an edition-specific assignment; sibling consensus and classification-outlier filtering are outside this direct-record audit."
+  ],
+  "edition_rows": 36113684,
+  "source_host": "192.168.1.68",
+  "category_totals": {
+    "ddc_only": 924291,
+    "lcc_all_unusable": 178248,
+    "lcc_all_usable": 10721696,
+    "lcc_mixed": 121128,
+    "no_direct_classification": 24168321
+  },
+  "all_unusable_with_work_lcc_alternative": 2249,
+  "all_unusable_with_direct_ddc": 19005,
+  "priority_without_direct_ddc_or_work_lcc_match": 157268,
+  "matcher": {
+    "src/lcc.rs": "b4f409f89965c0337eb5d8aacadb30eb4a59ba7a5d5e0d155f6375e20e6c6eeb",
+    "src/runtime.rs": "0744e67b7432c43a9579422f47af1c0fefdd76adb6934e2a921dc8a8208e5a27",
+    "src/lib.rs": "f1971e7914ad349aedf8c2efcd3069a7e15eb9011df78cacdf5b13b70958f7ec",
+    "data/lcc-2024-outline.csv": "5dc5e59d982bb17fd127fbfc09b855c1f74c89b749dbeeb05ab72982a317f50f",
+    "taxonomy_sha256": "fa4d7bc0445ae06fe0d4e66dc863c9f6ca0316f1d1cca3711e3f65751d04fc7c",
+    "taxonomy_meta": {
+      "format_version": "8",
+      "taxonomy_name": "Bokheim Unified Subjects",
+      "release_id": "18"
+    },
+    "matcher_summary": "matched\t11122234\t15327589\nparser_rejected\t189139\t339126\nunmatched\t5257\t9450\n"
+  },
+  "candidate_csv": "/home/johan/.cache/bokheim/edition-lcc-audit-20260907/unusable-lcc-editions.csv",
+  "remote_audit_database": "192.168.1.68:/tmp/bokheim-edition-lcc-audit-20260907/edition-audit.sqlite3"
+}

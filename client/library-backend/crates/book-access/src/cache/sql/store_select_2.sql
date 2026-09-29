@@ -1,0 +1,1 @@
+SELECT COALESCE(SUM(length(bytes)),0) FROM block

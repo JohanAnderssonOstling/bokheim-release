@@ -1,0 +1,611 @@
+# Intentionally unsupported CSS2 GPUI reftest failures
+#
+# Audit companion to supported-css2-known-gpui-reftest-failures.txt.
+# Format: TEST | REASON
+# Includes both intentionally unsupported renderer features and behavior owned
+# by a parser/layout dependency for which the project has no parallel implementation.
+
+css/CSS2/abspos/abspos-containing-block-initial-009a.xht | Reference requires position:fixed (unsupported)
+css/CSS2/abspos/abspos-containing-block-initial-009b.xht | Reference requires position:fixed (unsupported)
+css/CSS2/abspos/abspos-containing-block-initial-009e.xht | Reference requires position:fixed (unsupported)
+css/CSS2/abspos/abspos-containing-block-initial-009f.xht | Reference requires position:fixed (unsupported)
+
+css/CSS2/css1/c412-blockw-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c44-ln-box-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c44-ln-box-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c44-ln-box-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c44-ln-box-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c533-bgimage-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c534-bgre-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c534-bgreps-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c534-bgreps-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c534-bgreps-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c534-bgreps-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c534-bgreps-005.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c544-valgn-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c545-txttrans-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c548-ln-ht-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c548-ln-ht-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c548-ln-ht-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c548-ln-ht-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5502-imrgn-r-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5502-imrgn-r-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5502-imrgn-r-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5504-imrgn-l-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5504-imrgn-l-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5504-imrgn-l-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5507-ipadn-r-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5507-ipadn-r-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5509-ipadn-l-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5509-ipadn-l-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5511-brdr-tw-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5513-brdr-bw-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5515-brdr-w-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5525-fltblck-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5525-fltinln-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5525-fltmrgn-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5525-fltwidth-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c5526-fltclr-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c562-white-sp-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c62-percent-000.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/css1/c64-uri-000.xht | Requires CSS background-image painting (unsupported)
+
+css/CSS2/normal-flow/block-in-inline-empty-002.xht | Requires RTL/bidi inline layout (unsupported)
+css/CSS2/normal-flow/block-in-inline-empty-004.xht | Requires RTL/bidi inline layout (unsupported)
+css/CSS2/generated-content/bidi-generated-content-001.xht | Requires RTL/bidi generated-content layout (unsupported)
+css/CSS2/generated-content/bidi-generated-content-002.xht | Requires RTL/bidi generated-content layout (unsupported)
+css/CSS2/backgrounds/background-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-006.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-010.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-026.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-029.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-038.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-041.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-043.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-048.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-050.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-053.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-055.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-060.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-078.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-081.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-087.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-090.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-093.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-096.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-104.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-106.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-111.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-114.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-117.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-120.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-128.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-130.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-135.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-138.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-141.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-144.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-152.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-154.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-182.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-184.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-188.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-190.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-194.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-196.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-327.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-328.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-329.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-005.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-006.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-007.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-009.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-012.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-013.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-014.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-attachment-applies-to-015.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-bg-pos-204.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-bg-pos-206.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-bg-pos-208.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-005.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-006.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-007.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-009.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-012.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-013.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-014.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-applies-to-015.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-cover-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-cover-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-image-cover-attachment-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-intrinsic-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-intrinsic-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-intrinsic-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-intrinsic-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-intrinsic-005.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-intrinsic-006.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-intrinsic-007.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-intrinsic-008.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-intrinsic-009.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-intrinsic-010.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-005.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-006.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-007.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-008.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-016.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-017.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-018.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-028.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-029.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-030.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-040.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-041.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-042.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-052.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-053.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-054.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-064.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-065.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-066.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-076.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-077.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-078.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-088.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-089.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-090.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-100.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-101.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-102.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-109.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-110.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-111.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-112.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-113.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-114.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-115.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-116.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-117.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-118.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-119.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-120.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-121.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-122.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-123.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-124.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-125.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-126.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-127.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-128.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-129.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-130.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-131.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-132.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-133.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-134.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-135.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-136.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-137.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-138.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-139.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-140.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-141.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-142.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-143.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-144.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-145.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-146.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-147.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-148.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-149.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-150.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-151.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-001a.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-001b.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-001c.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-001d.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-001e.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-002a.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-002b.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-002c.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-002d.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-002e.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-003b.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-003c.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-003d.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-003e.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-005.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-005a.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-005b.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-005c.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-005d.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-005e.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-006.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-006a.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-006b.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-006c.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-006d.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-006e.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-007.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-009.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-012.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-013.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-013d.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-013e.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-014.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-position-applies-to-015.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-005.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-005.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-006.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-007.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-009.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-012.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-013.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-014.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-repeat-applies-to-015.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-root-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-root-012a.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-root-012b.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/backgrounds/background-root-023.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/borders/border-applies-to-006.xht | Requires table-layout: fixed, which Lightning CSS does not expose (dependency-owned)
+css/CSS2/borders/border-bottom-color-129.xht | Requires CSS background-image painting in the visual oracle (unsupported)
+css/CSS2/borders/border-color-applies-to-006.xht | Requires table-layout: fixed, which Lightning CSS does not expose (dependency-owned)
+css/CSS2/borders/border-left-color-129.xht | Requires CSS background-image painting in the visual oracle (unsupported)
+css/CSS2/borders/border-right-color-129.xht | Requires CSS background-image painting in the visual oracle (unsupported)
+css/CSS2/borders/border-top-color-129.xht | Requires CSS background-image painting in the visual oracle (unsupported)
+css/CSS2/abspos/abspos-containing-block-initial-004b.xht | fixed positioning excluded
+css/CSS2/abspos/abspos-containing-block-initial-004d.xht | fixed positioning excluded
+css/CSS2/abspos/abspos-containing-block-initial-004f.xht | fixed positioning excluded
+css/CSS2/abspos/static-fixed-inside-abspos.html | fixed positioning excluded
+css/CSS2/bidi-005.xht | bidi/RTL deferred
+css/CSS2/bidi-006.xht | bidi/RTL deferred
+css/CSS2/bidi-007.xht | bidi/RTL deferred
+css/CSS2/bidi-008.xht | bidi/RTL deferred
+css/CSS2/bidi-009.xht | bidi/RTL deferred
+css/CSS2/bidi-010.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-001.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-002.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-003.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-004.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-005a.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-005b.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-006a.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-006b.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-007a.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-007b.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-008a.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-008b.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-009a.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-009b.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-010a.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-010b.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-011.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-box-model-003.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-box-model-006.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-box-model-009.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-box-model-013.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-box-model-022.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-box-model-031.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-box-model-040.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-breaking-001.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-breaking-002.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-breaking-003.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-glyph-mirroring-001.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-glyph-mirroring-002.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-inline-001.xht | bidi/RTL deferred
+css/CSS2/bidi-text/bidi-inline-002.xht | bidi/RTL deferred
+css/CSS2/bidi-text/direction-002.xht | bidi/RTL deferred
+css/CSS2/bidi-text/direction-003.xht | bidi/RTL deferred
+css/CSS2/bidi-text/direction-applies-to-007.xht | bidi/RTL deferred
+css/CSS2/bidi-text/direction-applies-to-008.xht | bidi/RTL deferred
+css/CSS2/bidi-text/direction-applies-to-009.xht | bidi/RTL deferred
+css/CSS2/bidi-text/direction-applies-to-012.xht | bidi/RTL deferred
+css/CSS2/bidi-text/direction-applies-to-013.xht | bidi/RTL deferred
+css/CSS2/bidi-text/direction-applies-to-014.xht | bidi/RTL deferred
+css/CSS2/bidi-text/direction-applies-to-015.xht | bidi/RTL deferred
+css/CSS2/bidi-text/unicode-bidi-001.xht | bidi/RTL deferred
+css/CSS2/bidi-text/unicode-bidi-002.xht | bidi/RTL deferred
+css/CSS2/bidi-text/unicode-bidi-003.xht | bidi/RTL deferred
+css/CSS2/bidi-text/unicode-bidi-004.xht | bidi/RTL deferred
+css/CSS2/bidi-text/unicode-bidi-applies-to-007.xht | bidi/RTL deferred
+css/CSS2/bidi-text/unicode-bidi-applies-to-008.xht | bidi/RTL deferred
+css/CSS2/bidi-text/unicode-bidi-applies-to-009.xht | bidi/RTL deferred
+css/CSS2/bidi-text/unicode-bidi-applies-to-012.xht | bidi/RTL deferred
+css/CSS2/bidi-text/unicode-bidi-applies-to-015.xht | bidi/RTL deferred
+css/CSS2/box-display/containing-block-007.xht | fixed positioning excluded
+css/CSS2/box-display/containing-block-010.xht | fixed positioning excluded
+css/CSS2/box-display/containing-block-020.xht | bidi/RTL deferred
+css/CSS2/box-display/containing-block-022.xht | fixed positioning excluded
+css/CSS2/box-display/root-canvas-001.xht | unsupported embedded, media, or form element
+css/CSS2/box/ltr-ib.xht | bidi/RTL deferred
+css/CSS2/box/ltr-span-only-ib.xht | bidi/RTL deferred
+css/CSS2/box/rtl-ib.xht | bidi/RTL deferred
+css/CSS2/box/rtl-linebreak.xht | bidi/RTL deferred
+css/CSS2/box/rtl-span-only-ib.xht | bidi/RTL deferred
+css/CSS2/csswg-issues/submitted/css2.1/abspos-non-replaced-width-margin-000.xht | bidi/RTL deferred
+css/CSS2/csswg-issues/submitted/css2.1/abspos-replaced-width-margin-000.xht | bidi/RTL deferred
+css/CSS2/floats-clear/clear-clearance-calculation-003.xht | Visual oracle requires CSS background-image painting (unsupported)
+css/CSS2/floats-clear/clear-on-replaced-element.html | Requires unsupported canvas replaced-element layout and a CSS background gradient
+css/CSS2/floats-clear/float-replaced-height-004.xht | unsupported embedded, media, or form element
+css/CSS2/floats-clear/float-replaced-height-005.xht | unsupported embedded, media, or form element
+css/CSS2/floats-clear/float-replaced-height-007.xht | unsupported embedded, media, or form element
+css/CSS2/floats/floats-placement-007.html | bidi/RTL deferred
+css/CSS2/floats/floats-wrap-bfc-outside-001.xht | unsupported embedded, media, or form element
+css/CSS2/floats/floats-wrap-bfc-with-margin-005.html | bidi/RTL deferred
+css/CSS2/generated-content/before-after-positioned-002.html | fixed positioning excluded
+css/CSS2/linebox/inline-formatting-context-011.xht | Box geometry is correct; the strict reference differs only because GPUI rasterizes the half-pixel Ahem glyph edges differently from adjacent images at the same coordinates (dependency)
+css/CSS2/linebox/inline-formatting-context-023.xht | bidi/RTL deferred
+css/CSS2/linebox/vertical-align-122.xht | Requires unsupported canvas replaced-element sizing and baseline behavior
+css/CSS2/linebox/vertical-align-sub-001.xht | Layout and glyph geometry match; the strict reference differs only because GPUI blends the green antialiased glyph edge over the identical red glyph underneath (dependency)
+css/CSS2/linebox/vertical-align-super-001.xht | Layout and glyph geometry match; the strict reference differs only because GPUI blends the green antialiased glyph edge over the identical red glyph underneath (dependency)
+css/CSS2/margin-padding-clear/margin-border-padding-003.xht | unsupported embedded, media, or form element
+css/CSS2/margin-padding-clear/margin-collapse-103.xht | fixed positioning excluded
+css/CSS2/margin-padding-clear/margin-shorthand-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/margin-padding-clear/margin-shorthand-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/margin-padding-clear/margin-shorthand-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/margin-padding-clear/margin-shorthand-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/margin-padding-clear/padding-shorthand-001.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/margin-padding-clear/padding-shorthand-002.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/margin-padding-clear/padding-shorthand-003.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/margin-padding-clear/padding-shorthand-004.xht | Requires CSS background-image painting (unsupported)
+css/CSS2/normal-flow/block-replaced-height-004.xht | unsupported embedded, media, or form element
+css/CSS2/normal-flow/block-replaced-height-005.xht | unsupported embedded, media, or form element
+css/CSS2/normal-flow/block-replaced-height-007.xht | unsupported embedded, media, or form element
+css/CSS2/normal-flow/blocks-025.xht | fixed positioning excluded
+css/CSS2/normal-flow/inline-block-replaced-height-004.xht | unsupported embedded, media, or form element
+css/CSS2/normal-flow/inline-block-replaced-height-005.xht | unsupported embedded, media, or form element
+css/CSS2/normal-flow/inline-block-replaced-height-007.xht | unsupported embedded, media, or form element
+css/CSS2/normal-flow/inline-replaced-height-004.xht | iframe rendering is intentionally unsupported
+css/CSS2/normal-flow/inline-replaced-height-005.xht | iframe rendering is intentionally unsupported
+css/CSS2/normal-flow/inline-replaced-height-007.xht | iframe rendering is intentionally unsupported
+css/CSS2/normal-flow/max-width-105.xht | scrollbar UI prerequisite is unsupported
+css/CSS2/normal-flow/replaced-intrinsic-001.xht | unsupported embedded, media, or form element
+css/CSS2/normal-flow/replaced-intrinsic-002.xht | unsupported embedded, media, or form element
+css/CSS2/normal-flow/replaced-intrinsic-003.xht | unsupported embedded, media, or form element
+css/CSS2/normal-flow/replaced-intrinsic-004.xht | unsupported embedded, media, or form element
+css/CSS2/normal-flow/replaced-intrinsic-005.xht | unsupported embedded, media, or form element
+css/CSS2/normal-flow/resizable-iframe-paint-order.html | unsupported embedded, media, or form element
+css/CSS2/normal-flow/video-controls-paint-order.html | unsupported embedded, media, or form element
+css/CSS2/normal-flow/video-paint-order.html | unsupported embedded, media, or form element
+css/CSS2/positioning/absolute-non-replaced-width-021.xht | bidi/RTL deferred
+css/CSS2/positioning/absolute-non-replaced-width-022.xht | bidi/RTL deferred
+css/CSS2/positioning/absolute-non-replaced-width-023.xht | bidi/RTL deferred
+css/CSS2/positioning/absolute-non-replaced-width-024.xht | bidi/RTL deferred
+css/CSS2/positioning/absolute-replaced-height-004.xht | unsupported embedded, media, or form element
+css/CSS2/positioning/absolute-replaced-height-005.xht | unsupported embedded, media, or form element
+css/CSS2/positioning/absolute-replaced-height-011.xht | unsupported embedded, media, or form element
+css/CSS2/positioning/absolute-replaced-height-012.xht | unsupported embedded, media, or form element
+css/CSS2/positioning/absolute-replaced-height-018.xht | unsupported embedded, media, or form element
+css/CSS2/positioning/absolute-replaced-height-019.xht | unsupported embedded, media, or form element
+css/CSS2/positioning/absolute-replaced-height-025.xht | unsupported embedded, media, or form element
+css/CSS2/positioning/absolute-replaced-height-026.xht | unsupported embedded, media, or form element
+css/CSS2/positioning/absolute-replaced-height-032.xht | unsupported embedded, media, or form element
+css/CSS2/positioning/absolute-replaced-height-033.xht | unsupported embedded, media, or form element
+css/CSS2/positioning/absolute-replaced-width-030.xht | bidi/RTL deferred
+css/CSS2/positioning/absolute-replaced-width-031.xht | bidi/RTL deferred
+css/CSS2/positioning/absolute-replaced-width-032.xht | bidi/RTL deferred
+css/CSS2/positioning/absolute-replaced-width-071.xht | bidi/RTL deferred
+css/CSS2/positioning/absolute-replaced-width-076.xht | bidi/RTL deferred
+css/CSS2/positioning/abspos-013.xht | fixed positioning excluded
+css/CSS2/positioning/abspos-014.xht | fixed positioning excluded
+css/CSS2/positioning/abspos-015.xht | fixed positioning excluded
+css/CSS2/positioning/abspos-016.xht | fixed positioning excluded
+css/CSS2/positioning/abspos-017.xht | fixed positioning excluded
+css/CSS2/positioning/abspos-018.xht | fixed positioning excluded
+css/CSS2/positioning/abspos-019.xht | fixed positioning excluded
+css/CSS2/positioning/abspos-020.xht | fixed positioning excluded
+css/CSS2/positioning/abspos-022.xht | fixed positioning excluded
+css/CSS2/positioning/abspos-024.xht | bidi/RTL deferred
+css/CSS2/positioning/abspos-block-level-001.html | bidi/RTL deferred
+css/CSS2/positioning/abspos-containing-block-001.xht | fixed positioning excluded
+css/CSS2/positioning/abspos-containing-block-003.xht | fixed positioning excluded
+css/CSS2/positioning/bottom-applies-to-001.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/bottom-applies-to-002.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/bottom-applies-to-003.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/bottom-applies-to-004.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/bottom-applies-to-005.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/bottom-applies-to-006.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/bottom-applies-to-007.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/bottom-applies-to-009.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/bottom-applies-to-012.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/bottom-applies-to-013.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/bottom-applies-to-014.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/bottom-applies-to-015.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/auto-position-rtl-child-viewport-scrollbar.html | bidi/RTL and scrollbar UI deferred
+css/CSS2/positioning/position-fixed-001.xht | fixed positioning excluded
+css/CSS2/positioning/position-fixed-007.xht | fixed positioning excluded
+css/CSS2/positioning/position-applies-to-001.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/position-applies-to-002.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/position-applies-to-003.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/position-applies-to-004.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/position-applies-to-005.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/position-applies-to-006.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/position-applies-to-007.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/position-applies-to-009.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/position-applies-to-012.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/position-applies-to-013.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/position-applies-to-014.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/position-applies-to-015.xht | Reference requires CSS background-image painting (unsupported)
+css/CSS2/positioning/relpos-calcs-005.xht | bidi/RTL deferred
+css/CSS2/tables/border-collapse-offset-001.xht | absolute positioning excluded
+css/CSS2/tables/table-anonymous-objects-017.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-018.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-059.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-060.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-061.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-062.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-063.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-064.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-065.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-066.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-067.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-068.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-069.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-070.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-071.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-072.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-073.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-074.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-075.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-076.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-077.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-078.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-079.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-080.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-081.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-082.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-083.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-084.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-085.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-086.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-087.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-088.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-089.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-090.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-091.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-092.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-093.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-094.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-095.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-096.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-097.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-098.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-167.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-168.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-177.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-178.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-179.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-180.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-181.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-182.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-183.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-184.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-189.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-190.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-191.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-192.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-197.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-198.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-199.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/table-anonymous-objects-200.xht | absolute-positioned overlay oracle excluded
+css/CSS2/tables/border-collapse-visibility-collapse-001.tentative.html | visibility collapse excluded
+css/CSS2/tables/border-collapse-visibility-collapse-002.tentative.html | visibility collapse excluded
+css/CSS2/tables/column-visibility-004.xht | visibility collapse excluded
+css/CSS2/text/bidi-span-001.html | bidi/RTL deferred
+css/CSS2/text/white-space-bidirectionality-001.xht | bidi/RTL deferred
+css/CSS2/text/white-space-collapsing-bidi-001.xht | bidi/RTL deferred
+css/CSS2/text/white-space-collapsing-bidi-002.xht | bidi/RTL deferred
+css/CSS2/text/text-align-white-space-005.xht | bidi/RTL deferred
+css/CSS2/text/text-align-white-space-006.xht | bidi/RTL deferred
+css/CSS2/text/text-align-white-space-008.xht | bidi/RTL deferred
+css/CSS2/text/text-indent-on-blank-line-rtl-left-align.html | bidi/RTL deferred
+css/CSS2/text/text-indent-rtl-001.xht | bidi/RTL deferred
+css/CSS2/text/text-indent-rtl-002.xht | bidi/RTL deferred
+css/CSS2/values/units-005.xht | unsupported embedded, media, or form element
+css/CSS2/visufx/visibility-block-001.xht | visibility collapse excluded
+css/CSS2/visuren/fixed-pos-stacking-001.xht | fixed positioning excluded
+css/CSS2/visuren/left-offset-position-fixed-001.xht | fixed positioning excluded
+css/CSS2/visuren/right-offset-position-fixed-001.xht | fixed positioning excluded
+css/CSS2/normal-flow/inline-block-valign-001.xht | Requires CSS visibility painting semantics (unsupported)
+css/CSS2/normal-flow/inline-block-valign-002.xht | Requires CSS visibility painting semantics (unsupported)
+css/CSS2/normal-flow/inline-table-002a.xht | Requires CSS visibility painting semantics (unsupported)
+css/CSS2/normal-flow/inline-table-002b.xht | Requires CSS visibility painting semantics (unsupported)
+css/CSS2/normal-flow/inline-table-valign-001.xht | Requires CSS visibility painting semantics (unsupported)
+css/CSS2/tables/row-visibility-001.xht | Requires CSS visibility:collapse semantics (unsupported)
+css/CSS2/visufx/visibility-005.xht | Requires hidden ancestors with explicitly visible descendants (unsupported)
+css/CSS2/syntax/case-sensitive-001.xht | Requires CSS background-image painting (unsupported); CSS identifier casing itself is supported
+css/CSS2/syntax/at-rule-009.xht | Requires CSS2 at-rule error recovery delegated to Lightning CSS (dependency)
+css/CSS2/syntax/comments-002.xht | Requires CSS comment tokenization delegated to Lightning CSS (dependency)
+css/CSS2/syntax/comments-008.xht | Requires CSS comment tokenization delegated to Lightning CSS (dependency)
+css/CSS2/syntax/comments-009.xht | Requires CSS comment tokenization delegated to Lightning CSS (dependency)
+css/CSS2/syntax/core-syntax-001.xht | Requires CSS block error recovery delegated to Lightning CSS (dependency)
+css/CSS2/syntax/core-syntax-007.xht | Requires CSS declaration error recovery delegated to Lightning CSS (dependency)
+css/CSS2/syntax/declaration-001.xht | Requires malformed-declaration recovery delegated to Lightning CSS (dependency)
+css/CSS2/syntax/declaration-006.xht | Requires malformed-declaration recovery delegated to Lightning CSS (dependency)
+css/CSS2/syntax/declarations-009.xht | Requires declaration-block at-rule recovery delegated to Lightning CSS (dependency)
+css/CSS2/syntax/escaped-url-001.xht | Requires CSS URL escape tokenization delegated to Lightning CSS (dependency)
+css/CSS2/syntax/escapes-001.xht | Requires CSS escape tokenization delegated to Lightning CSS (dependency)
+css/CSS2/syntax/malformed-decl-001.xht | Requires malformed-declaration recovery delegated to Lightning CSS (dependency)
+css/CSS2/syntax/malformed-decl-006.xht | Requires malformed-declaration recovery delegated to Lightning CSS (dependency)
+css/CSS2/syntax/malformed-decl-block-001.xht | Requires malformed declaration-block recovery delegated to Lightning CSS (dependency)
+css/CSS2/syntax/matching-brackets-002.xht | Requires CSS bracket and quote recovery delegated to Lightning CSS (dependency)
+css/CSS2/syntax/unterminated-string-001.xht | Requires CSS unterminated-string recovery delegated to Lightning CSS (dependency)
+css/CSS2/syntax/uri-004.xht | Requires CSS URL tokenization delegated to Lightning CSS (dependency)
+css/CSS2/syntax/uri-005.xht | Requires CSS URL tokenization delegated to Lightning CSS (dependency)
+css/CSS2/syntax/uri-013.xht | Requires CSS URL tokenization delegated to Lightning CSS (dependency)
+css/CSS2/syntax/uri-014.xht | Requires CSS URL tokenization delegated to Lightning CSS (dependency)
+css/CSS2/syntax/uri-015.xht | Requires CSS URL tokenization delegated to Lightning CSS (dependency)
+css/CSS2/syntax/uri-016.xht | Requires CSS URL tokenization delegated to Lightning CSS (dependency)
+css/CSS2/syntax/uri-017.xht | Requires CSS URL tokenization delegated to Lightning CSS (dependency)
+css/CSS2/tables/fixed-table-layout-002a.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003a01.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003a02.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003a03.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003a04.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003a05.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003a06.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003d01.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003d02.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003d03.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003d04.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003d05.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003d06.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e01.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e02.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e03.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e04.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e05.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e06.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e07.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e08.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e09.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e10.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e11.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003e12.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003f01.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003f02.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003f03.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003f04.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003f05.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003f06.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003f07.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-003f08.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-017.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-018.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-019.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-020.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-021.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-022.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-023.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-025.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-026.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-027.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-028.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-029.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-030.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)
+css/CSS2/tables/fixed-table-layout-031.xht | Requires table-layout:fixed, which is not exposed by Lightning CSS; parallel CSS parsing is intentionally excluded (dependency)

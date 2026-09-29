@@ -1,0 +1,38 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH raw_input AS (\n    SELECT * FROM UNNEST(\n        $3::TEXT[], $4::TEXT[], $5::TEXT[], $6::TEXT[], $7::BOOLEAN[],\n        $8::BIGINT[], $9::BIGINT[], $10::SMALLINT[], $11::TEXT[]\n    ) AS value(book_id, dir_id, file_name, content_hash, present, changed_at, client_seq, version_rank, event_id)\n),\ninput AS (\n    SELECT DISTINCT ON (dir_id, file_name) *\n    FROM raw_input\n    ORDER BY dir_id, file_name, changed_at DESC, version_rank DESC, client_seq DESC, event_id COLLATE \"C\" DESC\n),\nold_state AS MATERIALIZED (\n    SELECT input.dir_id, input.file_name,\n           CASE WHEN placement.present THEN placement.content_hash END AS content_hash\n    FROM input\n    LEFT JOIN sync_book_placement_state AS placement\n      ON placement.library_id=$1\n     AND placement.dir_id=input.dir_id\n     AND placement.file_name=input.file_name\n),\nstored AS (\n    INSERT INTO sync_book_placement_state(\n        library_id, book_id, dir_id, file_name, content_hash, present,\n        changed_at, client_id, client_seq, version_rank, event_id\n    )\n    SELECT $1, book_id, dir_id, file_name, NULLIF(content_hash, ''), present,\n           changed_at, $2, client_seq, version_rank, event_id\n    FROM input\n    ON CONFLICT (library_id, dir_id, file_name) DO UPDATE SET\n        book_id=EXCLUDED.book_id, content_hash=EXCLUDED.content_hash, present=EXCLUDED.present,\n        changed_at=EXCLUDED.changed_at, client_id=EXCLUDED.client_id,\n        client_seq=EXCLUDED.client_seq, version_rank=EXCLUDED.version_rank,\n        event_id=EXCLUDED.event_id, server_seq=DEFAULT\n    WHERE (EXCLUDED.present OR sync_book_placement_state.book_id=EXCLUDED.book_id)\n    RETURNING dir_id, file_name,\n              CASE WHEN present THEN content_hash END AS content_hash\n)\nSELECT old_state.content_hash AS previous_hash,\n       stored.content_hash AS current_hash\nFROM stored\nJOIN old_state USING(dir_id, file_name)\nWHERE old_state.content_hash IS DISTINCT FROM stored.content_hash;\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "previous_hash",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 1,
+        "name": "current_hash",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "TextArray",
+        "TextArray",
+        "TextArray",
+        "TextArray",
+        "BoolArray",
+        "Int8Array",
+        "Int8Array",
+        "Int2Array",
+        "TextArray"
+      ]
+    },
+    "nullable": [
+      null,
+      null
+    ]
+  },
+  "hash": "5234ef4c6b018802c240df8eccc0ad0770c6f24748163d26884a2327d155e58e"
+}

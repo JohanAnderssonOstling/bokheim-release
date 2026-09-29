@@ -1,0 +1,151 @@
+{
+  "concepts": 16961,
+  "routes": 18815,
+  "repeated_label_groups": 1231,
+  "repeated_label_subjects": 4580,
+  "screened_cross_system_groups": 218,
+  "code_free_internal_nodes": 656,
+  "code_free_single_child_nonroot_nodes": 150,
+  "paths_8_plus": 742,
+  "by_root": {
+    "Applied Sciences & Technology": {
+      "subjects": 1627,
+      "candidate_groups_touching_root": 29,
+      "max_levels": 7,
+      "routes_8_plus": 0
+    },
+    "Arts & Media": {
+      "subjects": 1217,
+      "candidate_groups_touching_root": 28,
+      "max_levels": 8,
+      "routes_8_plus": 2
+    },
+    "Biography": {
+      "subjects": 257,
+      "candidate_groups_touching_root": 0,
+      "max_levels": 5,
+      "routes_8_plus": 0
+    },
+    "Body, Mind & Spirit": {
+      "subjects": 135,
+      "candidate_groups_touching_root": 6,
+      "max_levels": 7,
+      "routes_8_plus": 0
+    },
+    "Children & Young Adult": {
+      "subjects": 1137,
+      "candidate_groups_touching_root": 0,
+      "max_levels": 7,
+      "routes_8_plus": 0
+    },
+    "Education": {
+      "subjects": 481,
+      "candidate_groups_touching_root": 13,
+      "max_levels": 6,
+      "routes_8_plus": 0
+    },
+    "Family & Relationships": {
+      "subjects": 24,
+      "candidate_groups_touching_root": 2,
+      "max_levels": 3,
+      "routes_8_plus": 0
+    },
+    "Geography, Anthropology & Recreation": {
+      "subjects": 1,
+      "candidate_groups_touching_root": 0,
+      "max_levels": 1,
+      "routes_8_plus": 0
+    },
+    "Geography, Places & Travel": {
+      "subjects": 399,
+      "candidate_groups_touching_root": 14,
+      "max_levels": 6,
+      "routes_8_plus": 0
+    },
+    "Health & Medicine": {
+      "subjects": 1129,
+      "candidate_groups_touching_root": 33,
+      "max_levels": 8,
+      "routes_8_plus": 13
+    },
+    "History": {
+      "subjects": 3497,
+      "candidate_groups_touching_root": 42,
+      "max_levels": 10,
+      "routes_8_plus": 635
+    },
+    "Home & Hobbies": {
+      "subjects": 383,
+      "candidate_groups_touching_root": 27,
+      "max_levels": 7,
+      "routes_8_plus": 0
+    },
+    "Language": {
+      "subjects": 430,
+      "candidate_groups_touching_root": 12,
+      "max_levels": 8,
+      "routes_8_plus": 2
+    },
+    "Literature": {
+      "subjects": 1491,
+      "candidate_groups_touching_root": 47,
+      "max_levels": 7,
+      "routes_8_plus": 0
+    },
+    "Personal Growth": {
+      "subjects": 57,
+      "candidate_groups_touching_root": 6,
+      "max_levels": 4,
+      "routes_8_plus": 0
+    },
+    "Philosophy": {
+      "subjects": 491,
+      "candidate_groups_touching_root": 10,
+      "max_levels": 8,
+      "routes_8_plus": 35
+    },
+    "Philosophy, Psychology & Religion": {
+      "subjects": 1,
+      "candidate_groups_touching_root": 0,
+      "max_levels": 1,
+      "routes_8_plus": 0
+    },
+    "Recreation": {
+      "subjects": 123,
+      "candidate_groups_touching_root": 2,
+      "max_levels": 4,
+      "routes_8_plus": 0
+    },
+    "Reference & Information": {
+      "subjects": 547,
+      "candidate_groups_touching_root": 0,
+      "max_levels": 6,
+      "routes_8_plus": 0
+    },
+    "Religion": {
+      "subjects": 455,
+      "candidate_groups_touching_root": 12,
+      "max_levels": 7,
+      "routes_8_plus": 0
+    },
+    "Science & Nature": {
+      "subjects": 1105,
+      "candidate_groups_touching_root": 52,
+      "max_levels": 6,
+      "routes_8_plus": 0
+    },
+    "Social Sciences": {
+      "subjects": 2459,
+      "candidate_groups_touching_root": 52,
+      "max_levels": 8,
+      "routes_8_plus": 55
+    },
+    "Study Aids": {
+      "subjects": 38,
+      "candidate_groups_touching_root": 2,
+      "max_levels": 3,
+      "routes_8_plus": 0
+    }
+  },
+  "database_sha256": "2d75cdec8a96276420213f650250704d6cc837ea5ab5dd544f42ded0c134af38"
+}

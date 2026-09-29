@@ -1,0 +1,207 @@
+{
+  "changes": [
+    {
+      "id": 6108,
+      "before": "Administration, Facilities & Governance",
+      "after": "Library Administration"
+    },
+    {
+      "id": 9710,
+      "before": "Advertising Designers, Families & Firms",
+      "after": "Advertising Designers & Firms"
+    },
+    {
+      "id": 13680,
+      "before": "American Literature—General & Reference",
+      "after": "U.S. Literature Reference"
+    },
+    {
+      "id": 6930,
+      "before": "Architecture, and school building plans",
+      "after": "School Building Design"
+    },
+    {
+      "id": 490,
+      "before": "Artificial satellite telecommunications",
+      "after": "Satellite Communications"
+    },
+    {
+      "id": 10003,
+      "before": "Automatic cameras. Electric eye cameras",
+      "after": "Automatic Cameras"
+    },
+    {
+      "id": 11887,
+      "before": "Bangladeshi Government & Administration",
+      "after": "Bangladeshi Government"
+    },
+    {
+      "id": 6386,
+      "before": "Basic education. Basic skills education",
+      "after": "Basic Education"
+    },
+    {
+      "id": 12986,
+      "before": "Bibliographic Data & Library Automation",
+      "after": "Library Data & Automation"
+    },
+    {
+      "id": 13773,
+      "before": "Bibliography, Periodicals & Conferences",
+      "after": "International Relations Reference"
+    },
+    {
+      "id": 5493,
+      "before": "Body Language & Nonverbal Communication",
+      "after": "Nonverbal Communication"
+    },
+    {
+      "id": 331,
+      "before": "Canals and inland navigation. Waterways",
+      "after": "Inland Waterways"
+    },
+    {
+      "id": 1143,
+      "before": "Children’s African Biographical Fiction",
+      "after": "Kids’ African Biographical Fiction"
+    },
+    {
+      "id": 1314,
+      "before": "Children’s Christian Historical Fiction",
+      "after": "Kids’ Christian Historical Fiction"
+    },
+    {
+      "id": 10823,
+      "before": "Christian Ethics: History & Methodology",
+      "after": "Christian Ethics History & Methods"
+    },
+    {
+      "id": 725,
+      "before": "Collected works of individual composers",
+      "after": "Composers’ Collected Works"
+    },
+    {
+      "id": 6880,
+      "before": "Collectors and collecting. Collectibles",
+      "after": "Culinary Collectibles"
+    },
+    {
+      "id": 9053,
+      "before": "Coloring of prints. Airbrush work, etc.",
+      "after": "Photo Coloring & Airbrushing"
+    },
+    {
+      "id": 9918,
+      "before": "Controversial works against astrologers",
+      "after": "Criticism of Astrology"
+    },
+    {
+      "id": 5610,
+      "before": "Corporations, Partnerships & Governance",
+      "after": "Corporate & Partnership Law"
+    },
+    {
+      "id": 9461,
+      "before": "Death certification. Death certificates",
+      "after": "Death Certification"
+    },
+    {
+      "id": 6857,
+      "before": "Dental technology. Laboratory technique",
+      "after": "Dental Laboratory Technology"
+    },
+    {
+      "id": 7638,
+      "before": "Designs and models of patents (General)",
+      "after": "Patent Designs & Models"
+    },
+    {
+      "id": 7525,
+      "before": "Diplomatic Study Documents & Facsimiles",
+      "after": "Diplomatics Documents & Facsimiles"
+    },
+    {
+      "id": 2192,
+      "before": "Directories of educational institutions",
+      "after": "Educational Directories"
+    },
+    {
+      "id": 8891,
+      "before": "Drugs acting on the reproductive organs",
+      "after": "Reproductive System Drugs"
+    },
+    {
+      "id": 9031,
+      "before": "Duplicating processes. Copying services",
+      "after": "Document Copying"
+    },
+    {
+      "id": 7474,
+      "before": "Electronic & Computer Music Composition",
+      "after": "Electronic Music Composition"
+    },
+    {
+      "id": 6084,
+      "before": "Electrostatics & Frictional Electricity",
+      "after": "Electrostatics"
+    },
+    {
+      "id": 1677,
+      "before": "Environmental Conservation & Protection",
+      "after": "Children’s Conservation"
+    },
+    {
+      "id": 2131,
+      "before": "Environmental Conservation & Protection",
+      "after": "YA Conservation"
+    },
+    {
+      "id": 204,
+      "before": "Environmental engineering of buildings.",
+      "after": "Building Environmental Engineering"
+    },
+    {
+      "id": 13296,
+      "before": "European Comparative Administrative Law",
+      "after": "Comparative European Admin Law"
+    },
+    {
+      "id": 13294,
+      "before": "European Comparative Courts & Procedure",
+      "after": "Comparative European Court Procedure"
+    },
+    {
+      "id": 8989,
+      "before": "Examination and licensing of architects",
+      "after": "Architect Licensing"
+    },
+    {
+      "id": 2283,
+      "before": "Exceptional children and youth. Special",
+      "after": "Special Education"
+    },
+    {
+      "id": 10089,
+      "before": "Freehand drawing for technical purposes",
+      "after": "Technical Freehand Drawing"
+    },
+    {
+      "id": 6229,
+      "before": "Geomagnetic field (Analysis and theory)",
+      "after": "Geomagnetic Field Theory"
+    },
+    {
+      "id": 302,
+      "before": "Hazardous substances and their disposal",
+      "after": "Hazardous Materials & Disposal"
+    }
+  ],
+  "count": 39,
+  "over40_before": 0,
+  "over40_after": 0,
+  "aliases_added": 0,
+  "unchanged_proposal": {
+    "id": 13295,
+    "reason": "Proposed word order has the same length; retained existing label."
+  }
+}

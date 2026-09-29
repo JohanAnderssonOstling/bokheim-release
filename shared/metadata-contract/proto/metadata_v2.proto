@@ -1,0 +1,177 @@
+syntax = "proto3";
+
+package bokheim.metadata.v2;
+
+message EnrichmentRequest {
+  repeated string isbns = 1;
+}
+
+message EditionIdentityRequest {
+  repeated EditionIdentityQuery queries = 1;
+}
+
+message EditionIdentityQuery {
+  string query_id = 1;
+  string title = 2;
+  repeated string authors = 3;
+  repeated string publishers = 4;
+  optional sint32 book_year = 5;
+}
+
+message EditionIdentityResponse {
+  Snapshot snapshot = 1;
+  repeated EditionIdentityResult results = 2;
+}
+
+message EditionIdentityResult {
+  string query_id = 1;
+  EditionIdentityStatus status = 2;
+  optional EditionIdentityMatch matched = 3;
+  repeated EditionIdentityMatch candidates = 4;
+  bool candidates_truncated = 5;
+  optional AuthoritySubjectMatch authority_subjects = 6;
+}
+
+message EditionIdentityMatch {
+  string canonical_isbn13 = 1;
+  string open_library_edition_id = 2;
+  optional string open_library_work_id = 3;
+  string title = 4;
+  optional string work_title = 5;
+  EditionTitleMatch title_match = 6;
+  repeated string authors = 7;
+  repeated string publishers = 8;
+  optional sint32 book_year = 9;
+  bool matched_publisher = 10;
+  bool matched_book_year = 11;
+  repeated Classification classifications = 12;
+  optional string subtitle = 13;
+}
+
+message EnrichmentResponse {
+  Snapshot snapshot = 1;
+  repeated IsbnResult results = 2;
+  reserved 3, 4;
+}
+
+message Snapshot {
+  string dump_date = 1;
+  uint64 imported_at_ms = 2;
+}
+
+message IsbnResult {
+  repeated WikidataBookEvidence wikidata_books = 5;
+  string requested_isbn = 1;
+  optional string canonical_isbn13 = 2;
+  LookupStatus status = 3;
+  repeated WorkMatch matches = 4;
+}
+
+message WorkMatch {
+  optional string open_library_work_id = 1;
+  repeated string exact_edition_ids = 2;
+  repeated Classification classifications = 3;
+  repeated Author authors = 4;
+  reserved 5, 6, 7;
+  // Plain-text Open Library work description, when the snapshot has one.
+  optional string description = 8;
+  repeated SubjectHeading subjects = 9;
+}
+
+message SubjectHeading {
+  string source = 1;
+  string authority = 2;
+  repeated string components = 3;
+  optional string authority_uri = 4;
+}
+
+message Classification {
+  ClassificationScheme scheme = 1;
+  string notation = 2;
+  ClassificationSource source = 3;
+  repeated ClassificationEvidence evidence = 4;
+}
+
+message Author {
+  string open_library_author_id = 1;
+  optional string name = 2;
+  repeated AuthorIdentifier identifiers = 3;
+  AuthorSource source = 4;
+  uint32 position = 5;
+  reserved 6;
+}
+
+message AuthorIdentifier {
+  string authority = 1;
+  string value = 2;
+}
+
+enum LookupStatus {
+  LOOKUP_STATUS_UNSPECIFIED = 0;
+  LOOKUP_STATUS_MATCHED = 1;
+  LOOKUP_STATUS_NO_MATCH = 2;
+  LOOKUP_STATUS_INVALID_ISBN = 3;
+  LOOKUP_STATUS_AMBIGUOUS = 4;
+}
+
+enum EditionIdentityStatus {
+  EDITION_IDENTITY_STATUS_UNSPECIFIED = 0;
+  EDITION_IDENTITY_STATUS_MATCHED = 1;
+  EDITION_IDENTITY_STATUS_NO_MATCH = 2;
+  EDITION_IDENTITY_STATUS_AMBIGUOUS = 3;
+  EDITION_IDENTITY_STATUS_INSUFFICIENT_METADATA = 4;
+}
+
+enum EditionTitleMatch {
+  EDITION_TITLE_MATCH_UNSPECIFIED = 0;
+  EDITION_TITLE_MATCH_EDITION = 1;
+  EDITION_TITLE_MATCH_WORK = 2;
+  EDITION_TITLE_MATCH_BOTH = 3;
+}
+
+enum ClassificationScheme {
+  CLASSIFICATION_SCHEME_UNSPECIFIED = 0;
+  CLASSIFICATION_SCHEME_LIBRARY_OF_CONGRESS = 1;
+  CLASSIFICATION_SCHEME_DEWEY_DECIMAL = 2;
+  CLASSIFICATION_SCHEME_BISAC = 3;
+}
+
+enum ClassificationSource {
+  CLASSIFICATION_SOURCE_UNSPECIFIED = 0;
+  CLASSIFICATION_SOURCE_EXACT_EDITION = 1;
+  CLASSIFICATION_SOURCE_WORK = 2;
+}
+
+enum AuthorSource {
+  AUTHOR_SOURCE_UNSPECIFIED = 0;
+  AUTHOR_SOURCE_EXACT_EDITION = 1;
+  AUTHOR_SOURCE_WORK = 2;
+}
+
+message ClassificationEvidence {
+  string method = 1;
+  string isbn13 = 2;
+  string open_library_work_id = 3;
+  string open_library_edition_id = 4;
+}
+
+message AuthoritySubjectMatch {
+  string provider_id = 1;
+  repeated string record_ids = 2;
+  string title = 3;
+  repeated string authors = 4;
+  repeated Classification classifications = 5;
+  string main_title = 6;
+}
+
+message WikidataBookEvidence {
+ string wikidata_id=1; repeated string work_ids=2; optional string title=3; optional string description=4;
+ repeated WikidataAuthorEvidence authors=5; repeated WikidataClassificationEvidence classifications=6;
+}
+message WikidataAuthorEvidence {
+ string wikidata_id=1; optional string name=2; repeated string aliases=3; optional sint32 birth_year=4; optional sint32 death_year=5;
+ repeated WikidataAuthorityId identifiers=6; optional string image=7; string source_entity=8; string identity_match=9;
+ optional string open_library_author_id=10; uint32 shared_work_count=11;
+}
+message WikidataAuthorityId { string authority=1; string value=2; }
+message WikidataClassificationEvidence { string scheme=1; string notation=2; string source_entity=3; string property=4; bool inferred=5; }

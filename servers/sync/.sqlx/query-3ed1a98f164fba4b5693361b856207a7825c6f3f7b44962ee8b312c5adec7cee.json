@@ -1,0 +1,36 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH input AS MATERIALIZED (\n    SELECT * FROM UNNEST($2::TEXT[], $3::BIGINT[]) AS value(content_hash, delta)\n),\nvalid AS MATERIALIZED (\n    SELECT COALESCE(BOOL_AND(input.delta > 0 OR COALESCE(reference.reference_count, 0) >= -input.delta), TRUE) AS ok\n    FROM input\n    LEFT JOIN user_blob_reference AS reference\n      ON reference.user_id=$1 AND reference.content_hash=input.content_hash\n),\npositive AS (\n    INSERT INTO user_blob_reference(user_id, content_hash, reference_count)\n    SELECT $1, content_hash, delta FROM input\n    WHERE delta > 0 AND (SELECT ok FROM valid)\n    ON CONFLICT (user_id, content_hash)\n    DO UPDATE SET reference_count=user_blob_reference.reference_count+EXCLUDED.reference_count\n    RETURNING content_hash\n),\nreduced AS (\n    UPDATE user_blob_reference AS reference\n    SET reference_count=reference.reference_count+input.delta\n    FROM input\n    WHERE reference.user_id=$1\n      AND reference.content_hash=input.content_hash\n      AND input.delta < 0\n      AND reference.reference_count > -input.delta\n      AND (SELECT ok FROM valid)\n    RETURNING reference.content_hash\n),\nremoved AS (\n    DELETE FROM user_blob_reference AS reference\n    USING input\n    WHERE reference.user_id=$1\n      AND reference.content_hash=input.content_hash\n      AND input.delta < 0\n      AND reference.reference_count = -input.delta\n      AND (SELECT ok FROM valid)\n    RETURNING reference.content_hash\n),\nreleased AS MATERIALIZED (\n    DELETE FROM user_blob_charge AS charge\n    USING blob_object AS object, removed\n    WHERE charge.user_id=$1\n      AND charge.content_hash=removed.content_hash\n      AND object.content_hash=charge.content_hash\n    RETURNING object.size_bytes\n),\naccount AS (\n    UPDATE user_storage_account\n    SET used_bytes=GREATEST(used_bytes-COALESCE((SELECT SUM(size_bytes) FROM released), 0), 0)\n    WHERE user_id=$1 AND (SELECT ok FROM valid)\n    RETURNING user_id\n)\nSELECT (SELECT ok FROM valid) AS valid,\n       COALESCE((SELECT SUM(size_bytes) FROM released), 0)::BIGINT AS released,\n       (SELECT COUNT(*) FROM positive)+(SELECT COUNT(*) FROM reduced)+\n       (SELECT COUNT(*) FROM removed)+(SELECT COUNT(*) FROM account) AS applied;\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "valid",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 1,
+        "name": "released",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 2,
+        "name": "applied",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "TextArray",
+        "Int8Array"
+      ]
+    },
+    "nullable": [
+      null,
+      null,
+      null
+    ]
+  },
+  "hash": "3ed1a98f164fba4b5693361b856207a7825c6f3f7b44962ee8b312c5adec7cee"
+}

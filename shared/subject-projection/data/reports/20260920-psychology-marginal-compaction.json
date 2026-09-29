@@ -1,0 +1,205 @@
+{
+  "merges": {
+    "5460": {
+      "into": 3274,
+      "old_label": "The Hand in Psychology",
+      "surviving_label": "Palmistry"
+    },
+    "7276": {
+      "into": 5388,
+      "old_label": "Comparative Psychology, 1871–",
+      "surviving_label": "Human–Animal Psychology"
+    },
+    "10777": {
+      "into": 10810,
+      "old_label": "Emotional Expression, 1851–",
+      "surviving_label": "Expression of the emotions"
+    },
+    "10914": {
+      "into": 10810,
+      "old_label": "Human Emotional Expression",
+      "surviving_label": "Expression of the emotions"
+    },
+    "6341": {
+      "into": 5398,
+      "old_label": "Feelings & Mood",
+      "surviving_label": "Emotions"
+    },
+    "13590": {
+      "into": 5448,
+      "old_label": "Psychotherapy Serials & Orgs.",
+      "surviving_label": "Psychotherapy"
+    },
+    "13591": {
+      "into": 5448,
+      "old_label": "Congresses",
+      "surviving_label": "Psychotherapy"
+    },
+    "13592": {
+      "into": 5448,
+      "old_label": "Dictionaries & encyclopedias",
+      "surviving_label": "Psychotherapy"
+    },
+    "13593": {
+      "into": 5448,
+      "old_label": "Psychotherapy Reference",
+      "surviving_label": "Psychotherapy"
+    },
+    "13594": {
+      "into": 5448,
+      "old_label": "Psychotherapy Topics",
+      "surviving_label": "Psychotherapy"
+    },
+    "13595": {
+      "into": 5448,
+      "old_label": "Popular works",
+      "surviving_label": "Psychotherapy"
+    },
+    "13608": {
+      "into": 5448,
+      "old_label": "Other Psychotherapy Topics",
+      "surviving_label": "Psychotherapy"
+    },
+    "9915": {
+      "into": 5427,
+      "old_label": "Phrenology History",
+      "surviving_label": "Phrenology"
+    },
+    "7333": {
+      "into": 5518,
+      "old_label": "Other special",
+      "surviving_label": "Social"
+    },
+    "8062": {
+      "into": 52751,
+      "old_label": "Theory. Method",
+      "surviving_label": "Social-Psychology Research"
+    },
+    "5399": {
+      "into": 5381,
+      "old_label": "Essays",
+      "surviving_label": "Psychology"
+    },
+    "10845": {
+      "into": 10808,
+      "old_label": "Terminology",
+      "surviving_label": "Writing & Communication"
+    },
+    "7444": {
+      "into": 5455,
+      "old_label": "Psychology Methods",
+      "surviving_label": "Research & Methodology"
+    },
+    "7655": {
+      "into": 5461,
+      "old_label": "Commitment",
+      "surviving_label": "Will, Choice & Self-Control"
+    },
+    "9361": {
+      "into": 5461,
+      "old_label": "Intentionalism",
+      "surviving_label": "Will, Choice & Self-Control"
+    },
+    "6262": {
+      "into": 5461,
+      "old_label": "Freedom of the will",
+      "surviving_label": "Will, Choice & Self-Control"
+    },
+    "9021": {
+      "into": 5461,
+      "old_label": "Self-Control",
+      "surviving_label": "Will, Choice & Self-Control"
+    },
+    "10781": {
+      "into": 8230,
+      "old_label": "Brainwashing",
+      "surviving_label": "Psychological Manipulation"
+    },
+    "5459": {
+      "into": 5425,
+      "old_label": "Temperament",
+      "surviving_label": "Personality"
+    },
+    "6716": {
+      "into": 5425,
+      "old_label": "Personality change",
+      "surviving_label": "Personality"
+    },
+    "10974": {
+      "into": 10889,
+      "old_label": "Projective techniques",
+      "surviving_label": "Personality testing"
+    },
+    "9321": {
+      "into": 5431,
+      "old_label": "Psychoanalytic Development Theory",
+      "surviving_label": "Psychoanalysis"
+    },
+    "6813": {
+      "into": 5391,
+      "old_label": "Maturation",
+      "surviving_label": "Developmental"
+    },
+    "11153": {
+      "into": 5391,
+      "old_label": "Context in Human Development",
+      "surviving_label": "Developmental"
+    },
+    "11014": {
+      "into": 5455,
+      "old_label": "Biographical Methods",
+      "surviving_label": "Research & Methodology"
+    },
+    "6775": {
+      "into": 5385,
+      "old_label": "Digital Psychological Testing",
+      "surviving_label": "Assessment, Testing & Measurement"
+    },
+    "10829": {
+      "into": 5456,
+      "old_label": "Pattern Perception",
+      "surviving_label": "Sensation"
+    },
+    "10916": {
+      "into": 5398,
+      "old_label": "Language & emotions",
+      "surviving_label": "Emotions"
+    },
+    "53288": {
+      "into": 5389,
+      "old_label": "Intuition",
+      "surviving_label": "Cognition"
+    },
+    "53278": {
+      "into": 11206,
+      "old_label": "Consultation",
+      "surviving_label": "Counseling Psychology"
+    },
+    "52754": {
+      "into": 5518,
+      "old_label": "Help-Seeking Behavior",
+      "surviving_label": "Social"
+    },
+    "12408": {
+      "into": 5250,
+      "old_label": "Eunuchs & Emasculation",
+      "surviving_label": "Human Sexuality"
+    }
+  },
+  "renamed": {
+    "52751": {
+      "before": "Social-Psychology Research",
+      "after": "Social-Psychology Theory & Research"
+    }
+  },
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "groups": {
+    "strong": 18,
+    "narrow": 19
+  },
+  "scope": "Apply the approved strong and narrow-topic compactions only. Duplicate groups and placement-only findings remain unchanged.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

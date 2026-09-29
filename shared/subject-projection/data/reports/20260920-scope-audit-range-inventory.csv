@@ -1,0 +1,990 @@
+concept_id,label,start_code,end_code
+4487,Philosophy,B1,B5802
+5532,Philosophy Reference,B1,B99
+11156,Latin American Modern Philosophy,B1001,B1084
+10957,Mexican Modern Philosophy,B1015,B1019
+10839,Central American Modern Philosophy,B1025,B1026
+11059,Cuba & West Indies,B1028,B1029
+11159,Argentine Modern Philosophy,B1030,B1034
+11069,South American Modern Philosophy,B1030,B1084
+11192,Brazilian Modern Philosophy,B1040,B1044
+11207,Chilean Modern Philosophy,B1045,B1049
+10868,Colombian Modern Philosophy,B1050,B1054
+10837,Peruvian Modern Philosophy,B1070,B1074
+11013,Uruguayan Modern Philosophy,B1075,B1079
+4507,"History, Traditions & Regions",B108,B5799.9
+4508,Ancient & Classical Philosophy,B108,B708
+11018,Venezuelan Modern Philosophy,B1080,B1084
+11050,"England, Ireland, Scotland & Wales",B1111,B1682
+10928,17th century,B1131,B1299
+10864,Ancient Chinese Philosophy,B125,B128
+10838,Ancient Indian Philosophy,B130,B133
+10870,18th century,B1300,B1398
+11105,Ancient Japanese Philosophy,B135,B138
+10983,Ancient Korean Philosophy,B139.1,B139.4
+10909,Ancient Egyptian Philosophy,B140,B143
+10786,Assyria-Babylonia,B145,B148
+10917,Ancient Armenian Philosophy,B149.2,B149.23
+11141,Ancient Iranian Philosophy,B150,B153
+11088,Jewish Philosophy,B154,B157
+11132,Before Christian era,B155,B158
+11183,19th & 20th centuries,B1561,B1674
+11000,"Early 19th C., to 1860/1870",B1573,B1612
+10803,Later 19th & 20th centuries,B1614,B1674
+11152,French Modern Philosophy,B1801,B2430
+10776,17th century,B1815,B1907
+11171,First period,B188,B258
+10944,18th century,B1911,B2179
+11142,19th century,B2185,B2417
+11031,20th century,B2421,B2430
+11102,"French Philosophy, 21st Century",B2431,B2433
+10891,Germany. Austria German,B2521,B3396
+10991,17th century,B2535,B2611
+10790,18th century,B2615,B2729
+11063,Late 18th–Early 19th C.,B2741,B3177
+10939,Later 19th & 20th centuries,B3178,B3396
+10979,Third period,B335,B491
+54945,"German Philosophy, 21st Century",B3397,B3399
+10905,Greece Modern,B3500,B3515
+10986,Italian Modern Philosophy,B3551,B3656
+10793,17th century,B3571,B3585
+11191,18th century,B3591,B3598
+11140,19th & 20th centuries,B3601,B3656
+11131,Netherlands Low Countries,B3801,B4030
+11118,17th century,B3871,B4000
+10892,18th century,B4005,B4030
+10920,Netherlands Holland,B4041,B4095
+11111,"Dutch Philosophy, 19th–20th Centuries",B4051,B4095.2
+54946,"Belgian Philosophy, 19th–20th Centuries",B4157,B4175.2
+11026,Russian Modern Philosophy,B4201,B4279
+11106,17th & 18th centuries,B4211,B4218
+11062,19th & 20th centuries,B4231,B4279
+10911,Scandinavian Modern Philosophy,B4301,B4495
+10830,Danish Modern Philosophy,B4325,B4395
+10885,19th century,B4345,B4390
+10985,20th century,B4392,B4395
+10994,Norwegian Modern Philosophy,B4411,B4445
+11042,20th century,B4441,B4445
+10817,Swedish Modern Philosophy,B4455,B4495
+11044,17th & 18th centuries,B4461,B4468
+11048,19th century,B4471,B4489
+10836,20th century,B4491,B4495
+10993,Spain & Portugal,B4511,B4598
+10992,Spanish Modern Philosophy,B4561,B4568
+10949,Portuguese Modern Philosophy,B4591,B4598
+11177,Swiss Modern Philosophy,B4625,B4651
+11125,East European Modern Philosophy,B4670,B4875
+11040,Polish Modern Philosophy,B4687,B4691
+11109,Finnish Modern Philosophy,B4711,B4715
+11052,Former Soviet States’ Philosophy,B4721,B4800
+10922,Lithuanian Modern Philosophy,B4741,B4745
+10941,Ukrainian Modern Philosophy,B4751,B4755
+10841,Belarusian Modern Philosophy,B4756,B4760
+10894,Georgian Modern Philosophy,B4761,B4765
+10912,Kazakh Modern Philosophy,B4765.2,B4765.6
+11123,Czechoslovakia. Czech Republic,B4801,B4805
+10926,Hungarian Modern Philosophy,B4811,B4815
+10904,Romanian Modern Philosophy,B4821,B4825
+10947,Bulgarian Modern Philosophy,B4831,B4835
+10856,Yugoslav Modern Philosophy,B4841,B4845
+10978,Croatian Modern Philosophy,B4846.31,B4846.35
+10822,Serbian Modern Philosophy,B4856,B4860
+10934,Slovenian Modern Philosophy,B4866,B4870
+11162,Turkish Modern Philosophy,B4871,B4875
+10893,Terminology,B49,B50
+11126,Asian Modern Philosophy,B5000,B5289.2
+10897,Middle Eastern Modern Philosophy,B5025,B5099
+10847,Israeli Modern Philosophy,B5055,B5059
+11195,Iranian Modern Philosophy,B5070,B5074
+11025,Historiography,B51.4,B51.6
+10846,Southern Asia. Indian Ocean region,B5105,B5149
+10880,Pakistani Modern Philosophy,B5125,B5129
+11043,Indian Modern Philosophy,B5130,B5134
+10930,East & Southeast Asian Philosophy,B5165,B5289
+10796,Communication of information,B52.66,B52.68
+10826,Indonesian Modern Philosophy,B5210,B5214
+11187,Philippine Modern Philosophy,B5220,B5224
+10981,Chinese Modern Philosophy,B5230,B5234
+10800,Japanese Modern Philosophy,B5240,B5244
+10877,Korean Modern Philosophy,B5250,B5254
+10966,Philosophy Reference Topics,B53,B67
+11134,African Modern Philosophy,B5300,B5320
+10795,Northern Africa,B5335,B5364
+10873,Egyptian Modern Philosophy,B5340,B5344
+11175,Algerian Modern Philosophy,B5355,B5359
+11115,Moroccan Modern Philosophy,B5360,B5364
+10924,Sub-Saharan Africa,B5375,B5378
+11107,East African Modern Philosophy,B5385,B5449
+10937,Ethiopian Modern Philosophy,B5405,B5409
+11208,Islands East African Coast,B5460,B5489
+10959,West–Central African Philosophy,B5495,B5619
+10813,Southern African Modern Philosophy,B5625,B5679
+11210,South African Modern Philosophy,B5640,B5644
+10942,Oceanian Modern Philosophy,B5685,B5739
+11061,Australian Modern Philosophy,B5700,B5704
+11181,Regional Oceanian Philosophy,B5700,B5739
+11065,New Zealand Modern Philosophy,B5710,B5714
+11127,Judaism,B5800,B5802
+4538,Philosophy of Religion,B5800,B5802.2
+4509,Medieval Philosophy,B720,B765
+6688,Islamic & Moorish Philosophers,B740,B753
+9974,Jewish philosophers,B755,B759
+7764,European philosophers,B765.A,B765.Z
+4511,Renaissance Philosophy,B770,B785
+9531,Individual philosophers,B781,B785
+4510,Modern Philosophy,B790,B5802
+11182,20th-Century Philosophy,B804.A,B804.Z
+7830,Modern Philosophy Schools,B808,B844
+4528,Phenomenology,B829.5,B829.5
+4510,Modern Philosophy,B850,B5739
+10773,U.S. Modern Philosophy,B850,B948
+11135,Colonial to 1750,B865,B876
+10970,Revolutionary to 1800,B878,B890
+11016,19th & 20th centuries,B893,B945
+10952,Early 19th century to 1860,B901,B931
+10821,21st century,B946,B948
+10806,Canada. British America,B981,B995
+4515,Logic & Reasoning,BC1,BC199
+4517,Logic History,BC11,BC39
+10932,Mathematical Logic,BC131,BC135
+11075,Logic Machines & Systems,BC137,BC138
+11022,Logic for professional classes,BC151,BC161
+11203,Ancient Asian Logic,BC25,BC26
+11190,Ancient Logic,BC25,BC32
+11073,Grecian,BC28,BC29
+11028,Medieval Logic,BC34,BC35
+11099,Modern Logic,BC38,BC39
+8148,Deductive logic,BC60,BC78
+4516,Logic Textbooks,BC60,BC99
+8093,Inductive & empirical logic,BC80,BC99
+9591,Introduction to philosophy,BD10,BD28
+4545,General philosophical works,BD10,BD41
+4487,Philosophy,BD10,BD701
+4492,Epistemology & Knowledge,BD143,BD237
+10853,Sociology of Knowledge,BD175,BD175.5
+4518,Epistemological Methods,BD239.2,BD265
+7387,Mind,BD418,BD418.8
+11103,"Philosophy of Mind, 1801–",BD418.3,BD418.5
+7920,"Soul, Spirit & Immortality",BD419,BD428
+6562,Life,BD430,BD435
+7086,Death,BD443.8,BD445
+4489,Philosophical Cosmology,BD493,BD701
+8549,"Teleology, Causation & Purpose",BD530,BD595.2
+10969,Cause and effect,BD591,BD595
+8016,"Space, time, matter & motion",BD620,BD655
+4544,Metaphysics & Ontology,BD95,BD131
+3309,Psychical Research,BF1001,BF1008
+3309,Psychical Research,BF1001,BF1045
+3310,Parapsychology & Occultism,BF1001,BF1389
+3309,Psychical Research,BF1009,BF1018
+8331,Psychical Research,BF1026,BF1027
+8401,Psychical Research History,BF1028,BF1028.5
+8829,Psychical Research Reports,BF1029,BF1030
+3309,Psychical Research,BF1031,BF1038
+3306,Hallucinations. Illusions,BF1048,BF1063
+7398,"Hallucination Studies, 1801–",BF1051,BF1058
+10869,Sleep. Somnambulism,BF1068,BF1073
+11179,Dreaming,BF1074,BF1099
+10903,Visions,BF1100,BF1108
+10811,"Visionary Experiences, 1801–",BF1101,BF1108
+4512,Hypnosis & Mesmerism,BF1111,BF1156
+9792,Hypnotist,BF1127.A1,BF1127.Z
+4547,Telepathy,BF1161,BF1171.2
+11007,"Psychology, 1851–",BF121,BF149.5
+3314,Spiritualism,BF1227.2,BF1389
+3314,Spiritualism,BF1251,BF1261.2
+7599,Mediumship. Psychometry. Channeling,BF1281,BF1315
+11178,Spirit Messages,BF1290,BF1315
+6632,Automatism & ESP,BF1321,BF1353
+10956,Clairvoyance,BF1325,BF1335
+9546,Psychokinesis,BF1371,BF1389.Z
+13827,Occultism Reference,BF1403.2,BF1409
+13827,Occultism Reference,BF1410,BF1418
+11085,Occultism History,BF1420.2,BF1429
+13828,Regional & Special Topics,BF1434,BF1442.Z
+3298,Ghosts & Hauntings,BF1444,BF1486
+6983,Haunted houses,BF1475,BF1475.2
+11147,Mind & Body,BF150,BF172
+3296,Demonology,BF1501,BF1562
+9037,Satanism,BF1546,BF1550.2
+3303,Witchcraft,BF1562.5,BF1584
+11124,U.S. Witchcraft,BF1573,BF1578
+9682,Regional Witchcraft,BF1573,BF1584
+3300,Magic & Shamanism,BF1585,BF1623
+9825,Magician & Hermetic,BF1597,BF1598
+3295,Astrology,BF1651,BF1729
+8930,Astrology History,BF1671,BF1679
+7334,Astrology,BF1679.8.A1,BF1679.8.Z
+5431,Psychoanalysis,BF173,BF175.5
+3301,Oracles & Divination,BF1745,BF1779
+9342,General & History,BF1750,BF1773
+3302,Seers & Prophecy,BF1783,BF1815
+9810,General & History,BF1790,BF1798
+5401,Experimental,BF180,BF198.72
+5401,Experimental,BF181,BF188
+3297,Fortune-telling,BF1845,BF1891
+5401,Experimental,BF191,BF198
+13829,Miscellaneous Occult Studies,BF1995,BF1999
+3299,Human–Alien Contact,BF2050,BF2055
+5454,Psychoactive Substances,BF209.A,BF209.Z
+5456,Sensation,BF231,BF299
+11170,Motor Learning,BF295,BF295.5
+11170,Motor Learning,BF295.4,BF295.5
+5389,Cognition,BF309,BF318.9
+5389,Cognition,BF309,BF499
+12874,"Learning, Attention & Apperception",BF319,BF334.9
+12875,"Habit, Adjustment & Nature–Nurture",BF335,BF364.9
+12876,Idea Association & Recall,BF365,BF407.9
+10805,Memory,BF370,BF387
+11019,Psychometrics,BF39,BF39.2
+5653,Research & Assessment,BF39,BF80
+12877,Creative Thinking,BF408,BF454.9
+7535,Psychology & Other Fields,BF41,BF64.32
+7018,Intelligence,BF431,BF433.2
+13040,Thinking,BF441,BF442.9
+9977,Thought & Reasoning,BF441,BF449.5
+13041,Abstraction & Conceptualization,BF443,BF443.9
+13042,Reasoning & Judgment,BF444,BF449.5
+12878,Psycholinguistics & Synesthesia,BF455,BF499
+5413,Motivation,BF501,BF505
+5398,Emotions,BF531,BF593
+11008,Emotional Intelligence & Testing,BF576,BF576.8
+10810,Expression of the emotions,BF585,BF593
+5461,"Will, Choice & Self-Control",BF608,BF635
+6262,Freedom of the will,BF620,BF628
+11206,Counseling Psychology,BF636.5,BF636.7
+5423,New Thought & Mental Training,BF638,BF648
+5423,New Thought & Mental Training,BF639,BF641
+7967,New Thought,BF648.A1,BF648.Z
+5388,Human–Animal Psychology,BF660,BF685
+7276,"Comparative Psychology, 1871–",BF671,BF678
+5433,Sexual Behavior,BF692,BF692.52
+5433,Sexual Behavior,BF692.3,BF692.35
+5396,Individual Differences,BF697,BF697.5
+5425,Personality,BF697,BF698.9
+5425,Personality,BF698,BF698.9
+7487,Personality Types,BF698.3,BF698.35
+10889,Personality testing,BF698.5,BF698.8
+5403,Genetic psychology,BF699,BF711
+5403,Genetic psychology,BF700,BF708
+5391,Developmental,BF712,BF724.9
+10799,Assessment & Tests,BF719.6,BF719.65
+10964,Infant Psychology,BF720.A,BF720.Z
+10989,Child psychology,BF721,BF721.99
+11033,Child Psychology Theory,BF722,BF722.35
+10935,Assessment & Tests,BF722.3,BF722.35
+10989,Child psychology,BF722.36,BF723
+10774,Adolescence. Youth,BF724.3.A,BF724.3.Z
+11002,Adulthood,BF724.5,BF724.85
+11037,Middle age,BF724.6,BF724.65.Z
+10923,Old age,BF724.8,BF724.85
+10808,Writing & Communication,BF76.7,BF76.8
+10833,Evidence,BF761,BF768
+5459,Temperament,BF795,BF811
+5407,History,BF81,BF107
+5386,Character,BF821,BF838
+5428,Physiognomy,BF839.8,BF861
+5428,Physiognomy,BF840,BF858
+5427,Phrenology,BF866,BF885
+6477,Phrenology,BF869.A1,BF869.Z
+5427,Phrenology,BF870,BF878
+5405,Graphology,BF889,BF905
+5405,Graphology,BF890,BF898
+3274,Palmistry,BF910,BF928
+3274,Palmistry,BF910,BF940
+11215,Aesthetics,BH1,BH301
+11120,Ancient Eastern Aesthetics,BH101,BH102
+10881,Ancient Greek Aesthetics,BH108,BH109
+10874,17th century,BH171,BH178
+11068,18th century,BH181,BH188
+10858,19th century,BH191,BH198
+10782,20th century,BH201,BH208
+11108,Aesthetic Theory & Methods,BH39,BH42.25
+9087,Ancient Aesthetics,BH90,BH116
+4494,Ethics,BJ1,BJ1725
+11194,China & Japan,BJ116,BJ118
+4501,Religious Ethics,BJ1188,BJ1295
+9273,Christian ethics,BJ1188.5,BJ1278.5
+11039,Christian Ethics History,BJ1201,BJ1238
+10997,Indian Ethics History,BJ121,BJ123
+11119,Modern Christian Ethics,BJ1221,BJ1231
+7975,Jewish ethics,BJ1279,BJ1287
+11136,Modern Jewish Ethics,BJ1283,BJ1285
+8851,Islamic ethics,BJ1291,BJ1292.Z
+4504,Good & Evil,BJ1296,BJ1517.9
+4496,Evolutionary & Genetic Ethics,BJ1298,BJ1335
+11074,Near East,BJ130,BJ149
+11024,Persia. Iran,BJ141,BJ143
+4499,Character & Virtue Ethics,BJ1518,BJ1534.99
+8238,Vices,BJ1535.A,BJ1535.Z
+4499,Character & Virtue Ethics,BJ1536,BJ1697.2
+11053,Greece & Rome,BJ160,BJ224
+10862,Gentlemen & Courtiers’ Ethics,BJ1600,BJ1608
+11144,Feminine Virtues,BJ1609,BJ1610
+10925,English & American,BJ1611,BJ1611.2
+10980,Success,BJ1611,BJ1618
+11100,Ethics for children,BJ1631,BJ1638
+10999,Boys,BJ1641,BJ1648
+11066,Girls,BJ1651,BJ1658
+10887,Youth Ethics,BJ1661,BJ1668
+11096,Young men,BJ1671,BJ1678
+11023,Young women,BJ1681,BJ1688
+11202,Social Group Ethics,BJ1724.2,BJ1725
+4539,Etiquette,BJ1801,BJ2195
+10938,First Period to c. 450 BC,BJ181,BJ184
+10801,Second Period to c. 300 BC,BJ191,BJ194
+10798,Religious etiquette,BJ2010,BJ2019.5
+10854,Christian Etiquette,BJ2018,BJ2019
+4540,Hosting Etiquette,BJ2021,BJ2078
+11097,Weddings,BJ2051,BJ2065
+6724,Etiquette of special occasions,BJ2051,BJ2078
+11017,Card etiquette. Stationery,BJ2081,BJ2095
+11196,Etiquette of letter-writing,BJ2100,BJ2115
+11133,"Letter-Writing Etiquette, 1801–",BJ2101,BJ2108
+11205,Greco-Roman. Roman ethics,BJ211,BJ214
+11077,Etiquette of conversation,BJ2120,BJ2128
+11036,"Conversation Etiquette, 1801–",BJ2121,BJ2128
+11145,Medieval Ethics,BJ251,BJ255.A3
+10943,U.S. Ethics History,BJ351,BJ354
+10906,Canadian Ethics History,BJ401,BJ404
+10950,Modern 1700- ,BJ411,BJ414
+10950,Modern 1700- ,BJ421,BJ424
+10950,Modern 1700- ,BJ431,BJ434
+10950,Modern 1700- ,BJ441,BJ444
+10950,Modern 1700- ,BJ451,BJ454
+10950,Modern 1700- ,BJ461,BJ464
+10950,Modern 1700- ,BJ471,BJ474
+10950,Modern 1700- ,BJ481,BJ484
+10950,Modern 1700- ,BJ491,BJ494
+10950,Modern 1700- ,BJ501,BJ504
+10950,Modern 1700- ,BJ511,BJ514
+10950,Modern 1700- ,BJ521,BJ524
+10950,Modern 1700- ,BJ531,BJ534
+10950,Modern 1700- ,BJ541,BJ544
+10950,Modern 1700- ,BJ551,BJ554
+10950,Modern 1700- ,BJ561,BJ564
+10950,Modern 1700- ,BJ591,BJ594
+10950,Modern 1700- ,BJ595,BJ598
+10884,British Ethics History,BJ601,BJ604
+10908,Scottish Ethics History,BJ651,BJ654
+10971,French Ethics History,BJ701,BJ704
+4498,Ethics History,BJ71,BJ982
+11070,German Ethics History,BJ751,BJ754
+10950,Modern 1700- ,BJ756,BJ759
+10950,Modern 1700- ,BJ761,BJ764
+10950,Modern 1700- ,BJ801,BJ804
+10950,Modern 1700- ,BJ805,BJ808
+10918,Italian Ethics History,BJ811,BJ814
+10950,Modern 1700- ,BJ821,BJ824
+10950,Modern 1700- ,BJ831,BJ834
+10950,Modern 1700- ,BJ841,BJ844
+10950,Modern 1700- ,BJ847,BJ850
+11204,Russia. Soviet Union,BJ851,BJ854
+10950,Modern 1700- ,BJ861,BJ864
+10950,Modern 1700- ,BJ871,BJ874
+10950,Modern 1700- ,BJ881,BJ884
+10950,Modern 1700- ,BJ891,BJ894
+10950,Modern 1700- ,BJ901,BJ904
+10950,Modern 1700- ,BJ911,BJ914
+10950,Modern 1700- ,BJ921,BJ924
+10950,Modern 1700- ,BJ941,BJ944
+10950,Modern 1700- ,BJ951,BJ954
+10988,Asian Ethics History,BJ961,BJ964
+11094,Chinese Ethics History,BJ965,BJ968
+10871,Japanese Ethics History,BJ969,BJ972
+10900,Korean Ethics History,BJ973,BJ976
+11079,Ethical Theory & Methods,BJ983,BJ1179
+2725,Medicine,R129,R130.52
+2728,Medical History & Expeditions,R131,R687
+13660,General Medical Reference,R5,R130.5
+2737,Medical Profession,R690,R697
+9506,Minorities in medicine,R693,R696
+2736,Medical Humanities,R702,R703
+9142,Famous Patient Case Studies,R703,R703.22
+13661,Physicians’ Personal Life,R707,R707.4
+13662,Medical Directories,R711,R713.97
+2738,Medical Missions,R722,R722.32
+8482,Medical Missions,R722.3,R722.32
+2731,Medical Philosophy & Ethics,R723,R726
+9496,Medicine & Religion,R725.55,R725.59
+2735,Health Psychology,R726.5,R726.8
+2730,Physicians & the Public,R727,R727.5
+6854,Physician–Patient Relations,R727.3,R727.45
+2739,Medical Practice,R728,R728.8
+2739,Medical Practice,R728,R733
+8729,Corporate Medical Practice,R728.2,R728.25
+9120,Physician Fees & Income,R728.5,R728.6
+2729,Medical Education,R735,R854
+6974,Regional Medical Education,R741,R832.5
+9909,Teaching techniques,R834,R837.8
+7986,Premedical education,R837.8,R838
+7087,Medical School Admissions,R838.4,R838.5
+2734,Medical technology,R855,R855.5
+2726,Biomedical Engineering,R856,R857
+2727,Medical Informatics,R858,R859.7
+2727,Medical Informatics,R858.A3,R858.Z
+2727,Medical Informatics,R859,R859.2
+13663,Medical Labs & Institutes,R860,R862
+2733,Medical records,R864,R864
+13664,Medical Museums & Exhibitions,R871,R891
+2732,Medical Physics,R895,R920
+2840,Public aspects of medicine,RA1,RA1270
+2844,Medicine & the state,RA1,RA418.5
+7412,Government health agencies,RA10,RA388.2
+9406,Hospices,RA1000,RA1000.5
+2841,Forensic & Legal Medicine,RA1001,RA1171
+2841,Forensic & Legal Medicine,RA1011,RA1012
+2841,Forensic & Legal Medicine,RA1018.5,RA1018.56
+7793,Forensic Medicine History,RA1021,RA1025
+9813,Forensic Physician,RA1025.A,RA1025.Z
+2841,Forensic & Legal Medicine,RA1027,RA1027.5
+2841,Forensic & Legal Medicine,RA1027.8,RA1027.9
+2841,Forensic & Legal Medicine,RA1032,RA1038
+2841,Forensic & Legal Medicine,RA1042,RA1042.2
+2841,Forensic & Legal Medicine,RA1050,RA1051
+7462,Forensic genetics,RA1057.5,RA1057.55
+7135,Forensic Biological Evidence,RA1061,RA1061.6
+10054,Death Certification & Diagnosis,RA1063,RA1063.45
+8455,Forensic obstetrics,RA1064,RA1067
+8628,Asphyxia,RA1071,RA1082.2
+9248,Assault and battery,RA1122,RA1122.5
+9332,Suicide,RA1136,RA1137
+8591,"Sexual offenses, diseases, etc.",RA1141,RA1141.5
+9316,Forensic psychiatry,RA1151,RA1152
+2846,Toxicology,RA1190,RA1270
+6935,Communication in toxicology,RA1193.3,RA1193.4
+7994,Toxicology History,RA1195,RA1197
+2846,Toxicology,RA1197.5,RA1197.52
+2846,Toxicology,RA1198,RA1198.3
+8581,Research & Experiments,RA1199,RA1199.5
+2846,Toxicology,RA1201,RA1211
+2846,Toxicology,RA1215.5,RA1215.52
+8114,Chemical toxicology,RA1219.3,RA1220.5
+8657,Poison Detection,RA1221,RA1223.Z
+10031,Genetic toxicology,RA1224.3,RA1224.4
+7111,Industrial toxicology,RA1229,RA1229.5
+7042,Specific Poisons,RA1230,RA1270
+9876,Medical Missions & Aid,RA390.A2,RA390.Z
+8528,National Health Policy,RA395.A,RA395.Z
+9738,Medical Training Regulation,RA396.A,RA396.Z
+7955,Health Professional Licensing,RA398.A,RA398.Z
+9236,Medical Practice Regulation,RA399,RA399.5
+6462,Pharmaceutical policy,RA401.A,RA402
+7864,Reporting cases of sickness,RA404.A,RA404.Z
+9461,Death Certification,RA405.A,RA405.Z
+8001,Health Statistics & Surveys,RA407,RA409.5
+8415,Health Economics,RA410,RA410.9
+8367,Personal Medical Care Provision,RA411,RA416.5
+9889,Social Medicine & Medical Sociology,RA418,RA418.5
+2845,Public Health,RA421,RA790.95
+6161,Public Health,RA424.4,RA424.5
+6152,Public Health Study & Reference,RA424.8,RA425
+6165,Medical Screening,RA427.5,RA427.5.Z
+6168,Public Health Labs & Institutes,RA428,RA428.5
+6152,Public Health Study & Reference,RA437,RA438
+6171,Public Health Teaching,RA440,RA440.8
+6172,Research & Experimentation,RA440.85,RA440.87
+6176,Public Health by Region,RA442,RA558.2
+6177,Public Health by Ethnic Group,RA561,RA563
+6178,Public Health by Age & Class,RA564.2,RA564.9
+2603,Environmental Health,RA565,RA600
+6179,Food Supply & Public Health,RA601,RA602
+6180,Public Baths & Toilets,RA605,RA607
+6181,Transport & Public Health,RA615,RA615.5
+6155,Environmental & Community Health,RA616,RA616.2
+6182,Disposal of the Dead,RA619,RA637
+6184,Transmission of Disease,RA639,RA642
+6185,Public Health: Communicable Disease,RA643,RA644
+6156,"Prevention, Immunity & Disease",RA644.3,RA644.38
+6186,Noninfectious Public Health,RA644.5,RA645
+6187,Home Health Care Services,RA645.3,RA645.37
+2540,Emergency Medical Services,RA645.5,RA645.9
+6188,War & Public Health,RA646,RA648.3
+2604,Epidemiology,RA648.5,RA654
+6189,"Land, Maritime & Air Quarantine",RA655,RA758
+2844,Medicine & the state,RA7,RA7.8
+6190,Disinfection & Decontamination,RA761,RA767
+6193,Rural Health & Services,RA771,RA771.7
+53231,Personal Health,RA773,RA780.99
+53232,Exercise & Physical Wellness,RA781,RA785.99
+53233,Sleep & Rest,RA786,RA788
+6195,Mental Illness Prevention,RA790,RA790.95
+2843,Medical Geography,RA792,RA792.5
+9633,Medical tourism,RA793.5,RA794
+7772,World Health Organization,RA8.A,RA8.Z
+7870,Regional Medical Geography,RA801,RA954.22
+2842,Hospitals & Clinics,RA962,RA962.12
+8567,Medical Centers & Clinics,RA966,RA966.2
+6826,Healthcare Buildings,RA967,RA969.95
+8806,Hospital Administration,RA971,RA971.85
+7091,Nonclinical Hospital Staff,RA972.5,RA972.55
+9107,Hospital Outpatient Care,RA974,RA974.5
+13759,Special Types of Hospitals,RA975.A,RA975.Z
+9148,Medical Records Administration,RA976,RA976.5
+2842,Hospitals & Clinics,RA976.9,RA978
+9028,Regional Hospitals,RA980,RA993.5
+7940,Ambulance service,RA995,RA996
+6649,Aeronautics in medicine,RA996.5,RA996.56
+9780,Long-Term Care Facilities,RA997,RA999
+2801,Pathology,RB1,RB214
+6523,Pain Medicine,RB127,RB127.5
+2803,Manifestations of disease,RB127,RB150
+2803,Manifestations of disease,RB137,RB138
+7246,Growth Disorders,RB140,RB140.5
+7058,Circulation & Fluid Disorders,RB144,RB144.5
+8609,Disorders of metabolism,RB147,RB147.5
+9486,Environmental Diseases,RB152.5,RB152.7
+8999,"Infection, Immunity & Germ Theory",RB153,RB154
+8827,Medical Genetics,RB155,RB155.8
+9200,Disease Risk Factors,RB208.2,RB214
+2804,Anatomical Pathology,RB24,RB25
+2804,Anatomical Pathology,RB24,RB33
+9999,Microscopy & Cytodiagnosis,RB43,RB43.6
+8409,Molecular diagnosis,RB43.7,RB43.8
+9334,Immunodiagnosis,RB46.5,RB46.7
+7426,Examination for drugs,RB56,RB56.5
+2707,Internal Medicine,RC1,RC70.99
+8946,Submarine medicine,RC1000,RC1020
+7305,Diseases due to physical agents,RC102,RC103
+2707,Internal Medicine,RC103.1,RC108.99
+2717,Specialized Internal Medicine,RC1030,RC1035
+7960,Automotive medicine,RC1040,RC1045
+6970,Aviation medicine,RC1050,RC1097
+2710,Infectious & Parasitic Disease,RC109,RC216
+2710,Infectious & Parasitic Disease,RC110,RC110.2
+9139,Space medicine,RC1120,RC1160
+8675,Virus & rickettsial diseases,RC114,RC114.7
+8529,Bacterial diseases,RC115,RC116
+9044,Mycotic diseases,RC117.A,RC117.Z
+9899,Spirochetal & Protozoan Disease,RC118,RC118.7
+9331,Parasitic diseases,RC119,RC119.7
+9622,Individual diseases,RC120,RC216
+2853,Sports Medicine,RC1200,RC1245
+2707,Internal Medicine,RC216.1,RC253.99
+2712,Tumors & Oncology,RC254,RC260.99
+2712,Tumors & Oncology,RC254,RC282
+2712,Tumors & Oncology,RC256,RC257
+53244,"Cancer Foundations, History &",RC261,RC267.99
+6749,Cancer,RC261,RC271
+53245,"Cancer Prevention, Genetics & Carcinogenesis",RC268,RC269.99
+53246,Cancer Diagnosis & Treatment,RC270,RC271
+2712,Tumors & Oncology,RC272,RC275.99
+9524,Regional Cancer Studies,RC276,RC279
+9658,Oncology,RC279.5,RC279.6
+2712,Tumors & Oncology,RC280,RC282
+8585,Cancer by Population,RC281.A,RC281.Z
+2707,Internal Medicine,RC282.1,RC305.99
+2719,Tuberculosis,RC306,RC320.5
+2719,Tuberculosis,RC306.5,RC306.52
+9352,Hospitals & Clinics,RC309,RC309.5
+2707,Internal Medicine,RC31,RC69
+2719,Tuberculosis,RC310.5,RC311
+8046,Regional Tuberculosis,RC313,RC320
+2707,Internal Medicine,RC320.6,RC433.99
+50829,General & Clinical Foundations,RC321,RC330.Z
+50829,General & Clinical Foundations,RC332,RC336.Z
+9435,Research & Experiments,RC337,RC337.9
+6666,Neuroscience History,RC338,RC339
+9398,Neuroscience,RC339.5,RC339.52
+50829,General & Clinical Foundations,RC340,RC343.29
+50829,General & Clinical Foundations,RC343.4,RC345.Z
+53215,Neurological Examination & Treatment,RC346,RC359.99
+53216,Central Nervous System Diseases,RC360,RC408.99
+53217,Peripheral Nerve Disorders,RC409,RC422.99
+53218,Communication & Speech Disorders,RC423,RC429.2
+2837,Psychiatry,RC434.2,RC511.99
+2837,Psychiatry,RC434.2,RC574
+53463,History of Psychiatry,RC438,RC438.6
+53464,Geriatric Psychiatry,RC451.4.A5,RC451.4.A5
+53465,Social & Community Psychiatry,RC455,RC455.4.Z
+5450,Counseling,RC466,RC466.3
+5651,Clinical Psychology,RC466.8,RC467.97
+53466,Psychiatric Diagnosis,RC469,RC473
+5448,Psychotherapy,RC475,RC489.2
+13605,Psychiatric Drug Therapy,RC483,RC483.5
+13606,Shock therapy,RC483.9,RC485.5
+5451,Couples & Family,RC488.5,RC488.8
+13608,Other Psychotherapy Topics,RC489.A,RC489.Z
+2716,Psychosomatic medicine,RC49,RC52
+2541,Hypnotherapy,RC490,RC499
+5431,Psychoanalysis,RC500,RC510
+5434,Psychopathology,RC512,RC528
+5434,Psychopathology,RC512,RC569.5
+5447,Schizophrenia,RC514,RC514
+5439,Bipolar Disorder,RC516,RC516
+12663,Dementia & Alzheimer’s Disease,RC521,RC524
+5434,Psychopathology,RC530,RC552
+5436,Anxieties & Phobias,RC531,RC531
+5440,Obsessive-Compulsive Disorders & Behavior,RC533,RC533
+5436,Anxieties & Phobias,RC535,RC535
+5441,Depression & Mood Disorders,RC537,RC545
+12667,Sleep Disorders,RC547,RC549.3
+5434,Psychopathology,RC552.A,RC552.Z
+5445,Personality Disorders,RC554,RC555
+5434,Psychopathology,RC554,RC569.5
+12671,Sexuality & Sexual Health,RC556,RC560
+5435,Addiction & Substance Use,RC563,RC568
+12673,Suicide & Suicidal Behavior,RC569,RC569
+2837,Psychiatry,RC569.6,RC574
+53469,Developmental Disabilities,RC569.7,RC574
+2707,Internal Medicine,RC574.1,RC951.99
+13176,Immunologic Diseases—General,RC581,RC599.9
+13177,Autoimmune Diseases,RC600,RC605.9
+13178,Immunodeficiency Diseases,RC606,RC607.99
+53305,Nutritional Diseases,RC620,RC627
+6628,Deficiency diseases,RC623.5,RC623.7
+2602,Endocrinology & Metabolism,RC627.5,RC632
+6558,Obesity,RC628,RC628.5
+6833,Gout,RC629,RC629.5
+2694,Hematology,RC633,RC647
+2602,Endocrinology & Metabolism,RC648,RC665.2
+2557,Cardiology,RC666,RC701.2
+2655,Respiratory,RC705,RC779
+2709,Internal Medicine Diagnosis,RC71,RC78.7
+2709,Internal Medicine Diagnosis,RC71.2,RC71.22
+7440,Pain Diagnostic significance,RC73,RC73.2
+53152,Respiratory Diagnosis,RC733,RC734
+9224,Apnea,RC737,RC737.5
+7846,Diseases of the lungs,RC756,RC776
+9014,Physical diagnosis,RC76,RC76.5
+7489,Electrodiagnosis,RC77,RC77.5
+8241,Radiography,RC78,RC78.5
+2707,Internal Medicine,RC78.71,RC80.99
+2610,Gastroenterology,RC799,RC869
+53153,Digestive-System Diagnosis,RC803,RC805
+2714,Popular medicine,RC81,RC82
+2714,Popular medicine,RC81.A3,RC81.Z
+6564,Stomatology,RC815,RC815.6
+9198,Stomach & Duodenal Diseases,RC816,RC840.2
+2707,Internal Medicine,RC82.1,RC85.99
+9529,Hepatobiliary & Pancreatic Diseases,RC845,RC858
+2711,Medical Emergencies & Critical Care,RC86,RC88.9
+6538,Diseases of the intestines,RC860,RC862.2
+8283,Proctology,RC864,RC866
+2907,Urology,RC870,RC923.2
+2707,Internal Medicine,RC88.91,RC90.99
+2708,Environmental Disease,RC91,RC103
+2653,Musculoskeletal,RC924,RC935
+9564,Rheumatism,RC927,RC927.5
+10021,Radiation-Induced Diseases,RC93,RC95
+7122,Diseases of bones & joints,RC930,RC935
+53306,Diseases by Body Region,RC936,RC951
+2717,Specialized Internal Medicine,RC952,RC1245
+2612,Geriatrics,RC952,RC954.6
+8722,Polar & Circumpolar Medicine,RC955,RC958
+2906,Tropical Medicine,RC960,RC962
+8195,Industrial medicine,RC963,RC969.2
+2742,Military Medicine,RC970,RC971
+7704,Naval medicine,RC981,RC986
+2854,Surgery,RD1,RD811
+2873,Plastic & Reparative Surgery,RD118,RD120.5
+9721,Cosmetic surgery,RD119,RD119.5
+2883,Transplant Surgery,RD120.6,RD129.8
+7349,Skin,RD121,RD121.5
+9959,Bone,RD123,RD123.5
+8698,Tissue & Organ Banks,RD127,RD128.5
+2865,Military & naval surgery,RD151,RD498
+8656,Military Surgery by Country,RD200,RD498
+2869,Operative Surgery Techniques,RD32,RD33.9
+8190,Hemorrhage & hemostasis,RD33.3,RD33.35
+6275,Interventional radiology,RD33.55,RD33.57
+2876,Surgery by Body Part,RD520,RD599.5
+9319,Head & neck,RD521,RD531
+8497,Spine,RD533,RD533.5
+8269,Thoracic Surgery,RD535.7,RD539.5
+6954,Abdominal & Digestive Surgery,RD540,RD548.2
+8731,Pelvis. Hip,RD549,RD549.5
+9217,Extremities,RD551,RD563
+6798,Urological Surgery,RD571,RD592
+7645,Neurosurgery,RD592.5,RD596
+7877,Cardiovascular system,RD597,RD598.7
+7877,Cardiovascular system,RD598,RD598.35
+7877,Cardiovascular system,RD598.5,RD598.7
+9593,Endocrine glands,RD599,RD599.5
+2868,Operating Rooms & Equipment,RD63,RD76
+2866,Surgical Oncology,RD651,RD678
+8084,Head & neck,RD661,RD663
+9238,Chest,RD667,RD667.3
+9516,Abdomen,RD668,RD669
+2866,Surgical Oncology,RD676,RD678
+2860,Musculoskeletal Surgery,RD680,RD688
+2871,Orthopedic Surgery,RD701,RD811
+10043,Hospitals,RD705,RD706
+6551,Orthopedic Surgery History,RD725,RD726
+6889,Orthopedic Surgery,RD727,RD728
+9663,Orthopedic Diagnosis,RD734,RD734.5
+8171,Orthopedic Equipment,RD755,RD757.Z
+8848,Deformities & disorders,RD761,RD789
+2856,Anesthesiology,RD78.3,RD87.3
+2856,Anesthesiology,RD78.6,RD78.62
+6459,Anesthesiology History,RD79,RD80.5
+7671,Physical rehabilitation,RD792,RD811
+9766,Anesthesiology,RD80.6,RD80.62
+8407,Accidents & complications,RD82.5,RD82.7
+8841,Anesthetics,RD86.A,RD86.Z
+9074,High-Risk Anesthesia,RD87,RD87.3
+5784,General & Operative Surgery,RD91,RD91.5
+2861,Emergency & Trauma Surgery,RD92,RD97.8
+6933,Regional Emergency Surgery,RD93.8,RD93.9
+7428,Wounds by Type & Cause,RD96,RD97.8
+2878,Surgical complications,RD98,RD98.4
+2879,Surgical nursing,RD99,RD99.35
+2780,Ophthalmology,RE1,RE994
+2788,Particular diseases of the eye,RE321,RE322
+7496,Diseases of the cornea,RE336,RE340
+7657,Uveal Diseases,RE350,RE355
+9890,Diseases of the retina,RE551,RE661
+2783,Eye Examination,RE75,RE79
+2784,Eye surgery,RE80,RE87
+8106,Anesthesia in ophthalmology,RE82,RE83
+2782,Color Vision Testing,RE918,RE921
+2789,Eye Refraction & Focus Disorders,RE925,RE939
+8714,Tests for refraction,RE927,RE929
+2787,Optometry & Eyeglasses,RE939.2,RE981
+2787,Optometry & Eyeglasses,RE945,RE946
+9313,Optometry Practice,RE959.3,RE959.5
+7607,Eyeglasses. Lenses,RE976,RE981
+2781,Ocular Prostheses,RE986,RE988
+2785,Ocular therapeutics,RE991,RE992
+2795,Otolaryngology,RF1,RF547
+2797,Otology,RF110,RF111
+2797,Otology,RF120,RF121
+6759,Ear Examination,RF123,RF123.5
+9934,Surgical Techniques,RF126,RF127
+9255,External Ear Diseases,RF175,RF200
+6541,Diseases of the middle ear,RF220,RF229
+7298,Inner Ear Diseases,RF260,RF275
+9821,Audiology & Hearing Disorders,RF286,RF320
+2798,Rhinology & Sinonasal Diseases,RF348,RF349
+6995,Rhinitis & Common Colds,RF361,RF361.22
+6269,Paranasal Sinus Diseases,RF421,RF425
+7433,Pharynx & Tonsil Diseases,RF481,RF499
+8684,Larynx & Trachea Diseases,RF510,RF540
+2613,Gynecology & Obstetrics,RG1,RG991
+2619,Operative gynecology,RG104,RG104.7
+2615,Fertility & Birth Control,RG133,RG137.6
+2617,Endocrine & Systemic Gynecology,RG159,RG208
+53155,Menstruation & Menopause,RG161,RG186
+8216,Infertility in women,RG201,RG205
+10012,Hyperandrogenism,RG207.5,RG208
+6895,Gynecological Diagnosis,RG304,RG304.5
+6402,Diseases of the cervix uteri,RG310,RG314
+6380,Female Genital Abnormalities,RG321,RG363
+9623,Surgery & Endoscopy,RG390,RG391
+2622,Urogynecology & Obstetric Urology,RG484,RG485
+2616,Diseases of the breast,RG491,RG499
+8179,Breast Disease Diagnosis,RG493,RG496
+6503,Hospitals & Clinics,RG500,RG501
+2618,Obstetrics,RG503,RG503.2
+2618,Obstetrics,RG504,RG505
+2618,Obstetrics,RG507,RG508
+6973,Obstetrics,RG509,RG510
+6228,Obstetrics History,RG511,RG518
+2618,Obstetrics,RG521,RG524
+7123,Obstetric Diagnosis,RG527,RG527.5
+9499,Statistics & surveys,RG530,RG530.3
+8429,Pregnancy,RG551,RG586
+7314,"Embryos, Fetuses & Perinatology",RG600,RG650
+9188,Childbirth,RG651,RG721
+9239,Obstetric Surgery,RG725,RG791
+7858,Puerperal state,RG801,RG871
+8532,Maternal & Prenatal Care,RG940,RG991
+2809,Pediatrics,RJ1,RJ49.99
+2810,Child Health,RJ101,RJ104.2
+8091,Child Health by Population,RJ101.2,RJ101.5
+9063,Regional Child Health,RJ102,RJ103
+2809,Pediatrics,RJ104.3,RJ124.99
+2820,Pediatric Physiology,RJ125,RJ137
+8228,Growth & development,RJ131,RJ137
+2809,Pediatrics,RJ138,RJ205.99
+8847,Girls,RJ144,RJ145
+2819,Child & Adolescent Nutrition,RJ206,RJ235
+2809,Pediatrics,RJ236,RJ244.99
+2814,Hospital care,RJ242,RJ243
+2818,Pediatric Nursing,RJ245,RJ247
+2809,Pediatrics,RJ248,RJ249.99
+2821,Premature infants,RJ250,RJ250.3
+2809,Pediatrics,RJ250.31,RJ250.99
+2817,Newborn infants,RJ251,RJ325
+7073,Care & therapeutics,RJ253,RJ253.7
+9497,Diseases & abnormalities,RJ254,RJ320
+2809,Pediatrics,RJ326,RJ369.99
+2811,Pediatric Diseases,RJ370,RJ520
+2813,Genetic aspects,RJ47.3,RJ47.4
+2811,Pediatric Diseases,RJ499,RJ500.99
+2812,Pediatric Diagnosis,RJ50,RJ51
+9052,Regional Childhood Disease,RJ501,RJ502
+2811,Pediatric Diseases,RJ502.01,RJ503.99
+9967,Childhood Disease Diagnosis,RJ503.5,RJ503.7
+10044,Child psychotherapy,RJ504,RJ505
+2811,Pediatric Diseases,RJ505.01,RJ507
+2823,Therapeutics,RJ52,RJ53
+2809,Pediatrics,RJ521,RJ570
+2809,Pediatrics,RJ54,RJ58.99
+2816,Infant Illness & Mortality,RJ59,RJ60
+2809,Pediatrics,RJ61,RJ100.99
+2563,Dentistry,RK1,RK715
+8582,Oral Disease Diagnosis,RK308,RK310
+8792,Therapeutics,RK318,RK320
+10046,Enamel & Dentin Diseases,RK340,RK341
+2567,Endodontics,RK351,RK356
+8233,Periodontal Diseases,RK361,RK450
+8252,Oral Injuries,RK490,RK493
+2568,Restorative Dentistry,RK501,RK519
+2568,Restorative Dentistry,RK506,RK508
+6730,Anesthesia in dentistry,RK510,RK513
+9741,Fillings. Inlays,RK517,RK519
+2572,Orthodontics,RK520,RK528
+7260,Therapies & appliances,RK527,RK528
+2569,Oral Surgery,RK529,RK535
+8941,Tooth Extraction,RK531,RK531.5
+2575,Dental Practice & Economics,RK58,RK59.3
+9169,Regional Dental Practice,RK58.5,RK58.7
+9377,Types of dental practice,RK59,RK59.3
+2576,Preventive dentistry,RK60.7,RK60.8
+6846,Dental materials,RK652.5,RK655.5
+8117,Dentures,RK656,RK666
+2579,Dermatology,RL1,RL803
+6577,Electrotherapy,RL115,RL120
+8287,Hair Loss,RL155,RL155.5
+2586,"Hair, Nail & Skin Gland Disease",RL169,RL170
+2587,"Skin Hyperemia, Inflammation & Infection",RL201,RL331
+9135,Dermatitis,RL231,RL241
+8900,Skin Allergies,RL242,RL249
+2585,Nerve & Stress Skin Disorders,RL701,RL751
+2584,Diseases due to parasites,RL760,RL785
+8937,Fungal & Related Skin Diseases,RL765,RL785
+2581,Care & hygiene,RL87,RL94
+7697,Hair,RL91,RL92
+2888,Pharmacology & Therapeutics,RM1,RM950
+2896,Medication Errors & Misuse,RM146,RM146.7
+2889,Drug Administration,RM147,RM180
+10063,Infusion. Transfusion,RM170,RM180
+2898,Other therapeutic procedures,RM182,RM190
+2891,Therapeutic Diets,RM214,RM258
+2891,Therapeutic Diets,RM214.6,RM214.62
+2891,Therapeutic Diets,RM215,RM216
+6611,Dietary cookbooks,RM219,RM221
+10077,Diets to control weight,RM222,RM222.3
+9946,Methods of feeding,RM222.5,RM225
+9634,Fasting,RM226,RM228
+2891,Therapeutic Diets,RM230,RM231
+2891,Therapeutic Diets,RM233,RM234.4
+9681,Raw foods,RM237.5,RM237.72
+8724,Liquid diet. Beverages,RM238,RM257
+2888,Pharmacology & Therapeutics,RM260,RM263
+8239,Chemotherapy History,RM261,RM261.3
+2890,Antibiotics,RM265,RM267
+2895,Immunotherapy,RM270,RM282
+2895,Immunotherapy,RM272,RM273
+2894,Endocrinotherapy. Organotherapy,RM283,RM298
+2894,Endocrinotherapy. Organotherapy,RM284,RM285
+8168,Drugs of endocrine origin,RM288,RM297
+2893,Drugs & their actions,RM300,RM302.99
+9471,Drug Development,RM301.25,RM301.27
+9742,Drug metabolism,RM301.55,RM301.57
+7308,Drug interactions,RM302,RM302.4
+8593,Drugs acting on the skin,RM303,RM309
+2893,Drugs & their actions,RM309.1,RM314.99
+9757,Neuropsychopharmacology,RM315,RM334
+2893,Drugs & their actions,RM334.1,RM344.99
+9054,Cardiovascular Drugs,RM345,RM349
+2893,Drugs & their actions,RM349.1,RM354.99
+9851,Digestive System Drugs,RM355,RM365
+2893,Drugs & their actions,RM365.1,RM369.99
+8194,Immunopharmacology,RM370,RM373
+2893,Drugs & their actions,RM373.1,RM374.99
+9309,Urinary System Drugs,RM375,RM377
+2893,Drugs & their actions,RM377.1,RM379.99
+8891,Reproductive System Drugs,RM380,RM386
+2893,Drugs & their actions,RM386.1,RM387.99
+7943,Respiratory Pharmacology,RM388,RM388.7
+2893,Drugs & their actions,RM388.71,RM411.99
+7106,Antiparasitic agents,RM412,RM413
+2893,Drugs & their actions,RM413.1,RM666
+2897,Nonprescription Medicines,RM671,RM671.5
+2899,Physical Medicine & Therapy,RM695,RM950
+7705,Physical Therapy Equipment,RM698,RM698.5
+9968,Physical Therapy History,RM699,RM699.3
+7961,Physical Therapy,RM699.5,RM699.7
+2899,Physical Medicine & Therapy,RM706,RM707
+6703,Mechanotherapy,RM719,RM727
+9355,Occupational Therapy & Rehab,RM735,RM735.7
+9155,Hydrotherapy,RM801,RM822
+2899,Physical Medicine & Therapy,RM824,RM827
+9173,Light & Radiation Therapy,RM831,RM862.5
+6441,Thermotherapy,RM865,RM868.5
+8652,Electrotherapy,RM869,RM890.2
+2825,Pharmacy,RS1,RS441
+2827,Prescription Formularies,RS125,RS131.9
+9408,National Drug Formularies,RS131.2,RS131.9
+2829,Pharmacopoeias,RS139,RS141.9
+9245,National Pharmacopoeias,RS141.2,RS141.9
+2826,Dispensatories,RS151.2,RS151.25
+2826,Dispensatories,RS151.2,RS151.9
+2826,Dispensatories,RS151.3,RS151.62
+2826,Dispensatories,RS151.64,RS151.75
+6507,Pharmacognosy & Natural Drugs,RS160,RS167.2
+9033,Natural Drug Sources,RS169,RS185
+8260,Assays & Standardization,RS189,RS190
+6445,Pharmaceutical technology,RS192,RS210
+2828,Materia medica,RS250,RS252
+9503,Pharmaceutical supplies,RS355,RS356
+6496,Pharmaceutical chemistry,RS400,RS431
+2747,Nursing,RT1,RT120
+53480,Nursing History &,RT23,RT37
+53479,Nursing by Region,RT4,RT17
+5925,Foundations & Clinical Skills,RT40,RT55
+5929,"Education, Research & Reference",RT71,RT81.5
+53481,Nursing Profession,RT82,RT86
+5928,Nursing Practice & Ethics,RT86.7,RT88.9
+2768,Acute & Specialty Care,RT89,RT120
+2768,Acute & Specialty Care,RT89,RT89.3
+2556,Botanical & Eclectic Medicine,RV1,RV431
+2556,Botanical & Eclectic Medicine,RV11,RV431
+2556,Botanical & Eclectic Medicine,RV3,RV5
+2556,Botanical & Eclectic Medicine,RV7,RV8
+2700,Homeopathy,RX1,RX681
+2700,Homeopathy,RX211,RX581
+2700,Homeopathy,RX221,RX226
+2700,Homeopathy,RX241,RX261
+2700,Homeopathy,RX281,RX301
+2700,Homeopathy,RX305,RX309
+2700,Homeopathy,RX311,RX316
+2700,Homeopathy,RX321,RX326
+2700,Homeopathy,RX331,RX336
+2700,Homeopathy,RX341,RX346
+2700,Homeopathy,RX351,RX356
+2700,Homeopathy,RX366,RX376
+2700,Homeopathy,RX390,RX395
+2700,Homeopathy,RX401,RX431
+2700,Homeopathy,RX441,RX456
+2700,Homeopathy,RX460,RX476
+2700,Homeopathy,RX501,RX531
+2700,Homeopathy,RX561,RX581
+2700,Homeopathy,RX601,RX675
+2700,Homeopathy,RX631,RX637
+2700,Homeopathy,RX671,RX675
+2560,Chiropractic,RZ201,RZ275
+2560,Chiropractic,RZ215,RZ216
+2560,Chiropractic,RZ221,RZ225
+2560,Chiropractic,RZ231,RZ232
+2560,Chiropractic,RZ232.2,RZ232.4
+2560,Chiropractic,RZ237,RZ238
+2560,Chiropractic,RZ250,RZ251
+2560,Chiropractic,RZ260,RZ275.2
+2792,Osteopathy,RZ301,RZ397.5
+2792,Osteopathy,RZ302,RZ304
+2792,Osteopathy,RZ305,RZ307
+2792,Osteopathy,RZ315,RZ316
+2792,Osteopathy,RZ321,RZ325
+2792,Osteopathy,RZ331,RZ332
+2792,Osteopathy,RZ337,RZ338
+2792,Osteopathy,RZ347,RZ394
+2792,Osteopathy,RZ397,RZ397.5
+2793,Mental healing,RZ400,RZ408
+2793,Mental healing,RZ400.A6,RZ400.Z
+2793,Mental healing,RZ405,RZ406
+2793,Mental healing,RZ407,RZ408
+2794,Other Systems,RZ409.7,RZ999
+2794,Other Systems,RZ433,RZ445

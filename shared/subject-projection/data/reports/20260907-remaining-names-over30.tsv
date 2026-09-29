@@ -1,0 +1,692 @@
+concept_id	name	characters	parents	children	lcc_selectors	lcc_ranges	bisac_selectors
+50871	Brazilian Archaeology & Indigenous History	42	Brazilian History	0	0	1	0
+6943	Cupping, Acupuncture & Counterirritation	40	Other therapeutic procedures	0	2	0	0
+50841	Mexican Archaeology & Indigenous History	40	Mexican History	0	0	5	0
+2587	Skin Hyperemia, Inflammation & Infection	40	Dermatology	5	0	1	0
+11818	Socialism: Russia & Former Soviet Sphere	40	Political Theory	0	0	1	0
+13295	European Comparative Constitutional Law	39	European Comparative Law	0	0	1	0
+13293	European Comparative Labor & Social Law	39	European Comparative Law	0	0	1	0
+8503	Languages of Mexico and Central America	39	Americas’ Indigenous Languages	0	0	1	0
+12788	Military Service, Ceremonies & Research	39	General Military Studies	0	0	1	0
+3369	Tanzanian & German East African History	39	East African History	0	0	5	0
+51289	Washington, D.C. Localities & Monuments	39	Washington, D.C.	0	0	1	0
+12166	Central African Republic Econ. History	38	African Economic History	0	0	1	0
+13867	Central Australia & Northern Territory	38	Australian History	0	0	1	0
+11432	French Mandate & Occupation, 1919–1945	38	Lebanon (Phenicia)	0	1	0	0
+13230	International Law: Territory & Objects	38	Law of nations	0	0	1	0
+1382	Kids’ Visionary & Metaphysical Fiction	38	Juvenile Fiction	0	0	0	1
+4461	Slavic/Baltic/Albanian Lit., 1800–1870	38	Slavic. Baltic. Albanian	0	0	5	0
+4462	Slavic/Baltic/Albanian Lit., 1870–1917	38	Slavic. Baltic. Albanian	0	1	2	0
+11227	1838-1944. Martinez regime, 1931-1944	37	Salvadoran History	0	1	0	0
+38	Computer Vision & Pattern Recognition	37	Artificial Intelligence	0	0	0	1
+3752	Constructed & International Languages	37	Languages & Language Families	2	0	3	0
+11279	Independence, 1810–1830 (war to 1823)	37	Venezuelan History	0	1	0	0
+12702	Middle High German, c. 1050–1450/1500	37	German & Related Literatures	0	0	1	0
+10309	Modern North African Military History	37	Modern Era	0	0	0	0
+11286	Revolution, 1910–1920; Legacy to 1946	37	Mexican History	0	1	0	0
+10959	West Africa (Spanish Sahara to Zaire)	37	Regional Modern Philosophy	0	0	1	0
+5228	Workplace Harassment & Discrimination	37	Work	0	0	0	1
+13294	Comparative European Court Procedure	36	European Comparative Law	0	0	1	0
+5581	Complementary & Traditional Medicine	36	Health & Medicine	9	34	0	1
+12978	Conflict Resolution & Nationbuilding	36	Peace & Conflict Resolution	0	0	1	0
+50893	Eastern Woodlands Indigenous History	36	Indians of North America	0	1	0	0
+50861	English Archaeology & Social History	36	English History	0	0	1	0
+50862	English Political & Military History	36	English History	0	0	1	0
+13132	Entrepreneurship, Risk & Uncertainty	36	Income. Factor shares	0	0	1	0
+5033	Experimental & Descriptive Mechanics	36	Mechanics & Fluids	5	8	2	0
+1187	Kids’ Fairy Tales, Folklore & Fables	36	Juvenile Fiction	3	0	3	1
+2405	Mathematical Geography & Cartography	36	Geography, Places & Travel	2	1	1	0
+797	Music: Philosophy, Society & Physics	36	Research, History & Context	8	1	1	0
+10350	Northeast African Diplomatic History	36	Northeast Africa	0	0	1	0
+50903	Pacific Northwest Indigenous History	36	Indians of North America	0	1	0	0
+10553	Press, Censorship, Publicity & Radio	36	World War II	0	0	1	0
+6186	Public Health: Noninfectious Disease	36	Prevention, Immunity & Disease	0	0	1	0
+10352	Reformation–Consolidation, 1516–1648	36	Early Modern Confederacy, 1516–1798	0	0	1	0
+5649	Social, Cultural & Sexual Psychology	36	Psychology	5	1	0	0
+9519	South American & Caribbean Languages	36	Americas’ Indigenous Languages	0	0	1	0
+10136	Spartan–Theban Supremacy, 404–362 BC	36	Ancient Era	0	0	1	0
+12212	Writing Exercises & Rhetoric Readers	36	Writing, Style & Composition	0	0	1	0
+10623	1602-1798. Dutch East India Company	35	Indonesian History	0	0	1	0
+11229	1830-1895. Age of Moreno, 1860-1895	35	Ecuadorian History	0	1	0	0
+11252	1904-1973. Era of Batlle, 1903-1929	35	Uruguayan History	0	1	0	0
+12969	Accident, Health & Burial Insurance	35	Insurance	0	0	1	0
+3162	Adult Children of Substance Abusers	35	Substance Abuse & Addictions	0	0	0	1
+50851	Afro-American Biography & Genealogy	35	African American & Black	0	0	1	0
+12938	Agricultural Zoology & Crop Animals	35	Crops & Economic Botany	0	0	1	0
+6037	Agriculture & Resource Bibliography	35	Subject bibliography	8	12	2	0
+13625	Antiquities, Civilization & Culture	35	Ancient Era, to 476	0	0	1	0
+10667	Arab conquest (to ca. 1516 or 1524)	35	North African History by Era	0	1	0	0
+9197	Atomic, Molecular & Chemical Models	35	Physical & Theoretical Chem.	0	1	0	0
+10225	British Central Africa & Federation	35	Central African History	0	0	1	0
+50891	British Columbia Indigenous History	35	Indians of North America	0	1	0	0
+11790	Caribbean & Latin American Politics	35	International Relations	0	0	0	1
+11889	Central Asian & Siberian Government	35	Government & Administration	0	0	1	0
+5832	Central European Schools & Colleges	35	European Schools & Colleges	7	0	0	0
+13307	Comparative Industrial Property Law	35	Comparative & Intl. IP Law	0	0	1	0
+10217	Constitutional Empire, 27 BC–AD 284	35	Roman Empire	3	4	0	0
+5643	Constitutional Foundations & Rights	35	Constitutional & Public Law	3	29	53	0
+9182	Developing-World Diplomatic History	35	Developing countries	0	0	1	0
+13737	Drama Study, Criticism & Characters	35	Drama	0	0	1	0
+10097	Early Modern Confederacy, 1516–1798	35	Swiss History	1	0	2	0
+10770	Early Modern Scandinavia, 1523–1814	35	North European History	0	1	0	0
+13388	Eastern Europe & Warsaw Pact Forces	35	European Armies	0	1	0	0
+13621	Economic Impacts of War & Disasters	35	Economic history	0	2	0	0
+5566	Electrical & Electronic Engineering	35	Applied Sciences & Technology	12	0	0	0
+10128	English Exploration of the Americas	35	Post-Columbian period. El Dorado	0	0	1	0
+12162	Equatorial Guinean Economic History	35	African Economic History	0	0	1	0
+13291	European Comparative Commercial Law	35	European Comparative Law	0	0	1	0
+6103	Ferromagnetism & Antiferromagnetism	35	Magnetic Phenomena	0	1	0	0
+13859	General, Reference & Historiography	35	Australian History	0	0	1	0
+11349	Grand Duchy of Lithuania, 1237–1569	35	Belarusian History	0	1	0	0
+10818	Greek Philosophy, Life & Literature	35	Classical Greek Philosophy Topics	0	1	0	0
+9529	Hepatobiliary & Pancreatic Diseases	35	Internal Medicine Specialties	0	0	1	0
+4695	Inaugural and program dissertations	35	Collected Works & Series	0	0	3	0
+5351	International Relations Connections	35	International Relations	0	0	1	0
+5352	International Relations Foundations	35	International Relations	5	0	5	0
+13257	Islamic Public & Constitutional Law	35	Islamic law. Sharīʻah. Fiqh	0	0	1	0
+50856	Israelite & Palestinian Antiquities	35	Israel & Palestine	0	0	1	0
+50863	Japanese Civilization & Social Life	35	Japanese History	0	0	1	0
+1101	Kids’ Alligator & Crocodile Stories	35	Animals	0	0	0	1
+7726	Kids’ Scandinavian-Language Fiction	35	Children’s Fiction by Language	0	0	1	0
+2288	Latin Americans. Hispanic Americans	35	Education Support Topics	0	0	2	0
+7619	Latin Americans. Hispanic Americans	35	Education by Student Group	0	0	1	0
+6136	Library Outreach & Mobile Libraries	35	Library Collections & Services	0	0	1	0
+13285	Literal Modern English Translations	35	Translations & Versions	0	0	0	48
+5068	Manners, Customs & Material Culture	35	Anthropology Fields	11	19	30	0
+5565	Mechanical & Industrial Engineering	35	Applied Sciences & Technology	11	0	0	0
+2711	Medical Emergencies & Critical Care	35	Internal Medicine	6	0	1	0
+7599	Mediumship. Psychometry. Channeling	35	Spiritualism	1	2	1	0
+7675	Mental Training & Learning Transfer	35	Educational psychology	0	1	0	0
+12950	Monuments, Sites & Material Remains	35	Archaeology	0	0	1	0
+11635	Natural Theology & the Supernatural	35	Religion Reference	4	0	0	0
+13082	Orthodox Churches in Central Europe	35	Orthodox	0	0	1	0
+13632	Other Ancient Italian Local History	35	Local History	0	0	1	0
+2899	Physical medicine. Physical therapy	35	Pharmacology & Therapeutics	16	0	3	0
+5893	Poverty, Migration & Social Justice	35	Social Topics | Social Topics	4	0	0	0
+2834	Practice Management & Reimbursement	35	Health & Medicine	0	0	0	1
+12193	Pronunciation, Spelling & Phonology	35	English Language	0	0	1	0
+5426	Psychology & Philosophy Foundations	35	History, Theory & Schools	3	2	0	0
+6185	Public Health: Communicable Disease	35	Prevention, Immunity & Disease	0	0	1	0
+13039	Rationalist & Freethought Biography	35	Rationalism, Atheism & Freethought	0	0	1	0
+9650	Regional & Individual Screen Prints	35	Serigraphy	0	0	1	0
+11642	Religious Organization & Leadership	35	Religion Reference	0	0	1	0
+6307	Restoration–Risorgimento, 1816–1860	35	Modern Era, 1492–Present	0	0	1	0
+11337	Restored Independence, 1991–Present	35	Latvian History	0	0	1	0
+11347	Restored Independence, 1991–Present	35	Estonian History	0	0	1	0
+11382	Restored Independence, 1991–Present	35	Lithuanian History	0	0	1	0
+13489	Russia & Ex-Soviet Local Government	35	European Local Government	0	0	1	0
+10565	Scandinavia in the 1800s, 1814–1900	35	North European History	0	1	0	0
+2174	School Superintendents & Principals	35	Education Administration	0	0	0	1
+5825	Social Justice, Migration & Poverty	35	Social Themes	3	0	0	0
+9889	Social Medicine & Medical Sociology	35	Medicine and the state	0	0	1	0
+12320	Social Systems, Structure & Capital	35	Identity & Community	0	0	1	0
+5517	Societies: secret, benevolent, etc.	35	Culture, Media & Belief	8	47	58	0
+6686	Southern African Diplomatic History	35	Southern African History	0	0	1	0
+9603	Style. Composition. Rhetoric. Usage	35	Comparative Grammar & Linguistics	0	0	1	0
+5917	Technical Communication & Reference	35	Technology & Engineering	3	0	0	1
+50901	Washington State Indigenous History	35	Indians of North America	0	1	0	0
+512	Advertising & Culture Collectibles	34	Antiques & Collectibles	0	0	0	1
+8303	Against damage from natural causes	34	Protection of buildings	0	1	1	0
+13906	Antiquities, Culture & Ethnography	34	Turkish History	0	0	1	0
+13921	Antiquities, Culture & Ethnography	34	Belgian History	0	0	1	0
+13970	Antiquities, Culture & Ethnography	34	Ukrainian History	0	0	1	0
+11814	Asia-Pacific Socialism & Communism	34	Political Theory	0	0	1	0
+12448	Atlantic & Indian Island Migration	34	Colonization & Migration	0	0	1	0
+10245	Austrian Succession War, 1740–1748	34	Eighteenth Century, 1715–1789	0	0	5	0
+4678	Bibliographies, Catalogs & Indexes	34	Reference & Information	12	0	1	1
+10158	British West African Local History	34	British West Africa	2	0	1	0
+13063	Buddhist Ministry & Religious Life	34	Buddhist Practice & Ritual	0	0	1	0
+204	Building Environmental Engineering	34	Building construction	0	0	2	0
+12232	Caribbean & Latin American English	34	Dialects & Regional English	0	0	1	0
+13197	Catholic Clergy Rules & Ordinances	34	Catholic Clergy & Governance	0	0	1	0
+10839	Central American Modern Philosophy	34	Modern Philosophy	0	0	1	0
+50835	Chinese Civilization & Social Life	34	Chinese History	0	0	1	0
+7559	Chivalric Ceremonies & Tournaments	34	Chivalry, Knighthood & Orders	0	0	1	0
+10823	Christian Ethics History & Methods	34	Christian ethics	0	1	0	0
+5797	Christology, Mariology & Salvation	34	Christian Theology	3	0	1	0
+9329	Civilization & Economic Conditions	34	Civilization Topics	0	1	0	0
+12815	Climatology, Weather & Forecasting	34	Meteorology & Climatology	0	0	1	0
+920	Collections, Catalogs, Exhibitions	34	Collections, Subjects & Reference	3	0	0	1
+998	Collections, Catalogs, Exhibitions	34	Artists & Art Institutions	6	0	3	1
+5879	Common, Customary & Indigenous Law	34	Legal Systems & Theory	0	306	116	2
+4817	Computational & Molecular Modeling	34	Chemistry	0	0	0	1
+7525	Diplomatics Documents & Facsimiles	34	Diplomatics	0	0	1	0
+3968	Disability & Special Needs Fiction	34	Genres	0	0	0	1
+50932	Early & Spanish-Mexican California	34	California	0	0	1	0
+13312	Eastern Catholic Canon Law History	34	Legal History & Roman Law	0	0	2	0
+5704	Education, Reference & Collections	34	Architecture	4	3	0	1
+10612	Egyptian Diplomatic History, 1952–	34	Modern Era	0	1	0	0
+282	Engineering Geology & Geomechanics	34	Civil Engineering	3	4	1	0
+11050	England, Ireland, Scotland & Wales	34	Regional Modern Philosophy	3	0	1	0
+13475	European Local Government Overview	34	European Local Government	0	1	0	0
+11699	Evolutionary & Genetic Programming	34	Programming	0	2	0	0
+8545	Extinct S. & W. European Languages	34	Extinct & Historical Languages	0	0	1	0
+6274	Food Processing Plants & Equipment	34	Food Processing	0	1	0	0
+10168	French Exploration of the Americas	34	Post-Columbian period. El Dorado	0	0	1	0
+10633	French West Africa, Sahara & Sahel	34	West African History	5	15	3	0
+12875	Habit, Adjustment & Nature–Nurture	34	Cognition	0	0	1	0
+5901	History, People, Media & Reference	34	Cooking	4	0	0	1
+9596	Illuminated Manuscript Collections	34	Manuscript & Book Illumination	0	0	1	0
+13884	Independent Republic, 1993–Present	34	Czechoslovak History	0	0	1	0
+1257	Indigenous Peoples of the Americas	34	Kids’ Legends, Myths & Fables	0	0	0	1
+3384	Indigenous Peoples of the Americas	34	History of the Americas	0	0	0	1
+3891	Indigenous Peoples of the Americas	34	Drama	0	0	0	1
+4300	Indigenous Peoples of the Americas	34	Literary Collections	0	0	0	1
+4342	Indigenous Peoples of the Americas	34	Identity & Critical Perspectives	0	0	0	1
+5233	Industry & Industrial Organization	34	Industries	12	4	7	0
+11591	Innovation & Technology Management	34	Management	0	0	1	0
+12222	Intermediate & High-School Readers	34	Textbooks & Readers	0	0	1	0
+4674	International Societies & Meetings	34	Scholarly Institutions	0	0	1	0
+13249	Jewish Public & Constitutional Law	34	Jewish law. Halakah	0	0	1	0
+1220	Kids’ Middle Eastern Hist. Fiction	34	Children’s Historical Fiction	0	0	0	1
+11860	Latin American & Caribbean Housing	34	Housing	0	0	1	0
+12874	Learning, Attention & Apperception	34	Cognition	0	0	1	0
+12922	Legal Theory Schools & Natural Law	34	Legal Philosophy	0	0	1	1
+11556	Liberty & Gustavian Era, 1718–1818	34	Swedish History	0	0	1	0
+363	Materials Science & Nanotechnology	34	Applied Sciences & Technology	7	0	0	1
+8067	Mechanical & Formulaic Composition	34	Music Composition	0	1	0	0
+6233	Miscellaneous Recipes & Appetizers	34	Cooking	0	1	0	0
+5755	Monasticism, Clergy & Institutions	34	Buddhism	0	0	11	0
+12842	Money & Monetary Policy by Country	34	Money & Monetary Policy	0	0	1	0
+2489	Museums, Tours, Points of Interest	34	Travel	0	0	0	1
+8745	Neuropsychology & Psychophysiology	34	Neurophysiology & Neuropsychology	0	0	1	0
+7157	Non-English Children’s Book Guides	34	Special-Audience Book Guides	0	0	1	0
+4562	Non-Protestant Dissenting Churches	34	Christian Denominations	0	2	4	0
+50888	Northwest Coast Indigenous History	34	Indians of North America	0	1	0	0
+11463	Occupation & Liberation, 1940–1946	34	French History	0	1	0	0
+12219	Occupational & Specialized Manuals	34	Textbooks & Readers	0	0	1	0
+9574	Other National Education Documents	34	Education Reports & Documents	0	0	1	0
+10096	Ottoman & Habsburg Rule, 1526–1711	34	Hungarian History	2	0	1	0
+50910	Pacific States & Pacific Northwest	34	West	0	2	3	0
+12129	Papua New Guinean Economic History	34	Australia, New Zealand & Pacific	0	0	1	0
+5606	Periodicals, Collections & Annuals	34	Reference & Information	3	1	6	0
+6401	Phenomenalism. Attributes of being	34	Ontology	0	1	0	0
+2830	Physical Medicine & Rehabilitation	34	Health & Medicine	0	0	0	1
+12450	Polar & Developing-World Migration	34	Colonization & Migration	0	0	1	0
+12896	Police Duties & Protective Methods	34	Law Enforcement & Police	0	0	1	0
+50843	Polish Local History & Description	34	Polish History	0	0	20	0
+2822	Prenatal Influence & Stirpiculture	34	Pediatrics	0	1	0	0
+356	Production & Operations Management	34	Industrial Production	7	0	1	0
+5207	Production & Operations Management	34	Business Management	0	0	0	1
+5573	Programming & Software Engineering	34	Computing & IT	4	0	0	0
+9307	Propositions. Prediction. Judgment	34	Logic & Reasoning	0	1	0	0
+12322	Public Finance Reference & History	34	Public Finance	0	0	1	0
+11751	Public Finance, Taxation & Customs	34	Comparative & Uniform Law	6	0	0	0
+11728	Rationalism, Atheism & Freethought	34	Religion Reference	5	0	0	0
+5961	Reference, Libraries & Scholarship	34	Subject bibliography	7	6	4	0
+8180	Regional Water Engineering History	34	River & Water Supply Engineering	0	0	1	0
+5937	Relationships & Social Development	34	Social Themes	6	0	0	0
+8213	Renaissance–Reformation, 1501–1600	34	Modern Era, 1492–Present	0	0	1	0
+2850	Reproductive Medicine & Technology	34	Health & Medicine	0	0	0	1
+11385	Revolution & Soviet Era, 1917–1945	34	Russian History	0	0	1	0
+3655	Revolutions & Wars of Independence	34	Historical Eras & Early Wars	0	0	0	1
+5962	Scholarly Institution Bibliography	34	Reference, Libraries & Scholarship	0	0	1	0
+5749	Schools & Colleges of the Americas	34	Individual institutions	3	0	0	0
+12400	Sexual History, Customs & Behavior	34	Sexual life	0	0	1	0
+10683	Social Life, Customs & Ethnography	34	Oceanian History	3	1	0	0
+8778	Social degeneration and alcoholism	34	Alcoholism & Temperance	0	0	1	0
+13838	Sociology Reference & Institutions	34	Sociology	0	0	2	0
+10907	Soul Preexistence & Transmigration	34	Soul, Spirit & Immortality	0	1	0	0
+10813	Southern African Modern Philosophy	34	Regional Modern Philosophy	1	0	1	0
+6483	Southern African Political History	34	Southern African History	0	0	1	0
+10846	Southern Asia. Indian Ocean region	34	Asian Modern Philosophy	2	0	5	0
+12769	Speculation, Futures & Derivatives	34	Investments & Securities	0	0	1	3
+9726	Spiritualism & Occultism Criticism	34	Psychical Research	0	1	0	0
+5851	Techniques, Equipment & Processing	34	Photography & Imaging	3	0	0	0
+6520	Technology, Science & Civilization	34	Civilization Topics	0	1	0	0
+10173	Theresian–Josephine Era, 1740–1792	34	Habsburg Monarchy, 1521–1792	0	0	1	0
+9221	Thermodynamic History & Philosophy	34	Heat & Thermodynamics	0	1	0	0
+507	Transport Geography & Trade Routes	34	Land & Urban Transportation	2	1	0	0
+3532	Tudor & Elizabethan Era, 1485–1603	34	British Isles History by Era	0	0	1	1
+12767	Venture Capital & Other Securities	34	Investments & Securities	0	0	1	0
+12781	War, Philosophy & Military Society	34	General Military Studies	0	0	1	0
+6918	Wood Engraving Reference & History	34	Wood engraving	0	0	1	0
+10995	Ancient Eastern Religious Thought	33	Orient	6	1	0	0
+5801	Apologetics & Interfaith Theology	33	Christian Theology	6	6	4	0
+12871	Arabic Dialects & Language Topics	33	Arabic Language	0	0	1	0
+973	Asian American & Pacific Islander	33	American Art	0	0	0	1
+1284	Asian American & Pacific Islander	33	Children’s U.S. Fiction	0	0	0	1
+1619	Asian American & Pacific Islander	33	Kids’ U.S. People & Places	0	0	0	1
+1859	Asian American & Pacific Islander	33	YA U.S. Fiction	0	0	0	1
+2094	Asian American & Pacific Islander	33	YA U.S. People & Places	0	0	0	1
+4313	Asian American & Pacific Islander	33	American Literary Criticism	0	0	0	1
+4420	Asian American & Pacific Islander	33	American Poetry	0	0	0	1
+5385	Assessment, Testing & Measurement	33	Research & Assessment	2	0	0	1
+11909	Australian, New Zealand & Pacific	33	Regional English Literature	0	0	1	0
+13166	Biblical & Modern Hebrew Language	33	Hebrew Language	0	0	1	1
+5580	Biomedical Foundations & Research	33	Health & Medicine	17	0	0	1
+9984	Bridge Construction & Maintenance	33	Bridge engineering	0	1	0	0
+202	Building Decoration & Furnishings	33	Building construction	2	1	3	0
+1105	Butterflies, Moths & Caterpillars	33	Insects & Other Invertebrates	0	0	0	1
+1398	Butterflies, Moths & Caterpillars	33	Insects & Other Invertebrates	0	0	0	1
+8402	Cell Responses to External Agents	33	Cytology	0	0	1	0
+2996	Central American & South American	33	American Cooking	0	0	0	1
+8641	Chamber & Solo Instrumental Music	33	Music Analysis	0	0	1	0
+10844	Classical Greek Philosophy Topics	33	Classical Greek Philosophy	2	2	0	0
+3126	Cleaning, Caretaking & Organizing	33	House & Home	0	0	0	1
+522	Coin, Currency & Medal Collecting	33	Antiques & Collectibles	0	0	0	1
+5855	Collections, Subjects & Reference	33	Photography & Imaging	2	0	0	1
+5842	College Admission & Financial Aid	33	Study Aids	6	0	0	0
+13297	Comparative European Economic Law	33	European Comparative Law	0	0	1	0
+4412	Comparative Grammar & Linguistics	33	Language Structure & Meaning	32	0	3	0
+3339	Congo (Brazzaville). Middle Congo	33	Francophone Equatorial Africa	0	0	7	0
+5561	Consumer, Product & Public Safety	33	Regulation & Specialized Law	0	54	21	3
+5534	Contemporary & Critical Movements	33	Movements & Schools	5	0	0	0
+10408	Contemporary Europe, 2001–Present	33	European History by Era	0	0	2	0
+5941	Controversy, Dissent & Toleration	33	Christian History	3	1	0	0
+2859	Cosmetic & Reconstructive Surgery	33	Surgery	0	0	0	1
+13444	Cross-Border European Folk Groups	33	European Folklore	0	0	1	0
+1688	Customs, Traditions, Anthropology	33	Social Science	0	0	0	1
+2138	Customs, Traditions, Anthropology	33	Social Science	0	0	0	1
+2189	Decision-Making & Problem Solving	33	Teaching & Learning	0	0	0	1
+5131	Decision-Making & Problem Solving	33	Business Management	0	0	0	1
+9806	Description. Organization. Policy	33	U.S. Education History	0	1	0	0
+1109	Dinosaurs & Prehistoric Creatures	33	Prehistoric & Mythical Creatures	0	0	0	1
+4989	Dinosaurs & Prehistoric Creatures	33	Animals	0	0	0	1
+10930	East & Southeast Asian Philosophy	33	Asian Modern Philosophy	0	0	1	0
+4266	East Asian Languages & Literature	33	Asian, African & Oceanian Lit.	1	4	0	0
+3911	English & Old English Literatures	33	English Literature	26	1	0	0
+3278	Entheogens & Visionary Substances	33	Healing, Body & Wellbeing	0	0	0	1
+11803	Family Policy & Children’s Rights	33	Family, Marriage & Life Stages	0	0	1	0
+12429	Farm Tenancy & Agricultural Labor	33	Agricultural Economics	0	0	1	0
+7711	General & English Reference Books	33	Best books	0	1	0	0
+6012	Geology, Mineralogy, Paleontology	33	Natural Sciences & Mathematics	0	0	1	0
+5843	Graduate & Professional Admission	33	Study Aids	6	0	0	0
+13094	Higher Education Teacher Training	33	Teacher Education	0	0	1	0
+10059	Icelandic Church & Bishops’ Sagas	33	Norse Sagas & Histories	0	0	1	0
+8999	Infection, Immunity & Germ Theory	33	Disease Causation	0	0	1	0
+2271	Intellectual Disability Education	33	Special Education	0	0	0	1
+8715	Interaction analysis in education	33	Teaching Principles & Practice	0	1	0	0
+13773	International Relations Reference	33	International Relations	0	0	2	0
+5353	International Relations Societies	33	International Relations	0	0	1	0
+12891	International Relations by Period	33	International Relations Foundations	0	0	1	0
+12893	International Relations by Region	33	International Relations Foundations	0	0	1	0
+13259	Islamic Regulation & Criminal Law	33	Islamic law. Sharīʻah. Fiqh	0	0	1	0
+5298	Juvenile Criminal Law & Procedure	33	Criminal Law & Justice	0	0	1	0
+12536	Kamakura–Momoyama Lit., 1185–1600	33	Japanese literature	0	0	1	0
+1615	Kids’ Middle East People & Places	33	People & Places	0	0	0	1
+1268	Kids’ Mystery & Detective Fiction	33	Juvenile Fiction	0	0	0	1
+1133	Kids’ Reptile & Amphibian Stories	33	Animals	0	0	0	1
+9360	Kindergarten History & Statistics	33	Early Childhood Education	0	0	1	0
+5608	Knowledge, Research & Scholarship	33	Reference & Information	1	0	0	1
+12921	Legal Interpretation & Categories	33	Legal Philosophy	0	0	1	0
+10185	Lombard & Byzantine Rule, 476–774	33	Early Medieval, 476–1268	0	0	1	0
+10143	Macedonian Ascendancy, 359–336 BC	33	Ancient Era	0	0	1	0
+13301	Manufacturing & Food-Industry Law	33	Comparative Economic Law	0	0	1	0
+8583	Medical Climatology & Meteorology	33	Medical Geography	0	1	0	0
+13014	Methods, Gear & Species Fisheries	33	Fisheries	0	0	1	0
+1127	Mice, Hamsters, Guinea Pigs, etc.	33	Mammals, Farm Animals & Pets	0	0	0	1
+11898	Middle East & Caucasus Government	33	Government & Administration	0	0	1	0
+11816	Mideast & Central Asian Socialism	33	Political Theory	0	0	1	0
+3649	Military Intelligence & Espionage	33	Military History	0	0	0	1
+12502	Moral Theology & Christian Ethics	33	Christian Life & Devotion	0	0	1	0
+13369	Municipal Institutions & Politics	33	Local & Municipal Government	0	0	1	0
+5046	Neurophysiology & Neuropsychology	33	Human Physiology	16	0	2	0
+51209	North Carolina Regions & Counties	33	North Carolina	0	0	1	0
+14015	North European Historical Studies	33	North European History	0	0	2	0
+3705	Oceanian & Austronesian Languages	33	Languages & Language Families	1	0	7	1
+3798	Oriental philology and literature	33	Afro-Asiatic languages	5	1	2	0
+13743	Other Modern Greek Town Histories	33	Modern Era	0	0	1	0
+3766	Particular languages and dialects	33	Indo-Iranian Languages	15	0	0	0
+7069	Placental & Gestational Disorders	33	Obstetrics	0	1	0	0
+11396	Polish–Lithuanian Rule, 1340–1569	33	Ukrainian History	0	0	2	0
+13087	Population & Settlement Geography	33	Human Ecology	0	0	1	0
+9396	Portugal & North Atlantic Islands	33	Regional Portuguese Literature	0	0	1	0
+10659	Postwar Scandinavia, 1945–Present	33	North European History	0	1	0	0
+11499	Principality & Kingdom, 1878–1944	33	Bulgarian History	0	0	1	0
+672	Printed Ephemera & Popular Images	33	Drawing & Illustration	0	0	1	0
+9321	Psychoanalytic Development Theory	33	Psychoanalysis	0	1	0	0
+9100	Regional Environmental Protection	33	Environmental protection	0	0	1	0
+9942	Regional Publishing & Bookselling	33	Bookselling and publishing	0	0	1	0
+12505	Religious Experience & Conversion	33	Christian Life & Devotion	0	0	1	0
+5858	Religious Practice & Institutions	33	Religion	7	0	0	0
+3160	Reptiles, Amphibians & Terrariums	33	Pets	0	0	0	1
+12690	Revelation & Divine Manifestation	33	Christian Theology	0	0	1	0
+12632	Revolution & Civil War, 1917–1921	33	General History & Soviet Era	0	0	1	0
+12040	Russian & Ex-Soviet Econ. History	33	European Economic History	0	0	1	0
+903	Science Fiction, Fantasy & Horror	33	Genres	0	0	0	1
+3981	Science Fiction, Fantasy & Horror	33	Erotica	0	0	0	1
+4407	Scientific and learned literature	33	Old Icelandic & Norwegian Lit.	0	0	2	0
+10118	Second Republic & WWII, 1918–1945	33	Polish History	3	0	1	0
+10801	Second period (to about 300 B.C.)	33	Greece and Rome	0	0	1	0
+12778	Smallholdings & Peasant Ownership	33	Land use	0	0	1	0
+3256	Social Scientists & Psychologists	33	Science, Education & Ideas	0	0	0	1
+10496	Solidarity & Communism, 1980–1989	33	People’s Republic, 1945–1989	0	1	0	0
+5657	Sources, Publishing & Collections	33	Music	5	0	0	1
+2240	South American Schools & Colleges	33	Schools & Colleges of the Americas	0	0	11	0
+51296	South Carolina Regions & Counties	33	South Carolina	0	0	1	0
+5833	South European Schools & Colleges	33	European Schools & Colleges	4	1	0	0
+10286	Southern African Diplomacy, 1975–	33	1975-	0	1	0	0
+12210	Specialized Technology Industries	33	Industries	0	0	1	0
+198	Structural & Building Engineering	33	Building construction	3	5	0	0
+6487	Surgical & Anesthetic Positioning	33	Operative Surgery Techniques	0	1	0	0
+3198	Survival & Emergency Preparedness	33	Safety & Security	0	0	0	1
+191	Sustainable & Organic Agriculture	33	Agriculture	5	0	0	1
+12941	Tactics, Defense & Reconnaissance	33	Air & Space Forces	0	0	1	0
+367	Thin Films, Surfaces & Interfaces	33	Materials Science & Nanotechnology	0	0	0	1
+6199	U.S. Education History Miscellany	33	U.S. Education History	0	1	0	0
+51005	U.S. Political History, 1961–1969	33	1961–1969 | By Period	0	0	1	0
+51132	U.S. Revolution: Memory & Culture	33	The Revolution, 1775-1783	0	0	1	0
+13810	United Brethren & United Churches	33	Protestantism	1	0	1	0
+9958	Universal & Philosophical Grammar	33	Comparative Grammar & Linguistics	0	0	1	0
+2622	Urogynecology & Obstetric Urology	33	Gynecology & Obstetrics	0	0	1	0
+180	Virtualization & Containerization	33	System Administration	0	2	0	1
+184	Voice Search & Digital Assistants	33	AI, Data & Emerging Computing	0	0	0	1
+7441	Watercolor Techniques & Materials	33	Watercolor painting	0	0	1	0
+11842	Women in Professions & Leadership	33	Women & Employment	0	0	1	0
+2091	YA Middle Eastern People & Places	33	People & Places	0	0	0	1
+4777	Yearbooks, Almanacs & Directories	33	Periodicals, Collections & Annuals	2	9	1	0
+3396	Accounts of the Americas to 1810	32	History of the Americas	2	0	1	0
+12432	Agricultural Economics by Region	32	Agricultural Economics	0	0	1	0
+50894	American West Indigenous History	32	Indians of North America	0	1	0	0
+10569	Ancient & Medieval Asian History	32	Asian History	0	1	0	0
+11174	Anglophone Success Guides, 1951–	32	English and American	0	1	0	0
+13226	Animal, Plant & Mineral Folklore	32	Folklore	0	0	1	0
+2413	Applied Oceanography & Resources	32	Oceanography	2	0	1	0
+3634	Arabian Peninsula & Saudi Arabia	32	Middle Eastern History	7	0	8	1
+12814	Atmospheric Optics & Electricity	32	Meteorology & Climatology	0	0	1	0
+11991	Australia, New Zealand & Pacific	32	Economic history	14	0	1	0
+7268	Bioclimatology. Microclimatology	32	Ecology	0	0	1	0
+6247	Biography, memoirs, letters, etc	32	English essays | English letters | Oratory & Speeches	0	0	1	0
+4294	British & Irish Lit. Collections	32	European Literary Collections	0	0	0	1
+10593	British WWI Submarine Operations	32	Submarine operations	0	0	1	0
+42	Business & Productivity Software	32	IT Applications & Management	10	0	0	1
+3866	Byzantine & Modern Greek Authors	32	Greek & Hellenic Literatures	4	0	1	0
+50842	Canadian Provinces & Territories	32	Canadian History	0	0	23	0
+3337	Central African Republic History	32	Francophone Equatorial Africa	0	0	11	0
+7954	Childhood Disease Classification	32	Pediatric Diseases	0	1	0	0
+5564	Civil, Structural & Construction	32	Applied Sciences & Technology	12	1	2	0
+13054	Classical Greek Language Studies	32	Greek Language	0	0	1	0
+4754	Collectors & Private Collections	32	Museums & Collecting	4	0	2	0
+1229	Colonial & Revolutionary Periods	32	Kids’ U.S. Historical Fiction	0	0	0	1
+1554	Colonial & Revolutionary Periods	32	Children’s U.S. History	0	0	0	1
+1820	Colonial & Revolutionary Periods	32	YA U.S. Historical Fiction	0	0	0	1
+2054	Colonial & Revolutionary Periods	32	YA U.S. History	0	0	0	1
+4156	Colonial & Revolutionary Periods	32	U.S. Literature	0	0	0	1
+13854	Colonial U.S. Lit., 17th–18th C.	32	American Literature	0	0	1	0
+11637	Comparative & Interfaith Studies	32	Religion Reference	0	0	1	0
+73	Computer Graphics & Media Design	32	Computing & IT	5	0	0	1
+1043	Copying art. Copying machine art	32	Print media	0	0	1	0
+13308	Courts, Organization & Procedure	32	Courts & Judicial Institutions	0	46	42	1
+13481	Czech & Czechoslovak Local Govt.	32	European Local Government	0	0	1	0
+10460	Democratic Federation, 1989–1992	32	Union & Republic, 1918–1992	0	0	1	0
+12161	Democratic Republic of the Congo	32	African Economic History	0	0	1	0
+10551	Democratic Transition, 1989–1992	32	Slovak History	0	1	0	0
+13110	Development Research & Education	32	Economic Development & Planning	0	0	1	0
+10888	Developmental Psychology Methods	32	Developmental Psychology	0	2	0	0
+4702	Diplomatics History & Statistics	32	Diplomatics. Archives. Seals	0	0	1	0
+2190	Distance, Open & Online Learning	32	Levels, Settings & Types	0	0	0	1
+9727	Early Childhood Education Theory	32	Early Childhood Education	0	0	1	0
+8755	Early Childhood Teaching Methods	32	Early Childhood Education	0	0	1	0
+10600	Early National Period, 1792–1825	32	Hungarian History	0	1	0	0
+10524	Early Second Republic, 1918–1926	32	Second Republic & WWII, 1918–1945	0	0	3	0
+9176	Earth Density & Gravity Constant	32	Geodesy	0	1	0	0
+3769	East & Southeast Asian Languages	32	Languages & Language Families	7	0	0	1
+10294	East Africa. British East Africa	32	East African History	1	0	4	0
+13991	East European Historical Studies	32	East European History	0	0	1	0
+5834	East European Schools & Colleges	32	European Schools & Colleges	5	0	0	0
+11008	Emotional Intelligence & Testing	32	Emotions	0	0	1	0
+11829	Employment Policy & Job Creation	32	Employment & Unemployment	0	0	1	0
+12466	English Kids’ Fiction, 1870–2014	32	American and English	0	0	1	0
+6155	Environmental & Community Health	32	Public Health	8	3	1	0
+2789	Eye Refraction & Focus Disorders	32	Ophthalmology	4	0	1	0
+5623	Family, Identity & Social Themes	32	Juvenile Fiction	11	0	0	0
+10938	First period (to about 450 B.C.)	32	Greece and Rome	0	0	1	0
+11052	Former Soviet States’ Philosophy	32	East European Modern Philosophy	5	0	8	0
+6106	Foundations & Professional Study	32	Library & Information Science	7	7	0	0
+7277	Futurist Works by Author & Title	32	Forecasts of future progress	2	0	1	0
+13704	German Social & Cultural History	32	German History	0	0	1	0
+5644	Government Structure & Elections	32	Constitutional & Public Law	0	23	39	4
+11749	Health, Education & Cultural Law	32	Comparative & Uniform Law	0	0	12	0
+5654	Historical & Esoteric Psychology	32	Psychology	7	0	0	0
+5756	History, Culture & Sacred Places	32	Buddhism	8	38	15	0
+8343	Hotel Housekeeping & Maintenance	32	Hospitality Industry	0	1	0	0
+5812	Identity & Critical Perspectives	32	Literary Criticism	5	0	0	0
+11838	Immigrant & Cross-Border Workers	32	Worker Groups	0	0	1	0
+11388	Imperial Russian Rule, 1775–1917	32	Ukrainian History	0	0	2	0
+50846	Indian Ethnography & Communities	32	Indian History	0	0	1	0
+7640	Information Technology & Systems	32	Industrial Engineering	0	0	1	0
+9517	Information resources management	32	Higher education	0	1	0	0
+8437	Instruments & Instrumental Music	32	Music Historical Studies	0	0	1	0
+9430	Interior Design History & Styles	32	Interior Decoration	0	0	1	0
+13233	International Disputes & War Law	32	Law of nations	0	0	1	0
+4711	International Genealogical Lists	32	Genealogy & Heraldry	1	1	1	0
+10441	Korean Foreign Relations History	32	Korean History	1	1	0	0
+12776	Large Estates & Landlord Systems	32	Land use	0	0	1	0
+11880	Latin American & Caribbean Labor	32	Labor, Work & Working Class	0	0	1	0
+11156	Latin American Modern Philosophy	32	Regional Modern Philosophy	3	0	1	0
+6736	Latin Literature’s Modern Legacy	32	Roman Literary History	0	0	1	0
+12983	Library Acquisition & Processing	32	Library Collections & Materials	0	0	1	0
+1587	Literary Criticism & Collections	32	Arts, Media & Literature	0	0	0	1
+2068	Literary Criticism & Collections	32	Arts, Media & Literature	0	0	0	1
+6957	Literary Extracts & Commonplaces	32	Literary Collections	0	0	1	0
+12204	Machinery & Equipment Industries	32	Industries	0	0	1	0
+50959	Massachusetts Regions & Counties	32	Massachusetts	1	0	1	0
+11009	Medieval Cosmological Philosophy	32	Philosophical Cosmology	0	1	0	0
+50827	Medieval English Lit., 1066–1500	32	English & Old English Literatures	0	0	1	0
+10293	Medieval Low Countries, 843–1384	32	Benelux History by Era	0	0	1	0
+10492	Medieval Politics & Institutions	32	Medieval History	1	0	1	0
+10648	Medieval–Early Modern, 1185–1603	32	Japanese History	0	0	6	0
+13602	Mental Health Care Relationships	32	Psychotherapy	0	1	0	0
+10897	Middle Eastern Modern Philosophy	32	Asian Modern Philosophy	2	0	6	0
+12425	Military Routes & Transportation	32	Army Organization & Status	0	0	1	0
+9394	Miniature & Children’s Furniture	32	Furniture	0	1	0	0
+50904	Mississippi Valley & Middle West	32	Midwest	0	1	2	0
+403	Mobile & Wireless Communications	32	Electrical & Electronic Engineering	0	0	0	1
+8748	Modern Paper Watermarks & Brands	32	Paper manufacture and trade	0	1	0	0
+7023	Molecular Genetics & Engineering	32	Genetics	0	0	1	0
+50885	New Southwest Indigenous History	32	Indians of North America	0	1	0	0
+14012	North European History Reference	32	North European History	0	0	1	0
+2207	Other Regional Education History	32	History of education	20	0	0	0
+10562	Papal States, Holy See & Vatican	32	Italian History	0	0	1	0
+776	Percussion and other instruments	32	Instrumental techniques	6	0	7	0
+7467	Personality assessment. Research	32	Personality	0	1	0	0
+13734	Philosophy & Aesthetics of Drama	32	Drama	0	0	1	0
+5887	Plant Health, Pests & Protection	32	Plant Production & Horticulture	6	0	0	0
+11756	Political Rights & Participation	32	American Government	0	0	1	0
+12885	Population Geography & Migration	32	Demography	0	0	1	0
+6991	Post-Columbian period. El Dorado	32	Exploration of the Americas	3	0	1	0
+8839	Power Generation by Current Type	32	Electric Power Generation	0	0	1	0
+5777	Prehistoric & Mythical Creatures	32	Animals	2	0	0	0
+13335	Prime Numbers & Number Functions	32	Number Theory	0	0	1	0
+13620	Production & Industrial Location	32	Economic history	0	6	0	0
+902	Reality, Game Shows & Talk Shows	32	Genres	0	0	0	1
+12851	Regional Prehistoric Archaeology	32	Prehistoric archaeology	0	0	1	0
+10152	Revolution & Napoleon, 1789–1815	32	Early Modern, 1519–1815	0	0	1	0
+10208	Revolution & Napoleon, 1789–1815	32	Swiss History	1	0	0	0
+10232	Revolution & Napoleon, 1792–1815	32	Austrian History	0	0	1	0
+337	River & Water Supply Engineering	32	Hydraulics	2	6	1	0
+11390	Russian Imperial Rule, 1795–1917	32	Belarusian History	0	2	1	0
+11354	Russian Imperial Rule, 1795–1918	32	Lithuanian History	0	0	1	0
+2324	School Facilities & Architecture	32	Education Theory & Practice	11	26	1	0
+5726	Science Education & Institutions	32	Science & Nature	2	0	0	1
+11871	Social Security in North America	32	Social Security & Pensions	0	0	2	0
+11781	Social Services & Welfare Policy	32	Public Policy & Civil Society	0	0	0	1
+11813	Socialism & Communism — Americas	32	Political Theory	0	0	1	0
+11069	South American Modern Philosophy	32	Latin American Modern Philosophy	7	0	5	0
+50890	Southern U.S. Indigenous History	32	Indians of North America	0	1	0	0
+13069	Special Phases of Race Relations	32	Races	0	0	1	0
+10371	Special groups of Jewish victims	32	Holocaust	2	1	0	0
+5710	Specialized Courts & Proceedings	32	Legal Practice & Procedure	0	8	13	0
+8703	Structural Engineering Treatises	32	Structural & Building Engineering	0	1	0	0
+6618	Structure–Property Relationships	32	Physical & Theoretical Chem.	0	1	0	0
+13181	Tariff Preferences & Reciprocity	32	Tariffs & Trade Policy	0	0	1	0
+2299	Teacher Training & Certification	32	Education	0	0	0	1
+3685	Technical Chronology & Calendars	32	Auxiliary Sciences of History	0	1	8	0
+5915	Technology Research & Innovation	32	Technology & Engineering	4	0	0	1
+11545	Territorial Expansion, 1918–1944	32	Romanian History	0	0	1	0
+51143	U.S. Culture & Intellectual Life	32	U.S. General Reference	0	0	1	0
+7799	U.S. Memoir & Letter Anthologies	32	U.S. Biographical Writing	0	1	0	0
+51006	U.S. Military History, 1961–1969	32	1961–1969 | By Period	0	0	1	0
+11541	United Principalities, 1866–1876	32	Romanian History	0	1	0	0
+6363	Vector, Tensor & Spinor Analysis	32	Analysis	0	1	0	0
+11974	Venezuelan Literature, 1961–2000	32	Venezuelan Spanish Literature	0	0	1	0
+5831	West European Schools & Colleges	32	European Schools & Colleges	4	2	0	0
+6205	Wireless & Mobile Communications	32	Telecommunication	0	0	2	0
+1849	YA Australian & Oceanian Fiction	32	People & Places	0	0	0	1
+2036	YA Australian & Oceanian History	32	YA History	0	0	0	1
+10375	21st-Century Diplomatic History	31	21st century	0	1	0	0
+13041	Abstraction & Conceptualization	31	Thought & Reasoning	0	0	1	0
+9837	Alcohol & Temperance Miscellany	31	Alcoholism & Temperance	0	0	1	0
+7325	Alcoholism & Temperance History	31	Alcoholism & Temperance	0	0	1	0
+10122	Alexander the Great, 336–323 BC	31	Ancient Era	0	0	1	0
+13336	Algebraic & Transcendental Nos.	31	Number Theory	0	0	1	0
+9530	Ancient Central Asian Languages	31	Extinct & Historical Languages	0	0	1	0
+11055	Ancient Cosmological Philosophy	31	Philosophical Cosmology	0	1	0	0
+10164	Ancient to 476. Greco-Roman era	31	Greco-Roman History	1	0	1	0
+5383	Animal & Comparative Psychology	31	Psychology	1	0	0	1
+12870	Arabic Etymology & Lexicography	31	Arabic Language	0	0	1	0
+11952	Argentine Literature, 1961–2000	31	Argentine Spanish Literature	0	0	1	0
+11992	Atlantic & Indian Ocean Islands	31	Economic history	0	0	1	0
+13366	Atlantic & Indian Ocean Islands	31	Regional Folklore	0	0	1	0
+13842	Authority & Sources of Doctrine	31	Christian Theology	0	0	1	0
+8913	Behavioral Optometry & Training	31	Optometry & Eyeglasses	0	1	0	0
+13215	Benevolent & Friendly Societies	31	Societies: secret, benevolent, etc.	0	0	1	0
+5757	Biography, Reference & Research	31	Buddhism	0	2	17	0
+1377	Boats, Ships & Underwater Craft	31	Kids’ Transport Fiction	0	0	0	1
+1728	Boats, Ships & Underwater Craft	31	Transportation	0	0	0	1
+2165	Boats, Ships & Underwater Craft	31	Transportation	0	0	0	1
+12764	Bonds & Fixed-Income Securities	31	Investments & Securities	0	0	1	1
+5605	Books, Manuscripts & Publishing	31	Reference & Information	2	0	0	0
+11438	Central European History by Era	31	Central European History	6	0	0	0
+1548	Children’s Heritage & Landmarks	31	Children’s History	0	0	0	1
+12346	Chinese Literature through Ming	31	Chinese literature	0	0	1	0
+10757	Chronicles & Writings, Pre-1525	31	World histories	0	1	0	0
+11970	Colombian Literature, 1960–2000	31	Colombian Spanish Literature	0	0	1	0
+8845	Community Recreation Management	31	Recreation Management	0	0	1	0
+12859	Comparative Buddhist Traditions	31	Schools & Traditions	0	0	1	0
+5094	Competition. Production. Wealth	31	Economic Theory	0	0	1	0
+4409	Computational Linguistics & NLP	31	Linguistics	0	0	2	0
+5123	Conflict Resolution & Mediation	31	Business Management	0	0	0	1
+12958	Councils, Museums & Exhibitions	31	Catholic Studies & Reference	0	0	1	0
+13072	Currency & Foreign Exchange Law	31	Public Finance, Taxation & Customs	0	0	1	0
+12315	Customs by Birth, Rank & Status	31	Manners, Customs & Material Culture	0	0	1	0
+13883	Czechoslovak Historical Studies	31	Czechoslovak History	0	0	1	0
+10054	Death Certification & Diagnosis	31	Forensic & Legal Medicine	0	1	1	0
+5497	Developing & Emerging Countries	31	Social Change & Development	0	0	0	1
+7857	Difference & Integral Equations	31	Analysis	0	1	0	0
+8988	Differential Forms & Invariants	31	Analysis	0	1	0	0
+7305	Diseases due to physical agents	31	Environmental Disease	0	0	1	0
+13241	EU Administration & Culture Law	31	European Integration Law	0	0	1	0
+13989	East European History Reference	31	East European History	0	0	1	0
+11125	East European Modern Philosophy	31	Regional Modern Philosophy	12	0	3	0
+13611	Economic & Technical Assistance	31	Economic history	0	0	1	0
+5232	Economic Development & Planning	31	Industries	7	3	5	0
+2313	Education Testing & Measurement	31	Education	0	0	0	1
+5929	Education, Research & Reference	31	Nursing	2	0	0	1
+7314	Embryos, Fetuses & Perinatology	31	Obstetrics	0	0	1	0
+5938	Emotional Well-being & Identity	31	Social Themes	4	0	0	0
+2617	Endocrine & Systemic Gynecology	31	Gynecology & Obstetrics	3	0	1	0
+2894	Endocrinotherapy. Organotherapy	31	Pharmacology & Therapeutics	1	0	2	0
+7153	Engineering Material Properties	31	Engineering Materials	0	0	1	0
+7088	Engineering Materials Treatises	31	Engineering Materials	0	1	0	0
+11595	Enterprise & Project Management	31	Management	0	1	2	0
+9473	Environmental Impact Statements	31	Industrial Environmental Impact	0	0	1	0
+3234	Environmentalists & Naturalists	31	Science, Education & Ideas	0	0	0	1
+5835	European Education Institutions	31	European Schools & Colleges	0	1	1	0
+8947	Experimental Instrumental Music	31	Instrumental music	0	0	1	0
+13013	Fishery Technology & Processing	31	Fisheries	0	0	1	0
+5979	Geography, Travel & Cartography	31	Humanities & Culture	0	0	1	0
+6901	Geomagnetic Observation Methods	31	Geophysics & Geomagnetism	0	1	0	0
+9815	Geophysical Observation Methods	31	Geophysics & Geomagnetism	0	1	0	0
+12704	German Literature, 1860/70–1960	31	German & Related Literatures	0	0	1	0
+9696	Government Information Catalogs	31	Government information	0	0	1	0
+50886	Great Plains Indigenous History	31	Indians of North America	0	1	0	0
+10133	Habsburg & Luxemburg, 1273–1519	31	Early & Medieval, 481–1519	0	0	1	0
+2586	Hair, Nail & Skin Gland Disease	31	Dermatology	2	6	1	0
+9714	Heat-Based Power & Cogeneration	31	Electric Power Generation	0	0	1	0
+10588	Hohenzollern Dynasty, 1415–1640	31	Prussia	0	0	1	0
+5821	Identity, Diversity & Inclusion	31	Social Themes	10	0	0	0
+7360	Incunabula & Block Book Studies	31	Incunabula. Block books	0	0	1	0
+5738	Indigenous & Pagan Spirituality	31	Body, Mind & Spirit	4	0	0	0
+7074	Indo-European Philology History	31	Indo-European Philology	0	0	1	0
+6472	Industrial Engineer Biographies	31	Industrial Engineering	0	0	1	0
+299	Industrial Environmental Impact	31	Environmental	3	0	1	0
+6145	Information Storage & Retrieval	31	Library Systems & Services	0	0	1	0
+780	Instrumentation & Orchestration	31	Music theory	1	0	1	0
+5343	Intergovernmental Organizations	31	International Relations	0	0	1	1
+5553	International & Comparative Law	31	Law	15	35	7	2
+6566	International Education Serials	31	Education Serials & Societies	0	1	0	0
+5354	International Relations Sources	31	International Relations	0	0	4	0
+10750	Japanese WWII Submarine Warfare	31	Submarine operations	0	0	1	0
+5874	Jewish Interfaith & Apologetics	31	Judaism	0	4	1	0
+1147	Kids’ Latin American Biofiction	31	Biographical	0	0	0	1
+1135	Kids’ Turtle & Tortoise Stories	31	Animals	0	0	0	1
+10419	Kingdom of Jerusalem, 1099–1291	31	Medieval History	1	0	1	0
+6189	Land, Maritime & Air Quarantine	31	Prevention, Immunity & Disease	0	0	1	0
+13376	Latin American Local Government	31	Local & Municipal Government	0	0	1	0
+11133	Letter-Writing Etiquette, 1801–	31	Etiquette of letter-writing	0	0	1	0
+4750	Library Collections & Materials	31	Libraries & Collections | Library Collections & Services	6	10	6	0
+4747	Library Reports, History & Data	31	Libraries & Collections	12	0	2	0
+9349	Literary Collections Miscellany	31	Literary Collections	0	0	1	0
+7910	Locomotive Engineer Biographies	31	Steam engineering	0	0	1	0
+9825	Magician & Hermetic Biographies	31	Magic & Shamanism	0	0	1	0
+12559	Management Education & Research	31	General & Strategic Management	0	0	1	0
+7046	Manuscript Illumination History	31	Manuscript & Book Illumination	0	0	1	0
+13056	Medieval & Modern Greek Grammar	31	Greek Language	0	0	1	0
+13690	Medieval & Modern World History	31	World History	0	0	1	0
+10154	Medieval & Tudor Era, 1172–1603	31	Irish History	0	0	4	0
+8422	Metapoetry & Praise Collections	31	Poetry	0	1	0	0
+7128	Microscope Specimen Preparation	31	Microscopy	0	0	1	0
+8801	Music’s Moral & Healing Effects	31	Music: Philosophy, Society & Physics	0	0	1	0
+12558	Networks & Information Security	31	General & Strategic Management	0	0	1	0
+4272	Non-Indo-Aryan Asian Literature	31	Asian, African & Oceanian Lit.	0	0	1	0
+11986	North American Economic History	31	Economic history	2	0	1	0
+10494	North American Military History	31	North American History	0	1	0	0
+2390	Northern & Southern Hemispheres	31	Geography	0	2	0	0
+5830	Northern Europe & Baltic States	31	European Schools & Colleges	8	3	0	0
+13095	Nuclear Physics & Atomic Energy	31	Nuclear & Particle Physics	0	0	1	1
+13078	Orthodox Church & Patriarchates	31	Orthodox	0	0	1	1
+13956	Other Lithuanian Town Histories	31	Lithuanian History	0	0	1	0
+12395	Payments & Banking Transactions	31	Banking	0	0	1	0
+50970	Pennsylvania Regions & Counties	31	Pennsylvania	0	0	1	0
+4386	Performing Arts & Show Business	31	Drama	7	0	4	0
+8367	Personal Medical Care Provision	31	Medicine and the state	0	0	1	0
+13156	Pest Control & Plant Protection	31	Plant Health, Pests & Protection	0	0	1	1
+7656	Philosophical Cosmology History	31	Philosophical Cosmology	0	1	0	0
+967	Photo Methods, Gear & Materials	31	Techniques, Equipment & Processing	6	0	1	0
+35	Plant Production & Horticulture	31	Agriculture	8	1	1	0
+10361	Post-Cold War Europe, 1989–2001	31	European History by Era	0	3	1	0
+10141	Post-Westphalian Era, 1648–1740	31	Early Modern, 1519–1815	0	0	1	0
+9808	Potash Minerals, Salts & Plants	31	Nonmetallic minerals	0	1	0	0
+4787	Practical & Spherical Astronomy	31	Astronomy & Space Science	8	0	1	0
+9011	Private Patronage & Collections	31	Private Art Collecting	0	0	1	0
+12878	Psycholinguistics & Synesthesia	31	Cognition	0	0	1	0
+11199	Psychology Practice & Economics	31	Psychology	0	1	0	0
+6168	Public Health Labs & Institutes	31	Foundations, Ethics & Practice	0	0	1	0
+6152	Public Health Study & Reference	31	Public Health	10	9	2	0
+11747	Public Service & Regulatory Law	31	Comparative & Uniform Law	0	0	5	0
+3818	Public Speaking & Speechwriting	31	Communication & Rhetoric	0	0	0	1
+424	Railway Engineering & Operation	31	Transportation	6	1	1	0
+13676	Regional & National Literatures	31	Literary History	0	0	1	0
+7109	Regional Decorative Art History	31	Decorative Arts History	0	0	1	0
+8992	Regional Industrial Engineering	31	Industrial Engineering	0	0	1	0
+8979	Regional School Health Services	31	School & College Healthcare	0	0	1	0
+13537	Religion & Ethnicity in Science	31	Science & Nature	0	1	0	0
+5708	Remedies, Damages & Enforcement	31	Legal Practice & Procedure	0	35	26	1
+12683	School Governance & Supervision	31	School Administration	0	0	1	0
+6816	School Stress & Mental Capacity	31	School & College Healthcare	0	1	0	0
+13526	Science Periodicals by Language	31	Science & Nature	0	0	1	0
+12250	Sex Discrimination & Harassment	31	Women & Feminism	0	0	1	0
+12403	Sexual Orientation & Minorities	31	Sexual life	0	0	1	0
+8591	Sexual offenses, diseases, etc.	31	Forensic & Legal Medicine	0	0	1	0
+12180	Sierra Leonean Economic History	31	African Economic History	0	0	1	0
+7600	Small Buildings, Fences & Gates	31	Building Types	0	0	1	0
+11210	South African Modern Philosophy	31	Southern African Modern Philosophy	0	0	1	0
+11609	Soviet Union & Former Republics	31	European Government	0	0	1	0
+9112	Space Environmental Engineering	31	Astronautics. Space travel	0	3	1	0
+9556	Spacecraft Electrical Equipment	31	Astronautics. Space travel	0	0	1	0
+9899	Spirochetal & Protozoan Disease	31	Infectious & Parasitic Disease	0	0	1	0
+8562	Statistical Engineering Methods	31	Engineering Mathematics	0	1	0	0
+8966	Structure-activity relationship	31	Drugs and their actions	0	1	0	0
+12314	Travel & Transportation Customs	31	Manners, Customs & Material Culture	0	0	1	0
+51187	U.S. Foreign Relations, 20th C.	31	20th Century | U.S. Foreign Relations History	0	0	1	0
+11983	Uruguayan Literature, 1961–2000	31	Uruguayan Spanish Literature	0	0	1	0
+404	Vehicle & Aerospace Engineering	31	Transportation	4	1	2	0
+7013	WWI Ethics, Religion & Prophecy	31	World War I	0	1	0	0
+10331	WWI: Mesopotamia, Kut & Assyria	31	Turkey and the Near East	0	1	0	0
+10596	West African Kingdoms & Empires	31	French West Africa, Sahara & Sahel	6	7	0	0
+10614	West Central Africa. West Sudan	31	Central African History	0	1	0	0
+2000	YA Disabilities & Special Needs	31	Young Adult Nonfiction	0	0	0	1
+1811	YA Middle Eastern Hist. Fiction	31	YA Historical Fiction	0	0	0	1
+13217	Youth & Special-Class Societies	31	Societies: secret, benevolent, etc.	0	0	1	0

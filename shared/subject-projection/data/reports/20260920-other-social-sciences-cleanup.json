@@ -1,0 +1,131 @@
+{
+  "merges": {
+    "5295": {
+      "into": 5296,
+      "old_label": "Islamic",
+      "surviving_label": "Islamic Law"
+    },
+    "5280": {
+      "into": 5281,
+      "old_label": "Comparative",
+      "surviving_label": "Comparative & Uniform Law"
+    },
+    "5290": {
+      "into": 5278,
+      "old_label": "General Comparative",
+      "surviving_label": "Eastern Catholic Canon Law"
+    },
+    "5897": {
+      "into": 5462,
+      "old_label": "Social Welfare",
+      "surviving_label": "Social Welfare & Services"
+    },
+    "52684": {
+      "into": 5462,
+      "old_label": "Social-Welfare Reference & Education",
+      "surviving_label": "Social Welfare & Services"
+    },
+    "52686": {
+      "into": 5462,
+      "old_label": "Social-Welfare Biography & Information",
+      "surviving_label": "Social Welfare & Services"
+    },
+    "5063": {
+      "into": 5079,
+      "old_label": "Folklore Topics",
+      "surviving_label": "Folklore & Mythology"
+    },
+    "13223": {
+      "into": 5079,
+      "old_label": "Folklore Studies",
+      "surviving_label": "Folklore & Mythology"
+    },
+    "52610": {
+      "into": 52609,
+      "old_label": "Food & Beverage Customs",
+      "surviving_label": "Eating & Drinking Customs"
+    },
+    "6222": {
+      "into": 5472,
+      "old_label": "Criminal Justice Associations",
+      "surviving_label": "Criminal Justice"
+    },
+    "7035": {
+      "into": 5472,
+      "old_label": "Statistics Monographs",
+      "surviving_label": "Criminal Justice"
+    },
+    "7932": {
+      "into": 5472,
+      "old_label": "Criminal Justice Documents",
+      "surviving_label": "Criminal Justice"
+    },
+    "9434": {
+      "into": 5472,
+      "old_label": "Congresses International",
+      "surviving_label": "Criminal Justice"
+    },
+    "9592": {
+      "into": 5472,
+      "old_label": "Communication of information",
+      "surviving_label": "Criminal Justice"
+    },
+    "52706": {
+      "into": 5252,
+      "old_label": "Family Treatises & Home Life",
+      "surviving_label": "Family & Relationships"
+    },
+    "12780": {
+      "into": 5254,
+      "old_label": "Military Reference",
+      "surviving_label": "Military Studies"
+    },
+    "12939": {
+      "into": 5849,
+      "old_label": "Air Force History & Reference",
+      "surviving_label": "Air & Space Forces"
+    },
+    "12955": {
+      "into": 5520,
+      "old_label": "Universal Statistical Data",
+      "surviving_label": "Statistics"
+    }
+  },
+  "renamed": {
+    "12280": {
+      "before": "Size",
+      "after": "Family Size & Planning"
+    },
+    "5484": {
+      "before": "Special classes",
+      "after": "Welfare by Population Group"
+    },
+    "11757": {
+      "before": "Political Parties",
+      "after": "U.S. Political Parties"
+    }
+  },
+  "moved": [],
+  "flattened": [
+    {
+      "id": 12418,
+      "parent": 5516,
+      "children": [
+        12579,
+        12580,
+        12581,
+        12582,
+        12583,
+        12584,
+        12585,
+        12586,
+        12587,
+        12588
+      ]
+    }
+  ],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "19 recommended compactions (18 merges and one code-free wrapper removal), plus three label corrections. Optional and scope-review candidates remain unapplied.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

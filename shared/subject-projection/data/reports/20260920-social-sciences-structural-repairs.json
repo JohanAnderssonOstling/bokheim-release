@@ -1,0 +1,211 @@
+{
+  "merges": {
+    "3484": {
+      "into": 5492,
+      "old_label": "Archaeology",
+      "surviving_label": "Archaeology"
+    }
+  },
+  "renamed": {
+    "13604": {
+      "before": "Physical therapy",
+      "after": "Psychiatric Physical Treatments"
+    },
+    "13607": {
+      "before": "Occupational therapy",
+      "after": "Psychiatric Occupational Therapy"
+    },
+    "13606": {
+      "before": "Shock therapy",
+      "after": "Electroconvulsive & Other Shock Therapies"
+    }
+  },
+  "moved": [
+    {
+      "id": 5448,
+      "before": [
+        2837,
+        5651
+      ],
+      "after": [
+        54948,
+        5651
+      ]
+    },
+    {
+      "id": 13604,
+      "before": [
+        5448
+      ],
+      "after": [
+        54948
+      ]
+    },
+    {
+      "id": 13605,
+      "before": [
+        2837
+      ],
+      "after": [
+        54948
+      ]
+    },
+    {
+      "id": 13606,
+      "before": [
+        5448
+      ],
+      "after": [
+        54948
+      ]
+    },
+    {
+      "id": 13607,
+      "before": [
+        5448
+      ],
+      "after": [
+        54948
+      ]
+    },
+    {
+      "id": 13596,
+      "before": [
+        5448
+      ],
+      "after": [
+        54948
+      ]
+    },
+    {
+      "id": 13597,
+      "before": [
+        5448
+      ],
+      "after": [
+        54948
+      ]
+    },
+    {
+      "id": 13600,
+      "before": [
+        5448
+      ],
+      "after": [
+        54948
+      ]
+    },
+    {
+      "id": 13601,
+      "before": [
+        5448
+      ],
+      "after": [
+        54948
+      ]
+    },
+    {
+      "id": 13602,
+      "before": [
+        5448
+      ],
+      "after": [
+        54948
+      ]
+    },
+    {
+      "id": 13609,
+      "before": [
+        5448
+      ],
+      "after": [
+        54948
+      ]
+    },
+    {
+      "id": 5262,
+      "before": [
+        5463
+      ],
+      "after": []
+    },
+    {
+      "id": 50830,
+      "before": [
+        5276
+      ],
+      "after": [
+        54949
+      ]
+    },
+    {
+      "id": 5492,
+      "before": [
+        5055
+      ],
+      "after": [
+        5055,
+        3514
+      ]
+    }
+  ],
+  "flattened": [],
+  "created": {
+    "54948": "Psychiatric Treatments",
+    "54949": "By Jurisdiction",
+    "54950": "Historical Archaeology"
+  },
+  "selector_repairs": [
+    {
+      "system": "lcc",
+      "from": 5462,
+      "to": 5055,
+      "selectors": [
+        "HV",
+        "HV1-9960"
+      ],
+      "new_specific_coverage": {
+        "5462": "HV1-5999.999",
+        "5463": "HV6001-9960"
+      },
+      "reason": "Criminology begins at HV6001; criminal justice HV7231+ and penology HV8301+ already retain narrower mappings."
+    },
+    {
+      "system": "lcc",
+      "from": 5448,
+      "to": 54948,
+      "scope": "Existing RC475–RC489.2 / RC489.A–RC489.Z ranges and general therapeutic selectors",
+      "psychotherapy_specific": [
+        "RC481",
+        "RC488-RC488.8"
+      ],
+      "reason": "LCC RC pages 126–127: Therapeutics. Psychotherapy includes physical, drug, shock and occupational treatment."
+    },
+    {
+      "system": "lcc",
+      "selector": "CC77.H5",
+      "to": 54950,
+      "reason": "Explicit Historical archaeology heading in LCC CC page 7; previously covered only by broader CC methods/general ranges."
+    }
+  ],
+  "jurisdiction_links": {
+    "parent": 54949,
+    "subjects": [
+      50830,
+      12993,
+      12994,
+      12995,
+      12996,
+      5317,
+      5318
+    ],
+    "note": "Country/regional specialist subjects retain their existing topical parents; no empty country subjects created."
+  },
+  "source_notes": [
+    "HV source page 570 starts Criminology at HV6001. Existing specific criminal justice/corrections coverage retained.",
+    "RC source pages 126–127 distinguish client-centered/group/family psychotherapy from physical, drug, shock and occupational treatment.",
+    "CC source pages 6–7 define general archaeology, cross-reference prehistoric archaeology, and identify CC77.H5 Historical archaeology.",
+    "Archaeology bibliography subjects remain bibliographies; combined regional archaeology/native-history subjects retain their mixed historical scope."
+  ],
+  "validation": "Deferred at user request; usage refresh also deferred. These repairs have not yet undergone accumulated classification validation."
+}

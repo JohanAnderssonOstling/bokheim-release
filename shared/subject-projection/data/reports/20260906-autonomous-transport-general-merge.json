@@ -1,0 +1,30 @@
+{
+  "merges": {
+    "13717": 488
+  },
+  "renames": [
+    {
+      "id": 5353,
+      "before": "International Relations Organizations",
+      "after": "International Relations Societies"
+    },
+    {
+      "id": 8024,
+      "before": "Treatment of special classes of people",
+      "after": "Social Groups in Roman Literature"
+    },
+    {
+      "id": 3862,
+      "before": "Treatment of special subjects, classes",
+      "after": "Themes & Groups in U.S. Literature"
+    },
+    {
+      "id": 7430,
+      "before": "Women and poetry. Feminine influence",
+      "after": "Women & Poetry"
+    }
+  ],
+  "renamed_count": 4,
+  "verified_code_groups": 2961373,
+  "aliases_added": 0
+}

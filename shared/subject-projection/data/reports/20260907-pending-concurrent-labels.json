@@ -1,0 +1,59 @@
+{
+  "created": [],
+  "renamed": [
+    {
+      "id": 51602,
+      "before": "Scottish Political & Diplomatic History",
+      "after": "Scottish Political/Diplomatic Hist."
+    },
+    {
+      "id": 51615,
+      "before": "Hungarian History in the 20th Century",
+      "after": "20th-Century History"
+    },
+    {
+      "id": 51617,
+      "before": "20th-Century Hungarian Social & Cultural History",
+      "after": "Hungarian Society & Culture, 20th C."
+    },
+    {
+      "id": 51618,
+      "before": "Hungarian Political & Diplomatic History",
+      "after": "Hungarian Political/Diplomatic Hist."
+    },
+    {
+      "id": 51624,
+      "before": "Romanian Political & Diplomatic History",
+      "after": "Romanian Political/Diplomatic Hist."
+    },
+    {
+      "id": 51670,
+      "before": "Swiss Political & Diplomatic History",
+      "after": "Swiss Political/Diplomatic Hist."
+    },
+    {
+      "id": 51689,
+      "before": "Portuguese Political & Diplomatic History",
+      "after": "Portuguese Political/Diplomatic Hist."
+    },
+    {
+      "id": 51679,
+      "before": "Serbian Autonomy & Independence, 1804–1918",
+      "after": "Autonomy & Independence, 1804–1918"
+    },
+    {
+      "id": 51686,
+      "before": "Portuguese Social & Cultural History",
+      "after": "Portuguese Social & Cultural Hist."
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {},
+  "merged": [],
+  "empty_groupings_removed": [],
+  "verified_code_groups": 2960835,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0,
+  "retained_labels": {}
+}

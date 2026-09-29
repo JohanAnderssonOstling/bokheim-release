@@ -1,0 +1,372 @@
+{
+  "merges": {
+    "13859": {
+      "into": 3677,
+      "old_label": "General, Reference & Historiography",
+      "surviving_label": "Australian"
+    },
+    "52295": {
+      "into": 3635,
+      "old_label": "Historical Reference",
+      "surviving_label": "Egyptian"
+    },
+    "51931": {
+      "into": 51930,
+      "old_label": "Historical Reference",
+      "surviving_label": "Cypriot"
+    },
+    "13846": {
+      "into": 3613,
+      "old_label": "Reference",
+      "surviving_label": "Spanish"
+    },
+    "13888": {
+      "into": 3611,
+      "old_label": "Reference",
+      "surviving_label": "Portuguese"
+    },
+    "13933": {
+      "into": 3584,
+      "old_label": "Reference",
+      "surviving_label": "Swedish"
+    },
+    "13930": {
+      "into": 3583,
+      "old_label": "Reference",
+      "surviving_label": "Norwegian"
+    },
+    "13937": {
+      "into": 3581,
+      "old_label": "Reference",
+      "surviving_label": "Finnish"
+    },
+    "13927": {
+      "into": 3580,
+      "old_label": "Reference",
+      "surviving_label": "Danish"
+    },
+    "13622": {
+      "into": 3571,
+      "old_label": "Roman Reference",
+      "surviving_label": "Ancient Era, to 476"
+    },
+    "52023": {
+      "into": 10562,
+      "old_label": "Papal States & Vatican Historical Reference",
+      "surviving_label": "Papal States, Holy See & Vatican"
+    },
+    "52001": {
+      "into": 52000,
+      "old_label": "Historical Reference",
+      "surviving_label": "Liechtenstein"
+    },
+    "13998": {
+      "into": 3540,
+      "old_label": "Reference",
+      "surviving_label": "Slovak"
+    },
+    "13882": {
+      "into": 3538,
+      "old_label": "Reference",
+      "surviving_label": "Czechoslovak"
+    },
+    "13872": {
+      "into": 3537,
+      "old_label": "Reference",
+      "surviving_label": "Austrian"
+    },
+    "13899": {
+      "into": 3524,
+      "old_label": "Reference",
+      "surviving_label": "German"
+    },
+    "13911": {
+      "into": 3541,
+      "old_label": "Balkan Reference",
+      "surviving_label": "Balkan Peninsula"
+    },
+    "51958": {
+      "into": 51957,
+      "old_label": "Bosnian Historical Reference",
+      "surviving_label": "Bosnia and Herzegovina"
+    },
+    "51946": {
+      "into": 51945,
+      "old_label": "Historical Reference",
+      "surviving_label": "Slovenian"
+    },
+    "51984": {
+      "into": 51683,
+      "old_label": "Historical Reference",
+      "surviving_label": "Kosovo"
+    },
+    "13905": {
+      "into": 3551,
+      "old_label": "Reference",
+      "surviving_label": "Turkish"
+    },
+    "13894": {
+      "into": 3548,
+      "old_label": "Reference",
+      "surviving_label": "Romanian"
+    },
+    "13916": {
+      "into": 3545,
+      "old_label": "Reference",
+      "surviving_label": "Bulgarian"
+    },
+    "14005": {
+      "into": 3544,
+      "old_label": "Reference",
+      "surviving_label": "Albanian"
+    },
+    "13969": {
+      "into": 3603,
+      "old_label": "Reference",
+      "surviving_label": "Ukrainian"
+    },
+    "13870": {
+      "into": 3579,
+      "old_label": "Reference",
+      "surviving_label": "Dutch"
+    },
+    "51921": {
+      "into": 3578,
+      "old_label": "Historical Reference",
+      "surviving_label": "Luxembourg"
+    },
+    "13920": {
+      "into": 3577,
+      "old_label": "Reference",
+      "surviving_label": "Belgian"
+    },
+    "13987": {
+      "into": 3586,
+      "old_label": "Reference",
+      "surviving_label": "Azerbaijani"
+    },
+    "53427": {
+      "into": 3695,
+      "old_label": "General Studies",
+      "surviving_label": "World War II"
+    },
+    "53428": {
+      "into": 3695,
+      "old_label": "Special Topics",
+      "surviving_label": "World War II"
+    },
+    "6331": {
+      "into": 3694,
+      "old_label": "Congresses & Conferences",
+      "surviving_label": "World War I"
+    },
+    "50831": {
+      "into": 3622,
+      "old_label": "Reference & Collected Works",
+      "surviving_label": "Civilization"
+    },
+    "50833": {
+      "into": 3622,
+      "old_label": "General Works on",
+      "surviving_label": "Civilization"
+    },
+    "8015": {
+      "into": 3621,
+      "old_label": "Congresses & Conferences",
+      "surviving_label": "Post-war 1945-"
+    },
+    "6665": {
+      "into": 3619,
+      "old_label": "Essays",
+      "surviving_label": "Interwar Period, 1919–1939"
+    },
+    "13268": {
+      "into": 3675,
+      "old_label": "Coins—General",
+      "surviving_label": "Numismatics"
+    },
+    "13698": {
+      "into": 3402,
+      "old_label": "General Reference",
+      "surviving_label": "U.S."
+    },
+    "13699": {
+      "into": 3402,
+      "old_label": "Historical Reference",
+      "surviving_label": "U.S."
+    },
+    "6953": {
+      "into": 4457,
+      "old_label": "Roman Lit. Essays & Lectures",
+      "surviving_label": "Roman Literary History"
+    },
+    "8411": {
+      "into": 4256,
+      "old_label": "Greek Lit. Essays & Lectures",
+      "surviving_label": "Greek Literary History"
+    },
+    "9004": {
+      "into": 4471,
+      "old_label": "Societies. Congresses",
+      "surviving_label": "Spanish Literary Studies"
+    },
+    "7470": {
+      "into": 3924,
+      "old_label": "Literary Criticism Essays",
+      "surviving_label": "Literary History & Criticism"
+    },
+    "6218": {
+      "into": 3919,
+      "old_label": "General collections",
+      "surviving_label": "English Literary Collections"
+    },
+    "6914": {
+      "into": 3930,
+      "old_label": "Collected essays",
+      "surviving_label": "Poetry"
+    },
+    "7144": {
+      "into": 4382,
+      "old_label": "Miscellaneous Essays",
+      "surviving_label": "Poetry"
+    },
+    "13733": {
+      "into": 4372,
+      "old_label": "Drama Dictionaries & Indexes",
+      "surviving_label": "Drama"
+    },
+    "13735": {
+      "into": 4372,
+      "old_label": "General Works on Drama & Stage",
+      "surviving_label": "Drama"
+    },
+    "6866": {
+      "into": 4386,
+      "old_label": "Dictionaries. Terminology",
+      "surviving_label": "Performing Arts & Show Business"
+    },
+    "7582": {
+      "into": 4386,
+      "old_label": "Congresses & Conferences",
+      "surviving_label": "Performing Arts & Show Business"
+    },
+    "13680": {
+      "into": 4311,
+      "old_label": "U.S. Reference",
+      "surviving_label": "American Literary Criticism"
+    },
+    "9042": {
+      "into": 4280,
+      "old_label": "General collections",
+      "surviving_label": "Literary Collections"
+    },
+    "13176": {
+      "into": 7540,
+      "old_label": "Immunologic Diseases—General",
+      "surviving_label": "Immunologic diseases"
+    },
+    "50829": {
+      "into": 2713,
+      "old_label": "General & Clinical Foundations",
+      "surviving_label": "Neuroscience & Neuropsychiatry"
+    },
+    "5764": {
+      "into": 2624,
+      "old_label": "Reference & General Health",
+      "surviving_label": "Health & Fitness"
+    },
+    "53326": {
+      "into": 5043,
+      "old_label": "Physiology Reference, Study & Research",
+      "surviving_label": "Human Physiology"
+    },
+    "53334": {
+      "into": 5046,
+      "old_label": "Neurophysiology Reference, Study & Methods",
+      "surviving_label": "Neurophysiology & Neuropsychology"
+    },
+    "53333": {
+      "into": 5045,
+      "old_label": "Experimental Pharmacology Reference & Methods",
+      "surviving_label": "Experimental pharmacology"
+    },
+    "7107": {
+      "into": 5044,
+      "old_label": "Miscellany & curiosa",
+      "surviving_label": "Animal biochemistry"
+    },
+    "53335": {
+      "into": 5044,
+      "old_label": "Animal Biochemistry Reference, Study & Methods",
+      "surviving_label": "Animal biochemistry"
+    },
+    "13660": {
+      "into": 2725,
+      "old_label": "General Medical Reference",
+      "surviving_label": "Medicine"
+    },
+    "53482": {
+      "into": 5566,
+      "old_label": "Electrical Engineering History & Reference",
+      "surviving_label": "Electrical & Electronic Engineering"
+    },
+    "53270": {
+      "into": 290,
+      "old_label": "Applied Mechanics Fundamentals & Reference",
+      "surviving_label": "Applied Mechanics"
+    },
+    "52970": {
+      "into": 12684,
+      "old_label": "Computer Science Periodicals & Societies",
+      "surviving_label": "Computer Science Resources"
+    },
+    "52971": {
+      "into": 12684,
+      "old_label": "Computer Science Dictionaries & Encyclopedias",
+      "surviving_label": "Computer Science Resources"
+    },
+    "13151": {
+      "into": 5887,
+      "old_label": "Plant Health Reference",
+      "surviving_label": "Plant Health, Pests & Protection"
+    },
+    "12899": {
+      "into": 12343,
+      "old_label": "General Flower Gardening",
+      "surviving_label": "Flowers & Ornamental Plants"
+    },
+    "13010": {
+      "into": 24,
+      "old_label": "General Fisheries & Resources",
+      "surviving_label": "Fisheries"
+    },
+    "13123": {
+      "into": 21,
+      "old_label": "Angling History & Reference",
+      "surviving_label": "Angling"
+    },
+    "5794": {
+      "into": 19,
+      "old_label": "History & General Works",
+      "surviving_label": "Animal Husbandry"
+    },
+    "7612": {
+      "into": 555,
+      "old_label": "General Urban Plan Collections",
+      "surviving_label": "Urban Design"
+    },
+    "9152": {
+      "into": 568,
+      "old_label": "General & international",
+      "surviving_label": "Competitions"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "All 72 approved parent-child compactions: 39 History, 13 Literature, 9 Medicine and 11 Technology. Eighteen useful children of the two U.S. reference wrappers and Literary General Collections promoted to their surviving parents. Separate source-scope corrections and retained/further-review items remain pending.",
+  "source_report": "data/reports/20260920-next-history-literature-medicine-technology-review.json",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

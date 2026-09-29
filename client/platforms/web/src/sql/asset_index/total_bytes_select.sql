@@ -1,0 +1,1 @@
+SELECT COALESCE(SUM(byte_length),0) FROM asset_file WHERE name>=?1 AND name<?2

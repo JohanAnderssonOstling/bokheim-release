@@ -1,0 +1,39 @@
+{
+  "merges": {
+    "51430": {
+      "into": 10149,
+      "old_label": "Thomas More",
+      "surviving_label": "Tudor era, 1485-1603"
+    },
+    "51437": {
+      "into": 10149,
+      "old_label": "Henry VII, 1485–1509",
+      "surviving_label": "Tudor era, 1485-1603"
+    },
+    "51438": {
+      "into": 10149,
+      "old_label": "Henry VIII, 1509–1547",
+      "surviving_label": "Tudor era, 1485-1603"
+    },
+    "51439": {
+      "into": 10149,
+      "old_label": "Edward VI & Mary I, 1547–1558",
+      "surviving_label": "Tudor era, 1485-1603"
+    },
+    "51440": {
+      "into": 10149,
+      "old_label": "Elizabeth I, 1558–1603",
+      "surviving_label": "Tudor era, 1485-1603"
+    },
+    "3532": {
+      "into": 10149,
+      "old_label": "Tudor & Elizabethan Era, 1485–1603",
+      "surviving_label": "Tudor era, 1485-1603"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": []
+}

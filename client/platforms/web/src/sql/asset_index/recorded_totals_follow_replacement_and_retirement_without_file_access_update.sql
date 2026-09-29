@@ -1,0 +1,1 @@
+UPDATE asset_file SET physical_name='replacement',byte_length=7 WHERE name='assets/a/book/one'

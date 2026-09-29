@@ -1,0 +1,21 @@
+{
+  "corrections": [
+    {
+      "notation": "PA85.G 646A3 DATE",
+      "base": "PA85.G646.A3",
+      "verified_call": "PA85.G646 A3 2007",
+      "lccn": "2006012465",
+      "isbn": "9780226308012",
+      "edition_key": "/books/OL10191974M",
+      "edition_path": "lcc-reviewed-call-sources/pa85-openlibrary.json",
+      "marc_path": "lcc-reviewed-call-sources/pa85-loc.mrc",
+      "edition_sha256": "9e2e1b34cff13669767449b2f2c798f53e9d2f3f9be1544dd6842177e81588dc",
+      "marc_sha256": "ed924ed70b5db2eaad0e54f73f29bc22c14c0ec43cca09ae1017b7c9bba040fb",
+      "edition_url": "https://openlibrary.org/books/OL10191974M.json",
+      "marc_url": "https://archive.org/download/marc_loc_2016/BooksAll.2016.part33.utf8",
+      "marc_byte_start": 106323161,
+      "marc_byte_length": 1422,
+      "reason": "Exact malformed Open Library field and complete class/Cutter corroborated by same edition and its linked LC MARC record. Do not supply a year."
+    }
+  ]
+}

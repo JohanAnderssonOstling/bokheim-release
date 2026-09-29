@@ -1,0 +1,347 @@
+id,label,pattern,parents,child_count,roots,sample_path
+53482,Electrical Engineering History & Reference,General/reference/detail bucket,5566:Electrical & Electronic Engineering,0,Applied Sciences & Technology,Applied Sciences & Technology > Electrical & Electronic Engineering > Electrical Engineering History & Reference
+7502,Congresses. Conventions,General/reference/detail bucket,264:Electronics,0,Applied Sciences & Technology,Applied Sciences & Technology > Electrical & Electronic Engineering > Electronics > Congresses. Conventions
+13065,General Electronic Circuits,General child,265:Electronic Circuits,0,Applied Sciences & Technology,Applied Sciences & Technology > Electrical & Electronic Engineering > Electronics > Electronic Circuits > General Electronic Circuits
+10056,General treatises,General child,257:Electric meters,0,Applied Sciences & Technology,Applied Sciences & Technology > Electrical & Electronic Engineering > Electric meters > General treatises
+5931,General Engineering Practice,General child,"5564:Civil, Structural & Construction",6,Applied Sciences & Technology,"Applied Sciences & Technology > Civil, Structural & Construction > General Engineering Practice"
+7603,Other special accessories,General/reference/detail bucket,203:Building Details,0,Applied Sciences & Technology,"Applied Sciences & Technology > Civil, Structural & Construction > Building Construction > Building Details > Other special accessories"
+5704,"Education, Reference & Collections",General/reference/detail bucket,193:Architecture,4,Applied Sciences & Technology;Arts & Media,"Applied Sciences & Technology > Civil, Structural & Construction > Architecture > Education, Reference & Collections"
+584,Architect Essays,General/reference/detail bucket,583:Individual Architects & Firms,0,Applied Sciences & Technology;Arts & Media,"Applied Sciences & Technology > Civil, Structural & Construction > Architecture > Education, Reference & Collections > Individual Architects & Firms > Architect Essays"
+7612,General Urban Plan Collections,General child,555:Urban Design,0,Applied Sciences & Technology;Arts & Media,"Applied Sciences & Technology > Civil, Structural & Construction > Architecture > Urban & Regional Planning > Urban Design > General Urban Plan Collections"
+9152,General & international,General child,568:Competitions,0,Applied Sciences & Technology;Arts & Media,"Applied Sciences & Technology > Civil, Structural & Construction > Architecture > Architecture Theory & Practice > Competitions > General & international"
+5917,Technical Communication & Reference,General/reference/detail bucket,5563:Technology & Engineering,3,Applied Sciences & Technology,Applied Sciences & Technology > Technology & Engineering > Technical Communication & Reference
+53270,Applied Mechanics Fundamentals & Reference,General/reference/detail bucket,290:Applied Mechanics,0,Applied Sciences & Technology,Applied Sciences & Technology > Technology & Engineering > Engineering Fundamentals > Applied Mechanics > Applied Mechanics Fundamentals & Reference
+9453,Miscellaneous fiber products,General/reference/detail bucket,358:Textile industries,0,Applied Sciences & Technology,Applied Sciences & Technology > Industrial Production > Textile industries > Miscellaneous fiber products
+5579,"Learning, Reference & Society",General/reference/detail bucket,36:Computing & IT,7,Applied Sciences & Technology,"Applied Sciences & Technology > Computing & IT > Learning, Reference & Society"
+52970,Computer Science Periodicals & Societies,General/reference/detail bucket,12684:Computer Science Resources,0,Applied Sciences & Technology,Applied Sciences & Technology > Computing & IT > Computer Science > Computer Science Resources > Computer Science Periodicals & Societies
+52971,Computer Science Dictionaries & Encyclopedias,General/reference/detail bucket,12684:Computer Science Resources,0,Applied Sciences & Technology,Applied Sciences & Technology > Computing & IT > Computer Science > Computer Science Resources > Computer Science Dictionaries & Encyclopedias
+5888,"History, Regions & Reference",General/reference/detail bucket,35:Plant Production & Horticulture,0,Applied Sciences & Technology,"Applied Sciences & Technology > Agriculture > Plant Production & Horticulture > History, Regions & Reference"
+13151,Plant Health Reference,General/reference/detail bucket,"5887:Plant Health, Pests & Protection",0,Applied Sciences & Technology,"Applied Sciences & Technology > Agriculture > Plant Production & Horticulture > Plant Health, Pests & Protection > Plant Health Reference"
+12899,General Flower Gardening,General child,12343:Flowers & Ornamental Plants,0,Applied Sciences & Technology,Applied Sciences & Technology > Agriculture > Plant Production & Horticulture > Horticulture & Garden Design > Flowers & Ornamental Plants > General Flower Gardening
+13010,General Fisheries & Resources,General child,24:Fisheries,0,Applied Sciences & Technology,Applied Sciences & Technology > Agriculture > Fisheries & Aquaculture > Fisheries > General Fisheries & Resources
+13123,Angling History & Reference,General/reference/detail bucket,21:Angling,0,Applied Sciences & Technology,Applied Sciences & Technology > Agriculture > Fisheries & Aquaculture > Angling > Angling History & Reference
+5794,History & General Works,General/reference/detail bucket,19:Animal Husbandry,0,Applied Sciences & Technology,Applied Sciences & Technology > Agriculture > Animal Husbandry > History & General Works
+695,Humorous Essays,General/reference/detail bucket,692:Form,0,Arts & Media;Literature,Arts & Media > Humor & Satire > Form > Humorous Essays
+6918,Wood Engraving Reference & History,General/reference/detail bucket,1050:Wood engraving,0,Arts & Media,"Arts & Media > Visual Arts > Media, Techniques & Practices > Printmaking & prints > Print media > Wood engraving > Wood Engraving Reference & History"
+7998,General Works,General/reference/detail bucket,1048:Printmaking & engraving,0,Arts & Media,"Arts & Media > Visual Arts > Media, Techniques & Practices > Printmaking & prints > Print media > Printmaking & engraving > General Works"
+1027,Artist Essays,General/reference/detail bucket,1025:Individual Artists,0,Arts & Media,Arts & Media > Visual Arts > Artists & Art Institutions > Individual Artists > Artist Essays
+5855,"Collections, Subjects & Reference",General/reference/detail bucket,915:Photography & Imaging,2,Arts & Media,"Arts & Media > Photography & Imaging > Collections, Subjects & Reference"
+930,Photographer Essays,General/reference/detail bucket,928:Individual Photographers,0,Arts & Media,Arts & Media > Photography & Imaging > Individual Photographers > Photographer Essays
+13564,Film Serials & Societies,General/reference/detail bucket,873:Film,0,Arts & Media;Literature,Arts & Media > Performing Arts > Film > Film Serials & Societies
+13567,Film Dictionaries,General/reference/detail bucket,873:Film,0,Arts & Media;Literature,Arts & Media > Performing Arts > Film > Film Dictionaries
+13571,Film Reference,General/reference/detail bucket,873:Film,0,Arts & Media;Literature,Arts & Media > Performing Arts > Film > Film Reference
+13584,"Other special topics, A-Z",General/reference/detail bucket,873:Film,0,Arts & Media;Literature,"Arts & Media > Performing Arts > Film > Other special topics, A-Z"
+13586,Film Miscellany,General/reference/detail bucket,873:Film,0,Arts & Media;Literature,Arts & Media > Performing Arts > Film > Film Miscellany
+782,Music Research & Reference,General/reference/detail bucket,720:Music,15,Arts & Media,Arts & Media > Music > Music Research & Reference
+725,Composers’ Collected Works,General/reference/detail bucket,"5657:Sources, Publishing & Collections",0,Arts & Media,"Arts & Media > Music > Sources, Publishing & Collections > Composers’ Collected Works"
+729,Music Essays,General/reference/detail bucket,782:Music Research & Reference,0,Arts & Media,Arts & Media > Music > Music Research & Reference > Music Essays
+5944,Music Reference & Bibliography,General/reference/detail bucket,782:Music Research & Reference,5,Arts & Media,Arts & Media > Music > Music Research & Reference > Music Reference & Bibliography
+786,Festivals. Congresses,General/reference/detail bucket,782:Music Research & Reference,0,Arts & Media,Arts & Media > Music > Music Research & Reference > Festivals. Congresses
+9020,Miscellaneous collections,General/reference/detail bucket,789:Librettos. Texts. Scenarios,0,Arts & Media,"Arts & Media > Music > Music Research & Reference > Publishing, Texts & Programs > Librettos. Texts. Scenarios > Miscellaneous collections"
+5930,"History, Designers & Reference",General/reference/detail bucket,647:Design & Decorative Arts,3,Arts & Media,"Arts & Media > Design & Decorative Arts > History, Designers & Reference"
+675,Design Essays,General/reference/detail bucket,"5930:History, Designers & Reference",0,Arts & Media,"Arts & Media > Design & Decorative Arts > History, Designers & Reference > Design Essays"
+9330,Poster Techniques & Reference,General/reference/detail bucket,671:Posters,0,Arts & Media,Arts & Media > Design & Decorative Arts > Drawing & Illustration > Posters > Poster Techniques & Reference
+10020,Rug & Carpet Reference,General/reference/detail bucket,658:Rugs & carpets,0,Arts & Media,Arts & Media > Design & Decorative Arts > Decorative Arts > Rugs & carpets > Rug & Carpet Reference
+5747,"Care, Restoration & Reference",General/reference/detail bucket,511:Antiques & Collectibles,1,Arts & Media,"Arts & Media > Antiques & Collectibles > Care, Restoration & Reference"
+1643,Biblical Reference,General/reference/detail bucket,1638:Religion,0,Children & Young Adult,"Children & Young Adult > Juvenile Nonfiction > People, Society & History > Religion > Biblical Reference"
+2200,Education Essays,General/reference/detail bucket,2169:Education,0,Education,Education > Education Essays
+5676,Education Reference,General/reference/detail bucket,2169:Education,0,Education,Education > Education Reference
+2195,Education Serials & Societies,General/reference/detail bucket,2169:Education,8,Education,Education > Education Serials & Societies
+6546,Scandinavian Education Serials,General/reference/detail bucket,2195:Education Serials & Societies,0,Education,Education > Education Serials & Societies > Scandinavian Education Serials
+6566,International Education Serials,General/reference/detail bucket,2195:Education Serials & Societies,0,Education,Education > Education Serials & Societies > International Education Serials
+7215,German Education Serials,General/reference/detail bucket,2195:Education Serials & Societies,0,Education,Education > Education Serials & Societies > German Education Serials
+8418,British Education Serials,General/reference/detail bucket,2195:Education Serials & Societies,0,Education,Education > Education Serials & Societies > British Education Serials
+9175,Asian Education Serials,General/reference/detail bucket,2195:Education Serials & Societies,0,Education,Education > Education Serials & Societies > Asian Education Serials
+6199,U.S. Education History Miscellany,General/reference/detail bucket,2208:U.S. Education History,0,Education,"Education > Policy, Philosophy & History > History of education > U.S. Education History > U.S. Education History Miscellany"
+13716,Americas—General,General child,2207:Other Regional Education History,0,Education,"Education > Policy, Philosophy & History > History of education > Other Regional Education History > Americas—General"
+7401,General education,General child,2293:Types of education,0,Education,"Education > Students, Inclusion & Support > Education Support Topics > Types of education > General education"
+8345,Other special classes,General/reference/detail bucket,2281:Education by Student Group,0,Education,"Education > Students, Inclusion & Support > Education Support Topics > Education by Student Group > Other special classes"
+9305,General pre-Christian,General child,2329:Individual Educational Systems,0,Education,Education > Teaching & Learning > Education Theory & Practice > Individual Educational Systems > General pre-Christian
+9794,Higher Education — General Works,General/reference/detail bucket,2321:Higher education,0,Education,Education > Teaching & Learning > Education Theory & Practice > Higher education > Higher Education — General Works
+13089,Teacher Education—General,General child,2318:Teacher Education,0,Education,Education > Teaching & Learning > Education Theory & Practice > Teacher Education > Teacher Education—General
+7934,Early Education Miscellany,General/reference/detail bucket,2317:Early Childhood Education,0,Education,Education > Teaching & Learning > Education Theory & Practice > Early Childhood Education > Early Education Miscellany
+9683,Congresses. Conferences,General/reference/detail bucket,2175:Adult & Continuing Education,0,Education,"Education > Levels, Settings & Types > Adult & Continuing Education > Congresses. Conferences"
+2454,Essays & Travelogues,General/reference/detail bucket,2426:Travel,0,"Geography, Places & Travel","Geography, Places & Travel > Travel > Essays & Travelogues"
+53322,Environmental Science Reference & Methods,General/reference/detail bucket,2377:Environmental sciences,0,"Geography, Places & Travel;Science & Nature","Geography, Places & Travel > Environmental sciences > Environmental Science Reference & Methods"
+5582,"Education, Ethics & Reference",General/reference/detail bucket,2535:Health & Medicine,7,Health & Medicine,"Health & Medicine > Education, Ethics & Reference"
+6152,Public Health Study & Reference,General/reference/detail bucket,2845:Public Health,9,Health & Medicine,Health & Medicine > Public Health > Public Health Study & Reference
+6163,Handbooks,General/reference/detail bucket,6152:Public Health Study & Reference,0,Health & Medicine,Health & Medicine > Public Health > Public Health Study & Reference > Handbooks
+6170,"Addresses, Essays & Lectures",General/reference/detail bucket,6152:Public Health Study & Reference,0,Health & Medicine,"Health & Medicine > Public Health > Public Health Study & Reference > Addresses, Essays & Lectures"
+5929,"Education, Research & Reference",General/reference/detail bucket,2747:Nursing,2,Health & Medicine,"Health & Medicine > Nursing > Education, Research & Reference"
+6301,Collected Works,General/reference/detail bucket,2718:Internal Medicine Specialties,0,Health & Medicine,Health & Medicine > Internal Medicine > Internal Medicine Specialties > Collected Works
+13176,Immunologic Diseases—General,General child,7540:Immunologic diseases,0,Health & Medicine,Health & Medicine > Internal Medicine > Internal Medicine Specialties > Immunologic diseases > Immunologic Diseases—General
+8688,Serials,General/reference/detail bucket,2713:Neuroscience & Neuropsychiatry,0,Health & Medicine,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Serials
+50829,General & Clinical Foundations,General child,2713:Neuroscience & Neuropsychiatry,0,Health & Medicine,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > General & Clinical Foundations
+5764,Reference & General Health,General/reference/detail bucket,2624:Health & Fitness,0,Health & Medicine,Health & Medicine > Health & Fitness > Reference & General Health
+2595,Dictionaries & Terminology,General/reference/detail bucket,"5582:Education, Ethics & Reference",0,Health & Medicine,"Health & Medicine > Education, Ethics & Reference > Dictionaries & Terminology"
+2605,Medical Essays,General/reference/detail bucket,"5582:Education, Ethics & Reference",0,Health & Medicine,"Health & Medicine > Education, Ethics & Reference > Medical Essays"
+53326,"Physiology Reference, Study & Research",General/reference/detail bucket,5043:Human Physiology,0,Health & Medicine;Science & Nature,"Health & Medicine > Biomedical Foundations & Research > Human Physiology > Physiology Reference, Study & Research"
+53334,"Neurophysiology Reference, Study & Methods",General/reference/detail bucket,5046:Neurophysiology & Neuropsychology,0,Health & Medicine;Science & Nature,"Health & Medicine > Biomedical Foundations & Research > Human Physiology > Neurophysiology & Neuropsychology > Neurophysiology Reference, Study & Methods"
+53333,Experimental Pharmacology Reference & Methods,General/reference/detail bucket,5045:Experimental pharmacology,0,Health & Medicine;Science & Nature,Health & Medicine > Biomedical Foundations & Research > Human Physiology > Experimental pharmacology > Experimental Pharmacology Reference & Methods
+7107,Miscellany & curiosa,General/reference/detail bucket,5044:Animal biochemistry,0,Health & Medicine;Science & Nature,Health & Medicine > Biomedical Foundations & Research > Human Physiology > Animal biochemistry > Miscellany & curiosa
+53335,"Animal Biochemistry Reference, Study & Methods",General/reference/detail bucket,5044:Animal biochemistry,0,Health & Medicine;Science & Nature,"Health & Medicine > Biomedical Foundations & Research > Human Physiology > Animal biochemistry > Animal Biochemistry Reference, Study & Methods"
+13660,General Medical Reference,General/reference/detail bucket,2725:Medicine,0,Health & Medicine,Health & Medicine > Biomedical Foundations & Research > Medicine > General Medical Reference
+5784,General & Operative Surgery,General child,2854:Surgery,5,Health & Medicine,Health & Medicine > Surgery > General & Operative Surgery
+3154,Essays & Narratives,General/reference/detail bucket,3148:Pets,0,Home & Hobbies,Home & Hobbies > Pets > Essays & Narratives
+8262,Food & Nutrition Reference,General/reference/detail bucket,3121:Nutrition & Food Supply,0,Home & Hobbies,Home & Hobbies > Home economics > Nutrition & Food Supply > Food & Nutrition Reference
+6233,Miscellaneous Recipes & Appetizers,General/reference/detail bucket,3117:Cooking,0,Home & Hobbies,Home & Hobbies > Home economics > Cooking > Miscellaneous Recipes & Appetizers
+53252,Baking Reference & Fundamentals,General/reference/detail bucket,9966:Baking. Confectionery,0,Home & Hobbies,Home & Hobbies > Home economics > Cooking > Baking. Confectionery > Baking Reference & Fundamentals
+5689,Mixed Media Crafts & Reference,General/reference/detail bucket,3042:Crafts & Hobbies,4,Home & Hobbies,Home & Hobbies > Crafts & Hobbies > Mixed Media Crafts & Reference
+7077,General & domestic,General child,3069:Laundry work,0,Home & Hobbies,Home & Hobbies > Crafts & Hobbies > Mixed Media Crafts & Reference > Arts & Crafts > Laundry work > General & domestic
+5901,"History, People, Media & Reference",General/reference/detail bucket,2909:Cooking,4,Home & Hobbies,"Home & Hobbies > Cooking > History, People, Media & Reference"
+2943,Essays & Narratives,General/reference/detail bucket,"5901:History, People, Media & Reference",0,Home & Hobbies,"Home & Hobbies > Cooking > History, People, Media & Reference > Essays & Narratives"
+3219,General collective biography,General child,3212:Biography,1,Biography,Biography > General collective biography
+8461,General collections,General child,2204:Education,0,Biography,Biography > Education > General collections
+9008,U.S. Biographical Miscellany,General/reference/detail bucket,51001:U.S. Biography,0,Biography,Biography > National biography > U.S. Biography > U.S. Biographical Miscellany
+13408,European Biography Reference,General/reference/detail bucket,13353:European Biographies,0,Biography,Biography > National biography > European Biographies > European Biography Reference
+9129,Other miscellaneous groups,General/reference/detail bucket,3218:Biography by Subject,0,Biography,Biography > Biography by Subject > Other miscellaneous groups
+13827,Occultism Reference,General/reference/detail bucket,3294:Occult sciences,0,"Body, Mind & Spirit","Body, Mind & Spirit > Occult & Esoteric Traditions > Occult sciences > Occultism Reference"
+13828,Regional & Special Topics,General/reference/detail bucket,3294:Occult sciences,0,"Body, Mind & Spirit","Body, Mind & Spirit > Occult & Esoteric Traditions > Occult sciences > Regional & Special Topics"
+13829,Miscellaneous Occult Studies,General/reference/detail bucket,3294:Occult sciences,0,"Body, Mind & Spirit","Body, Mind & Spirit > Occult & Esoteric Traditions > Occult sciences > Miscellaneous Occult Studies"
+9810,General & History,General child,3302:Seers & Prophecy,0,"Body, Mind & Spirit","Body, Mind & Spirit > Occult & Esoteric Traditions > Occult sciences > Seers & Prophecy > General & History"
+9342,General & History,General child,3301:Oracles & Divination,0,"Body, Mind & Spirit","Body, Mind & Spirit > Occult & Esoteric Traditions > Occult sciences > Oracles & Divination > General & History"
+3516,Essays,General/reference/detail bucket,3319:History,0,History,History > Essays
+13691,Eastern Hemisphere—General,General child,5540:By Region,0,History,History > By Region > Eastern Hemisphere—General
+13868,Reference,General/reference/detail bucket,3676:Oceanian,0,History,History > By Region > Oceanian > Reference
+13859,"General, Reference & Historiography",General/reference/detail bucket,3677:Australian,0,History,"History > By Region > Oceanian > Australia & New Zealand > Australian > General, Reference & Historiography"
+54720,By Period,Uncoded single-child wrapper,3636:Iranian,1,History,History > By Region > Middle Eastern > Iranian > By Period
+52295,Historical Reference,General/reference/detail bucket,3635:Egyptian,0,History,History > By Region > Middle Eastern > Egyptian > Historical Reference
+51931,Historical Reference,General/reference/detail bucket,51930:Cypriot,0,History,History > By Region > European > Cypriot > Historical Reference
+13846,Reference,General/reference/detail bucket,3613:Spanish,0,History,History > By Region > European > Iberia > Spanish > Reference
+13888,Reference,General/reference/detail bucket,3611:Portuguese,0,History,History > By Region > European > Iberia > Portuguese > Reference
+11580,"Portugal, 20th Century",Uncoded single-child wrapper,54843:By Period,1,History,"History > By Region > European > Iberia > Portuguese > By Period > Portugal, 20th Century"
+54689,By Period,Uncoded single-child wrapper,3554:Andorran,1,History,History > By Region > European > Iberia > Andorran > By Period
+14012,Reference,General/reference/detail bucket,3609:North,0,History,History > By Region > European > North > Reference
+13933,Reference,General/reference/detail bucket,3584:Swedish,0,History,History > By Region > European > North > Swedish > Reference
+13930,Reference,General/reference/detail bucket,3583:Norwegian,0,History,History > By Region > European > North > Norwegian > Reference
+13937,Reference,General/reference/detail bucket,3581:Finnish,0,History,History > By Region > European > North > Finnish > Reference
+13927,Reference,General/reference/detail bucket,3580:Danish,0,History,History > By Region > European > North > Danish > Reference
+54836,Political & Foreign Relations,Uncoded single-child wrapper,3607:Italian,1,History,History > By Region > European > Italian > Political & Foreign Relations
+13622,Roman Reference,General/reference/detail bucket,"3571:Ancient Era, to 476",0,History,"History > By Region > European > Italian > By Period > Ancient Era, to 476 > Roman Reference"
+52023,Papal States & Vatican Historical Reference,General/reference/detail bucket,"10562:Papal States, Holy See & Vatican",0,History,"History > By Region > European > Italian > Papal States, Holy See & Vatican > Papal States & Vatican Historical Reference"
+52001,Historical Reference,General/reference/detail bucket,52000:Liechtenstein,0,History,History > By Region > European > Central > Liechtenstein > Historical Reference
+10208,"Revolution & Napoleon, 1789–1815",Uncoded single-child wrapper,54833:By Period,1,History,"History > By Region > European > Central > Swiss > By Period > Revolution & Napoleon, 1789–1815"
+10228,"Regeneration, 1830–1848",Uncoded single-child wrapper,54833:By Period,1,History,"History > By Region > European > Central > Swiss > By Period > Regeneration, 1830–1848"
+13998,Reference,General/reference/detail bucket,3540:Slovak,0,History,History > By Region > European > Central > Slovak > Reference
+10140,"People’s Republic, 1949–1989",Uncoded single-child wrapper,54812:By Period,1,History,"History > By Region > European > Central > Hungarian > By Period > People’s Republic, 1949–1989"
+13882,Reference,General/reference/detail bucket,3538:Czechoslovak,0,History,History > By Region > European > Central > Czechoslovak > Reference
+13872,Reference,General/reference/detail bucket,3537:Austrian,0,History,History > By Region > European > Central > Austrian > Reference
+10214,"Early & Medieval Era, to 1521",Uncoded single-child wrapper,54805:By Period,1,History,"History > By Region > European > Central > Austrian > By Period > Early & Medieval Era, to 1521"
+13899,Reference,General/reference/detail bucket,3524:German,0,History,History > By Region > European > Central > German > Reference
+13911,Balkan Reference,General/reference/detail bucket,3541:Balkan Peninsula,0,History,History > By Region > European > Balkan Peninsula > Balkan Reference
+51958,Bosnian Historical Reference,General/reference/detail bucket,51957:Bosnia and Herzegovina,0,History,History > By Region > European > Balkan Peninsula > Bosnia and Herzegovina > Bosnian Historical Reference
+51946,Historical Reference,General/reference/detail bucket,51945:Slovenian,0,History,History > By Region > European > Balkan Peninsula > Slovenian > Historical Reference
+51984,Historical Reference,General/reference/detail bucket,51683:Kosovo,0,History,History > By Region > European > Balkan Peninsula > Kosovo > Historical Reference
+13905,Reference,General/reference/detail bucket,3551:Turkish,0,History,History > By Region > European > Balkan Peninsula > Turkish > Reference
+13894,Reference,General/reference/detail bucket,3548:Romanian,0,History,History > By Region > European > Balkan Peninsula > Romanian > Reference
+13896,General Transylvania,General child,13762:Local,0,History,History > By Region > European > Balkan Peninsula > Romanian > Local > General Transylvania
+51750,Croatia since 1990,Uncoded single-child wrapper,54209:By Period,1,History,History > By Region > European > Balkan Peninsula > Croatian > By Period > Croatia since 1990
+13916,Reference,General/reference/detail bucket,3545:Bulgarian,0,History,History > By Region > European > Balkan Peninsula > Bulgarian > Reference
+14005,Reference,General/reference/detail bucket,3544:Albanian,0,History,History > By Region > European > Balkan Peninsula > Albanian > Reference
+10178,"Ottoman Rule, 1501–1912",Uncoded single-child wrapper,54676:By Period,1,History,"History > By Region > European > Balkan Peninsula > Albanian > By Period > Ottoman Rule, 1501–1912"
+10320,"Post-Communism, 1990–Present",Uncoded single-child wrapper,54676:By Period,1,History,"History > By Region > European > Balkan Peninsula > Albanian > By Period > Post-Communism, 1990–Present"
+13989,Reference,General/reference/detail bucket,3522:East,0,History,History > By Region > European > East > Reference
+13969,Reference,General/reference/detail bucket,3603:Ukrainian,0,History,History > By Region > European > East > Ukrainian > Reference
+11572,General & Soviet Era,General child,3595:Russian,8,History,History > By Region > European > East > Russian > General & Soviet Era
+12629,Foreign Relations,Uncoded single-child wrapper,11572:General & Soviet Era,1,History,History > By Region > European > East > Russian > General & Soviet Era > Foreign Relations
+13870,Reference,General/reference/detail bucket,3579:Dutch,0,History,History > By Region > European > Benelux Countries > Dutch > Reference
+51921,Historical Reference,General/reference/detail bucket,3578:Luxembourg,0,History,History > By Region > European > Benelux Countries > Luxembourg > Historical Reference
+13920,Reference,General/reference/detail bucket,3577:Belgian,0,History,History > By Region > European > Benelux Countries > Belgian > Reference
+10148,"Austrian Rule, 1714–1794",Uncoded single-child wrapper,54819:By Period,1,History,"History > By Region > European > Benelux Countries > Belgian > By Period > Austrian Rule, 1714–1794"
+10207,"Independence Era, 1830–1909",Uncoded single-child wrapper,54819:By Period,1,History,"History > By Region > European > Benelux Countries > Belgian > By Period > Independence Era, 1830–1909"
+13926,Belgium in the 21st Century,Uncoded single-child wrapper,54819:By Period,1,History,History > By Region > European > Benelux Countries > Belgian > By Period > Belgium in the 21st Century
+13985,Reference,General/reference/detail bucket,3589:Georgian,0,History,History > By Region > Asian > Georgian > Reference
+13987,Reference,General/reference/detail bucket,3586:Azerbaijani,0,History,History > By Region > Asian > Azerbaijani > Reference
+13698,General Reference,General/reference/detail bucket,3402:U.S.,5,History,History > By Region > North American > U.S. > General Reference
+13699,Historical Reference,General/reference/detail bucket,3402:U.S.,4,History,History > By Region > North American > U.S. > Historical Reference
+51058,Africa,Uncoded single-child wrapper,3416:Political & Foreign Relations,1,History,History > By Region > North American > U.S. > Political & Foreign Relations > Africa
+51067,Oceania,Uncoded single-child wrapper,3416:Political & Foreign Relations,1,History,History > By Region > North American > U.S. > Political & Foreign Relations > Oceania
+54363,By Period,Uncoded single-child wrapper,3387:Belizean,1,History,History > By Region > Latin American > Belizean > By Period
+54358,By Period,Uncoded single-child wrapper,3386:Bahamas,1,History,History > By Region > Latin American > Bahamas > By Period
+54198,By Period,Uncoded single-child wrapper,3380:Cuban,1,History,History > By Region > Latin American > Cuban > By Period
+54749,By Period,Uncoded single-child wrapper,10281:South Sudanese,1,History,History > By Region > African > South Sudanese > By Period
+53427,General Studies,General child,3695:World War II,0,History,History > Military > World Wars > World War II > General Studies
+53428,Special Topics,General/reference/detail bucket,3695:World War II,0,History,History > Military > World Wars > World War II > Special Topics
+10523,Rescue efforts,Uncoded single-child wrapper,3673:Holocaust,1,History,History > Military > World Wars > World War II > Holocaust > Rescue efforts
+6331,Congresses & Conferences,General/reference/detail bucket,3694:World War I,0,History,History > Military > World Wars > World War I > Congresses & Conferences
+50831,Reference & Collected Works,General/reference/detail bucket,3622:Civilization,0,History,History > Civilization > Reference & Collected Works
+50833,General Works on,General/reference/detail bucket,3622:Civilization,0,History,History > Civilization > General Works on
+50825,Reference,General/reference/detail bucket,3666:Modern,0,History,History > Eras > Modern > Reference
+8015,Congresses & Conferences,General/reference/detail bucket,3621:Post-war 1945-,0,History,History > Eras > Modern > 20th Century > Post-war 1945- > Congresses & Conferences
+6665,Essays,General/reference/detail bucket,"3619:Interwar Period, 1919–1939",0,History,"History > Eras > Modern > 20th Century > Interwar Period, 1919–1939 > Essays"
+13268,Coins—General,General child,3675:Numismatics,0,History,History > Auxiliary Sciences > Numismatics > Coins—General
+3710,Language Study & Reference,General/reference/detail bucket,3702:Language,5,Language,Language > Language Study & Reference
+6512,General & miscellaneous,General/reference/detail bucket,3754:Mixed languages,0,Language,Language > Languages & Language Families > Mixed languages > General & miscellaneous
+52326,Romance Philology & Reference,General/reference/detail bucket,3823:Romance Languages,0,Language,Language > Languages & Language Families > Indo-European Languages > Romance Languages > Romance Philology & Reference
+12192,Dictionaries & Lexicography,General/reference/detail bucket,3709:English Language,0,Language,Language > Languages & Language Families > Indo-European Languages > Germanic Languages > English Language > Dictionaries & Lexicography
+13858,English Language Reference,General/reference/detail bucket,3709:English Language,0,Language,Language > Languages & Language Families > Indo-European Languages > Germanic Languages > English Language > English Language Reference
+12216,Essays & Specialized Writing,General/reference/detail bucket,"12188:Writing, Style & Composition",0,Language,"Language > Languages & Language Families > Indo-European Languages > Germanic Languages > English Language > Writing, Style & Composition > Essays & Specialized Writing"
+13058,Greek Dialects & Dictionaries,General/reference/detail bucket,3724:Greek Language,0,Language,Language > Languages & Language Families > Indo-European Languages > Greek Language > Greek Dialects & Dictionaries
+7131,Caucasian Philology Reference,General/reference/detail bucket,3757:Caucasian languages,0,Language,Language > Languages & Language Families > Caucasian languages > Caucasian Philology Reference
+8895,Classical Philology Reference,General/reference/detail bucket,3706:Classical philology,0,Language,Language > Languages & Language Families > Ancient Languages > Classical philology > Classical Philology Reference
+12867,Arabic Language—General,General child,3713:Arabic Language,7,Language,Language > Languages & Language Families > Afro-Asiatic languages > Arabic Language > Arabic Language—General
+8649,Role and reference grammar,General/reference/detail bucket,4412:Comparative Grammar & Linguistics,0,Language,Language > Linguistics > Language Structure & Meaning > Comparative Grammar & Linguistics > Role and reference grammar
+3733,Language Study Miscellany,General/reference/detail bucket,3710:Language Study & Reference,0,Language,Language > Language Study & Reference > Language Study Miscellany
+3734,Multi-Language Dictionaries,General/reference/detail bucket,3710:Language Study & Reference,0,Language,Language > Language Study & Reference > Multi-Language Dictionaries
+4369,General Literary Studies,General child,3846:Literature,12,Literature,Literature > General Literary Studies
+51870,Chinese Essays,General/reference/detail bucket,4265:Chinese,0,Literature,"Literature > East Asian & Pacific > Asian, African & Oceanian > Chinese > Chinese Essays"
+54907,By Period,Uncoded single-child wrapper,12525:Polish,1,Literature,Literature > Slavic & Eurasian > Polish > By Period
+6953,Roman Lit. Essays & Lectures,General/reference/detail bucket,4457:Roman Literary History,0,Literature,Literature > Classical > Latin & Italic > Roman > Roman Literary History > Roman Lit. Essays & Lectures
+8411,Greek Lit. Essays & Lectures,General/reference/detail bucket,4256:Greek Literary History,0,Literature,Literature > Classical > Greek > Greek Literary History > Greek Lit. Essays & Lectures
+54892,By Period,Uncoded single-child wrapper,4394:Norway,1,Literature,Literature > Germanic & Nordic > Norway > By Period
+54891,By Period,Uncoded single-child wrapper,4389:Modern Icelandic,1,Literature,Literature > Germanic & Nordic > Modern Icelandic > By Period
+11949,Argentine Literature in Spanish,Uncoded single-child wrapper,4472:Regional Spanish,1,Literature,Literature > Romance > Spanish-Language Literature > Regional Spanish > Argentine Literature in Spanish
+11954,Mexican Literature in Spanish,Uncoded single-child wrapper,4472:Regional Spanish,1,Literature,Literature > Romance > Spanish-Language Literature > Regional Spanish > Mexican Literature in Spanish
+11959,Cuban Spanish,Uncoded single-child wrapper,4472:Regional Spanish,1,Literature,Literature > Romance > Spanish-Language Literature > Regional Spanish > Cuban Spanish
+11963,Chilean Spanish,Uncoded single-child wrapper,4472:Regional Spanish,1,Literature,Literature > Romance > Spanish-Language Literature > Regional Spanish > Chilean Spanish
+11968,Colombian Spanish,Uncoded single-child wrapper,4472:Regional Spanish,1,Literature,Literature > Romance > Spanish-Language Literature > Regional Spanish > Colombian Spanish
+11972,Venezuelan Spanish,Uncoded single-child wrapper,4472:Regional Spanish,1,Literature,Literature > Romance > Spanish-Language Literature > Regional Spanish > Venezuelan Spanish
+11976,Peruvian Spanish,Uncoded single-child wrapper,4472:Regional Spanish,1,Literature,Literature > Romance > Spanish-Language Literature > Regional Spanish > Peruvian Spanish
+11981,Uruguayan Spanish,Uncoded single-child wrapper,4472:Regional Spanish,1,Literature,Literature > Romance > Spanish-Language Literature > Regional Spanish > Uruguayan Spanish
+9004,Societies. Congresses,General/reference/detail bucket,4471:Spanish Literary Studies,0,Literature,Literature > Romance > Spanish-Language Literature > Spanish Literary Studies > Societies. Congresses
+3907,English essays,General/reference/detail bucket,5585:English,11,Literature,Literature > English > English essays
+6220,English Essays & Speeches,General/reference/detail bucket,3907:English essays;3910:English letters;3926:Oratory & Speeches,0,Literature,Literature > English > Oratory & Speeches > English Essays & Speeches
+7652,Individual English Essays,General/reference/detail bucket,3907:English essays;3910:English letters;3926:Oratory & Speeches,0,Literature,Literature > English > Oratory & Speeches > Individual English Essays
+7470,Literary Criticism Essays,General/reference/detail bucket,3924:Literary History & Criticism,0,Literature,Literature > English > Literary History & Criticism > Literary Criticism Essays
+6218,General collections,General child,3919:English Literary Collections,0,Literature,Literature > English > English Literary Collections > General collections
+6914,Collected essays,General/reference/detail bucket,3930:Poetry,0,Literature,Literature > English > Poetry > Collected essays
+11925,Anglophone Australian Lit.,Uncoded single-child wrapper,3921:Regional English,1,Literature,Literature > English > Regional English > Anglophone Australian Lit.
+11929,Anglophone New Zealand Lit.,Uncoded single-child wrapper,3921:Regional English,1,Literature,Literature > English > Regional English > Anglophone New Zealand Lit.
+11933,Anglophone Indian,Uncoded single-child wrapper,3921:Regional English,1,Literature,Literature > English > Regional English > Anglophone Indian
+11937,Anglophone South African Lit.,Uncoded single-child wrapper,3921:Regional English,1,Literature,Literature > English > Regional English > Anglophone South African Lit.
+3850,American essays in English,General/reference/detail bucket,3853:American,0,Literature,Literature > English > Regional English > American > American essays in English
+13852,General Literary History,General child,3853:American,0,Literature,Literature > English > Regional English > American > General Literary History
+13510,U.S. Prose Serials & Societies,General/reference/detail bucket,3860:Prose,0,Literature,Literature > English > Regional English > American > Prose > U.S. Prose Serials & Societies
+13512,"Addresses, Essays & Lectures",General/reference/detail bucket,3860:Prose,0,Literature,"Literature > English > Regional English > American > Prose > Addresses, Essays & Lectures"
+4291,Literary Essays,General/reference/detail bucket,4280:Literary Collections,0,Literature,Literature > Genres > Literary Collections > Literary Essays
+9042,General collections,General child,4280:Literary Collections,9,Literature,Literature > Genres > Literary Collections > General collections
+9349,Literary Collections Miscellany,General/reference/detail bucket,4280:Literary Collections,0,Literature,Literature > Genres > Literary Collections > Literary Collections Miscellany
+4374,Essays Literary history,General/reference/detail bucket,4378:Literary History,0,Literature,Literature > Literary History > Essays Literary history
+4376,Journalism & Periodicals,General/reference/detail bucket,4369:General Literary Studies,10,Literature,Literature > General Literary Studies > Journalism & Periodicals
+52309,Literary Reference,General/reference/detail bucket,4369:General Literary Studies,0,Literature,Literature > General Literary Studies > Literary Reference
+7144,Miscellaneous Essays,General/reference/detail bucket,4382:Poetry,0,Literature,Literature > General Literary Studies > Poetry > Miscellaneous Essays
+12547,Periodicals,General/reference/detail bucket,4376:Journalism & Periodicals;4671:Reference & Information,9,Literature;Reference & Information,Literature > General Literary Studies > Journalism & Periodicals > Periodicals
+13729,Drama Serials,General/reference/detail bucket,4372:Drama,0,Literature,Literature > General Literary Studies > Drama > Drama Serials
+13733,Drama Dictionaries & Indexes,General/reference/detail bucket,4372:Drama,0,Literature,Literature > General Literary Studies > Drama > Drama Dictionaries & Indexes
+13735,General Works on Drama & Stage,General/reference/detail bucket,4372:Drama,0,Literature,Literature > General Literary Studies > Drama > General Works on Drama & Stage
+6866,Dictionaries. Terminology,General/reference/detail bucket,4386:Performing Arts & Show Business,0,Literature,Literature > General Literary Studies > Drama > Performing Arts & Show Business > Dictionaries. Terminology
+7582,Congresses & Conferences,General/reference/detail bucket,4386:Performing Arts & Show Business,0,Literature,Literature > General Literary Studies > Drama > Performing Arts & Show Business > Congresses & Conferences
+13843,Theater Reference & Culture,General/reference/detail bucket,4373:Theatrical Performance,0,Literature,Literature > General Literary Studies > Drama > Theatrical Performance > Theater Reference & Culture
+13680,U.S. Reference,General/reference/detail bucket,4311:American Literary Criticism,0,Literature,Literature > Literary Criticism > Regions & Literary Traditions > American Literary Criticism > U.S. Reference
+13684,American Drama—Special Topics,General/reference/detail bucket,4311:American Literary Criticism,0,Literature,Literature > Literary Criticism > Regions & Literary Traditions > American Literary Criticism > American Drama—Special Topics
+5532,Philosophy Reference,General/reference/detail bucket,4487:Philosophy,6,Philosophy,Philosophy > Philosophy Reference
+4493,Philosophy Essays,General/reference/detail bucket,5532:Philosophy Reference,0,Philosophy,Philosophy > Philosophy Reference > Philosophy Essays
+10966,Philosophy Reference Topics,General/reference/detail bucket,5532:Philosophy Reference,8,Philosophy,Philosophy > Philosophy Reference > Philosophy Reference Topics
+4545,General philosophical works,General child,4544:Metaphysics & Ontology,1,Philosophy,Philosophy > Metaphysics & Ontology > General philosophical works
+5529,Religion Reference,General/reference/detail bucket,5857:Religious Studies,0,Religion,Religion > Religious Studies > Religion Reference
+51517,Religion Essays,General/reference/detail bucket,5857:Religious Studies,0,Religion,Religion > Religious Studies > Religion Essays
+5875,"Study, Sources & Reference",General/reference/detail bucket,4615:Judaism,5,Religion,"Religion > Judaism > Study, Sources & Reference"
+13316,History of Judaism—General,General child,"5873:History, Biography & Community",0,Religion,"Religion > Judaism > History, Biography & Community > History of Judaism—General"
+13815,Islam—General & Reference,General/reference/detail bucket,4605:Islam,0,Religion,Religion > Islam > Islam—General & Reference
+13816,General Works on Islam,General/reference/detail bucket,4605:Islam,0,Religion,Religion > Islam > General Works on Islam
+13812,Practical Theology—General,General child,4619:Practical Theology,0,Religion,Religion > Christianity > Practical Theology > Practical Theology—General
+13841,Christian Theology Reference,General/reference/detail bucket,4581:Christian Theology,0,Religion,Religion > Christianity > Christian Theology > Christian Theology Reference
+13048,General Christian Apologetics,General child,5801:Apologetics & Interfaith Theology,0,Religion,Religion > Christianity > Christian Theology > Apologetics & Interfaith Theology > General Christian Apologetics
+11492,Catholic Studies & Reference,General/reference/detail bucket,4584:Catholic,5,Religion,Religion > Christianity > Christian Denominations > Catholic > Catholic Studies & Reference
+5757,"Biography, Reference & Research",General/reference/detail bucket,4553:Buddhism,0,Religion,"Religion > Buddhism > Biography, Reference & Research"
+5732,Bible Reference,General/reference/detail bucket,4551:Bible,0,Religion,Religion > Bible > Bible Reference
+12374,General Bible Study,General child,5731:Bible Study & Interpretation,0,Religion,Religion > Bible > Bible Study & Interpretation > General Bible Study
+12567,General Epistles,General child,54048:Epistles,0,Religion,Religion > Bible > Old & New Testaments > New Testament > Epistles > General Epistles
+53271,Recreation Reference & Study,General/reference/detail bucket,4628:Recreation,0,Recreation,Recreation > Recreation Reference & Study
+53209,"Sports History, Culture & Reference",General/reference/detail bucket,13641:Sports,0,Recreation,"Recreation > Sports > Sports History, Culture & Reference"
+5604,Reference Books,General/reference/detail bucket,4671:Reference & Information,9,Reference & Information,Reference & Information > Reference Books
+5606,"Periodicals, Collections & Annuals",General/reference/detail bucket,4671:Reference & Information,3,Reference & Information,"Reference & Information > Periodicals, Collections & Annuals"
+5609,Practical Reference & Guides,General/reference/detail bucket,4671:Reference & Information,9,Reference & Information,Reference & Information > Practical Reference & Guides
+4694,Collected Works & Series,General/reference/detail bucket,"5606:Periodicals, Collections & Annuals",4,Reference & Information,"Reference & Information > Periodicals, Collections & Annuals > Collected Works & Series"
+4704,Encyclopedias,General/reference/detail bucket,5604:Reference Books,1,Reference & Information,Reference & Information > Reference Books > Encyclopedias
+13726,Dictionaries & Encyclopedias,General/reference/detail bucket,5604:Reference Books,0,Reference & Information,Reference & Information > Reference Books > Dictionaries & Encyclopedias
+13727,General Reference Works,General/reference/detail bucket,5604:Reference Books,0,Reference & Information,Reference & Information > Reference Books > General Reference Works
+4705,Encyclopedias by Language,General/reference/detail bucket,4704:Encyclopedias,8,Reference & Information,Reference & Information > Reference Books > Encyclopedias > Encyclopedias by Language
+7319,Scandinavian Encyclopedias,General/reference/detail bucket,4705:Encyclopedias by Language,0,Reference & Information,Reference & Information > Reference Books > Encyclopedias > Encyclopedias by Language > Scandinavian Encyclopedias
+9795,Spanish Encyclopedias,General/reference/detail bucket,54009:Iberian,0,Reference & Information,Reference & Information > Reference Books > Encyclopedias > Encyclopedias by Language > Iberian > Spanish Encyclopedias
+7804,German Encyclopedias,General/reference/detail bucket,54008:Germanic,0,Reference & Information,Reference & Information > Reference Books > Encyclopedias > Encyclopedias by Language > Germanic > German Encyclopedias
+9723,Dutch Encyclopedias,General/reference/detail bucket,54008:Germanic,0,Reference & Information,Reference & Information > Reference Books > Encyclopedias > Encyclopedias by Language > Germanic > Dutch Encyclopedias
+6493,Finnish Encyclopedias,General/reference/detail bucket,54007:Other Languages,0,Reference & Information,Reference & Information > Reference Books > Encyclopedias > Encyclopedias by Language > Other Languages > Finnish Encyclopedias
+8614,Hungarian Encyclopedias,General/reference/detail bucket,54007:Other Languages,0,Reference & Information,Reference & Information > Reference Books > Encyclopedias > Encyclopedias by Language > Other Languages > Hungarian Encyclopedias
+9094,Chinese Encyclopedias,General/reference/detail bucket,54007:Other Languages,0,Reference & Information,Reference & Information > Reference Books > Encyclopedias > Encyclopedias by Language > Other Languages > Chinese Encyclopedias
+9402,Korean Encyclopedias,General/reference/detail bucket,54007:Other Languages,0,Reference & Information,Reference & Information > Reference Books > Encyclopedias > Encyclopedias by Language > Other Languages > Korean Encyclopedias
+9705,Japanese Encyclopedias,General/reference/detail bucket,54007:Other Languages,0,Reference & Information,Reference & Information > Reference Books > Encyclopedias > Encyclopedias by Language > Other Languages > Japanese Encyclopedias
+9211,French Encyclopedias,General/reference/detail bucket,"54005:French, Occitan & Catalan",0,Reference & Information,"Reference & Information > Reference Books > Encyclopedias > Encyclopedias by Language > French, Occitan & Catalan > French Encyclopedias"
+6133,Public & Reference Services,General/reference/detail bucket,6109:Library Collections & Services,0,Reference & Information,Reference & Information > Library & Archive Studies > Library & Information Science > Library Collections & Services > Public & Reference Services
+6113,Handbooks,General/reference/detail bucket,6106:Foundations & Professional Study,0,Reference & Information,Reference & Information > Library & Archive Studies > Library & Information Science > Foundations & Professional Study > Handbooks
+9201,General & History,General child,4693:Writing,0,Reference & Information,"Reference & Information > Books, Writing & Paleography > Writing > General & History"
+8603,Dictionaries. Abbreviations,General/reference/detail bucket,4692:Manuscripts. Paleography,0,Reference & Information,"Reference & Information > Books, Writing & Paleography > Manuscripts. Paleography > Dictionaries. Abbreviations"
+8081,Printing Recipes & Handbooks,General/reference/detail bucket,4686:Practical printing,0,Reference & Information,Reference & Information > Book Industry & Trade > Practical printing > Printing Recipes & Handbooks
+4718,General bibliographies,General child,"4678:Bibliographies, Catalogs & Indexes",1,Reference & Information,"Reference & Information > Bibliographies, Catalogs & Indexes > General bibliographies"
+7710,Reference books for children,General/reference/detail bucket,4716:Special-Audience Book Guides,0,Reference & Information,"Reference & Information > Bibliographies, Catalogs & Indexes > Special-Audience Book Guides > Reference books for children"
+7711,General & English Reference Books,General/reference/detail bucket,4714:Best books,0,Reference & Information,"Reference & Information > Bibliographies, Catalogs & Indexes > Best books > General & English Reference Books"
+9910,Non-English Reference Books,General/reference/detail bucket,4714:Best books,0,Reference & Information,"Reference & Information > Bibliographies, Catalogs & Indexes > Best books > Non-English Reference Books"
+5961,"Reference, Libraries & Scholarship",General/reference/detail bucket,4771:Subject bibliography,7,Reference & Information,"Reference & Information > Bibliographies, Catalogs & Indexes > Subject bibliography > Reference, Libraries & Scholarship"
+13524,Miscellany & curiosa,General/reference/detail bucket,4779:Science & Nature,0,Science & Nature,Science & Nature > Miscellany & curiosa
+13526,Science Periodicals by Language,General/reference/detail bucket,4779:Science & Nature,0,Science & Nature,Science & Nature > Science Periodicals by Language
+13531,Congresses,General/reference/detail bucket,4779:Science & Nature,0,Science & Nature,Science & Nature > Congresses
+13532,Science Encyclopedias,General/reference/detail bucket,4779:Science & Nature,0,Science & Nature,Science & Nature > Science Encyclopedias
+13533,Science Dictionaries,General/reference/detail bucket,4779:Science & Nature,0,Science & Nature,Science & Nature > Science Dictionaries
+13543,General works & treatises,General/reference/detail bucket,4779:Science & Nature,0,Science & Nature,Science & Nature > General works & treatises
+13546,Popular works,General/reference/detail bucket,4779:Science & Nature,0,Science & Nature,Science & Nature > Popular works
+13549,"Addresses, essays, lectures",General/reference/detail bucket,4779:Science & Nature,0,Science & Nature,"Science & Nature > Addresses, essays, lectures"
+13557,Science Handbooks & Tables,General/reference/detail bucket,4779:Science & Nature,0,Science & Nature,Science & Nature > Science Handbooks & Tables
+4836,Science Essays,General/reference/detail bucket,5726:Science Education & Institutions,0,Science & Nature,Science & Nature > Science Education & Institutions > Science Essays
+53351,"Physics Reference, History & Study",General/reference/detail bucket,5030:Physics,0,Science & Nature,"Science & Nature > Physics > Physics Reference, History & Study"
+53345,"Heat Reference, Theory & Measurement",General/reference/detail bucket,5037:Heat & Thermodynamics,0,Science & Nature,"Science & Nature > Physics > Mechanics & Fluids > Heat & Thermodynamics > Heat Reference, Theory & Measurement"
+53342,Experimental Mechanics Reference & Study,General/reference/detail bucket,5033:Experimental & Descriptive Mechanics,0,Science & Nature,Science & Nature > Physics > Mechanics & Fluids > Experimental & Descriptive Mechanics > Experimental Mechanics Reference & Study
+53347,Radiation Physics Reference & General Theory,General/reference/detail bucket,5041:Radiation Physics,0,Science & Nature,Science & Nature > Physics > Radiation Physics > Radiation Physics Reference & General Theory
+53346,"Optics Reference, Biography & Study",General/reference/detail bucket,5040:Optics,0,Science & Nature,"Science & Nature > Physics > Optics > Optics Reference, Biography & Study"
+6080,"Reference, History & Study",General/reference/detail bucket,6074:Magnetism,1,Science & Nature,"Science & Nature > Physics > Electricity & Electromagnetism > Magnetism > Reference, History & Study"
+6075,"Reference, History & Study",General/reference/detail bucket,6073:Electricity,5,Science & Nature,"Science & Nature > Physics > Electricity & Electromagnetism > Electricity > Reference, History & Study"
+53348,Electricity Reference & Textbooks,General/reference/detail bucket,"6075:Reference, History & Study",0,Science & Nature,"Science & Nature > Physics > Electricity & Electromagnetism > Electricity > Reference, History & Study > Electricity Reference & Textbooks"
+53343,Atomic Physics Reference & Textbooks,General/reference/detail bucket,5032:Atomic & Molecular Physics,0,Science & Nature,Science & Nature > Physics > Atomic & Molecular Physics > Atomic Physics Reference & Textbooks
+53344,"Acoustics Reference, Study & Laboratories",General/reference/detail bucket,5031:Acoustics,0,Science & Nature,"Science & Nature > Physics > Acoustics > Acoustics Reference, Study & Laboratories"
+5014,Nature Essays,General/reference/detail bucket,4982:Nature & Natural History,0,Science & Nature,Science & Nature > Nature & Natural History > Nature Essays
+5722,"History, Education & Reference",General/reference/detail bucket,4916:Mathematics,11,Science & Nature,"Science & Nature > Mathematics > History, Education & Reference"
+4935,Mathematics Essays,General/reference/detail bucket,"5722:History, Education & Reference",0,Science & Nature,"Science & Nature > Mathematics > History, Education & Reference > Mathematics Essays"
+13694,General Mathematical Works,General child,"5722:History, Education & Reference",0,Science & Nature,"Science & Nature > Mathematics > History, Education & Reference > General Mathematical Works"
+13856,General Reference,General/reference/detail bucket,"5722:History, Education & Reference",0,Science & Nature,"Science & Nature > Mathematics > History, Education & Reference > General Reference"
+7045,General tables,General child,4970:Tables,0,Science & Nature,"Science & Nature > Mathematics > History, Education & Reference > Tables > General tables"
+13331,Number Theory—General,General child,4956:Number Theory,0,Science & Nature,Science & Nature > Mathematics > Algebra & Number Theory > Number Theory > Number Theory—General
+53349,Geophysics Reference & Study,General/reference/detail bucket,5036:Geophysics,0,Science & Nature,Science & Nature > Earth & Environmental Sciences > Geophysics > Geophysics Reference & Study
+53350,Geomagnetism Reference & Study,General/reference/detail bucket,5036:Geophysics,0,Science & Nature,Science & Nature > Earth & Environmental Sciences > Geophysics > Geomagnetism Reference & Study
+53320,Geology Reference & Institutions,General/reference/detail bucket,4904:Geology,0,Science & Nature,Science & Nature > Earth & Environmental Sciences > Earth sciences > Geology > Geology Reference & Institutions
+53336,"Chemistry Reference, History, Study & Methods",General/reference/detail bucket,4803:Chemistry,0,Science & Nature,"Science & Nature > Chemistry > Chemistry Reference, History, Study & Methods"
+53340,Physical Chemistry Reference & Theory,General/reference/detail bucket,4808:Physical & Theoretical Chem.,0,Science & Nature,Science & Nature > Chemistry > Physical & Theoretical Chem. > Physical Chemistry Reference & Theory
+53339,"Organic Chemistry Reference, Study & Methods",General/reference/detail bucket,4807:Organic chemistry,0,Science & Nature,"Science & Nature > Chemistry > Organic chemistry > Organic Chemistry Reference, Study & Methods"
+53338,"Inorganic Chemistry Reference, Study & Compounds",General/reference/detail bucket,4806:Inorganic chemistry,0,Science & Nature,"Science & Nature > Chemistry > Inorganic chemistry > Inorganic Chemistry Reference, Study & Compounds"
+53341,"Crystallography Reference, Study & Methods",General/reference/detail bucket,4805:Crystallography,0,Science & Nature,"Science & Nature > Chemistry > Crystallography > Crystallography Reference, Study & Methods"
+53337,Analytical Chemistry Reference & Methods,General/reference/detail bucket,4804:Analytical chemistry,0,Science & Nature,Science & Nature > Chemistry > Analytical chemistry > Analytical Chemistry Reference & Methods
+13696,General Biology & Research,General child,4789:Biology,6,Science & Nature,Science & Nature > Biology > General Biology & Research
+53225,Biology Reference & General,General/reference/detail bucket,13696:General Biology & Research,0,Science & Nature,Science & Nature > Biology > General Biology & Research > Biology Reference & General
+53313,Zoology Reference & Institutions,General/reference/detail bucket,4863:Zoology,0,Science & Nature,Science & Nature > Biology > Zoology > Zoology Reference & Institutions
+53311,Botany Reference & Institutions,General/reference/detail bucket,4848:Botany,0,Science & Nature,Science & Nature > Biology > Botany > Botany Reference & Institutions
+9664,Miscellany & curiosa,General/reference/detail bucket,4793:Evolution,0,Science & Nature,Science & Nature > Biology > Evolution > Miscellany & curiosa
+53318,Astronomy Reference & Institutions,General/reference/detail bucket,4780:Astronomy & Space Science,0,Science & Nature,Science & Nature > Astronomy & Space Science > Astronomy Reference & Institutions
+54942,Methods & Reference,General/reference/detail bucket,5055:Social Sciences,3,Social Sciences,Social Sciences > Methods & Reference
+5603,Business Skills & Reference,General/reference/detail bucket,5104:Economics & Business,5,Social Sciences,Social Sciences > Economics & Business > Business Skills & Reference
+13107,Economic Development Reference,General/reference/detail bucket,5232:Economic Development & Planning,0,Social Sciences,Social Sciences > Economics & Business > Economic Development & Planning > Economic Development Reference
+52742,Finance Reference & Directories,General/reference/detail bucket,5142:Finance,0,Social Sciences,Social Sciences > Economics & Business > Finance > Finance Reference & Directories
+52839,Banking Periodicals,General/reference/detail bucket,5229:Banking,0,Social Sciences,Social Sciences > Economics & Business > Finance > Banking > Banking Periodicals
+52843,Banking Reference Works,General/reference/detail bucket,5229:Banking,0,Social Sciences,Social Sciences > Economics & Business > Finance > Banking > Banking Reference Works
+12322,Public Finance Reference & History,General/reference/detail bucket,5209:Public Finance,0,Social Sciences,Social Sciences > Economics & Business > Finance > Public Finance > Public Finance Reference & History
+52878,Investment Periodicals,General/reference/detail bucket,5183:Investments & Securities,0,Social Sciences,Social Sciences > Economics & Business > Finance > Investments & Securities > Investment Periodicals
+53462,Business Handbooks,General/reference/detail bucket,5086:Business,0,Social Sciences,Social Sciences > Economics & Business > Commerce > Business > Business Handbooks
+5498,Essays,General/reference/detail bucket,54942:Methods & Reference,0,Social Sciences,Social Sciences > Methods & Reference > Essays
+12245,Reference,General/reference/detail bucket,54942:Methods & Reference,0,Social Sciences,Social Sciences > Methods & Reference > Reference
+13838,Reference & Institutions,General/reference/detail bucket,5488:Sociology,4,Social Sciences,Social Sciences > Sociology > Reference & Institutions
+52909,Sociology Periodicals,General/reference/detail bucket,13838:Reference & Institutions,0,Social Sciences,Social Sciences > Sociology > Reference & Institutions > Sociology Periodicals
+5697,History & Reference,General/reference/detail bucket,5326:Politics & Government,0,Social Sciences,Social Sciences > Politics & Government > History & Reference
+13773,Reference,General/reference/detail bucket,5693:International Relations,0,Social Sciences,Social Sciences > Politics & Government > International Relations > Reference
+13368,Reference,General/reference/detail bucket,5359:Local & Municipal Government,0,Social Sciences,Social Sciences > Politics & Government > Government & Administration > Local & Municipal Government > Reference
+52854,Periodicals,General/reference/detail bucket,11761:Socialism & Communism,0,Social Sciences,Social Sciences > Politics & Government > Political Theory > Ideologies > Socialism & Communism > Periodicals
+52857,Reference Works,General/reference/detail bucket,11761:Socialism & Communism,0,Social Sciences,Social Sciences > Politics & Government > Political Theory > Ideologies > Socialism & Communism > Reference Works
+52716,Political-Science Reference,General/reference/detail bucket,5369:Political Science,0,Social Sciences,Social Sciences > Politics & Government > Political Science > Political-Science Reference
+54938,Reference & Collections,General/reference/detail bucket,5276:Law,1,Social Sciences,Social Sciences > Law > Reference & Collections
+13227,International Law Reference,General/reference/detail bucket,5300:Law of nations,0,Social Sciences,Social Sciences > Law > International & Comparative Law > Law of nations > International Law Reference
+12783,Military Handbooks & Planning,General/reference/detail bucket,5254:Military Studies,0,Social Sciences,Social Sciences > Military Studies > Military Handbooks & Planning
+13385,European Army Reference,General/reference/detail bucket,13344:European Armies,0,Social Sciences,Social Sciences > Military Studies > Land Forces > Armies by Country > European Armies > European Army Reference
+13443,European Folklore Reference,General/reference/detail bucket,13361:European Folklore,0,Social Sciences,Social Sciences > Anthropology > Folklore & Mythology > Regional Folklore > European Folklore > European Folklore Reference
+51361,Family Reference,General/reference/detail bucket,5241:Family & Relationships,0,Family & Relationships,Family & Relationships > Family Reference
+13170,Family Forms & Kinship—General,General child,5804:Family Forms & Kinship,0,Family & Relationships,Family & Relationships > Family Forms & Kinship > Family Forms & Kinship—General

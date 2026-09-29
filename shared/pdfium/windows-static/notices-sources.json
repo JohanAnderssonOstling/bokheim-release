@@ -1,0 +1,72 @@
+[
+  {
+    "path": "abseil/LICENSE",
+    "url": "https://chromium.googlesource.com/chromium/src/third_party/abseil-cpp/+/435e7d977fb36fb47854a4c552c0706dad0bd7cf/LICENSE?format=TEXT",
+    "sha256": "c79a7fea0e3cac04cd43f20e7b648e5a0ff8fa5344e644b0ee09ca1162b62747"
+  },
+  {
+    "path": "brotli/LICENSE",
+    "url": "https://chromium.googlesource.com/chromium/src/third_party/brotli/+/803ac71664ad62af1de39ff55e63ebbe07006fc8/LICENSE?format=TEXT",
+    "sha256": "3d180008e36922a4e8daec11c34c7af264fed5962d07924aea928c38e8663c94"
+  },
+  {
+    "path": "freetype/docs/FTL.TXT",
+    "url": "https://chromium.googlesource.com/chromium/src/third_party/freetype2/+/4800589f76dc62fbe523a74a59e0d4850a5dd7df/docs/FTL.TXT?format=TEXT",
+    "sha256": "5a5ee54c5001bbad1cdc1a57cc3dd4c42199b2da09d39c7ee41fab002d02967f"
+  },
+  {
+    "path": "harfbuzz/COPYING",
+    "url": "https://chromium.googlesource.com/external/github.com/harfbuzz/harfbuzz/+/886fc1e645388080b72f6d9b06347533a0018045/COPYING?format=TEXT",
+    "sha256": "ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64"
+  },
+  {
+    "path": "icu/LICENSE",
+    "url": "https://chromium.googlesource.com/chromium/deps/icu/+/8cc91d9b6ab9991802fd208ee03a69714fd0251c/LICENSE?format=TEXT",
+    "sha256": "e55522d81edc687a341a4411e0776e54ca654e90147f354a90458aaced4116af"
+  },
+  {
+    "path": "jpeg_turbo/LICENSE.md",
+    "url": "https://chromium.googlesource.com/chromium/deps/libjpeg_turbo/+/640f254ad0fa03f6b1f29f89b7dd9366f2f6e533/LICENSE.md?format=TEXT",
+    "sha256": "96f5b328adbb78eeaaec6980d73fd558cb1e4d62560ed615646bc3cf5e532430"
+  },
+  {
+    "path": "jpeg_turbo/README.ijg",
+    "url": "https://chromium.googlesource.com/chromium/deps/libjpeg_turbo/+/640f254ad0fa03f6b1f29f89b7dd9366f2f6e533/README.ijg?format=TEXT",
+    "sha256": "75815e3bf6484201a3c3d17a1bbf10f2e8e3237f84df10a2357ea896db2a81d6"
+  },
+  {
+    "path": "zlib/LICENSE",
+    "url": "https://chromium.googlesource.com/chromium/src/third_party/zlib/+/285e94b8fa95ad3b7d16b80798ec8dce6febb8c8/LICENSE?format=TEXT",
+    "sha256": "e32ff4e00d9d94930537635291da39e7e612703334bf6fde8c7f1686fe8a45a2"
+  },
+  {
+    "path": "dragonbox/LICENSE-Apache2-LLVM",
+    "url": "https://chromium.googlesource.com/external/github.com/jk-jeon/dragonbox/+/beeeef91cf6fef89a4d4ba5e95d47ca64ccb3a44/LICENSE-Apache2-LLVM?format=TEXT",
+    "sha256": "9e45e856bedccee9f67254082ca11851d954de2fed7448c4bed19ad9aab99a91"
+  },
+  {
+    "path": "fast_float/LICENSE-MIT",
+    "url": "https://chromium.googlesource.com/external/github.com/fastfloat/fast_float/+/34164f547b7df3f5d794ff67e9f885c36819ebfc/LICENSE-MIT?format=TEXT",
+    "sha256": "e562f3f974ced7e69dd1db77b820b36bcf8f30377f1aa105723fba449c53c4e6"
+  },
+  {
+    "path": "pdfium/LICENSE",
+    "url": "https://pdfium.googlesource.com/pdfium/+/refs/heads/chromium/8046/LICENSE",
+    "sha256": "1fe9dea718fbd75cf149adaf4d8a22a4335604d964ddb76d1b45383dec8668c9"
+  },
+  {
+    "path": "pdfium/third_party/agg23/copying",
+    "url": "https://pdfium.googlesource.com/pdfium/+/refs/heads/chromium/8046/third_party/agg23/copying",
+    "sha256": "0e16f9c2285583269242e94c6f502de0c9910dfcbbc7b386e236cdf29ecd4333"
+  },
+  {
+    "path": "pdfium/third_party/lcms/LICENSE",
+    "url": "https://pdfium.googlesource.com/pdfium/+/refs/heads/chromium/8046/third_party/lcms/LICENSE",
+    "sha256": "6dbd60437f8ef91d8de1f08ad75882547fd4931bfcc3566a0735f28db1484d31"
+  },
+  {
+    "path": "pdfium/third_party/libopenjpeg/LICENSE",
+    "url": "https://pdfium.googlesource.com/pdfium/+/refs/heads/chromium/8046/third_party/libopenjpeg/LICENSE",
+    "sha256": "a6af136f3e15038a666b61f376612a07d9a4e48cb7c01adbf3e33b3f14ab49b6"
+  }
+]

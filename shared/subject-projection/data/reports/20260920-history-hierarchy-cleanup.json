@@ -1,0 +1,1199 @@
+{
+  "merges": {
+    "10347": {
+      "into": 3687,
+      "old_label": "Crusades",
+      "surviving_label": "Crusades"
+    },
+    "10731": {
+      "into": 3673,
+      "old_label": "Holocaust",
+      "surviving_label": "Holocaust"
+    },
+    "13688": {
+      "into": 3684,
+      "old_label": "Study & Teaching",
+      "surviving_label": "Education"
+    },
+    "51447": {
+      "into": 3533,
+      "old_label": "Victorian England, 1837–1901",
+      "surviving_label": "Victorian Era, 1837–1901"
+    },
+    "13769": {
+      "into": 3331,
+      "old_label": "Côte d’Ivoire",
+      "surviving_label": "Côte d’Ivoire"
+    },
+    "10430": {
+      "into": 3345,
+      "old_label": "Kenyan",
+      "surviving_label": "Kenyan"
+    },
+    "10488": {
+      "into": 3348,
+      "old_label": "Libyan",
+      "surviving_label": "Libyan"
+    },
+    "10264": {
+      "into": 10258,
+      "old_label": "19th Century",
+      "surviving_label": "Eastern Question"
+    },
+    "54478": {
+      "into": 13963,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54461": {
+      "into": 13974,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54464": {
+      "into": 13976,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54469": {
+      "into": 13978,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54471": {
+      "into": 13982,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54475": {
+      "into": 13984,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54457": {
+      "into": 13986,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54450": {
+      "into": 13988,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54841": {
+      "into": 50843,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54653": {
+      "into": 50845,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54642": {
+      "into": 50847,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54646": {
+      "into": 50848,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54721": {
+      "into": 50860,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54404": {
+      "into": 50873,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54258": {
+      "into": 51955,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54262": {
+      "into": 51968,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54265": {
+      "into": 51982,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54690": {
+      "into": 51998,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54874": {
+      "into": 52005,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54068": {
+      "into": 54067,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54075": {
+      "into": 54074,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54082": {
+      "into": 54081,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54090": {
+      "into": 54089,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54097": {
+      "into": 54096,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54104": {
+      "into": 54103,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54112": {
+      "into": 54111,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54120": {
+      "into": 54119,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54128": {
+      "into": 54127,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54137": {
+      "into": 54136,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54145": {
+      "into": 54144,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54152": {
+      "into": 54151,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54161": {
+      "into": 54160,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54172": {
+      "into": 54171,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54179": {
+      "into": 54178,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54187": {
+      "into": 54186,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54195": {
+      "into": 54194,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54200": {
+      "into": 54199,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54207": {
+      "into": 54206,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54219": {
+      "into": 54218,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54230": {
+      "into": 54229,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54233": {
+      "into": 54232,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54240": {
+      "into": 54239,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54246": {
+      "into": 54245,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54252": {
+      "into": 54251,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54277": {
+      "into": 54276,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54287": {
+      "into": 54286,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54293": {
+      "into": 54292,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54305": {
+      "into": 54304,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54315": {
+      "into": 54314,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54325": {
+      "into": 54324,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54334": {
+      "into": 54333,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54341": {
+      "into": 54340,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54349": {
+      "into": 54348,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54357": {
+      "into": 54356,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54361": {
+      "into": 54360,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54365": {
+      "into": 54364,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54370": {
+      "into": 54369,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54375": {
+      "into": 54374,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54380": {
+      "into": 54379,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54385": {
+      "into": 54384,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54390": {
+      "into": 54389,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54395": {
+      "into": 54394,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54400": {
+      "into": 54399,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54409": {
+      "into": 54408,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54414": {
+      "into": 54413,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54419": {
+      "into": 54418,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54423": {
+      "into": 54422,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54428": {
+      "into": 54427,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54432": {
+      "into": 54431,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54437": {
+      "into": 54436,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54441": {
+      "into": 54440,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54446": {
+      "into": 54445,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54483": {
+      "into": 54482,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54488": {
+      "into": 54487,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54493": {
+      "into": 54492,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54498": {
+      "into": 54497,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54505": {
+      "into": 54504,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54508": {
+      "into": 54507,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54517": {
+      "into": 54516,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54520": {
+      "into": 54519,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54538": {
+      "into": 54537,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54545": {
+      "into": 54544,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54551": {
+      "into": 54550,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54559": {
+      "into": 54558,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54568": {
+      "into": 54567,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54577": {
+      "into": 54576,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54589": {
+      "into": 54588,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54597": {
+      "into": 54596,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54606": {
+      "into": 54605,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54616": {
+      "into": 54615,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54621": {
+      "into": 54620,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54630": {
+      "into": 54629,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54636": {
+      "into": 54635,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54651": {
+      "into": 54650,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54658": {
+      "into": 54657,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54663": {
+      "into": 54662,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54715": {
+      "into": 54714,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54726": {
+      "into": 54725,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54731": {
+      "into": 54730,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54735": {
+      "into": 54734,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54746": {
+      "into": 54745,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54752": {
+      "into": 54751,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54756": {
+      "into": 54755,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54761": {
+      "into": 54760,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54768": {
+      "into": 54767,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54777": {
+      "into": 54776,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54785": {
+      "into": 54784,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54795": {
+      "into": 54794,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54858": {
+      "into": 54857,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54865": {
+      "into": 54864,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    },
+    "54873": {
+      "into": 54872,
+      "old_label": "Other",
+      "surviving_label": "Local"
+    }
+  },
+  "renamed": {
+    "3684": {
+      "before": "Education",
+      "after": "Study & Teaching"
+    },
+    "11531": {
+      "before": "19th-20th centuries",
+      "after": "19th Century–Present"
+    }
+  },
+  "moved": [
+    {
+      "id": 3687,
+      "before": [
+        5814
+      ],
+      "after": [
+        3608,
+        5814
+      ]
+    },
+    {
+      "id": 3673,
+      "before": [
+        3671
+      ],
+      "after": [
+        3695
+      ]
+    },
+    {
+      "id": 3684,
+      "before": [
+        3319
+      ],
+      "after": [
+        3319
+      ]
+    },
+    {
+      "id": 3533,
+      "before": [
+        54692
+      ],
+      "after": [
+        10213
+      ]
+    },
+    {
+      "id": 3331,
+      "before": [
+        3373
+      ],
+      "after": [
+        3373
+      ]
+    },
+    {
+      "id": 3345,
+      "before": [
+        3332
+      ],
+      "after": [
+        3332
+      ]
+    },
+    {
+      "id": 3348,
+      "before": [
+        3357
+      ],
+      "after": [
+        3357,
+        3349
+      ]
+    },
+    {
+      "id": 3409,
+      "before": [
+        3407,
+        50813
+      ],
+      "after": [
+        3407
+      ]
+    },
+    {
+      "id": 50817,
+      "before": [
+        3409,
+        3447,
+        50815
+      ],
+      "after": [
+        3409,
+        3447
+      ]
+    },
+    {
+      "id": 50818,
+      "before": [
+        3409,
+        3439,
+        50813,
+        50815
+      ],
+      "after": [
+        3409,
+        3439
+      ]
+    },
+    {
+      "id": 10639,
+      "before": [
+        3349
+      ],
+      "after": [
+        54947
+      ]
+    },
+    {
+      "id": 10394,
+      "before": [
+        3349
+      ],
+      "after": [
+        54947
+      ]
+    },
+    {
+      "id": 10527,
+      "before": [
+        3349
+      ],
+      "after": [
+        54947
+      ]
+    },
+    {
+      "id": 10388,
+      "before": [
+        3349
+      ],
+      "after": [
+        54947
+      ]
+    }
+  ],
+  "flattened": [],
+  "created": {
+    "54947": "By Period"
+  },
+  "selector_repairs": [],
+  "local_other_merges": [
+    [
+      54478,
+      13963
+    ],
+    [
+      54461,
+      13974
+    ],
+    [
+      54464,
+      13976
+    ],
+    [
+      54469,
+      13978
+    ],
+    [
+      54471,
+      13982
+    ],
+    [
+      54475,
+      13984
+    ],
+    [
+      54457,
+      13986
+    ],
+    [
+      54450,
+      13988
+    ],
+    [
+      54841,
+      50843
+    ],
+    [
+      54653,
+      50845
+    ],
+    [
+      54642,
+      50847
+    ],
+    [
+      54646,
+      50848
+    ],
+    [
+      54721,
+      50860
+    ],
+    [
+      54404,
+      50873
+    ],
+    [
+      54258,
+      51955
+    ],
+    [
+      54262,
+      51968
+    ],
+    [
+      54265,
+      51982
+    ],
+    [
+      54690,
+      51998
+    ],
+    [
+      54874,
+      52005
+    ],
+    [
+      54068,
+      54067
+    ],
+    [
+      54075,
+      54074
+    ],
+    [
+      54082,
+      54081
+    ],
+    [
+      54090,
+      54089
+    ],
+    [
+      54097,
+      54096
+    ],
+    [
+      54104,
+      54103
+    ],
+    [
+      54112,
+      54111
+    ],
+    [
+      54120,
+      54119
+    ],
+    [
+      54128,
+      54127
+    ],
+    [
+      54137,
+      54136
+    ],
+    [
+      54145,
+      54144
+    ],
+    [
+      54152,
+      54151
+    ],
+    [
+      54161,
+      54160
+    ],
+    [
+      54172,
+      54171
+    ],
+    [
+      54179,
+      54178
+    ],
+    [
+      54187,
+      54186
+    ],
+    [
+      54195,
+      54194
+    ],
+    [
+      54200,
+      54199
+    ],
+    [
+      54207,
+      54206
+    ],
+    [
+      54219,
+      54218
+    ],
+    [
+      54230,
+      54229
+    ],
+    [
+      54233,
+      54232
+    ],
+    [
+      54240,
+      54239
+    ],
+    [
+      54246,
+      54245
+    ],
+    [
+      54252,
+      54251
+    ],
+    [
+      54277,
+      54276
+    ],
+    [
+      54287,
+      54286
+    ],
+    [
+      54293,
+      54292
+    ],
+    [
+      54305,
+      54304
+    ],
+    [
+      54315,
+      54314
+    ],
+    [
+      54325,
+      54324
+    ],
+    [
+      54334,
+      54333
+    ],
+    [
+      54341,
+      54340
+    ],
+    [
+      54349,
+      54348
+    ],
+    [
+      54357,
+      54356
+    ],
+    [
+      54361,
+      54360
+    ],
+    [
+      54365,
+      54364
+    ],
+    [
+      54370,
+      54369
+    ],
+    [
+      54375,
+      54374
+    ],
+    [
+      54380,
+      54379
+    ],
+    [
+      54385,
+      54384
+    ],
+    [
+      54390,
+      54389
+    ],
+    [
+      54395,
+      54394
+    ],
+    [
+      54400,
+      54399
+    ],
+    [
+      54409,
+      54408
+    ],
+    [
+      54414,
+      54413
+    ],
+    [
+      54419,
+      54418
+    ],
+    [
+      54423,
+      54422
+    ],
+    [
+      54428,
+      54427
+    ],
+    [
+      54432,
+      54431
+    ],
+    [
+      54437,
+      54436
+    ],
+    [
+      54441,
+      54440
+    ],
+    [
+      54446,
+      54445
+    ],
+    [
+      54483,
+      54482
+    ],
+    [
+      54488,
+      54487
+    ],
+    [
+      54493,
+      54492
+    ],
+    [
+      54498,
+      54497
+    ],
+    [
+      54505,
+      54504
+    ],
+    [
+      54508,
+      54507
+    ],
+    [
+      54517,
+      54516
+    ],
+    [
+      54520,
+      54519
+    ],
+    [
+      54538,
+      54537
+    ],
+    [
+      54545,
+      54544
+    ],
+    [
+      54551,
+      54550
+    ],
+    [
+      54559,
+      54558
+    ],
+    [
+      54568,
+      54567
+    ],
+    [
+      54577,
+      54576
+    ],
+    [
+      54589,
+      54588
+    ],
+    [
+      54597,
+      54596
+    ],
+    [
+      54606,
+      54605
+    ],
+    [
+      54616,
+      54615
+    ],
+    [
+      54621,
+      54620
+    ],
+    [
+      54630,
+      54629
+    ],
+    [
+      54636,
+      54635
+    ],
+    [
+      54651,
+      54650
+    ],
+    [
+      54658,
+      54657
+    ],
+    [
+      54663,
+      54662
+    ],
+    [
+      54715,
+      54714
+    ],
+    [
+      54726,
+      54725
+    ],
+    [
+      54731,
+      54730
+    ],
+    [
+      54735,
+      54734
+    ],
+    [
+      54746,
+      54745
+    ],
+    [
+      54752,
+      54751
+    ],
+    [
+      54756,
+      54755
+    ],
+    [
+      54761,
+      54760
+    ],
+    [
+      54768,
+      54767
+    ],
+    [
+      54777,
+      54776
+    ],
+    [
+      54785,
+      54784
+    ],
+    [
+      54795,
+      54794
+    ],
+    [
+      54858,
+      54857
+    ],
+    [
+      54865,
+      54864
+    ],
+    [
+      54873,
+      54872
+    ]
+  ],
+  "preserved_grouping_rule": "Keep By Region, By Period, Eras and Local; no depth threshold triggers deletion."
+}

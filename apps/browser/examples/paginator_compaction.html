@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paginator two-cursor compaction</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      background: #f3efe6;
+      color: #26231f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 32px;
+    }
+
+    main {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-family: Georgia, serif;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+    }
+
+    .lede {
+      max-width: 760px;
+      margin: 0 0 26px;
+      color: #675f54;
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    .stage {
+      padding: 22px;
+      border: 1px solid #c8bfae;
+      border-radius: 18px;
+      background: #fffdf8;
+      box-shadow: 0 18px 50px rgb(63 52 38 / 10%);
+    }
+
+    .status {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 20px;
+      min-height: 82px;
+      margin-bottom: 16px;
+    }
+
+    .step-label {
+      margin-bottom: 4px;
+      color: #8a5b1e;
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .step-title {
+      margin: 0 0 5px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .step-detail {
+      max-width: 760px;
+      margin: 0;
+      color: #675f54;
+      line-height: 1.45;
+    }
+
+    .height-readout {
+      min-width: 142px;
+      padding: 10px 12px;
+      border: 1px solid #c8bfae;
+      border-radius: 10px;
+      background: #f8f4eb;
+      text-align: center;
+    }
+
+    .height-readout span {
+      display: block;
+      color: #776e62;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .height-readout strong {
+      font-size: 17px;
+    }
+
+    .board-wrap {
+      overflow-x: auto;
+      padding: 40px 4px 8px;
+    }
+
+    .board {
+      --column-gap: 12px;
+      --row-gap: 18px;
+      position: relative;
+      width: 100%;
+      min-width: 640px;
+      height: 430px;
+    }
+
+    .row-band {
+      position: absolute;
+      left: 0;
+      right: 0;
+      border: 1px dashed #d6cdbf;
+      border-radius: 10px;
+      background: rgb(239 233 221 / 38%);
+      transition: border-color 180ms ease, background 180ms ease;
+    }
+
+    .row-band.active {
+      border-color: #a679cf;
+      background: rgb(166 121 207 / 9%);
+    }
+
+    .row-name {
+      position: absolute;
+      right: 8px;
+      top: 6px;
+      color: #8a8175;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .slot {
+      position: absolute;
+      border: 1px solid #d6cdbf;
+      border-radius: 8px;
+      background: #faf7f0;
+    }
+
+    .slot::after {
+      content: attr(data-slot);
+      position: absolute;
+      right: 7px;
+      bottom: 5px;
+      color: #b0a799;
+      font-size: 10px;
+    }
+
+    .item {
+      position: absolute;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgb(28 35 43 / 55%);
+      border-radius: 8px;
+      color: white;
+      box-shadow: 0 5px 12px rgb(38 35 31 / 15%);
+      transition: left 460ms cubic-bezier(.2,.8,.2,1), top 460ms cubic-bezier(.2,.8,.2,1), height 460ms ease, opacity 180ms ease;
+    }
+
+    .item.wide {
+      background: #35618c;
+    }
+
+    .item.tall {
+      background: #5f8462;
+    }
+
+    .item.candidate {
+      outline: 4px solid #ef8c39;
+      outline-offset: 2px;
+    }
+
+    .item.moving {
+      filter: brightness(1.13);
+    }
+
+    .item-name {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .item-height {
+      position: absolute;
+      right: 7px;
+      top: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      opacity: 0.8;
+    }
+
+    .cursor {
+      position: absolute;
+      z-index: 5;
+      pointer-events: none;
+      transition: left 360ms ease, top 360ms ease, opacity 160ms ease;
+    }
+
+    .cursor::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -9px;
+      width: 12px;
+      height: 12px;
+      border-right: 3px solid currentColor;
+      border-bottom: 3px solid currentColor;
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .cursor span {
+      display: block;
+      transform: translate(-50%, -100%);
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: currentColor;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .cursor.free {
+      color: #2875c7;
+    }
+
+    .cursor.occupied {
+      color: #e87722;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    button {
+      min-width: 92px;
+      padding: 10px 15px;
+      border: 1px solid #a99f90;
+      border-radius: 10px;
+      background: #fffdf8;
+      color: #26231f;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button.primary {
+      border-color: #315d87;
+      background: #35618c;
+      color: white;
+    }
+
+    button:disabled {
+      cursor: default;
+      opacity: 0.42;
+    }
+
+    .progress {
+      margin-left: auto;
+      color: #776e62;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-top: 22px;
+      color: #675f54;
+      font-size: 13px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .rule {
+      padding: 14px;
+      border: 1px solid #d6cdbf;
+      border-radius: 12px;
+      background: #f8f4eb;
+      color: #5f584e;
+      line-height: 1.4;
+    }
+
+    .rule strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #26231f;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 18px;
+      }
+
+      .stage {
+        padding: 16px;
+      }
+
+      .status,
+      .rules {
+        grid-template-columns: 1fr;
+      }
+
+      .height-readout {
+        width: fit-content;
+      }
+
+      .progress {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Two cursors, one stable order</h1>
+    <p class="lede">
+      Slot assignment happens first. This pass compacts those assignments without changing child order.
+      The blue cursor owns output space; the orange cursor continuously scans candidates.
+    </p>
+
+    <section class="stage" aria-label="Animated slot compaction">
+      <div class="status" aria-live="polite">
+        <div>
+          <div class="step-label" id="step-label"></div>
+          <h2 class="step-title" id="step-title"></h2>
+          <p class="step-detail" id="step-detail"></p>
+        </div>
+        <div class="height-readout">
+          <span>Recorded row height</span>
+          <strong id="row-height">—</strong>
+        </div>
+      </div>
+
+      <div class="board-wrap">
+        <div class="board" id="board" aria-label="Four-column slot board">
+          <div class="cursor free" id="free-cursor"><span>free slot</span></div>
+          <div class="cursor occupied" id="occupied-cursor"><span>candidate</span></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="reset">Reset</button>
+        <button id="previous">Previous</button>
+        <button class="primary" id="play">Play</button>
+        <button id="next">Next</button>
+        <span class="progress" id="progress"></span>
+      </div>
+
+      <div class="legend" aria-label="Legend">
+        <span class="legend-item"><span class="swatch" style="background:#2875c7"></span>Free-slot cursor resets by output row</span>
+        <span class="legend-item"><span class="swatch" style="background:#e87722"></span>Candidate cursor never resets</span>
+        <span class="legend-item"><span class="swatch" style="background:#35618c"></span>Wide · 72 px</span>
+        <span class="legend-item"><span class="swatch" style="background:#5f8462"></span>Tall · 116 px</span>
+      </div>
+    </section>
+
+    <section class="rules" aria-label="Compaction rules">
+      <div class="rule"><strong>Start a row</strong>The next occupied candidate moves to column zero and establishes the output row height.</div>
+      <div class="rule"><strong>Fill a row</strong>The candidate cursor may cross any source-row boundary. A matching-height candidate fills the next free slot.</div>
+      <div class="rule"><strong>Close a row</strong>A height mismatch or a full output row resets only the free cursor. The candidate remains current.</div>
+    </section>
+  </main>
+
+  <script>
+    const columns = 4;
+    const rowHeights = [72, 116, 116, 116];
+    const columnGap = 12;
+    const rowGap = 18;
+    const initialPositions = { A: 1, B: 3, C: 4, D: 6, E: 8, F: 10, G: 11, H: 13 };
+    const itemKinds = { A: "wide", B: "wide", C: "wide", D: "tall", E: "tall", F: "tall", G: "tall", H: "tall" };
+
+    const steps = [
+      {
+        title: "Sparse slot assignment",
+        detail: "The compaction pass receives occupied slots in stable child order. Source rows do not constrain the candidate cursor.",
+        free: null,
+        candidate: null,
+        activeRow: null,
+        height: null,
+        positions: { ...initialPositions }
+      },
+      {
+        title: "Find the first occupied candidate",
+        detail: "The free cursor starts at output slot 0. The candidate cursor finds A at slot 1; A records a 72 px row height.",
+        free: 0,
+        candidate: 1,
+        activeRow: 0,
+        height: 72,
+        positions: { ...initialPositions }
+      },
+      {
+        title: "Move A into the first free slot",
+        detail: "The free cursor advances to slot 1. The candidate cursor continues forward; it does not restart.",
+        free: 1,
+        candidate: 3,
+        activeRow: 0,
+        height: 72,
+        positions: { ...initialPositions, A: 0 }
+      },
+      {
+        title: "Move matching candidate B",
+        detail: "B has the recorded 72 px height, so it moves into slot 1. Both cursors advance independently.",
+        free: 2,
+        candidate: 4,
+        activeRow: 0,
+        height: 72,
+        positions: { ...initialPositions, A: 0, B: 1 }
+      },
+      {
+        title: "Candidate crosses a source row",
+        detail: "C originated in the next source row, but it is also 72 px tall. It can still fill free slot 2 in the current output row.",
+        free: 2,
+        candidate: 4,
+        activeRow: 0,
+        height: 72,
+        positions: { ...initialPositions, A: 0, B: 1 }
+      },
+      {
+        title: "Move C without resetting candidate scan",
+        detail: "The source-row boundary has no effect. The next free slot is 3; the next candidate is D at slot 6.",
+        free: 3,
+        candidate: 6,
+        activeRow: 0,
+        height: 72,
+        positions: { ...initialPositions, A: 0, B: 1, C: 2 }
+      },
+      {
+        title: "Height mismatch closes the output row",
+        detail: "D is 116 px tall, not 72 px. D remains the current candidate while only the free cursor resets to the first slot of output row 1.",
+        free: 4,
+        candidate: 6,
+        activeRow: 1,
+        height: null,
+        positions: { ...initialPositions, A: 0, B: 1, C: 2 }
+      },
+      {
+        title: "The same candidate starts the new row",
+        detail: "D now establishes the new row height at 116 px and moves to its first free slot.",
+        free: 5,
+        candidate: 8,
+        activeRow: 1,
+        height: 116,
+        positions: { ...initialPositions, A: 0, B: 1, C: 2, D: 4 }
+      },
+      {
+        title: "Continue through later source slots",
+        detail: "E matches 116 px and fills slot 5. The candidate cursor proceeds to F, even though F began in another source row.",
+        free: 6,
+        candidate: 10,
+        activeRow: 1,
+        height: 116,
+        positions: { ...initialPositions, A: 0, B: 1, C: 2, D: 4, E: 5 }
+      },
+      {
+        title: "Cross another source row",
+        detail: "F matches the row height and moves into slot 6. Source layout still does not reset either cursor.",
+        free: 7,
+        candidate: 11,
+        activeRow: 1,
+        height: 116,
+        positions: { ...initialPositions, A: 0, B: 1, C: 2, D: 4, E: 5, F: 6 }
+      },
+      {
+        title: "Fill the final free slot",
+        detail: "G moves into slot 7. The output row is now full, so the free cursor must cross into row 2.",
+        free: 7,
+        candidate: 11,
+        activeRow: 1,
+        height: 116,
+        positions: { ...initialPositions, A: 0, B: 1, C: 2, D: 4, E: 5, F: 6 }
+      },
+      {
+        title: "Only the free cursor resets",
+        detail: "The free cursor starts output row 2 at slot 8. The candidate cursor continues to H at slot 13 and H establishes the row height.",
+        free: 8,
+        candidate: 13,
+        activeRow: 2,
+        height: 116,
+        positions: { ...initialPositions, A: 0, B: 1, C: 2, D: 4, E: 5, F: 6, G: 7 }
+      },
+      {
+        title: "Compaction complete",
+        detail: "H moves to slot 8. Stable item order is preserved, every output row is left aligned, and the coordinate pass can now use the recorded row heights.",
+        free: null,
+        candidate: null,
+        activeRow: 2,
+        height: 116,
+        positions: { A: 0, B: 1, C: 2, D: 4, E: 5, F: 6, G: 7, H: 8 }
+      }
+    ];
+
+    const board = document.querySelector("#board");
+    const freeCursor = document.querySelector("#free-cursor");
+    const occupiedCursor = document.querySelector("#occupied-cursor");
+    const title = document.querySelector("#step-title");
+    const detail = document.querySelector("#step-detail");
+    const stepLabel = document.querySelector("#step-label");
+    const rowHeight = document.querySelector("#row-height");
+    const progress = document.querySelector("#progress");
+    const playButton = document.querySelector("#play");
+    const previousButton = document.querySelector("#previous");
+    const nextButton = document.querySelector("#next");
+    const resetButton = document.querySelector("#reset");
+    const items = new Map();
+    const rowBands = [];
+    const slots = [];
+    let stepIndex = 0;
+    let timer = null;
+
+    function rowTop(row) {
+      let top = 0;
+      for (let index = 0; index < row; index += 1) {
+        top += rowHeights[index] + rowGap;
+      }
+      return top;
+    }
+
+    function slotGeometry(slotIndex) {
+      const row = Math.floor(slotIndex / columns);
+      const column = slotIndex % columns;
+      const width = (board.clientWidth - columnGap * (columns - 1)) / columns;
+      return {
+        left: column * (width + columnGap),
+        top: rowTop(row),
+        width,
+        height: rowHeights[row]
+      };
+    }
+
+    function place(element, slotIndex, height) {
+      const geometry = slotGeometry(slotIndex);
+      element.style.left = `${geometry.left}px`;
+      element.style.top = `${geometry.top}px`;
+      element.style.width = `${geometry.width}px`;
+      element.style.height = `${height}px`;
+    }
+
+    function buildBoard() {
+      rowHeights.forEach((height, row) => {
+        const band = document.createElement("div");
+        band.className = "row-band";
+        band.style.top = `${rowTop(row)}px`;
+        band.style.height = `${height}px`;
+        band.innerHTML = `<span class="row-name">output row ${row}</span>`;
+        board.insertBefore(band, freeCursor);
+        rowBands.push(band);
+      });
+
+      for (let index = 0; index < columns * rowHeights.length; index += 1) {
+        const slot = document.createElement("div");
+        slot.className = "slot";
+        slot.dataset.slot = index;
+        board.insertBefore(slot, freeCursor);
+        slots.push(slot);
+      }
+
+      Object.entries(itemKinds).forEach(([name, kind]) => {
+        const item = document.createElement("div");
+        item.className = `item ${kind}`;
+        item.innerHTML = `<span class="item-name">${name}</span><span class="item-height">${kind === "wide" ? "72" : "116"} px</span>`;
+        board.insertBefore(item, freeCursor);
+        items.set(name, item);
+      });
+    }
+
+    function positionStaticBoard() {
+      rowBands.forEach((band, row) => {
+        band.style.top = `${rowTop(row)}px`;
+        band.style.height = `${rowHeights[row]}px`;
+      });
+      slots.forEach((slot, index) => {
+        const geometry = slotGeometry(index);
+        slot.style.left = `${geometry.left}px`;
+        slot.style.top = `${geometry.top}px`;
+        slot.style.width = `${geometry.width}px`;
+        slot.style.height = `${geometry.height}px`;
+      });
+    }
+
+    function positionCursor(cursor, slotIndex) {
+      if (slotIndex === null) {
+        cursor.style.opacity = "0";
+        return;
+      }
+      const geometry = slotGeometry(slotIndex);
+      cursor.style.opacity = "1";
+      cursor.style.left = `${geometry.left + geometry.width / 2}px`;
+      cursor.style.top = `${geometry.top - 4}px`;
+    }
+
+    function renderStep() {
+      const step = steps[stepIndex];
+      title.textContent = step.title;
+      detail.textContent = step.detail;
+      stepLabel.textContent = `Step ${stepIndex + 1}`;
+      rowHeight.textContent = step.height === null ? "—" : `${step.height} px`;
+      progress.textContent = `${stepIndex + 1} / ${steps.length}`;
+      previousButton.disabled = stepIndex === 0;
+      nextButton.disabled = stepIndex === steps.length - 1;
+
+      items.forEach((element, name) => {
+        const height = itemKinds[name] === "wide" ? 72 : 116;
+        place(element, step.positions[name], height);
+        element.classList.toggle("candidate", step.candidate !== null && step.positions[name] === step.candidate);
+      });
+
+      rowBands.forEach((band, row) => band.classList.toggle("active", row === step.activeRow));
+      positionCursor(freeCursor, step.free);
+      positionCursor(occupiedCursor, step.candidate);
+    }
+
+    function stop() {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+      playButton.textContent = "Play";
+    }
+
+    function play() {
+      if (timer !== null) {
+        stop();
+        return;
+      }
+      if (stepIndex === steps.length - 1) {
+        stepIndex = 0;
+        renderStep();
+      }
+      playButton.textContent = "Pause";
+      timer = setInterval(() => {
+        if (stepIndex === steps.length - 1) {
+          stop();
+          return;
+        }
+        stepIndex += 1;
+        renderStep();
+      }, 1650);
+    }
+
+    resetButton.addEventListener("click", () => {
+      stop();
+      stepIndex = 0;
+      renderStep();
+    });
+    previousButton.addEventListener("click", () => {
+      stop();
+      stepIndex = Math.max(0, stepIndex - 1);
+      renderStep();
+    });
+    nextButton.addEventListener("click", () => {
+      stop();
+      stepIndex = Math.min(steps.length - 1, stepIndex + 1);
+      renderStep();
+    });
+    playButton.addEventListener("click", play);
+    window.addEventListener("resize", () => {
+      positionStaticBoard();
+      renderStep();
+    });
+
+    buildBoard();
+    positionStaticBoard();
+    renderStep();
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH raw_input AS (\n    SELECT * FROM UNNEST(\n        $3::TEXT[], $4::BYTEA[], $5::BIGINT[], $6::BIGINT[], $7::SMALLINT[], $8::TEXT[]\n    ) AS value(book_id, value, changed_at, client_seq, version_rank, event_id)\n),\ninput AS (\n    SELECT DISTINCT ON (book_id) *\n    FROM raw_input\n    ORDER BY book_id, changed_at DESC, version_rank DESC, client_seq DESC, event_id COLLATE \"C\" DESC\n)\nINSERT INTO sync_book_metadata_state(\n    library_id, book_id, value, changed_at, client_id, client_seq, version_rank, event_id\n)\nSELECT $1, book_id, value, changed_at, $2, client_seq, version_rank, event_id\nFROM input\nON CONFLICT (library_id, book_id) DO UPDATE SET\n    value=EXCLUDED.value, changed_at=EXCLUDED.changed_at,\n    client_id=EXCLUDED.client_id, client_seq=EXCLUDED.client_seq,\n    version_rank=EXCLUDED.version_rank, event_id=EXCLUDED.event_id, server_seq=DEFAULT;\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "TextArray",
+        "ByteaArray",
+        "Int8Array",
+        "Int8Array",
+        "Int2Array",
+        "TextArray"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "ba4f35fa549e091dc52370d8a23f3fe672fa5fec22bafa0bbfd7e4524393adea"
+}

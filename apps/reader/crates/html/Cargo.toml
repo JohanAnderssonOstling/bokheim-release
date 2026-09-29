@@ -1,0 +1,20 @@
+[package]
+name = "html-pipeline-tools"
+version = "0.1.0"
+edition = "2024"
+publish = false
+autobins = false
+
+[dependencies]
+scraper.workspace = true
+lightningcss.workspace = true
+html-book = { path = "crates/html-book" }
+html.workspace = true
+
+[[bin]]
+name = "css_audit"
+path = "src/bin/css_audit.rs"
+
+[[bin]]
+name = "pipeline_profile"
+path = "src/bin/pipeline_profile.rs"

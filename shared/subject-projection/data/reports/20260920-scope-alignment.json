@@ -1,0 +1,88 @@
+{
+  "merges": {},
+  "renamed": {
+    "12878": {
+      "before": "Psycholinguistics & Synesthesia",
+      "after": "Synesthesia"
+    },
+    "6195": {
+      "before": "Mental Illness Prevention",
+      "after": "Public Mental Health"
+    }
+  },
+  "moved": [
+    {
+      "id": 53300,
+      "before": [
+        12875
+      ],
+      "after": [
+        5389
+      ]
+    }
+  ],
+  "flattened": [
+    {
+      "id": 2768,
+      "parent": 2747,
+      "children": [
+        2748,
+        2751,
+        2752,
+        2759,
+        2761
+      ]
+    }
+  ],
+  "created": {},
+  "selector_repairs": [
+    {
+      "range": [
+        "BJ1296",
+        "BJ1517.9"
+      ],
+      "from": 4504,
+      "to": 4494
+    },
+    {
+      "range": [
+        "BF455",
+        "BF499"
+      ],
+      "from": 12878,
+      "to": 5389
+    },
+    {
+      "range": [
+        "BF335",
+        "BF364.9"
+      ],
+      "from": 12875,
+      "to": 5389
+    },
+    {
+      "range": [
+        "BF408",
+        "BF454.9"
+      ],
+      "from": 12877,
+      "to": 5389
+    },
+    {
+      "range": [
+        "RT89",
+        "RT120"
+      ],
+      "from": 2768,
+      "to": 2747
+    },
+    {
+      "range": [
+        "RT89",
+        "RT89.3"
+      ],
+      "from": 2768,
+      "to": 2757
+    }
+  ]
+}

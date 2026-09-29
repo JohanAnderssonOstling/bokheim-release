@@ -1,0 +1,1690 @@
+[
+  {
+    "area": "Science",
+    "subjects": [
+      {
+        "id": 13527,
+        "label": "Yearbooks",
+        "codes": {
+          "lcc_selector": [
+            [
+              13527,
+              "Q9"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13528,
+        "label": "Collected Scientific Works",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "Q111",
+              "Q113",
+              13528
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13531,
+        "label": "Congresses",
+        "codes": {
+          "lcc_selector": [
+            [
+              13531,
+              "Q101"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13532,
+        "label": "Science Encyclopedias",
+        "codes": {
+          "lcc_selector": [
+            [
+              13532,
+              "Q121"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13533,
+        "label": "Science Dictionaries",
+        "codes": {
+          "lcc_selector": [
+            [
+              13533,
+              "Q123"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13540,
+        "label": "Directories",
+        "codes": {
+          "lcc_selector": [
+            [
+              13540,
+              "Q145"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13543,
+        "label": "General works & treatises",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "Q158",
+              "Q158.5",
+              13543
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13546,
+        "label": "Popular works",
+        "codes": {
+          "lcc_selector": [
+            [
+              13546,
+              "Q162"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13549,
+        "label": "Addresses, essays, lectures",
+        "codes": {
+          "lcc_selector": [
+            [
+              13549,
+              "Q171"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13557,
+        "label": "Science Handbooks & Tables",
+        "codes": {
+          "lcc_selector": [
+            [
+              13557,
+              "Q199"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Science & Nature",
+    "priority": "Strong compaction",
+    "note": "General publication/reference buckets can resolve to the broad subject; retain genuinely topical science branches."
+  },
+  {
+    "area": "Science",
+    "subjects": [
+      {
+        "id": 4837,
+        "label": "Ethics",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              4837,
+              "SCI101000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13522,
+        "label": "Scientific ethics",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "Q175.35",
+              "Q175.37",
+              13522
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Scientific Ethics",
+    "priority": "Strong merge",
+    "note": "SCI101000 and Q175.35–Q175.37 are complementary source-system representations."
+  },
+  {
+    "area": "Science",
+    "subjects": [
+      {
+        "id": 4840,
+        "label": "Science History",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              4840,
+              "SCI034000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13536,
+        "label": "Science History Overview",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "Q124.6",
+              "Q127.2",
+              13536
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Science History",
+    "priority": "Strong merge",
+    "note": "SCI034000 plus Q124.6–Q127.2; preserve historical scope."
+  },
+  {
+    "area": "Science",
+    "subjects": [
+      {
+        "id": 13520,
+        "label": "Science Teaching & Study",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "Q181",
+              "Q183.4",
+              13520
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13555,
+        "label": "Science Teaching Aids",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "Q190",
+              "Q197",
+              13555
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 5726,
+        "label": "Science Education & Institutions",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              5726,
+              "SCI060000"
+            ]
+          ],
+          "ddc_selector": [
+            [
+              "505",
+              5726
+            ],
+            [
+              "506",
+              5726
+            ]
+          ]
+        }
+      }
+    ],
+    "target": "Science Education & Institutions",
+    "priority": "Scope review",
+    "note": "Teaching, study and teaching aids overlap the broader education branch; inspect its children before consolidating."
+  },
+  {
+    "area": "Science",
+    "subjects": [
+      {
+        "id": 13554,
+        "label": "Scientific Research",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "Q179.9",
+              "Q180.7",
+              13554
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 5724,
+        "label": "Scientific Methods & Tools",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Scientific Methods & Tools",
+    "priority": "Scope review",
+    "note": "Research is a meaningful field, but could be absorbed into the methods branch at coarse granularity."
+  },
+  {
+    "area": "Film",
+    "subjects": [
+      {
+        "id": 13564,
+        "label": "Film Serials & Societies",
+        "codes": {
+          "lcc_selector": [
+            [
+              13564,
+              "PN1993"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13565,
+        "label": "Yearbooks",
+        "codes": {
+          "lcc_selector": [
+            [
+              13565,
+              "PN1993.3"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13567,
+        "label": "Film Dictionaries",
+        "codes": {
+          "lcc_selector": [
+            [
+              13567,
+              "PN1993.45"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13571,
+        "label": "Film Reference",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "PN1994.A52",
+              "PN1994.Z",
+              13571
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Film",
+    "priority": "Strong compaction",
+    "note": "Serials/societies, yearbooks, dictionaries and general reference can be absorbed."
+  },
+  {
+    "area": "Film",
+    "subjects": [
+      {
+        "id": 13569,
+        "label": "Exams & Questions",
+        "codes": {
+          "lcc_selector": [
+            [
+              13569,
+              "PN1993.85"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13568,
+        "label": "Film Education",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "PN1993.7",
+              "PN1993.8",
+              13568
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Film Education",
+    "priority": "Strong compaction",
+    "note": "Exams and questions are subordinate educational detail."
+  },
+  {
+    "area": "Film",
+    "subjects": [
+      {
+        "id": 13584,
+        "label": "Other special topics, A-Z",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "PN1995.9.A",
+              "PN1995.9.Z",
+              13584
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Film",
+    "priority": "Scope review",
+    "note": "Broad PN1995.9 special-topic bucket can be absorbed while preserving existing named film topics."
+  },
+  {
+    "area": "Film",
+    "subjects": [
+      {
+        "id": 13586,
+        "label": "Film Miscellany",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "PN1998.A1",
+              "PN1998.Z",
+              13586
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Review miscellaneous film coverage",
+    "priority": "Source-label correction",
+    "note": "PN1998.A1 starts directories and includes historical biography assignments; do not delete as meaningless miscellany without considering the source scope."
+  },
+  {
+    "area": "Education",
+    "subjects": [
+      {
+        "id": 2200,
+        "label": "Education Essays",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              2200,
+              "EDU042000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 5676,
+        "label": "Education Reference",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              5676,
+              "EDU024000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 2192,
+        "label": "Educational Directories",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "L900",
+              "L991",
+              2192
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 2194,
+        "label": "Education Reports & Documents",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "L111",
+              "L791",
+              2194
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Education",
+    "priority": "Strong compaction",
+    "note": "Essays, general reference, directories and reports/documents can be absorbed; preserve educational levels and substantive topics."
+  },
+  {
+    "area": "Education",
+    "subjects": [
+      {
+        "id": 9683,
+        "label": "Congresses. Conferences",
+        "codes": {
+          "lcc_selector": [
+            [
+              9683,
+              "LC5209"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Adult & Continuing Education",
+    "priority": "Strong compaction",
+    "note": "Congresses/conferences is a publication category within adult education."
+  },
+  {
+    "area": "Education",
+    "subjects": [
+      {
+        "id": 2201,
+        "label": "Education Assessment",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              2201,
+              "EDU011000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 2313,
+        "label": "Education Testing & Measurement",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              2313,
+              "EDU030000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Education Assessment & Testing",
+    "priority": "Scope review",
+    "note": "EDU011000 assessment and EDU030000 testing/measurement overlap but are not exact synonyms."
+  },
+  {
+    "area": "Technology",
+    "subjects": [
+      {
+        "id": 13065,
+        "label": "General Electronic Circuits",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "TK7867",
+              "TK7867.5",
+              13065
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Electronic Circuits",
+    "priority": "Strong compaction",
+    "note": "General Electronic Circuits TK7867–TK7867.5 adds little beside the developed parent."
+  },
+  {
+    "area": "Technology",
+    "subjects": [
+      {
+        "id": 7502,
+        "label": "Congresses. Conventions",
+        "codes": {
+          "lcc_selector": [
+            [
+              7502,
+              "TK7801"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Electronics",
+    "priority": "Strong compaction",
+    "note": "Congresses/conventions can resolve to Electronics."
+  },
+  {
+    "area": "Technology",
+    "subjects": [
+      {
+        "id": 10056,
+        "label": "General treatises",
+        "codes": {
+          "lcc_selector": [
+            [
+              10056,
+              "TK301"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Electric Meters",
+    "priority": "Strong compaction",
+    "note": "General treatises can resolve to the instrument subject."
+  },
+  {
+    "area": "Medicine",
+    "subjects": [
+      {
+        "id": 2605,
+        "label": "Medical Essays",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              2605,
+              "MED109000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 2595,
+        "label": "Dictionaries & Terminology",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              2595,
+              "MED020000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Medical Education/Reference parent",
+    "priority": "Strong compaction",
+    "note": "Medical essays and dictionaries/terminology can be absorbed into the existing reference grouping; preserve medical specialties."
+  },
+  {
+    "area": "Medicine",
+    "subjects": [
+      {
+        "id": 6163,
+        "label": "Handbooks",
+        "codes": {
+          "lcc_selector": [
+            [
+              6163,
+              "RA427.2"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 6170,
+        "label": "Addresses, Essays & Lectures",
+        "codes": {
+          "lcc_selector": [
+            [
+              6170,
+              "RA436"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Public Health Study & Reference",
+    "priority": "Strong compaction",
+    "note": "Handbooks and addresses/essays/lectures are separate publication-type leaves."
+  },
+  {
+    "area": "Medicine",
+    "subjects": [
+      {
+        "id": 8688,
+        "label": "Serials",
+        "codes": {
+          "lcc_selector": [
+            [
+              8688,
+              "RC331"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Neuroscience & Neuropsychiatry",
+    "priority": "Strong compaction",
+    "note": "Serials can resolve to the parent. This does not justify merging neurology and psychiatry."
+  },
+  {
+    "area": "Home & Hobbies",
+    "subjects": [
+      {
+        "id": 3154,
+        "label": "Essays & Narratives",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              3154,
+              "PET010000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Pets",
+    "priority": "Strong compaction",
+    "note": "Essays & Narratives is a general pet-writing bucket, not a pet species or care topic."
+  },
+  {
+    "area": "Home & Hobbies",
+    "subjects": [
+      {
+        "id": 53252,
+        "label": "Baking Reference & Fundamentals",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "TX761",
+              "TX768.99",
+              53252
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Baking & Confectionery",
+    "priority": "Strong compaction",
+    "note": "Reference and fundamentals can be absorbed while keeping baking techniques and forms."
+  },
+  {
+    "area": "Biography",
+    "subjects": [
+      {
+        "id": 9008,
+        "label": "U.S. Biographical Miscellany",
+        "codes": {
+          "lcc_selector": [
+            [
+              9008,
+              "PS138"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13408,
+        "label": "European Biography Reference",
+        "codes": {
+          "lcc_selector": [
+            [
+              13408,
+              "CT759"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Respective U.S./European biography parents",
+    "priority": "Strong compaction",
+    "note": "General miscellany and reference can be absorbed; preserve person groups and geographic organization."
+  },
+  {
+    "area": "Body, Mind & Spirit",
+    "subjects": [
+      {
+        "id": 13827,
+        "label": "Occultism Reference",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "BF1403.2",
+              "BF1409",
+              13827
+            ],
+            [
+              "BF1410",
+              "BF1418",
+              13827
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13829,
+        "label": "Miscellaneous Occult Studies",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "BF1995",
+              "BF1999",
+              13829
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Occult Sciences",
+    "priority": "Strong compaction",
+    "note": "Reference and miscellaneous occult studies can be absorbed without merging named practices."
+  },
+  {
+    "area": "Body, Mind & Spirit",
+    "subjects": [
+      {
+        "id": 9810,
+        "label": "General & History",
+        "codes": {
+          "lcc_selector": [
+            [
+              9810,
+              "BF1801"
+            ],
+            [
+              9810,
+              "BF1805"
+            ],
+            [
+              9810,
+              "BF1809"
+            ]
+          ],
+          "lcc_range": [
+            [
+              "BF1790",
+              "BF1798",
+              9810
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 9342,
+        "label": "General & History",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "BF1750",
+              "BF1773",
+              9342
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Respective prophecy/divination parents",
+    "priority": "Strong compaction",
+    "note": "General/history leaves can resolve to their specific parent topics."
+  },
+  {
+    "area": "History",
+    "subjects": [
+      {
+        "id": 3516,
+        "label": "Essays",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              3516,
+              "HIS049000"
+            ]
+          ],
+          "ddc_selector": [
+            [
+              "902",
+              3516
+            ]
+          ]
+        }
+      },
+      {
+        "id": 50825,
+        "label": "Reference",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "D203.2",
+              "D218.Z",
+              50825
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "History / Modern History respectively",
+    "priority": "Strong compaction",
+    "note": "General essays and reference leaves; preserve meaningful periods and regions."
+  },
+  {
+    "area": "History",
+    "subjects": [
+      {
+        "id": 13868,
+        "label": "Reference",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "DU1",
+              "DU18.5",
+              13868
+            ],
+            [
+              "DU28.1",
+              "DU28.34",
+              13868
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13985,
+        "label": "Reference",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "DK670",
+              "DK677.09",
+              13985
+            ],
+            [
+              "DK678.31",
+              "DK678.99",
+              13985
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13989,
+        "label": "Reference",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "DJK1",
+              "DJK12",
+              13989
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 14012,
+        "label": "Reference",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "DL1",
+              "DL6.8",
+              14012
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Their existing historical-region parents",
+    "priority": "Strong compaction",
+    "note": "Sample country/region Reference leaves; apply the same principle to the inventory only after confirming individual scopes."
+  },
+  {
+    "area": "Language",
+    "subjects": [
+      {
+        "id": 3733,
+        "label": "Language Study Miscellany",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              3733,
+              "FOR017000"
+            ]
+          ],
+          "ddc_selector": [
+            [
+              "402",
+              3733
+            ]
+          ]
+        }
+      }
+    ],
+    "target": "Language Study & Reference",
+    "priority": "Strong compaction",
+    "note": "General miscellany can be absorbed. Dedicated dictionaries and grammar topics remain meaningful."
+  },
+  {
+    "area": "Literature",
+    "subjects": [
+      {
+        "id": 52309,
+        "label": "Literary Reference",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "PN41",
+              "PN44.5",
+              52309
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": [
+            [
+              "802",
+              52309
+            ],
+            [
+              "803",
+              52309
+            ],
+            [
+              "805",
+              52309
+            ],
+            [
+              "806",
+              52309
+            ],
+            [
+              "807",
+              52309
+            ]
+          ]
+        }
+      },
+      {
+        "id": 13729,
+        "label": "Drama Serials",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "PN1600",
+              "PN1609",
+              13729
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "General Literary Studies / Drama respectively",
+    "priority": "Strong compaction",
+    "note": "Literary reference and drama serials can be absorbed; literary essays as a genre should remain distinct."
+  },
+  {
+    "area": "Philosophy",
+    "subjects": [
+      {
+        "id": 10966,
+        "label": "Philosophy Reference Topics",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "B53",
+              "B67",
+              10966
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 5532,
+        "label": "Philosophy Reference",
+        "codes": {
+          "lcc_selector": [
+            [
+              5532,
+              "B1-B5802"
+            ]
+          ],
+          "lcc_range": [
+            [
+              "B1",
+              "B99",
+              5532
+            ]
+          ],
+          "bisac_selector": [
+            [
+              5532,
+              "PHI021000"
+            ]
+          ],
+          "ddc_selector": [
+            [
+              "102",
+              5532
+            ],
+            [
+              "103",
+              5532
+            ],
+            [
+              "105",
+              5532
+            ],
+            [
+              "106",
+              5532
+            ],
+            [
+              "107",
+              5532
+            ]
+          ]
+        }
+      }
+    ],
+    "target": "Scope correction before compaction",
+    "priority": "Priority correctness review",
+    "note": "B53–B67 describes philosophy, methodology and relations to other fields, not reference topics. Philosophy Reference also has a blanket B1–B5802 selector; review the overly broad fallback before merging."
+  },
+  {
+    "area": "Religion",
+    "subjects": [
+      {
+        "id": 13815,
+        "label": "Islam—General & Reference",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "BP1",
+              "BP41.9",
+              13815
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13816,
+        "label": "General Works on Islam",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "BP160",
+              "BP161.2",
+              13816
+            ],
+            [
+              "BP160",
+              "BP165.9",
+              13816
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Islam",
+    "priority": "Strong compaction",
+    "note": "General/reference BP1–BP41.9 and general works BP160–BP165.9 can resolve to Islam, keeping doctrine, branches and practice subjects."
+  },
+  {
+    "area": "Religion",
+    "subjects": [
+      {
+        "id": 13812,
+        "label": "Practical Theology—General",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "BV1",
+              "BV4",
+              13812
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Practical Theology",
+    "priority": "Strong compaction",
+    "note": "Absorb its general child; retain named practical-theology topics."
+  },
+  {
+    "area": "Religion",
+    "subjects": [
+      {
+        "id": 12374,
+        "label": "General Bible Study",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "BS410",
+              "BS499.9",
+              12374
+            ]
+          ],
+          "bisac_selector": [
+            [
+              12374,
+              "REL006000"
+            ],
+            [
+              12374,
+              "REL006630"
+            ],
+            [
+              12374,
+              "REL006700"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Bible Study & Interpretation",
+    "priority": "Strong compaction",
+    "note": "Absorb General Bible Study; keep reference tools, individual texts and methods as appropriate."
+  },
+  {
+    "area": "Recreation",
+    "subjects": [
+      {
+        "id": 53271,
+        "label": "Recreation Reference & Study",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "GV1",
+              "GV14.999",
+              53271
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Recreation",
+    "priority": "Strong compaction",
+    "note": "General reference/study bucket can be absorbed without merging different sports."
+  },
+  {
+    "area": "Family & Relationships",
+    "subjects": [
+      {
+        "id": 51361,
+        "label": "Family Reference",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              51361,
+              "FAM038000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13170,
+        "label": "Family Forms & Kinship—General",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "HQ731",
+              "HQ743",
+              13170
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Family & Relationships / Family Forms & Kinship",
+    "priority": "Strong compaction",
+    "note": "General reference and general kinship bucket; these are distinct from the social-science family parent and must use their actual parents."
+  },
+  {
+    "area": "Prisons & Corrections",
+    "subjects": [
+      {
+        "id": 52818,
+        "label": "Prison Methods & Practice",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "HV8750.2",
+              "HV8931",
+              52818
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 5465,
+        "label": "Prisons & Corrections",
+        "codes": {
+          "lcc_selector": [
+            [
+              5465,
+              "HV9051-9230.7"
+            ],
+            [
+              5465,
+              "HV9261-9430.7"
+            ],
+            [
+              5465,
+              "HV9441-9920.7"
+            ]
+          ],
+          "lcc_range": [
+            [
+              "HV8311",
+              "HV8480",
+              5465
+            ],
+            [
+              "HV8482",
+              "HV8488",
+              5465
+            ],
+            [
+              "HV8655",
+              "HV8658",
+              5465
+            ],
+            [
+              "HV9441",
+              "HV9920.7",
+              5465
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": [
+            [
+              "365",
+              5465
+            ]
+          ]
+        }
+      }
+    ],
+    "target": "Prisons & Corrections",
+    "priority": "Strong compaction",
+    "note": "Generic Prison Methods & Practice overlaps more useful specialist leaves; absorb the general subject, keep those leaves."
+  },
+  {
+    "area": "Prisons & Corrections",
+    "subjects": [
+      {
+        "id": 52431,
+        "label": "Prison Administration",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "HV9469",
+              "HV9470",
+              52431
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 52430,
+        "label": "U.S. Prisons",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "HV9455.2",
+              "HV9481",
+              52430
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "U.S. Prisons",
+    "priority": "Strong compaction",
+    "note": "HV9469–HV9470 is specifically U.S. prison administration (LCC HV page 615), despite the generic current label."
+  },
+  {
+    "area": "Prisons & Corrections",
+    "subjects": [
+      {
+        "id": 52429,
+        "label": "International Prison Systems",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "HV9441",
+              "HV9443",
+              52429
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 5465,
+        "label": "Prisons & Corrections",
+        "codes": {
+          "lcc_selector": [
+            [
+              5465,
+              "HV9051-9230.7"
+            ],
+            [
+              5465,
+              "HV9261-9430.7"
+            ],
+            [
+              5465,
+              "HV9441-9920.7"
+            ]
+          ],
+          "lcc_range": [
+            [
+              "HV8311",
+              "HV8480",
+              5465
+            ],
+            [
+              "HV8482",
+              "HV8488",
+              5465
+            ],
+            [
+              "HV8655",
+              "HV8658",
+              5465
+            ],
+            [
+              "HV9441",
+              "HV9920.7",
+              5465
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": [
+            [
+              "365",
+              5465
+            ]
+          ]
+        }
+      }
+    ],
+    "target": "Prisons & Corrections",
+    "priority": "Strong compaction",
+    "note": "HV9441–HV9443 is world reports/general works, not a distinctive international prison system."
+  },
+  {
+    "area": "Prisons & Corrections",
+    "subjects": [
+      {
+        "id": 52819,
+        "label": "Prison Architecture",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "HV8805",
+              "HV8829",
+              52819
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 52820,
+        "label": "Prison Health & Nutrition",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "HV8833",
+              "HV8849",
+              52820
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 52821,
+        "label": "Prisoner Education & Support",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "HV8865",
+              "HV8886",
+              52821
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 52822,
+        "label": "Prison Labor",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "HV8888",
+              "HV8931",
+              52822
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ],
+    "target": "Retain or explicitly choose coarser prison coverage",
+    "priority": "Optional substantive compaction",
+    "note": "Architecture, health/nutrition, education/support and labor are real distinct topics; not automatic duplicates of administration or rehabilitation."
+  }
+]

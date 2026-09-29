@@ -1,0 +1,525 @@
+{
+  "reviewed_names_over_35": 491,
+  "clear_candidates": 103,
+  "proposed_at_most_35": 103,
+  "proposed_at_most_30": 92,
+  "remaining_not_yet_counted_as_clear": 388,
+  "applied": false,
+  "candidates": [
+    {
+      "id": 7490,
+      "current": "Acoustical telecommunication systems",
+      "proposed": "Acoustic Telecommunications"
+    },
+    {
+      "id": 405,
+      "current": "Aeronautics. Aeronautical engineering",
+      "proposed": "Aeronautical Engineering"
+    },
+    {
+      "id": 6831,
+      "current": "Afghan (Pashto, Pushto, Pushtu, etc.)",
+      "proposed": "Pashto"
+    },
+    {
+      "id": 50851,
+      "current": "African American Biography & Genealogy",
+      "proposed": "Afro-American Biography & Genealogy"
+    },
+    {
+      "id": 7204,
+      "current": "Airplane industry (Technical aspects)",
+      "proposed": "Aircraft Manufacturing"
+    },
+    {
+      "id": 3851,
+      "current": "American humor and satire in English",
+      "proposed": "American Humor & Satire"
+    },
+    {
+      "id": 13205,
+      "current": "Biographies of Christian Philosophers",
+      "proposed": "Christian Philosopher Biographies"
+    },
+    {
+      "id": 3217,
+      "current": "Biography as an art or literary form",
+      "proposed": "Biography as Literature"
+    },
+    {
+      "id": 13555,
+      "current": "Audiovisual aids in science teaching",
+      "proposed": "Science Teaching Aids"
+    },
+    {
+      "id": 7081,
+      "current": "Automobile purchasing. Buyers' guides",
+      "proposed": "Car Buying Guides"
+    },
+    {
+      "id": 9715,
+      "current": "Automobiles for freight, etc. Trucks",
+      "proposed": "Trucks"
+    },
+    {
+      "id": 11888,
+      "current": "Bhutanese Government & Administration",
+      "proposed": "Bhutanese Government"
+    },
+    {
+      "id": 11918,
+      "current": "Canadian Government & Administration",
+      "proposed": "Canadian Government"
+    },
+    {
+      "id": 11919,
+      "current": "Caribbean Government & Administration",
+      "proposed": "Caribbean Government"
+    },
+    {
+      "id": 5368,
+      "current": "European Government & Administration",
+      "proposed": "European Government"
+    },
+    {
+      "id": 11892,
+      "current": "Hong Kong Government & Administration",
+      "proposed": "Hong Kong Government"
+    },
+    {
+      "id": 11894,
+      "current": "Japanese Government & Administration",
+      "proposed": "Japanese Government"
+    },
+    {
+      "id": 11897,
+      "current": "Maldivian Government & Administration",
+      "proposed": "Maldivian Government"
+    },
+    {
+      "id": 11899,
+      "current": "Mongolian Government & Administration",
+      "proposed": "Mongolian Government"
+    },
+    {
+      "id": 11900,
+      "current": "Nepalese Government & Administration",
+      "proposed": "Nepalese Government"
+    },
+    {
+      "id": 11902,
+      "current": "Pakistani Government & Administration",
+      "proposed": "Pakistani Government"
+    },
+    {
+      "id": 11903,
+      "current": "Philippine Government & Administration",
+      "proposed": "Philippine Government"
+    },
+    {
+      "id": 11905,
+      "current": "Sri Lankan Government & Administration",
+      "proposed": "Sri Lankan Government"
+    },
+    {
+      "id": 11906,
+      "current": "Taiwanese Government & Administration",
+      "proposed": "Taiwanese Government"
+    },
+    {
+      "id": 6749,
+      "current": "Cancer and other malignant neoplasms",
+      "proposed": "Cancer"
+    },
+    {
+      "id": 6589,
+      "current": "Care and rehabilitation of alcoholics",
+      "proposed": "Alcohol Rehabilitation"
+    },
+    {
+      "id": 2276,
+      "current": "Christian education. Church education",
+      "proposed": "Christian Education"
+    },
+    {
+      "id": 10854,
+      "current": "Christian etiquette. Church etiquette",
+      "proposed": "Christian Etiquette"
+    },
+    {
+      "id": 8990,
+      "current": "Clothing for people with disabilities",
+      "proposed": "Adaptive Clothing"
+    },
+    {
+      "id": 6694,
+      "current": "Colored wood engravings and woodcuts",
+      "proposed": "Color Woodcuts & Engravings"
+    },
+    {
+      "id": 9594,
+      "current": "Computer production of music notation",
+      "proposed": "Digital Music Notation"
+    },
+    {
+      "id": 72,
+      "current": "Database Administration & Management",
+      "proposed": "Database Management"
+    },
+    {
+      "id": 7280,
+      "current": "Cryotherapy. Therapeutic use of cold",
+      "proposed": "Cryotherapy"
+    },
+    {
+      "id": 5096,
+      "current": "Demography. Population. Vital events",
+      "proposed": "Demography"
+    },
+    {
+      "id": 2811,
+      "current": "Diseases of children and adolescents",
+      "proposed": "Pediatric Diseases"
+    },
+    {
+      "id": 8952,
+      "current": "Disorders of occlusion. Malocclusion",
+      "proposed": "Malocclusion"
+    },
+    {
+      "id": 9716,
+      "current": "Egyptian writing and its decipherment",
+      "proposed": "Egyptian Script Decipherment"
+    },
+    {
+      "id": 9556,
+      "current": "Electric equipment on space vehicles",
+      "proposed": "Spacecraft Electrical Equipment"
+    },
+    {
+      "id": 10887,
+      "current": "Ethics for young men and young women",
+      "proposed": "Youth Ethics"
+    },
+    {
+      "id": 10914,
+      "current": "Expression of the emotions in humans",
+      "proposed": "Human Emotional Expression"
+    },
+    {
+      "id": 6482,
+      "current": "Fantastic, The (Aesthetics). Fantasy",
+      "proposed": "Fantasy in Art"
+    },
+    {
+      "id": 2827,
+      "current": "Formularies. Collected prescriptions",
+      "proposed": "Prescription Formularies"
+    },
+    {
+      "id": 5404,
+      "current": "Gestalt psychology. Gestalt perception",
+      "proposed": "Gestalt Psychology"
+    },
+    {
+      "id": 6826,
+      "current": "Health facilities. Hospital buildings",
+      "proposed": "Healthcare Buildings"
+    },
+    {
+      "id": 1035,
+      "current": "Illuminating of manuscripts and books",
+      "proposed": "Manuscript & Book Illumination"
+    },
+    {
+      "id": 4499,
+      "current": "Individual ethics. Character. Virtue",
+      "proposed": "Character & Virtue Ethics"
+    },
+    {
+      "id": 448,
+      "current": "Industrial safety. Industrial accident",
+      "proposed": "Industrial Safety"
+    },
+    {
+      "id": 8864,
+      "current": "Inorganic polymers and polymerization",
+      "proposed": "Inorganic Polymers"
+    },
+    {
+      "id": 655,
+      "current": "Interior decoration. House decoration",
+      "proposed": "Interior Decoration"
+    },
+    {
+      "id": 10065,
+      "current": "Iron and steel building construction",
+      "proposed": "Iron & Steel Construction"
+    },
+    {
+      "id": 9240,
+      "current": "Munda languages (Kolarian languages)",
+      "proposed": "Munda Languages"
+    },
+    {
+      "id": 4376,
+      "current": "Journalism. The periodical press, etc",
+      "proposed": "Journalism & Periodicals"
+    },
+    {
+      "id": 4766,
+      "current": "Library & Archive Personnel Management",
+      "proposed": "Library & Archive Staffing"
+    },
+    {
+      "id": 225,
+      "current": "Low temperature engineering. Cryogenic",
+      "proposed": "Cryogenic Engineering"
+    },
+    {
+      "id": 361,
+      "current": "Manufacturing & Industrial Production",
+      "proposed": "Industrial Production"
+    },
+    {
+      "id": 2412,
+      "current": "Marine pollution. Sea water pollution",
+      "proposed": "Marine Pollution"
+    },
+    {
+      "id": 8532,
+      "current": "Maternal care. Prenatal care services",
+      "proposed": "Maternal & Prenatal Care"
+    },
+    {
+      "id": 8426,
+      "current": "Medals, badges, decorations of honor",
+      "proposed": "WWI Medals & Honors"
+    },
+    {
+      "id": 10452,
+      "current": "Medals, badges, decorations of honor",
+      "proposed": "WWII Medals & Honors"
+    },
+    {
+      "id": 2737,
+      "current": "Medicine as a profession. Physicians",
+      "proposed": "Medical Profession"
+    },
+    {
+      "id": 8527,
+      "current": "Microelectronics. Integrated circuits",
+      "proposed": "Microelectronics"
+    },
+    {
+      "id": 2818,
+      "current": "Nursing of children. Pediatric nursing",
+      "proposed": "Pediatric Nursing"
+    },
+    {
+      "id": 6429,
+      "current": "Ocean routes. Sea routes. Steam lanes",
+      "proposed": "Shipping Routes"
+    },
+    {
+      "id": 6323,
+      "current": "Operation of space vehicles. Piloting",
+      "proposed": "Spacecraft Piloting"
+    },
+    {
+      "id": 2570,
+      "current": "Oral and dental anatomy and physiology",
+      "proposed": "Oral Anatomy & Physiology"
+    },
+    {
+      "id": 8542,
+      "current": "Organometallic chemistry and compounds",
+      "proposed": "Organometallic Chemistry"
+    },
+    {
+      "id": 9958,
+      "current": "Philosophic grammar. Universal grammar",
+      "proposed": "Universal & Philosophical Grammar"
+    },
+    {
+      "id": 7826,
+      "current": "Physical measurements. Anthropometry",
+      "proposed": "Anthropometry"
+    },
+    {
+      "id": 2820,
+      "current": "Physiology of children and adolescents",
+      "proposed": "Pediatric Physiology"
+    },
+    {
+      "id": 13581,
+      "current": "Pictures and sound. Talking pictures",
+      "proposed": "Sound Films"
+    },
+    {
+      "id": 6487,
+      "current": "Positioning in surgery and anesthesia",
+      "proposed": "Surgical & Anesthetic Positioning"
+    },
+    {
+      "id": 6872,
+      "current": "Prefabricated and portable buildings",
+      "proposed": "Prefab & Portable Buildings"
+    },
+    {
+      "id": 4688,
+      "current": "Printers and printing establishments",
+      "proposed": "Printers & Printing Houses"
+    },
+    {
+      "id": 4960,
+      "current": "Probabilities. Mathematical statistics",
+      "proposed": "Probability & Statistics"
+    },
+    {
+      "id": 2577,
+      "current": "Prosthetic dentistry. Prosthodontics",
+      "proposed": "Prosthodontics"
+    },
+    {
+      "id": 7588,
+      "current": "Protection of buildings from lightning",
+      "proposed": "Building Lightning Protection"
+    },
+    {
+      "id": 9321,
+      "current": "Psychoanalytic theories of development",
+      "proposed": "Psychoanalytic Development Theory"
+    },
+    {
+      "id": 4669,
+      "current": "Recreation Leadership & Administration",
+      "proposed": "Recreation Management"
+    },
+    {
+      "id": 9423,
+      "current": "Safety measures. Accident prevention",
+      "proposed": "Accident Prevention"
+    },
+    {
+      "id": 9847,
+      "current": "Stage photography. Theater photography",
+      "proposed": "Theater Photography"
+    },
+    {
+      "id": 6705,
+      "current": "Standard language. Literary language",
+      "proposed": "Standard & Literary Language"
+    },
+    {
+      "id": 8420,
+      "current": "Submarine telegraph. Submarine cables",
+      "proposed": "Submarine Communication Cables"
+    },
+    {
+      "id": 7473,
+      "current": "Surgery in infancy. Neonatal surgery",
+      "proposed": "Infant & Neonatal Surgery"
+    },
+    {
+      "id": 451,
+      "current": "Technical education. Technical schools",
+      "proposed": "Technical Education"
+    },
+    {
+      "id": 6441,
+      "current": "Thermotherapy. Therapeutic use of heat",
+      "proposed": "Thermotherapy"
+    },
+    {
+      "id": 8432,
+      "current": "Toothache and related orofacial pain",
+      "proposed": "Toothache & Orofacial Pain"
+    },
+    {
+      "id": 8748,
+      "current": "Watermarks, trademarks, etc. (Modern)",
+      "proposed": "Modern Paper Watermarks & Brands"
+    },
+    {
+      "id": 8506,
+      "current": "Woodpulp industry. Pulping processes",
+      "proposed": "Wood Pulp Production"
+    },
+    {
+      "id": 7176,
+      "current": "Working Drawings & Blueprint Reading",
+      "proposed": "Working Drawings & Blueprints"
+    },
+    {
+      "id": 13094,
+      "current": "University & College Teacher Training",
+      "proposed": "Higher Education Teacher Training"
+    },
+    {
+      "id": 7808,
+      "current": "Social and political aspects of music",
+      "proposed": "Music, Society & Politics"
+    },
+    {
+      "id": 8467,
+      "current": "Special kinds of poetry. Poetic genres",
+      "proposed": "Poetic Genres"
+    },
+    {
+      "id": 13637,
+      "current": "American Literary Biography & Memoirs",
+      "proposed": "U.S. Literary Biography & Memoirs"
+    },
+    {
+      "id": 13054,
+      "current": "Classical Greek Philology & Language",
+      "proposed": "Classical Greek Language Studies"
+    },
+    {
+      "id": 13052,
+      "current": "Historical Evidence for Christianity",
+      "proposed": "Evidence for Christianity"
+    },
+    {
+      "id": 9834,
+      "current": "History of modern Icelandic literature",
+      "proposed": "Modern Icelandic Literary History"
+    },
+    {
+      "id": 7289,
+      "current": "History of vocal instruction and study",
+      "proposed": "History of Voice Teaching"
+    },
+    {
+      "id": 5155,
+      "current": "Human Resources & Personnel Management",
+      "proposed": "Human Resources Management"
+    },
+    {
+      "id": 11917,
+      "current": "Government of the Americas — General",
+      "proposed": "Government of the Americas"
+    },
+    {
+      "id": 13016,
+      "current": "General & Systematic Buddhist Doctrine",
+      "proposed": "Buddhist Doctrine"
+    },
+    {
+      "id": 10380,
+      "current": "Tokugawa period, 1600-1868. Edo period",
+      "proposed": "Tokugawa Era, 1600–1868"
+    },
+    {
+      "id": 3619,
+      "current": "Period between World Wars (1919-1939)",
+      "proposed": "Interwar Period, 1919–1939"
+    },
+    {
+      "id": 10563,
+      "current": "Arab nationalism. Arabism. Panarabism",
+      "proposed": "Arab Nationalism & Pan-Arabism"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+[package]
+name = "html-view-gpui"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+async-channel = "2"
+gpui.workspace = true
+html-view-core.workspace = true
+image = { version = "0.25", default-features = false, features = ["png"] }
+kurbo.workspace = true
+peniko.workspace = true
+quick-xml = "0.38"
+smallvec = "1"
+web-time = "1"
+
+[dev-dependencies]
+base64 = "0.22"
+epub_provider = { path = "../../../../../../shared/epub" }
+gpui = { workspace = true, features = ["test-support"] }
+gpui_platform = { workspace = true, features = ["test-support"] }
+gpui_wgpu = { path = "../../../../../../../GPUI-Fork/crates/gpui_wgpu", features = ["font-kit", "test-support"] }
+html = { workspace = true, features = ["testing"] }

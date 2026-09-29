@@ -1,0 +1,51 @@
+[package]
+name = "library-files"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+client-runtime = { path = "../../../client-runtime" }
+web-time = "1"
+library-database = { path = "../library-database" }
+library-model = { path = "../../../library-model" }
+library-replica = { path = "../library-replica" }
+book-access = { path = "../book-access" }
+book-identity = { path = "../../../../shared/book-identity" }
+pdf-view-common = { path = "../../../../shared/pdf-view-common" }
+client-platform-runtime = { path = "../../../platforms/runtime" }
+thumbnail = { path = "../thumbnail" }
+metadata-contract = { path = "../../../../shared/metadata-contract" }
+sync-common = { path = "../../../../shared/sync-common" }
+blake3 = "1"
+futures-util = { version = "0.3", features = ["io"] }
+log = "0.4"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+audiobook-folder = { path = "../../../../shared/audiobook-folder" }
+client-platform-native = { path = "../../../platforms/native" }
+book-identity = { path = "../../../../shared/book-identity", features = ["native-write"] }
+reqwest = { version = "0.11", default-features = false, features = ["stream", "rustls-tls"] }
+tempfile = "3"
+fs2 = "0.4"
+walkdir = "2.5"
+tokio = { version = "1", features = ["fs", "io-util"] }
+uuid = { version = "1", features = ["v4"] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+client-platform-web = { path = "../../../platforms/web" }
+web-sys = { version = "0.3", features = ["Blob"] }
+reqwest = { version = "0.11", default-features = false, features = ["stream"] }
+
+[dev-dependencies]
+library-database = { path = "../library-database", features = ["fixture-sql"] }
+serde_json = "1"
+test-support = { path = "../../../test-support", features = ["pdf-fixtures"] }
+async-channel = "2"
+zip.workspace = true
+lopdf = { version = "0.44", default-features = false }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "sync", "time"] }
+tempfile = "3"
+
+[target.'cfg(target_os = "android")'.dependencies]
+client-platform-android = { path = "../../../platforms/android" }

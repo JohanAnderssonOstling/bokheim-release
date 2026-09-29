@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bokheim palette inspector</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      /* Demo surfaces render in serif to match the reader; page chrome stays sans. */
+      --demo-serif: "Libertinus Serif", "Noto Serif", Charter, Georgia, ui-serif, serif;
+      /* Page chrome follows the light/dark toggle so the surround never fights the demos. */
+      --page-bg: #151515; --page-fg: #f5f5f5; --page-muted: #b8b8b8;
+      --panel-bg: #202020; --panel-border: #3b3b3b; --rule: #474747; --panel-raised: #282828;
+      background: var(--page-bg);
+      color: var(--page-fg);
+    }
+    :root[data-mode="light"] {
+      --page-bg: #e9eaeb; --page-fg: #1b1c1d; --page-muted: #55585b;
+      --panel-bg: #f6f7f8; --panel-border: #cdd0d3; --rule: #dadde0; --panel-raised: #eceef0;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: clamp(18px, 4vw, 52px); }
+    main { width: 100%; }
+    h2, h3, p { margin: 0; }
+    .note { color: var(--page-muted); line-height: 1.55; }
+    .modes { display: flex; gap: 6px; margin-bottom: 22px; }
+    .modes button {
+      min-height: 32px; padding: 6px 16px; border: 1px solid var(--panel-border);
+      color: var(--page-fg); background: var(--panel-bg); font: inherit; font-size: 13px; cursor: pointer;
+    }
+    .modes button[aria-pressed="true"] { border-color: var(--page-fg); background: var(--panel-raised); font-weight: 600; }
+    .palettes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+    .palette[hidden], .status-card[hidden] { display: none; }
+    .palette {
+      --surface: #f5f1e8; --raised: #fffcf6; --ink: #1f2220;
+      --subtle: #65675d; --accent: #486754; --border: #8b7e5b; --hover: #0000000d;
+      --active: #e1e6d8; --danger-text: #9b312a; --danger-bg: #fbe4da;
+      overflow: hidden; border: 1px solid var(--panel-border); background: var(--app); color: var(--ink);
+      font-family: var(--demo-serif);
+    }
+    .palette[data-palette="sage-dark"] {
+      --surface: #24231e; --raised: #32302a; --ink: #e9ebe9;
+      --subtle: #979a8f; --accent: #79a289; --border: #9a8c65; --hover: #ffffff12;
+      --active: #3c442c; --danger-text: #dd8983; --danger-bg: #401411;
+    }
+    .palette[data-palette="sepia-light"] {
+      --surface: #f6efe1; --raised: #fffaf2; --ink: #231d16;
+      --subtle: #70614e; --accent: #7b4f2e; --border: #957a4d; --hover: #0000000d;
+      --active: #e8d6b7; --danger-text: #892b25; --danger-bg: #f9e2d7;
+    }
+    .palette[data-palette="sepia-dark"] {
+      --surface: #24221e; --raised: #322f29; --ink: #ede9e3;
+      --subtle: #a79580; --accent: #c48c61; --border: #a88a57; --hover: #ffffff12;
+      --active: #493d27; --danger-text: #de8983; --danger-bg: #401411;
+    }
+    .palette[data-palette="porcelain-light"] {
+      --surface: #faf9f5; --raised: #fffffc; --ink: #1a2733;
+      --subtle: #5b6870; --accent: #1e3a5c; --border: #7e8b91; --hover: #1e3a5c0f;
+      --active: #dae5ee; --danger-text: #842b34; --danger-bg: #f8e8e6;
+    }
+    .palette[data-palette="institutional-light"] {
+      --surface: #f4f6f9; --raised: #ffffff; --ink: #0a1421;
+      --subtle: #55617a; --accent: #24558f; --border: #858d9b; --hover: #0a14210f;
+      --active: #e8dcb8; --danger-text: #8f1d15; --danger-bg: #fbe8e5;
+    }
+    .palette[data-palette="institutional-dark"] {
+      --surface: #0e1725; --raised: #172333; --ink: #e6eaf0;
+      --subtle: #9aa6bb; --accent: #6f9fd8; --border: #6d7a8f; --hover: #ffffff12;
+      --active: #3d3a28; --danger-text: #eb968c; --danger-bg: #3f1714;
+    }
+    .palette[data-palette="clean-light"] {
+      --surface: #f6f7f8; --raised: #ffffff; --ink: #16181b;
+      --subtle: #5e6266; --accent: #1b4fa8; --border: #878d93; --hover: #16181b0f;
+      --active: #d3dff3; --danger-text: #b3261e; --danger-bg: #fdeae9;
+    }
+    .palette[data-palette="clean-dark"] {
+      --surface: #131416; --raised: #1d1f22; --ink: #e9eaec;
+      --subtle: #9ea3a8; --accent: #5c98f0; --border: #6c7176; --hover: #ffffff12;
+      --active: #2a3240; --danger-text: #f09a95; --danger-bg: #3a1614;
+    }
+    .palette[data-palette="maritime-light"] {
+      --surface: #eef3f6; --raised: #fbfdfe; --ink: #0e1d26;
+      --subtle: #4f6a76; --accent: #0f5670; --border: #748a94; --hover: #0e1d260f;
+      --active: #c9dfe8; --danger-text: #9a3324; --danger-bg: #f8e5de;
+    }
+    .palette[data-palette="maritime-dark"] {
+      --surface: #101d26; --raised: #1a2b36; --ink: #e3ecf0;
+      --subtle: #93aab5; --accent: #4faac4; --border: #6b8794; --hover: #ffffff12;
+      --active: #234353; --danger-text: #e8968a; --danger-bg: #3d1a14;
+    }
+    .palette[data-palette="academia-light"] {
+      --surface: #f1ebdf; --raised: #faf5ea; --ink: #1a1712;
+      --subtle: #6b6354; --accent: #6f3a44; --border: #8a7e65; --hover: #1a17120f;
+      --active: #dcd0b4; --danger-text: #ad3a1d; --danger-bg: #f6e2d5;
+    }
+    .palette[data-palette="porcelainv2-light"] {
+      --surface: #f4f6f8; --raised: #fdfeff; --ink: #18232e;
+      --subtle: #5a6873; --accent: #1e3a5c; --border: #7f8d99; --hover: #18232e0f;
+      --active: #d1e0f0; --danger-text: #8f2f2a; --danger-bg: #f9e7e3;
+    }
+    .palette[data-palette="porcelainv2-dark"] {
+      --surface: #1b2129; --raised: #262e38; --ink: #e7ebef;
+      --subtle: #9aa6b1; --accent: #6ea4dc; --border: #6f7d89; --hover: #ffffff12;
+      --active: #2d4057; --danger-text: #e79a94; --danger-bg: #3e1a18;
+    }
+    .palette[data-palette="gruvbox-light"] {
+      --surface: #fbf1c7; --raised: #f9f5d7; --ink: #282828;
+      --subtle: #665c54; --accent: #458588; --border: #928374; --hover: #2828280d;
+      --active: #d5c4a1; --danger-text: #9d0006; --danger-bg: #f2d5b5;
+    }
+    .palette[data-palette="solarized-light"] {
+      --surface: #fdf6e3; --raised: #fffdf5; --ink: #073642;
+      --subtle: #657b83; --accent: #268bd2; --border: #93a1a1; --hover: #0736420d;
+      --active: #eee8d5; --danger-text: #dc322f; --danger-bg: #f8ded4;
+    }
+    .palette[data-palette="sandy-beach-light"] {
+      --surface: #fff8ed; --raised: #fffdf8; --ink: #272727;
+      --subtle: #546e7a; --accent: #53c7f0; --border: #b8b6a5; --hover: #2727270a;
+      --active: #e7c496; --danger-text: #e53935; --danger-bg: #fbe5dc;
+    }
+    .palette[data-palette="sandy-beach-light"] button.primary { color: #272727; }
+    .palette-heading { padding: 17px 18px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .palette-heading h2 { font-size: 19px; }
+    .palette-heading p { margin-top: 3px; color: var(--subtle); font-size: 13px; }
+    .preview { padding: 18px; background: var(--surface); }
+    .surface { padding: 16px; background: var(--surface); }
+    .surface > h3 { font-size: 16px; }
+    .surface > p { margin-top: 4px; color: var(--subtle); font-size: 13px; }
+    .card { margin-top: 14px; padding: 15px; border: 1px solid var(--border); background: var(--raised); }
+    .card p { margin-top: 5px; color: var(--subtle); font-size: 13px; line-height: 1.45; }
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    button, .chip { min-height: 34px; padding: 7px 11px; border: 1px solid var(--border); font: inherit; }
+    button { color: var(--ink); background: var(--surface); }
+    button.primary { border-color: var(--accent); color: var(--raised); background: var(--accent); }
+    button.selected { background: var(--active); }
+    .chip { display: inline-flex; align-items: center; min-height: 28px; font-size: 12px; background: var(--surface); }
+    .danger { margin-top: 12px; padding: 10px 12px; color: var(--danger-text); background: var(--danger-bg); }
+    /* Token readout is metadata, not demo UI — keep it sans for scanning. */
+    .tokens { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--border); font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+    .token { min-width: 0; padding: 11px 12px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); }
+    .token:nth-child(even) { border-right: 0; }
+    .token:last-child, .token:nth-last-child(2) { border-bottom: 0; }
+    .swatch { height: 38px; margin-bottom: 8px; border: 1px solid var(--border); background: var(--value); }
+    .token strong, .token code { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .token strong { font-size: 12px; }
+    .token code { margin-top: 2px; color: var(--subtle); font-size: 12px; }
+    .semantic, .mapping { margin-top: 28px; padding: 20px; border: 1px solid var(--panel-border); background: var(--panel-bg); }
+    .semantic h2, .mapping h2 { margin-bottom: 8px; font-size: 20px; }
+    .status-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+    .status-card { padding: 15px; border: 1px solid var(--rule); background: var(--panel-raised); }
+    .status-card h3 { margin-bottom: 11px; font-size: 14px; }
+    .status-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .status-chip { padding: 6px 10px; color: var(--fg); background: var(--bg); font-family: var(--demo-serif); font-size: 12px; }
+    .mapping table { width: 100%; margin-top: 14px; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 10px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+    th { color: var(--page-muted); font-weight: 600; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    @media (max-width: 1500px) { .palettes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 1150px) { .palettes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 850px) {
+      .palettes, .status-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 500px) {
+      body { padding: 12px; }
+      .tokens { grid-template-columns: 1fr; }
+      .token { border-right: 0; }
+      .token:nth-last-child(2) { border-bottom: 1px solid var(--border); }
+      .mapping { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="modes" id="modes" role="group" aria-label="Appearance">
+    <button type="button" data-mode-button="light" aria-pressed="true">Light</button>
+    <button type="button" data-mode-button="dark" aria-pressed="false">Dark</button>
+  </div>
+
+  <section class="palettes" id="palettes"></section>
+
+  <section class="semantic">
+    <h2>Native semantic status colors</h2>
+    <p class="note">These currently come from GPUI’s component theme and are not part of the shared mobile/native palette.</p>
+    <div class="status-grid">
+      <article class="status-card" data-appearance="light">
+        <h3>Light appearance</h3>
+        <div class="status-row">
+          <span class="status-chip" style="--bg:#22c55e;--fg:#f9fafb">Success · rgb(34, 197, 94)</span>
+          <span class="status-chip" style="--bg:#eab308;--fg:#f9fafb">Warning · rgb(234, 179, 8)</span>
+          <span class="status-chip" style="--bg:#0ea5e9;--fg:#f0f9ff">Info · rgb(14, 165, 233)</span>
+        </div>
+      </article>
+      <article class="status-card" data-appearance="dark">
+        <h3>Dark appearance</h3>
+        <div class="status-row">
+          <span class="status-chip" style="--bg:#14532d;--fg:#f0fdf4">Success · rgb(20, 83, 45)</span>
+          <span class="status-chip" style="--bg:#713f12;--fg:#fefce8">Warning · rgb(113, 63, 18)</span>
+          <span class="status-chip" style="--bg:#0c4a6e;--fg:#f0f9ff">Info · rgb(12, 74, 110)</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="mapping">
+    <h2>Current frontend mapping</h2>
+    <table>
+      <thead><tr><th>Role</th><th>Native</th><th>Mobile</th></tr></thead>
+      <tbody>
+        <tr><td>Application canvas</td><td><code>surface_bg</code></td><td><code>surface_bg</code></td></tr>
+        <tr><td>Toolbar/sidebar</td><td><code>surface_bg</code></td><td><code>surface_bg</code> or translucent mixes of it</td></tr>
+        <tr><td>Ordinary buttons</td><td><code>surface_bg</code></td><td>Mixed: <code>surface_bg</code>, <code>raised_bg</code>, and transparent</td></tr>
+        <tr><td>Cards/popovers</td><td><code>raised_bg</code></td><td>Usually <code>raised_bg</code></td></tr>
+        <tr><td>Selected/primary</td><td><code>accent</code> or <code>active_highlight</code></td><td><code>accent</code> or <code>active_highlight</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+  const palettes = [
+    ["institutional-light", "Institutional", "Light", {
+      surface_bg:"#f4f6f9", raised_bg:"#ffffff", ink_text:"#0a1421", subtle_text:"#55617a", accent:"#24558f", border:"#858d9b", hover_overlay:"#0a14210f", active_highlight:"#e8dcb8", danger_text:"#8f1d15", danger_bg:"#fbe8e5"
+    }],
+    ["institutional-dark", "Institutional", "Dark", {
+      surface_bg:"#0e1725", raised_bg:"#172333", ink_text:"#e6eaf0", subtle_text:"#9aa6bb", accent:"#6f9fd8", border:"#6d7a8f", hover_overlay:"#ffffff12", active_highlight:"#3d3a28", danger_text:"#eb968c", danger_bg:"#3f1714"
+    }],
+    ["clean-light", "Clean", "Light", {
+      surface_bg:"#f6f7f8", raised_bg:"#ffffff", ink_text:"#16181b", subtle_text:"#5e6266", accent:"#1b4fa8", border:"#878d93", hover_overlay:"#16181b0f", active_highlight:"#d3dff3", danger_text:"#b3261e", danger_bg:"#fdeae9"
+    }],
+    ["clean-dark", "Clean", "Dark", {
+      surface_bg:"#131416", raised_bg:"#1d1f22", ink_text:"#e9eaec", subtle_text:"#9ea3a8", accent:"#5c98f0", border:"#6c7176", hover_overlay:"#ffffff12", active_highlight:"#2a3240", danger_text:"#f09a95", danger_bg:"#3a1614"
+    }],
+    ["maritime-light", "Maritime", "Light", {
+      surface_bg:"#eef3f6", raised_bg:"#fbfdfe", ink_text:"#0e1d26", subtle_text:"#4f6a76", accent:"#0f5670", border:"#748a94", hover_overlay:"#0e1d260f", active_highlight:"#c9dfe8", danger_text:"#9a3324", danger_bg:"#f8e5de"
+    }],
+    ["maritime-dark", "Maritime", "Dark", {
+      surface_bg:"#101d26", raised_bg:"#1a2b36", ink_text:"#e3ecf0", subtle_text:"#93aab5", accent:"#4faac4", border:"#6b8794", hover_overlay:"#ffffff12", active_highlight:"#234353", danger_text:"#e8968a", danger_bg:"#3d1a14"
+    }],
+    ["academia-light", "Light Academia", "Light", {
+      surface_bg:"#f1ebdf", raised_bg:"#faf5ea", ink_text:"#1a1712", subtle_text:"#6b6354", accent:"#6f3a44", border:"#8a7e65", hover_overlay:"#1a17120f", active_highlight:"#dcd0b4", danger_text:"#ad3a1d", danger_bg:"#f6e2d5"
+    }],
+    ["porcelainv2-light", "Porcelain (proposed)", "Light", {
+      surface_bg:"#f4f6f8", raised_bg:"#fdfeff", ink_text:"#18232e", subtle_text:"#5a6873", accent:"#1e3a5c", border:"#7f8d99", hover_overlay:"#18232e0f", active_highlight:"#d1e0f0", danger_text:"#8f2f2a", danger_bg:"#f9e7e3"
+    }],
+    ["porcelainv2-dark", "Porcelain (proposed)", "Dark", {
+      surface_bg:"#1b2129", raised_bg:"#262e38", ink_text:"#e7ebef", subtle_text:"#9aa6b1", accent:"#6ea4dc", border:"#6f7d89", hover_overlay:"#ffffff12", active_highlight:"#2d4057", danger_text:"#e79a94", danger_bg:"#3e1a18"
+    }],
+    ["porcelain-light", "Porcelain (current)", "New England preppy concept", {
+      surface_bg:"#faf9f5", raised_bg:"#fffffc", ink_text:"#1a2733", subtle_text:"#5b6870", accent:"#1e3a5c", border:"#7e8b91", hover_overlay:"#1e3a5c0f", active_highlight:"#dae5ee", danger_text:"#842b34", danger_bg:"#f8e8e6"
+    }],
+    ["gruvbox-light", "Gruvbox", "Light adaptation", {
+      surface_bg:"#fbf1c7", raised_bg:"#f9f5d7", ink_text:"#282828", subtle_text:"#665c54", accent:"#458588", border:"#928374", hover_overlay:"#2828280d", active_highlight:"#d5c4a1", danger_text:"#9d0006", danger_bg:"#f2d5b5"
+    }],
+    ["solarized-light", "Solarized", "Light adaptation", {
+      surface_bg:"#fdf6e3", raised_bg:"#fffdf5", ink_text:"#073642", subtle_text:"#657b83", accent:"#268bd2", border:"#93a1a1", hover_overlay:"#0736420d", active_highlight:"#eee8d5", danger_text:"#dc322f", danger_bg:"#f8ded4"
+    }],
+    ["sandy-beach-light", "Material Sandy Beach", "Light adaptation", {
+      surface_bg:"#fff8ed", raised_bg:"#fffdf8", ink_text:"#272727", subtle_text:"#546e7a", accent:"#53c7f0", border:"#b8b6a5", hover_overlay:"#2727270a", active_highlight:"#e7c496", danger_text:"#e53935", danger_bg:"#fbe5dc"
+    }],
+    ["sage-light", "Sage", "Light", {
+      surface_bg:"#f5f1e8", raised_bg:"#fffcf6", ink_text:"#1f2220", subtle_text:"#65675d", accent:"#486754", border:"#8b7e5b", hover_overlay:"#0000000d", active_highlight:"#e1e6d8", danger_text:"#9b312a", danger_bg:"#fbe4da"
+    }],
+    ["sage-dark", "Sage", "Dark", {
+      surface_bg:"#24231e", raised_bg:"#32302a", ink_text:"#e9ebe9", subtle_text:"#979a8f", accent:"#79a289", border:"#9a8c65", hover_overlay:"#ffffff12", active_highlight:"#3c442c", danger_text:"#dd8983", danger_bg:"#401411"
+    }],
+    ["sepia-light", "Sepia", "Light", {
+      surface_bg:"#f6efe1", raised_bg:"#fffaf2", ink_text:"#231d16", subtle_text:"#70614e", accent:"#7b4f2e", border:"#957a4d", hover_overlay:"#0000000d", active_highlight:"#e8d6b7", danger_text:"#892b25", danger_bg:"#f9e2d7"
+    }],
+    ["sepia-dark", "Sepia", "Dark", {
+      surface_bg:"#24221e", raised_bg:"#322f29", ink_text:"#ede9e3", subtle_text:"#a79580", accent:"#c48c61", border:"#a88a57", hover_overlay:"#ffffff12", active_highlight:"#493d27", danger_text:"#de8983", danger_bg:"#401411"
+    }]
+  ];
+
+  const root = document.querySelector("#palettes");
+  const displayColor = value => {
+    const channels = value.slice(1).match(/.{2}/g).map(channel => Number.parseInt(channel, 16));
+    if (channels.length === 4) return `rgba(${channels[0]}, ${channels[1]}, ${channels[2]}, ${(channels[3] / 255).toFixed(3)})`;
+    return `rgb(${channels[0]}, ${channels[1]}, ${channels[2]})`;
+  };
+  for (const [id, theme, appearance, colors] of palettes) {
+    const article = document.createElement("article");
+    article.className = "palette";
+    article.dataset.palette = id;
+    article.dataset.appearance = id.endsWith("-dark") ? "dark" : "light";
+    article.innerHTML = `
+      <div class="palette-heading"><h2>${theme} · ${appearance}</h2><p>${id.replace("-", " / ")}</p></div>
+      <div class="preview">
+        <div class="surface">
+          <h3>Surface background</h3>
+          <p>Standard application chrome and native canvas.</p>
+          <div class="card"><strong>Raised surface</strong><p>Cards, dialogs, popovers, and grouped content.</p></div>
+          <div class="controls"><button>Surface button</button><button class="primary">Primary</button><button class="selected">Selected</button><span class="chip">Size chip</span></div>
+          <div class="danger">Danger background and danger text</div>
+        </div>
+      </div>
+      <div class="tokens">${Object.entries(colors).map(([name, value]) => `<div class="token"><div class="swatch" style="--value:${value}"></div><strong>${name}</strong><code>${displayColor(value)}</code></div>`).join("")}</div>`;
+    root.append(article);
+  }
+
+  // The toggle both filters the cards and restyles the page chrome, so the
+  // surround never sits at the opposite appearance from the palettes on show.
+  const applyMode = mode => {
+    document.documentElement.dataset.mode = mode;
+    for (const el of document.querySelectorAll("[data-appearance]")) {
+      el.hidden = el.dataset.appearance !== mode;
+    }
+    for (const button of document.querySelectorAll("[data-mode-button]")) {
+      button.setAttribute("aria-pressed", String(button.dataset.modeButton === mode));
+    }
+  };
+  document.querySelector("#modes").addEventListener("click", event => {
+    const button = event.target.closest("[data-mode-button]");
+    if (button) applyMode(button.dataset.modeButton);
+  });
+  applyMode(document.documentElement.dataset.mode);
+</script>
+</body>
+</html>

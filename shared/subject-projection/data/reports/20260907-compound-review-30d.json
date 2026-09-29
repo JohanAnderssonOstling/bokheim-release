@@ -1,0 +1,90 @@
+{
+  "created": [
+    {
+      "id": 51373,
+      "name": "Road Law",
+      "parent": 5548
+    },
+    {
+      "id": 51374,
+      "name": "Land Use & Planning Law",
+      "parent": 5548
+    },
+    {
+      "id": 51375,
+      "name": "Housing Law",
+      "parent": 5548
+    },
+    {
+      "id": 51376,
+      "name": "Eminent Domain Law",
+      "parent": 5548
+    },
+    {
+      "id": 51377,
+      "name": "Cultural Institutions Law",
+      "parent": 5548
+    },
+    {
+      "id": 51378,
+      "name": "Public Property Law",
+      "parent": 5548
+    },
+    {
+      "id": 51379,
+      "name": "Government Liability Law",
+      "parent": 5548
+    },
+    {
+      "id": 51380,
+      "name": "Legal Citations & Annotations",
+      "parent": 5555
+    }
+  ],
+  "renamed": [
+    {
+      "id": 5646,
+      "before": "Public Finance, Property & Contracts",
+      "after": "Public Finance Law"
+    },
+    {
+      "id": 5713,
+      "before": "Legal Writing, Citation & Drafting",
+      "after": "Legal Writing & Drafting"
+    },
+    {
+      "id": 6079,
+      "before": "Discharge, Plasma & Particle Physics",
+      "after": "Field Emission"
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {
+    "5646": [
+      51373,
+      51374,
+      51375,
+      51376,
+      51377,
+      51378,
+      51379
+    ],
+    "5713": [
+      51380
+    ]
+  },
+  "before_over30": 711,
+  "after_over30": 708,
+  "verified_code_groups": 2960849,
+  "changed_code_groups": 98,
+  "transitions": {
+    "[5646] -> [51374]": 49,
+    "[5646] -> [51379]": 7,
+    "[5646] -> [51376]": 14,
+    "[5646] -> [51378]": 5,
+    "[5646] -> [51377]": 4,
+    "[5646] -> [51373]": 11,
+    "[5646] -> [51375]": 8
+  },
+  "aliases_added": 0
+}

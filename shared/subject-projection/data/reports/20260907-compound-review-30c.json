@@ -1,0 +1,343 @@
+{
+  "created": [],
+  "renamed": [
+    {
+      "id": 512,
+      "before": "Advertising & Culture",
+      "after": "Advertising & Culture Collectibles"
+    },
+    {
+      "id": 523,
+      "before": "Comics",
+      "after": "Comic Book Collecting"
+    },
+    {
+      "id": 534,
+      "before": "Performing Arts",
+      "after": "Performing Arts Collectibles"
+    },
+    {
+      "id": 536,
+      "before": "Popular Culture",
+      "after": "Pop Culture Collectibles"
+    },
+    {
+      "id": 541,
+      "before": "Radios & Televisions",
+      "after": "Radio & TV Collecting"
+    },
+    {
+      "id": 542,
+      "before": "Records",
+      "after": "Record Collecting"
+    },
+    {
+      "id": 526,
+      "before": "Firearms & Weapons",
+      "after": "Weapon Collecting"
+    },
+    {
+      "id": 545,
+      "before": "Sports",
+      "after": "Sports Collectibles"
+    },
+    {
+      "id": 546,
+      "before": "Sports Cards",
+      "after": "Sports Card Collecting"
+    },
+    {
+      "id": 552,
+      "before": "Transportation",
+      "after": "Transport Collectibles"
+    },
+    {
+      "id": 2859,
+      "before": "Cosmetic & Reconstructive",
+      "after": "Cosmetic & Reconstructive Surgery"
+    },
+    {
+      "id": 2866,
+      "before": "Neoplasms. Tumors. Oncology",
+      "after": "Surgical Oncology"
+    },
+    {
+      "id": 2874,
+      "before": "Prosthesis. Artificial organs",
+      "after": "Prostheses & Artificial Organs"
+    },
+    {
+      "id": 2872,
+      "before": "Pediatric",
+      "after": "Pediatric Surgery"
+    },
+    {
+      "id": 2864,
+      "before": "Laparoscopic & Robotic",
+      "after": "Laparoscopic & Robotic Surgery"
+    },
+    {
+      "id": 2754,
+      "before": "Gerontology",
+      "after": "Gerontological Nursing"
+    },
+    {
+      "id": 2758,
+      "before": "Maternal & Women’s Health",
+      "after": "Maternal & Women’s Nursing"
+    },
+    {
+      "id": 2762,
+      "before": "Palliative Care",
+      "after": "Palliative Nursing"
+    },
+    {
+      "id": 2763,
+      "before": "Pediatric & Neonatal",
+      "after": "Pediatric & Neonatal Nursing"
+    },
+    {
+      "id": 2755,
+      "before": "Home & Community Care",
+      "after": "Home & Community Nursing"
+    },
+    {
+      "id": 2765,
+      "before": "Psychiatric & Mental Health",
+      "after": "Mental Health Nursing"
+    },
+    {
+      "id": 73,
+      "before": "Design, Graphics & Media",
+      "after": "Computer Graphics & Media Design"
+    },
+    {
+      "id": 102,
+      "before": "Interactive & Multimedia",
+      "after": "Interactive Media & Multimedia"
+    },
+    {
+      "id": 182,
+      "before": "User Interfaces",
+      "after": "Computer User Interfaces"
+    },
+    {
+      "id": 183,
+      "before": "Virtual & Augmented Reality",
+      "after": "Virtual & Augmented Reality"
+    },
+    {
+      "id": 4814,
+      "before": "Chaotic Behavior in Systems",
+      "after": "Chaos in Dynamical Systems"
+    },
+    {
+      "id": 4900,
+      "before": "System Theory",
+      "after": "Systems Theory"
+    },
+    {
+      "id": 420,
+      "before": "Project Management",
+      "after": "Engineering Project Management"
+    },
+    {
+      "id": 381,
+      "before": "Automata",
+      "after": "Mechanical Automata"
+    },
+    {
+      "id": 5777,
+      "before": "Prehistoric & Mythical Animals",
+      "after": "Prehistoric & Mythical Creatures"
+    },
+    {
+      "id": 2405,
+      "before": "Math Geography & Cartography",
+      "after": "Mathematical Geography & Cartography"
+    }
+  ],
+  "flattened": [
+    {
+      "id": 5744,
+      "name": "Media & Entertainment Collectibles",
+      "parents": [
+        511
+      ],
+      "children": [
+        512,
+        523,
+        534,
+        536,
+        541,
+        542
+      ]
+    },
+    {
+      "id": 5745,
+      "name": "Military, Sports & Transportation",
+      "parents": [
+        511
+      ],
+      "children": [
+        526,
+        532,
+        545,
+        546,
+        552
+      ]
+    },
+    {
+      "id": 5787,
+      "name": "Reconstructive & Cancer Surgery",
+      "parents": [
+        2854
+      ],
+      "children": [
+        2859,
+        2866,
+        2873,
+        2874,
+        2883,
+        2773
+      ]
+    },
+    {
+      "id": 5788,
+      "name": "Surgical Patients & Complications",
+      "parents": [
+        2854
+      ],
+      "children": [
+        2872,
+        2877,
+        2878,
+        2879
+      ]
+    },
+    {
+      "id": 5789,
+      "name": "Surgical Equipment & Techniques",
+      "parents": [
+        2854
+      ],
+      "children": [
+        2864,
+        2868
+      ]
+    },
+    {
+      "id": 5926,
+      "name": "Maternal, Pediatric & Lifespan Care",
+      "parents": [
+        2747
+      ],
+      "children": [
+        2754,
+        2758,
+        2762,
+        2763
+      ]
+    },
+    {
+      "id": 5927,
+      "name": "Mental, Home & Community Nursing",
+      "parents": [
+        2747
+      ],
+      "children": [
+        2755,
+        2765
+      ]
+    },
+    {
+      "id": 5578,
+      "name": "Graphics, Media & User Experience",
+      "parents": [
+        36
+      ],
+      "children": [
+        73,
+        98,
+        102,
+        182,
+        183
+      ]
+    },
+    {
+      "id": 5515,
+      "name": "Social Classes & Economic Disparity",
+      "parents": [
+        5661
+      ],
+      "children": [
+        13243,
+        13244
+      ]
+    },
+    {
+      "id": 5723,
+      "name": "Systems, Complexity & Computation",
+      "parents": [
+        4779
+      ],
+      "children": [
+        4814,
+        4878,
+        4900,
+        5047
+      ]
+    },
+    {
+      "id": 5739,
+      "name": "Paranormal & Unexplained Phenomena",
+      "parents": [
+        3260
+      ],
+      "children": [
+        3310,
+        3316,
+        3317
+      ]
+    },
+    {
+      "id": 5913,
+      "name": "Industrial & Systems Engineering",
+      "parents": [
+        5563
+      ],
+      "children": [
+        420,
+        439,
+        446
+      ]
+    },
+    {
+      "id": 5951,
+      "name": "Automation & Specialized Machinery",
+      "parents": [
+        369
+      ],
+      "children": [
+        370,
+        371,
+        381,
+        388
+      ]
+    }
+  ],
+  "allowed_transitions": {},
+  "merged": [
+    {
+      "removed": 5047,
+      "retained": 13561,
+      "name": "Cybernetics"
+    }
+  ],
+  "before_over30": 720,
+  "after_over30": 712,
+  "verified_code_groups": 2960788,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0
+}

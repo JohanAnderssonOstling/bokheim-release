@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Widow and orphan protection visual test</title>
+  <style>
+    body { margin: 44px; color: #20242b; font-family: sans-serif; }
+    h1 { margin: 0 0 12px; font-size: 31px; }
+    .spacer { height: 350px; border-bottom: 2px solid #cad0d8; }
+    .protected { width: 430px; margin-top: 18px; font-size: 22px; line-height: 1.5; widows: 3; orphans: 3; background: #fff3c9; border-left: 8px solid #d79500; padding-left: 18px; }
+  </style>
+</head>
+<body>
+  <h1>Widow and orphan protection</h1>
+  <div class="spacer">The protected paragraph would leave a single line at the bottom of this page.</div>
+  <p class="protected">This entire yellow paragraph should move to the next page because the remaining space cannot satisfy its widow and orphan limits. These deliberately measured words create several lines of text, making an unprotected one-line fragment easy to spot.</p>
+</body>
+</html>

@@ -1,0 +1,113 @@
+{
+  "anchors": [
+    {
+      "scope": "Q",
+      "path": [
+        "Science (General)",
+        "Philosophy. Methodology"
+      ],
+      "concept_id": "unified:bbf9b367-9b6f-5d4f-90a4-3a7074b9dd0a",
+      "subject": "Philosophy & Social Aspects"
+    },
+    {
+      "scope": "BF",
+      "path": [
+        "Psychology",
+        "Affection. Feeling. Emotion",
+        "Emotion"
+      ],
+      "concept_id": "unified:e71c1e18-3630-5803-9ca3-0ec75dfd52bf",
+      "subject": "Emotions"
+    },
+    {
+      "scope": "PA",
+      "path": [
+        "Greek literature",
+        "Individual authors to 600 A.D."
+      ],
+      "concept_id": "unified:7401dd57-d284-5a25-8b18-5fe2eea2d9c2",
+      "subject": "Ancient Greek Authors"
+    },
+    {
+      "scope": "PS",
+      "path": [
+        "American literature"
+      ],
+      "concept_id": "unified:11e637ca-b753-50aa-8d1c-bfccf82ceb6e",
+      "subject": "American"
+    },
+    {
+      "scope": "PN",
+      "path": [
+        "Drama",
+        "Motion pictures"
+      ],
+      "concept_id": "unified:3a5d2554-58b3-548b-8c98-54f02e7a0e87",
+      "subject": "Film"
+    },
+    {
+      "scope": "QH",
+      "path": [
+        "Natural history (General)",
+        "Geographical distribution. Biogeography. Phylogeography",
+        "Physiographic divisions",
+        "Water. Aquatic biology",
+        "Marine biology"
+      ],
+      "concept_id": "unified:e91ab4b9-04b9-55a0-936e-e3da430e44b8",
+      "subject": "Marine Biology"
+    },
+    {
+      "scope": "D",
+      "path": [
+        "History (General)"
+      ],
+      "concept_id": "unified:fdbd93fb-be52-58a0-80b5-278a79893d3e",
+      "subject": "World History"
+    }
+  ],
+  "codes": [
+    {
+      "code": "BJ1471",
+      "concept_id": "bokheim:lcc-detail:5b559121-e13b-5ba6-8e0c-c5d4c4ace259",
+      "subject": "Applied Ethics & Conduct of Life",
+      "meaning": "Ethics / Special topics / Conscience"
+    },
+    {
+      "code": "BF575",
+      "concept_id": "unified:e71c1e18-3630-5803-9ca3-0ec75dfd52bf",
+      "subject": "Emotions",
+      "meaning": "Psychology / Affection. Feeling. Emotion / Emotion (bare section stem)"
+    },
+    {
+      "code": "BF637",
+      "concept_id": "unified:51a03e78-a8f8-5d69-a963-aed4ce205e5d",
+      "subject": "Applied Psychology",
+      "meaning": "Psychology / Applied psychology / Special topics (bare section stem)"
+    },
+    {
+      "code": "PA4002",
+      "concept_id": "unified:7401dd57-d284-5a25-8b18-5fe2eea2d9c2",
+      "subject": "Ancient Greek Authors",
+      "meaning": "Greek literature / Individual authors to 600 A.D. / Herodotus (bare section stem)"
+    },
+    {
+      "code": "PS3551",
+      "concept_id": "unified:11e637ca-b753-50aa-8d1c-bfccf82ceb6e",
+      "subject": "American",
+      "meaning": "American literature / Individual authors / 1961-2000 / A (bare section stem)"
+    },
+    {
+      "code": "PR6013",
+      "concept_id": "unified:0b14d579-e7c1-5c9b-bfa0-c562cfa8b994",
+      "subject": "English & Old English Literatures",
+      "meaning": "English literature / 1900-1960 / Individual authors / G (bare section stem)"
+    },
+    {
+      "code": "PR6062",
+      "concept_id": "unified:0b14d579-e7c1-5c9b-bfa0-c562cfa8b994",
+      "subject": "English & Old English Literatures",
+      "meaning": "English literature / 1961-2000 / Individual authors / L (bare section stem)"
+    }
+  ]
+}

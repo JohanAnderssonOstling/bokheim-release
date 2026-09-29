@@ -1,0 +1,138 @@
+{
+  "merges": {},
+  "renamed": {},
+  "moved": [],
+  "flattened": [
+    {
+      "id": 5933,
+      "parent": 3778,
+      "children": [
+        3750,
+        3781,
+        3785,
+        3787,
+        4412
+      ]
+    },
+    {
+      "id": 5934,
+      "parent": 3778,
+      "children": [
+        3704,
+        3770,
+        3779,
+        3782
+      ]
+    },
+    {
+      "id": 5935,
+      "parent": 3778,
+      "children": [
+        3783,
+        3786,
+        4413,
+        4414
+      ]
+    },
+    {
+      "id": 5904,
+      "parent": 4628,
+      "children": [
+        4639,
+        4657,
+        4659
+      ]
+    },
+    {
+      "id": 5905,
+      "parent": 4628,
+      "children": [
+        4629,
+        4637,
+        4645,
+        4653
+      ]
+    },
+    {
+      "id": 5906,
+      "parent": 4628,
+      "children": [
+        4646,
+        4648,
+        4649
+      ]
+    },
+    {
+      "id": 5576,
+      "parent": 36,
+      "children": [
+        87,
+        163
+      ]
+    },
+    {
+      "id": 5701,
+      "parent": 193,
+      "children": [
+        555,
+        597
+      ]
+    },
+    {
+      "id": 5570,
+      "parent": 1,
+      "children": [
+        311,
+        394
+      ]
+    },
+    {
+      "id": 5840,
+      "parent": 11442,
+      "children": [
+        3173,
+        3179,
+        3181
+      ]
+    },
+    {
+      "id": 5923,
+      "parent": 3125,
+      "children": [
+        3134,
+        3135,
+        3146
+      ]
+    },
+    {
+      "id": 5666,
+      "parent": 5488,
+      "children": [
+        5491,
+        5521,
+        12295
+      ]
+    },
+    {
+      "id": 5692,
+      "parent": 5326,
+      "children": [
+        5329,
+        5330,
+        5379
+      ]
+    },
+    {
+      "id": 5530,
+      "parent": 4582,
+      "children": [
+        4586,
+        4590
+      ]
+    }
+  ],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply all 10 approved upper-hierarchy flattening groups: remove 14 uncoded intermediates and promote their children intact, preserving other parent links. No leaf merges included.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

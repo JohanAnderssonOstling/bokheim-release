@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>OpenType feature comparison</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #f4f0e8; color: #16242b; }
+  body { font-family: "Libertinus Serif", "Noto Serif", serif; padding: 38px 46px; }
+  h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.1; }
+  .intro { margin: 0 0 26px; color: #596970; }
+  table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  th { padding: 9px 16px; text-align: left; color: #fff; background: #176b68; font-family: sans-serif; font-size: 13px; letter-spacing: .06em; }
+  td { padding: 18px 16px; border-bottom: 1px solid #c7c1b5; vertical-align: top; }
+  td:first-child { border-right: 1px solid #c7c1b5; }
+  .label { display: block; margin-bottom: 8px; color: #63717a; font-family: sans-serif; font-size: 12px; }
+  .sample { font-size: 27px; line-height: 1.25; }
+  .caps { font-variant-caps: small-caps; }
+  .raw-shaping {
+    font-feature-settings:
+      "ccmp" 0, "rlig" 0, "rclt" 0, "mark" 0, "mkmk" 0,
+      "kern" 0, "liga" 0, "clig" 0, "calt" 0;
+  }
+  .off-ccmp { font-feature-settings: "ccmp" 0; }
+  .on-ccmp  { font-feature-settings: "ccmp" 1; }
+  .off-rlig { font-feature-settings: "rlig" 0; }
+  .on-rlig  { font-feature-settings: "rlig" 1; }
+  .off-rclt { font-feature-settings: "rclt" 0; }
+  .on-rclt  { font-feature-settings: "rclt" 1; }
+  .off-mark { font-feature-settings: "mark" 0; }
+  .on-mark  { font-feature-settings: "mark" 1; }
+  .off-mkmk { font-feature-settings: "mkmk" 0; }
+  .on-mkmk  { font-feature-settings: "mkmk" 1; }
+  .off-kern { font-feature-settings: "kern" 0; }
+  .on-kern  { font-feature-settings: "kern" 1; }
+  .off-liga { font-feature-settings: "liga" 0; }
+  .on-liga  { font-feature-settings: "liga" 1; }
+  .off-clig { font-feature-settings: "clig" 0; }
+  .on-clig  { font-feature-settings: "clig" 1; }
+  .off-calt { font-feature-settings: "calt" 0; }
+  .on-calt  { font-feature-settings: "calt" 1; }
+  .no-kern { font-kerning: none; }
+  .kern { font-kerning: normal; }
+  .numbers { font-variant-numeric: oldstyle-nums proportional-nums; }
+  .ligatures { font-variant-ligatures: discretionary-ligatures; }
+  .fraction { font-feature-settings: "frac" on; }
+  code { font-family: "Noto Sans Mono", monospace; font-size: .84em; font-variant-ligatures: none; }
+</style>
+</head>
+<body>
+  <h1>OpenType features in book text</h1>
+  <p class="intro">The left column uses normal shaping. The right requests actual font substitutions through CSS, the layout engine, and GPUI.</p>
+  <table>
+    <thead><tr><th>Natural</th><th>Feature enabled</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <span class="label">all book-quality shaping features disabled</span>
+          <span class="sample raw-shaping">AVATAR · office affinity · A&#x030A;ngstro&#x0308;m</span>
+        </td>
+        <td>
+          <span class="label">ccmp · rlig · rclt · mark · mkmk · kern · liga · clig · calt</span>
+          <span class="sample">AVATAR · office affinity · A&#x030A;ngstro&#x0308;m</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="label">ccmp off · decomposed characters remain separate glyphs</span><span class="sample off-ccmp">A&#x030A; · e&#x0301; · o&#x0308;</span></td>
+        <td><span class="label">ccmp on · glyph composition and decomposition</span><span class="sample on-ccmp">A&#x030A; · e&#x0301; · o&#x0308;</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">rlig off · Latin control sample</span><span class="sample off-rlig">required ligatures</span></td>
+        <td><span class="label">rlig on · no Latin rlig lookup in Libertinus; identical by design</span><span class="sample on-rlig">required ligatures</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">rclt off · Latin control sample</span><span class="sample off-rclt">required context</span></td>
+        <td><span class="label">rclt on · no Latin rclt lookup in Libertinus; identical by design</span><span class="sample on-rclt">required context</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">mark off · base-to-mark positioning disabled</span><span class="sample off-mark">x&#x0301; · q&#x0302; · g&#x0307;</span></td>
+        <td><span class="label">mark on · accents attach to their base glyph</span><span class="sample on-mark">x&#x0301; · q&#x0302; · g&#x0307;</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">mkmk off · stacked marks use unrefined placement</span><span class="sample off-mkmk">a&#x0304;&#x0301; · o&#x0308;&#x0304;</span></td>
+        <td><span class="label">mkmk on · mark-to-mark stacking</span><span class="sample on-mkmk">a&#x0304;&#x0301; · o&#x0308;&#x0304;</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">kern off · pair spacing disabled</span><span class="sample off-kern">AVATAR · WA · To · Yo</span></td>
+        <td><span class="label">kern on · pair-specific spacing</span><span class="sample on-kern">AVATAR · WA · To · Yo</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">liga off · separate letter glyphs</span><span class="sample off-liga">office · affinity · difficult</span></td>
+        <td><span class="label">liga on · standard ligatures</span><span class="sample on-liga">office · affinity · difficult</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">clig off · Latin control sample</span><span class="sample off-clig">contextual ligatures</span></td>
+        <td><span class="label">clig on · no Latin clig lookup in Libertinus; identical by design</span><span class="sample on-clig">contextual ligatures</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">calt off · default f and Q forms</span><span class="sample off-calt">f) · f? · Qum</span></td>
+        <td><span class="label">calt on · context-sensitive alternates supplied by Libertinus</span><span class="sample on-calt">f) · f? · Qum</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">font-kerning: none</span><span class="sample no-kern">AVATAR · WA · To · Yo</span></td>
+        <td><span class="label">font-kerning: normal</span><span class="sample kern">AVATAR · WA · To · Yo</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">ordinary lowercase</span><span class="sample">A Civil Society</span></td>
+        <td><span class="label">font-variant-caps: small-caps</span><span class="sample caps">A Civil Society</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">default numerals</span><span class="sample">1776 · 1903 · 2026</span></td>
+        <td><span class="label">oldstyle + proportional</span><span class="sample numbers">1776 · 1903 · 2026</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">standard ligatures</span><span class="sample">efficient affinity</span></td>
+        <td><span class="label">discretionary ligatures</span><span class="sample ligatures">efficient affinity</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">literal fraction text</span><span class="sample">3/8 + 5/12</span></td>
+        <td><span class="label">font-feature-settings: "frac"</span><span class="sample fraction">3/8 + 5/12</span></td>
+      </tr>
+      <tr>
+        <td><span class="label">prose inherits normal defaults</span><span class="sample">final office</span></td>
+        <td><span class="label">code explicitly disables ligatures</span><code class="sample">final office != value</code></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

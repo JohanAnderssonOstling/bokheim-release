@@ -1,0 +1,97 @@
+{
+  "scope": "Three review-only proposals under stricter context-preservation rule. Prior six small-wrapper proposals are superseded by this review, not approved. Retain meaningful thematic, geographic, chronological and audience groupings.",
+  "candidates": [
+    {
+      "number": 1,
+      "id": 4586,
+      "label": "Christianity & Other Subjects",
+      "parents": [
+        {
+          "id": 4582,
+          "label": "Christianity"
+        }
+      ],
+      "children": [
+        {
+          "id": 11479,
+          "label": "Dissent"
+        },
+        {
+          "id": 11481,
+          "label": "Liberalism"
+        },
+        {
+          "id": 13833,
+          "label": "Christian Religious Tolerance"
+        }
+      ],
+      "codes": {
+        "lcc_selector": [],
+        "lcc_range": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "action": "Flatten uncoded wrapper and promote children intact to sole parent."
+    },
+    {
+      "number": 2,
+      "id": 5862,
+      "label": "Authors, Audiences & Subjects",
+      "parents": [
+        {
+          "id": 3853,
+          "label": "American"
+        }
+      ],
+      "children": [
+        {
+          "id": 3859,
+          "label": "American Children’s"
+        },
+        {
+          "id": 3862,
+          "label": "U.S. Literary Themes & Groups"
+        },
+        {
+          "id": 3863,
+          "label": "Women authors"
+        }
+      ],
+      "codes": {
+        "lcc_selector": [],
+        "lcc_range": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "action": "Flatten uncoded wrapper and promote children intact to sole parent."
+    },
+    {
+      "number": 3,
+      "id": 9056,
+      "label": "Technology in Education",
+      "parents": [
+        {
+          "id": 2330,
+          "label": "Teaching Principles & Practice"
+        }
+      ],
+      "children": [
+        {
+          "id": 53131,
+          "label": "Educational Technology"
+        },
+        {
+          "id": 53132,
+          "label": "Robotics in Education"
+        }
+      ],
+      "codes": {
+        "lcc_selector": [],
+        "lcc_range": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "action": "Merge Educational Technology (53131) into its equivalent parent Technology in Education (9056), rename survivor Educational Technology; retain Robotics in Education beneath it."
+    }
+  ]
+}

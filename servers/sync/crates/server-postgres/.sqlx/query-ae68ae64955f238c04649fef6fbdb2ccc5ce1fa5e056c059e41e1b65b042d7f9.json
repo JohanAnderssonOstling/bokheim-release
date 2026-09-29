@@ -1,0 +1,25 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT size_bytes FROM book_upload_reservation\nWHERE id=$1 AND user_id=$2 AND library_id=$3 AND content_hash=$4\nFOR UPDATE\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "size_bytes",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "ae68ae64955f238c04649fef6fbdb2ccc5ce1fa5e056c059e41e1b65b042d7f9"
+}

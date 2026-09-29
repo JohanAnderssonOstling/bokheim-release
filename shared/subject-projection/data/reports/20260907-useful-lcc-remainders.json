@@ -1,0 +1,131 @@
+{
+  "status": "verified",
+  "candidate": 65,
+  "lcc_matcher_version": 80,
+  "unified_matcher_version": 130,
+  "comparison_baseline": 60,
+  "inventory_summary": {
+    "codes": {
+      "examined": 11316630,
+      "gained": 74553,
+      "changed": 18254
+    },
+    "uses": {
+      "gained": 126185,
+      "changed": 21252
+    },
+    "remaining_codes": 119825,
+    "remaining_uses": 220520
+  },
+  "completion_audit": {
+    "source_and_data_files_verified": 31,
+    "removed_assignments": [],
+    "projection_release_tests": 237,
+    "server_storage_integration_tests": 1,
+    "incremental": {
+      "reviewed_inputs": 212632,
+      "evidence_rows": 239822,
+      "interpreted_inputs": 273,
+      "interpretation_evidence_methods": {
+        "Normalized": 272,
+        "BroadFallback": 1
+      },
+      "new_strings": 1506,
+      "new_uses": 3444,
+      "changed_existing": 286,
+      "errors": []
+    },
+    "retention": {
+      "output": "after65.tsv",
+      "prior_comparisons": 31,
+      "checked": 91301,
+      "missing_rows": 0,
+      "lost_matches": 0,
+      "changed_assignments": 5672
+    },
+    "range_review": {
+      "reviewed": 125,
+      "fixed": 22,
+      "fixed_uses": 25,
+      "categories": {
+        "damaged numeric range": 27,
+        "unresolved preliminary/table expression": 48,
+        "ambiguous cross-class range or item separator": 28,
+        "fixed: complete published or inherited author range": 22
+      },
+      "unresolved_category_basis": "Structural triage, not source-verified diagnoses. All 125 inputs were probed against the frozen taxonomy; only the 22 matched entries are confirmed repairs.",
+      "verified_candidate": 65
+    },
+    "broad_support": {
+      "reviewed_inputs": 212632,
+      "evidence_rows": 239822,
+      "evidence_methods": {
+        "RecoveredComponent": 59939,
+        "BroadFallback": 3246,
+        "Normalized": 56137,
+        "Exact": 675
+      },
+      "broad_fallback_inputs": 3244,
+      "independently_reconstructed_support_sets": 3236,
+      "distinct_support_scopes": 2082,
+      "errors": []
+    },
+    "subclass_support": {
+      "verified_rows": 9,
+      "subclass_readings": {
+        "CC": [
+          12945
+        ],
+        "DS": [
+          3485
+        ],
+        "DT": [
+          3320
+        ],
+        "KJ": [
+          5276
+        ],
+        "KK": [
+          5276
+        ],
+        "NC": [
+          662
+        ],
+        "NE": [
+          1042
+        ],
+        "PQ": [
+          3846
+        ],
+        "PR": [
+          3911
+        ],
+        "PS": [
+          3846
+        ],
+        "PT": [
+          3846
+        ],
+        "PZ": [
+          5583
+        ]
+      },
+      "errors": []
+    }
+  },
+  "remaining_cases": "RC/BF and other alternatives without a useful common ancestor remain unresolved. 103 of the focused 125 ranges remain unresolved; see the structural review. Local and processing labels are not treated as LCC.",
+  "live_taxonomy_modified": false,
+  "superseded_candidates": {
+    "61": "First suffix implementation lacked interior-range recovery",
+    "62": "Incomplete after temporary storage filled",
+    "63": "Superseded canonical-range regression",
+    "64": "Superseded cross-subclass interference in starred-prefix support"
+  },
+  "artifacts": {
+    "range_review": "/home/johan/.cache/bokheim/safe-lcc-repairs-20260907/remaining-range-review65.json",
+    "evidence": "/home/johan/.cache/bokheim/safe-lcc-repairs-20260907/complete-recovery-evidence65.tsv",
+    "source_manifest": "/home/johan/.cache/bokheim/safe-lcc-repairs-20260907/candidate65-manifest.json",
+    "tests": "/home/johan/.cache/bokheim/safe-lcc-repairs-20260907/tests-useful-remainders65.log",
+    "storage_test": "/home/johan/.cache/bokheim/safe-lcc-repairs-20260907/tests-server-lcc-provenance65.log"
+  }
+}

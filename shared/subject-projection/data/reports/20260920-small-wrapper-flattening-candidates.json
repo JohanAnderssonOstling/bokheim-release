@@ -1,0 +1,159 @@
+{
+  "scope": "Proposed only. Six uncoded wrappers with two or three children. Keep Identity & Community, meaningful region/period/audience/life-stage groupings, and substantial branches. Economic History grows from 24 to 27 direct children if both proposals 5 and 6 are applied.",
+  "groups": [
+    {
+      "number": 1,
+      "parent": 11442,
+      "parent_label": "Personal Growth",
+      "wrappers": [
+        {
+          "id": 5839,
+          "label": "Relationships & Identity",
+          "children": [
+            {
+              "id": 3167,
+              "label": "Communication & Social Skills"
+            },
+            {
+              "id": 3180,
+              "label": "Gender & Sexuality"
+            },
+            {
+              "id": 3204,
+              "label": "Sexual Instruction"
+            }
+          ]
+        }
+      ],
+      "before_direct_children": 17,
+      "after_direct_children_if_applied_alone": 19
+    },
+    {
+      "number": 2,
+      "parent": 2335,
+      "parent_label": "Study Aids",
+      "wrappers": [
+        {
+          "id": 5846,
+          "label": "Language & Citizenship Exams",
+          "children": [
+            {
+              "id": 2343,
+              "label": "Citizenship"
+            },
+            {
+              "id": 2347,
+              "label": "English Proficiency"
+            }
+          ]
+        }
+      ],
+      "before_direct_children": 7,
+      "after_direct_children_if_applied_alone": 8
+    },
+    {
+      "number": 3,
+      "parent": 4582,
+      "parent_label": "Christianity",
+      "wrappers": [
+        {
+          "id": 4586,
+          "label": "Christianity & Other Subjects",
+          "children": [
+            {
+              "id": 11479,
+              "label": "Dissent"
+            },
+            {
+              "id": 11481,
+              "label": "Liberalism"
+            },
+            {
+              "id": 13833,
+              "label": "Christian Religious Tolerance"
+            }
+          ]
+        }
+      ],
+      "before_direct_children": 11,
+      "after_direct_children_if_applied_alone": 13
+    },
+    {
+      "number": 4,
+      "parent": 3640,
+      "parent_label": "Military",
+      "wrappers": [
+        {
+          "id": 5819,
+          "label": "Technology",
+          "children": [
+            {
+              "id": 3647,
+              "label": "Fortifications"
+            },
+            {
+              "id": 3660,
+              "label": "Vehicles"
+            },
+            {
+              "id": 3665,
+              "label": "Weapons"
+            }
+          ]
+        }
+      ],
+      "before_direct_children": 13,
+      "after_direct_children_if_applied_alone": 15
+    },
+    {
+      "number": 5,
+      "parent": 5091,
+      "parent_label": "Economic history",
+      "wrappers": [
+        {
+          "id": 13617,
+          "label": "Technology & the Economy",
+          "children": [
+            {
+              "id": 52922,
+              "label": "Automation & the Economy"
+            },
+            {
+              "id": 52923,
+              "label": "High-Technology Industries"
+            },
+            {
+              "id": 52924,
+              "label": "Technological Innovation & Transfer"
+            }
+          ]
+        }
+      ],
+      "before_direct_children": 24,
+      "after_direct_children_if_applied_alone": 26
+    },
+    {
+      "number": 6,
+      "parent": 5091,
+      "parent_label": "Economic history",
+      "wrappers": [
+        {
+          "id": 13621,
+          "label": "Economic Impacts of War & Disasters",
+          "children": [
+            {
+              "id": 52951,
+              "label": "Economic Impact of Defense & Disarmament"
+            },
+            {
+              "id": 52952,
+              "label": "Economic Impact of Disasters"
+            }
+          ]
+        }
+      ],
+      "before_direct_children": 24,
+      "after_direct_children_if_applied_alone": 25
+    }
+  ]
+}

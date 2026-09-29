@@ -1,0 +1,873 @@
+{
+  "merges": {
+    "2715": {
+      "into": 5434,
+      "old_label": "Psychopathology",
+      "surviving_label": "Psychopathology"
+    },
+    "12661": {
+      "into": 5447,
+      "old_label": "Schizophrenia",
+      "surviving_label": "Schizophrenia"
+    },
+    "12662": {
+      "into": 5439,
+      "old_label": "Bipolar Disorder",
+      "surviving_label": "Bipolar Disorder"
+    },
+    "12664": {
+      "into": 5436,
+      "old_label": "Anxiety & Phobias",
+      "surviving_label": "Anxieties & Phobias"
+    },
+    "12665": {
+      "into": 5440,
+      "old_label": "Obsessive-Compulsive Disorder",
+      "surviving_label": "Compulsive Behavior"
+    },
+    "12666": {
+      "into": 5441,
+      "old_label": "Depression & Mood Disorders",
+      "surviving_label": "Depression"
+    },
+    "12668": {
+      "into": 5443,
+      "old_label": "Eating Disorders",
+      "surviving_label": "Eating Disorders"
+    },
+    "12669": {
+      "into": 5446,
+      "old_label": "Post-Traumatic Stress Disorder",
+      "surviving_label": "Post-Traumatic Stress Disorder"
+    },
+    "12670": {
+      "into": 5445,
+      "old_label": "Personality Disorders",
+      "surviving_label": "Personality Disorders"
+    },
+    "12672": {
+      "into": 5435,
+      "old_label": "Substance Use & Addiction",
+      "surviving_label": "Addiction"
+    },
+    "5412": {
+      "into": 2740,
+      "old_label": "Mental Health",
+      "surviving_label": "Mental Health"
+    },
+    "4842": {
+      "into": 4789,
+      "old_label": "Life Sciences",
+      "surviving_label": "Biology"
+    },
+    "5048": {
+      "into": 4863,
+      "old_label": "Zoology",
+      "surviving_label": "Zoology"
+    },
+    "4975": {
+      "into": 4857,
+      "old_label": "Microbiology",
+      "surviving_label": "Microbiology"
+    },
+    "4797": {
+      "into": 4848,
+      "old_label": "Botany",
+      "surviving_label": "Botany"
+    },
+    "4851": {
+      "into": 4790,
+      "old_label": "Ecology",
+      "surviving_label": "Ecology"
+    },
+    "5001": {
+      "into": 4790,
+      "old_label": "Ecology",
+      "surviving_label": "Ecology"
+    },
+    "4852": {
+      "into": 4793,
+      "old_label": "Evolution",
+      "surviving_label": "Evolution"
+    },
+    "6239": {
+      "into": 4858,
+      "old_label": "Molecular biology",
+      "surviving_label": "Molecular Biology"
+    },
+    "8984": {
+      "into": 4847,
+      "old_label": "Biophysics",
+      "surviving_label": "Biophysics"
+    },
+    "4980": {
+      "into": 4862,
+      "old_label": "Virology",
+      "surviving_label": "Virology"
+    },
+    "4976": {
+      "into": 4844,
+      "old_label": "Bacteria",
+      "surviving_label": "Bacteriology"
+    },
+    "5050": {
+      "into": 4865,
+      "old_label": "Animal behavior",
+      "surviving_label": "Ethology"
+    },
+    "5053": {
+      "into": 4867,
+      "old_label": "Invertebrates",
+      "surviving_label": "Invertebrates"
+    },
+    "8709": {
+      "into": 4868,
+      "old_label": "Mammals",
+      "surviving_label": "Mammals"
+    },
+    "4993": {
+      "into": 4868,
+      "old_label": "Mammals",
+      "surviving_label": "Mammals"
+    },
+    "7957": {
+      "into": 4869,
+      "old_label": "Birds",
+      "surviving_label": "Ornithology"
+    },
+    "53410": {
+      "into": 4870,
+      "old_label": "Primates",
+      "surviving_label": "Primatology"
+    },
+    "4995": {
+      "into": 4870,
+      "old_label": "Primates",
+      "surviving_label": "Primatology"
+    },
+    "4881": {
+      "into": 4782,
+      "old_label": "Astrophysics",
+      "surviving_label": "Astrophysics"
+    },
+    "7828": {
+      "into": 4818,
+      "old_label": "Electrochemistry",
+      "surviving_label": "Electrochemistry"
+    },
+    "7526": {
+      "into": 4888,
+      "old_label": "Relativity physics",
+      "surviving_label": "Relativity Physics"
+    },
+    "4827": {
+      "into": 4904,
+      "old_label": "Geology",
+      "surviving_label": "Geology"
+    },
+    "4830": {
+      "into": 4906,
+      "old_label": "Mineralogy",
+      "surviving_label": "Mineralogy"
+    },
+    "4811": {
+      "into": 4908,
+      "old_label": "Paleontology",
+      "surviving_label": "Paleontology"
+    },
+    "230": {
+      "into": 5932,
+      "old_label": "Civil",
+      "surviving_label": "Civil Engineering"
+    },
+    "238": {
+      "into": 197,
+      "old_label": "Construction",
+      "surviving_label": "Building construction"
+    },
+    "243": {
+      "into": 205,
+      "old_label": "HVAC",
+      "surviving_label": "HVAC"
+    },
+    "245": {
+      "into": 208,
+      "old_label": "Plumbing",
+      "surviving_label": "Plumbing & pipefitting"
+    },
+    "344": {
+      "into": 446,
+      "old_label": "Industrial Engineering",
+      "surviving_label": "Industrial Engineering"
+    },
+    "4332": {
+      "into": 9551,
+      "old_label": "French Literary Criticism",
+      "surviving_label": "French Literary Criticism"
+    },
+    "4333": {
+      "into": 8065,
+      "old_label": "German Literary Criticism",
+      "surviving_label": "German Literary Criticism"
+    },
+    "4334": {
+      "into": 8956,
+      "old_label": "Italian Literary Criticism",
+      "surviving_label": "Italian Literary Criticism"
+    },
+    "9234": {
+      "into": 4510,
+      "old_label": "Regional Modern Philosophy",
+      "surviving_label": "Modern Philosophy"
+    },
+    "11176": {
+      "into": 4508,
+      "old_label": "Ancient 600 BC-430 AD",
+      "surviving_label": "Ancient & Classical Philosophy"
+    },
+    "11585": {
+      "into": 4575,
+      "old_label": "Missions",
+      "surviving_label": "Missions"
+    },
+    "11586": {
+      "into": 4574,
+      "old_label": "Evangelism & Revivals",
+      "surviving_label": "Evangelism"
+    },
+    "13792": {
+      "into": 4585,
+      "old_label": "Christian Science",
+      "surviving_label": "Christian Science"
+    },
+    "6464": {
+      "into": 667,
+      "old_label": "General & Technique",
+      "surviving_label": "Cards & Invitations"
+    },
+    "5571": {
+      "into": 62,
+      "old_label": "Foundations & Computer Science",
+      "surviving_label": "Computer Science"
+    },
+    "13324": {
+      "into": 13323,
+      "old_label": "Philosophy of Science Topics",
+      "surviving_label": "Science, Philosophy & Society"
+    },
+    "10556": {
+      "into": 54793,
+      "old_label": "Reunification Era, 1975–",
+      "surviving_label": "1975- . Reunification. Socialist Republic of Vietnam"
+    }
+  },
+  "renamed": {
+    "5440": {
+      "before": "Compulsive Behavior",
+      "after": "Obsessive-Compulsive Disorders & Behavior"
+    },
+    "5441": {
+      "before": "Depression",
+      "after": "Depression & Mood Disorders"
+    },
+    "5435": {
+      "before": "Addiction",
+      "after": "Addiction & Substance Use"
+    },
+    "4844": {
+      "before": "Bacteriology",
+      "after": "Bacteria & Bacteriology"
+    },
+    "4865": {
+      "before": "Ethology",
+      "after": "Animal Behavior"
+    },
+    "4869": {
+      "before": "Ornithology",
+      "after": "Birds & Ornithology"
+    },
+    "4870": {
+      "before": "Primatology",
+      "after": "Primates & Primatology"
+    },
+    "4795": {
+      "before": "Life",
+      "after": "Biological Processes & Functions"
+    },
+    "8112": {
+      "before": "Biological control sytems",
+      "after": "Biological Control Systems"
+    },
+    "197": {
+      "before": "Building construction",
+      "after": "Building Construction"
+    },
+    "208": {
+      "before": "Plumbing & pipefitting",
+      "after": "Plumbing & Pipefitting"
+    },
+    "4184": {
+      "before": "France",
+      "after": "French Literature"
+    },
+    "4202": {
+      "before": "Italy",
+      "after": "Italian Literature"
+    },
+    "4215": {
+      "before": "Portugal",
+      "after": "Portuguese Literature"
+    },
+    "4226": {
+      "before": "Spain",
+      "after": "Spanish-Language Literature"
+    },
+    "11949": {
+      "before": "Argentine Spanish",
+      "after": "Argentine Literature in Spanish"
+    },
+    "11954": {
+      "before": "Mexican Spanish",
+      "after": "Mexican Literature in Spanish"
+    },
+    "7622": {
+      "before": "Modern Philosophy",
+      "after": "Modern Aesthetics"
+    },
+    "9891": {
+      "before": "Medieval Philosophy",
+      "after": "Medieval Aesthetics"
+    },
+    "9087": {
+      "before": "Ancient Philosophy",
+      "after": "Ancient Aesthetics"
+    },
+    "10881": {
+      "before": "Ancient Greek Philosophy",
+      "after": "Ancient Greek Aesthetics"
+    },
+    "11120": {
+      "before": "Orient",
+      "after": "Ancient Eastern Aesthetics"
+    },
+    "11102": {
+      "before": "21st century",
+      "after": "French Philosophy, 21st Century"
+    },
+    "11111": {
+      "before": "19th & 20th centuries",
+      "after": "Dutch Philosophy, 19th–20th Centuries"
+    },
+    "11078": {
+      "before": "21st century",
+      "after": "21st-Century Philosophy"
+    },
+    "11182": {
+      "before": "20th century",
+      "after": "20th-Century Philosophy"
+    },
+    "11093": {
+      "before": "Sikhism",
+      "after": "Sikh Philosophy"
+    },
+    "10861": {
+      "before": "Taoism",
+      "after": "Taoist Philosophy"
+    },
+    "10901": {
+      "before": "Jainism",
+      "after": "Jain Philosophy"
+    },
+    "11088": {
+      "before": "Judaism",
+      "after": "Jewish Philosophy"
+    },
+    "11151": {
+      "before": "Buddhism",
+      "after": "Buddhist Philosophy"
+    },
+    "10995": {
+      "before": "Ancient Eastern Religious Thought",
+      "after": "Shinto Philosophy"
+    },
+    "4574": {
+      "before": "Evangelism",
+      "after": "Evangelism & Revivals"
+    },
+    "13323": {
+      "before": "Science, Philosophy & Society",
+      "after": "Philosophy & Social Aspects of Science"
+    },
+    "11306": {
+      "before": "1803-1966",
+      "after": "British Guiana, 1803–1966"
+    },
+    "11239": {
+      "before": "1604-1814",
+      "after": "Suriname, 1604–1814"
+    },
+    "11299": {
+      "before": "1950-1975",
+      "after": "Suriname, 1950–1975"
+    },
+    "54793": {
+      "before": "1975- . Reunification. Socialist Republic of Vietnam",
+      "after": "Vietnamese Reunification Era, 1975–"
+    }
+  },
+  "moved": [
+    {
+      "id": 5434,
+      "before": [
+        5412
+      ],
+      "after": [
+        2837,
+        2740
+      ]
+    },
+    {
+      "id": 2740,
+      "before": [
+        2535,
+        2624
+      ],
+      "after": [
+        2535,
+        5381
+      ]
+    },
+    {
+      "id": 4863,
+      "before": [
+        4789
+      ],
+      "after": [
+        4789
+      ]
+    },
+    {
+      "id": 4857,
+      "before": [
+        4789
+      ],
+      "after": [
+        4789
+      ]
+    },
+    {
+      "id": 4848,
+      "before": [
+        4789
+      ],
+      "after": [
+        4789
+      ]
+    },
+    {
+      "id": 4858,
+      "before": [
+        5942
+      ],
+      "after": [
+        5942,
+        4795
+      ]
+    },
+    {
+      "id": 4847,
+      "before": [
+        5942
+      ],
+      "after": [
+        5942,
+        4795
+      ]
+    },
+    {
+      "id": 4868,
+      "before": [
+        4863
+      ],
+      "after": [
+        5051
+      ]
+    },
+    {
+      "id": 4869,
+      "before": [
+        4863
+      ],
+      "after": [
+        5051
+      ]
+    },
+    {
+      "id": 4870,
+      "before": [
+        4863
+      ],
+      "after": [
+        4868
+      ]
+    },
+    {
+      "id": 4818,
+      "before": [
+        4803
+      ],
+      "after": [
+        4808
+      ]
+    },
+    {
+      "id": 4888,
+      "before": [
+        5030
+      ],
+      "after": [
+        5030
+      ]
+    },
+    {
+      "id": 4904,
+      "before": [
+        4779
+      ],
+      "after": [
+        4810
+      ]
+    },
+    {
+      "id": 446,
+      "before": [
+        5563
+      ],
+      "after": [
+        5565
+      ]
+    },
+    {
+      "id": 9551,
+      "before": [
+        4239
+      ],
+      "after": [
+        4239,
+        4329
+      ]
+    },
+    {
+      "id": 8065,
+      "before": [
+        4250
+      ],
+      "after": [
+        4250,
+        4329
+      ]
+    },
+    {
+      "id": 8956,
+      "before": [
+        4259
+      ],
+      "after": [
+        4259,
+        4329
+      ]
+    },
+    {
+      "id": 7622,
+      "before": [
+        4507
+      ],
+      "after": [
+        11149
+      ]
+    },
+    {
+      "id": 9891,
+      "before": [
+        4507
+      ],
+      "after": [
+        11149
+      ]
+    },
+    {
+      "id": 9087,
+      "before": [
+        4507
+      ],
+      "after": [
+        11149
+      ]
+    },
+    {
+      "id": 6497,
+      "before": [
+        4507
+      ],
+      "after": [
+        11149
+      ]
+    },
+    {
+      "id": 11102,
+      "before": [
+        4510
+      ],
+      "after": [
+        11152
+      ]
+    },
+    {
+      "id": 11111,
+      "before": [
+        4510
+      ],
+      "after": [
+        10920
+      ]
+    },
+    {
+      "id": 11078,
+      "before": [
+        4510
+      ],
+      "after": [
+        9325
+      ]
+    },
+    {
+      "id": 11182,
+      "before": [
+        4510
+      ],
+      "after": [
+        9325
+      ]
+    },
+    {
+      "id": 4538,
+      "before": [
+        4487,
+        4510,
+        5857
+      ],
+      "after": [
+        4487
+      ]
+    },
+    {
+      "id": 11093,
+      "before": [
+        10995
+      ],
+      "after": [
+        4538
+      ]
+    },
+    {
+      "id": 10861,
+      "before": [
+        10995
+      ],
+      "after": [
+        4538
+      ]
+    },
+    {
+      "id": 10901,
+      "before": [
+        10995
+      ],
+      "after": [
+        4538
+      ]
+    },
+    {
+      "id": 11088,
+      "before": [
+        10995
+      ],
+      "after": [
+        4538
+      ]
+    },
+    {
+      "id": 11151,
+      "before": [
+        10995
+      ],
+      "after": [
+        4538
+      ]
+    },
+    {
+      "id": 10995,
+      "before": [
+        7815
+      ],
+      "after": [
+        4538
+      ]
+    },
+    {
+      "id": 4619,
+      "before": [
+        4569
+      ],
+      "after": [
+        4582
+      ]
+    },
+    {
+      "id": 4569,
+      "before": [
+        4582
+      ],
+      "after": [
+        4619
+      ]
+    },
+    {
+      "id": 62,
+      "before": [],
+      "after": [
+        36
+      ]
+    },
+    {
+      "id": 10366,
+      "before": [
+        3385,
+        50813
+      ],
+      "after": [
+        3385
+      ]
+    },
+    {
+      "id": 10589,
+      "before": [
+        3385,
+        50814
+      ],
+      "after": [
+        3385
+      ]
+    }
+  ],
+  "flattened": [
+    {
+      "id": 5535,
+      "parent": 4507,
+      "children": [
+        4508,
+        4509,
+        4510,
+        4511,
+        11176
+      ]
+    },
+    {
+      "id": 5725,
+      "parent": 4779,
+      "children": [
+        4837,
+        4840,
+        13323,
+        13324
+      ]
+    }
+  ],
+  "created": {
+    "54944": "Origins of Aesthetics",
+    "54945": "German Philosophy, 21st Century",
+    "54946": "Belgian Philosophy, 19th–20th Centuries"
+  },
+  "selector_repairs": [
+    {
+      "range": [
+        "RC552.A",
+        "RC552.Z"
+      ],
+      "from": 12668,
+      "to": 5434,
+      "specific_phobia_codes": [
+        "A43",
+        "A44",
+        "A45",
+        "A48",
+        "C93",
+        "E44",
+        "F38",
+        "F42",
+        "F423",
+        "F43",
+        "H8",
+        "N66",
+        "S62",
+        "S69"
+      ],
+      "specific_eating_codes": [
+        "A5",
+        "B84",
+        "C65",
+        "E18",
+        "N55"
+      ],
+      "evidence": "Detailed LCC reference_entry RC552 captions; broad other-neuroses range must not imply eating disorders"
+    },
+    {
+      "selector": "190",
+      "system": "ddc",
+      "from": 7622,
+      "to": 4510
+    },
+    {
+      "selector": "BH83",
+      "from": 4507,
+      "to": 54944
+    },
+    {
+      "selector": "BH151",
+      "id": 7622,
+      "action": "restore Modern Aesthetics scope and parent"
+    },
+    {
+      "selector": "189",
+      "system": "ddc",
+      "from": 9891,
+      "to": 4509,
+      "reason": "BH131/BH136 describe medieval aesthetics"
+    },
+    {
+      "range": [
+        "B3397",
+        "B3399"
+      ],
+      "from": 11102,
+      "to": 54945
+    },
+    {
+      "range": [
+        "B4157",
+        "B4175.2"
+      ],
+      "from": 11111,
+      "to": 54946
+    },
+    {
+      "selector": "B162.6",
+      "id": 10995,
+      "action": "restore Shinto Philosophy scope from detailed LCC caption"
+    }
+  ],
+  "retained_fallback_roots": {
+    "53067": "Broad B spans multiple disciplines; retain explicit broad assignment rather than misclassifying it under one discipline",
+    "53068": "Broad G spans geography, anthropology and recreation; retain explicit broad assignment"
+  }
+}

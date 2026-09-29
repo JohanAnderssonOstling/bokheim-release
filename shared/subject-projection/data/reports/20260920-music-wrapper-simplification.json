@@ -1,0 +1,29 @@
+{
+  "probe_count": 501,
+  "changes": [
+    {
+      "before": {
+        "system": "bisac",
+        "code": "MUS020000",
+        "resolved": "759",
+        "candidates": "759"
+      },
+      "after": {
+        "system": "bisac",
+        "code": "MUS020000",
+        "resolved": "782",
+        "candidates": "782"
+      }
+    }
+  ],
+  "checks": "All resolved and candidate IDs unchanged except intended merge 759 -> 782. Probes include all music selectors and LCC range endpoints; range-selector strings are also included but may not resolve as individual codes.",
+  "library_tests": {
+    "passed": 238,
+    "failed": [
+      "declared_damaged_lcc_reaches_unified_projection_with_original_position",
+      "server_slice_is_persisted_as_an_ancestor_closed_local_overlay",
+      "frequent_russian_geographic_codes_resolve_to_specific_regions",
+      "decorative_arts_lcc_detail_routes_to_existing_concepts"
+    ]
+  }
+}

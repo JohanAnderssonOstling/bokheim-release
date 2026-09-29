@@ -1,0 +1,150 @@
+{
+  "created": [],
+  "renamed": [
+    {
+      "id": 51967,
+      "before": "Independent Bosnia and Herzegovina, 1992–Present",
+      "after": "Independence, 1992–Present"
+    },
+    {
+      "id": 51981,
+      "before": "Independent North Macedonia, 1992–Present",
+      "after": "Independence, 1992–Present"
+    },
+    {
+      "id": 51746,
+      "before": "Croatia under Arpad & Angevin Rule, 1102–1527",
+      "after": "Arpad & Angevin Rule, 1102–1527"
+    },
+    {
+      "id": 51748,
+      "before": "Croatia within Yugoslavia, 1918–1945",
+      "after": "Within Yugoslavia, 1918–1945"
+    },
+    {
+      "id": 51751,
+      "before": "Croatian Political History since 1990",
+      "after": "Political History since 1990"
+    },
+    {
+      "id": 51831,
+      "before": "Post-Communist Albanian Political History",
+      "after": "Post-Communist Political History"
+    },
+    {
+      "id": 51971,
+      "before": "North Macedonian Historical Reference",
+      "after": "North Macedonian History Guides"
+    },
+    {
+      "id": 50871,
+      "before": "Brazilian Archaeology & Indigenous History",
+      "after": "Brazil: Archaeology & Native Hist."
+    },
+    {
+      "id": 50841,
+      "before": "Mexican Archaeology & Indigenous History",
+      "after": "Mexico: Archaeology & Native Hist."
+    },
+    {
+      "id": 5581,
+      "before": "Complementary & Traditional Medicine",
+      "after": "Traditional & Complementary Med."
+    },
+    {
+      "id": 6186,
+      "before": "Public Health: Noninfectious Disease",
+      "after": "Noninfectious Public Health"
+    },
+    {
+      "id": 13295,
+      "before": "European Comparative Constitutional Law",
+      "after": "European Comparative Const. Law"
+    },
+    {
+      "id": 13293,
+      "before": "European Comparative Labor & Social Law",
+      "after": "European Comparative Labor/Soc. Law"
+    },
+    {
+      "id": 13294,
+      "before": "Comparative European Court Procedure",
+      "after": "Comparative European Court Proc."
+    },
+    {
+      "id": 51723,
+      "before": "Czechoslovak Foreign Relations History",
+      "after": "Czechoslovak Foreign Relations Hist."
+    },
+    {
+      "id": 51733,
+      "before": "Bulgarian Political & Diplomatic History",
+      "after": "Bulgarian Political/Diplomatic Hist."
+    },
+    {
+      "id": 51776,
+      "before": "Norwegian Political & Diplomatic History",
+      "after": "Norwegian Political/Diplomatic Hist."
+    },
+    {
+      "id": 51855,
+      "before": "Lithuanian Social & Cultural History",
+      "after": "Lithuanian Social/Cultural Hist."
+    },
+    {
+      "id": 51861,
+      "before": "Lithuanian Foreign Relations History",
+      "after": "Lithuanian Foreign Relations Hist."
+    },
+    {
+      "id": 51892,
+      "before": "Belarusian Social & Cultural History",
+      "after": "Belarusian Social/Cultural Hist."
+    },
+    {
+      "id": 51898,
+      "before": "Belarusian Foreign Relations History",
+      "after": "Belarusian Foreign Relations Hist."
+    },
+    {
+      "id": 51923,
+      "before": "Luxembourg Social & Cultural History",
+      "after": "Luxembourg Social/Cultural Hist."
+    },
+    {
+      "id": 51925,
+      "before": "Luxembourg Political & Diplomatic History",
+      "after": "Luxembourg Political/Diplomatic Hist."
+    },
+    {
+      "id": 51935,
+      "before": "Cypriot Political & Diplomatic History",
+      "after": "Cypriot Political/Diplomatic Hist."
+    },
+    {
+      "id": 51973,
+      "before": "North Macedonian Social & Cultural History",
+      "after": "North Macedonian Social/Cultural Hist."
+    },
+    {
+      "id": 51976,
+      "before": "North Macedonian Political & Diplomatic History",
+      "after": "North Macedonian Political/Diplomatic Hist."
+    },
+    {
+      "id": 52004,
+      "before": "Liechtenstein Foreign Relations History",
+      "after": "Liechtenstein Foreign Relations Hist."
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {},
+  "long_names_before": 56,
+  "long_names_after": 36,
+  "merged": [],
+  "empty_groupings_removed": [],
+  "verified_code_groups": 2960936,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0
+}

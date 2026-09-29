@@ -1,0 +1,37 @@
+{
+  "changes": [
+    {
+      "id": 12780,
+      "before": "Military Reference & General Collections",
+      "after": "Military Reference"
+    },
+    {
+      "id": 13137,
+      "before": "New Testament Criticism & Interpretation",
+      "after": "New Testament Interpretation"
+    },
+    {
+      "id": 13136,
+      "before": "Old Testament Criticism & Interpretation",
+      "after": "Old Testament Interpretation"
+    },
+    {
+      "id": 8825,
+      "before": "Mathematical models. Computer simulation",
+      "after": "Telecom Models & Simulation"
+    },
+    {
+      "id": 9670,
+      "before": "Theory of the study of French literature",
+      "after": "French Literary Study Theory"
+    },
+    {
+      "id": 8653,
+      "before": "Germany (Democratic Republic, 1949-1990)",
+      "after": "DDR"
+    }
+  ],
+  "count": 6,
+  "over40_before": 0,
+  "over40_after": 0
+}

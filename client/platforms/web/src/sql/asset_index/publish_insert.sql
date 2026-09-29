@@ -1,0 +1,1 @@
+INSERT INTO asset_file(name,physical_name,byte_length) VALUES(?1,?2,?3) ON CONFLICT(name) DO UPDATE SET physical_name=excluded.physical_name,byte_length=excluded.byte_length

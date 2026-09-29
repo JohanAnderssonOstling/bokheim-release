@@ -1,0 +1,22 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT COALESCE(revision.current_revision, 0)\nFROM libraries AS library\nLEFT JOIN sync_library_revision AS revision ON revision.library_id = library.id\nWHERE library.id = $1;\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "coalesce",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "ce692beb55a9fd8880dc506a37dc57cd88ca6d25a9b7efe590cc1f6f08739d94"
+}

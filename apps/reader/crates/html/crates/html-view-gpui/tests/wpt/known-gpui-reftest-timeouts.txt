@@ -1,0 +1,12 @@
+# Exact static reftests that do not complete in the in-process GPUI runner.
+# Keep these in the manifest and failure ledger; periodically probe them directly.
+css/css-flexbox/flexbox-justify-content-vert-001a.xhtml
+css/css-flexbox/flexbox-justify-content-vert-001b.xhtml
+css/css-flexbox/flexbox-justify-content-vert-002.xhtml
+css/css-flexbox/flexbox-justify-content-vert-003.xhtml
+css/css-flexbox/flexbox-justify-content-vert-004.xhtml
+css/css-flexbox/flexbox-justify-content-vert-005.xhtml
+css/css-flexbox/flexbox-justify-content-vert-006.xhtml
+css/css-flexbox/flexbox-paint-ordering-002.xhtml
+css/css-flexbox/flexbox-sizing-vert-001.xhtml
+css/css-flexbox/flexbox-sizing-vert-002.xhtml

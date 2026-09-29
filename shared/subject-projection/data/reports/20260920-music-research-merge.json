@@ -1,0 +1,5 @@
+{
+  "probes": 498,
+  "changes": [],
+  "validation": "All music selectors and LCC range endpoints compared using the release matcher. Only permitted change: 796 -> 782. Range-selector strings may not resolve as individual call numbers."
+}

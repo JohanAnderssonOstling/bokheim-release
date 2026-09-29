@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE user_storage_account SET used_bytes=used_bytes+$2 WHERE user_id=$1\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Int8"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "5cfe5324e50518d45aadfc9023391ccea43dc54a57d8df64a35ac3ca7161116d"
+}

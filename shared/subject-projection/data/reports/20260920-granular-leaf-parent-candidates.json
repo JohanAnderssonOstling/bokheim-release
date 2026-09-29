@@ -1,0 +1,658 @@
+{
+  "scope": "Review only, no merges applied. Narrowness assessed from current subject scope and hierarchy, not readership or usage. All sources are leaves with one parent and no BISAC/DDC selectors. Retain codes on any approved merge, do not create aliases.",
+  "groups": [
+    {
+      "number": 1,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 9077,
+          "label": "Plywood working",
+          "parents": [
+            3074
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9077,
+                "TT191"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 7439,
+          "label": "Bamboo work",
+          "parents": [
+            3074
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7439,
+                "TT190"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 3074,
+      "target_label": "Woodworking & Upholstery"
+    },
+    {
+      "number": 2,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 7099,
+          "label": "Ornamental & Geometric Turning",
+          "parents": [
+            3068
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7099,
+                "TT203"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 3068,
+      "target_label": "Lathework"
+    },
+    {
+      "number": 3,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 6232,
+          "label": "Graining & marbling",
+          "parents": [
+            3072
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6232,
+                "TT330"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 3072,
+      "target_label": "Painting. Wood finishing"
+    },
+    {
+      "number": 4,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 6908,
+          "label": "Slipcovers",
+          "parents": [
+            3073
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6908,
+                "TT395"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9035,
+          "label": "Pillows & cushions",
+          "parents": [
+            3073
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9035,
+                "TT410"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 3073,
+      "target_label": "Soft home furnishings"
+    },
+    {
+      "number": 5,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 6620,
+          "label": "Awards & Prizes",
+          "parents": [
+            663
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6620,
+                "NC1001.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8772,
+          "label": "Commercial art as a profession",
+          "parents": [
+            663
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8772,
+                "NC1001"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8800,
+          "label": "Economics of commercial art",
+          "parents": [
+            663
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8800,
+                "NC1001.6"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 663,
+      "target_label": "Commercial & Advertising Art"
+    },
+    {
+      "number": 6,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 7457,
+          "label": "Architect-designed furniture",
+          "parents": [
+            653
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7457,
+                "NK2702"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 653,
+      "target_label": "Furniture"
+    },
+    {
+      "number": 7,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 9665,
+          "label": "Design Business Management",
+          "parents": [
+            652
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9665,
+                "NK1173"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9811,
+          "label": "Vocational guidance",
+          "parents": [
+            652
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9811,
+                "NK1172"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 652,
+      "target_label": "Decorative Design"
+    },
+    {
+      "number": 8,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 7625,
+          "label": "Drafting Office Management",
+          "parents": [
+            449
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7625,
+                "T352"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 7176,
+          "label": "Working Drawings",
+          "parents": [
+            449
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7176,
+                "T379"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 449,
+      "target_label": "Engineering Drawing"
+    },
+    {
+      "number": 9,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 7638,
+          "label": "Patent Designs & Models",
+          "parents": [
+            450
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7638,
+                "T324"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8330,
+          "label": "Theory of patents",
+          "parents": [
+            450
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8330,
+                "T211"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 450,
+      "target_label": "Patents. Trademarks"
+    },
+    {
+      "number": 10,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 8759,
+          "label": "Management. Organization",
+          "parents": [
+            447
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8759,
+                "T175.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 447,
+      "target_label": "Industrial R&D"
+    },
+    {
+      "number": 11,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 8871,
+          "label": "Multiplication tables",
+          "parents": [
+            4970
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8871,
+                "QA49"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4970,
+      "target_label": "Tables"
+    },
+    {
+      "number": 12,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 7431,
+          "label": "Calculation Shortcuts",
+          "parents": [
+            4934
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7431,
+                "QA111"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4934,
+      "target_label": "Basic Math"
+    },
+    {
+      "number": 13,
+      "recommendation": "Recommended",
+      "sources": [
+        {
+          "id": 9820,
+          "label": "Newton’s Principia",
+          "parents": [
+            4923
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9820,
+                "QA803"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4923,
+      "target_label": "Analytic mechanics"
+    },
+    {
+      "number": 14,
+      "recommendation": "Optional specialist coarsening",
+      "sources": [
+        {
+          "id": 53111,
+          "label": "Radial Basis Functions",
+          "parents": [
+            4957
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                53111,
+                "QA223"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4957,
+      "target_label": "Approximation Theory"
+    },
+    {
+      "number": 15,
+      "recommendation": "Optional specialist coarsening",
+      "sources": [
+        {
+          "id": 53106,
+          "label": "Spin Geometry",
+          "parents": [
+            6518
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                53106,
+                "QA671.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 6518,
+      "target_label": "Differential geometry"
+    },
+    {
+      "number": 16,
+      "recommendation": "Optional specialist coarsening",
+      "sources": [
+        {
+          "id": 53201,
+          "label": "Arakelov Theory",
+          "parents": [
+            4956
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                53201,
+                "QA242.6"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4956,
+      "target_label": "Number Theory"
+    },
+    {
+      "number": 17,
+      "recommendation": "Optional specialist coarsening",
+      "sources": [
+        {
+          "id": 8741,
+          "label": "Pressure Effects in Chemistry",
+          "parents": [
+            4808
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8741,
+                "QD538"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4808,
+      "target_label": "Physical & Theoretical Chem."
+    },
+    {
+      "number": 18,
+      "recommendation": "Optional specialist coarsening",
+      "sources": [
+        {
+          "id": 7773,
+          "label": "Excited state chemistry",
+          "parents": [
+            4808
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7773,
+                "QD461.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4808,
+      "target_label": "Physical & Theoretical Chem."
+    },
+    {
+      "number": 19,
+      "recommendation": "Optional specialist coarsening",
+      "sources": [
+        {
+          "id": 7660,
+          "label": "Ranking & selection",
+          "parents": [
+            4961
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7660,
+                "QA278.75"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4961,
+      "target_label": "Probability & Statistics"
+    },
+    {
+      "number": 20,
+      "recommendation": "Optional specialist coarsening",
+      "sources": [
+        {
+          "id": 9734,
+          "label": "Research parks",
+          "parents": [
+            447
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9734,
+                "T175.7"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 447,
+      "target_label": "Industrial R&D"
+    }
+  ],
+  "retain_examples": [
+    "Stereochemistry",
+    "Time series analysis",
+    "Skin care",
+    "Nail Care",
+    "Trademark design"
+  ]
+}

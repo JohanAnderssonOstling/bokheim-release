@@ -1,0 +1,21 @@
+{
+  "merges": {
+    "53140": {
+      "into": 98,
+      "old_label": "Human-Computer Interaction Studies",
+      "surviving_label": "Human-Computer Interaction"
+    },
+    "561": {
+      "into": 5699,
+      "old_label": "Buildings",
+      "surviving_label": "Buildings by Type & Use"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply both approved redundant parent-child merges: Human-Computer Interaction Studies into Human-Computer Interaction, and Buildings into Buildings by Type & Use, promoting its four children. Preserve all codes and existing additional child-parent links.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

@@ -1,0 +1,356 @@
+{
+  "merges": {
+    "8038": 2843,
+    "7818": 4465
+  },
+  "renames": [
+    {
+      "id": 5,
+      "before": "Agricultural ecology (General)",
+      "after": "Agricultural ecology"
+    },
+    {
+      "id": 292,
+      "before": "Structural engineering (General)",
+      "after": "Structural engineering"
+    },
+    {
+      "id": 377,
+      "before": "Machine construction (General)",
+      "after": "Machine construction"
+    },
+    {
+      "id": 390,
+      "before": "Turbines. Turbomachines (General)",
+      "after": "Turbines. Turbomachines"
+    },
+    {
+      "id": 495,
+      "before": "Freight (General)",
+      "after": "Freight"
+    },
+    {
+      "id": 497,
+      "before": "Passenger traffic (General)",
+      "after": "Passenger traffic"
+    },
+    {
+      "id": 2191,
+      "before": "Education (General)",
+      "after": "Education"
+    },
+    {
+      "id": 2382,
+      "before": "Geography (General)",
+      "after": "Geography"
+    },
+    {
+      "id": 2395,
+      "before": "Travel. Voyages and travels (General)",
+      "after": "Travel. Voyages and travels"
+    },
+    {
+      "id": 2396,
+      "before": "Tropics (General)",
+      "after": "Tropics"
+    },
+    {
+      "id": 2407,
+      "before": "Surveys (General)",
+      "after": "Surveys"
+    },
+    {
+      "id": 2725,
+      "before": "Medicine (General)",
+      "after": "Medicine"
+    },
+    {
+      "id": 2815,
+      "before": "Immunization of children (General)",
+      "after": "Immunization of children"
+    },
+    {
+      "id": 2863,
+      "before": "Fractures (General)",
+      "after": "Fractures"
+    },
+    {
+      "id": 3679,
+      "before": "Melanesia (General)",
+      "after": "Melanesia"
+    },
+    {
+      "id": 3680,
+      "before": "Micronesia (General)",
+      "after": "Micronesia"
+    },
+    {
+      "id": 3682,
+      "before": "Polynesia (General)",
+      "after": "Polynesia"
+    },
+    {
+      "id": 3860,
+      "before": "Prose (General)",
+      "after": "Prose"
+    },
+    {
+      "id": 4465,
+      "before": "Baltic",
+      "after": "Baltic Literature"
+    },
+    {
+      "id": 4690,
+      "before": "Books (General). Writing. Paleography",
+      "after": "Books. Writing. Paleography"
+    },
+    {
+      "id": 4736,
+      "before": "Information resources (General)",
+      "after": "Information resources"
+    },
+    {
+      "id": 4745,
+      "before": "Libraries (General)",
+      "after": "Libraries"
+    },
+    {
+      "id": 5065,
+      "before": "Folk literature (General)",
+      "after": "Folk literature"
+    },
+    {
+      "id": 5369,
+      "before": "Political science (General)",
+      "after": "Political science"
+    },
+    {
+      "id": 6321,
+      "before": "Electronic circuits (General)",
+      "after": "Electronic circuits"
+    },
+    {
+      "id": 6498,
+      "before": "Materials (General)",
+      "after": "Materials"
+    },
+    {
+      "id": 6657,
+      "before": "Central Asia (General)",
+      "after": "Central Asia"
+    },
+    {
+      "id": 6674,
+      "before": "Woodwind instruments (General)",
+      "after": "Woodwind instruments"
+    },
+    {
+      "id": 6738,
+      "before": "Reading (General)",
+      "after": "Reading"
+    },
+    {
+      "id": 6840,
+      "before": "Evolution (General)",
+      "after": "Evolution"
+    },
+    {
+      "id": 6942,
+      "before": "Percussion instruments (General)",
+      "after": "Percussion instruments"
+    },
+    {
+      "id": 7012,
+      "before": "Hazardous waste sites (General)",
+      "after": "Hazardous waste sites"
+    },
+    {
+      "id": 7043,
+      "before": "Nonferrous metals (General)",
+      "after": "Nonferrous metals"
+    },
+    {
+      "id": 7172,
+      "before": "Evolution of plants (General)",
+      "after": "Evolution of plants"
+    },
+    {
+      "id": 7224,
+      "before": "Arabs in foreign countries (General)",
+      "after": "Arabs in foreign countries"
+    },
+    {
+      "id": 7412,
+      "before": "Government health agencies (General)",
+      "after": "Government health agencies"
+    },
+    {
+      "id": 7416,
+      "before": "Isthmian canal projects (General)",
+      "after": "Isthmian canal projects"
+    },
+    {
+      "id": 7639,
+      "before": "Microscopic observations (General)",
+      "after": "Microscopic observations"
+    },
+    {
+      "id": 7737,
+      "before": "Electronics (General)",
+      "after": "Electronics"
+    },
+    {
+      "id": 7856,
+      "before": "Drug side effects (General)",
+      "after": "Drug side effects"
+    },
+    {
+      "id": 7888,
+      "before": "Vocabulary. Terminology (General)",
+      "after": "Vocabulary. Terminology"
+    },
+    {
+      "id": 7965,
+      "before": "Joint (General)",
+      "after": "Joint"
+    },
+    {
+      "id": 8099,
+      "before": "Map reading (General)",
+      "after": "Map reading"
+    },
+    {
+      "id": 8189,
+      "before": "Plasma devices (General)",
+      "after": "Plasma devices"
+    },
+    {
+      "id": 8219,
+      "before": "Prose (General)",
+      "after": "Prose"
+    },
+    {
+      "id": 8246,
+      "before": "Valves (General)",
+      "after": "Valves"
+    },
+    {
+      "id": 8316,
+      "before": "Safety appliances (General)",
+      "after": "Safety appliances"
+    },
+    {
+      "id": 8329,
+      "before": "Contests (General)",
+      "after": "Contests"
+    },
+    {
+      "id": 8509,
+      "before": "Textile machinery (General)",
+      "after": "Textile machinery"
+    },
+    {
+      "id": 8550,
+      "before": "Hobbies (General)",
+      "after": "Hobbies"
+    },
+    {
+      "id": 8809,
+      "before": "Testing (General)",
+      "after": "Testing"
+    },
+    {
+      "id": 8906,
+      "before": "Electric power plants (General)",
+      "after": "Electric power plants"
+    },
+    {
+      "id": 8960,
+      "before": "Boilers (General)",
+      "after": "Boilers"
+    },
+    {
+      "id": 9024,
+      "before": "Brass instruments (General)",
+      "after": "Brass instruments"
+    },
+    {
+      "id": 9089,
+      "before": "Prose (General)",
+      "after": "Prose"
+    },
+    {
+      "id": 9383,
+      "before": "Haircutting (General)",
+      "after": "Haircutting"
+    },
+    {
+      "id": 9507,
+      "before": "Physiographic regions (General)",
+      "after": "Physiographic regions"
+    },
+    {
+      "id": 9542,
+      "before": "Industrial education (General)",
+      "after": "Industrial education"
+    },
+    {
+      "id": 9547,
+      "before": "Europe (General)",
+      "after": "Europe"
+    },
+    {
+      "id": 9639,
+      "before": "Vocational education (General)",
+      "after": "Vocational education"
+    },
+    {
+      "id": 9697,
+      "before": "Traffic surveys (General)",
+      "after": "Traffic surveys"
+    },
+    {
+      "id": 10000,
+      "before": "Languages (General)",
+      "after": "Languages"
+    },
+    {
+      "id": 10057,
+      "before": "Aircraft (General)",
+      "after": "Aircraft"
+    },
+    {
+      "id": 10187,
+      "before": "Wars of the colonial period (General)",
+      "after": "Wars of the colonial period"
+    },
+    {
+      "id": 10398,
+      "before": "Peace conferences (General)",
+      "after": "Peace conferences"
+    },
+    {
+      "id": 10740,
+      "before": "Goths (General). Visigoths",
+      "after": "Goths. Visigoths"
+    },
+    {
+      "id": 10910,
+      "before": "Medieval (General)",
+      "after": "Medieval"
+    },
+    {
+      "id": 13440,
+      "before": "Eastern Europe (General)",
+      "after": "Eastern Europe"
+    },
+    {
+      "id": 13518,
+      "before": "Instruments and apparatus (General)",
+      "after": "Instruments and apparatus"
+    }
+  ],
+  "renamed_count": 69,
+  "verified_code_groups": 2961373,
+  "aliases_added": 0
+}

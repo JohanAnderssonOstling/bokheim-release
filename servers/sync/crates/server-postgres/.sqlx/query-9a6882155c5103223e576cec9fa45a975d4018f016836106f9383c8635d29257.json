@@ -1,0 +1,22 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH raw_input AS (\n    SELECT * FROM UNNEST(\n        $3::TEXT[], $4::TEXT[], $5::REAL[], $6::BIGINT[],\n        $7::BIGINT[], $8::SMALLINT[], $9::TEXT[]\n    ) AS value(book_id, cfi, progress, changed_at, client_seq, version_rank, event_id)\n),\ninput AS (\n    SELECT DISTINCT ON (book_id) *\n    FROM raw_input\n    ORDER BY book_id, changed_at DESC, version_rank DESC, client_seq DESC, event_id COLLATE \"C\" DESC\n)\nINSERT INTO sync_reading_position_state(\n    library_id, book_id, cfi, progress,\n    changed_at, client_id, client_seq, version_rank, event_id\n)\nSELECT $1, book_id, cfi, progress, changed_at, $2, client_seq, version_rank, event_id\nFROM input\nON CONFLICT (library_id, book_id) DO UPDATE SET\n    cfi=EXCLUDED.cfi, progress=EXCLUDED.progress, changed_at=EXCLUDED.changed_at,\n    client_id=EXCLUDED.client_id, client_seq=EXCLUDED.client_seq,\n    version_rank=EXCLUDED.version_rank, event_id=EXCLUDED.event_id, server_seq=DEFAULT\nWHERE (sync_reading_position_state.changed_at, sync_reading_position_state.version_rank, sync_reading_position_state.client_id COLLATE \"C\", sync_reading_position_state.client_seq, sync_reading_position_state.event_id COLLATE \"C\")\n    < (EXCLUDED.changed_at, EXCLUDED.version_rank, EXCLUDED.client_id COLLATE \"C\", EXCLUDED.client_seq, EXCLUDED.event_id COLLATE \"C\");\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "TextArray",
+        "TextArray",
+        "Float4Array",
+        "Int8Array",
+        "Int8Array",
+        "Int2Array",
+        "TextArray"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "9a6882155c5103223e576cec9fa45a975d4018f016836106f9383c8635d29257"
+}

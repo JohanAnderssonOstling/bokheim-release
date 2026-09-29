@@ -1,0 +1,192 @@
+{
+  "created": [
+    {
+      "id": 51575,
+      "name": "Military Fitness & Sports",
+      "parent": 5260
+    },
+    {
+      "id": 51576,
+      "name": "Military Field Orders",
+      "parent": 5260
+    },
+    {
+      "id": 51577,
+      "name": "Military Ceremonies & Honors",
+      "parent": 5260
+    },
+    {
+      "id": 51578,
+      "name": "Garrison Service",
+      "parent": 5260
+    },
+    {
+      "id": 51579,
+      "name": "Army Safety",
+      "parent": 5260
+    },
+    {
+      "id": 51580,
+      "name": "Military Research",
+      "parent": 5260
+    }
+  ],
+  "renamed": [
+    {
+      "id": 12788,
+      "before": "Military Service, Ceremonies & Research",
+      "after": "Military Service"
+    },
+    {
+      "id": 5649,
+      "before": "Social, Cultural & Sexual Psychology",
+      "after": "Social Class Psychology"
+    },
+    {
+      "id": 51535,
+      "before": "Fifth Republic Political & Diplomatic History",
+      "after": "5th Republic Politics & Diplomacy"
+    },
+    {
+      "id": 51453,
+      "before": "British Diplomatic History, 20th Century",
+      "after": "British Diplomatic Hist., 20th C."
+    },
+    {
+      "id": 51436,
+      "before": "Lancastrian & Yorkist England, 1399–1485",
+      "after": "Lancastrian & Yorkist, 1399–1485"
+    },
+    {
+      "id": 51446,
+      "before": "Regency & Early 19th Century, 1801–1837",
+      "after": "Regency & Early 19th C., 1801–1837"
+    },
+    {
+      "id": 51549,
+      "before": "Restoration of Democracy, 1974–Present",
+      "after": "Democracy Restored, 1974–Present"
+    },
+    {
+      "id": 51480,
+      "before": "Foreign Relations since Reunification",
+      "after": "Post-Reunification Diplomacy"
+    },
+    {
+      "id": 51479,
+      "before": "Political History since Reunification",
+      "after": "Post-Reunification Politics"
+    },
+    {
+      "id": 51452,
+      "before": "British Foreign Relations by Country",
+      "after": "British Diplomacy by Country"
+    },
+    {
+      "id": 51460,
+      "before": "Perestroika & Dissolution, 1985–1991",
+      "after": "Perestroika & Breakup, 1985–1991"
+    },
+    {
+      "id": 51289,
+      "before": "Washington, D.C. Localities & Monuments",
+      "after": "D.C. Places & Monuments"
+    },
+    {
+      "id": 3369,
+      "before": "Tanzanian & German East African History",
+      "after": "Tanzania & German E. Africa Hist."
+    },
+    {
+      "id": 11227,
+      "before": "1838-1944. Martinez regime, 1931-1944",
+      "after": "1838–1944; Martinez, 1931–1944"
+    },
+    {
+      "id": 11432,
+      "before": "French Mandate & Occupation, 1919–1945",
+      "after": "French Mandate/Occupation, 1919–1945"
+    },
+    {
+      "id": 13230,
+      "before": "International Law: Territory & Objects",
+      "after": "Territory in International Law"
+    },
+    {
+      "id": 50861,
+      "before": "English Archaeology & Social History",
+      "after": "English Archaeology & Social Hist."
+    },
+    {
+      "id": 50862,
+      "before": "English Political & Military History",
+      "after": "English Political & Military Hist."
+    },
+    {
+      "id": 50893,
+      "before": "Eastern Woodlands Indigenous History",
+      "after": "Eastern Woodlands Indigenous Hist."
+    },
+    {
+      "id": 50903,
+      "before": "Pacific Northwest Indigenous History",
+      "after": "Pacific Northwest Indigenous Hist."
+    },
+    {
+      "id": 10350,
+      "before": "Northeast African Diplomatic History",
+      "after": "NE African Diplomatic History"
+    },
+    {
+      "id": 12978,
+      "before": "Conflict Resolution & Nationbuilding",
+      "after": "Peacemaking & Nationbuilding"
+    },
+    {
+      "id": 12212,
+      "before": "Writing Exercises & Rhetoric Readers",
+      "after": "Writing & Rhetoric Practice"
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {
+    "4461": [
+      12492
+    ],
+    "4462": [
+      12493
+    ],
+    "12788": [
+      51575,
+      51576,
+      51577,
+      51578,
+      51579,
+      51580
+    ]
+  },
+  "merged": [
+    {
+      "removed": 4461,
+      "retained": 12492
+    },
+    {
+      "removed": 4462,
+      "retained": 12493
+    }
+  ],
+  "empty_groupings_removed": [],
+  "empty_subject_removed": 10309,
+  "verified_code_groups": 2960836,
+  "changed_code_groups": 1249,
+  "transitions": {
+    "[4461] -> [12492]": 841,
+    "[4462] -> [12493]": 255,
+    "[12788] -> [51580]": 88,
+    "[12788] -> [51578]": 16,
+    "[12788] -> [51577]": 16,
+    "[12788] -> [51575]": 31,
+    "[12788] -> [51579]": 2
+  },
+  "aliases_added": 0
+}

@@ -1,0 +1,8 @@
+max_width = 240
+use_small_heuristics = "Max"
+fn_params_layout = "Compressed"
+fn_call_width = 240
+attr_fn_like_width = 240
+struct_lit_width = 240
+chain_width = 240
+single_line_if_else_max_width = 240

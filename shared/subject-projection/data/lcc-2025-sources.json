@@ -1,0 +1,427 @@
+{
+  "edition": "2025",
+  "base_archive": {
+    "filename": "Classification.d191027.xml.gz",
+    "sha256": "fbadc1eb6ab818f734dee6999d75bc3138d10280453d1bf338cce9f8ec4c8b68",
+    "url": "https://tile.loc.gov/storage-services/master/gdc/gdcdatasets/2020445552_2019/2020445552_2019.zip"
+  },
+  "schedules": [
+    {
+      "filename": "LCC_A2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_A2025TEXT.pdf",
+      "bytes": 197465,
+      "sha256": "8818cf6e2b4c8c34cb34bb375f40fcd13f1ff9a23fcff94bf30ad120fb958012",
+      "pages": 77
+    },
+    {
+      "filename": "LCC_B-BJ2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "bytes": 985291,
+      "sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "pages": 352
+    },
+    {
+      "filename": "LCC_BL-BQ2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BL-BQ2025TEXT.pdf",
+      "bytes": 1185075,
+      "sha256": "066a89198f2e1f66ffe25b4f802c8fe2d9dbfbc1d73245a8519e4ec42392ad46",
+      "pages": 432
+    },
+    {
+      "filename": "LCC_BR-BX2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BR-BX2025TEXT.pdf",
+      "bytes": 1423723,
+      "sha256": "b8f6169da2614373712672b6a479f6f81856833618c3de721e709dbc9c30898a",
+      "pages": 639
+    },
+    {
+      "filename": "LCC_C2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_C2025TEXT.pdf",
+      "bytes": 426861,
+      "sha256": "656def039a2ea7d5fa96b0adc2161200c1cadb8ca6de89c10a3eed64dab1b38b",
+      "pages": 196
+    },
+    {
+      "filename": "LCC_D-DR2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "bytes": 1712652,
+      "sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+      "pages": 751
+    },
+    {
+      "filename": "LCC_DS-DX2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "bytes": 982835,
+      "sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+      "pages": 419
+    },
+    {
+      "filename": "LCC_E-F2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_E-F2025TEXT.pdf",
+      "bytes": 1760145,
+      "sha256": "d826d127f49fc430fb72a2bcbd411c461d6e31a19a4ea9e47c28a2a63cb8b483",
+      "pages": 703
+    },
+    {
+      "filename": "LCC_G2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+      "bytes": 1470238,
+      "sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+      "pages": 700
+    },
+    {
+      "filename": "G_Cutter2025.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/G_Cutter2025.pdf",
+      "bytes": 3907604,
+      "sha256": "3af264ef38d3bfadf44765aad355b7191f01be2aafc26b3a0d336ee50c205199",
+      "pages": 2769
+    },
+    {
+      "filename": "LCC_H2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+      "bytes": 1934680,
+      "sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+      "pages": 928
+    },
+    {
+      "filename": "LCC_J2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_J2025TEXT.pdf",
+      "bytes": 924577,
+      "sha256": "08f51d0de6854af2be53b522db3d92cc9672f9f7f67809ad688bdc573d4f1138",
+      "pages": 414
+    },
+    {
+      "filename": "LCC_K_TABLES2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_K_TABLES2025TEXT.pdf",
+      "bytes": 130993,
+      "sha256": "b285d77f964b4fb2069928fd2f644386f95a2d078fdd8fc30b6f1c85ae00f90d",
+      "pages": 34
+    },
+    {
+      "filename": "LCC_K2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_K2025TEXT.pdf",
+      "bytes": 374113,
+      "sha256": "d04edd803ba888ae14a129b3f9c87fabff564b834f759ade3faa6d921c607380",
+      "pages": 125
+    },
+    {
+      "filename": "LCC_KB2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KB2025TEXT.pdf",
+      "bytes": 1152333,
+      "sha256": "2e396a3572cc08c78648f453d38c7b33f88c4a76e4574ff4890b0a03b8b71a20",
+      "pages": 470
+    },
+    {
+      "filename": "LCC_KD2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KD2025TEXT.pdf",
+      "bytes": 509136,
+      "sha256": "8049303d7dfab0d0f62abfe7959f29c3af544993018d2cc35c7449add45f66f9",
+      "pages": 199
+    },
+    {
+      "filename": "LCC_KDZ_KG-KH2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KDZ_KG-KH2025TEXT.pdf",
+      "bytes": 715468,
+      "sha256": "8d779b3e325624ad634fb6541d68a29f2afffefe38015bc0757c3dc4be8e70fb",
+      "pages": 332
+    },
+    {
+      "filename": "LCC_KE2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KE2025TEXT.pdf",
+      "bytes": 526459,
+      "sha256": "daa74543a82473f5515631402bce3b13bc3c5c27e6be6b377c4a52d91757a00d",
+      "pages": 215
+    },
+    {
+      "filename": "LCC_KF2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KF2025TEXT.pdf",
+      "bytes": 1200574,
+      "sha256": "29bcf8df696652bd0333a77e8c4f68a8bb3a175dd58048f7cf279f4a1001bea3",
+      "pages": 522
+    },
+    {
+      "filename": "LCC_KI-KIL2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KI-KIL2025TEXT.pdf",
+      "bytes": 478186,
+      "sha256": "e1d0b0bce84645e210f0695f890095d7f9a0590c87447658428c720c26db341f",
+      "pages": 168
+    },
+    {
+      "filename": "LCC_KIM-KIR2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KIM-KIR2025TEXT.pdf",
+      "bytes": 314938,
+      "sha256": "6c871c5f2f513907dac919b6e14a58e513e6245c1c9f526b82017d8fa4066600",
+      "pages": 110
+    },
+    {
+      "filename": "LCC_KJ-KKZ2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KJ-KKZ2025TEXT.pdf",
+      "bytes": 1333088,
+      "sha256": "2490bb81dfcefa6062202460974fc67289aecb9930c69ce8fae962e2e51c9842",
+      "pages": 550
+    },
+    {
+      "filename": "LCC_KJV-KJW2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KJV-KJW2025TEXT.pdf",
+      "bytes": 601235,
+      "sha256": "20e3fb5ebec4725eaf69accc0383b5dcfa4dc2c2062253f00ead3667533bbd19",
+      "pages": 216
+    },
+    {
+      "filename": "LCC_KK-KKC2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KK-KKC2025TEXT.pdf",
+      "bytes": 1152170,
+      "sha256": "04ba192e694b37e3be64345a3f6843c0f8b9395f5affc4278528f375cb6a64e2",
+      "pages": 429
+    },
+    {
+      "filename": "LCC_KL-KWX2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KL-KWX2025TEXT.pdf",
+      "bytes": 2010856,
+      "sha256": "e928979e81f017ef7a6e151bd7f4351e3006c1dbfe78ea0f011a7e0d1ed6f45b",
+      "pages": 919
+    },
+    {
+      "filename": "LCC_KVJ2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KVJ2025TEXT.pdf",
+      "bytes": 187984,
+      "sha256": "0ac543f2abcda4a116be6cd7e2867d05b4502dcc63b88835552b296974a6bcc9",
+      "pages": 47
+    },
+    {
+      "filename": "LCC_KZ2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_KZ2025TEXT.pdf",
+      "bytes": 442257,
+      "sha256": "a856aff2317ee09e280ea2c96d676363454e68458e1217f9a6c0197d6cb6b592",
+      "pages": 151
+    },
+    {
+      "filename": "LCC_L2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_L2025TEXT.pdf",
+      "bytes": 776248,
+      "sha256": "b596eeb2eb1d5c36c59de0e3f9a6a22c18bbe895bbc31858953d74be26452dc8",
+      "pages": 345
+    },
+    {
+      "filename": "LCC_M2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_M2025TEXT.pdf",
+      "bytes": 744156,
+      "sha256": "7c3a838766cdebe575007b6e09408265e82c29112f0c7c62b7797c8f2fddbbe4",
+      "pages": 334
+    },
+    {
+      "filename": "LCC_N2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "bytes": 1423435,
+      "sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30",
+      "pages": 635
+    },
+    {
+      "filename": "LCC_P_TABLES2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_P_TABLES2025TEXT.pdf",
+      "bytes": 290546,
+      "sha256": "58810a2b9907e6674cdcb582ccd0187911109ab4579b022d89e824239633042e",
+      "pages": 130
+    },
+    {
+      "filename": "LCC_P-PA2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_P-PA2025TEXT.pdf",
+      "bytes": 951506,
+      "sha256": "ae12870f6ad1d691f11ca546bdb3d1d7ce3d6af85a4bec7581448c56db713632",
+      "pages": 368
+    },
+    {
+      "filename": "LCC_PB-PH2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PB-PH2025TEXT.pdf",
+      "bytes": 1546059,
+      "sha256": "716f7e36d6dcfe2ee61b87f49b23ecba1f54b9ff33f9682eb3c3eeb04ffe649a",
+      "pages": 604
+    },
+    {
+      "filename": "LCC_PJ-PK2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PJ-PK2025TEXT.pdf",
+      "bytes": 694714,
+      "sha256": "aa423831deddd50e7c053b419e4263c613011eec23f31edb3c28b16bbf39be45",
+      "pages": 279
+    },
+    {
+      "filename": "LCC_PL-PM2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "bytes": 1617505,
+      "sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "pages": 414
+    },
+    {
+      "filename": "LCC_PN2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PN2025TEXT.pdf",
+      "bytes": 758538,
+      "sha256": "315e955b288ddc0624b283cebeb7d4870aa43a2a1dd357dc5c79f76814a1bae9",
+      "pages": 358
+    },
+    {
+      "filename": "LCC_PQ2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PQ2025TEXT.pdf",
+      "bytes": 1121548,
+      "sha256": "e9ce80ecbe345d72b5200666f253230c2269907a09658ba5f8384a04e1f6a0f7",
+      "pages": 469
+    },
+    {
+      "filename": "LCC_PR-PS_PZ2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PR-PS_PZ2025TEXT.pdf",
+      "bytes": 1520859,
+      "sha256": "6fd4ecbe10d0b2972bda2de6f1100d93dd5bdfdbefe81b2f21343e00bd4731d5",
+      "pages": 676
+    },
+    {
+      "filename": "LCC_PT2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PT2025TEXT.pdf",
+      "bytes": 908829,
+      "sha256": "0ce968c808c5ec7df5d34ad5c25e5b020319ca47a6803b4eca06b9d8b6cc9e72",
+      "pages": 385
+    },
+    {
+      "filename": "LCC_Q2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "bytes": 1588341,
+      "sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be",
+      "pages": 710
+    },
+    {
+      "filename": "LCC_R2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf",
+      "bytes": 1048201,
+      "sha256": "889d4c6492f9ac80dd433ed4e419157395e0303220c3d04838708ae087c7b5a3",
+      "pages": 448
+    },
+    {
+      "filename": "LCC_S2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_S2025TEXT.pdf",
+      "bytes": 890606,
+      "sha256": "bc2337d632ff20a6d601e329783e37d50addef0ba458ad247b5980952ba378d7",
+      "pages": 390
+    },
+    {
+      "filename": "LCC_T2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf",
+      "bytes": 1539556,
+      "sha256": "fa05a75891f21db6e958642f5bb0708003cc25186fe397e81728aeee72604e1c",
+      "pages": 679
+    },
+    {
+      "filename": "LCC_U-V2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_U-V2025TEXT.pdf",
+      "bytes": 587189,
+      "sha256": "996f2fc8431a7eb871949be80a29a1c241906326c6f9b84fb9acb9fa5052bcc3",
+      "pages": 281
+    },
+    {
+      "filename": "LCC_Z2025TEXT.pdf",
+      "url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf",
+      "bytes": 1348551,
+      "sha256": "bdede46225493d54d8a23a9000d2335c373f353f8507dc87432ae6cd4f25519a",
+      "pages": 581
+    }
+  ],
+  "approved_lists": [
+    {
+      "filename": "approved-2025/2501.html",
+      "url": "https://classweb.org/approved/2501.html",
+      "sha256": "9a32a387798cb6a88088caf6050c829f49f9d3f064650300330c8028083aca28"
+    },
+    {
+      "filename": "approved-2025/2501b.html",
+      "url": "https://classweb.org/approved/2501b.html",
+      "sha256": "b9791747356a6454863bb09cd26869cecdd08483fd01c17099f5886e292992ca"
+    },
+    {
+      "filename": "approved-2025/2502.html",
+      "url": "https://classweb.org/approved/2502.html",
+      "sha256": "84ffde67dfca17342cc97f07b825579d7495d4509d9f8c5d7951fcc356ccdc28"
+    },
+    {
+      "filename": "approved-2025/2502b.html",
+      "url": "https://classweb.org/approved/2502b.html",
+      "sha256": "0ca00e2bf23fef4f12cd64bb4e2e2c83583fb1c654735fbaddb2837475fde5d0"
+    },
+    {
+      "filename": "approved-2025/2503.html",
+      "url": "https://classweb.org/approved/2503.html",
+      "sha256": "64bab7a367a12cfcdfbf9c9f6705df23f5c8782f98ae0a5f796f0530ee997915"
+    },
+    {
+      "filename": "approved-2025/2503b.html",
+      "url": "https://classweb.org/approved/2503b.html",
+      "sha256": "60baad1e73c8c04f97c952c7c623520bf58ff417a9835c037f2f6952163b71d2"
+    },
+    {
+      "filename": "approved-2025/2504.html",
+      "url": "https://classweb.org/approved/2504.html",
+      "sha256": "381f0783b275938d536a24e7b27e7afa540e1c29ab12b77c7fb219634417df3b"
+    },
+    {
+      "filename": "approved-2025/2504b.html",
+      "url": "https://classweb.org/approved/2504b.html",
+      "sha256": "1cbaee0d0cbc0dfd32099e724bdd762e3739876a56ba0fdf6657ccdccffe358d"
+    },
+    {
+      "filename": "approved-2025/2505.html",
+      "url": "https://classweb.org/approved/2505.html",
+      "sha256": "1d10634275eec84675e17f235471227d8872b09b5823e24958a3f78c032039be"
+    },
+    {
+      "filename": "approved-2025/2505b.html",
+      "url": "https://classweb.org/approved/2505b.html",
+      "sha256": "95290a66d99b8164ae92e56cf86be38daa60859c50554af28c838065f6307eba"
+    },
+    {
+      "filename": "approved-2025/2506.html",
+      "url": "https://classweb.org/approved/2506.html",
+      "sha256": "d5efffc227509008a2db153c4e3845da6f752a086334ad16cabf6ccbbc459f14"
+    },
+    {
+      "filename": "approved-2025/2506b.html",
+      "url": "https://classweb.org/approved/2506b.html",
+      "sha256": "1725a961f4e8598086f4d846a08d0aa0e96c88e0835c125bde54ffe4de7f8f74"
+    },
+    {
+      "filename": "approved-2025/2507.html",
+      "url": "https://classweb.org/approved/2507.html",
+      "sha256": "8b526097c567469aa531753d2db8bfd413216e86b69e946492003ffa20167998"
+    },
+    {
+      "filename": "approved-2025/2507b.html",
+      "url": "https://classweb.org/approved/2507b.html",
+      "sha256": "46ffac188635118e8e5ae62b426a8aab23e5f375ee4d3bd5824a554e14e639da"
+    },
+    {
+      "filename": "approved-2025/2508.html",
+      "url": "https://classweb.org/approved/2508.html",
+      "sha256": "1885febec0ea5939ec71884fbece2a1cb4f8aa9c7f8223861fb8f5c41571be8c"
+    },
+    {
+      "filename": "approved-2025/2508b.html",
+      "url": "https://classweb.org/approved/2508b.html",
+      "sha256": "3f2418e6faeed99e8358ac50119b095b62f0c6ef5dff39279d24dc9ccd487f5d"
+    },
+    {
+      "filename": "approved-2025/2510.html",
+      "url": "https://classweb.org/approved/2510.html",
+      "sha256": "dc2c5575d727ac10ab8c44dcb45afdd4bc7dea39b17d9f216a1acd8f929159fd"
+    },
+    {
+      "filename": "approved-2025/2510b.html",
+      "url": "https://classweb.org/approved/2510b.html",
+      "sha256": "7afb351d46c76dfe3df589c5850fbf7af2710e7392610fc6e81ef9ff7b40dcf0"
+    },
+    {
+      "filename": "approved-2025/2511.html",
+      "url": "https://classweb.org/approved/2511.html",
+      "sha256": "162a84c66ec47ba2d985ecfd0765ac1947e8ff64d3ba861412c4f0b3eff732a6"
+    },
+    {
+      "filename": "approved-2025/2511b.html",
+      "url": "https://classweb.org/approved/2511b.html",
+      "sha256": "4c68270135dfaa6a3fa2e221a77c2d97e5640dd5576c11a6f177297a54235129"
+    }
+  ]
+}

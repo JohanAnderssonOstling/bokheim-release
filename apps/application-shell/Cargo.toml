@@ -1,0 +1,37 @@
+[package]
+name = "application-shell"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = []
+audiobooks = ["reader-ui/audiobooks"]
+kobo = ["mobile", "audiobooks", "browser-ui/kobo", "reader-ui/kobo", "dep:gpui_kobo", "app/kobo", "dep:ui-components"]
+mobile = ["browser-ui/mobile", "reader-ui/mobile"]
+packaged-pdfium = ["reader-ui/packaged-pdfium"]
+
+[dependencies]
+book-model = { path = "../../shared/book-model" }
+async-channel = "2"
+app = { path = "../../client/app", default-features = false }
+browser-ui = { path = "../browser", default-features = false }
+gpui.workspace = true
+gpui_kobo = { path = "../../../GPUI-Fork/crates/gpui_kobo", optional = true }
+library-model = { path = "../../client/library-model" }
+log = "0.4"
+futures-util = "0.3"
+serde_json = "1"
+uuid = { version = "1", features = ["v4", "js"] }
+web-time = "1"
+reader-ui = { path = "../reader", default-features = false }
+sync-common = { path = "../../shared/sync-common" }
+
+gpui-component.workspace = true
+ui-components = { path = "../components", optional = true }
+
+[dev-dependencies]
+gpui = { workspace = true, features = ["test-support"] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+web-sys = { version = "0.3", features = ["Storage", "Window"] }
+tempfile = "3"

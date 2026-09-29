@@ -1,0 +1,78 @@
+{
+  "created": [],
+  "renamed": [
+    {
+      "id": 5574,
+      "before": "Systems, Architecture & Hardware",
+      "after": "Computer Systems & Hardware"
+    },
+    {
+      "id": 5577,
+      "before": "Applied Computing & IT Management",
+      "after": "IT Applications & Management"
+    },
+    {
+      "id": 5671,
+      "before": "Themes, Society & Contemporary Art",
+      "after": "Art Themes & Movements"
+    },
+    {
+      "id": 5673,
+      "before": "Teaching, Curriculum & Learning",
+      "after": "Teaching & Learning"
+    },
+    {
+      "id": 5698,
+      "before": "Architectural Theory & Practice",
+      "after": "Architecture Theory & Practice"
+    },
+    {
+      "id": 5724,
+      "before": "Methods, Instruments & Measurement",
+      "after": "Scientific Methods & Tools"
+    },
+    {
+      "id": 5919,
+      "before": "Design, Construction & Renovation",
+      "after": "Home Building & Renovation"
+    },
+    {
+      "id": 5955,
+      "before": "Telecommunications & Broadcasting",
+      "after": "Telecom & Broadcasting"
+    },
+    {
+      "id": 6107,
+      "before": "Organization & Information Systems",
+      "after": "Library Systems & Services"
+    },
+    {
+      "id": 11740,
+      "before": "Copyright & Intellectual Property",
+      "after": "Comparative & Intl. IP Law"
+    },
+    {
+      "id": 11750,
+      "before": "Economic, Labor & Trade Regulation",
+      "after": "Comparative Economic Law"
+    },
+    {
+      "id": 10331,
+      "before": "Mesopotamia, Kut & Assyria",
+      "after": "WWI: Mesopotamia, Kut & Assyria"
+    },
+    {
+      "id": 10498,
+      "before": "Naples & the Two Sicilies",
+      "after": "Naples & Two Sicilies History"
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {},
+  "before_over30": 701,
+  "after_over30": 691,
+  "verified_code_groups": 2960849,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0
+}

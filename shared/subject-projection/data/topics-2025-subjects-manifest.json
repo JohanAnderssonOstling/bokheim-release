@@ -1,0 +1,121 @@
+{
+  "new_subjects": [
+    {
+      "label": "Recommender Systems",
+      "concept_id": "bokheim:topics-2025:recommender-systems",
+      "parent_id": "unified:60eccef5-376b-50cc-ad2a-0c5408a4c3ba",
+      "parent_label": "Information resources (General)",
+      "codes": [
+        "ZA3084"
+      ]
+    },
+    {
+      "label": "Filter Bubbles",
+      "concept_id": "bokheim:topics-2025:filter-bubbles",
+      "parent_id": "unified:60eccef5-376b-50cc-ad2a-0c5408a4c3ba",
+      "parent_label": "Information resources (General)",
+      "codes": [
+        "ZA3085"
+      ]
+    },
+    {
+      "label": "Information Overload",
+      "concept_id": "bokheim:topics-2025:information-overload",
+      "parent_id": "unified:60eccef5-376b-50cc-ad2a-0c5408a4c3ba",
+      "parent_label": "Information resources (General)",
+      "codes": [
+        "ZA3082"
+      ]
+    },
+    {
+      "label": "Information Integrity",
+      "concept_id": "bokheim:topics-2025:information-integrity",
+      "parent_id": "unified:60eccef5-376b-50cc-ad2a-0c5408a4c3ba",
+      "parent_label": "Information resources (General)",
+      "codes": [
+        "ZA3073.5"
+      ]
+    },
+    {
+      "label": "Information Ethics",
+      "concept_id": "bokheim:topics-2025:information-ethics",
+      "parent_id": "unified:60eccef5-376b-50cc-ad2a-0c5408a4c3ba",
+      "parent_label": "Information resources (General)",
+      "codes": [
+        "ZA3073"
+      ]
+    },
+    {
+      "label": "Behavioral Cybersecurity",
+      "concept_id": "bokheim:topics-2025:behavioral-cybersecurity",
+      "parent_id": "unified:da206a7f-0a3e-5aad-93fa-bc83e3681be7",
+      "parent_label": "Security",
+      "codes": [
+        "ZA3086.5.C93"
+      ]
+    },
+    {
+      "label": "AI in Education",
+      "concept_id": "bokheim:topics-2025:ai-in-education",
+      "parent_id": "bokheim:lcc-detail:bb5b6622-0dcd-5862-aa28-97c2bc62cb20",
+      "parent_label": "Technology. Educational technology",
+      "codes": [
+        "LB1028.44"
+      ]
+    },
+    {
+      "label": "Robotics in Education",
+      "concept_id": "bokheim:topics-2025:robotics-in-education",
+      "parent_id": "bokheim:lcc-detail:bb5b6622-0dcd-5862-aa28-97c2bc62cb20",
+      "parent_label": "Technology. Educational technology",
+      "codes": [
+        "LB1028.76"
+      ]
+    },
+    {
+      "label": "Soft Robotics",
+      "concept_id": "bokheim:topics-2025:soft-robotics",
+      "parent_id": "unified:25e50e9e-1c60-5d5a-a246-acb6b81d8d16",
+      "parent_label": "Robotics",
+      "codes": [
+        "TJ211.44"
+      ]
+    },
+    {
+      "label": "COVID-19",
+      "concept_id": "bokheim:topics-2025:covid-19",
+      "parent_id": "unified:c9531de8-65c8-5ef1-8e0d-c69137abf9ae",
+      "parent_label": "Infectious Diseases",
+      "codes": [
+        "RA644.C67"
+      ]
+    },
+    {
+      "label": "COVID-19 Vaccines",
+      "concept_id": "bokheim:topics-2025:covid-19-vaccines",
+      "parent_id": "bokheim:lcc-detail:2b89e16a-d05c-51c8-9b73-30caf67dbfb9",
+      "parent_label": "Vaccines",
+      "codes": [
+        "QR189.5.C68"
+      ]
+    },
+    {
+      "label": "Plastics & Microplastics in Soil",
+      "concept_id": "bokheim:topics-2025:plastics-microplastics-in-soil",
+      "parent_id": "bokheim:lcc-detail:c1058523-e62b-5f9f-8bee-ddaf70b70ac0",
+      "parent_label": "Soil pollution. Soil remediation",
+      "codes": [
+        "TD879.P53"
+      ]
+    }
+  ],
+  "existing_subjects": [
+    {
+      "label": "3D Printing",
+      "concept_id": "unified:ae501d99-d38c-5ee5-a276-63366c5e472b",
+      "codes": [
+        "TS183.25"
+      ]
+    }
+  ]
+}

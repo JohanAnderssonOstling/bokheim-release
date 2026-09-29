@@ -1,0 +1,67 @@
+{
+  "changes": [
+    {
+      "id": 12558,
+      "before": "Computer Networks & Information Security",
+      "after": "Networks & Information Security"
+    },
+    {
+      "id": 7336,
+      "before": "Correction and reduction of observations",
+      "after": "Astronomical Data Reduction"
+    },
+    {
+      "id": 8382,
+      "before": "Criticism. Interpretation (Hermeneutics)",
+      "after": "Classical Text Interpretation"
+    },
+    {
+      "id": 3411,
+      "before": "Early nineteenth century, 1801/1809-1845",
+      "after": "Early 19th Century, 1801/1809–1845"
+    },
+    {
+      "id": 13107,
+      "before": "Economic Development—General & Reference",
+      "after": "Economic Development Reference"
+    },
+    {
+      "id": 7623,
+      "before": "Embankments, retaining walls, dams, etc.",
+      "after": "Earth-Retaining Structures"
+    },
+    {
+      "id": 13836,
+      "before": "General & Historical American Government",
+      "after": "U.S. Government & History"
+    },
+    {
+      "id": 6183,
+      "before": "Immunity & Immunization in Public Health",
+      "after": "Immunity & Immunization"
+    },
+    {
+      "id": 8406,
+      "before": "Individual orders, genera, species, etc.",
+      "after": "Embryology by Taxon"
+    },
+    {
+      "id": 9068,
+      "before": "Industrial, Logging & Mining Locomotives",
+      "after": "Industrial Locomotives"
+    },
+    {
+      "id": 4739,
+      "before": "Information in specific formats or media",
+      "after": "Information Formats & Media"
+    },
+    {
+      "id": 13255,
+      "before": "Islamic Private, Family & Commercial Law",
+      "after": "Islamic Private Law"
+    }
+  ],
+  "count": 12,
+  "over40_before": 0,
+  "over40_after": 0
+}

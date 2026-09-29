@@ -1,0 +1,1269 @@
+{
+  "entries": [
+    {
+      "code": "PR6068.O93",
+      "hits": 530,
+      "name": "Rowling, J. K.",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA78908628",
+      "source": 3914,
+      "rank": 1,
+      "reference_heading": "Rowling, J. K.",
+      "target": 52190
+    },
+    {
+      "code": "PR6053.H4535",
+      "hits": 526,
+      "name": "Chesney, Marion (M. C. Beaton)",
+      "record": 197298,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "C"
+      ],
+      "source": 3914,
+      "rank": 2,
+      "reference_heading": "Chesney, Marion",
+      "identity_evidence": "https://www.mcbeaton.com/en-gb/about-the-author/m.c.-beaton",
+      "target": 52191
+    },
+    {
+      "code": "PR6068.E63",
+      "hits": 522,
+      "name": "Rendell, Ruth, 1930-",
+      "record": 197375,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-",
+        "Individual authors",
+        "R"
+      ],
+      "source": 3914,
+      "rank": 3,
+      "reference_heading": "Rendell, Ruth, 1930-",
+      "target": 52192
+    },
+    {
+      "code": "PR6063.C326",
+      "hits": 483,
+      "name": "McCall Smith, Alexander",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA74743399",
+      "source": 3914,
+      "rank": 4,
+      "reference_heading": "McCall Smith, Alexander",
+      "target": 52193
+    },
+    {
+      "code": "PR6066.E693",
+      "hits": 480,
+      "name": "Perry, Anne",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA68800330",
+      "source": 3914,
+      "rank": 5,
+      "reference_heading": "Perry, Anne",
+      "target": 52194
+    },
+    {
+      "code": "PR6053.O75",
+      "hits": 453,
+      "name": "Cornwell, Bernard",
+      "record": 197305,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "C"
+      ],
+      "source": 3914,
+      "rank": 6,
+      "reference_heading": "Cornwell, Bernard",
+      "target": 52195
+    },
+    {
+      "code": "PR6068.U757",
+      "hits": 416,
+      "name": "Rushdie, Salman",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA6363771X",
+      "source": 3914,
+      "rank": 7,
+      "reference_heading": "Rushdie, Salman",
+      "target": 52196
+    },
+    {
+      "code": "PR6066.I53",
+      "hits": 405,
+      "name": "Pinter, Harold",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA50983241",
+      "source": 3914,
+      "rank": 8,
+      "reference_heading": "Pinter, Harold",
+      "target": 52197
+    },
+    {
+      "code": "PR6066.R34",
+      "hits": 388,
+      "name": "Pratchett, Terry",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA79602088",
+      "source": 3914,
+      "rank": 9,
+      "reference_heading": "Pratchett, Terry",
+      "target": 52198
+    },
+    {
+      "code": "PR6062.E33",
+      "hits": 386,
+      "name": "Le Carré, John, 1931-",
+      "record": 197355,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "L"
+      ],
+      "source": 3914,
+      "rank": 10,
+      "reference_heading": "Le Carré, John, 1931-",
+      "target": 52199
+    },
+    {
+      "code": "PR6058.I343",
+      "hits": 385,
+      "name": "Higgins, Jack, 1929-",
+      "record": 197337,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "H"
+      ],
+      "source": 3914,
+      "rank": 11,
+      "reference_heading": "Higgins, Jack, 1929-",
+      "target": 52200
+    },
+    {
+      "code": "PR6063.U7",
+      "hits": 365,
+      "name": "Murdoch, Iris",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA24640485",
+      "source": 3914,
+      "rank": 12,
+      "reference_heading": "Murdoch, Iris",
+      "target": 52201
+    },
+    {
+      "code": "PR6058.E2",
+      "hits": 348,
+      "name": "Heaney, Seamus",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA07472089",
+      "source": 3914,
+      "rank": 13,
+      "reference_heading": "Heaney, Seamus",
+      "target": 52202
+    },
+    {
+      "code": "PR6063.O59",
+      "hits": 347,
+      "name": "Moorcock, Michael",
+      "evidence": "https://ci.nii.ac.jp/ncid/BD07468786",
+      "source": 3914,
+      "rank": 14,
+      "reference_heading": "Moorcock, Michael",
+      "target": 52203
+    },
+    {
+      "code": "PR6056.R27",
+      "hits": 333,
+      "name": "Francis, Dick",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA68456960",
+      "source": 3914,
+      "rank": 15,
+      "reference_heading": "Francis, Dick",
+      "target": 52204
+    },
+    {
+      "code": "PR6069.T6",
+      "hits": 333,
+      "name": "Stoppard, Tom",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA33161814",
+      "source": 3914,
+      "rank": 16,
+      "reference_heading": "Stoppard, Tom",
+      "target": 52205
+    },
+    {
+      "code": "PR6068.A57",
+      "hits": 316,
+      "name": "Rankin, Ian",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA78887368",
+      "source": 3914,
+      "rank": 17,
+      "reference_heading": "Rankin, Ian",
+      "target": 52206
+    },
+    {
+      "code": "PR6056.L4",
+      "hits": 304,
+      "name": "Fleming, Ian",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA53712830",
+      "source": 3914,
+      "rank": 18,
+      "reference_heading": "Fleming, Ian",
+      "target": 52207
+    },
+    {
+      "code": "PR6058.U37",
+      "hits": 293,
+      "name": "Hughes, Ted, 1930-1998",
+      "record": 666718,
+      "end": null,
+      "hierarchy": [
+        "1961-2000",
+        "Individual authors",
+        "H"
+      ],
+      "source": 3914,
+      "rank": 19,
+      "reference_heading": "Hughes, Ted, 1930-1998",
+      "target": 52208
+    },
+    {
+      "code": "PR6054.O37",
+      "hits": 288,
+      "name": "Doherty, P. C.",
+      "evidence": "https://calderdale.spydus.co.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?BRN=327079&SETLVL=",
+      "source": 3914,
+      "rank": 20,
+      "reference_heading": "Doherty, P. C.",
+      "target": 52209
+    },
+    {
+      "code": "PR6053.O525",
+      "hits": 287,
+      "name": "Cookson, Catherine",
+      "record": 197304,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "C"
+      ],
+      "source": 3914,
+      "rank": 21,
+      "reference_heading": "Cookson, Catherine",
+      "target": 52210
+    },
+    {
+      "code": "PR6073.E374",
+      "hits": 284,
+      "name": "Weldon, Fay",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA00802447",
+      "source": 3914,
+      "rank": 22,
+      "reference_heading": "Weldon, Fay",
+      "target": 52211
+    },
+    {
+      "code": "PR6051.R285",
+      "hits": 276,
+      "name": "Archer, Jeffrey",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA29096865",
+      "source": 3914,
+      "rank": 23,
+      "reference_heading": "Archer, Jeffrey",
+      "target": 52212
+    },
+    {
+      "code": "PR6062.O86",
+      "hits": 276,
+      "name": "Lovesey, Peter",
+      "record": 197360,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "L"
+      ],
+      "source": 3914,
+      "rank": 24,
+      "reference_heading": "Lovesey, Peter",
+      "target": 52213
+    },
+    {
+      "code": "PR6052.U638",
+      "hits": 271,
+      "name": "Burgess, Anthony, 1917-",
+      "record": 197265,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "B"
+      ],
+      "source": 3914,
+      "rank": 25,
+      "reference_heading": "Burgess, Anthony, 1917-",
+      "target": 52214
+    },
+    {
+      "code": "PR6054.A35",
+      "hits": 269,
+      "name": "Dahl, Roald",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA4877166X",
+      "source": 3914,
+      "rank": 26,
+      "reference_heading": "Dahl, Roald",
+      "target": 52215
+    },
+    {
+      "code": "PR6054.E37",
+      "hits": 258,
+      "name": "Deighton, Len",
+      "evidence": "https://ci.nii.ac.jp/ncid/BC1613503X",
+      "source": 3914,
+      "rank": 27,
+      "reference_heading": "Deighton, Len",
+      "target": 52216
+    },
+    {
+      "code": "PR6058.I448",
+      "hits": 252,
+      "name": "Hill, Reginald",
+      "record": 197338,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "H"
+      ],
+      "source": 3914,
+      "rank": 28,
+      "reference_heading": "Hill, Reginald",
+      "target": 52217
+    },
+    {
+      "code": "PR6063.I3175",
+      "hits": 250,
+      "name": "Miles, Keith",
+      "record": 633256,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "M"
+      ],
+      "source": 3914,
+      "rank": 29,
+      "reference_heading": "Miles, Keith",
+      "target": 52218
+    },
+    {
+      "code": "PR6063.C4",
+      "hits": 248,
+      "name": "McEwan, Ian",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA51748972",
+      "source": 3914,
+      "rank": 30,
+      "reference_heading": "McEwan, Ian",
+      "target": 52219
+    },
+    {
+      "code": "PR6052.A665",
+      "hits": 242,
+      "name": "Barnard, Robert",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA1436517X?l=en",
+      "source": 3914,
+      "rank": 31,
+      "reference_heading": "Barnard, Robert",
+      "target": 52220
+    },
+    {
+      "code": "PR6052.I7728",
+      "hits": 240,
+      "name": "Binchy, Maeve",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA59858078",
+      "source": 3914,
+      "rank": 32,
+      "reference_heading": "Binchy, Maeve",
+      "target": 52221
+    },
+    {
+      "code": "PR6051.L3",
+      "hits": 237,
+      "name": "Aldiss, Brian Wilson",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA1211396X",
+      "source": 3914,
+      "rank": 33,
+      "reference_heading": "Aldiss, Brian Wilson",
+      "target": 52222
+    },
+    {
+      "code": "PR6052.A46",
+      "hits": 237,
+      "name": "Ballard, J. G.",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA11220818",
+      "source": 3914,
+      "rank": 34,
+      "reference_heading": "Ballard, J. G.",
+      "target": 52223
+    },
+    {
+      "code": "PR6056.O45",
+      "hits": 236,
+      "name": "Follett, Ken",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA25560279",
+      "source": 3914,
+      "rank": 35,
+      "reference_heading": "Follett, Ken",
+      "target": 52224
+    },
+    {
+      "code": "PR6068.O1964",
+      "hits": 233,
+      "name": "Robinson, Peter",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA24397547",
+      "source": 3914,
+      "rank": 36,
+      "reference_heading": "Robinson, Peter",
+      "target": 52225
+    },
+    {
+      "code": "PR6057.R386",
+      "hits": 224,
+      "name": "Gregory, Philippa",
+      "evidence": "https://ci.nii.ac.jp/ncid/BB16833094",
+      "source": 3914,
+      "rank": 37,
+      "reference_heading": "Gregory, Philippa",
+      "target": 52226
+    },
+    {
+      "code": "PR6070.R4",
+      "hits": 224,
+      "name": "Trevor, William",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA29134159",
+      "source": 3914,
+      "rank": 38,
+      "reference_heading": "Trevor, William",
+      "target": 52227
+    },
+    {
+      "code": "PR6060.A467",
+      "hits": 223,
+      "name": "James, P. D.",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA46496021",
+      "source": 3914,
+      "rank": 39,
+      "reference_heading": "James, P. D.",
+      "target": 52228
+    },
+    {
+      "code": "PR6063.A167",
+      "hits": 222,
+      "name": "McCutchan, Philip, 1920-",
+      "record": 197362,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "M"
+      ],
+      "source": 3914,
+      "rank": 40,
+      "reference_heading": "McCutchan, Philip, 1920-",
+      "target": 52229
+    },
+    {
+      "code": "PR6052.A57",
+      "hits": 221,
+      "name": "Banville, John",
+      "record": 641516,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "B"
+      ],
+      "source": 3914,
+      "rank": 41,
+      "reference_heading": "Banville, John",
+      "target": 52230
+    },
+    {
+      "code": "PR6053.A73",
+      "hits": 218,
+      "name": "Carter, Angela",
+      "evidence": "https://ci.nii.ac.jp/ncid/BB02166424?l=en",
+      "source": 3914,
+      "rank": 42,
+      "reference_heading": "Carter, Angela",
+      "target": 52231
+    },
+    {
+      "code": "PR6069.A42",
+      "hits": 216,
+      "name": "Saint, Dora Jessie, 1913-",
+      "record": 197381,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-",
+        "Individual authors",
+        "S"
+      ],
+      "source": 3914,
+      "rank": 43,
+      "reference_heading": "Saint, Dora Jessie, 1913-",
+      "target": 52232
+    },
+    {
+      "code": "PR6063.C37",
+      "hits": 214,
+      "name": "McDermid, Val",
+      "evidence": "https://catalog.library.tamu.edu/Record/in00004733440",
+      "source": 3914,
+      "rank": 44,
+      "reference_heading": "McDermid, Val",
+      "target": 52233
+    },
+    {
+      "code": "PR6060.E43",
+      "hits": 211,
+      "name": "Jeffries, Roderic, 1926-",
+      "record": 197345,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "J"
+      ],
+      "source": 3914,
+      "rank": 45,
+      "reference_heading": "Jeffries, Roderic, 1926-",
+      "target": 52234
+    },
+    {
+      "code": "PR6052.A465",
+      "hits": 208,
+      "name": "Balogh, Mary",
+      "evidence": "https://calderdale.spydus.co.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?BRN=349271&SETLVL=",
+      "source": 3914,
+      "rank": 46,
+      "reference_heading": "Balogh, Mary",
+      "target": 52235
+    },
+    {
+      "code": "PR6051.M5",
+      "hits": 197,
+      "name": "Amis, Martin",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA27360940",
+      "source": 3914,
+      "rank": 47,
+      "reference_heading": "Amis, Martin",
+      "target": 52236
+    },
+    {
+      "code": "PR6052.R4296",
+      "hits": 195,
+      "name": "Brett, Simon",
+      "evidence": "https://ci.nii.ac.jp/ncid/BC15656310",
+      "source": 3914,
+      "rank": 48,
+      "reference_heading": "Brett, Simon",
+      "target": 52237
+    },
+    {
+      "code": "PR6052.O848",
+      "hits": 193,
+      "name": "Bowen, Rhys",
+      "evidence": "https://ci.nii.ac.jp/ncid/BB17890231",
+      "source": 3914,
+      "rank": 49,
+      "reference_heading": "Bowen, Rhys",
+      "target": 52238
+    },
+    {
+      "code": "PR6066.Y58",
+      "hits": 191,
+      "name": "Pym, Barbara",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA61325782",
+      "source": 3914,
+      "rank": 50,
+      "reference_heading": "Pym, Barbara",
+      "target": 52239
+    },
+    {
+      "code": "PR6061.E26",
+      "hits": 190,
+      "name": "Keating, H.R.F. (Henry Reymond Fitzwalter), 1926-",
+      "record": 197347,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "K"
+      ],
+      "source": 3914,
+      "rank": 51,
+      "reference_heading": "Keating, H.R.F. (Henry Reymond Fitzwalter), 1926-",
+      "target": 52240
+    },
+    {
+      "code": "PR6052.A6657",
+      "hits": 189,
+      "name": "Barnes, Julian",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA27822117",
+      "source": 3914,
+      "rank": 52,
+      "reference_heading": "Barnes, Julian",
+      "target": 52241
+    },
+    {
+      "code": "PR6058.I45",
+      "hits": 187,
+      "name": "Hill, Susan",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA20421989",
+      "source": 3914,
+      "rank": 53,
+      "reference_heading": "Hill, Susan",
+      "target": 52242
+    },
+    {
+      "code": "PR6054.A8925",
+      "hits": 186,
+      "name": "Davis, Lindsey",
+      "evidence": "https://elibrary.rockingham.wa.gov.au/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?BRN=403038&SETLVL=",
+      "source": 3914,
+      "rank": 54,
+      "reference_heading": "Davis, Lindsey",
+      "target": 52243
+    },
+    {
+      "code": "PR6058.A6945",
+      "hits": 182,
+      "name": "Harrod-Eagles, Cynthia",
+      "evidence": "https://calderdale.spydus.co.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?BRN=323270&SETLVL=",
+      "source": 3914,
+      "rank": 55,
+      "reference_heading": "Harrod-Eagles, Cynthia",
+      "target": 52244
+    },
+    {
+      "code": "PR6061.E63",
+      "hits": 181,
+      "name": "Kent, Alexander",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA52307098",
+      "source": 3914,
+      "rank": 56,
+      "reference_heading": "Kent, Alexander",
+      "target": 52245
+    },
+    {
+      "code": "PR6052.A849",
+      "hits": 180,
+      "name": "Baxter, Stephen",
+      "evidence": "https://ci.nii.ac.jp/ncid/BB27922436",
+      "source": 3914,
+      "rank": 57,
+      "reference_heading": "Baxter, Stephen",
+      "target": 52246
+    },
+    {
+      "code": "PR6051.Y35",
+      "hits": 177,
+      "name": "Ayckbourn, Alan",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA13341981",
+      "source": 3914,
+      "rank": 58,
+      "reference_heading": "Ayckbourn, Alan",
+      "target": 52247
+    },
+    {
+      "code": "PR6052.E5",
+      "hits": 177,
+      "name": "Bennett, Alan",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA14097026",
+      "source": 3914,
+      "rank": 59,
+      "reference_heading": "Bennett, Alan",
+      "target": 52248
+    },
+    {
+      "code": "PR6057.A63",
+      "hits": 172,
+      "name": "Gardner, John E.",
+      "record": 197323,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "G"
+      ],
+      "source": 3914,
+      "rank": 60,
+      "reference_heading": "Gardner, John E.",
+      "target": 52249
+    },
+    {
+      "code": "PR6060.O6257",
+      "hits": 172,
+      "name": "Jordan, Penny",
+      "evidence": "https://openlibrary.org/books/OL26450895M",
+      "source": 3914,
+      "rank": 61,
+      "reference_heading": "Jordan, Penny",
+      "target": 52250
+    },
+    {
+      "code": "PR6054.R25",
+      "hits": 171,
+      "name": "Drabble, Margaret, 1939-",
+      "record": 197311,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "D"
+      ],
+      "source": 3914,
+      "rank": 62,
+      "reference_heading": "Drabble, Margaret, 1939-",
+      "target": 52251
+    },
+    {
+      "code": "PR6063.A834",
+      "hits": 171,
+      "name": "Masterton, Graham",
+      "evidence": "https://calderdale.spydus.co.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?BRN=299787&SETLVL=",
+      "source": 3914,
+      "rank": 63,
+      "reference_heading": "Masterton, Graham",
+      "target": 52252
+    },
+    {
+      "code": "PR6070.R57",
+      "hits": 169,
+      "name": "Trollope, Joanna",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA7224848X",
+      "source": 3914,
+      "rank": 64,
+      "reference_heading": "Trollope, Joanna",
+      "target": 52253
+    },
+    {
+      "code": "PR6073.I246",
+      "hits": 169,
+      "name": "Kinsella, Sophie",
+      "evidence": "https://ci.nii.ac.jp/ncid/BB1794440X?l=en",
+      "source": 3914,
+      "rank": 65,
+      "reference_heading": "Kinsella, Sophie",
+      "target": 52254
+    },
+    {
+      "code": "PR6052.E196",
+      "hits": 168,
+      "name": "Chesney, Marion (M. C. Beaton)",
+      "record": 43849,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "B"
+      ],
+      "source": 3914,
+      "rank": 66,
+      "reference_heading": "Beaton, M.C.",
+      "identity_evidence": "https://www.mcbeaton.com/en-gb/about-the-author/m.c.-beaton",
+      "target": 52191
+    },
+    {
+      "code": "PR6053.O48645",
+      "hits": 168,
+      "name": "Connolly, John",
+      "evidence": "https://library.kaist.ac.kr/search/ctlgSearch/posesn/view.do?bibctrlno=721018&ty=B",
+      "source": 3914,
+      "rank": 67,
+      "reference_heading": "Connolly, John",
+      "target": 52255
+    },
+    {
+      "code": "PR6052.R5816",
+      "hits": 166,
+      "name": "Brookner, Anita",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA10688993",
+      "source": 3914,
+      "rank": 68,
+      "reference_heading": "Brookner, Anita",
+      "target": 52256
+    },
+    {
+      "code": "PR6056.R5",
+      "hits": 166,
+      "name": "Friel, Brian",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA29237901",
+      "source": 3914,
+      "rank": 69,
+      "reference_heading": "Friel, Brian",
+      "target": 52257
+    },
+    {
+      "code": "PR6056.O699",
+      "hits": 165,
+      "name": "Forsyth, Frederick",
+      "evidence": "https://ci.nii.ac.jp/ncid/BB07873225",
+      "source": 3914,
+      "rank": 70,
+      "reference_heading": "Forsyth, Frederick",
+      "target": 52258
+    },
+    {
+      "code": "PR6056.O85",
+      "hits": 165,
+      "name": "Fowles, John",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA18287125",
+      "source": 3914,
+      "rank": 71,
+      "reference_heading": "Fowles, John",
+      "target": 52259
+    },
+    {
+      "code": "PR6051.D3352",
+      "hits": 164,
+      "name": "Adams, Douglas",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA73240348",
+      "source": 3914,
+      "rank": 72,
+      "reference_heading": "Adams, Douglas",
+      "target": 52260
+    },
+    {
+      "code": "PR6056.R3",
+      "hits": 164,
+      "name": "Frayn, Michael",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA7980251X",
+      "source": 3914,
+      "rank": 73,
+      "reference_heading": "Frayn, Michael",
+      "target": 52261
+    },
+    {
+      "code": "PR6069.E734",
+      "hits": 163,
+      "name": "Seymour, Gerald",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA77056114",
+      "source": 3914,
+      "rank": 74,
+      "reference_heading": "Seymour, Gerald",
+      "target": 52262
+    },
+    {
+      "code": "PR6052.O5",
+      "hits": 161,
+      "name": "Bond, Edward",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA04360453",
+      "source": 3914,
+      "rank": 75,
+      "reference_heading": "Bond, Edward",
+      "target": 52263
+    },
+    {
+      "code": "PR6054.U537",
+      "hits": 161,
+      "name": "Dunn, Carola",
+      "evidence": "https://ci.nii.ac.jp/ncid/BB18857945",
+      "source": 3914,
+      "rank": 76,
+      "reference_heading": "Dunn, Carola",
+      "target": 52264
+    },
+    {
+      "code": "PR6052.O9192",
+      "hits": 160,
+      "name": "Boyd, William",
+      "evidence": "https://ci.nii.ac.jp/ncid/BB09155958?l=ja",
+      "source": 3914,
+      "rank": 77,
+      "reference_heading": "Boyd, William",
+      "target": 52265
+    },
+    {
+      "code": "PR6053.O425",
+      "hits": 160,
+      "name": "Collins, Jackie",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA61943919",
+      "source": 3914,
+      "rank": 78,
+      "reference_heading": "Collins, Jackie",
+      "target": 52266
+    },
+    {
+      "code": "PR6056.R456",
+      "hits": 157,
+      "name": "French, Nicci",
+      "evidence": "https://calderdale.spydus.co.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?BRN=275810&SETLVL=",
+      "source": 3914,
+      "rank": 79,
+      "reference_heading": "French, Nicci",
+      "identity_note": "Joint pen name of Nicci Gerrard and Sean French; retained as one writing partnership.",
+      "identity_evidence": "https://www.penguin.co.uk/books/55284/what-to-do-when-someone-dies-by-french-nicci/9780141959948",
+      "target": 52267
+    },
+    {
+      "code": "PR6057.A319",
+      "hits": 157,
+      "name": "Gaiman, Neil",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA75428692",
+      "source": 3914,
+      "rank": 80,
+      "reference_heading": "Gaiman, Neil",
+      "target": 52268
+    },
+    {
+      "code": "PR6061.E88",
+      "hits": 157,
+      "name": "Keyes, Marian",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA74934240",
+      "source": 3914,
+      "rank": 81,
+      "reference_heading": "Keyes, Marian",
+      "target": 52269
+    },
+    {
+      "code": "PR6073.A354",
+      "hits": 157,
+      "name": "Wainwright, John William, 1921-",
+      "record": 197405,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "W"
+      ],
+      "source": 3914,
+      "rank": 82,
+      "reference_heading": "Wainwright, John William, 1921-",
+      "target": 52270
+    },
+    {
+      "code": "PR6065.B7",
+      "hits": 156,
+      "name": "O'Brien, Edna",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA26027505",
+      "source": 3914,
+      "rank": 83,
+      "reference_heading": "O'Brien, Edna",
+      "target": 52271
+    },
+    {
+      "code": "PR6059.S5",
+      "hits": 155,
+      "name": "Ishiguro, Kazuo",
+      "evidence": "https://ci.nii.ac.jp/ncid/BC18261319",
+      "source": 3914,
+      "rank": 84,
+      "reference_heading": "Ishiguro, Kazuo",
+      "target": 52272
+    },
+    {
+      "code": "PR6062.I89",
+      "hits": 154,
+      "name": "Lively, Penelope",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA65966235",
+      "source": 3914,
+      "rank": 85,
+      "reference_heading": "Lively, Penelope",
+      "target": 52273
+    },
+    {
+      "code": "PR6058.A5928",
+      "hits": 152,
+      "name": "Hannah, Sophie",
+      "evidence": "https://ci.nii.ac.jp/ncid/BB23649266",
+      "source": 3914,
+      "rank": 86,
+      "reference_heading": "Hannah, Sophie",
+      "target": 52274
+    },
+    {
+      "code": "PR6063.A248",
+      "hits": 152,
+      "name": "MacLean, Alistair, 1922 or 3-",
+      "record": 197363,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "M"
+      ],
+      "source": 3914,
+      "rank": 87,
+      "reference_heading": "MacLean, Alistair, 1922 or 3-",
+      "target": 52275
+    },
+    {
+      "code": "PR6062.E9546",
+      "hits": 151,
+      "name": "Lewis, Susan",
+      "evidence": "https://calderdale.spydus.co.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?BRN=777128&SETLVL=",
+      "source": 3914,
+      "rank": 88,
+      "reference_heading": "Lewis, Susan",
+      "target": 52276
+    },
+    {
+      "code": "PR6052.Y2",
+      "hits": 150,
+      "name": "Byatt, A. S.",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA43919683",
+      "source": 3914,
+      "rank": 89,
+      "reference_heading": "Byatt, A. S.",
+      "target": 52277
+    },
+    {
+      "code": "PR6062.A65",
+      "hits": 150,
+      "name": "La Plante, Lynda",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA68799060",
+      "source": 3914,
+      "rank": 90,
+      "reference_heading": "La Plante, Lynda",
+      "target": 52278
+    },
+    {
+      "code": "PR6060.A472",
+      "hits": 146,
+      "name": "James, Peter",
+      "evidence": "https://calderdale.spydus.co.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?BRN=388701&SETLVL=",
+      "source": 3914,
+      "rank": 91,
+      "reference_heading": "James, Peter",
+      "target": 52279
+    },
+    {
+      "code": "PR6053.H786",
+      "hits": 145,
+      "name": "Churchill, Caryl",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA23805047",
+      "source": 3914,
+      "rank": 92,
+      "reference_heading": "Churchill, Caryl",
+      "target": 52280
+    },
+    {
+      "code": "PR6056.R4",
+      "hits": 144,
+      "name": "Freeling, Nicolas",
+      "record": 197321,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "F"
+      ],
+      "source": 3914,
+      "rank": 93,
+      "reference_heading": "Freeling, Nicolas",
+      "target": 52281
+    },
+    {
+      "code": "PR6069.E3654",
+      "hits": 144,
+      "name": "Self, Will",
+      "evidence": "https://ci.nii.ac.jp/ncid/BB10321511",
+      "source": 3914,
+      "rank": 94,
+      "reference_heading": "Self, Will",
+      "target": 52282
+    },
+    {
+      "code": "PR6062.O36",
+      "hits": 143,
+      "name": "Lodge, David",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA07749218",
+      "source": 3914,
+      "rank": 95,
+      "reference_heading": "Lodge, David",
+      "target": 52283
+    },
+    {
+      "code": "PR6070.U23",
+      "hits": 141,
+      "name": "James, Bill",
+      "evidence": "https://calderdale.spydus.co.uk/cgi-bin/spydus.exe/ENQ/OPAC/BIBENQ?BRN=223917&SETLVL=",
+      "source": 3914,
+      "rank": 96,
+      "reference_heading": "James, Bill",
+      "target": 52284
+    },
+    {
+      "code": "PR6057.R2374",
+      "hits": 140,
+      "name": "Graham, Lynne",
+      "evidence": "https://hchlibrary.org/freading/frd00056335",
+      "source": 3914,
+      "rank": 97,
+      "reference_heading": "Graham, Lynne",
+      "target": 52285
+    },
+    {
+      "code": "PR6058.A6886",
+      "hits": 140,
+      "name": "Harris, John, 1916-",
+      "record": 197335,
+      "end": null,
+      "hierarchy": [
+        "English literature",
+        "1961-2000",
+        "Individual authors",
+        "H"
+      ],
+      "source": 3914,
+      "rank": 98,
+      "reference_heading": "Harris, John, 1916-",
+      "target": 52286
+    },
+    {
+      "code": "PR6054.O95",
+      "hits": 139,
+      "name": "Doyle, Roddy",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA22934146",
+      "source": 3914,
+      "rank": 99,
+      "reference_heading": "Doyle, Roddy",
+      "target": 52287
+    },
+    {
+      "code": "PR6069.W47",
+      "hits": 139,
+      "name": "Swift, Graham",
+      "evidence": "https://ci.nii.ac.jp/ncid/BA03428937",
+      "source": 3914,
+      "rank": 100,
+      "reference_heading": "Swift, Graham",
+      "target": 52288
+    }
+  ],
+  "new_ids": [
+    52190,
+    52191,
+    52192,
+    52193,
+    52194,
+    52195,
+    52196,
+    52197,
+    52198,
+    52199,
+    52200,
+    52201,
+    52202,
+    52203,
+    52204,
+    52205,
+    52206,
+    52207,
+    52208,
+    52209,
+    52210,
+    52211,
+    52212,
+    52213,
+    52214,
+    52215,
+    52216,
+    52217,
+    52218,
+    52219,
+    52220,
+    52221,
+    52222,
+    52223,
+    52224,
+    52225,
+    52226,
+    52227,
+    52228,
+    52229,
+    52230,
+    52231,
+    52232,
+    52233,
+    52234,
+    52235,
+    52236,
+    52237,
+    52238,
+    52239,
+    52240,
+    52241,
+    52242,
+    52243,
+    52244,
+    52245,
+    52246,
+    52247,
+    52248,
+    52249,
+    52250,
+    52251,
+    52252,
+    52253,
+    52254,
+    52255,
+    52256,
+    52257,
+    52258,
+    52259,
+    52260,
+    52261,
+    52262,
+    52263,
+    52264,
+    52265,
+    52266,
+    52267,
+    52268,
+    52269,
+    52270,
+    52271,
+    52272,
+    52273,
+    52274,
+    52275,
+    52276,
+    52277,
+    52278,
+    52279,
+    52280,
+    52281,
+    52282,
+    52283,
+    52284,
+    52285,
+    52286,
+    52287,
+    52288
+  ]
+}

@@ -1,0 +1,332 @@
+[
+  {
+    "id": 13841,
+    "label": "Christian Theology Reference",
+    "target": 4581,
+    "target_label": "Christian Theology",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "BT1",
+          "BT18.Z",
+          13841
+        ],
+        [
+          "BT38",
+          "BT82.7",
+          13841
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13017,
+    "label": "Special Buddhist Doctrines",
+    "target": 5751,
+    "target_label": "Teachings & Doctrine",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "BQ4180",
+          "BQ4570",
+          13017
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5757,
+    "label": "Biography, Reference & Research",
+    "target": 4553,
+    "target_label": "Buddhism",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [
+        [
+          5757,
+          "BQ128"
+        ],
+        [
+          5757,
+          "BQ130"
+        ]
+      ],
+      "lcc_range": [
+        [
+          "BQ1",
+          "BQ8",
+          5757
+        ],
+        [
+          "BQ100",
+          "BQ102",
+          5757
+        ],
+        [
+          "BQ104",
+          "BQ105",
+          5757
+        ],
+        [
+          "BQ141",
+          "BQ148",
+          5757
+        ],
+        [
+          "BQ141",
+          "BQ209",
+          5757
+        ],
+        [
+          "BQ166",
+          "BQ167",
+          5757
+        ],
+        [
+          "BQ171",
+          "BQ199",
+          5757
+        ],
+        [
+          "BQ200",
+          "BQ209",
+          5757
+        ],
+        [
+          "BQ210",
+          "BQ219",
+          5757
+        ],
+        [
+          "BQ4000",
+          "BQ4018",
+          5757
+        ],
+        [
+          "BQ4011",
+          "BQ4018",
+          5757
+        ],
+        [
+          "BQ5851",
+          "BQ5858",
+          5757
+        ],
+        [
+          "BQ5851",
+          "BQ5899",
+          5757
+        ],
+        [
+          "BQ5892",
+          "BQ5894",
+          5757
+        ],
+        [
+          "BQ840",
+          "BQ858",
+          5757
+        ],
+        [
+          "BQ840",
+          "BQ999",
+          5757
+        ],
+        [
+          "BQ860",
+          "BQ999",
+          5757
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 6314,
+    "label": "Modern Biography History",
+    "target": 3220,
+    "target_label": "Biography & Biographer History",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [
+        [
+          6314,
+          "CT84"
+        ]
+      ],
+      "lcc_range": [
+        [
+          "CT71",
+          "CT83",
+          6314
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 9204,
+    "label": "Collective",
+    "target": 4715,
+    "target_label": "Bibliographers",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [
+        [
+          9204,
+          "Z1003.8"
+        ]
+      ],
+      "lcc_range": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52740,
+    "label": "Special-Enterprise Management",
+    "target": 11595,
+    "target_label": "Enterprise & Project Management",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [
+        [
+          52740,
+          "HD62.2-HD62.8"
+        ]
+      ],
+      "lcc_range": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52741,
+    "label": "International Enterprise Management",
+    "target": 11595,
+    "target_label": "Enterprise & Project Management",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "HD62.4",
+          "HD62.45",
+          52741
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 8843,
+    "label": "Culinary Communication",
+    "target": 5901,
+    "target_label": "History, People, Media & Reference",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "TX643",
+          "TX644",
+          8843
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13061,
+    "label": "Buddhist Ritual Objects",
+    "target": 5754,
+    "target_label": "Buddhist Practice & Ritual",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "BQ5070",
+          "BQ5099.9",
+          13061
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13062,
+    "label": "Symbols & Temple Organization",
+    "target": 5754,
+    "target_label": "Buddhist Practice & Ritual",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "BQ5100",
+          "BQ5139.9",
+          13062
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12500,
+    "label": "Parenting",
+    "target": 12498,
+    "target_label": "Christian Family Life",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "BV4529",
+          "BV4529.15",
+          12500
+        ],
+        [
+          "BV4529",
+          "BV4529.18",
+          12500
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12504,
+    "label": "Consolation & Encouragement",
+    "target": 11588,
+    "target_label": "Christian Life & Devotion",
+    "status": "Candidate only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "BV4900",
+          "BV4911",
+          12504
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  }
+]

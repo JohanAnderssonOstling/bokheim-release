@@ -1,0 +1,12 @@
+[target.wasm32-unknown-unknown]
+rustflags = ["--cfg", "getrandom_backend=\"wasm_js\""]
+
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static", "-l", "gdi32", "-l", "user32", "-l", "advapi32"]
+
+[env]
+PDFIUM_STATIC_LIB_PATH_x86_64_pc_windows_msvc = { value = ".pdfium/x86_64-pc-windows-msvc", relative = true }
+
+# Public release trust; private feed-signing key stays outside the repository.
+BOKHEIM_UPDATE_PUBLIC_KEY_HEX = "f9e4a3504b65243b84d497bc3b0434793803c794c0db129701ea563d0a51efa3"
+BOKHEIM_UPDATE_KEY_ID = "release-1"

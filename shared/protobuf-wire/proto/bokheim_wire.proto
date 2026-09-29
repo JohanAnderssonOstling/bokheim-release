@@ -1,0 +1,264 @@
+syntax = "proto3";
+
+package bokheim.wire.v16;
+
+// A self-describing protobuf representation of the Serde value model. This
+// lets every existing Rust contract use one codec while retaining integer
+// widths, byte strings, options, newtypes, arbitrary map keys, and enum shapes.
+
+message Envelope {
+  uint32 version = 1;
+  Value value = 2;
+}
+
+message Value {
+  oneof kind {
+    bool bool_value = 1;
+    uint32 u32_value = 2;
+    uint64 u64_value = 3;
+    sint32 i32_value = 4;
+    sint64 i64_value = 5;
+    fixed32 f32_bits = 6;
+    fixed64 f64_bits = 7;
+    uint32 char_value = 8;
+    string string_value = 9;
+    Unit unit = 10;
+    OptionalValue option_value = 11;
+    Value newtype_value = 12;
+    Sequence sequence = 13;
+    Map map = 14;
+    bytes bytes_value = 15;
+  }
+}
+
+message Unit {}
+message OptionalValue { optional Value value = 1; }
+message Sequence { repeated Value values = 1; }
+message Map { repeated MapEntry entries = 1; }
+message MapEntry {
+  Value key = 1;
+  Value value = 2;
+}
+
+// Typed payload carried by WireMutation.value. These field numbers and enum
+// values form the mutation compatibility baseline: never renumber or reuse
+// them. Additive fields must remain optional or have a safe zero default.
+message MutationValue {
+  reserved 8, 9, 10;
+  oneof kind {
+    string directory_name = 1;
+    string directory_parent = 2;
+    DirectoryLifecycle directory_lifecycle = 3;
+    BookLifecycle book_lifecycle = 4;
+    Placement placement = 5;
+    ReadingPosition reading_position = 6;
+    Annotation annotation = 7;
+    BookRecord metadata = 11;
+    string description = 12;
+    bytes pdf_reader_metadata = 13; // Versioned JSON geometry, keyed by exact checksum.
+    BookFacts book_facts = 15;
+    bytes book_toc = 14; // JSON navigation tree, keyed by the book's identity.
+  }
+}
+
+enum DirectoryLifecycle {
+  DIRECTORY_LIFECYCLE_UNSPECIFIED = 0;
+  DIRECTORY_LIFECYCLE_PRESENT = 1;
+  DIRECTORY_LIFECYCLE_DELETED = 2;
+  DIRECTORY_LIFECYCLE_PURGED = 3;
+}
+
+message BookLifecycle {
+  oneof state {
+    PresentBook present = 1;
+    DeletedBook deleted = 2;
+    PurgedBook purged = 3;
+  }
+}
+
+message PresentBook {
+  reserved 1; // Metadata is owned exclusively by the metadata register.
+  reserved 2, 3; // Book facts have their own register.
+}
+message BookFacts {
+  uint64 added_at = 1;
+  BookFormat format = 2;
+}
+message DeletedBook { optional string origin_folder_id = 1; }
+message PurgedBook {}
+
+enum BookFormat {
+  BOOK_FORMAT_UNSPECIFIED = 0;
+  BOOK_FORMAT_EPUB = 1;
+  BOOK_FORMAT_PDF = 2;
+  BOOK_FORMAT_MOBI = 3;
+  BOOK_FORMAT_FB2 = 4;
+  BOOK_FORMAT_CBZ = 5;
+  BOOK_FORMAT_HTML = 6;
+  BOOK_FORMAT_WEBPUB = 7;
+  BOOK_FORMAT_M4B = 8;
+  BOOK_FORMAT_MP3_FOLDER = 9;
+}
+
+message Placement {
+  bool present = 1;
+  optional string origin_folder_id = 2;
+}
+
+message ReadingPosition {
+  oneof location {
+    string epub_cfi = 1;
+    uint32 pdf_page = 2;
+    uint64 audiobook_millis = 3;
+  }
+  float progress = 4;
+  // For PDF readers, this stores the document-space full-page y-offset used for
+  // precise restore and must be finite when provided. Negative values can be
+  // clamped to 0 by restorers.
+  optional float pdf_full_page_position = 5;
+}
+
+message Annotation {
+  string content_hash = 1;
+  AnnotationAnchor anchor = 2;
+  string exact_text = 3;
+  AnnotationStyle style = 4;
+  string color = 5;
+  string note = 6;
+  uint64 created_at = 7;
+  uint64 modified_at = 8;
+  bool deleted = 9;
+  optional int64 toc_ordinal = 10;
+  optional float progress = 11;
+}
+
+message AnnotationAnchor {
+  oneof anchor {
+    string epub_cfi = 1;
+    PdfAnnotationAnchor pdf = 2;
+  }
+}
+message PdfAnnotationAnchor {
+  uint32 page_index = 1;
+  repeated PdfAnnotationRect rects = 2;
+  optional string fallback_cfi = 3;
+}
+message PdfAnnotationRect {
+  float left = 1;
+  float top = 2;
+  float width = 3;
+  float height = 4;
+}
+enum AnnotationStyle {
+  ANNOTATION_STYLE_UNSPECIFIED = 0;
+  ANNOTATION_STYLE_HIGHLIGHT = 1;
+  ANNOTATION_STYLE_UNDERLINE = 2;
+  ANNOTATION_STYLE_SQUIGGLY = 3;
+  ANNOTATION_STYLE_STRIKETHROUGH = 4;
+}
+
+message BookRecord {
+  string title = 1;
+  repeated Contributor contributors = 2;
+  reserved 3;
+  reserved "description"; // Description is an independent sync register.
+  BookMetadata book = 4;
+  optional string subtitle = 5;
+}
+message Contributor {
+  string contributor_id = 1;
+  string name = 2;
+  reserved 3;
+  bytes role = 4;
+}
+message BookMetadata {
+  repeated BookIdentifier identifiers = 1;
+  repeated Publisher publishers = 2;
+  repeated string languages = 3;
+  repeated BookDate dates = 4;
+  repeated BookSubject subjects = 5;
+  repeated BookCollection collections = 6;
+  repeated BookTitle alternate_titles = 7;
+  repeated string rights = 8;
+  repeated string sources = 9;
+  repeated string types = 10;
+  repeated string formats = 11;
+  repeated string relations = 12;
+  repeated string coverage = 13;
+  repeated BookProperty properties = 14;
+}
+message BookIdentifier {
+  string value = 1;
+  IdentifierScheme scheme = 2;
+  optional string other_scheme = 3;
+  repeated BookIdentifierType identifier_types = 4;
+}
+enum IdentifierScheme {
+  IDENTIFIER_SCHEME_UNSPECIFIED = 0;
+  IDENTIFIER_SCHEME_ISBN = 1;
+  IDENTIFIER_SCHEME_ASIN = 2;
+  IDENTIFIER_SCHEME_DOI = 3;
+  IDENTIFIER_SCHEME_ISSN = 4;
+  IDENTIFIER_SCHEME_OCLC = 5;
+  IDENTIFIER_SCHEME_LCCN = 6;
+  IDENTIFIER_SCHEME_UUID = 7;
+  IDENTIFIER_SCHEME_CALIBRE = 8;
+  IDENTIFIER_SCHEME_GOOGLE = 9;
+  IDENTIFIER_SCHEME_GOODREADS = 10;
+  IDENTIFIER_SCHEME_KOBO = 11;
+  IDENTIFIER_SCHEME_OTHER = 12;
+}
+message BookIdentifierType {
+  string value = 1;
+  optional string scheme = 2;
+}
+message Publisher {
+  string publisher_id = 1;
+  string name = 2;
+}
+message BookDate {
+  optional string id = 1;
+  string value = 2;
+  optional string event = 3;
+  optional string source = 4;
+}
+message BookSubject {
+  optional string id = 1;
+  string name = 2;
+  optional string authority = 3;
+  optional string code = 4;
+  optional string source = 5;
+  repeated LocalizedText name_localizations = 6;
+  optional string sort_name = 7;
+  repeated LocalizedText sort_name_localizations = 8;
+}
+message BookCollection {
+  string name = 1;
+  optional string collection_type = 2;
+  optional string position = 3;
+  repeated LocalizedText name_localizations = 4;
+  optional string sort_name = 5;
+  repeated LocalizedText sort_name_localizations = 6;
+  repeated string identifiers = 7;
+  optional string source = 8;
+}
+message LocalizedText {
+  string language = 1;
+  string value = 2;
+}
+message BookTitle {
+  optional string id = 1;
+  string value = 2;
+  optional string title_type = 3;
+  optional string sort_as = 4;
+  optional string source = 5;
+}
+message BookProperty {
+  optional string id = 1;
+  string property = 2;
+  string value = 3;
+  optional string refines = 4;
+  optional string scheme = 5;
+  optional string language = 6;
+  optional string source = 7;
+}

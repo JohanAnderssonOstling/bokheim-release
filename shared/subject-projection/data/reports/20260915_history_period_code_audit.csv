@@ -1,0 +1,1157 @@
+concept_id,label,status,codes,exact_code_headings,same_start_headings
+3396,Accounts of the Americas to 1810,same years in exact-code heading (review scope),lcc:E141..E143,Descriptive accounts of America. Earliest to 1810,Earliest to 1606
+3403,"Constitutional Era, 1789–1809",no exact dated heading (review),lcc:E310..E310.999; lcc:E337.5..E337.999,,1789-1809. Constitutional period | Historical Eras | Nineteenth century (General)
+3404,19th Century,same label in exact-code heading (review scope),bisac:HIS036040,19th Century,
+3405,20th Century,uncoded grouping,,,
+3406,21st Century,uncoded grouping,,,
+3411,Early 19th Century,different years in exact-code headings (review),lcc:E338..E340.999; lcc:E365..E369.999; lcc:E384..E384.999; bisac:HIS027210,War of 1812,"Madison's administrations, 1809-1817 | War with Algeria, 1815"
+3412,"Late 19th Century, 1865–1900",uncoded grouping,,,
+3413,"Late 20th Century, 1961–2000",uncoded grouping,,,
+3414,"Mexican War, 1846-1848",same label in exact-code heading (review scope),lcc:E401..E415.2,"Historical Eras | Mexican War, 1846-1848",
+3415,"Mid-19th C., 1845/1848–1861",no exact dated heading (review),lcc:E415.3..E415.999; lcc:E440.5..E440.999,,"Buchanan's administration, 1857-1861 | State of the country, November 1860-March 4, 1861"
+3417,"Early Republic, 1775/1783–1861",uncoded grouping,,,
+3424,"The Revolution, 1775-1783",uncoded grouping,,,
+3515,"Byzantine Era, 323–1453",uncoded grouping,,,
+3525,20th Century,same label in exact-code heading (review scope),bisac:HIS015070,20th Century,
+3526,21st Century,same label in exact-code heading (review scope),bisac:HIS015080,21st Century,
+3527,"Georgian Era, 1714–1837",no exact dated heading (review),bisac:HIS015050,Georgian Era,
+3531,"Stuart Era, 1603–1714",no exact dated heading (review),bisac:HIS015040,Stuart Era,
+3532,"Tudor & Elizabethan Era, 1485–1603",same years in exact-code heading (review scope),lcc:DA350..DA360; bisac:HIS015030,"Tudor & Elizabethan Era | Tudors, 1485-1603",
+3533,"Victorian Era, 1837–1901",no exact dated heading (review),bisac:HIS015060,Victorian Era,
+3536,"Habsburg Monarchy, 1521–1792",uncoded grouping,,,
+3553,16th Century,different years in exact-code headings (review),lcc:DC111..DC120,"1515-1589. 16th century | Modern, 1515-",
+3556,"Reformation, 1519–1648",same years in exact-code heading (review scope),lcc:DD176..DD189; lcc:DD181..DD183; lcc:DD184..DD184.7,"1519-1648. Reformation and Counter-reformation | Modern, 1519-",
+3557,"Early & Medieval, 481–1519",uncoded grouping,,,
+3558,"Democratic Republic, 1949–1990",uncoded grouping,,,
+3559,"Nazi Era, 1933–1945",uncoded grouping,,,
+3560,"Early Modern, 1519–1815",uncoded grouping,,,
+3561,"Empire, 1871–1918",same years in exact-code heading (review scope),lcc:DD217..DD231,"Modern, 1519- | New Empire, 1871-1918",
+3563,"Weimar Republic, 1918–1933",no exact dated heading (review),lcc:DD232..DD252.Z,,20th century
+3564,"Federal Republic, 1949–1990",no exact dated heading (review),lcc:DD258..DD279,,West Germany
+3569,"Late Medieval, 1268–1492",same years in exact-code heading (review scope),lcc:DG532..DG537.8,1268-1492 | Renaissance. 14th-16th centuries,
+3570,"Early Medieval, 476–1268",same years in exact-code heading (review scope),lcc:DG503..DG529,"476-1268 | Medieval Italy, 476–1492",
+3571,"Ancient Era, to 476",no exact dated heading (review),lcc:DG203..DG204; lcc:DG205..DG206; lcc:DG207..DG209; lcc:DG214..DG215,Foreign and general relations | Historiography,
+3575,"Medieval Era, 476–1492",uncoded grouping,,,
+3576,"Modern Era, 1492–Present",uncoded grouping,,,
+3585,"Medieval Era, 1095–1580",uncoded grouping,,,
+3599,"Bourbon Restoration, 1814–1868",same label in exact-code heading (review scope),lcc:DP212..DP220,"1808-1886. 19th century | Bourbon restoration, 1814-1868",
+3601,"Modern, 1516–Present",uncoded grouping,,,
+3619,"Interwar Period, 1919–1939",same years in exact-code heading (review scope),lcc:D720..D728; lcc:D726.7..D726.72,Ethnography of Europe | Period between World Wars (1919-1939),General works
+3621,Post-war 1945-,same years in exact-code heading (review scope),lcc:D839..D860,Post-war history (1945- ),Periodicals. Societies. Serials
+3668,17th Century,same label in exact-code heading (review scope),lcc:D242..D283.5; bisac:HIS037040,17th Century | Modern History,
+3669,18th Century,same label in exact-code heading (review scope),lcc:D284..D297; bisac:HIS037050,18th Century | Modern History,
+3670,19th Century,same label in exact-code heading (review scope),lcc:D299..D400.Z; bisac:HIS037060,19th Century,Modern History
+3671,20th Century,same label in exact-code heading (review scope),lcc:D410..D475.2; bisac:HIS037070,20th Century,Modern History
+3674,21st Century,same label in exact-code heading (review scope),bisac:HIS037080,21st Century,
+3693,War of 1812,same label in exact-code heading (review scope),lcc:E351..E364.9,War of 1812,
+6307,"Restoration–Risorgimento, 1816–1860",no exact dated heading (review),lcc:DG550.5..DG554.5.Z,,"Modern Italy, 1492–Present"
+7565,1607-1810. Latin America,no exact dated heading (review),lcc:E143,,1607-1810. Latin America
+7591,Post-1945 Military,no exact dated heading (review),lcc:D842.2; lcc:D842.3,,Military history | Naval history
+7654,1945-1965,same label in exact-code heading (review scope),lcc:D842.422..D847.2,1945-1965,
+8129,"Liberal Era & WWI, 1901–1918",no exact dated heading (review),lcc:DG566..DG570.Z,,
+8213,"Renaissance–Reformation, 1501–1600",no exact dated heading (review),lcc:DG539..DG541.8.Z,,"Modern Italy, 1492–Present"
+8265,"Armistice of Compiègne, 1918",no exact dated heading (review),lcc:D641,,"Armistice of Compiègne, 1918"
+8279,"Contemporary Era, 1975–Present",no exact dated heading (review),lcc:DG581..DG590,,
+8430,"Fascism & WWII, 1919–1944",no exact dated heading (review),lcc:DG571..DG575.Z,,1871-1947. United Italy (Monarchy)
+8452,Earliest to 1606,no exact dated heading (review),lcc:E141,,Descriptive accounts of America. Earliest to 1810 | Earliest to 1606
+9046,1965-1989,same label in exact-code heading (review scope),lcc:D847.52..D850,1965-1989,
+9133,"Postwar Republic, 1945–1974",no exact dated heading (review),lcc:DG576..DG579.Z,,"Modern Italy, 1492–Present"
+9215,"Kingdom, 1861–1900",no exact dated heading (review),lcc:DG555..DG565.Z,,"Modern Italy, 1492–Present"
+9340,"Early Modern Era, 1601–1795",no exact dated heading (review),lcc:DG542..DG545.8.Z,,
+9624,Post-1945 Biographies,no exact dated heading (review),lcc:D839.5..D839.7,Biography,
+9698,Post-1945 Historical Sources,no exact dated heading (review),lcc:D839.3,,Sources and documents
+9724,"Bourbon Era, 1589–1715",same years in exact-code heading (review scope),lcc:DC120.8..DC130,"1589-1715 | Modern, 1515-",Historiography
+9861,1989-,same label in exact-code heading (review scope),lcc:D856..D860,1989-,
+10091,1975-,same label in exact-code heading (review scope),lcc:DT1155..DT1182,1975-,
+10093,"Early Era, to 1066",uncoded grouping,,,
+10094,"Napoleonic Period, 1808–1814",same years in exact-code heading (review scope),lcc:DP204..DP208,1808-1814. Napoleonic period | 1808-1886. 19th century,
+10095,"Habsburg Rule, 1526–1918",no exact dated heading (review),lcc:DB2135..DB2182,,"Hapsburg rule, 1526-1918"
+10096,"Ottoman & Habsburg Rule, 1526–1711",uncoded grouping,,,
+10097,"Early Modern Confederacy, 1516–1798",no exact dated heading (review),lcc:DQ121-DQ121.8,,
+10099,17th century,no exact dated heading (review),lcc:DA385-DA398; lcc:DA400-DA429; lcc:DA430-DA463,,
+10100,1945-,no exact dated heading (review),lcc:DE100,,1945-
+10102,"Hellenistic Era, 323–146 BC",no exact dated heading (review),lcc:DF235..DF238.9.Z,,"Hellenistic period, 323-146 B.C."
+10103,"Roman Rule, 218 BC–414 AD",same years in exact-code heading (review scope),lcc:DP94..DP95,"Roman period, 218 B.C.-414 A.D.",
+10104,18th century,same label in exact-code heading (review scope),lcc:DA809..DA814.5; lcc:DA813..DA814.5,1707-1745. Jacobite movements | 18th century,
+10105,"Late Byzantine, 1057–1453",same years in exact-code heading (review scope),lcc:DF599.8..DF649; bisac:HIS059000,"1057-1453 | Byzantine Empire, 323-1453",
+10106,"Balkan Peninsula, 20th Century",same years in exact-code heading (review scope),lcc:DR45..DR48.9,20th century (General),
+10107,Revolution of 1848,no exact dated heading (review),lcc:DB83,,"19th century | Revolution, 1848"
+10109,"Peloponnesian War, 431–404 BC",no exact dated heading (review),lcc:DF229..DF230.Z,,"Peloponnesian War, 431-404 B.C."
+10110,"People’s Republic, 1945–1989",uncoded grouping,,,
+10115,20th century,uncoded grouping,,,
+10116,"Hohenstaufen period, 1125-1273",same label in exact-code heading (review scope),lcc:DD145..DD155,"Hohenstaufen period, 1125-1273 | Medieval Empire, 481-1273",
+10117,"Iberian Union, 1580–1640",no exact dated heading (review),lcc:DP620..DP629.Z,,1580-
+10118,"Second Republic & WWII, 1918–1945",uncoded grouping,,,
+10119,Early to 1890,same label in exact-code heading (review scope),lcc:DT1107..DT1123,Early to 1890,
+10121,"Early Germanic, to 481",same years in exact-code heading (review scope),lcc:DD121..DD124,Earliest to 481,Germany
+10122,"Alexander the Great, 336–323 BC",same label in exact-code heading (review scope),lcc:DF234..DF234.9,"Alexander the Great, 336-323 B.C.",
+10123,17th century,same label in exact-code heading (review scope),lcc:DA940..DA946,17th century,
+10124,"Early & Medieval, to 1526",uncoded grouping,,,
+10125,"Partitions Era, 1795–1918",uncoded grouping,,,
+10127,"Old Confederacy, 1291–1516",same years in exact-code heading (review scope),lcc:DQ88..DQ110,"Early and medieval to 1516 | Federation and Independence, 1291-1516",
+10129,"Medieval, 711–1516",uncoded grouping,,,
+10132,"Imperial Era, 1654–1718",same years in exact-code heading (review scope),lcc:DL721..DL743,"Zweibrücken dynasty, 1654-1718",
+10133,"Habsburg & Luxemburg, 1273–1519",same years in exact-code heading (review scope),lcc:DD156..DD174.6,"Early and medieval to 1519 | Houses of Habsburg and Luxemburg, 1273-1519",
+10134,"Visigothic Rule, 414–711",no exact dated heading (review),lcc:DP96,,"Visigoths in Spain, 414-711. Gothic period"
+10135,"French & Dutch Rule, 1794–1830",no exact dated heading (review),lcc:DH620..DH644.Z,,1794-1909
+10136,"Spartan–Theban Supremacy, 404–362 BC",same years in exact-code heading (review scope),lcc:DF230.9..DF232,"Spartan and Theban supremacies, 404-362 B.C.",
+10137,"First Republic, 1873–1875",same label in exact-code heading (review scope),lcc:DP230..DP231.5,"1868-1886 | First Republic, 1873-1875",
+10138,19th Century,different years in exact-code headings (review),lcc:DL807..DL859,1814-1907. 19th century,
+10139,1517-1789,no exact dated heading (review),lcc:DE96,,1517-1789
+10140,"People’s Republic, 1949–1989",uncoded grouping,,,
+10141,"Post-Westphalian Era, 1648–1740",same years in exact-code heading (review scope),lcc:DD190..DD190.8,1648-1740,"Modern, 1519-"
+10143,"Macedonian Ascendancy, 359–336 BC",same years in exact-code heading (review scope),lcc:DF232.5..DF233.8,"Macedonian epoch. Age of Philip, 359-336 B.C.",
+10146,"Absolutist Monarchy, 1648–1740",same years in exact-code heading (review scope),lcc:DB66..DB69.5,1521- | 1648-1740,
+10147,"Anschluss, 1938–1945",no exact dated heading (review),lcc:DB99,,"1938-1945. German annexation | Republic, 1918-"
+10148,"Austrian Rule, 1714–1794",uncoded grouping,,,
+10149,"Tudor era, 1485-1603",uncoded grouping,,,
+10150,"Revolution, 1848–1849",same years in exact-code heading (review scope),lcc:DB934.5..DB939.5,1792-1918. 19th century | Revolution of 1848-1849,
+10152,"Revolution & Napoleon, 1789–1815",same years in exact-code heading (review scope),lcc:DD197..DD199,1789-1815. French Revolutionary and Napoleonic period,
+10154,"Medieval & Tudor Era, 1172–1603",same years in exact-code heading (review scope),lcc:DA933..DA937.5; lcc:DA934..DA934.5; lcc:DA935..DA937.5; lcc:DA937..DA937.5,1172-1603 | 1189-1485 | 1485-1603. Tudors | 1558-1603. Elizabeth,
+10155,18th century,uncoded grouping,,,
+10156,"Second Republic, 1924–1935",no exact dated heading (review),lcc:DF848,,"20th-21st centuries | Republic, 1924-1935"
+10160,"War of Independence, 1821–1829",same label in exact-code heading (review scope),lcc:DF804..DF815,"1821-1913. 19th century | War of Independence, 1821-1829",
+10161,"Early & Medieval Era, to 1603",same years in exact-code heading (review scope),lcc:DA774.8..DA790; lcc:DA777..DA778.9; lcc:DA777.5..DA777.7; lcc:DA777.92..DA778.9; lcc:DA779..DA790; lcc:DA780..DA782.9; lcc:DA783..DA783.45; lcc:DA783.2..DA783.45; lcc:DA783.38..DA783.45; lcc:DA783.5..DA783.9; lcc:DA784..DA790; lcc:DA785..DA790; lcc:DA788..DA790,"1057-1278 | 1057-1603 | 1278-1488 | 1306-1371. 14th century | 1371-1488. Early Stuarts | 1488-1603 | 1542-1603 | 1567-1603. James VI | 844-1057 | Early and medieval to 1603 | Early to 1057 | Roman period | War of Independence, 1285-1371",Historiography
+10162,20th century,same label in exact-code heading (review scope),lcc:DA959..DA965,20th century,
+10164,Era to 476,same years in exact-code heading (review scope),lcc:DE86..DE92,Ancient to 476. Greco-Roman era,
+10165,"Age of Pericles, 479–431 BC",same years in exact-code heading (review scope),lcc:DF227..DF228,Athenian supremacy. Age of Pericles. 479-431 B.C.,
+10166,20th century,no exact dated heading (review),lcc:DS35.77,,20th century
+10167,476-1517,no exact dated heading (review),lcc:DE94,,476-1517
+10172,21st century,same label in exact-code heading (review scope),lcc:DA966..DA966.2,21st century,
+10173,"Theresian–Josephine Era, 1740–1792",same years in exact-code heading (review scope),lcc:DB69.7..DB74.8,1740-1792,1521-
+10174,18th century,same label in exact-code heading (review scope),lcc:DA947..DA949.5,18th century,
+10175,"Árpád Dynasty, 896–1301",same years in exact-code heading (review scope),lcc:DB929..DB929.8,"Árpád dynasty, 896-1301",
+10178,"Ottoman Rule, 1501–1912",uncoded grouping,,,
+10179,"Reformation & War, 1521–1648",same years in exact-code heading (review scope),lcc:DB65.2..DB65.9,1521- | 1521-1648,
+10180,"Early Federal State, 1848–1900",same years in exact-code heading (review scope),lcc:DQ171..DQ191,1848-1900 | 19th century,
+10182,"Pre-Partition Era, to 1795",uncoded grouping,,,
+10183,"Habsburg Era, 1516–1700",same years in exact-code heading (review scope),lcc:DP170..DP189,"Habsburgs, 1516-1700 | Modern Spain, 1479/1516- | Modern, 1479/1516-",
+10186,"Elective Kings, 1301–1526",same label in exact-code heading (review scope),lcc:DB929.95..DB931.9,"Elective kings, 1301-1526",
+10189,"Civil War, 1936–1939",same label in exact-code heading (review scope),lcc:DP269..DP269.9,"Civil War, 1936-1939 | Second Republic, 1931-1939",
+10190,"Revolution, 1830",same years in exact-code heading (review scope),lcc:DH650..DH652,1830- | Revolution of 1830,
+10191,"House of Burgundy, 1095–1383",same label in exact-code heading (review scope),lcc:DP568..DP578,"Early and medieval to 1580 | House of Burgundy, 1095-1383",
+10193,"Third Republic, 1989–Present",same years in exact-code heading (review scope),lcc:DK4445..DK4452,1989- | Poland,
+10194,"House of Aviz, 1385–1580",same label in exact-code heading (review scope),lcc:DP582..DP618,"Early and medieval to 1580 | House of Aviz, 1385-1580",
+10195,Early & medieval to 1500,no exact dated heading (review),lcc:DR39..DR40.Z,,Early and medieval to 1500
+10196,1890-1975,same label in exact-code heading (review scope),lcc:DT1125..DT1147,1890-1975,
+10199,"Union & Republic, 1918–1993",uncoded grouping,,,
+10200,"Democratic Republic, 1945–1975",same years in exact-code heading (review scope),lcc:DS560..DS560.72; lcc:DS560.54..DS560.56,"Democratic Republic (North Vietnam), 1945-1975 | Ethnography | French Indochina",
+10202,"Age of Absolutism, 1711–1792",same years in exact-code heading (review scope),lcc:DB932.49..DB932.9,1711-1792. Age of absolutism,
+10205,"Democratic Era, 1975–Present",same years in exact-code heading (review scope),lcc:DP272..DP272.4,1886- | 1975-,
+10206,"Vasa Era, 1523–1654",no exact dated heading (review),lcc:DL701..DL719.9,,"Modern, 1523- | Vasa dynasty, 1523-1654"
+10207,"Independence Era, 1830–1909",uncoded grouping,,,
+10208,"Revolution & Napoleon, 1789–1815",uncoded grouping,,,
+10209,"Republic, 1989–Present",same years in exact-code heading (review scope),lcc:DB957.9..DB958.6,1989- | 20th century,
+10210,"Allied Occupation, 1945–1955",no exact dated heading (review),lcc:DB99.1,,1945-1955. Allied occupation
+10211,"House of Saxony, 919-1024",same label in exact-code heading (review scope),lcc:DD136..DD140.7,"House of Saxony, 919-1024","Medieval Empire, 481-1273"
+10212,"Second Republic, 1955–Present",no exact dated heading (review),lcc:DB99.2,,"1955- | Republic, 1918-"
+10213,19th century,uncoded grouping,,,
+10214,"Early & Medieval Era, to 1521",uncoded grouping,,,
+10215,"House of Franconia, 1024-1125",same label in exact-code heading (review scope),lcc:DD141..DD144,"House of Franconia, 1024-1125",
+10218,"Thirty Years’ War, 1618–1648",no exact dated heading (review),lcc:DD189,,"1519-1648. Reformation and Counter-reformation | Period of the Thirty Years' War, 1618-1648"
+10220,"Franco Era, 1939–1975",same years in exact-code heading (review scope),lcc:DP269.97..DP271,1886- | 1939-1975,
+10221,"Persian Wars, 499–479 BC",same label in exact-code heading (review scope),lcc:DF225..DF226,"Persian Wars, 499-479 B.C.",
+10223,"Ottoman Rule, 1453–1821",same years in exact-code heading (review scope),lcc:DF801..DF801.9,"Turkish rule, 1453-1821",
+10224,"Medieval Era, to 1501",same years in exact-code heading (review scope),lcc:DR954..DR960.5,To 1501,
+10226,19th century,same years in exact-code heading (review scope),lcc:DA949.7..DA958,19th century. Irish question,
+10227,"Eastern Empire, 323/476-1057",same label in exact-code heading (review scope),lcc:DF553..DF599.5; lcc:DF570.2..DF599.5; bisac:HIS059000,"527-1057 | Byzantine Empire, 323-1453 | Eastern Empire, 323/476-1057",
+10228,"Regeneration, 1830–1848",uncoded grouping,,,
+10229,"Medieval Era, 1066–1485",uncoded grouping,,,
+10231,1815-1914,no exact dated heading (review),lcc:DE97,,1815-1914
+10232,"Revolution & Napoleon, 1792–1815",same years in exact-code heading (review scope),lcc:DB74.92..DB77.2,1792-1815. Period of the French Revolution,
+10237,10th Century,no exact dated heading (review),lcc:CB354,,10th Century
+10238,1551–1600,no exact dated heading (review),lcc:CB369,,1551–1600
+10240,Revolutions of 1848,no exact dated heading (review),lcc:D387,,Revolutions of 1848
+10243,18th Century,no exact dated heading (review),lcc:CB411,,18th Century
+10245,"Austrian Succession War, 1740–1748",same years in exact-code heading (review scope),lcc:D291..D294; lcc:D293.2..D293.3; lcc:D293.4..D293.55; lcc:D293.6..D293.7; lcc:D293.8..D293.9,"18th Century | Colonial and Naval Operations, 1739–1748 | Italian Campaigns, 1741–1748 | Netherlands Campaigns, 1743–1748 | Rhine and Danube Campaigns, 1741–1744 | War of the Austrian Succession, 1740–1748",
+10246,"Europe, 1801–1914",no exact dated heading (review),lcc:D359,,"Europe, 1801–1914"
+10248,"Seven Years’ War, 1756–1763",no exact dated heading (review),lcc:D297,,"18th Century | Seven Years’ War, 1756–1763"
+10251,13th Century,no exact dated heading (review),lcc:CB355,,13th Century
+10253,19th Century,same label in exact-code heading (review scope),lcc:CB415..CB417,19th Century,
+10255,"Conference of Berlin, 1878",no exact dated heading (review),lcc:D375.3,,"Conference of Berlin, 1878"
+10257,16th–17th Centuries,no exact dated heading (review),lcc:CB401,,16th–17th Centuries
+10259,"Vienna Settlement, 1815–1830",no exact dated heading (review),lcc:D383,,"Congress of Vienna and Aftermath, 1815–1830"
+10261,1848–1859,same label in exact-code heading (review scope),lcc:D388..D389,1848–1859,
+10264,19th Century,no exact dated heading (review),lcc:D374; lcc:D375,,19th Century
+10266,12th Century,no exact dated heading (review),lcc:CB354.6,,12th Century
+10267,13th–14th Centuries,no exact dated heading (review),lcc:CB365,,13th–14th Centuries
+10268,1971–Present,no exact dated heading (review),lcc:CB428,,1971- | 1971–Present
+10269,1401–1550,no exact dated heading (review),lcc:CB367,,1401–1550
+10271,Later 19th Century,same label in exact-code heading (review scope),lcc:D394..D400,Later 19th Century,
+10273,1830–1848,same label in exact-code heading (review scope),lcc:D385..D387,1830–1848,19th Century
+10275,19th century,same label in exact-code heading (review scope),lcc:DA815..DA838,19th century,
+10277,"Egypt, 1952–2011",uncoded grouping,,,
+10284,"Early Ottoman Rule, 1526–1606",same years in exact-code heading (review scope),lcc:DB932..DB932.25; lcc:DB932.28,1526-1606,"Fifteen Years' War, 1591-1606"
+10285,"Chronicles, 1525–1800",no exact dated heading (review),lcc:D18,,Chronicles and works written from 1525-1800
+10286,"Southern African Diplomacy, 1975–",no exact dated heading (review),lcc:DT1172,,Foreign and general relations
+10288,"Balkan Peninsula, 19th Century",no exact dated heading (review),lcc:DR41..DR44.Z,,1500-1800
+10290,19th century,same label in exact-code heading (review scope),lcc:DS675..DS675.8,19th century,
+10291,1975-2002,same label in exact-code heading (review scope),lcc:DS649.6..DS649.63,1975-2002,
+10295,"Scandinavian Empire, to 1397",same years in exact-code heading (review scope),lcc:DL61..DL65,Earliest to 1397. Scandinavian Empire,Northern Europe
+10298,1798-,no exact dated heading (review),lcc:DS38.9,,1798-
+10299,1947-1988,same label in exact-code heading (review scope),lcc:DS384..DS388.2; lcc:DS385.9.A2..DS385.9.Z; lcc:DS388..DS388.2,"1947-1988 | Conflict with India, 1947-1949 | Conflict with India, 1971-",
+10301,"Roman Era, 146 BC–439 AD",no exact dated heading (review),lcc:DT170..DT170.999; lcc:DT170,,"Roman period, 146 B.C.-439 A.D."
+10302,"Independent, 1977–",same years in exact-code heading (review scope),lcc:DT411.8..DT411.9,1977- . Independent,
+10307,"World Wars Era, 1900–1945",same years in exact-code heading (review scope),lcc:DQ205..DQ207,1900-1945,
+10308,19th century,no exact dated heading (review),lcc:DS34,,19th century
+10311,"Early Partition Era, 1795–1864",same years in exact-code heading (review scope),lcc:DK4349.6..DK4379.5; lcc:DK4349.9..DK4355; lcc:DK4356..DK4379.5; lcc:DK4359..DK4363; lcc:DK4362..DK4362.2; lcc:DK4365..DK4365.5,1795-1830 | 1795-1864 | 1830-1864 | Military operations | Revolution of 1830-1832 | Revolution of 1848,
+10313,"Early Era, to 1572",same years in exact-code heading (review scope),lcc:DK4189..DK4289; lcc:DK4211..DK4249.5; lcc:DK4213..DK4226; lcc:DK4227..DK4246.5; lcc:DK4246.6..DK4249.5; lcc:DK4249.7..DK4289,1138-1305. Feudal duchies | 1305-1386. Reunification | 1386-1572. Jagiellons | 960-1138. First monarchy | 960-1386. Piast period | To 1572,
+10317,"Late Medieval, 11th–15th C.",same years in exact-code heading (review scope),lcc:D200..D203,Later medieval. 11th-15th centuries | Medieval History,
+10318,1400-1906,no exact dated heading (review),lcc:DS650.6,,1400-1906
+10319,19th-20th centuries,no exact dated heading (review),lcc:DT204,,19th-20th centuries
+10320,"Post-Communism, 1990–Present",uncoded grouping,,,
+10324,"Elective Monarchy, 1572–1763",same years in exact-code heading (review scope),lcc:DK4289.5..DK4328; lcc:DK4315..DK4319; lcc:DK4325..DK4328; lcc:DK4326.5..DK4327,"1572-1763. Elective monarchy | Augustus II (Friedrich August I, Elector of Saxony), 1697-1733 | Augustus III (Friedrich August II, Elector of Saxony), 1733-1763 | War of Polish Succession, 1733-1738",
+10325,1884-1945,no exact dated heading (review),lcc:DT29,,1884-1945
+10326,"Dakota–Sioux War, 1862–1865",no exact dated heading (review),lcc:E83.86,,"Dakota Indian or Sioux War, 1862-1865"
+10328,"Early Era, to 1095",no exact dated heading (review),lcc:DP558..DP567.Z,,Early and medieval to 1580 | Portugal
+10329,1945-,same label in exact-code heading (review scope),lcc:F1034.2..F1034.3,1945-,
+10334,Early to 935,no exact dated heading (review),lcc:DS911..DS911.86,,Early to 935
+10340,Earliest to 638,no exact dated heading (review),lcc:DS576,,Earliest to 638
+10343,21st century,no exact dated heading (review),lcc:DT176.2..DT176.999; lcc:DT176.2,,21st century
+10345,1998-,same label in exact-code heading (review scope),lcc:DS644.5..DS644.62,1998-,
+10346,15th century,no exact dated heading (review),lcc:D203,,15th century
+10348,Early to 622 AD,same label in exact-code heading (review scope),lcc:DS62.2..DS62.25,Early to 622 A.D.,
+10351,"Koryŏ period, 935-1392",same label in exact-code heading (review scope),lcc:DS912..DS912.43,"Koryŏ period, 935-1392",
+10352,"Reformation–Consolidation, 1516–1648",same years in exact-code heading (review scope),lcc:DQ113..DQ188.2,1516-1648,
+10353,"Velvet Revolution, 1989",no exact dated heading (review),lcc:DB2233,,"Velvet Revolution, 1989"
+10357,"National Awakening, 1800–1918",same years in exact-code heading (review scope),lcc:DB2795..DB2801,1800-1918,
+10358,"Egypt Political, 1952–",no exact dated heading (review),lcc:DT107.827,,Political history
+10359,1900-1970,same label in exact-code heading (review scope),lcc:CB425..CB427,1900-1970,
+10360,"Revolution, 1956",same years in exact-code heading (review scope),lcc:DB956.7..DB957.5,Revolution of 1956,
+10361,"Post-Cold War Europe, 1989–Present",same years in exact-code heading (review scope),lcc:D2001..D2009; lcc:D2010; lcc:D2010.5.A78; lcc:D2010.5.U6,1989-,Foreign and general relations
+10362,1994-,no exact dated heading (review),lcc:DT1182,,1994-
+10374,1511-1946,same label in exact-code heading (review scope),lcc:DS596.6..DS596.63,1511-1946,
+10375,21st-Century Diplomatic,no exact dated heading (review),lcc:D863.3,,Foreign and general relations
+10378,Early & medieval to 1500,no exact dated heading (review),lcc:DAW1046,,Early and medieval to 1500
+10379,"Burgundian Rule, 1384–1477",same years in exact-code heading (review scope),lcc:DH175..DH177,1384-1477. House of Burgundy,
+10380,"Tokugawa Era, 1600–1868",same years in exact-code heading (review scope),lcc:DS870..DS881.84; lcc:DS871.77..DS873; lcc:DS874..DS881; lcc:DS881.83..DS881.84,"1600-1709 | 1709-1853 | Civil War, 1868-1869. Boshin War | Tokugawa period, 1600-1868. Edo period",
+10382,Earliest to 1975,same label in exact-code heading (review scope),lcc:DS649.528..DS649.73; lcc:DS649.5282..DS649.73,Earliest to 1975,
+10383,Through 1 AD,no exact dated heading (review),lcc:DS62.23,,Through 1 A.D.
+10385,12th century,same label in exact-code heading (review scope),lcc:D201.7..D201.8,12th century,
+10387,638-1809,same label in exact-code heading (review scope),lcc:DS577..DS577.9,638-1809,
+10388,"Marzouki Era, 2011–",same years in exact-code heading (review scope),lcc:DT266.93..DT266.99,2011- . Marzouki administration,
+10391,1918–1939,same label in exact-code heading (review scope),lcc:DB2195..DB2202,1918-1939,
+10392,1914-,same label in exact-code heading (review scope),lcc:DS39..DS39.2,1914-,
+10394,"Bourguiba Era, 1956–1987",same years in exact-code heading (review scope),lcc:DT264.35..DT265,1956-1987. Independence. Bourguiba administration,
+10396,1945-1966,same label in exact-code heading (review scope),lcc:DS644..DS644.46,1945-1966,
+10399,16th-18th centuries,no exact dated heading (review),lcc:DT174..DT175.999; lcc:DT174,,16th-18th centuries
+10401,"Postwar Era, 1945–2000",same years in exact-code heading (review scope),lcc:DQ208..DQ210,1945-2000,
+10404,1971-,same label in exact-code heading (review scope),lcc:DS395.5..DS395.7,1971-,
+10405,1603-1763. New France,no exact dated heading (review),lcc:F1030..F1030.9,,1603-1763. New France
+10407,13th-15th centuries,same label in exact-code heading (review scope),lcc:D202..D203,13th-15th centuries,
+10408,"Contemporary Europe, 2001–Present",same years in exact-code heading (review scope),lcc:D2015..D2027; lcc:D2025..D2025.5,2001- | Foreign and general relations,
+10409,"First Empire, 1804–1815",same years in exact-code heading (review scope),lcc:DC197..DC219,"Empire (First). Napoleon I, 1804-1815",
+10410,"WWII Occupation, 1939–1945",same years in exact-code heading (review scope),lcc:DK4410..DK4415.2,1939-1945. Period of World War II,
+10411,"Early Modern Era, 1500–1815",no exact dated heading (review),lcc:DJK47,,1500-1815
+10412,16th century,no exact dated heading (review),lcc:DT202; lcc:DT262,,16th century
+10413,1988-,no exact dated heading (review),lcc:DS389,,1988-
+10415,"Egypt, 638–1250",no exact dated heading (review),lcc:DT95..DT95.88; lcc:DT95.55,,Conquest. Omayyads. Abbasids. 638-868
+10417,20th-21st centuries,same label in exact-code heading (review scope),lcc:DJK48.5..DJK51,20th-21st centuries,
+10418,"Helvetic Republic, 1798–1803",same years in exact-code heading (review scope),lcc:DQ141..DQ145,1798-1803. Helvetic Republic,
+10419,"Kingdom of Jerusalem, 1099–1291",same years in exact-code heading (review scope),lcc:D175..D195,Latin Kingdom of Jerusalem. Latin Orient. 1099-1291 | Medieval History,
+10421,"China, 1949–1976",no exact dated heading (review),lcc:DS777.545; lcc:DS777.546; lcc:DS777.547; lcc:DS777.548; lcc:DS777.549; lcc:DS777.55; lcc:DS777.56; lcc:DS777.58; lcc:DS777.65; lcc:DS777.7; lcc:DS778.4; lcc:DS778.5; lcc:DS778.6,,"1949-1976 | Anti-rightist Campaign, 1957-1958 | Historiography | Hundred Flowers Campaign, 1956 | Military history | Naval history | People's Republic, 1949-"
+10423,"Union Era, 1918–1939",no exact dated heading (review),lcc:DB2805..DB2814.Z,,"Czechoslovak Republic, 1918-1992"
+10425,"Republican China, 1912–1949",no exact dated heading (review),lcc:DS773.83; lcc:DS773.86; lcc:DS773.89; lcc:DS773.92; lcc:DS773.94; lcc:DS774; lcc:DS774.5; lcc:DS774.7; lcc:DS775.4; lcc:DS775.5,,"Historiography | Military history | Naval history | Republic, 1912-1949. 20th century"
+10428,1968–1992,same label in exact-code heading (review scope),lcc:DB2835..DB2842,1968-1992,
+10429,"Margraviate & Duchy, 976–1246",same years in exact-code heading (review scope),lcc:DB53..DB54,976-1246,
+10431,"Stalinist Era, 1945–1956",same years in exact-code heading (review scope),lcc:DK4438..DK4439,1945-1956,
+10434,Earliest to 1747,no exact dated heading (review),lcc:DS358,,Earliest to 1747
+10435,1963-,same label in exact-code heading (review scope),lcc:DS597.2..DS597.215,1963-,
+10436,"Postwar Union, 1945–1968",same years in exact-code heading (review scope),lcc:DB2825..DB2831,1945-1968,
+10437,9th-10th centuries,no exact dated heading (review),lcc:D123,,9th-10th centuries
+10438,1975-1988,same label in exact-code heading (review scope),lcc:DS799.83..DS799.834,1975-1988,
+10443,1763-1867,no exact dated heading (review),lcc:F1032,,1763-1867
+10445,"Partition Era, 1763–1795",same years in exact-code heading (review scope),lcc:DK4328.9..DK4348,1763-1795. Partition period,
+10446,Early to 221 BC,same label in exact-code heading (review scope),lcc:DS741..DS747.23; lcc:DS742..DS742.2; lcc:DS744..DS744.3; lcc:DS747..DS747.23,"Early to 221 B.C. | Legendary period | Shang (Yin) Dynasty, 1766-1122 B.C. | Zhou (Chou) dynasty, 1122-221 B.C.",
+10447,1981-,no exact dated heading (review),lcc:DU23.5,,1981-
+10454,September 1939–May 1940,no exact dated heading (review),lcc:D755.1,,September 1939-May 1940
+10455,1984-,same label in exact-code heading (review scope),lcc:DS650.8..DS650.83,1984-,
+10456,1898-1950,no exact dated heading (review),lcc:DU22,,1898-1950
+10457,"Post-Stalinist Era, 1956–1980",no exact dated heading (review),lcc:DK4440,,1956-1980
+10458,1894-1901,same label in exact-code heading (review scope),lcc:DS676..DS684.3; lcc:DS681..DS681.7; lcc:DS682..DS683; lcc:DS682.A5..DS682.Z; lcc:DS683.3..DS683.5,"1894-1901 | Military history | Naval history | Political and diplomatic history | Special events, battles, etc.",
+10460,1989–1993,same label in exact-code heading (review scope),lcc:DB2235..DB2241,1989-1993,
+10461,1884-1960,no exact dated heading (review),lcc:DT532.5,,1884-1960
+10462,20th century,same label in exact-code heading (review scope),lcc:DA821..DA826,20th century,
+10463,Early Malacca to 1511,same years in exact-code heading (review scope),lcc:DS596.5..DS596.53,Early to 1511. Malacca Kingdom,
+10466,"Communist Era, 1944–1990",same years in exact-code heading (review scope),lcc:DR976..DR977.25,1944-1990,
+10470,"Long 19th Century, 1815–1918",no exact dated heading (review),lcc:DAW1048,,1815-1918
+10471,1940,no exact dated heading (review),lcc:D755.2,,1940
+10473,1945-,no exact dated heading (review),lcc:DS35.2,,1945-
+10476,Early to 1895,same label in exact-code heading (review scope),lcc:DS799.64..DS799.66; lcc:DS799.67,Early to 1895,
+10477,"Joseon Yi Era, 1392–1910",same years in exact-code heading (review scope),lcc:DS913..DS915.53; lcc:DS914..DS914.5; lcc:DS915..DS915.53,"1637-1864 | 19th century. 1864-1910 | Chosŏn (Yi) dynasty, 1392-1910",
+10478,Early to 1886,no exact dated heading (review),lcc:DT365.65; lcc:DT365.654,,Early to 1886
+10480,"Military Rule, 1967–1974",same years in exact-code heading (review scope),lcc:DF853..DF853.5,"Period of military rule, 1967-1974",
+10483,Earliest to 1600,same label in exact-code heading (review scope),lcc:DS849.7..DS869.6; lcc:DS851..DS856.72; lcc:DS855..DS855.73; lcc:DS855.68..DS855.73; lcc:DS855.87..DS856.72,"Earliest to 1185 | Earliest to 1600 | Heian period, 794-1185 | Nara period, 710-794 | To 794",
+10484,20th century,same label in exact-code heading (review scope),lcc:DS915.56..DS922.464; lcc:DS915.56..DS922.4642; lcc:DS916.6..DS922.464; lcc:DS916.6..DS922.4642; lcc:DS917.5..DS917.55; lcc:DS917.6..DS921.92; lcc:DS918.8..DS919.7; lcc:DS918.A1..DS921.92; lcc:DS920.2.A2..DS920.2.Z; lcc:DS920.44..DS920.45; lcc:DS920.8..DS920.9; lcc:DS920.A2..DS920.Z; lcc:DS920.A3..DS920.Z; lcc:DS921..DS921.2; lcc:DS921.9..DS921.92; lcc:DS922..DS922.445; lcc:DS922.46..DS922.464; lcc:DS922.46..DS922.4642,"1945- | 1948-1960 | 1960-1988 | 1988-2002 | 20th century | Aerial operations | Allied occupation, 1945-1948 | Atrocities | Celebrations. Memorials. Monuments | Foreign participation | Individual engagements, ships, etc. | Medals, badges, decorations of honor | Naval operations | Prisoners and prisons | War and intervention, 1950-1953",
+10485,19th-20th centuries,same label in exact-code heading (review scope),lcc:DS361..DS371; lcc:DS361..DS371.3,1826-1973 | 19th-20th centuries,
+10487,Early to 622,no exact dated heading (review),lcc:DS38,,Early to 622
+10489,1914-1945,no exact dated heading (review),lcc:F1034,,1914-1945
+10490,"Durani Rule, 1747–1826",same years in exact-code heading (review scope),lcc:DS359..DS359.8,1747-1826. Durani dynasty,
+10491,13th century,same label in exact-code heading (review scope),lcc:D202.3..D202.4,13th century,
+10496,"Solidarity & Communism, 1980–1989",no exact dated heading (review),lcc:DK4442,,1980-1989
+10497,"Cold War Era, 1945–1989",no exact dated heading (review),lcc:DJK50,,1945-1989
+10500,1945-1975,same label in exact-code heading (review scope),lcc:DS799.77..DS799.823,1945-1975,
+10502,"Luxembourg Dynasty, 1311–1437",same years in exact-code heading (review scope),lcc:DB2095..DB2111,"Luxemburg Dynasty, 1311-1437",
+10503,1886-1960,same label in exact-code heading (review scope),lcc:DT365.7..DT365.75,1886-1960,
+10504,1951-,no exact dated heading (review),lcc:CB161,,1951-
+10511,"Kalmar Union, 1397–1524",no exact dated heading (review),lcc:DL75,,1397-1524
+10512,"World War II, 1939–1945",no exact dated heading (review),lcc:DB955.8,,1939-1945. Period of World War II
+10513,1947-1971,no exact dated heading (review),lcc:DS395,,1947-1971
+10516,1901-,same label in exact-code heading (review scope),lcc:DS685..DS686.62; lcc:DS686.5..DS686.6; lcc:DS686.614..DS686.62,1901- | 1946-1986 | 1986-,
+10517,1990,same label in exact-code heading (review scope),lcc:DS798.84..DS798.86,1990,
+10521,"Egypt, 1879–1952",same years in exact-code heading (review scope),lcc:DT107..DT107.82,1879-1952,
+10522,1945,same label in exact-code heading (review scope),lcc:D755.7..D755.8,1945,
+10524,"Early Second Republic, 1918–1926",same years in exact-code heading (review scope),lcc:DK4403.5..DK4409.4; lcc:DK4404..DK4409.3; lcc:DK4406..DK4406.3,1918-1926 | Military operations | Wars of 1918-1921,
+10527,"Ben Ali Era, 1987–2011",no exact dated heading (review),lcc:DT266.5; lcc:DT266.8,,Foreign and general relations | Social life and customs. Civilization. Intellectual life
+10529,"Post-Communism, 1989–Present",no exact dated heading (review),lcc:DAW1051,,1989-
+10532,"Tunisian Politics, 1987–2011",no exact dated heading (review),lcc:DT266.7,,Political history
+10533,1895-1945,same label in exact-code heading (review scope),lcc:DS799.69..DS799.72; lcc:DS799.74,1895-1945,
+10536,1965-,same label in exact-code heading (review scope),lcc:DS610.7..DS610.73,1965-,
+10540,"Interwar & WWII, 1918–1945",no exact dated heading (review),lcc:DAW1049,,1918-1945
+10543,"First Seminole War, 1817-1818",no exact dated heading (review),lcc:E83.817,,"First Seminole War, 1817-1818"
+10544,"Qing Dynasty, 1644–1912",same years in exact-code heading (review scope),lcc:DS753.82..DS773.6; lcc:DS754.2..DS754.84; lcc:DS755..DS760; lcc:DS761..DS773.6,"1644-1795. 18th century | 1796-1861. 19th century | 1861-1912 | Qing (Ch'ing) dynasty, 1644-1912",
+10548,19th-20th centuries,no exact dated heading (review),lcc:DT176..DT176.199; lcc:DT176,,19th-20th centuries
+10551,"Democratic Transition, 1989–1992",no exact dated heading (review),lcc:DB2844,,1989-1992
+10556,"Reunification Era, 1975–",uncoded grouping,,,
+10559,"Dominion, 1867–1914",no exact dated heading (review),lcc:F1033,,1867- . Dominion of Canada
+10560,1942-1945,no exact dated heading (review),lcc:DS643.5,,1942-1945
+10564,Early & medieval to 1500,same years in exact-code heading (review scope),lcc:DJK46..DJK46.7,Early and medieval to 1500,
+10565,"Scandinavia in the 1800s, 1814–1900",no exact dated heading (review),lcc:DL81,,1814-1900
+10568,"Early Modern Era, 1500–1815",no exact dated heading (review),lcc:DAW1047,,1500-1815
+10574,"Piracy, 1516–1830",same years in exact-code heading (review scope),lcc:DT201..DT202,1516-1830. Period of piracy,
+10575,1945-1965,same label in exact-code heading (review scope),lcc:DS610.6..DS610.63,1945-1965,
+10578,"Colonial Era, 1798–1942",same years in exact-code heading (review scope),lcc:DS643..DS643.22,1798-1942. Colonial period,
+10580,"Hindu-Buddhist Era, to 1478",no exact dated heading (review),lcc:DS641,,Earliest to 1478. Hindu-Buddhist era
+10581,1974-,no exact dated heading (review),lcc:DT367.8,,1974-
+10584,Early through 1500,no exact dated heading (review),lcc:DT25,,Early through 1500
+10585,1900-1974,same label in exact-code heading (review scope),lcc:DT367.75..DT367.77,1900-1974,
+10586,"Post-Communism, 1989–Present",no exact dated heading (review),lcc:DJK51,,1989-
+10587,"China, 2002–Present",no exact dated heading (review),lcc:DS779.44; lcc:DS779.45; lcc:DS779.48,,Military history | Naval history
+10588,"Hohenzollern Dynasty, 1415–1640",same years in exact-code heading (review scope),lcc:DD380..DD387,1415-1640. Hohenzollern dynasty,
+10590,Early to 1884,no exact dated heading (review),lcc:DT476,,Early to 1884
+10591,1960-,no exact dated heading (review),lcc:DT30.5,,1960-
+10592,1 AD-622,no exact dated heading (review),lcc:DS62.25,,1 A.D.-622
+10597,1989-2001,same label in exact-code heading (review scope),lcc:DS371.3..DS371.33,1989-2001,
+10599,1941,no exact dated heading (review),lcc:D755.3,,1941
+10600,"Early National Period, 1792–1825",no exact dated heading (review),lcc:DB933.5,,1792-1825
+10602,1951-1980,no exact dated heading (review),lcc:DU23,,1951-1980
+10603,"Late Medieval, 1437–1526",same years in exact-code heading (review scope),lcc:DB2115..DB2133,1437-1526,
+10604,"Postwar Europe, 1945–Present",same years in exact-code heading (review scope),lcc:D1050..D2009; lcc:D1056..D1056.2; lcc:D1058..D1065,1945- | Ethnography | Political and diplomatic history,Europe
+10605,"Sanation Era, 1926–1939",no exact dated heading (review),lcc:DK4409.5,,1926-1939
+10607,Early to 1945,same label in exact-code heading (review scope),lcc:DS610.5..DS610.53,Early to 1945,
+10608,1945-1960,same label in exact-code heading (review scope),lcc:DT30..DT30.2,1945-1960,
+10612,"Egyptian Diplomatic, 1952–",no exact dated heading (review),lcc:DT107.828,,
+10613,21st-Century Military,no exact dated heading (review),lcc:D862.5; lcc:D862.7,,Military history | Naval history
+10615,"Wartime State, 1939–1945",same years in exact-code heading (review scope),lcc:DB2815..DB2822,"Period of World War II. Slovak Independence, 1939-1945",
+10616,"Ottoman period, 1517-1918",no exact dated heading (review),lcc:DS38.8,,"Ottoman period, 1517-1918"
+10622,"Long 19th Century, 1815–1918",no exact dated heading (review),lcc:DJK48,,1815-1918
+10623,1602-1798. Dutch East India Company,same label in exact-code heading (review scope),lcc:DS642..DS642.22,1602-1798. Dutch East India Company,
+10624,"German Occupation, 1939–1945",same years in exact-code heading (review scope),lcc:DB2205..DB2211,"Period of World War II. German occupation, 1939-1945",
+10625,11th century,same label in exact-code heading (review scope),lcc:D201.3..D201.4,11th century,
+10626,1942-1945. Japanese occupation,no exact dated heading (review),lcc:DS610.55,,1942-1945. Japanese occupation
+10627,"King Philip's War, 1675-1676",no exact dated heading (review),lcc:E83.67,,"King Philip's War, 1675-1676"
+10639,19th Century,different years in exact-code headings (review),lcc:DT263..DT263.76,1830-1881. 19th century,
+10644,"Kalmar Union, 1397–1523",same years in exact-code heading (review scope),lcc:DL696..DL700.9,1397-1523,
+10647,"Second Seminole War, 1835-1842",no exact dated heading (review),lcc:E83.835,,"Second Seminole War, 1835-1842"
+10648,"Medieval–Early Modern, 1185–1603",same years in exact-code heading (review scope),lcc:DS856.75..DS869.7; lcc:DS858..DS861; lcc:DS863.75..DS869.7; lcc:DS865.4..DS865.5; lcc:DS868..DS869.7; lcc:DS869.4..DS869.6,"1185-1603. Medieval to early modern | Azuchi-Momoyama period, 1568-1603 | Kamakura period, 1185-1333 | Muromachi period, 1336-1573. Ashikaga Shogunate | Period of civil wars, 1480-1603. Sengoku period | Period of northern and southern courts, 1336-1392",
+10651,647-1516,no exact dated heading (review),lcc:DT199; lcc:DT259,,647-1516
+10653,1966-1998,same label in exact-code heading (review scope),lcc:DS644.4..DS644.46,1966-1998,
+10658,1501-1700,no exact dated heading (review),lcc:DT26,,1501-1700
+10659,"Postwar Scandinavia, 1945–Present",no exact dated heading (review),lcc:DL87,,1945-
+10664,1971-,same label in exact-code heading (review scope),lcc:CB428..CB430,1971-,1971–Present
+10665,"Late Medieval, 1234–1397",no exact dated heading (review),lcc:DL681..DL695.Z,,1234-1523
+10667,Arab conquest to c. 1516 or 1524,no exact dated heading (review),lcc:DT173..DT173.999; lcc:DT173,,Arab conquest (to ca. 1516 or 1524)
+10668,21st century,same label in exact-code heading (review scope),lcc:DA828..DA833,21st century,
+10669,21st century,same label in exact-code heading (review scope),lcc:D861..D863.7,21st century,
+10673,21st century,same label in exact-code heading (review scope),lcc:DS922.5..DS923.284; lcc:DS923..DS923.284; lcc:DS923.286,2002- | 21st century,
+10674,"Interwar & WWII, 1918–1945",no exact dated heading (review),lcc:DJK49,,1918-1945
+10676,21st century,no exact dated heading (review),lcc:DT205,,21st century
+10678,"Egypt, 1250–1517",same years in exact-code heading (review scope),lcc:DT96..DT96.7,1250-1517. Mamelukes. مماليك,
+10682,Early to 10th century,same label in exact-code heading (review scope),lcc:D121..D123,Early to 10th century,
+10684,"Revolutions, 1918–1920",no exact dated heading (review),lcc:DB955.7,,1919-1920. Revolution and counterrevolution
+10687,21st-Century Political,no exact dated heading (review),lcc:D863,,Political history
+10688,2001-,same label in exact-code heading (review scope),lcc:DS371.4..DS371.43; lcc:DS371.44,2001-,
+10691,Early to 647,no exact dated heading (review),lcc:DT198; lcc:DT258,,Early to 647
+10693,"Reform Era, 1825–1848",no exact dated heading (review),lcc:DB934,,1825-1848. Age of reform
+10694,14th century,same label in exact-code heading (review scope),lcc:D202.7..D202.8,14th century,
+10695,1801-1897,no exact dated heading (review),lcc:DU21,,1801-1897
+10696,"World Wars Era, 1900–1945",same years in exact-code heading (review scope),lcc:DL83..DL85,1900-1945,
+10702,221 BC-960 AD,same label in exact-code heading (review scope),lcc:DS747.28..DS749.76; lcc:DS747.5..DS747.9; lcc:DS748..DS748.164; lcc:DS748..DS748.165; lcc:DS748.162..DS748.165; lcc:DS748.17..DS748.76; lcc:DS748.4..DS748.44; lcc:DS749.2..DS749.29; lcc:DS749.3..DS749.47; lcc:DS749.5..DS749.76,"220-589 | 221 B.C.-960 A.D. | Five Dynasties, and the Ten Kingdoms, 907-979 | Han Dynasty, 202 B.C.-220 A.D. | Jin (Chin) dynasty, 265-419 | Qin (Ch'in) dynasty, 221-207 B.C. | Sui Dynasty, 581-618 | Tang (T'ang) dynasty, 618-907 | Xin (Hsin) dynasty, 9-23",
+10703,19th-20th centuries,same label in exact-code heading (review scope),lcc:DS578..DS586,19th-20th centuries,
+10704,"Sonderbund War, 1847",same years in exact-code heading (review scope),lcc:DQ160..DQ161,"War of the Sonderbund, 1847",
+10706,"Neo-Absolutism, 1849–1867",no exact dated heading (review),lcc:DB943,,1849-1867
+10708,1942,no exact dated heading (review),lcc:D755.4,,1942
+10709,Published through 1950,no exact dated heading (review),lcc:CB160,,Published through 1950 | Special forecasts. By author or title
+10713,960-1644,same label in exact-code heading (review scope),lcc:DS750.52..DS753.7; lcc:DS751..DS751.6; lcc:DS751.72..DS751.78; lcc:DS751.82..DS751.88; lcc:DS751.92..DS751.98; lcc:DS752..DS752.6; lcc:DS753..DS753.7,"960-1644 | Jin (Chin) dynasty, 1115-1234. (Juchen or Ruzhen dynasty) | Liao Dynasty, 947-1125. Khitan Mongols | Ming Dynasty, 1368-1644 | Song (Sung) dynasty, 960-1279 | Xi Xia (Hsi Hsia) dynasty, 1038-1227. Tangut | Yuan dynasty, 1260-1368",
+10714,1988-,same label in exact-code heading (review scope),lcc:DS799.84..DS799.849,1988-,
+10715,"National Awakening, 1840–1912",same years in exact-code heading (review scope),lcc:DR965.9..DR969,1840-1912. National renaissance. Independence movement,
+10718,2002-,same label in exact-code heading (review scope),lcc:DS649.7..DS649.73,2002-,
+10719,"Cold War Era, 1945–1989",no exact dated heading (review),lcc:DAW1050,,1945-1989
+10722,11th-12th centuries,same label in exact-code heading (review scope),lcc:D201..D201.8,11th-12th centuries,
+10725,"Sino-Vietnamese Conflict, 1979",same label in exact-code heading (review scope),lcc:DS559.915..DS559.916,"Sino-Vietnamese Conflict, 1979",
+10730,"Normalization, 1968–1989",same years in exact-code heading (review scope),lcc:DB2225..DB2233,1968-1989,
+10735,"Colonial Era, 1884–1960",same years in exact-code heading (review scope),lcc:DT476.2..DT476.23,1884-1960. Colonial period,
+10736,"Munich Crisis, 1938",no exact dated heading (review),lcc:DB2202,,Munich four-power agreement
+10741,Through 1800,no exact dated heading (review),lcc:DU20,,Through 1800
+10744,"Habsburg Rule, 1477–1555",same years in exact-code heading (review scope),lcc:DH179..DH184,1477-1555,
+10746,1946-1963 Federation,same label in exact-code heading (review scope),lcc:DS597..DS597.15,1946-1963 (Federation),
+10747,"Early Era, to 1172",same years in exact-code heading (review scope),lcc:DA930..DA932.6,To 1172,
+10752,20th century,same label in exact-code heading (review scope),lcc:DS798.75..DS798.76,20th century,
+10754,20th century,same label in exact-code heading (review scope),lcc:DS35..DS35.2,20th century,
+10757,"Chronicles & Writings, Pre-1525",no exact dated heading (review),lcc:D17,,Chronicles and works written before 1525 | World histories
+10758,"Black Hawk War, 1832",no exact dated heading (review),lcc:E83.83,,"Black Hawk War, 1832"
+10760,1960-,no exact dated heading (review),lcc:DT532.6,,1960-
+10763,"Independent, 1960–",same years in exact-code heading (review scope),lcc:DT476.5..DT476.523,1960- . Independent,
+10764,1960-,no exact dated heading (review),lcc:DT365.78,,1960-
+10765,"Dual Monarchy, 1867–1918",no exact dated heading (review),lcc:DB945; lcc:DB953,,1867-1918. Dual monarchy | 1914-1918. Period of World War I
+10767,"Egypt, 2011–Present",no exact dated heading (review),lcc:DT107.88..DT107.999; lcc:DT107.88,,2011-
+10768,1944,no exact dated heading (review),lcc:D755.6,,1944
+10769,"Late Partition Era, 1864–1918",same years in exact-code heading (review scope),lcc:DK4366..DK4378; lcc:DK4373..DK4373.5; lcc:DK4379.9..DK4395; lcc:DK4383..DK4389; lcc:DK4390..DK4392,1864-1918 | 1914-1918. Period of World War I | Military operations | Revolution of 1863-1864 | Revolution of 1905,
+10770,"Early Modern Scandinavia, 1523–1814",no exact dated heading (review),lcc:DL78,,1523-1814
+10772,1801-1884,no exact dated heading (review),lcc:DT28,,1801-1884
+11219,Early to 1362,no exact dated heading (review),lcc:DR50.6,,Early to 1362
+11220,"Ottoman Thrace, 1362–1913",same years in exact-code heading (review scope),lcc:DR50.7..DR50.785,1362-1913. Turkish rule,
+11225,"Communist Rule, 1959–",same years in exact-code heading (review scope),lcc:F1788..F1788.22,1959- . Communist regime | Cuba,
+11226,1524-1838,no exact dated heading (review),lcc:F1487,,1524-1838
+11227,"1838–1944; Martinez, 1931–1944",no exact dated heading (review),lcc:F1487.5,,"1838-1944. Martinez regime, 1931-1944"
+11228,"Empire, 1822-1889",no exact dated heading (review),lcc:F2536,,"Empire, 1822-1889"
+11229,"1830–1895; Moreno Era, 1860–1895",no exact dated heading (review),lcc:F3736,,"1830-1895. Age of Moreno, 1860-1895"
+11230,1935-1958,no exact dated heading (review),lcc:F2326,,1935-1958
+11231,1975-,same label in exact-code heading (review scope),lcc:F2425.2..F2425.23,1975-,
+11232,1982-,same label in exact-code heading (review scope),lcc:F1508.3..F1508.33,1982-,
+11233,1979-,same label in exact-code heading (review scope),lcc:F1528..F1528.22,1979-,
+11234,1870-1938,no exact dated heading (review),lcc:F2688,,1870-1938
+11235,1538-1809. Upper Peru,no exact dated heading (review),lcc:F3322,,1538-1809. Upper Peru
+11236,1820-1829,no exact dated heading (review),lcc:F3446,,1820-1829
+11237,"Independence War, 1810–1822",no exact dated heading (review),lcc:F2274,,1810-1822. War of Independence
+11238,1973-,same label in exact-code heading (review scope),lcc:F2729..F2729.52,1973-,
+11239,1604-1814,no exact dated heading (review),lcc:F2423,,1604-1814
+11240,1954-1964,same label in exact-code heading (review scope),lcc:F2538.2..F2538.22,1954-1964,
+11241,1500-1548,no exact dated heading (review),lcc:F2526,,1500-1548
+11242,1944-1984,no exact dated heading (review),lcc:F3738,,1944-1984
+11243,1974-,same label in exact-code heading (review scope),lcc:F2279..F2279.22,1974-,
+11244,1974-1999,same label in exact-code heading (review scope),lcc:F2328..F2328.52,1974-1999,
+11245,1952-1981,no exact dated heading (review),lcc:F1567,,1952-1981
+11246,1999-,same label in exact-code heading (review scope),lcc:F2329..F2329.22,1999-,
+11247,1501-1903,no exact dated heading (review),lcc:F1566.45,,1501-1903
+11248,1981-,same label in exact-code heading (review scope),lcc:F1567.4..F1567.6,1981-,
+11249,1806-1812,no exact dated heading (review),lcc:F2323,,1806-1812
+11250,1811-1830,no exact dated heading (review),lcc:F2725,,1811-1830
+11251,1979-1992,same label in exact-code heading (review scope),lcc:F1488.3..F1488.42,1979-1992,
+11252,"1904–1973; Batlle Era, 1903–1929",no exact dated heading (review),lcc:F2728,,"1904-1973. Era of Batlle, 1903-1929"
+11253,1830-1904,no exact dated heading (review),lcc:F2726,,1830-1904
+11254,1822-1832,no exact dated heading (review),lcc:F2275,,1822-1832
+11255,"Colonial Era, 1526–1809",no exact dated heading (review),lcc:F3733,,1526-1809. Colonial period
+11256,1822-,no exact dated heading (review),lcc:F2535,,1822-
+11257,1549-1762,no exact dated heading (review),lcc:F2528..F2532,,1549-1762
+11258,1982-,no exact dated heading (review),lcc:F3327,,1982-
+11259,1985-,same label in exact-code heading (review scope),lcc:F2538.3..F2538.5,1985-,
+11260,1992-,same label in exact-code heading (review scope),lcc:F1488.5..F1488.53,1992-,
+11261,"Republic, 1889-",no exact dated heading (review),lcc:F2537,,"Republic, 1889-"
+11262,1516-1811,no exact dated heading (review),lcc:F2723,,1516-1811
+11263,1519-1535,no exact dated heading (review),lcc:F1230,,1519-1535
+11264,1810-,no exact dated heading (review),lcc:F2273,,1810-
+11265,1830-1935,no exact dated heading (review),lcc:F2325,,1830-1935
+11266,1810-,same label in exact-code heading (review scope),lcc:F3093..F3101.4; lcc:F3100..F3101; lcc:F3101.3..F3101.4,1810- | 1970-1988 | 1988-,
+11267,"Viceroyalty, 1535–1810",no exact dated heading (review),lcc:F1231,,1535-1810. New Spain (Viceroyalty)
+11268,1966-,no exact dated heading (review),lcc:F2385,,1966-
+11269,1945-1985,no exact dated heading (review),lcc:F1466.5,,1945-1985
+11270,1535-1810,no exact dated heading (review),lcc:F3091,,1535-1810
+11271,1522-1548,no exact dated heading (review),lcc:F3442,,1522-1548
+11272,"Chaco War, 1932-1935",no exact dated heading (review),lcc:F2688.5,,"Chaco War, 1932-1935"
+11273,1933-1982,same label in exact-code heading (review scope),lcc:F1508..F1508.22,1933-1982,
+11274,1937-1979,no exact dated heading (review),lcc:F1527,,1937-1979
+11275,1948-1986,no exact dated heading (review),lcc:F1548,,1948-1986
+11276,1832-1886,no exact dated heading (review),lcc:F2276,,1832-1886
+11277,1838-1933,no exact dated heading (review),lcc:F1507.5,,1838-1933
+11278,"Three Dictators, 1811–1870",no exact dated heading (review),lcc:F2686,,1811-1870. Era of three dictators
+11279,"Independence, 1810–1830 war to 1823",no exact dated heading (review),lcc:F2324,,"1810-1830. War of Independence, 1810-1823"
+11280,"Paraguayan War, 1865-1870",no exact dated heading (review),lcc:F2687,,"Paraguayan War, 1865-1870"
+11281,1498-1806/1810,no exact dated heading (review),lcc:F2322,,1498-1806/1810
+11282,1825-1884,no exact dated heading (review),lcc:F3324,,1825-1884
+11283,1884-1938,no exact dated heading (review),lcc:F3325,,1884-1938
+11284,1499-1810,no exact dated heading (review),lcc:F2272,,1499-1810
+11285,1946-1970,same label in exact-code heading (review scope),lcc:F1235..F1235.5,1946-1970,
+11286,"Revolution, 1910–1920; Legacy to 1946",no exact dated heading (review),lcc:F1234,,1910-1946. Mexican Revolution (1910-1920)
+11287,1849-1867,no exact dated heading (review),lcc:F1232.5; lcc:F1233,,1849-1858/1861 | 1849/1861-1867
+11288,1984-,same label in exact-code heading (review scope),lcc:F3738.2..F3738.4,1984-,
+11289,1944-1979,no exact dated heading (review),lcc:F1488,,1944-1979
+11290,1964-1985,same label in exact-code heading (review scope),lcc:F2538.25..F2538.27,1964-1985,
+11291,1522-1838,no exact dated heading (review),lcc:F1526.25,,1522-1838
+11292,1806/1810-,no exact dated heading (review),lcc:F2322.8,,1806/1810-
+11293,1811-,no exact dated heading (review),lcc:F2724,,1811-
+11294,1970-2000,same label in exact-code heading (review scope),lcc:F1236..F1236.6,1970-2000,
+11295,1886-1903,no exact dated heading (review),lcc:F2276.5,,1886-1903
+11296,1500-1821,no exact dated heading (review),lcc:F2524,,1500-1821
+11297,1867-1910,no exact dated heading (review),lcc:F1233.5,,1867-1910
+11298,1895-1944,no exact dated heading (review),lcc:F3737,,1895-1944
+11299,1950-1975,no exact dated heading (review),lcc:F2425,,1950-1975
+11300,1810-1849,no exact dated heading (review),lcc:F1232,,1810-1849
+11301,1523-1838,no exact dated heading (review),lcc:F1466.4,,1523-1838
+11302,1989-,same label in exact-code heading (review scope),lcc:F2689.2..F2689.23,1989-,
+11303,1986-,same label in exact-code heading (review scope),lcc:F1548.2..F1548.23,1986-,
+11304,1527-1811,no exact dated heading (review),lcc:F2683; lcc:F2684,,1527-1811
+11305,1945-,no exact dated heading (review),lcc:F1448,,1945-
+11306,1803-1966,no exact dated heading (review),lcc:F2384,,1803-1966
+11307,2000-,same label in exact-code heading (review scope),lcc:F1236.7..F1236.9,2000-,
+11308,1985-,no exact dated heading (review),lcc:F1466.7,,1985-
+11309,"Independence Wars, 1809–1830",no exact dated heading (review),lcc:F3734,,1809-1830. Wars of independence
+11310,1946-1974,no exact dated heading (review),lcc:F2278,,1946-1974
+11311,1502-1838,no exact dated heading (review),lcc:F1547,,1502-1838
+11312,"Vargas Era, 1930–1954",no exact dated heading (review),lcc:F2538,,1930-1954. Period of Vargas
+11313,1763-1821,no exact dated heading (review),lcc:F2534,,1763-1821
+11314,"Independence Wars, 1809–1825",no exact dated heading (review),lcc:F3323,,1809-1825. Wars of independence
+11315,1938-1982,no exact dated heading (review),lcc:F3326,,1938-1982
+11316,1838-1909,no exact dated heading (review),lcc:F1526.27,,1838-1909
+11317,1938-1989,no exact dated heading (review),lcc:F2689,,1938-1989
+11318,1548-1820,no exact dated heading (review),lcc:F3444,,1548-1820
+11319,1829-,same label in exact-code heading (review scope),lcc:F3446.5..F3448.7; lcc:F3448.2..F3448.4; lcc:F3448.5..F3448.7,1829- | 1968-1980 | 1980-,
+11320,1904-1946,no exact dated heading (review),lcc:F2277,,1904-1946
+11321,1903-1952,no exact dated heading (review),lcc:F1566.5,,1903-1952
+11322,1958-1974,same label in exact-code heading (review scope),lcc:F2327..F2327.52,1958-1974,
+11323,1838-1948,no exact dated heading (review),lcc:F1547.5,,1838-1948
+11324,1838-1945,no exact dated heading (review),lcc:F1466.45,,1838-1945
+11325,1909-1937,no exact dated heading (review),lcc:F1526.3,,1909-1937
+11326,1945-,same label in exact-code heading (review scope),lcc:DU420.32..DU420.34,1945-,
+11327,1918-1945,same label in exact-code heading (review scope),lcc:DU420.26..DU420.28,1918-1945,
+11328,1876-1918,same label in exact-code heading (review scope),lcc:DU420.22..DU420.24,1876-1918,
+11329,Through 1840,same label in exact-code heading (review scope),lcc:DU420.12..DU420.14,Through 1840,
+11330,1840-1876,same label in exact-code heading (review scope),lcc:DU420.16..DU420.18,1840-1876,
+11331,1788-1900,same label in exact-code heading (review scope),lcc:DU114..DU115.2,1788-1900,
+11332,1900-1945,same label in exact-code heading (review scope),lcc:DU116..DU116.2,1900-1945,
+11333,1945-,same label in exact-code heading (review scope),lcc:DU116.9..DU117.2,1945-,
+11334,Early to 1237,no exact dated heading (review),lcc:DK507.7,,Early to 1237
+11335,Early to 1813,no exact dated heading (review),lcc:DK697.1,,Early to 1813
+11336,"Soviet Occupation, 1940–1991",same years in exact-code heading (review scope),lcc:DK504.77..DK504.79; lcc:DK504.765,1940-1991,"War of Independence, 1918-1920"
+11337,"Restored Independence, 1991–Present",same years in exact-code heading (review scope),lcc:DK504.8..DK504.85,1991-,
+11338,1850-1917,same label in exact-code heading (review scope),lcc:DK908.86..DK908.8614; lcc:DK908.8617,1850-1917,"Revolt, 1916"
+11339,"First Independence, 1918–1940",same years in exact-code heading (review scope),lcc:DK504.74..DK504.765,1918-1940,
+11340,1981-,no exact dated heading (review),lcc:DK948.62,,1981-
+11341,"Independence Era, 1991–Present",same years in exact-code heading (review scope),lcc:DK509.772..DK509.774,1991-,
+11342,"Federation, 1991–Present",uncoded grouping,,,
+11343,1801-1921,same label in exact-code heading (review scope),lcc:DK677.4..DK677.6,1801-1921,
+11344,"Commonwealth, 1569–1795",same years in exact-code heading (review scope),lcc:DK505.72..DK505.726,1569-1795,
+11345,1800-1917,no exact dated heading (review),lcc:DK948.84,,1800-1917
+11346,20th century,same label in exact-code heading (review scope),lcc:DK507.729..DK507.73; lcc:DK507.7295..DK507.7296; lcc:DK507.73..DK507.75; lcc:DK507.76..DK507.78,1917-1945 | 1945-1991 | 20th century,
+11347,"Restored Independence, 1991–Present",same years in exact-code heading (review scope),lcc:DK503.8..DK503.85,1991-,
+11348,330-1220,same label in exact-code heading (review scope),lcc:DK677.2..DK677.28,330-1220,
+11349,"Grand Duchy of Lithuania, 1237–1569",no exact dated heading (review),lcc:DK507.71,,1237-1569
+11350,"National Awakening, 1800–1918",same years in exact-code heading (review scope),lcc:DK504.73..DK504.737,1800-1918,
+11351,"First Independence, 1918–1940",same years in exact-code heading (review scope),lcc:DK505.74..DK505.76; lcc:DK505.765,1918-1940,"War of Independence, 1918-1920"
+11352,1220-1801,same label in exact-code heading (review scope),lcc:DK677.3..DK677.35,1220-1801,
+11353,1400-1700,no exact dated heading (review),lcc:DK908.84,,1400-1700
+11354,"Russian Imperial Rule, 1795–1918",same years in exact-code heading (review scope),lcc:DK505.73..DK505.738,1795-1918,
+11355,"Independence Era, 1991–Present",same years in exact-code heading (review scope),lcc:DK507.8..DK507.822,1991-,
+11356,1813-1917,no exact dated heading (review),lcc:DK697.2,,1813-1917
+11357,"Russian Rule, 1812–1918",same years in exact-code heading (review scope),lcc:DK509.7..DK509.706,1812-1918,
+11358,"Commonwealth, 1569–1795",same years in exact-code heading (review scope),lcc:DK507.72..DK507.726,1569-1795,
+11359,"Union with Romania, 1918–1940",same years in exact-code heading (review scope),lcc:DK509.71..DK509.73,1918-1940,
+11360,1945-1991,same label in exact-code heading (review scope),lcc:DK918.871..DK918.873,1945-1991,
+11361,"Cossack Hetmanate, 1648–1775",same years in exact-code heading (review scope),lcc:DK508.73..DK508.761; lcc:DK5259..DK5273.Z,1648-1775,History of Ukraine
+11362,500-1800,no exact dated heading (review),lcc:DK948.83,,500-1800
+11363,1945-1991,same label in exact-code heading (review scope),lcc:DK928.86..DK928.863,1945-1991,
+11364,1921-1991,same label in exact-code heading (review scope),lcc:DK677.7..DK677.92,1921-1991,
+11365,1991-,same label in exact-code heading (review scope),lcc:DK938.865..DK938.867,1991-,
+11366,"Late Soviet Era, 1945–1991",same years in exact-code heading (review scope),lcc:DK510.73..DK510.75,1945-1991,
+11367,Early to 330,same label in exact-code heading (review scope),lcc:DK677.1..DK677.15,Early to 330,
+11368,"Soviet Era, 1940–1991",same years in exact-code heading (review scope),lcc:DK509.74..DK509.76,1940-1991,
+11369,1991-,same label in exact-code heading (review scope),lcc:DK918.875..DK918.877,1991-,
+11370,1920-1991,same label in exact-code heading (review scope),lcc:DK686.9..DK687.3,1920-1991,
+11371,"Soviet Occupation, 1940–1991",same years in exact-code heading (review scope),lcc:DK505.77..DK505.79; lcc:DK505.793; lcc:DK505.795; lcc:DK505.797,1940-1991,1940-1941. Period of Soviet occupation | 1941-1944. Period of German occupation | 1944-1991. Soviet period
+11372,1991-,same label in exact-code heading (review scope),lcc:DK928.865..DK928.867,1991-,
+11373,1917-1945,same label in exact-code heading (review scope),lcc:DK928.85..DK928.853,1917-1945,
+11374,"Soviet Occupation, 1940–1991",same years in exact-code heading (review scope),lcc:DK503.75..DK503.77,1940-1991,
+11375,1991-,same label in exact-code heading (review scope),lcc:DK948.865..DK948.867,1991-,
+11376,1917-1991,same label in exact-code heading (review scope),lcc:DK697.3..DK697.5,1917-1991,
+11377,Early to 1569,same label in exact-code heading (review scope),lcc:DK505.695..DK505.716; lcc:DK505.7..DK505.706; lcc:DK505.71..DK505.716,1350-1569 | Early to 1350 | Early to 1569,
+11378,1991-,same label in exact-code heading (review scope),lcc:DK687.5..DK687.62,1991-,
+11379,1700-1850,same label in exact-code heading (review scope),lcc:DK908.85..DK908.856,1700-1850,
+11380,1917-1945,same label in exact-code heading (review scope),lcc:DK918.85..DK918.87,1917-1945,
+11381,20th century,uncoded grouping,,,
+11382,"Restored Independence, 1991–Present",same years in exact-code heading (review scope),lcc:DK505.8..DK505.85,1991-,
+11383,1917-1945,same label in exact-code heading (review scope),lcc:DK908.8618..DK908.863,1917-1945,
+11384,1917-1945,same label in exact-code heading (review scope),lcc:DK948.85..DK948.853,1917-1945,
+11385,"Revolution & Soviet Era, 1917–1945",same years in exact-code heading (review scope),lcc:DK510.7..DK510.72,1917-1945,
+11386,"National Awakening, 1800–1918",same years in exact-code heading (review scope),lcc:DK503.73..DK503.736,1800-1918,
+11387,1700-1917,same label in exact-code heading (review scope),lcc:DK918.84..DK918.848,1700-1917,
+11388,"Imperial Russian Rule, 1775–1917",same years in exact-code heading (review scope),lcc:DK508.77..DK508.782; lcc:DK5277..DK5303.Z,1775-1917,
+11389,1991-,same label in exact-code heading (review scope),lcc:DK678..DK678.3,1991-,
+11390,"Russian Imperial Rule, 1795–1917",same years in exact-code heading (review scope),lcc:DK507.727..DK507.729; lcc:DK507.729; lcc:DK507.73,1795-1917,1917-1945
+11391,1945-1991,same label in exact-code heading (review scope),lcc:DK948.86..DK948.863,1945-1991,
+11392,1991-,no exact dated heading (review),lcc:DK908.867..DK908.868,,1991-
+11393,Early to 1340,no exact dated heading (review),lcc:DK5205..DK5219.Z; lcc:DK508.66,,Early to 1340 | History of Ukraine
+11394,"First Independence, 1918–1940",same years in exact-code heading (review scope),lcc:DK503.74..DK503.748,1918-1940,
+11395,"Polish Rule, 1569–1648",same years in exact-code heading (review scope),lcc:DK508.68..DK508.695; lcc:DK5241..DK5255.Z,1569-1648. Period of Polish rule,History of Ukraine
+11396,"Polish–Lithuanian Rule, 1340–1569",same years in exact-code heading (review scope),lcc:DK508.67..DK508.675; lcc:DK5223..DK5237.Z,1340-1569. Period of Polish-Lithuanian domination,History of Ukraine
+11397,1991-,same label in exact-code heading (review scope),lcc:DK697.6..DK697.8,1991-,
+11398,1945-1991,same label in exact-code heading (review scope),lcc:DK908.864..DK908.866,1945-1991,
+11399,"Early Ottoman, 1281/1453–1566",no exact dated heading (review),lcc:DR485..DR510.Z,,1281/1453-1918
+11400,Earliest to 1281/1453,no exact dated heading (review),lcc:DR481,,Earliest to 1281/1453
+11401,20th century,uncoded grouping,,,
+11402,1946-1971,same label in exact-code heading (review scope),lcc:DS98.2..DS98.3,1946-1971,
+11403,"Turkish period, 1517-1918",same label in exact-code heading (review scope),lcc:DS97.5..DS97.6,"Turkish period, 1517-1918",
+11404,"Medieval period, 638-1517",same label in exact-code heading (review scope),lcc:DS76..DS76.4,"Medieval period, 638-1517",
+11405,"Republic, 1958-",no exact dated heading (review),lcc:DS79.65..DS79.769,,"Republic, 1958-"
+11406,"428-1522. Sassanids, etc.",same label in exact-code heading (review scope),lcc:DS186..DS188,"428-1522. Sassanids, etc.",
+11407,1901-,same label in exact-code heading (review scope),lcc:DS195..DS195.5,1901-,
+11408,1522-1800. Turkish rule,same label in exact-code heading (review scope),lcc:DS191..DS193,1522-1800. Turkish rule,
+11410,1914-1932,same label in exact-code heading (review scope),lcc:DS244..DS244.5,1914-1932,
+11411,Early to 333 BC,no exact dated heading (review),lcc:DS96,,Early to 333 B.C.
+11412,1993-,no exact dated heading (review),lcc:DS109.95,,1993-
+11413,"Early Dynasties, to 428",same years in exact-code heading (review scope),lcc:DS181..DS184,Earliest to 428. Armenian dynasties,
+11416,1919-1958,same label in exact-code heading (review scope),lcc:DS79..DS79.6,1919-1958,
+11417,634-1516,same label in exact-code heading (review scope),lcc:DS97..DS97.4,634-1516,
+11418,"Turkish period, 1517-1918",no exact dated heading (review),lcc:DS77,,"Turkish period, 1517-1918"
+11419,2000-,same label in exact-code heading (review scope),lcc:DS98.6..DS98.72,2000-,
+11420,1919-,same label in exact-code heading (review scope),lcc:DS154.5..DS154.55; lcc:DS154.6,1919-,
+11421,333 BC-634 AD,no exact dated heading (review),lcc:DS96.2,,333 B.C.-634 A.D.
+11422,661-1517,same label in exact-code heading (review scope),lcc:DS234..DS238.7,661-1517,
+11423,70 AD-,same label in exact-code heading (review scope),lcc:DS123..DS128.2; lcc:DS125..DS128.2; lcc:DS126..DS126.4; lcc:DS126.5..DS126.994; lcc:DS126.92..DS126.93; lcc:DS126.995..DS128.19; lcc:DS127..DS127.9; lcc:DS127.2..DS127.3; lcc:DS128.1..DS128.19; lcc:DS128.12..DS128.13,"1919-1948. Period of British control | 1967-1993 | 19th-20th centuries | 70 A.D.- | Arab War, 1967 | Arab War, 1973 | Diplomatic history | Republic, 1948-",
+11424,1932-,same label in exact-code heading (review scope),lcc:DS244.512..DS244.63,1932-,
+11425,"Turkish period, 1517-1918",same label in exact-code heading (review scope),lcc:DS84..DS85,"Turkish period, 1517-1918",
+11426,Earliest to 70 AD,same label in exact-code heading (review scope),lcc:DS121..DS121.8; lcc:DS121.7..DS121.8,Earliest to 70 A.D. | Maccabees. Hasmonean period (168-63 B.C.),
+11427,1740-1873. Wahhabi movement,no exact dated heading (review),lcc:DS242,,1740-1873. Wahhabi movement
+11428,Ancient to 226 AD,same label in exact-code heading (review scope),lcc:DS275..DS285; lcc:DS278..DS279.7; lcc:DS281..DS284.9,"Ancient to 226 A.D. | Median Empire, 640-558 B.C. | Persian Empire, 558-330 B.C. Achaemenidae",
+11429,333 BC-638 AD,same label in exact-code heading (review scope),lcc:DS75..DS75.2,333 B.C.-638 A.D.,
+11430,63 BC-70 AD Roman period,same label in exact-code heading (review scope),lcc:DS122..DS122.9,63 B.C.-70 A.D. Roman period,
+11431,"Republic, 1941-",same label in exact-code heading (review scope),lcc:DS87..DS87.6; lcc:DS87.5..DS87.53; lcc:DS87.54..DS87.6,"1990- | Civil War, 1975-1990 | Republic, 1941-",
+11432,"French Mandate/Occupation, 1919–1945",no exact dated heading (review),lcc:DS86,,"French Mandate and occupation, 1919-1945"
+11433,1971-2000,same label in exact-code heading (review scope),lcc:DS98.4..DS98.5,1971-2000,
+11434,1801-1900,same label in exact-code heading (review scope),lcc:DS194..DS194.5,1801-1900,
+11435,1873-1914,no exact dated heading (review),lcc:DS243,,1873-1914
+11436,Earliest to 622,no exact dated heading (review),lcc:DS231,,Earliest to 622
+11437,622-661,no exact dated heading (review),lcc:DS232,,622-661
+11453,"Frankish Era, 481–918",same years in exact-code heading (review scope),lcc:DD127..DD135,"481-918 | Medieval Empire, 481-1273",
+11456,"Late Medieval, 1328–1515",same years in exact-code heading (review scope),lcc:DC101.9..DC109; lcc:DC95..DC109; lcc:DC96..DC101.7; lcc:DC97.5..DC101.7,1328-1515 | 14th century | 15th century | Early and medieval to 1515,"Hundred Years' War, 1339-1453"
+11458,"Bourbon Restoration, 1815–1830",same years in exact-code heading (review scope),lcc:DC256..DC260,"Restoration, 1815-1830",
+11459,"July Monarchy, 1830–1848",same label in exact-code heading (review scope),lcc:DC265..DC269,"July monarchy, 1830-1848",
+11460,"Second Republic, 1848–1851",same label in exact-code heading (review scope),lcc:DC271.5..DC273.6,"Second Republic, 1848-1851",
+11461,"Second Empire, 1852–1870",same label in exact-code heading (review scope),lcc:DC275..DC280.5,"Second Empire, 1852-1870",
+11462,"Third Republic, 1871–1940",same label in exact-code heading (review scope),lcc:DC334..DC354.9,"Third Republic, 1871-1940",
+11463,"Occupation & Liberation, 1940–1946",no exact dated heading (review),lcc:DC397,,1940-1946 | 20th century
+11465,"Fifth Republic, 1958–Present",no exact dated heading (review),lcc:DC424,,
+11499,"Principality & Kingdom, 1878–1944",same years in exact-code heading (review scope),lcc:DR84.9..DR89.8,1878-1944,
+11500,"Communist Era, 1944–1990",same years in exact-code heading (review scope),lcc:DR89.9..DR93.34,1944-1990,
+11501,"Republic, 1990–Present",same years in exact-code heading (review scope),lcc:DR93.4..DR93.47,1990-,
+11502,"Early First Empire, 681–893",no exact dated heading (review),lcc:DR74.5..DR75.8,,"Early to 1396 | First Bulgarian Empire, 681-1018"
+11503,"Late First Empire, 893–1018",same years in exact-code heading (review scope),lcc:DR77..DR77.8,893-1018,
+11504,Early to 681,no exact dated heading (review),lcc:DR74.3,,Early to 681
+11505,"Second Empire, 1185–1396",same years in exact-code heading (review scope),lcc:DR80..DR80.8,"Early to 1396 | Second Bulgarian Empire, 1185-1396. Asen dynasty",
+11506,"Turkish rule, 1396-1878",same label in exact-code heading (review scope),lcc:DR81..DR84,"Turkish rule, 1396-1878",
+11507,"High Medieval Era, 1042–1241",same years in exact-code heading (review scope),lcc:DL167..DL173.8,1042-1241,
+11508,"Late Medieval Era, 1241–1387",same years in exact-code heading (review scope),lcc:DL174..DL176.8,1241-1387,
+11509,"Kalmar Union, 1387–1523",no exact dated heading (review),lcc:DL177..DL181.Z,,1387-1523
+11510,"Early Modern Era, 1523–1670",no exact dated heading (review),lcc:DL184..DL192.8,,"Modern, 1523-"
+11511,"Absolute Monarchy, 1670–1808",same years in exact-code heading (review scope),lcc:DL193..DL199.8,"1670-1808 | Modern, 1523-",
+11513,20th century,uncoded grouping,,,
+11514,"Early & Viking Era, to 1042",no exact dated heading (review),lcc:DL159.92..DL166.8,,Early and medieval to 1523
+11515,"Oldenburg dynasty, 1448-1523",same label in exact-code heading (review scope),lcc:DL182..DL183.9,"Oldenburg dynasty, 1448-1523",
+11516,"Swedish Rule, 1617–1721",same years in exact-code heading (review scope),lcc:DL1060..DL1060.5,1617-1721,
+11517,"Swedish Rule, 1721–1809",same years in exact-code heading (review scope),lcc:DL1063..DL1063.9,1721-1809,
+11518,20th century,uncoded grouping,,,
+11519,"Russian Rule, 1809–1917",same years in exact-code heading (review scope),lcc:DL1065..DL1065.8,"Russian administration, 1809-1917",
+11520,"Danish Rule, 1540–1800",same years in exact-code heading (review scope),lcc:DL357..DL360,1540-1800,
+11521,"National Awakening, 1801–1918",same years in exact-code heading (review scope),lcc:DL365..DL373,1801-1918,
+11522,"Modern Era, 1918–Present",same years in exact-code heading (review scope),lcc:DL375..DL380,1918-,
+11523,"Commonwealth, 874–1262",same years in exact-code heading (review scope),lcc:DL352..DL353,874-1262,
+11524,"Early & Medieval Era, to 1540",no exact dated heading (review),lcc:DL354..DL356.Z; lcc:DL351,,Early and medieval to 1540
+11525,"Grand Duchy, 1815–Present",same years in exact-code heading (review scope),lcc:DH916..DH918.5,1815- (Grand duchy),
+11526,"Knights Hospitaller, 1530–1798",same years in exact-code heading (review scope),lcc:DG992.5..DG992.65,1530-1798. Rule of the Knights of Malta,
+11527,"British Rule, 1802–1947",no exact dated heading (review),lcc:DG993,,1802-1947. British administration
+11528,"Independence Era, 1964–Present",same years in exact-code heading (review scope),lcc:DG994..DG994.8,1964- . Independent,
+11529,"Medieval Era, 870–1530",same years in exact-code heading (review scope),lcc:DG992.2..DG992.3,"870-1530. Arabic, Norman, Angevin and Aragonese domination",
+11530,"Republic, 1555–1795",same years in exact-code heading (review scope),lcc:DJ154..DJ210,1555-1795. United Provinces | 1555-1795. United provinces,
+11531,19th-20th centuries,uncoded grouping,,,
+11532,"Batavian Republic, 1795-1806",no exact dated heading (review),lcc:DJ211,,"Batavian Republic, 1795-1806"
+11533,Early & medieval to 1555,no exact dated heading (review),lcc:DJ95..DJ152,,Historiography | History of Netherlands (Holland)
+11534,"Medieval Era, 1035–1319",no exact dated heading (review),lcc:DL469..DL479.Z,,1035-1319
+11535,"Danish Rule, 1387–1814",no exact dated heading (review),lcc:DL480..DL499.Z,,1387-1814
+11537,"Union with Sweden, 1814",same years in exact-code heading (review scope),lcc:DL500..DL502,1387-1814 | 1814. Union with Sweden,
+11538,20th century,uncoded grouping,,,
+11539,"Transylvania, 1526–1918",same years in exact-code heading (review scope),lcc:DR280.4..DR280.44,1526-1918,
+11540,"Principalities, 1822–1866",no exact dated heading (review),lcc:DR242..DR244.7,,1822-1881. 19th century
+11541,"United Principalities, 1866–1876",no exact dated heading (review),lcc:DR246,,1866-1876
+11542,"Kingdom, 1866/1881–1944",no exact dated heading (review),lcc:DR250..DR263.Z,,1866/1881-1944
+11543,"Independence Era, 1876–1881",same years in exact-code heading (review scope),lcc:DR248..DR249,1876-1881,
+11544,"Transylvania, 1918–Present",same years in exact-code heading (review scope),lcc:DR280.7..DR280.74,1918-,
+11545,"Territorial Expansion, 1918–1944",same years in exact-code heading (review scope),lcc:DR264..DR266.5,1918-1944,
+11546,"Communist Era, 1944–1989",same years in exact-code heading (review scope),lcc:DR267..DR267.5; lcc:DR267.6,1944-1989,
+11547,"Post-Communism, 1989–Present",same years in exact-code heading (review scope),lcc:DR268..DR269.6,1989-,
+11549,"Early Transylvania, to 1526",same years in exact-code heading (review scope),lcc:DR280.2..DR280.26,Earliest to 1526,
+11552,"Phanariote regime, 1601-1822",same label in exact-code heading (review scope),lcc:DR241..DR241.5,"Phanariote regime, 1601-1822",
+11554,"Successor States, 1992–Present",same years in exact-code heading (review scope),lcc:DR1315..DR1321,1992-,
+11555,"High Middle Ages, 1134–1234",same years in exact-code heading (review scope),lcc:DL672..DL679,1134-1234,
+11556,"Liberty & Gustavian Era, 1718–1818",same years in exact-code heading (review scope),lcc:DL747..DL805,1718-1818,
+11557,20th Century,same label in exact-code heading (review scope),lcc:DL860..DL879,20th century,
+11558,19th Century,no exact dated heading (review),lcc:DB77.3..DB82.Z; lcc:DB84..DB90.Z; lcc:DB82.5,,
+11559,"Independence Era, 1912–1944",no exact dated heading (review),lcc:DR969.8..DR975,,20th century
+11560,"Late DDR, 1971–1990",no exact dated heading (review),lcc:DD289,,1971-1990
+11561,"Tanzimat Era, 1839–1876",same years in exact-code heading (review scope),lcc:DR565..DR567,Tanzimat (Reorganization) 1839-1876,
+11562,"Late Ottoman Era, 1861–1909",same years in exact-code heading (review scope),lcc:DR568..DR575,1861-1909,
+11563,"Ottoman Decline, 1566–1640",same years in exact-code heading (review scope),lcc:DR511..DR529,1281/1453-1918 | 1566-1640. Period of decline,
+11565,"Ottoman Era, 1640–1789",same years in exact-code heading (review scope),lcc:DR531..DR555.7,1281/1453-1918 | 1640-1789,
+11566,"Early DDR, 1949–1961",same years in exact-code heading (review scope),lcc:DD286..DD286.7,1949-1961,
+11567,"Meiji, 1868–1912",no exact dated heading (review),lcc:DS881.98..DS884.Z,,
+11568,"Taisho, 1912–1926",no exact dated heading (review),lcc:DS885.8..DS888,,
+11569,"Early Showa, 1926–1945",no exact dated heading (review),lcc:DS888.15..DS888.5,,
+11570,"Postwar Showa, 1945–1989",no exact dated heading (review),lcc:DS888.84..DS890.3,,
+11571,"Heisei, 1989–Present",no exact dated heading (review),lcc:DS891..DS891.5,,
+11580,"Portugal, 20th Century",uncoded grouping,,,
+12630,"Early Era, through 1613",no exact dated heading (review),lcc:DK70..DK112.42,Russia & the Former Soviet Union,"Early to 1613 | Rus' (Eastern Slavs until their trifurcation into Byelorussians, Russians, and Ukrainians)"
+12631,"Romanov Era, 1613–1917",no exact dated heading (review),lcc:DK112.8..DK264.8,Russia & the Former Soviet Union,
+12632,"Revolution & Civil War, 1917–1921",same years in exact-code heading (review scope),lcc:DK265..DK265.95,"Revolution, 1917-1921 | Russia & the Former Soviet Union",
+12633,"Soviet Era, 1918–1991",same years in exact-code heading (review scope),lcc:DK266..DK292,"Russia & the Former Soviet Union | Soviet regime, 1918-1991",
+12721,997–1761,no exact dated heading (review),lcc:DS452..DS461.8,,
+12722,"British Rule, 1761–1947",no exact dated heading (review),lcc:DS463..DS480.83,,
+12723,1947–,no exact dated heading (review),lcc:DS480.832..DS480.859,,
+13706,"Reunification Era, 1990–",uncoded grouping,,,
+13744,"Early Era, to 1035",no exact dated heading (review),lcc:DL460..DL468.5,,Early and medieval to 1387 | Northern Europe
+13884,"Independent Republic, 1993–Present",same years in exact-code heading (review scope),lcc:DB2242..DB2247,1993- . Independent Czech Republic,
+13901,"Allied Occupation, 1945–1949",no exact dated heading (review),lcc:DD257..DD257.42,,"Revolution and Republic, 1918-"
+13918,"Greek Rule, 1018–1185",same label in exact-code heading (review scope),lcc:DR79..DR79.25,"Early to 1396 | Greek rule, 1018-1185",
+13923,"Early & Medieval Era, to 1555",same years in exact-code heading (review scope),lcc:DH571..DH584,Early and medieval to 1555,Benelux Countries
+13924,"Spanish Rule, 1555–1714",no exact dated heading (review),lcc:DH585..DH610.Z,,1555-1794. Spanish and Austrian rule
+13925,Belgium in the 20th Century,uncoded grouping,,,
+13926,Belgium in the 21st Century,uncoded grouping,,,
+13936,"Early & Viking Era, to 1134",no exact dated heading (review),lcc:DL660..DL671.Z,,Early and medieval to 1523 | Northern Europe
+13940,"Early Era, to 1523",same years in exact-code heading (review scope),lcc:DL1050..DL1052.9,Early to 1523,Northern Europe
+13941,"Swedish Rule, 1523–1617",no exact dated heading (review),lcc:DL1055..DL1058.5,,"Modern, 1523-"
+13947,"Early Era, to 1800",no exact dated heading (review),lcc:DK503.7..DK503.72,,Early to 1200
+13951,"Early Era, to 1800",no exact dated heading (review),lcc:DK504.7..DK504.72,,Early to 1200
+13961,"Independence Era, 1991–2014",uncoded grouping,,,
+13962,"Post-Maidan Era, 2014–Present",no exact dated heading (review),lcc:DK508.852..DK508.852.Z; lcc:DK5409..DK5529.Z; lcc:DK5531,,"History of Ukraine | Ukraine Conflict, 2014-"
+13980,1917–1945,same label in exact-code heading (review scope),lcc:DK938.85..DK938.853,1917-1945,
+13981,1945–1991,same label in exact-code heading (review scope),lcc:DK938.86..DK938.863,1945-1991,
+14001,"Early & Medieval Era, to 1800",same years in exact-code heading (review scope),lcc:DB2785..DB2791,Early and medieval to 1800,
+14002,"Independence Era, 1993–Present",no exact dated heading (review),lcc:DB2845..DB2850.Z,,1993- . Independent republic
+50816,New Netherland 1610–1664,no exact dated heading (review),lcc:F122.1; bisac:HIS036020,Colonial Period,
+50817,Colonial Louisiana to 1803,no exact dated heading (review),lcc:F372; bisac:HIS036020,Colonial Period,Early to 1803
+50818,Colonial Florida to 1821,no exact dated heading (review),lcc:F314..F314.999; bisac:HIS036020,Colonial Period,Early to 1821
+50823,"Dutch Rule, 1624–1654",no exact dated heading (review),lcc:F2532,,
+50824,"French Colony, 1555–1567",no exact dated heading (review),lcc:F2529,,
+50913,Early to 1848,no exact dated heading (review),lcc:F592..F592.999,,Early to 1848
+50914,1848–1860,no exact dated heading (review),lcc:F593..F593.999,,1848-1860
+50915,1860–1880,no exact dated heading (review),lcc:F594..F594.999,,1860-1880
+50916,1880–1950,no exact dated heading (review),lcc:F595..F595.199999,,1880-1950
+50917,1951–1980,no exact dated heading (review),lcc:F595.2..F595.299999,,1951-1980
+50918,1981–,no exact dated heading (review),lcc:F595.3..F595.999,,1981-
+50933,1848–1856,no exact dated heading (review),lcc:F865..F865.999,,1848-1856
+50934,1856–1950,no exact dated heading (review),lcc:F866..F866.199999,,1869-1950
+50935,1951–,no exact dated heading (review),lcc:F866.2..F866.999,,1951-
+50936,Early Texas to 1846,no exact dated heading (review),lcc:F385..F390.999,,
+50937,1846–1950,no exact dated heading (review),lcc:F391..F391.199999,,1846-
+50938,1951–,no exact dated heading (review),lcc:F391.2..F391.499999,,1951-
+50939,1775–1865,no exact dated heading (review),lcc:F128.44..F128.469999,,1775-1865
+50940,1865–1900,no exact dated heading (review),lcc:F128.47..F128.499999,,1865-1900
+50941,1901–1950,no exact dated heading (review),lcc:F128.5..F128.519999,,1901-1950. Greater New York
+50942,1951–1980,no exact dated heading (review),lcc:F128.52..F128.549999,,1951-1980
+50943,1981–,no exact dated heading (review),lcc:F128.55..F128.579999,,1981-
+50944,1775–1865,no exact dated heading (review),lcc:F73.44..F73.499999,,1775-1865
+50945,1865–1950,no exact dated heading (review),lcc:F73.5..F73.519999,,1865-1950
+50946,1951–,no exact dated heading (review),lcc:F73.52..F73.549999,,1951-
+50947,1775–1865,no exact dated heading (review),lcc:F158.44..F158.499999,,1775-1865
+50948,1865–1950,no exact dated heading (review),lcc:F158.5..F158.519999,,1865-1950
+50949,1951–,no exact dated heading (review),lcc:F158.52..F158.549999,,1951-
+50976,1821–1865,no exact dated heading (review),lcc:F315..F315.999,,1821-1865
+50977,1865–1950,no exact dated heading (review),lcc:F316..F316.199999,,1865-1950
+50978,1951–,no exact dated heading (review),lcc:F316.2..F316.999,,1951-
+50979,Early Massachusetts to 1775,no exact dated heading (review),lcc:F67..F68.999,,Early to 1775
+50980,1775–1865,no exact dated heading (review),lcc:F69..F69.999,,1775-1865
+50981,1865–1950,no exact dated heading (review),lcc:F70..F70.999,,1865-1950
+50982,1951–,no exact dated heading (review),lcc:F71..F71.999,,1951-
+50983,Colonial Pennsylvania to 1775,no exact dated heading (review),lcc:F152..F152.999,,Early to 1775
+50984,1775–1865,no exact dated heading (review),lcc:F153..F153.999,,1775-1865
+50985,1865–,no exact dated heading (review),lcc:F154..F154.999,,1865-1950
+50986,Early Virginia to 1775,no exact dated heading (review),lcc:F229..F229.999,,Early to 1775
+50987,1775–1865,no exact dated heading (review),lcc:F230..F230.999,,1775-1865
+50988,1865–1950,no exact dated heading (review),lcc:F231..F231.199,,1865-1950. Reconstruction
+50989,1951–,no exact dated heading (review),lcc:F231.2..F231.299; lcc:F231.3.A2,,1951-
+50990,1961–1969,no exact dated heading (review),lcc:E838..E851.999,,"Later twentieth century, 1961-2000"
+50991,1969–1981,no exact dated heading (review),lcc:E852..E875.999,,
+50992,1981–2000,no exact dated heading (review),lcc:E876..E889.999,,"Later twentieth century, 1961-2000 | Reagan's administrations, 1981-1989"
+51005,1961–2000,no exact dated heading (review),lcc:E839.5..E839.8,Political history,
+51006,1961–2000,no exact dated heading (review),lcc:E840.4..E840.4,"Military, naval and air force history",
+51007,1961–2000,no exact dated heading (review),lcc:E840.6..E840.8,,
+51008,Early 20th Century,same years in exact-code heading (review scope),lcc:E751..E765.999; bisac:HIS036060,20th Century,"McKinley's second administration, March 4-September 14, 1901"
+51012,"Woodrow Wilson, 1913–1921",same years in exact-code heading (review scope),lcc:E766..E783; bisac:HIS036060,"20th Century | Wilson's administrations, 1913-1921",
+51019,"Eisenhower, 1953–1961",same years in exact-code heading (review scope),lcc:E835..E837.7; bisac:HIS036060,"20th Century | Eisenhower's administrations, 1953-1961",
+51100,"Confederation, 1775–1789",no exact dated heading (review),lcc:E302.5..E309.999,,
+51144,"U.S. Biography, 1865–1900",no exact dated heading (review),lcc:E663..E664.999,,
+51145,"Andrew Johnson, 1865–1869",no exact dated heading (review),lcc:E666..E669.999; lcc:E670,,"Andrew Johnson's administration, April 15, 1865-1869 | Late nineteenth century, 1865-1900"
+51146,"Ulysses S. Grant, 1869–1877",no exact dated heading (review),lcc:E671..E674.999; lcc:E676..E679.999; lcc:E675; lcc:E680,,"Grant's administrations, 1869-1877 | Late nineteenth century, 1865-1900 | Presidential campaign of 1872 | Presidential campaign of 1876"
+51147,"Rutherford B. Hayes, 1877–1881",no exact dated heading (review),lcc:E681..E684.999; lcc:E685,,"Hayes' administration, 1877-1881 | Late nineteenth century, 1865-1900 | Presidential campaign of 1880"
+51148,"Garfield Administration, 1881",no exact dated heading (review),lcc:E686..E687.999,,"Garfield's administration, March 4-September 19, 1881 | Late nineteenth century, 1865-1900"
+51149,"Chester A. Arthur, 1881–1885",no exact dated heading (review),lcc:E691..E694.999; lcc:E695,,"Arthur's administration, September 19, 1881-1885 | Late nineteenth century, 1865-1900 | Presidential campaign of 1884"
+51150,"Grover Cleveland, 1885–1889",no exact dated heading (review),lcc:E696..E699.999; lcc:E700,,"Cleveland's first administration, 1885-1889 | Late nineteenth century, 1865-1900 | Presidential campaign of 1888"
+51151,"Benjamin Harrison, 1889–1893",no exact dated heading (review),lcc:E701..E704.999; lcc:E705,,"Benjamin Harrison's administration, 1889-1893 | Late nineteenth century, 1865-1900 | Presidential campaign of 1892"
+51152,"Grover Cleveland, 1893–1897",no exact dated heading (review),lcc:E706..E709.999; lcc:E710,,"Cleveland's second administration, 1893-1897 | Late nineteenth century, 1865-1900 | Presidential campaign of 1896"
+51153,"William McKinley, 1897–1901",no exact dated heading (review),lcc:E711..E713.999; lcc:E738,,"Late nineteenth century, 1865-1900 | McKinley's first administration, 1897-1901 | Presidential campaign of 1900"
+51167,"Afro-American Hist., 1863–1877",no exact dated heading (review),lcc:E185.2..E185.499,,1863-1877 | African American History
+51168,"Afro-American Hist., 1877–1964",no exact dated heading (review),lcc:E185.5..E185.6149,,1877-1964. Reconstruction to Civil Rights Act of 1964
+51169,Afro-American Hist. Since 1964,no exact dated heading (review),lcc:E185.615..E185.6199,,1964-
+51181,"Southern, 1775–1865",no exact dated heading (review),lcc:F213,,1775-1865
+51182,"Southern, 1865–1950",no exact dated heading (review),lcc:F215..F216.199,,1865-1951
+51183,Southern Since 1951,no exact dated heading (review),lcc:F216.2..F216.299,,1951-
+51186,"U.S. Political Hist., 20th C.",same years in exact-code heading (review scope),lcc:E743..E743.999; bisac:HIS036060,20th Century,Political history
+51187,"U.S. Foreign Relations, 20th C.",same years in exact-code heading (review scope),lcc:E744..E744.999; bisac:HIS036060,20th Century,Diplomatic history. Foreign and general relations
+51188,"U.S. Military Hist., 20th C.",same years in exact-code heading (review scope),lcc:E745..E745.999; bisac:HIS036060,20th Century,Military history
+51189,"U.S. Naval, 20th C.",same years in exact-code heading (review scope),lcc:E746..E746.999; bisac:HIS036060,20th Century,Naval history
+51190,"U.S. Biography, 20th Century",same years in exact-code heading (review scope),lcc:E747..E748.999; bisac:HIS036060,20th Century,
+51283,To 1815,no exact dated heading (review),lcc:F197..F197.999,,Early to 1815
+51284,1815–1878,no exact dated heading (review),lcc:F198..F198.999,,1815-1878
+51285,1878–1950,no exact dated heading (review),lcc:F199..F199.999,,1878-1950
+51286,1951–1980,no exact dated heading (review),lcc:F200..F200.399,,1951-1980
+51287,1981–,no exact dated heading (review),lcc:F201..F201.399,,1981-
+51300,Since 1951,no exact dated heading (review),lcc:F330..F330.399,,1951-
+51337,"Colonial America, 1607–1689",no exact dated heading (review),lcc:E191..E194.999; bisac:HIS036020,Colonial Period,Historical Eras
+51338,"Colonial America, 1689–1775",no exact dated heading (review),lcc:E195..E199.2; bisac:HIS036020,Colonial Period,Historical Eras
+51433,"Saxon England, 445–1066",no exact dated heading (review),lcc:DA150..DA162.999,,
+51434,"Norman England, 1066–1154",no exact dated heading (review),lcc:DA190..DA199.999,,
+51435,"Plantagenet England, 1154–1399",no exact dated heading (review),lcc:DA200..DA209.999; lcc:DA220..DA237.999,,
+51436,"Lancastrian & Yorkist, 1399–1485",no exact dated heading (review),lcc:DA240..DA260.999,,
+51437,"Henry VII, 1485–1509",no exact dated heading (review),lcc:DA330..DA330.999,,
+51438,"Henry VIII, 1509–1547",no exact dated heading (review),lcc:DA331..DA339.999,,
+51439,"Edward VI & Mary I, 1547–1558",no exact dated heading (review),lcc:DA340..DA347.999,,
+51440,"Elizabeth I, 1558–1603",no exact dated heading (review),lcc:DA350..DA360.999,,"Tudors, 1485-1603"
+51441,"Early Stuarts, 1603–1642",no exact dated heading (review),lcc:DA385..DA398.999,,"17th century, 1603-1702 | Early Stuarts, 1603-1642 | Modern, 1485-"
+51442,"Civil War & Commonwealth, 1642–1660",no exact dated heading (review),lcc:DA400..DA429.999,,"17th century, 1603-1702 | Civil War and Commonwealth, 1642-1660 | Modern, 1485-"
+51443,"Later Stuarts, 1660–1702",no exact dated heading (review),lcc:DA430..DA463.999,,"17th century, 1603-1702 | Later Stuarts, 1660-1702 | Modern, 1485-"
+51444,"Anne to George II, 1702–1760",no exact dated heading (review),lcc:DA480..DA503.999,,
+51445,"George III, 1760–1820",no exact dated heading (review),lcc:DA505..DA522.999,,"Modern, 1485-"
+51446,"Regency & Early 19th C., 1801–1837",no exact dated heading (review),lcc:DA535..DA542.999,,
+51447,"Victorian England, 1837–1901",no exact dated heading (review),lcc:DA550..DA565.999,,"19th century | Modern, 1485- | Victorian era, 1837-1901"
+51448,"Edward VII, 1901–1910",no exact dated heading (review),lcc:DA567..DA570.999,,
+51449,"George V, 1910–1936",no exact dated heading (review),lcc:DA573..DA578.999,,
+51450,"George VI, 1937–1952",no exact dated heading (review),lcc:DA584..DA588.399,,
+51451,"Elizabeth II, 1952–2022",no exact dated heading (review),lcc:DA590..DA592.999,,
+51453,"British Diplomatic Hist., 20th C.",no exact dated heading (review),lcc:DA566.7..DA566.799; lcc:DA589.8..DA589.899,,
+51455,Russia in the 19th Century,no exact dated heading (review),lcc:DK188..DK243.999,,
+51456,"Nicholas II, 1894–1917",no exact dated heading (review),lcc:DK251..DK264.899,,
+51457,"Early Soviet Period, 1918–1924",no exact dated heading (review),lcc:DK266..DK266.919,,"Russia & the Former Soviet Union | Soviet regime, 1918-1991"
+51458,"Stalin Period, 1925–1953",no exact dated heading (review),lcc:DK266.92..DK273.999,,1925-1953. Stalin
+51459,"Soviet Union, 1953–1985",no exact dated heading (review),lcc:DK274..DK282.999,,1953-1985
+51460,"Perestroika & Breakup, 1985–1991",no exact dated heading (review),lcc:DK285..DK292.999,,1985-1991
+51483,"Berlin, 1945–1990",no exact dated heading (review),lcc:DD881..DD881.999,,1945-1990
+51530,"Charles de Gaulle, 1958–1969",no exact dated heading (review),lcc:DC420..DC420.999,,
+51531,"Georges Pompidou, 1969–1974",no exact dated heading (review),lcc:DC421..DC421.999,,
+51532,"Valéry Giscard d’Estaing, 1974–1981",no exact dated heading (review),lcc:DC422..DC422.999,,
+51533,"François Mitterrand, 1981–1995",no exact dated heading (review),lcc:DC423..DC423.999,,
+51534,"Jacques Chirac, 1995–2007",no exact dated heading (review),lcc:DC424..DC424.999,,
+51535,5th Republic Politics & Diplomacy,no exact dated heading (review),lcc:DC417..DC417.999,,Political and diplomatic history
+51546,"Greece, 1821–1913",no exact dated heading (review),lcc:DF803,,1821-1913. 19th century
+51547,Greece since 1913,no exact dated heading (review),lcc:DF833,,20th-21st centuries
+51548,"Greek Civil War, 1944–1949",no exact dated heading (review),lcc:DF849.5..DF849.58,,
+51549,"Democracy Restored, 1974–Present",no exact dated heading (review),lcc:DF853.501..DF854.32,,
+51569,"Mehmed V, 1909–1918",no exact dated heading (review),lcc:DR583..DR588,,
+51570,"Mehmed VI, 1918–1922",no exact dated heading (review),lcc:DR589..DR589.Z,,1918-
+51571,"1st Republic & Kemalism, 1923–1960",no exact dated heading (review),lcc:DR590..DR592.Z,,"First Republic, 1923-1960. Kemalism"
+51573,"Second Turkish Republic, 1960–1980",no exact dated heading (review),lcc:DR593..DR601.Z,,"Second Republic, 1960-1980"
+51574,"Third Republic, 1980–Present",no exact dated heading (review),lcc:DR603..DR605.Z,,"Third Republic, 1980-"
+51590,"Ukrainian Independence, 1917–1921",no exact dated heading (review),lcc:DK508.832..DK508.832.Z,,1917-1921. Period of independence
+51591,"Soviet Ukraine, 1921–1944",no exact dated heading (review),lcc:DK508.833..DK508.8378.Z,,1921-1944
+51593,"Soviet Ukraine, 1945–1991",no exact dated heading (review),lcc:DK508.84..DK508.843.Z,,1945-1991
+51596,20th-Century,no exact dated heading (review),lcc:DB91..DB98.9,,20th century
+51597,"Franz Joseph I, 1848–1916",no exact dated heading (review),lcc:DB85..DB90.Z,,
+51601,Austrian Republic since 1918,no exact dated heading (review),lcc:DB96..DB98.9,,"Republic, 1918-"
+51615,20th-Century,uncoded grouping,,,
+51616,"Hungary, 1918–1945",same years in exact-code heading (review scope),lcc:DB954..DB955.8,"1918-1945. Revolution. Counterrevolution, and the Regency",
+51617,"Hungarian Society & Culture, 20th C.",no exact dated heading (review),lcc:DB949.2,,Social life and customs. Civilization. Intellectual life
+51619,"Early Hungary, to 896",same years in exact-code heading (review scope),lcc:DB927..DB928,Early to 896,Hungary
+51631,Dutch in the 19th Century,no exact dated heading (review),lcc:DJ215..DJ263.Z,,19th-20th centuries
+51632,"Wilhelmina, 1890–1948",no exact dated heading (review),lcc:DJ281..DJ287.Z,,
+51633,"Juliana, 1948–1980",no exact dated heading (review),lcc:DJ288..DJ289.Z,,
+51634,"Beatrix, 1980–2013",no exact dated heading (review),lcc:DJ290..DJ292.Z,,
+51635,"Willem-Alexander, 2013–Present",no exact dated heading (review),lcc:DJ293..DJ295.Z,,
+51677,"Early Serbian, to 1459",no exact dated heading (review),lcc:DR1977..DR1999.5.Z,,Early to 1459
+51678,"Ottoman Serbia, 1459–1804",no exact dated heading (review),lcc:DR2000..DR2005.Z,,1459-1804. Turkish rule
+51679,"Autonomy & Independence, 1804–1918",no exact dated heading (review),lcc:DR2006..DR2032.5,,1804-1918. Autonomy and independence
+51680,"Serbia within Yugoslavia, 1918–1992",no exact dated heading (review),lcc:DR2033..DR2047.Z,,1918-1945. Serbia as part of Yugoslavia
+51681,"Serbia and Montenegro, 1992–2006",no exact dated heading (review),lcc:DR2048..DR2053.Z,,1992-2006
+51682,Serbia since 2006,no exact dated heading (review),lcc:DR2054..DR2067.Z,,2006-
+51690,"Portuguese Republic, 1910–Present",no exact dated heading (review),lcc:DP675..DP682.5,,"20th century | Republic, 1910-"
+51745,"Early Croatian Kingdom, to 1102",no exact dated heading (review),lcc:DR1547..DR1557.Z,,Early to 1102. Independent kingdom
+51746,"Arpad & Angevin Rule, 1102–1527",no exact dated heading (review),lcc:DR1559..DR1566.Z,,1102-1527. Arpad and Angevin dynasties
+51747,"Habsburg Croatia, 1527–1918",no exact dated heading (review),lcc:DR1567..DR1582.Z,,1527-1918. Croatia under Habsburg rule
+51748,"Within Yugoslavia, 1918–1945",no exact dated heading (review),lcc:DR1583..DR1591.Z,,1918-1945. Croatia as part of Yugoslavia
+51749,"Socialist Croatia, 1945–1990",no exact dated heading (review),lcc:DR1592..DR1598.Z,,1945-1990. Federal People's Republic
+51750,Croatia since 1990,uncoded grouping,,,
+51751,Political since 1990,no exact dated heading (review),lcc:DR1603,,Political history
+51763,"Christian X, 1912–1947",no exact dated heading (review),lcc:DL255..DL257.Z,,
+51764,"Frederik IX, 1947–1972",no exact dated heading (review),lcc:DL258..DL260.Z,,
+51765,"Margrethe II, 1972–2024",no exact dated heading (review),lcc:DL261..DL263.3.Z,,
+51777,"Haakon VII, 1905–1957",no exact dated heading (review),lcc:DL530..DL533.Z,,
+51778,"Olav V, 1957–1991",no exact dated heading (review),lcc:DL534..DL535.Z,,
+51779,"Harald V, 1991–Present",no exact dated heading (review),lcc:DL536..DL537.Z,,
+51791,"Albert I, 1909–1934",no exact dated heading (review),lcc:DH681..DH685.Z,,
+51792,"Leopold III, 1934–1951",no exact dated heading (review),lcc:DH687..DH689.Z,,
+51793,"Baudouin, 1951–1993",no exact dated heading (review),lcc:DH690..DH692.Z,,
+51794,"Albert II, 1993–2013",no exact dated heading (review),lcc:DH693..DH694.Z,,
+51795,"Philippe, 2013–Present",no exact dated heading (review),lcc:DH696..DH697.Z,,
+51807,"Finnish Revolution, 1917–1918",no exact dated heading (review),lcc:DL1070..DL1075.Z,,
+51808,"Interwar Finland, 1918–1939",no exact dated heading (review),lcc:DL1082..DL1088.5.Z,,
+51809,"Finland in World War II, 1939–1945",no exact dated heading (review),lcc:DL1090..DL1105.Z,,
+51810,"Postwar Finland, 1945–1981",no exact dated heading (review),lcc:DL1122..DL1135.5.Z,,
+51811,Finland since 1981,no exact dated heading (review),lcc:DL1140..DL1141.6.Z,,
+51926,"Early Luxembourg, to 1354",no exact dated heading (review),lcc:DH909,,Early to 1354 (Countship)
+51927,"Duchy of Luxembourg, 1354–1815",same years in exact-code heading (review scope),lcc:DH910..DH915,1354-1815 (Duchy),
+51936,Cyprus to 1571,no exact dated heading (review),lcc:DS54.6..DS54.66,,Early to 1571
+51937,"Ottoman Cyprus, 1571–1878",no exact dated heading (review),lcc:DS54.7,,1571-1878. Turkish era
+51939,"Republic of Cyprus, 1960–Present",no exact dated heading (review),lcc:DS54.9..DS54.93.Z,,"Republic, 1960-"
+51951,Slovenia to 1456,no exact dated heading (review),lcc:DR1395..DR1404.999,,Foreign and general relations
+51952,"Habsburg Slovenia, 1456–1918",no exact dated heading (review),lcc:DR1405..DR1434.999,,1456-1814. Slovenia under Habsburg rule
+51953,"Yugoslav Slovenia, 1918–1990",no exact dated heading (review),lcc:DR1435..DR1450,,1918-1945. Slovenia as part of Yugoslavia
+51954,"Independent Slovenia, 1990–Present",same years in exact-code heading (review scope),lcc:DR1452..DR1457.2,1990-,
+51963,Bosnia to 1463,no exact dated heading (review),lcc:DR1695..DR1710,,Foreign and general relations
+51964,"Ottoman Bosnia, 1463–1878",same years in exact-code heading (review scope),lcc:DR1711..DR1721,1463-1878. Turkish rule,
+51965,"Austrian Bosnia, 1878–1918",same years in exact-code heading (review scope),lcc:DR1722..DR1732,1878-1918. Austrian administration,
+51966,"Yugoslav Bosnia, 1918–1992",no exact dated heading (review),lcc:DR1733..DR1748,,1918-1945. Bosnia and Hercegovina as part of Yugoslavia
+51967,"Independence, 1992–Present",same years in exact-code heading (review scope),lcc:DR1749..DR1756,1992- . Independent State,
+51977,Macedonia to 1389,same years in exact-code heading (review scope),lcc:DR2197..DR2202.5,Early to 1389,
+51978,"Ottoman Macedonia, 1389–1912",same years in exact-code heading (review scope),lcc:DR2205..DR2227,1389-1912. Turkish rule,
+51979,"Macedonia, 1912–1945",same years in exact-code heading (review scope),lcc:DR2229..DR2242,1912-1945,
+51980,"Socialist Macedonia, 1945–1992",same years in exact-code heading (review scope),lcc:DR2243..DR2249,1945-1992. Federal People's Republic. Socialist Republic,
+51981,"Independence, 1992–Present",same years in exact-code heading (review scope),lcc:DR2250..DR2256,1992- . Independent state,
+51989,Kosovo to 1389,no exact dated heading (review),lcc:DR2083,,Early to 1389
+51990,"Ottoman Kosovo, 1389–1913",no exact dated heading (review),lcc:DR2084..DR2084.5.Z,,1389-1913. Turkish rule
+51991,"Kosovo, 1913–1945",no exact dated heading (review),lcc:DR2085..DR2085.5.Z,,1913-1945. Kosovo as part of Serbia and Yugoslavia
+51992,1945–Present,same years in exact-code heading (review scope),lcc:DR2086..DR2087.7,1945- . Autonomous region,
+51993,"Independent Kosovo, 2008–Present",no exact dated heading (review),lcc:DR2088..DR2088.2.Z,,
+52027,Papal States to 1499,no exact dated heading (review),lcc:DG797..DG797.6,Early and medieval,
+52028,"Papal States, 1499–1700",no exact dated heading (review),lcc:DG797.7..DG797.93,,1499-1870
+52029,"Papal States, 1700–1870",no exact dated heading (review),lcc:DG798..DG798.7,,1700-1798
+52030,Holy See since 1870,no exact dated heading (review),lcc:DG799,,
+52031,Vatican City since 1929,no exact dated heading (review),lcc:DG800,,
+52098,"China, 1976–2002",no exact dated heading (review),lcc:DS779.15; lcc:DS779.16; lcc:DS779.17; lcc:DS779.18; lcc:DS779.19; lcc:DS779.2; lcc:DS779.215; lcc:DS779.22; lcc:DS779.24; lcc:DS779.25; lcc:DS779.3; lcc:DS779.32,,1976-2002 | Historiography | Military history | Naval history
+52099,"Chinese Social & Cultural, 1949–1976",no exact dated heading (review),lcc:DS777.6,,Social life and customs. Civilization. Intellectual life
+52100,"Chinese Political, 1949–1976",no exact dated heading (review),lcc:DS777.75,,Political history
+52101,"Chinese Foreign Relations, 1949–1976",no exact dated heading (review),lcc:DS777.8,,Foreign and general relations
+52102,"Chinese Biographies, 1949–1976",no exact dated heading (review),lcc:DS778.A1..DS778.Z,,
+52103,"Cultural Revolution, 1966–1976",no exact dated heading (review),lcc:DS778.7,,"Cultural Revolution, 1966-1976"
+52104,"Chinese Social & Cultural, 1976–2002",no exact dated heading (review),lcc:DS779.23,,Social life and customs. Civilization. Intellectual life
+52105,"Chinese Political, 1976–2002",no exact dated heading (review),lcc:DS779.26,,Political history
+52106,"Chinese Foreign Relations, 1976–2002",no exact dated heading (review),lcc:DS779.27,,Foreign and general relations
+52107,"Chinese Biographies, 1976–2002",no exact dated heading (review),lcc:DS779.28..DS779.29.Z,,
+52161,"China, 1912–1928",no exact dated heading (review),lcc:DS776.4..DS777.462,,1912-1928
+52162,"China, 1928–1937",same years in exact-code heading (review scope),lcc:DS777.47..DS777.514,1928-1937,
+52163,"China, 1937–1945",same years in exact-code heading (review scope),lcc:DS777.518..DS777.534,1937-1945,
+52164,"China, 1945–1949",same years in exact-code heading (review scope),lcc:DS777.535..DS777.544,1945-1949,
+52170,"Chinese Social & Cultural, 2002–Present",no exact dated heading (review),lcc:DS779.43,,Social life and customs. Civilization. Intellectual life
+52171,"Chinese Political, 2002–Present",no exact dated heading (review),lcc:DS779.46,,Political history
+52172,"Chinese Foreign Relations, 2002–Present",no exact dated heading (review),lcc:DS779.47,,Foreign and general relations
+52290,"Revolution & Napoleon, 1789–1815",same years in exact-code heading (review scope),lcc:DC139..DC249,"Modern, 1515- | Revolutionary and Napoleonic Period, 1789–1815",
+52291,19th-Century French,same years in exact-code heading (review scope),lcc:DC251..DC354.9,"19th century | Modern, 1515-",
+52292,20th-Century French,no exact dated heading (review),lcc:DC356..DC424.9,,20th century
+52293,21st-Century French,no exact dated heading (review),lcc:DC425..DC435.9,,"21st Century | Modern, 1515-"
+52299,"Egypt, 1517–1798",no exact dated heading (review),lcc:DT97..DT98.5,,
+52305,"Vandal & Byzantine North Africa, 439–c. 640",no exact dated heading (review),lcc:DT171..DT172.999; lcc:DT172,,Byzantine period
+52321,"Greece, 1830–1913",no exact dated heading (review),lcc:DF816..DF832,,"1821-1913. 19th century | Kapodistrias, 1827-1831"
+52322,"Greece, 1913–1967",no exact dated heading (review),lcc:DF833.001..DF849.499; lcc:DF849.581..DF852.999,,
+54064,Early to 1910,no exact dated heading (review),lcc:DT546.365,,Early to 1910
+54065,1910-1960. French colony,same label in exact-code heading (review scope),lcc:DT546.37..DT546.373,1910-1960. French colony,
+54066,1960- . Independent,same label in exact-code heading (review scope),lcc:DT546.375..DT546.384,1960- . Independent,
+54071,Early to 1910,same label in exact-code heading (review scope),lcc:DT546.47..DT546.473,Early to 1910,
+54072,1910-1960,same label in exact-code heading (review scope),lcc:DT546.475..DT546.477,1910-1960,
+54073,1960- . Independent,same label in exact-code heading (review scope),lcc:DT546.48..DT546.483,1960- . Independent,
+54078,Early to 1886,no exact dated heading (review),lcc:DT546.165,,Early to 1886
+54079,1886-1960. French colony and territory,no exact dated heading (review),lcc:DT546.175,,1886-1960. French colony and territory
+54080,1960- . Independent,same label in exact-code heading (review scope),lcc:DT546.18..DT546.183,1960- . Independent,
+54085,Early to 1897,same label in exact-code heading (review scope),lcc:DT555.65..DT555.67,Early to 1897,
+54086,1897-1960. French Protectorate and Colony,same label in exact-code heading (review scope),lcc:DT555.75..DT555.77,1897-1960. French Protectorate and Colony,
+54087,1960-1987,same label in exact-code heading (review scope),lcc:DT555.8..DT555.83,1960-1987,
+54088,1987- . Third Republic,same label in exact-code heading (review scope),lcc:DT555.835..DT555.837,1987- . Third Republic,
+54093,Early to 1894,no exact dated heading (review),lcc:DT509.65,,Early to 1894
+54094,1894-1965. British protectorate and colony,no exact dated heading (review),lcc:DT509.7,,1894-1965. British protectorate and colony
+54095,1965- . Independent,same label in exact-code heading (review scope),lcc:DT509.8..DT509.83,1965- . Independent,
+54100,Early to 1895,no exact dated heading (review),lcc:DT543.65,,Early to 1895
+54101,1895-1958. French territory and colony,same label in exact-code heading (review scope),lcc:DT543.75..DT543.77,1895-1958. French territory and colony,
+54102,1958- . Independent,same label in exact-code heading (review scope),lcc:DT543.8..DT543.827,1958- . Independent,
+54107,Early to 1898,no exact dated heading (review),lcc:DT551.65,,Early to 1898
+54108,1898-1959. French colony and territory,same label in exact-code heading (review scope),lcc:DT551.7..DT551.72,1898-1959. French colony and territory,
+54109,1959-1991,same label in exact-code heading (review scope),lcc:DT551.8..DT551.82,1959-1991,
+54110,1991-,same label in exact-code heading (review scope),lcc:DT551.84..DT551.846,1991-,
+54116,Early to 1920,same label in exact-code heading (review scope),lcc:DT554.65..DT554.67,Early to 1920,
+54117,1920-1960. French colony,same label in exact-code heading (review scope),lcc:DT554.75..DT554.77,1920-1960. French colony,
+54118,1960- . Independent,same label in exact-code heading (review scope),lcc:DT554.8..DT554.83,1960- . Independent,
+54123,Early to 1900,no exact dated heading (review),lcc:DT547.65,,Early to 1900
+54124,1900-1960. French territory and colony,no exact dated heading (review),lcc:DT547.75,,1900-1960. French territory and colony
+54125,1960-1993. Independent,same label in exact-code heading (review scope),lcc:DT547.8..DT547.83,1960-1993. Independent,
+54126,1993- . Democracy,same label in exact-code heading (review scope),lcc:DT547.85..DT547.853,1993- . Democracy,
+54132,Early to 1861,same label in exact-code heading (review scope),lcc:DT515.65..DT515.67,Early to 1861,
+54133,1861-1914. Period of colonization,same label in exact-code heading (review scope),lcc:DT515.7..DT515.73,1861-1914. Period of colonization,
+54134,1914-1960. Colony and Protectorate of Nigeria,same label in exact-code heading (review scope),lcc:DT515.75..DT515.77,1914-1960. Colony and Protectorate of Nigeria,
+54135,1960- . Independence,same label in exact-code heading (review scope),lcc:DT515.8..DT515.842,1960- . Independence,
+54141,Early to 1895,same label in exact-code heading (review scope),lcc:DT549.7..DT549.73,Early to 1895,
+54142,1895-1960,same label in exact-code heading (review scope),lcc:DT549.75..DT549.77,1895-1960,
+54143,1960- . Independent,same label in exact-code heading (review scope),lcc:DT549.8..DT549.86,1960- . Independent,
+54148,Early to 1787,no exact dated heading (review),lcc:DT516.65,,Early to 1787
+54149,1787-1961. British colony and protectorate,same label in exact-code heading (review scope),lcc:DT516.7..DT516.72,1787-1961. British colony and protectorate,
+54150,1961- . Independence,same label in exact-code heading (review scope),lcc:DT516.8..DT516.828,1961- . Independence,
+54156,1492-1844,no exact dated heading (review),lcc:F1938.3,,1492-1844
+54157,1844-1930,no exact dated heading (review),lcc:F1938.4,,1844-1930
+54158,1930-1961,no exact dated heading (review),lcc:F1938.5,,1930-1961
+54159,1961-,same label in exact-code heading (review scope),lcc:F1938.55..F1938.58,1961-,
+54165,1492-1803,no exact dated heading (review),lcc:F1923,,1492-1803
+54166,1804-1843,no exact dated heading (review),lcc:F1924,,1804-1843
+54167,1843-1915,no exact dated heading (review),lcc:F1926,,1843-1915
+54168,1915-1950,no exact dated heading (review),lcc:F1927,,1915-1950
+54169,1950-1986,no exact dated heading (review),lcc:F1928,,1950-1986
+54170,1986-,same label in exact-code heading (review scope),lcc:F1928.2..F1928.23,1986-,
+54175,Early to 1894,same label in exact-code heading (review scope),lcc:DT541.65..DT541.67,Early to 1894,
+54176,1894-1960. French territory and colony,same label in exact-code heading (review scope),lcc:DT541.75..DT541.77,1894-1960. French territory and colony,
+54177,1960- . Independent,same label in exact-code heading (review scope),lcc:DT541.8..DT541.845,1960- . Independent,
+54182,Early to 1886,same label in exact-code heading (review scope),lcc:DT433.565..DT433.567,Early to 1886,
+54183,1886-1920. East African Protectorate (1895-1920),same label in exact-code heading (review scope),lcc:DT433.57..DT433.573,1886-1920. East African Protectorate (1895-1920),
+54184,1920-1963. Kenya Colony and Protectorate,same label in exact-code heading (review scope),lcc:DT433.575..DT433.576,1920-1963. Kenya Colony and Protectorate,
+54185,1963-,same label in exact-code heading (review scope),lcc:DT433.58..DT433.586,1963-,
+54190,Early to 1890,same label in exact-code heading (review scope),lcc:DT433.265..DT433.267,Early to 1890,
+54191,1890-1962,same label in exact-code heading (review scope),lcc:DT433.27..DT433.273,1890-1962,
+54192,1962-1979. Independent,same label in exact-code heading (review scope),lcc:DT433.275..DT433.283,1962-1979. Independent,
+54193,1979-,same label in exact-code heading (review scope),lcc:DT433.285..DT433.29,1979-,
+54203,1494-1810,no exact dated heading (review),lcc:F1884,,1494-1810
+54204,1810-1962,no exact dated heading (review),lcc:F1886,,1810-1962
+54205,1962-,no exact dated heading (review),lcc:F1887,,1962-
+54223,Early to 1516,same label in exact-code heading (review scope),lcc:DR1847..DR1852.5,Early to 1516,
+54224,1516-1782. Vladike,same label in exact-code heading (review scope),lcc:DR1855..DR1866,1516-1782. Vladike,
+54225,1782-1918. Expansion and secularization,same label in exact-code heading (review scope),lcc:DR1867..DR1883,1782-1918. Expansion and secularization,
+54226,1918-1945. Montenegro as part of Yugoslavia,same label in exact-code heading (review scope),lcc:DR1884..DR1893,1918-1945. Montenegro as part of Yugoslavia,
+54227,1945-1992. Federal People's Republic. Socialist Republic,same label in exact-code heading (review scope),lcc:DR1894..DR1900,1945-1992. Federal People's Republic. Socialist Republic,
+54228,1992-,same label in exact-code heading (review scope),lcc:DR1901..DR1907,1992-,
+54236,Early to 1778,same label in exact-code heading (review scope),lcc:DT620.65..DT620.67,Early to 1778,
+54237,1778-1968,same label in exact-code heading (review scope),lcc:DT620.7..DT620.73,1778-1968,
+54238,1968-,same label in exact-code heading (review scope),lcc:DT620.74..DT620.83,1968-,
+54242,1493-1898,no exact dated heading (review),lcc:F1973,,1493-1898
+54243,1898-1952,no exact dated heading (review),lcc:F1975,,1898-1952
+54244,1952-1998,same label in exact-code heading (review scope),lcc:F1976..F1976.3,1952-1998,
+54248,1626-1814,no exact dated heading (review),lcc:F2462,,1626-1814
+54249,1814-1946,no exact dated heading (review),lcc:F2463,,1814-1946
+54250,1947-,no exact dated heading (review),lcc:F2464,,1947-
+54268,Early to 647,no exact dated heading (review),lcc:DT288,,Early to 647
+54269,647-1516,no exact dated heading (review),lcc:DT289,,647-1516
+54270,1516-1830. Period of piracy,same label in exact-code heading (review scope),lcc:DT291..DT292,1516-1830. Period of piracy,
+54271,1830-1901,no exact dated heading (review),lcc:DT294,,1830-1901
+54272,1901-1945,same label in exact-code heading (review scope),lcc:DT294.5..DT294.7,1901-1945,
+54273,1945-1962,same label in exact-code heading (review scope),lcc:DT295..DT295.3,1945-1962,
+54274,1962-1990,same label in exact-code heading (review scope),lcc:DT295.5..DT295.55,1962-1990,
+54275,1990-,same label in exact-code heading (review scope),lcc:DT295.6..DT295.652,1990-,
+54280,Early to 1890. Burundi (Kingdom),same label in exact-code heading (review scope),lcc:DT450.74..DT450.76,Early to 1890. Burundi (Kingdom),
+54281,1890-1916. German domination,same label in exact-code heading (review scope),lcc:DT450.77..DT450.79,1890-1916. German domination,
+54282,1916-1945. Belgian domination. League of Nations mandate,same label in exact-code heading (review scope),lcc:DT450.8..DT450.83,1916-1945. Belgian domination. League of Nations mandate,
+54283,1945-1962. United Nations mandate. Belgian administration,same label in exact-code heading (review scope),lcc:DT450.84..DT450.843,1945-1962. United Nations mandate. Belgian administration,
+54284,1962-1993,same label in exact-code heading (review scope),lcc:DT450.85..DT450.855,1962-1993,
+54285,1993-,same label in exact-code heading (review scope),lcc:DT450.86..DT450.863,1993-,
+54290,Early to 1960,same label in exact-code heading (review scope),lcc:DT574..DT575,Early to 1960,
+54291,1960- . Republic,same label in exact-code heading (review scope),lcc:DT575.5..DT577,1960- . Republic,
+54296,Early through 1500,no exact dated heading (review),lcc:DT383,,Early through 1500
+54297,16th-18th centuries,no exact dated heading (review),lcc:DT384,,16th-18th centuries
+54298,19th-20th centuries,same label in exact-code heading (review scope),lcc:DT386..DT386.73,19th-20th centuries,
+54301,Early to 1847,same label in exact-code heading (review scope),lcc:DT633..DT636.3,Early to 1847,
+54302,1971-1980,same label in exact-code heading (review scope),lcc:DT636.2..DT636.4,1971-1980,
+54303,1980-,same label in exact-code heading (review scope),lcc:DT636.5..DT636.53,1980-,
+54308,Early to 642,no exact dated heading (review),lcc:DT228,,Early to 642
+54309,642-1551,no exact dated heading (review),lcc:DT229,,642-1551
+54310,1551-1912,same label in exact-code heading (review scope),lcc:DT231..DT231.2,1551-1912,
+54311,1912-1951,no exact dated heading (review),lcc:DT235,,1912-1951
+54312,1951-1969,no exact dated heading (review),lcc:DT235.5,,1951-1969
+54313,1969-2011,no exact dated heading (review),lcc:DT236,,1969-
+54318,Early to 1890. Rwanda (Kingdom),same label in exact-code heading (review scope),lcc:DT450.34..DT450.36,Early to 1890. Rwanda (Kingdom),
+54319,1890-1916. German domination,same label in exact-code heading (review scope),lcc:DT450.37..DT450.39,1890-1916. German domination,
+54320,1916-1945. Belgian domination. League of Nations mandate,same label in exact-code heading (review scope),lcc:DT450.4..DT450.422,1916-1945. Belgian domination. League of Nations mandate,
+54321,1945-1962. United Nations mandate. Belgian administration,same label in exact-code heading (review scope),lcc:DT450.425..DT450.432,1945-1962. United Nations mandate. Belgian administration,
+54322,1962-1994,same label in exact-code heading (review scope),lcc:DT450.435..DT450.437,1962-1994,
+54323,1994-,same label in exact-code heading (review scope),lcc:DT450.44..DT450.443,1994-,
+54328,Early to 1889,same label in exact-code heading (review scope),lcc:DT403.5..DT403.7,Early to 1889,
+54329,1885-1941. British Somaliland. British Protectorate,same label in exact-code heading (review scope),lcc:DT404..DT404.3,1885-1941. British Somaliland. British Protectorate,
+54330,1889-1941. Italian Somaliland,same label in exact-code heading (review scope),lcc:DT405..DT405.3,1889-1941. Italian Somaliland,
+54331,1941-1960. British military administration. United Nations trusteeship,same label in exact-code heading (review scope),lcc:DT406..DT406.3,1941-1960. British military administration. United Nations trusteeship,
+54332,1960-,same label in exact-code heading (review scope),lcc:DT407..DT407.43,1960-,
+54338,"Independent, 1961-1964",no exact dated heading (review),lcc:DT448,,
+54339,"1964- , United Republic of Tanzania",no exact dated heading (review),lcc:DT448.2..DT448.25,,
+54344,Through 1884,no exact dated heading (review),lcc:DT582.65,,Through 1884
+54345,1884-1922. German colony,no exact dated heading (review),lcc:DT582.7,,1884-1922. German colony
+54346,1922-1960. Partition,same label in exact-code heading (review scope),lcc:DT582.75..DT582.752,1922-1960. Partition,French Togoland (1922-1960)
+54347,1960- . Independence,same label in exact-code heading (review scope),lcc:DT582.77..DT582.852,1960- . Independence,
+54353,"Congo Free State, 1885-1908",same label in exact-code heading (review scope),lcc:DT655..DT655.2,"Congo Free State, 1885-1908",
+54354,"Belgian Congo, 1908-1960",same label in exact-code heading (review scope),lcc:DT657..DT657.2,"Belgian Congo, 1908-1960",
+54355,1960-,same label in exact-code heading (review scope),lcc:DT658..DT658.26,1960-,
+54359,1973-,no exact dated heading (review),lcc:F1657.2,,1973-
+54502,1516-1810,no exact dated heading (review),lcc:F2841,,1516-1810
+54503,1810-,no exact dated heading (review),lcc:F2843,,1810-
+54510,Early to 1890,no exact dated heading (review),lcc:DT394.5,,Early to 1890
+54511,1890-1941. Italian domination,no exact dated heading (review),lcc:DT395,,1890-1941. Italian domination
+54512,1941-1952. British administration,no exact dated heading (review),lcc:DT395.3,,1941-1952. British administration
+54513,1952-1962. Federation with Ethiopia,no exact dated heading (review),lcc:DT395.5,,1952-1962. Federation with Ethiopia
+54514,1962-1993. Annexation to Ethiopia,no exact dated heading (review),lcc:DT397,,1962-1993. Annexation to Ethiopia
+54515,1993- . Independence,no exact dated heading (review),lcc:DT397.3,,1993- . Independence
+54532,Early to 1648,same label in exact-code heading (review scope),lcc:DT1357..DT1369,Early to 1648,
+54533,1648-1885. Portuguese expansion,same label in exact-code heading (review scope),lcc:DT1373..DT1382,1648-1885. Portuguese expansion,
+54534,1885-1961. Portuguese consolidation,same label in exact-code heading (review scope),lcc:DT1385..DT1396,1885-1961. Portuguese consolidation,
+54535,1961-1975. Revolution,same label in exact-code heading (review scope),lcc:DT1398..DT1417,1961-1975. Revolution,
+54536,1975- . Independent,same label in exact-code heading (review scope),lcc:DT1420..DT1436,1975- . Independent,
+54541,Early to 1885,same label in exact-code heading (review scope),lcc:DT2483..DT2488,Early to 1885,
+54542,1885-1966. Bechuanaland Protectorate. British Bechuanaland,same label in exact-code heading (review scope),lcc:DT2490..DT2493,1885-1966. Bechuanaland Protectorate. British Bechuanaland,
+54543,1966- . Independent,same label in exact-code heading (review scope),lcc:DT2496..DT2502,1966- . Independent,
+54548,Early to 1868,same label in exact-code heading (review scope),lcc:DT2630..DT2636,Early to 1868,
+54549,1868-1966. Basutoland. British Protectorate,same label in exact-code heading (review scope),lcc:DT2638..DT2648,1868-1966. Basutoland. British Protectorate,
+54554,To 1891,same label in exact-code heading (review scope),lcc:DT3211..DT3214,To 1891,
+54555,1891-1953,same label in exact-code heading (review scope),lcc:DT3216..DT3225,1891-1953,
+54556,1953-1964,same label in exact-code heading (review scope),lcc:DT3227..DT3230,1953-1964,
+54557,1964- . Independent,same label in exact-code heading (review scope),lcc:DT3232..DT3237.8,1964- . Independent,
+54562,Early to 1505,same label in exact-code heading (review scope),lcc:DT3345..DT3348,Early to 1505,
+54563,1505-1698,same label in exact-code heading (review scope),lcc:DT3350..DT3359,1505-1698,
+54564,1698-1891,same label in exact-code heading (review scope),lcc:DT3361..DT3374,1698-1891,
+54565,1891-1975,same label in exact-code heading (review scope),lcc:DT3376..DT3387,1891-1975,
+54566,1975- . Independent,same label in exact-code heading (review scope),lcc:DT3389..DT3400,1975- . Independent,
+54571,Early to 1884,same label in exact-code heading (review scope),lcc:DT1587..DT1601,Early to 1884,
+54572,1884-1915. German South-West Africa,same label in exact-code heading (review scope),lcc:DT1603..DT1622,1884-1915. German South-West Africa,
+54573,1915-1946. South African Mandate under authority of the League of Nations,same label in exact-code heading (review scope),lcc:DT1625..DT1636,1915-1946. South African Mandate under authority of the League of Nations,
+54574,1946-1990. United Nations Trusteeship. South African administration,same label in exact-code heading (review scope),lcc:DT1638..DT1648,1946-1990. United Nations Trusteeship. South African administration,
+54575,"1990- , Independent",no exact dated heading (review),lcc:DT1649,,"1990- , Independent"
+54581,Early to 1652,same label in exact-code heading (review scope),lcc:DT1807..DT1810,Early to 1652,
+54582,1652-1795. Dutch East India Company administration,same label in exact-code heading (review scope),lcc:DT1813..DT1825,1652-1795. Dutch East India Company administration,
+54583,1795-1836. British possession,same label in exact-code heading (review scope),lcc:DT1828..DT1845,1795-1836. British possession,
+54584,1836-1910. British consolidation,same label in exact-code heading (review scope),lcc:DT1848..DT1920,1836-1910. British consolidation,
+54585,1910-1961. Union of South Africa,same label in exact-code heading (review scope),lcc:DT1924..DT1941,1910-1961. Union of South Africa,
+54586,1961-1994. Republic of South Africa. Apartheid regime,same label in exact-code heading (review scope),lcc:DT1945..DT1970,1961-1994. Republic of South Africa. Apartheid regime,
+54587,1994- . Republic of South Africa. Government of National Unity,same label in exact-code heading (review scope),lcc:DT1971..DT1975,1994- . Republic of South Africa. Government of National Unity,
+54593,Early to 641,no exact dated heading (review),lcc:DT156,,Early to 641
+54594,641-1821,same label in exact-code heading (review scope),lcc:DT156.3..DT156.35,641-1821,
+54595,1821-,same label in exact-code heading (review scope),lcc:DT156.4..DT157.67,1821-,
+54600,Early to 1890,same label in exact-code heading (review scope),lcc:DT3079..DT3089,Early to 1890,
+54601,1890-1924. British South Africa Company administration,same label in exact-code heading (review scope),lcc:DT3091..DT3101,1890-1924. British South Africa Company administration,
+54602,1924-1953. British Protectorate,same label in exact-code heading (review scope),lcc:DT3103..DT3106,1924-1953. British Protectorate,
+54603,1953-1964,same label in exact-code heading (review scope),lcc:DT3108..DT3111,1953-1964,
+54604,1964- . Independent,same label in exact-code heading (review scope),lcc:DT3113..DT3119.5,1964- . Independent,
+54609,Early to 1890,same label in exact-code heading (review scope),lcc:DT2937..DT2957,Early to 1890,
+54610,1890-1923. British South Africa Company administration,same label in exact-code heading (review scope),lcc:DT2959..DT2970,1890-1923. British South Africa Company administration,
+54611,1923-1953. British Crown colony,same label in exact-code heading (review scope),lcc:DT2972..DT2975,1923-1953. British Crown colony,
+54612,1953-1965,same label in exact-code heading (review scope),lcc:DT2976..DT2979,1953-1965,
+54613,1965-1980,same label in exact-code heading (review scope),lcc:DT2981..DT2994,1965-1980,
+54614,1980- . Independent,same label in exact-code heading (review scope),lcc:DT2996..DT3000,1980- . Independent,
+54750,2011-,same label in exact-code heading (review scope),lcc:DT159.9399..DT159.947,2011-,
+54765,Through 1907,no exact dated heading (review),lcc:DS492.6..DS492.63.Z,,
+54766,1907–Present,no exact dated heading (review),lcc:DS492.7..DS492.73.Z,,
+54772,Earliest to 1768,no exact dated heading (review),lcc:DS495..DS495.22.Z,,
+54773,1768–1951,no exact dated heading (review),lcc:DS495.3..DS495.33.Z,,
+54774,1951–1990,no exact dated heading (review),lcc:DS495.5..DS495.592.Z,,
+54775,1990–Present,no exact dated heading (review),lcc:DS495.6..DS495.652.Z,,
+54780,Early to 1505,no exact dated heading (review),lcc:DS489.6..DS489.63.Z,,
+54781,1505–1948,no exact dated heading (review),lcc:DS489.7..DS489.73.Z,,
+54782,1948–1978,no exact dated heading (review),lcc:DS489.8..DS489.83.Z,,
+54783,1978–Present,no exact dated heading (review),lcc:DS489.84..DS489.86.Z,,
+54789,Earliest to 1225,no exact dated heading (review),lcc:DS556.6..DS556.63.Z,,
+54790,1225–1802,no exact dated heading (review),lcc:DS556.7..DS556.73.Z,,
+54791,1802–1954,no exact dated heading (review),lcc:DS556.8..DS556.83.Z,,
+54792,1954–1975,no exact dated heading (review),lcc:DS556.9..DS559.9,,
+54793,1975- . Reunification. Socialist Republic of Vietnam,same label in exact-code heading (review scope),lcc:DS559.912..DS559.916,1975- . Reunification. Socialist Republic of Vietnam,
+54852,"Pagan Kingdom, to 1287",no exact dated heading (review),lcc:DS529.2,,
+54853,1287–1824,no exact dated heading (review),lcc:DS529.3..DS529.42.Z,,
+54854,1824–1885,no exact dated heading (review),lcc:DS529.7,,
+54855,1885–1945,no exact dated heading (review),lcc:DS530..DS530.32.Z,,
+54856,1945–Present,no exact dated heading (review),lcc:DS530.4..DS530.68.Z,,
+54861,Earliest to 1863,no exact dated heading (review),lcc:DS554.6..DS554.64.Z,,
+54862,1863–1954,no exact dated heading (review),lcc:DS554.7..DS554.73.Z,,
+54863,1954–Present,no exact dated heading (review),lcc:DS554.8..DS554.842,,
+54868,Earliest to 1893,no exact dated heading (review),lcc:DS555.6..DS555.63.Z,,
+54869,1893–1954,no exact dated heading (review),lcc:DS555.7..DS555.73.Z,,
+54870,1954–1975,no exact dated heading (review),lcc:DS555.8..DS555.83.Z,,
+54871,1975–Present,no exact dated heading (review),lcc:DS555.84..DS555.86.Z,,

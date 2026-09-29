@@ -1,0 +1,138 @@
+{
+  "changes": [
+    {
+      "id": 13,
+      "before": "Fertilizers and improvement of the soil",
+      "after": "Fertilizers & Soil Improvement"
+    },
+    {
+      "id": 8001,
+      "before": "Health Indicators, Statistics & Surveys",
+      "after": "Health Statistics & Surveys"
+    },
+    {
+      "id": 9647,
+      "before": "Heating engineering. Industrial heating",
+      "after": "Heating Engineering"
+    },
+    {
+      "id": 243,
+      "before": "Heating, Ventilation & Air Conditioning",
+      "after": "HVAC"
+    },
+    {
+      "id": 2286,
+      "before": "Humanistic education. Liberal education",
+      "after": "Liberal Education"
+    },
+    {
+      "id": 8575,
+      "before": "Humanistic education. Liberal education",
+      "after": "Liberal Education"
+    },
+    {
+      "id": 8773,
+      "before": "Igneous rocks, volcanic ash, tuff, etc.",
+      "after": "Igneous Rocks"
+    },
+    {
+      "id": 6145,
+      "before": "Information Storage & Retrieval Systems",
+      "after": "Information Storage & Retrieval"
+    },
+    {
+      "id": 9479,
+      "before": "Interdisciplinary approach to knowledge",
+      "after": "Interdisciplinary Knowledge"
+    },
+    {
+      "id": 7129,
+      "before": "Inventors and inventions. How to invent",
+      "after": "Inventors & Inventions"
+    },
+    {
+      "id": 13254,
+      "before": "Islamic Jurisprudence & Legal Reasoning",
+      "after": "Islamic Jurisprudence"
+    },
+    {
+      "id": 13246,
+      "before": "Jewish Private, Family & Commercial Law",
+      "after": "Jewish Private Law"
+    },
+    {
+      "id": 5877,
+      "before": "Jurisprudence, Philosophy & Natural Law",
+      "after": "Legal Philosophy"
+    },
+    {
+      "id": 8022,
+      "before": "Local transit. Street railways. Subways",
+      "after": "Urban Rail Transit"
+    },
+    {
+      "id": 379,
+      "before": "Machine shops and machine shop practice",
+      "after": "Machine Shops"
+    },
+    {
+      "id": 12787,
+      "before": "Maneuvers, Training Grounds & War Games",
+      "after": "Military Training & War Games"
+    },
+    {
+      "id": 6076,
+      "before": "Measurement, Instruments & Laboratories",
+      "after": "Electrical Measurement & Labs"
+    },
+    {
+      "id": 9999,
+      "before": "Microscopial examination. Cytodiagnosis",
+      "after": "Microscopy & Cytodiagnosis"
+    },
+    {
+      "id": 2897,
+      "before": "Nonprescription drugs. Patent medicines",
+      "after": "Nonprescription Medicines"
+    },
+    {
+      "id": 7941,
+      "before": "Paper characteristics, properties, etc.",
+      "after": "Paper Properties"
+    },
+    {
+      "id": 7544,
+      "before": "Parenteral medicine. Parenteral therapy",
+      "after": "Parenteral Therapy"
+    },
+    {
+      "id": 13526,
+      "before": "Periodicals. By language of publication",
+      "after": "Science Periodicals by Language"
+    },
+    {
+      "id": 7158,
+      "before": "Portrait miniatures. Miniature painting",
+      "after": "Miniature Painting"
+    },
+    {
+      "id": 261,
+      "before": "Production of electric energy or power.",
+      "after": "Electric Power Generation"
+    },
+    {
+      "id": 6181,
+      "before": "Public Health Aspects of Transportation",
+      "after": "Transport & Public Health"
+    },
+    {
+      "id": 9373,
+      "before": "School journalism. Student publications",
+      "after": "Student Journalism"
+    }
+  ],
+  "count": 26,
+  "over40_before": 0,
+  "over40_after": 0,
+  "aliases_added": 0
+}

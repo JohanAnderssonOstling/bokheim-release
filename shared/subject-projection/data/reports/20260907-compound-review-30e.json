@@ -1,0 +1,439 @@
+{
+  "created": [],
+  "renamed": [
+    {
+      "id": 13206,
+      "before": "Christian Biographies",
+      "after": "Christian Biography"
+    },
+    {
+      "id": 5860,
+      "before": "Biography, Diaries & Life Writing",
+      "after": "U.S. Life Writing"
+    },
+    {
+      "id": 3855,
+      "before": "Biography, memoirs, letters, etc.",
+      "after": "U.S. Biographical Writing"
+    },
+    {
+      "id": 3857,
+      "before": "Diaries",
+      "after": "U.S. Diaries"
+    },
+    {
+      "id": 8454,
+      "before": "Collected biography",
+      "after": "Collected U.S. Biographies"
+    },
+    {
+      "id": 9008,
+      "before": "Miscellany: Satire, humor, etc.",
+      "after": "U.S. Biographical Miscellany"
+    },
+    {
+      "id": 1094,
+      "before": "Action & Adventure",
+      "after": "Kids’ Action & Adventure"
+    },
+    {
+      "id": 1246,
+      "before": "Humorous Stories",
+      "after": "Kids’ Humor Fiction"
+    },
+    {
+      "id": 1250,
+      "before": "Law & Crime",
+      "after": "Kids’ Law & Crime Fiction"
+    },
+    {
+      "id": 1268,
+      "before": "Mysteries & Detective Stories",
+      "after": "Kids’ Mystery & Detective Fiction"
+    },
+    {
+      "id": 1366,
+      "before": "Spies & Spying",
+      "after": "Kids’ Spy Fiction"
+    },
+    {
+      "id": 1373,
+      "before": "Thrillers & Suspense",
+      "after": "Kids’ Thrillers & Suspense"
+    },
+    {
+      "id": 1385,
+      "before": "Westerns",
+      "after": "Kids’ Westerns"
+    },
+    {
+      "id": 1272,
+      "before": "People & Places",
+      "after": "Kids’ People & Places Fiction"
+    },
+    {
+      "id": 1375,
+      "before": "Transportation",
+      "after": "Kids’ Transport Fiction"
+    },
+    {
+      "id": 1380,
+      "before": "Travel",
+      "after": "Kids’ Travel Fiction"
+    },
+    {
+      "id": 3948,
+      "before": "Biographical",
+      "after": "Biographical Fiction"
+    },
+    {
+      "id": 3965,
+      "before": "Coming of Age",
+      "after": "Coming-of-Age Fiction"
+    },
+    {
+      "id": 3967,
+      "before": "Cultural Heritage",
+      "after": "Cultural Heritage Fiction"
+    },
+    {
+      "id": 3968,
+      "before": "Disabilities & Special Needs",
+      "after": "Disability & Special Needs Fiction"
+    },
+    {
+      "id": 3983,
+      "before": "Family Life",
+      "after": "Family Life Fiction"
+    },
+    {
+      "id": 4001,
+      "before": "Feminist",
+      "after": "Feminist Fiction"
+    },
+    {
+      "id": 4002,
+      "before": "Friendship",
+      "after": "Friendship Fiction"
+    },
+    {
+      "id": 4020,
+      "before": "LGBTQ+",
+      "after": "LGBTQ+ Fiction"
+    },
+    {
+      "id": 4054,
+      "before": "Own Voices",
+      "after": "Own Voices Fiction"
+    },
+    {
+      "id": 4055,
+      "before": "Political",
+      "after": "Political Fiction"
+    },
+    {
+      "id": 4056,
+      "before": "Psychological",
+      "after": "Psychological Fiction"
+    },
+    {
+      "id": 1984,
+      "before": "Boys & Men",
+      "after": "YA Boys & Men"
+    },
+    {
+      "id": 1997,
+      "before": "Cooking & Food",
+      "after": "YA Cooking & Food"
+    },
+    {
+      "id": 2000,
+      "before": "Disabilities & Special Needs",
+      "after": "YA Disabilities & Special Needs"
+    },
+    {
+      "id": 2002,
+      "before": "Family",
+      "after": "YA Family"
+    },
+    {
+      "id": 2011,
+      "before": "Fashion",
+      "after": "YA Fashion"
+    },
+    {
+      "id": 2020,
+      "before": "Girls & Women",
+      "after": "YA Girls & Women"
+    },
+    {
+      "id": 2021,
+      "before": "Health & Daily Living",
+      "after": "YA Health & Daily Living"
+    },
+    {
+      "id": 2057,
+      "before": "House & Home",
+      "after": "YA House & Home"
+    },
+    {
+      "id": 2058,
+      "before": "Humor",
+      "after": "YA Humor"
+    },
+    {
+      "id": 2060,
+      "before": "LGBTQ+",
+      "after": "YA LGBTQ+ Topics"
+    },
+    {
+      "id": 2080,
+      "before": "Neurodiversity",
+      "after": "YA Neurodiversity"
+    },
+    {
+      "id": 2081,
+      "before": "Paranormal & Supernatural",
+      "after": "YA Paranormal & Supernatural"
+    },
+    {
+      "id": 1101,
+      "before": "Alligators & Crocodiles",
+      "after": "Kids’ Alligator & Crocodile Stories"
+    },
+    {
+      "id": 1115,
+      "before": "Fish",
+      "after": "Kids’ Fish Stories"
+    },
+    {
+      "id": 1117,
+      "before": "Frogs & Toads",
+      "after": "Kids’ Frog & Toad Stories"
+    },
+    {
+      "id": 1126,
+      "before": "Marine Life",
+      "after": "Kids’ Marine Life Stories"
+    },
+    {
+      "id": 1133,
+      "before": "Reptiles & Amphibians",
+      "after": "Kids’ Reptile & Amphibian Stories"
+    },
+    {
+      "id": 1135,
+      "before": "Turtles & Tortoises",
+      "after": "Kids’ Turtle & Tortoise Stories"
+    },
+    {
+      "id": 1407,
+      "before": "Fish",
+      "after": "Kids’ Fish"
+    },
+    {
+      "id": 1409,
+      "before": "Frogs & Toads",
+      "after": "Kids’ Frogs & Toads"
+    },
+    {
+      "id": 1418,
+      "before": "Marine Life",
+      "after": "Kids’ Marine Life"
+    },
+    {
+      "id": 1424,
+      "before": "Reptiles & Amphibians",
+      "after": "Kids’ Reptiles & Amphibians"
+    },
+    {
+      "id": 1425,
+      "before": "Turtles & Tortoises",
+      "after": "Kids’ Turtles & Tortoises"
+    },
+    {
+      "id": 1394,
+      "before": "Animal Welfare",
+      "after": "Kids’ Animal Welfare"
+    },
+    {
+      "id": 1405,
+      "before": "Endangered",
+      "after": "Kids’ Endangered Animals"
+    },
+    {
+      "id": 1414,
+      "before": "Jungle Animals",
+      "after": "Kids’ Jungle Animals"
+    },
+    {
+      "id": 1420,
+      "before": "Nocturnal",
+      "after": "Kids’ Nocturnal Animals"
+    },
+    {
+      "id": 1428,
+      "before": "Zoos",
+      "after": "Kids’ Zoos"
+    }
+  ],
+  "flattened": [
+    {
+      "id": 4261,
+      "name": "Italian, Romanian & Related Lit.",
+      "parents": [
+        5586
+      ],
+      "children": [
+        4258
+      ]
+    },
+    {
+      "id": 4388,
+      "name": "East & Southeast Asian Literatures",
+      "parents": [
+        5590
+      ],
+      "children": [
+        4225
+      ]
+    },
+    {
+      "id": 4469,
+      "name": "Spanish & Portuguese Lit.",
+      "parents": [
+        5586
+      ],
+      "children": [
+        4452
+      ]
+    },
+    {
+      "id": 5620,
+      "name": "Kids’ Adventure, Mystery & Realism",
+      "parents": [
+        1093
+      ],
+      "children": [
+        1094,
+        1246,
+        1250,
+        1268,
+        1366,
+        1373,
+        1385
+      ]
+    },
+    {
+      "id": 5629,
+      "name": "Places, Travel & Transportation",
+      "parents": [
+        1093
+      ],
+      "children": [
+        1272,
+        1375,
+        1380
+      ]
+    },
+    {
+      "id": 5631,
+      "name": "Identity, Society & Relationships",
+      "parents": [
+        5583
+      ],
+      "children": [
+        3948,
+        3965,
+        3967,
+        3968,
+        3983,
+        4001,
+        4002,
+        4020,
+        4054,
+        4055,
+        4056,
+        4147
+      ]
+    },
+    {
+      "id": 5682,
+      "name": "Identity, Relationships & Wellbeing",
+      "parents": [
+        1950
+      ],
+      "children": [
+        1984,
+        1997,
+        2000,
+        2002,
+        2011,
+        2020,
+        2021,
+        2057,
+        2058,
+        2060,
+        2080,
+        2081
+      ]
+    },
+    {
+      "id": 5774,
+      "name": "Aquatic Life, Reptiles & Amphibians",
+      "parents": [
+        1100
+      ],
+      "children": [
+        1101,
+        1115,
+        1117,
+        1126,
+        1133,
+        1135
+      ]
+    },
+    {
+      "id": 5780,
+      "name": "Aquatic Life, Reptiles & Amphibians",
+      "parents": [
+        1393
+      ],
+      "children": [
+        1407,
+        1409,
+        1418,
+        1424,
+        1425
+      ]
+    },
+    {
+      "id": 5782,
+      "name": "Wildlife, Habitats & Animal Welfare",
+      "parents": [
+        1393
+      ],
+      "children": [
+        1394,
+        1405,
+        1414,
+        1420,
+        1428
+      ]
+    }
+  ],
+  "allowed_transitions": {},
+  "merged": [
+    {
+      "removed": 4603,
+      "retained": 13206,
+      "name": "Christian Biography"
+    }
+  ],
+  "before_over30": 708,
+  "after_over30": 701,
+  "verified_code_groups": 2960849,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0
+}

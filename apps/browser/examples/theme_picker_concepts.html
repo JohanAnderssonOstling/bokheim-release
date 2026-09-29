@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Theme picker in settings</title>
+  <style>
+    :root { font: 14px/1.4 system-ui, sans-serif; color: #282623; background: #f5f4ef; }
+    * { box-sizing: border-box; border-radius: 0 !important; }
+    body { margin: 0; padding: clamp(24px, 5vw, 64px); }
+    .layout { max-width: 1000px; margin: auto; display: flex; align-items: flex-start; gap: clamp(30px, 6vw, 72px); flex-wrap: wrap; }
+    .context { min-width: 0; }
+    .context h1 { margin: 0 0 16px; font-size: 18px; font-weight: 600; letter-spacing: -.03em; }
+    .browse { width: 580px; max-width: 100%; }
+    .reader { width: 260px; }
+    .settings { border: 1px solid #c5bdac; background: #fef8ed; }
+    .group-title { padding: 16px; color: #6b675f; font-size: 14px; font-weight: 650; font-variant: small-caps; }
+    .setting-row { min-height: 60px; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+    .setting-label { flex: none; color: #6b675f; font-size: 12px; }
+    .control { display: flex; align-items: center; justify-content: center; min-width: 100px; height: 36px; border: 1px solid #8c7f64; color: #282623; background: #fef8ed; font-size: 12px; }
+    .control.two { width: 264px; height: 32px; justify-content: space-around; }
+    .control.stepper { width: 146px; height: 32px; }
+    .picker { display: flex; align-items: center; justify-content: space-between; flex: none; width: 264px; max-width: 100%; }
+    .swatch { --page: #fef8ed; --ink: #282623; --accent: #466853; appearance: none; position: relative; display: grid; place-items: center; flex: none; width: 48px; height: 48px; padding: 0; border: 1px solid #8c7f6480; background: var(--page); color: var(--ink); cursor: pointer; }
+    .swatch:hover { border-color: var(--accent); }
+    .swatch[aria-pressed="true"] { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .swatch:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .letters { display: flex; align-items: baseline; gap: .025em; transform: translate(-.02em, -.11em); font: 400 29px/1 Georgia, 'Times New Roman', serif; letter-spacing: -.075em; white-space: nowrap; }
+    .letters span { font-size: .54em; letter-spacing: -.05em; }
+    .accent-line { position: absolute; bottom: 7px; left: 15px; width: 18px; height: 3px; background: var(--accent); }
+    .swatch[aria-pressed="true"]::after { content: '✓'; position: absolute; top: 3px; right: 3px; display: grid; place-items: center; width: 14px; height: 14px; background: var(--accent); color: var(--page); font: 700 10px/1 system-ui, sans-serif; }
+    .reader .settings { padding: 0 8px; }
+    .reader .picker { width: 100%; max-width: 264px; }
+    .reader-head { display: flex; align-items: center; justify-content: space-between; min-height: 48px; border-bottom: 1px solid #c5bdac; font-weight: 600; }
+    .reader-tabs { display: flex; justify-content: space-around; padding: 12px 0; border-bottom: 1px solid #c5bdac; color: #6b675f; font-size: 12px; }
+    .reader-tabs strong { color: #466853; font-weight: 650; }
+    .reader-section { padding: 16px 0; border-bottom: 1px solid #c5bdac; }
+    .reader-section:last-child { border: 0; }
+    .reader-label { display: block; margin: 0 0 8px; color: #6b675f; font-size: 12px; font-variant: small-caps; }
+    .reader .control { width: 100%; }
+    button:focus-visible { outline: 3px solid #466853; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main class="layout">
+    <section class="context browse" aria-labelledby="browse-title">
+      <h1 id="browse-title">Browse settings · 580 px</h1>
+      <div class="settings">
+        <div class="group-title">Appearance</div>
+        <div class="setting-row"><span class="setting-label">Application theme</span><div class="picker" role="group" aria-label="Browse application theme"></div></div>
+        <div class="setting-row"><span class="setting-label">Book card style</span><span class="control two">Covers　　Detailed</span></div>
+        <div class="setting-row"><span class="setting-label">Cover text</span><span class="control two">Always　　Cover only</span></div>
+        <div class="setting-row"><span class="setting-label">UI font size</span><span class="control stepper">−　　 16px　　 +</span></div>
+      </div>
+    </section>
+    <section class="context reader" aria-labelledby="reader-title">
+      <h1 id="reader-title">Reader settings · 260 px</h1>
+      <div class="settings">
+        <div class="reader-head"><span>←</span><span>Reader</span><span>⌕</span></div>
+        <div class="reader-tabs"><span>Contents</span><span>Notes</span><strong>Settings</strong></div>
+        <div class="reader-section"><span class="reader-label">Theme</span><div class="picker" role="group" aria-label="Reader theme"></div></div>
+        <div class="reader-section"><span class="reader-label">Typeface</span><span class="control">Book　　　　 Serif</span></div>
+        <div class="reader-section"><span class="reader-label">Alignment</span><span class="control">Book　　Left　　Justify</span></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const themes = [
+      ['Warm light', '#fef8ed', '#282623', '#466853'],
+      ['Cool light', '#fafdff', '#262627', '#224a7f'],
+      ['Warm dark', '#2d2b28', '#e8e7e5', '#7da18a'],
+      ['Cool dark', '#2a2b2c', '#e7e7e8', '#709cd7']
+    ];
+    document.querySelectorAll('.picker').forEach(picker => {
+      themes.forEach(([name, page, ink, accent], index) => {
+        const swatch = document.createElement('button');
+        swatch.type = 'button';
+        swatch.className = 'swatch';
+        swatch.setAttribute('aria-label', name);
+        swatch.setAttribute('aria-pressed', String(index === 0));
+        swatch.style.cssText = `--page:${page};--ink:${ink};--accent:${accent}`;
+        swatch.innerHTML = '<span class="letters" aria-hidden="true">A<span>a</span></span><span class="accent-line" aria-hidden="true"></span>';
+        swatch.addEventListener('click', () => {
+          picker.querySelectorAll('.swatch').forEach(item => item.setAttribute('aria-pressed', String(item === swatch)));
+        });
+        picker.append(swatch);
+      });
+    });
+  </script>
+</body>
+</html>

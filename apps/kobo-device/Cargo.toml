@@ -1,0 +1,19 @@
+[package]
+name = "kobo-device"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+libc = "0.2"
+async-channel = "2"
+pbkdf2 = "0.12"
+sha1 = "0.10"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+wpa-ctrl = { version = "0.4", path = "../../vendor/wpa-ctrl" }
+
+[dev-dependencies]
+tempfile = "3"

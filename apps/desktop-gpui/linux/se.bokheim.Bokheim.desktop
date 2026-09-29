@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Bokheim
+Comment=Read and organize your books
+Exec=desktop-gpui
+Icon=se.bokheim.Bokheim
+Terminal=false
+Categories=Office;Viewer;
+StartupWMClass=se.bokheim.Bokheim

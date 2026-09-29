@@ -1,0 +1,16 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE user_storage_account\nSET reserved_bytes=reserved_bytes-$2,\n    used_bytes=used_bytes+CASE WHEN $3 THEN $2 ELSE 0 END\nWHERE user_id=$1\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Int8",
+        "Bool"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "dab81022682fbffdd381eb59b8bd886d5a6b37f4d158d3575b195eb9263809bb"
+}

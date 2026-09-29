@@ -1,0 +1,207 @@
+{
+  "created": [
+    {
+      "id": 51273,
+      "name": "Plant Nurseries",
+      "parent": 35
+    },
+    {
+      "id": 51274,
+      "name": "Social Movements",
+      "parent": 12296
+    },
+    {
+      "id": 51275,
+      "name": "Crowds",
+      "parent": 12296
+    },
+    {
+      "id": 51276,
+      "name": "Mass Mobilization",
+      "parent": 12296
+    },
+    {
+      "id": 51277,
+      "name": "Revolutions",
+      "parent": 12296
+    },
+    {
+      "id": 51278,
+      "name": "Collective Violence",
+      "parent": 12296
+    },
+    {
+      "id": 51279,
+      "name": "United Church of Christ",
+      "parent": 13810
+    },
+    {
+      "id": 51280,
+      "name": "Executive Management",
+      "parent": 5236
+    },
+    {
+      "id": 51281,
+      "name": "Business Bureaucracy",
+      "parent": 5236
+    },
+    {
+      "id": 51282,
+      "name": "Local Government Law",
+      "parent": 5645
+    }
+  ],
+  "renamed": [
+    {
+      "id": 5886,
+      "before": "Harvesting, Storage & Nursery Industry",
+      "after": "Harvesting & Storage"
+    },
+    {
+      "id": 12296,
+      "before": "Collective Behavior & Social Movements",
+      "after": "Collective Behavior"
+    },
+    {
+      "id": 5819,
+      "before": "Military Technology & Fortifications",
+      "after": "Military Technology"
+    },
+    {
+      "id": 11491,
+      "before": "Presbyterian, Reformed & Congregational",
+      "after": "Presbyterianism"
+    },
+    {
+      "id": 11590,
+      "before": "Operations & Supply Chain Management",
+      "after": "Industrial Productivity"
+    },
+    {
+      "id": 5645,
+      "before": "Administrative & Local Government Law",
+      "after": "Administrative Law"
+    }
+  ],
+  "flattened": [
+    {
+      "id": 5720,
+      "name": "Probability, Statistics & Optimization",
+      "parents": [
+        4916
+      ],
+      "children": [
+        4936,
+        4938,
+        4950,
+        4958,
+        4961
+      ]
+    },
+    {
+      "id": 5950,
+      "name": "Fluid Power, Vacuum & Material Handling",
+      "parents": [
+        369
+      ],
+      "children": [
+        374,
+        375,
+        376,
+        385,
+        391
+      ]
+    },
+    {
+      "id": 5827,
+      "name": "Sexuality, Pregnancy & Substance Use",
+      "parents": [
+        1908
+      ],
+      "children": [
+        1914,
+        1917,
+        1927
+      ]
+    },
+    {
+      "id": 5895,
+      "name": "Sexuality, Pregnancy & Substance Use",
+      "parents": [
+        1693,
+        2143
+      ],
+      "children": [
+        1700,
+        2148,
+        2150
+      ]
+    }
+  ],
+  "allowed_transitions": {
+    "5886": [
+      51273
+    ],
+    "12296": [
+      51274,
+      51275,
+      51276,
+      51277,
+      51278
+    ],
+    "11491": [
+      13806,
+      51279
+    ],
+    "13810": [
+      51279
+    ],
+    "11590": [
+      5186,
+      5236,
+      51280,
+      51281
+    ],
+    "5236": [
+      5186,
+      51280,
+      51281
+    ],
+    "5645": [
+      5277,
+      51282
+    ]
+  },
+  "verified_code_groups": 2960847,
+  "changed_code_groups": 1425,
+  "transitions": {
+    "[11590] -> [5186]": 423,
+    "[11590] -> [5236]": 126,
+    "[11590] -> [51280]": 400,
+    "[12296] -> [51274]": 238,
+    "[12296] -> [51278]": 68,
+    "[12296] -> [51277]": 23,
+    "[11590] -> [51281]": 17,
+    "[12296] -> [51275]": 18,
+    "[5645] -> [51282]": 65,
+    "[13810] -> [51279]": 19,
+    "[5886] -> [51273]": 28
+  },
+  "aliases_added": 0,
+  "counts": {
+    "before": {
+      "subjects": 14416,
+      "over35": 64
+    },
+    "after": {
+      "subjects": 14422,
+      "over35": 54
+    }
+  },
+  "notes": [
+    "REL111000 means United Church of Christ, not generic Congregationalism; assigned to its own subject.",
+    "REL093000 (Calvinist) moved to existing Reformed Churches.",
+    "Presbyterianism retains the LCC BX8901–9225 schedule, which historically includes Calvinistic Methodism.",
+    "KBS510–518.2 covers Eastern Church dioceses/eparchies and moved to existing Eastern Church Canon Law."
+  ]
+}

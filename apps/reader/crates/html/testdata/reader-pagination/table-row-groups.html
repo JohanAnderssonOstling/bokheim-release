@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Table row-group pagination visual test</title>
+  <style>
+    body { margin: 44px; color: #20242b; font-family: sans-serif; }
+    h1 { margin: 0 0 14px; font-size: 32px; }
+    .lead { height: 350px; border-bottom: 2px solid #cad0d8; font-size: 19px; }
+    table { width: 100%; border: 8px solid #17788a; border-spacing: 0; background: #d9f3f6; font-size: 20px; }
+    caption { padding: 12px; background: #8bd3df; font-size: 22px; font-weight: bold; }
+    th, td { padding: 12px 16px; border-bottom: 3px solid #72bdca; text-align: left; vertical-align: top; }
+    .first { height: 190px; background: #dff4df; }
+    .linked { height: 180px; background: #eee6ff; }
+    .rowspan { width: 210px; background: #d9c8ff; font-weight: bold; }
+    .label { display: block; margin-bottom: 14px; color: #176b35; font-weight: bold; letter-spacing: 0.06em; }
+  </style>
+</head>
+<body>
+  <h1>Rows paginate outside layout</h1>
+  <div class="lead">The oversized table starts on page two. Its first green row fits there, while the two lavender rows connected by a rowspan move together to page three.</div>
+  <table>
+    <caption>Table 2. Atomic rows and rowspan groups</caption>
+    <tr class="first">
+      <td><span class="label">PAGE TWO</span>This tall row is indivisible. Both lines remain inside one table row and one reader page.<br>Its border must not be cut by a page boundary.</td>
+      <td>Independent cell</td>
+    </tr>
+    <tr class="linked">
+      <td class="rowspan" rowspan="2">PAGE THREE<br>ONE ROWSPAN GROUP</td>
+      <td>The first lavender row is linked to the next row by the spanning cell.</td>
+    </tr>
+    <tr class="linked">
+      <td>The second lavender row must appear on the same page as the first.</td>
+    </tr>
+  </table>
+</body>
+</html>

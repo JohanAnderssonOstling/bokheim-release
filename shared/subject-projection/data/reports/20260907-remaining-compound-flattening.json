@@ -1,0 +1,170 @@
+{
+  "created": [
+    {
+      "id": 51339,
+      "name": "Conflict Resolution",
+      "parent": 5241
+    },
+    {
+      "id": 51340,
+      "name": "Friendship",
+      "parent": 5241
+    },
+    {
+      "id": 51341,
+      "name": "Public Investment",
+      "parent": 5091
+    },
+    {
+      "id": 51342,
+      "name": "Saving & Investment",
+      "parent": 5091
+    }
+  ],
+  "renamed": [
+    {
+      "id": 3654,
+      "before": "Pictorial",
+      "after": "Military Pictorial History"
+    },
+    {
+      "id": 3658,
+      "before": "Uniforms",
+      "after": "Military Uniforms"
+    },
+    {
+      "id": 5805,
+      "before": "Communication, Friendship & Conflict",
+      "after": "Anger"
+    },
+    {
+      "id": 13619,
+      "before": "Capital, Investment & Infrastructure",
+      "after": "Capital & Infrastructure"
+    }
+  ],
+  "flattened": [
+    {
+      "id": 5914,
+      "name": "Technical Design, Measurement & Safety",
+      "parents": [
+        5563
+      ],
+      "children": [
+        248,
+        368,
+        448,
+        449
+      ]
+    },
+    {
+      "id": 5760,
+      "name": "Complementary & Traditional Therapies",
+      "parents": [
+        2624
+      ],
+      "children": [
+        2625,
+        2627,
+        2628,
+        2667,
+        2673,
+        2676
+      ]
+    },
+    {
+      "id": 5898,
+      "name": "Soils, Climate & Agricultural Science",
+      "parents": [
+        2
+      ],
+      "children": [
+        3,
+        5,
+        7,
+        13,
+        17
+      ]
+    },
+    {
+      "id": 5735,
+      "name": "Spirits, Afterlife & the Supernatural",
+      "parents": [
+        3260
+      ],
+      "children": [
+        3261,
+        3264,
+        3270,
+        3314,
+        3315
+      ]
+    },
+    {
+      "id": 5828,
+      "name": "Evolution, Ecology & Natural History",
+      "parents": [
+        4789
+      ],
+      "children": [
+        4790,
+        4793
+      ]
+    },
+    {
+      "id": 5820,
+      "name": "Nations, Veterans & Material Culture",
+      "parents": [
+        3640
+      ],
+      "children": [
+        3644,
+        3654,
+        3658,
+        3659,
+        3664
+      ]
+    },
+    {
+      "id": 5762,
+      "name": "Reproductive, Sexual & Family Health",
+      "parents": [
+        2624
+      ],
+      "children": [
+        2631,
+        2633,
+        2665,
+        2674,
+        2677,
+        2678,
+        2682,
+        2683,
+        2688
+      ]
+    }
+  ],
+  "allowed_transitions": {
+    "5805": [
+      51339,
+      51340
+    ],
+    "13619": [
+      51341,
+      51342
+    ]
+  },
+  "preexisting_fk_violations": 0,
+  "before_over35": 55,
+  "after_over35": 46,
+  "verified_exact_selectors": 15832,
+  "moved_selectors": 4,
+  "coverage_audit": "passed; usage caches refreshed",
+  "transitions": {
+    "[13619] -> [51341]": 9,
+    "[13619] -> [51342]": 20
+  },
+  "aliases_added": 0,
+  "verified_code_groups": 2960788,
+  "changed_code_groups": 29
+}

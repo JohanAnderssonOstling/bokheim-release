@@ -1,0 +1,951 @@
+[
+  {
+    "type": "exact",
+    "start": "K3185",
+    "end": null,
+    "source": [
+      [
+        350623,
+        null,
+        "Federal government"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "K3188",
+    "end": null,
+    "source": [
+      [
+        350624,
+        null,
+        "Interstate compacts"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "K3367",
+    "end": null,
+    "source": [
+      [
+        350736,
+        null,
+        "The Judiciary"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KE4275",
+    "end": null,
+    "source": [
+      [
+        213436,
+        null,
+        "Distribution of legislative power. Exclusive and concurrent legislative powers"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KE4278",
+    "end": null,
+    "source": [
+      [
+        213437,
+        null,
+        "Declaratory power of Parliament"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KE4280",
+    "end": null,
+    "source": [
+      [
+        213438,
+        null,
+        "Disallowance and reservation of provincial legislation"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KF4605",
+    "end": null,
+    "source": [
+      [
+        137732,
+        null,
+        "Comity clause (Privileges and immunities of state citizens)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KF4606",
+    "end": null,
+    "source": [
+      [
+        137733,
+        null,
+        "Commerce clause"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KF4608",
+    "end": null,
+    "source": [
+      [
+        136285,
+        null,
+        "Contract clause"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KF4612",
+    "end": null,
+    "source": [
+      [
+        136286,
+        null,
+        "Federal-state disputes"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KF4613",
+    "end": null,
+    "source": [
+      [
+        137734,
+        null,
+        "Secession. Nullification"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KF4615",
+    "end": null,
+    "source": [
+      [
+        137735,
+        null,
+        "Disputes between states"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KF4618",
+    "end": null,
+    "source": [
+      [
+        137736,
+        null,
+        "Interstate compacts"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KF4625",
+    "end": null,
+    "source": [
+      [
+        137738,
+        null,
+        "Federal areas within states"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KF4627",
+    "end": null,
+    "source": [
+      [
+        137740,
+        null,
+        "Submerged land"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KF4629",
+    "end": null,
+    "source": [
+      [
+        137739,
+        null,
+        "Welfare clause"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KFC693",
+    "end": null,
+    "source": [
+      [
+        141218,
+        null,
+        "Submerged lands"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KFN5692",
+    "end": null,
+    "source": [
+      [
+        141982,
+        null,
+        "Interstate cooperation"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIE2284",
+    "end": null,
+    "source": [
+      [
+        56900,
+        null,
+        "Emblem. Flag. Seal"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJA2976",
+    "end": null,
+    "source": [
+      [
+        29796,
+        null,
+        "Legislative process"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJC30",
+    "end": null,
+    "source": [
+      [
+        368386,
+        null,
+        "Summaries. Abridgments. Digests"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KK4693",
+    "end": null,
+    "source": [
+      [
+        358650,
+        null,
+        "Beiräte (Advisory boards and councils)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KK4696",
+    "end": null,
+    "source": [
+      [
+        358651,
+        null,
+        "The Judiciary. Judicial power"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "K3289.5",
+    "end": "K3304",
+    "source": [
+      [
+        626674,
+        null,
+        "General works"
+      ],
+      [
+        626673,
+        "K3304",
+        "The people"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "K3310",
+    "end": "K3329",
+    "source": [
+      [
+        350691,
+        null,
+        "General"
+      ],
+      [
+        350690,
+        "K3329",
+        "The legislature"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "K3332",
+    "end": "K3363.2",
+    "source": [
+      [
+        350711,
+        null,
+        "General works"
+      ],
+      [
+        350710,
+        "K3363.2",
+        "Heads of state and the central government"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KDE440",
+    "end": "KDE452",
+    "source": [
+      [
+        229447,
+        null,
+        "General"
+      ],
+      [
+        229446,
+        "KDE452",
+        "Parliament"
+      ],
+      [
+        229445,
+        "KDE452.2",
+        "Legislation"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KE4285",
+    "end": "KE4285.2",
+    "source": [
+      [
+        213440,
+        null,
+        "Boundary disputes"
+      ],
+      [
+        213439,
+        "KE4285.2",
+        "Federal-provincial disputes. Interprovincial disputes"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KF4621",
+    "end": "KF4621.2",
+    "source": [
+      [
+        139556,
+        null,
+        "Sedition"
+      ],
+      [
+        137737,
+        "KF4621.2",
+        "Federal and state jurisdiction in particular areas"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KFN5709",
+    "end": "KFN5716",
+    "source": [
+      [
+        141998,
+        null,
+        "Recall"
+      ],
+      [
+        141997,
+        "KFN5716",
+        "The people"
+      ],
+      [
+        141996,
+        "KFN5747.2",
+        "Organs of government"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KFN5720",
+    "end": "KFN5736",
+    "source": [
+      [
+        142010,
+        null,
+        "General. Legislative power"
+      ],
+      [
+        142008,
+        "KFN5736",
+        "The legislative branch"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KFN5740",
+    "end": "KFN5747.2",
+    "source": [
+      [
+        142029,
+        null,
+        "General. Executive power"
+      ],
+      [
+        142028,
+        "KFN5747.2",
+        "The executive branch"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIB1980",
+    "end": "KIB1990",
+    "source": [
+      [
+        57313,
+        null,
+        "General works"
+      ],
+      [
+        57312,
+        "KIB1990",
+        "Legislature"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIE2180",
+    "end": "KIE2191",
+    "source": [
+      [
+        56614,
+        null,
+        "General works"
+      ],
+      [
+        56613,
+        "KIE2191",
+        "Legislature"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIE2200",
+    "end": "KIE2222",
+    "source": [
+      [
+        56884,
+        null,
+        "General works"
+      ],
+      [
+        56883,
+        "KIE2222",
+        "Executive power. Indian chiefs and other executives"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIE2240",
+    "end": "KIE2280",
+    "source": [
+      [
+        56888,
+        null,
+        "General works"
+      ],
+      [
+        56887,
+        "KIE2280",
+        "Administration and administrative process. Indian government"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJA2973",
+    "end": "KJA2975",
+    "source": [
+      [
+        368148,
+        null,
+        "General"
+      ],
+      [
+        368147,
+        "KJA2975",
+        "Comitia. Assembly of the people"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJA2980",
+    "end": "KJA3033",
+    "source": [
+      [
+        368151,
+        null,
+        "General"
+      ],
+      [
+        368150,
+        "KJA3033",
+        "Magistracies. Magistratus"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJA3035",
+    "end": "KJA3037",
+    "source": [
+      [
+        368176,
+        null,
+        "General"
+      ],
+      [
+        368175,
+        "KJA3037",
+        "The Senate"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJC27",
+    "end": "KJC29",
+    "source": [
+      [
+        368383,
+        null,
+        "General"
+      ],
+      [
+        368382,
+        "KJC29",
+        "Indexes and tables. By date"
+      ],
+      [
+        368381,
+        "KJC36",
+        "Legislation"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJC34",
+    "end": "KJC36",
+    "source": [
+      [
+        368389,
+        null,
+        "Serials"
+      ],
+      [
+        368388,
+        "KJC35",
+        "Collections"
+      ],
+      [
+        368387,
+        "KJC36",
+        "Statutes"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJC5262",
+    "end": "KJC5272",
+    "source": [
+      [
+        369559,
+        null,
+        "General"
+      ],
+      [
+        369558,
+        "KJC5272",
+        "The people"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJC5310",
+    "end": "KJC5369",
+    "source": [
+      [
+        369563,
+        null,
+        "General"
+      ],
+      [
+        369562,
+        "KJC5369",
+        "The legislature. Legislative power"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJC5349",
+    "end": "KJC5364",
+    "source": [
+      [
+        369567,
+        null,
+        "General"
+      ],
+      [
+        369566,
+        "KJC5364",
+        "Legislative process"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJC5379",
+    "end": "KJC5397",
+    "source": [
+      [
+        369577,
+        null,
+        "General"
+      ],
+      [
+        369576,
+        "KJC5397",
+        "Heads of state and government. Chef de l'Etat"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJC5407",
+    "end": "KJC5445",
+    "source": [
+      [
+        369595,
+        null,
+        "General"
+      ],
+      [
+        369594,
+        "KJC5445",
+        "Form and structure of governments"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJC5408",
+    "end": "KJC5409",
+    "source": [
+      [
+        369597,
+        null,
+        "General"
+      ],
+      [
+        369596,
+        "KJC5409",
+        "Monarchy"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KJC5412",
+    "end": "KJC5415",
+    "source": [
+      [
+        369600,
+        null,
+        "General"
+      ],
+      [
+        369599,
+        "KJC5415",
+        "Representative government. Régime parlementaire"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KK4630",
+    "end": "KK4636",
+    "source": [
+      [
+        358882,
+        null,
+        "General works"
+      ],
+      [
+        358881,
+        "KK4636",
+        "Bundesrat (Council of princes and rulers of the German states)"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KK4637",
+    "end": "KK4653",
+    "source": [
+      [
+        358891,
+        null,
+        "General works"
+      ],
+      [
+        358890,
+        "KK4653",
+        "Reichstag (Legislature)"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KK4654",
+    "end": "KK4664",
+    "source": [
+      [
+        358905,
+        null,
+        "General works"
+      ],
+      [
+        358904,
+        "KK4664",
+        "Kaiser"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KK4667",
+    "end": "KK4669",
+    "source": [
+      [
+        358925,
+        null,
+        "General works"
+      ],
+      [
+        358924,
+        "KK4669",
+        "Reichskanzler"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KK4671",
+    "end": "KK4692",
+    "source": [
+      [
+        358928,
+        null,
+        "General"
+      ],
+      [
+        358927,
+        "KK4692",
+        "Kabinett und Ministerien (Cabinet and departments)"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KK4791",
+    "end": "KK4807.2",
+    "source": [
+      [
+        359043,
+        null,
+        "General works"
+      ],
+      [
+        359042,
+        "KK4807.2",
+        "The people. Das Volk"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KK4810",
+    "end": "KK4819",
+    "source": [
+      [
+        359059,
+        null,
+        "General works"
+      ],
+      [
+        359058,
+        "KK4819",
+        "The legislature"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KK4820",
+    "end": "KK4824",
+    "source": [
+      [
+        359069,
+        null,
+        "General works"
+      ],
+      [
+        359068,
+        "KK4824",
+        "Reichsrat"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KK4825",
+    "end": "KK4826",
+    "source": [
+      [
+        359074,
+        null,
+        "General works"
+      ],
+      [
+        359073,
+        "KK4826",
+        "Reichswirtschaftsrat (National economic council)"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KK4828",
+    "end": "KK4872",
+    "source": [
+      [
+        359077,
+        null,
+        "General works"
+      ],
+      [
+        359076,
+        "KK4872",
+        "The executive"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KKA5869.3",
+    "end": "KKA5871",
+    "source": [
+      [
+        360831,
+        null,
+        "General"
+      ],
+      [
+        360830,
+        "KKA5871",
+        "Bezirke (Administrative districts)"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KKA5873",
+    "end": "KKA5875.7",
+    "source": [
+      [
+        360847,
+        null,
+        "General"
+      ],
+      [
+        360846,
+        "KKA5875.7",
+        "Kreise"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KNX2510",
+    "end": "KNX2528",
+    "source": [
+      [
+        320414,
+        "KNX2528",
+        "The legislature. Legislative power"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KNX2530",
+    "end": "KNX2564",
+    "source": [
+      [
+        320420,
+        "KNX2564",
+        "The head of state"
+      ]
+    ]
+  }
+]

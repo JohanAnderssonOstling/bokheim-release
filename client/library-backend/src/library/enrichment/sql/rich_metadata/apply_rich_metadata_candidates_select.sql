@@ -1,0 +1,1 @@
+SELECT EXISTS(SELECT 1 FROM external_metadata_attempt a JOIN book b ON b.row_id=a.book_row_id WHERE b.content_hash=?1 AND a.provider_id=?2 AND a.identifier=?3 AND a.status='updated')

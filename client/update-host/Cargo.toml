@@ -1,0 +1,23 @@
+[package]
+name = "linux-update-host"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+log = "0.4"
+update-client = { path = "../../shared/update-client", features = ["native-state"] }
+library-database = { path = "../library-backend/crates/library-database" }
+subject-projection = { path = "../../shared/subject-projection" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+fs2 = "0.4"
+rusqlite = { version = "0.40.0", features = ["bundled", "backup", "serialize"] }
+
+[dev-dependencies]
+zip.workspace = true
+library-database = { path = "../library-backend/crates/library-database", features = ["fixture-sql"] }
+ring = "0.17"
+book-model = { path = "../../shared/book-model" }
+sync-common = { path = "../../shared/sync-common" }
+tempfile = "3"

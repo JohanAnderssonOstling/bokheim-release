@@ -1,0 +1,816 @@
+{
+  "mode": "report-only",
+  "database_sha256": "8a21331c74ec5e5aefe995a3f301aae7e7e6b4e9ce9dad556bb09391e683a93f",
+  "concept_count": 16910,
+  "screened_range_rows": 989,
+  "scope": "R subclasses plus B, BC, BD, BF, BH, BJ; range-label screen with targeted source and runtime verification, not exhaustive validation of all codes",
+  "confirmed_mismatch_concepts": [
+    4504,
+    12878,
+    12875,
+    2768,
+    6195
+  ],
+  "overbroad_fallback_concepts": [
+    12877
+  ],
+  "concepts": [
+    {
+      "id": 4504,
+      "label": "Good & Evil",
+      "ranges": [
+        [
+          "BJ1296",
+          "BJ1517.9"
+        ]
+      ],
+      "selectors": [
+        [
+          "BJ1401"
+        ]
+      ],
+      "bisac": [
+        [
+          "PHI008000"
+        ]
+      ],
+      "parents": [
+        [
+          4494,
+          "Ethics"
+        ]
+      ]
+    },
+    {
+      "id": 12878,
+      "label": "Psycholinguistics & Synesthesia",
+      "ranges": [
+        [
+          "BF455",
+          "BF499"
+        ]
+      ],
+      "selectors": [
+        [
+          "BF455-BF463"
+        ],
+        [
+          "BF458"
+        ],
+        [
+          "BF467"
+        ],
+        [
+          "BF468"
+        ],
+        [
+          "BF469"
+        ],
+        [
+          "BF471"
+        ],
+        [
+          "BF475"
+        ],
+        [
+          "BF482"
+        ],
+        [
+          "BF485"
+        ],
+        [
+          "BF491"
+        ],
+        [
+          "BF495-BF499"
+        ],
+        [
+          "BF497"
+        ],
+        [
+          "BF498"
+        ]
+      ],
+      "bisac": [],
+      "parents": [
+        [
+          5389,
+          "Cognition"
+        ]
+      ]
+    },
+    {
+      "id": 12875,
+      "label": "Habit, Adjustment & Nature–Nurture",
+      "ranges": [
+        [
+          "BF335",
+          "BF364.9"
+        ]
+      ],
+      "selectors": [
+        [
+          "BF335-BF335.5"
+        ],
+        [
+          "BF335.4-BF335.5"
+        ],
+        [
+          "BF341-BF346"
+        ],
+        [
+          "BF355"
+        ],
+        [
+          "BF357"
+        ]
+      ],
+      "bisac": [],
+      "parents": [
+        [
+          5389,
+          "Cognition"
+        ]
+      ]
+    },
+    {
+      "id": 2768,
+      "label": "Acute & Specialty Care",
+      "ranges": [
+        [
+          "RT89",
+          "RT120"
+        ],
+        [
+          "RT89",
+          "RT89.3"
+        ]
+      ],
+      "selectors": [],
+      "bisac": [],
+      "parents": [
+        [
+          2747,
+          "Nursing"
+        ]
+      ]
+    },
+    {
+      "id": 6195,
+      "label": "Mental Illness Prevention",
+      "ranges": [
+        [
+          "RA790",
+          "RA790.95"
+        ]
+      ],
+      "selectors": [],
+      "bisac": [],
+      "parents": [
+        [
+          2845,
+          "Public Health"
+        ]
+      ]
+    },
+    {
+      "id": 12877,
+      "label": "Creative Thinking",
+      "ranges": [
+        [
+          "BF408",
+          "BF454.9"
+        ]
+      ],
+      "selectors": [
+        [
+          "BF408-BF426"
+        ],
+        [
+          "BF412"
+        ],
+        [
+          "BF418"
+        ],
+        [
+          "BF423"
+        ],
+        [
+          "BF426"
+        ]
+      ],
+      "bisac": [],
+      "parents": [
+        [
+          5389,
+          "Cognition"
+        ]
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "system": "lcc",
+      "code": "BJ1340",
+      "resolved": "4504",
+      "candidates": "4504",
+      "resolved_labels": [
+        "Good & Evil"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BJ1451",
+      "resolved": "4504",
+      "candidates": "4504",
+      "resolved_labels": [
+        "Good & Evil"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BJ1481",
+      "resolved": "4504",
+      "candidates": "4504",
+      "resolved_labels": [
+        "Good & Evil"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BJ1395",
+      "resolved": "4497",
+      "candidates": "4497",
+      "resolved_labels": [
+        "Feminist ethics"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF468",
+      "resolved": "12878",
+      "candidates": "12878",
+      "resolved_labels": [
+        "Psycholinguistics & Synesthesia"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF482",
+      "resolved": "12878",
+      "candidates": "12878",
+      "resolved_labels": [
+        "Psycholinguistics & Synesthesia"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF491",
+      "resolved": "12878",
+      "candidates": "12878",
+      "resolved_labels": [
+        "Psycholinguistics & Synesthesia"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF355",
+      "resolved": "12875",
+      "candidates": "12875",
+      "resolved_labels": [
+        "Habit, Adjustment & Nature–Nurture"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF357",
+      "resolved": "12875",
+      "candidates": "12875",
+      "resolved_labels": [
+        "Habit, Adjustment & Nature–Nurture"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF353",
+      "resolved": "53300",
+      "candidates": "53300",
+      "resolved_labels": [
+        "Environmental Psychology"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "RT89",
+      "resolved": "2768",
+      "candidates": "2768",
+      "resolved_labels": [
+        "Acute & Specialty Care"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "RT97",
+      "resolved": "2768",
+      "candidates": "2768",
+      "resolved_labels": [
+        "Acute & Specialty Care"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "RT120.F34",
+      "resolved": "2768",
+      "candidates": "2768",
+      "resolved_labels": [
+        "Acute & Specialty Care"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "RA790.55",
+      "resolved": "6195",
+      "candidates": "6195",
+      "resolved_labels": [
+        "Mental Illness Prevention"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "RA790.75",
+      "resolved": "6195",
+      "candidates": "6195",
+      "resolved_labels": [
+        "Mental Illness Prevention"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF431",
+      "resolved": "7018",
+      "candidates": "7018",
+      "resolved_labels": [
+        "Intelligence"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF431.3",
+      "resolved": "7018",
+      "candidates": "7018",
+      "resolved_labels": [
+        "Intelligence"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF433.G45",
+      "resolved": "7018",
+      "candidates": "7018",
+      "resolved_labels": [
+        "Intelligence"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF441",
+      "resolved": "13040",
+      "candidates": "13040",
+      "resolved_labels": [
+        "Thinking"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF444",
+      "resolved": "13042",
+      "candidates": "13042",
+      "resolved_labels": [
+        "Reasoning & Judgment"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF449.5",
+      "resolved": "13042",
+      "candidates": "13042",
+      "resolved_labels": [
+        "Reasoning & Judgment"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF450",
+      "resolved": "12877",
+      "candidates": "12877",
+      "resolved_labels": [
+        "Creative Thinking"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "RC552.A44",
+      "resolved": "5436",
+      "candidates": "5436",
+      "resolved_labels": [
+        "Anxieties & Phobias"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BH151",
+      "resolved": "7622",
+      "candidates": "7622",
+      "resolved_labels": [
+        "Modern Aesthetics"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "RC540",
+      "resolved": "5441",
+      "candidates": "5441",
+      "resolved_labels": [
+        "Depression & Mood Disorders"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "R726.8",
+      "resolved": "6861",
+      "candidates": "6861",
+      "resolved_labels": [
+        "End-of-Life Care"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "RM172",
+      "resolved": "10063",
+      "candidates": "10063",
+      "resolved_labels": [
+        "Infusion. Transfusion"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF75",
+      "resolved": "11199",
+      "candidates": "11199",
+      "resolved_labels": [
+        "Practice & Economics"
+      ]
+    },
+    {
+      "system": "lcc",
+      "code": "BF76.4",
+      "resolved": "10895",
+      "candidates": "10895",
+      "resolved_labels": [
+        "Ethics"
+      ]
+    },
+    {
+      "system": "ddc",
+      "code": "190",
+      "resolved": "4510",
+      "candidates": "4510",
+      "resolved_labels": [
+        "Modern Philosophy"
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "entry_id": 10486,
+      "start": "BJ1340",
+      "end": null,
+      "caption": "Existential ethics",
+      "hierarchy": "[]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 222,
+      "line": 50,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 10495,
+      "start": "BJ1395",
+      "end": null,
+      "caption": "Feminist ethics",
+      "hierarchy": "[]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 223,
+      "line": 5,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 8128,
+      "start": "BF468",
+      "end": null,
+      "caption": "Time",
+      "hierarchy": "[\"Consciousness. Cognition\", \"Time, space, causality, etc.\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 161,
+      "line": 42,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 8133,
+      "start": "BF482",
+      "end": null,
+      "caption": "Fatigue. Mental fatigue",
+      "hierarchy": "[\"Consciousness. Cognition\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 161,
+      "line": 52,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 8135,
+      "start": "BF491",
+      "end": null,
+      "caption": "Normal illusions",
+      "hierarchy": "[\"Consciousness. Cognition\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 161,
+      "line": 57,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 7957,
+      "start": "BF355",
+      "end": null,
+      "caption": "Posture",
+      "hierarchy": "[\"Consciousness. Cognition\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 157,
+      "line": 13,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 7958,
+      "start": "BF357",
+      "end": null,
+      "caption": "Imitation. Mimicry",
+      "hierarchy": "[\"Consciousness. Cognition\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 157,
+      "line": 14,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 7944,
+      "start": "BF353",
+      "end": null,
+      "caption": "Environmental psychology",
+      "hierarchy": "[\"Consciousness. Cognition\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 156,
+      "line": 50,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 536806,
+      "start": "RT89",
+      "end": null,
+      "caption": "General works",
+      "hierarchy": "[\"Specialities in nursing\", \"Administration\"]",
+      "document": "LCC_R2025TEXT.pdf",
+      "page": 300,
+      "line": 6,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf"
+    },
+    {
+      "entry_id": 536813,
+      "start": "RT97",
+      "end": null,
+      "caption": "Public health nursing",
+      "hierarchy": "[\"Specialities in nursing\"]",
+      "document": "LCC_R2025TEXT.pdf",
+      "page": 300,
+      "line": 35,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf"
+    },
+    {
+      "entry_id": 536828,
+      "start": "RT120.F34",
+      "end": null,
+      "caption": "Family nursing",
+      "hierarchy": "[\"Specialities in nursing\", \"Other special types of nursing, A-Z\"]",
+      "document": "LCC_R2025TEXT.pdf",
+      "page": 301,
+      "line": 13,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf"
+    },
+    {
+      "entry_id": 527984,
+      "start": "RA790.55",
+      "end": null,
+      "caption": "Community psychology",
+      "hierarchy": "[\"Public health. Hygiene. Preventive medicine\", \"Mental health. Mental illness prevention\"]",
+      "document": "LCC_R2025TEXT.pdf",
+      "page": 50,
+      "line": 50,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf"
+    },
+    {
+      "entry_id": 527988,
+      "start": "RA790.75",
+      "end": null,
+      "caption": "Mental health as a profession",
+      "hierarchy": "[\"Public health. Hygiene. Preventive medicine\", \"Mental health. Mental illness prevention\"]",
+      "document": "LCC_R2025TEXT.pdf",
+      "page": 50,
+      "line": 57,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf"
+    },
+    {
+      "entry_id": 8020,
+      "start": "BF431",
+      "end": null,
+      "caption": "General works",
+      "hierarchy": "[\"Consciousness. Cognition\", \"Intelligence. Mental ability. Intelligence testing. Ability testing\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 158,
+      "line": 56,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 8021,
+      "start": "BF431.3",
+      "end": null,
+      "caption": "Problems, exercises, examinations",
+      "hierarchy": "[\"Consciousness. Cognition\", \"Intelligence. Mental ability. Intelligence testing. Ability testing\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 158,
+      "line": 57,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 8083,
+      "start": "BF433.G45",
+      "end": null,
+      "caption": "General factor. G factor",
+      "hierarchy": "[\"Consciousness. Cognition\", \"Intelligence. Mental ability. Intelligence testing. Ability testing\", \"Special topics, A-Z\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 160,
+      "line": 21,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 8093,
+      "start": "BF441",
+      "end": null,
+      "caption": "General works",
+      "hierarchy": "[\"Consciousness. Cognition\", \"Thought and thinking\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 160,
+      "line": 39,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 8099,
+      "start": "BF444",
+      "end": null,
+      "caption": "Information processing",
+      "hierarchy": "[\"Consciousness. Cognition\", \"Thought and thinking\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 160,
+      "line": 47,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 8106,
+      "start": "BF449.5",
+      "end": null,
+      "caption": "Insight",
+      "hierarchy": "[\"Consciousness. Cognition\", \"Thought and thinking\", \"Decision making\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 160,
+      "line": 55,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 530838,
+      "start": "RC552.A44",
+      "end": null,
+      "caption": "Agoraphobia",
+      "hierarchy": "[\"Neurosciences. Biological psychiatry. Neuropsychiatry\", \"Psychiatry\", \"Neuroses\", \"Other neuroses, A-Z\"]",
+      "document": "LCC_R2025TEXT.pdf",
+      "page": 134,
+      "line": 9,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf"
+    },
+    {
+      "entry_id": 10008,
+      "start": "BH151",
+      "end": null,
+      "caption": "Modern",
+      "hierarchy": "[\"Aesthetics\", \"History\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 210,
+      "line": 42,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 530825,
+      "start": "RC540",
+      "end": null,
+      "caption": "Alexithymia",
+      "hierarchy": "[\"Neurosciences. Biological psychiatry. Neuropsychiatry\", \"Psychiatry\", \"Neuroses\", \"Depression. Affective disorders\"]",
+      "document": "LCC_R2025TEXT.pdf",
+      "page": 133,
+      "line": 38,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf"
+    },
+    {
+      "entry_id": 526674,
+      "start": "R726.8",
+      "end": null,
+      "caption": "Terminal care. Dying",
+      "hierarchy": "[\"Medicine and disease in relation to psychology\"]",
+      "document": "LCC_R2025TEXT.pdf",
+      "page": 12,
+      "line": 43,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf"
+    },
+    {
+      "entry_id": 535256,
+      "start": "RM172",
+      "end": null,
+      "caption": "Blood banks",
+      "hierarchy": "[\"Administration of drugs and other therapeutic agents\", \"Infusion. Transfusion\", \"Blood transfusion\"]",
+      "document": "LCC_R2025TEXT.pdf",
+      "page": 259,
+      "line": 43,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf"
+    },
+    {
+      "entry_id": 7663,
+      "start": "BF75",
+      "end": null,
+      "caption": "Practice of psychology. Economics of psychology practice",
+      "hierarchy": "[]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 149,
+      "line": 19,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 7667,
+      "start": "BF76.4",
+      "end": null,
+      "caption": "Ethics in psychology and in psychological research",
+      "hierarchy": "[]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 149,
+      "line": 24,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 10517,
+      "start": "BJ1450",
+      "end": "BJ1458",
+      "caption": "Duty. Obligation. Responsibility. Supererogation",
+      "hierarchy": "[\"Special topics\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 223,
+      "line": 36,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 10539,
+      "start": "BJ1480",
+      "end": "BJ1486",
+      "caption": "General works",
+      "hierarchy": "[\"Special topics\", \"Happiness and joy\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 224,
+      "line": 14,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 8009,
+      "start": "BF408",
+      "end": null,
+      "caption": "General works",
+      "hierarchy": "[\"Consciousness. Cognition\", \"Creative processes. Imagination. Invention\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 158,
+      "line": 36,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    },
+    {
+      "entry_id": 8019,
+      "start": "BF426",
+      "end": null,
+      "caption": "Genius and intellectual disability",
+      "hierarchy": "[\"Consciousness. Cognition\", \"Creative processes. Imagination. Invention\"]",
+      "document": "LCC_B-BJ2025TEXT.pdf",
+      "page": 158,
+      "line": 50,
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf"
+    }
+  ],
+  "database_unchanged": true
+}

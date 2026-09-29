@@ -1,0 +1,53 @@
+{
+  "created": [],
+  "renamed": [
+    {
+      "id": 12166,
+      "before": "Central African Republic Econ. History",
+      "after": "Central African Rep. Econ. History"
+    },
+    {
+      "id": 13867,
+      "before": "Central Australia & Northern Territory",
+      "after": "Central Australia & Northern Terr."
+    },
+    {
+      "id": 3752,
+      "before": "Constructed & International Languages",
+      "after": "Constructed & Secret Languages"
+    },
+    {
+      "id": 8503,
+      "before": "Languages of Mexico and Central America",
+      "after": "Mexican & Central American Lang."
+    },
+    {
+      "id": 9519,
+      "before": "South American & Caribbean Languages",
+      "after": "South American & Caribbean Lang."
+    },
+    {
+      "id": 51571,
+      "before": "First Republic & Kemalism, 1923–1960",
+      "after": "1st Republic & Kemalism, 1923–1960"
+    },
+    {
+      "id": 51594,
+      "before": "Post-Soviet Ukrainian Political History",
+      "after": "Post-Soviet Ukrainian Politics"
+    },
+    {
+      "id": 51595,
+      "before": "Post-Soviet Ukrainian Foreign Relations",
+      "after": "Post-Soviet Ukrainian Diplomacy"
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {},
+  "merged": [],
+  "empty_groupings_removed": [],
+  "verified_code_groups": 2960835,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0
+}

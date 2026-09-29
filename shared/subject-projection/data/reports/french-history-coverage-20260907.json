@@ -1,0 +1,23 @@
+{
+  "before_sha256": "62be431304c6c954ca6c15a57bbf6eb1f229488a042a96f0435f08cbd9338b93",
+  "after_sha256": "dd2e7b512eb31f4cac7ee0d0dfb4267aa0bdc36864cfdd1547a2fb7d04bd7870",
+  "tested_codes": 13439,
+  "continuous_range_probes": 2756,
+  "new_matches": 8977,
+  "changed_existing_destinations": 0,
+  "new_ambiguities": 0,
+  "coverage_scope": "French portion DC1–DC919; specific travel matches preserved; Andorra and Monaco unchanged",
+  "examples": {
+    "DC38": "General & Cross-period French History",
+    "DC38 .P75 1992": "General & Cross-period French History",
+    "DC38 .P7518 1996": "General & Cross-period French History",
+    "DC161": "Revolution & Napoleon, 1789–1815",
+    "DC161 .C3 1989": "Revolution & Napoleon, 1789–1815",
+    "DC161.C3 1989": "Revolution & Napoleon, 1789–1815",
+    "DC197": "First Empire, 1804–1815",
+    "DC21": "French Travel",
+    "DC611.B841": "Brittany",
+    "DC715": "Paris Social & Cultural History",
+    "DC941": "Monaco History"
+  }
+}

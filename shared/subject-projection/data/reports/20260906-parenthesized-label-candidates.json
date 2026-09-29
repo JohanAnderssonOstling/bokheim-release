@@ -1,0 +1,1410 @@
+[
+  {
+    "id": 6216,
+    "name": "Other special subjects (alphabetically)",
+    "parents": [
+      "Special subjects of art"
+    ]
+  },
+  {
+    "id": 7711,
+    "name": "Reference books (General, and English)",
+    "parents": [
+      "Best books"
+    ]
+  },
+  {
+    "id": 6831,
+    "name": "Afghan (Pashto, Pushto, Pushtu, etc.)",
+    "parents": [
+      "Iranian philology and literature"
+    ]
+  },
+  {
+    "id": 7204,
+    "name": "Airplane industry (Technical aspects)",
+    "parents": [
+      "Aeronautics. Aeronautical engineering"
+    ]
+  },
+  {
+    "id": 4690,
+    "name": "Books (General). Writing. Paleography",
+    "parents": [
+      "Books, Manuscripts & Publishing"
+    ]
+  },
+  {
+    "id": 223,
+    "name": "Illuminating industries (Nonelectric)",
+    "parents": [
+      "Chemical technology"
+    ]
+  },
+  {
+    "id": 11279,
+    "name": "Independence, 1810–1830 (war to 1823)",
+    "parents": [
+      "Venezuelan History"
+    ]
+  },
+  {
+    "id": 3619,
+    "name": "Period between World Wars (1919-1939)",
+    "parents": [
+      "20th Century"
+    ]
+  },
+  {
+    "id": 2395,
+    "name": "Travel. Voyages and travels (General)",
+    "parents": [
+      "Geography (General)"
+    ]
+  },
+  {
+    "id": 10187,
+    "name": "Wars of the colonial period (General)",
+    "parents": [
+      "Indian wars"
+    ]
+  },
+  {
+    "id": 8748,
+    "name": "Watermarks, trademarks, etc. (Modern)",
+    "parents": [
+      "Paper manufacture and trade"
+    ]
+  },
+  {
+    "id": 10959,
+    "name": "West Africa (Spanish Sahara to Zaire)",
+    "parents": [
+      "Regional Modern Philosophy"
+    ]
+  },
+  {
+    "id": 7224,
+    "name": "Arabs in foreign countries (General)",
+    "parents": [
+      "Arab countries"
+    ]
+  },
+  {
+    "id": 7629,
+    "name": "Broadsides (15th and 16th centuries)",
+    "parents": [
+      "Incunabula. Block books"
+    ]
+  },
+  {
+    "id": 7263,
+    "name": "Conjunctivitis (other than trachoma)",
+    "parents": [
+      "Particular diseases of the eye"
+    ]
+  },
+  {
+    "id": 8681,
+    "name": "Early (ca. 1500-1800). Notable books",
+    "parents": [
+      "General bibliographies"
+    ]
+  },
+  {
+    "id": 6482,
+    "name": "Fantastic, The (Aesthetics). Fantasy",
+    "parents": [
+      "Art Subjects"
+    ]
+  },
+  {
+    "id": 7412,
+    "name": "Government health agencies (General)",
+    "parents": [
+      "Medicine and the state"
+    ]
+  },
+  {
+    "id": 8197,
+    "name": "Languages (History. Relations, etc.)",
+    "parents": [
+      "Caucasian languages"
+    ]
+  },
+  {
+    "id": 9240,
+    "name": "Munda languages (Kolarian languages)",
+    "parents": [
+      "Austroasiatic languages"
+    ]
+  },
+  {
+    "id": 3912,
+    "name": "17th and 18th centuries (1640-1770)",
+    "parents": [
+      "English & Old English Literatures"
+    ]
+  },
+  {
+    "id": 10667,
+    "name": "Arab conquest (to ca. 1516 or 1524)",
+    "parents": [
+      "North African History by Era"
+    ]
+  },
+  {
+    "id": 13518,
+    "name": "Instruments and apparatus (General)",
+    "parents": [
+      "Science & Nature"
+    ]
+  },
+  {
+    "id": 6219,
+    "name": "Medical evidence (Expert testimony)",
+    "parents": [
+      "Forensic & Legal Medicine"
+    ]
+  },
+  {
+    "id": 10723,
+    "name": "Equatorial Guinea (Spanish Guinea)",
+    "parents": [
+      "West African History"
+    ]
+  },
+  {
+    "id": 2815,
+    "name": "Immunization of children (General)",
+    "parents": [
+      "Pediatrics"
+    ]
+  },
+  {
+    "id": 7639,
+    "name": "Microscopic observations (General)",
+    "parents": [
+      "Microscopy"
+    ]
+  },
+  {
+    "id": 8619,
+    "name": "Poetry. Ballads (Broadsides, etc.)",
+    "parents": [
+      "Folk literature"
+    ]
+  },
+  {
+    "id": 6378,
+    "name": "Special languages (alphabetically)",
+    "parents": [
+      "Constructed & International Languages"
+    ]
+  },
+  {
+    "id": 7927,
+    "name": "Special languages (alphabetically)",
+    "parents": [
+      "African Languages"
+    ]
+  },
+  {
+    "id": 2330,
+    "name": "Teaching (Principles and practice)",
+    "parents": [
+      "Theory and practice of education"
+    ]
+  },
+  {
+    "id": 3339,
+    "name": "Congo (Brazzaville). Middle Congo",
+    "parents": [
+      "French-speaking Equatorial Africa"
+    ]
+  },
+  {
+    "id": 7416,
+    "name": "Isthmian canal projects (General)",
+    "parents": [
+      "Inland Waterways"
+    ]
+  },
+  {
+    "id": 9467,
+    "name": "Nineteenth century (1776/89-1870)",
+    "parents": [
+      "Individual Educational Systems"
+    ]
+  },
+  {
+    "id": 7297,
+    "name": "Science of language (Linguistics)",
+    "parents": [
+      "Linguistic Theory & Comparative Grammar"
+    ]
+  },
+  {
+    "id": 10801,
+    "name": "Second period (to about 300 B.C.)",
+    "parents": [
+      "Greece and Rome"
+    ]
+  },
+  {
+    "id": 390,
+    "name": "Turbines. Turbomachines (General)",
+    "parents": [
+      "Engines, Turbines & Power"
+    ]
+  },
+  {
+    "id": 7888,
+    "name": "Vocabulary. Terminology (General)",
+    "parents": [
+      "Linguistic Theory & Comparative Grammar"
+    ]
+  },
+  {
+    "id": 9335,
+    "name": "Acids and bases (General theory)",
+    "parents": [
+      "Physical and theoretical chemistry"
+    ]
+  },
+  {
+    "id": 10072,
+    "name": "Benelux (Low Countries). Belgium",
+    "parents": [
+      "European Bibliography"
+    ]
+  },
+  {
+    "id": 4489,
+    "name": "Cosmology (Philosophy of nature)",
+    "parents": [
+      "Metaphysics & Ontology",
+      "Philosophy of Nature & Science"
+    ]
+  },
+  {
+    "id": 10938,
+    "name": "First period (to about 450 B.C.)",
+    "parents": [
+      "Greece and Rome"
+    ]
+  },
+  {
+    "id": 11203,
+    "name": "Oriental (Buddhist, Hindu, etc.)",
+    "parents": [
+      "Ancient Logic"
+    ]
+  },
+  {
+    "id": 6942,
+    "name": "Percussion instruments (General)",
+    "parents": [
+      "Percussion and other instruments"
+    ]
+  },
+  {
+    "id": 10544,
+    "name": "Qing (Ch'ing) dynasty, 1644-1912",
+    "parents": [
+      "Chinese History"
+    ]
+  },
+  {
+    "id": 292,
+    "name": "Structural engineering (General)",
+    "parents": [
+      "Civil Engineering"
+    ]
+  },
+  {
+    "id": 6947,
+    "name": "Wood engravers (Lives and works)",
+    "parents": [
+      "Wood engraving"
+    ]
+  },
+  {
+    "id": 6535,
+    "name": "Biography of women (Collective)",
+    "parents": [
+      "Biography. By subject"
+    ]
+  },
+  {
+    "id": 10477,
+    "name": "Chosŏn (Yi) dynasty, 1392-1910",
+    "parents": [
+      "Korean History"
+    ]
+  },
+  {
+    "id": 4495,
+    "name": "Communist ethics (20th century)",
+    "parents": [
+      "Ethics"
+    ]
+  },
+  {
+    "id": 8906,
+    "name": "Electric power plants (General)",
+    "parents": [
+      "Production of electric energy or power."
+    ]
+  },
+  {
+    "id": 3922,
+    "name": "English renaissance (1500-1640)",
+    "parents": [
+      "English & Old English Literatures"
+    ]
+  },
+  {
+    "id": 9330,
+    "name": "General works (Technique, etc.)",
+    "parents": [
+      "Posters"
+    ]
+  },
+  {
+    "id": 7673,
+    "name": "General works (technique, etc.)",
+    "parents": [
+      "Pictorial humor, caricature, etc."
+    ]
+  },
+  {
+    "id": 7012,
+    "name": "Hazardous waste sites (General)",
+    "parents": [
+      "Hazardous Materials & Disposal"
+    ]
+  },
+  {
+    "id": 9995,
+    "name": "Hydrodynamics (Water in motion)",
+    "parents": [
+      "Technical hydraulics"
+    ]
+  },
+  {
+    "id": 4736,
+    "name": "Information resources (General)",
+    "parents": [
+      "Library & Archive Studies"
+    ]
+  },
+  {
+    "id": 9507,
+    "name": "Physiographic regions (General)",
+    "parents": [
+      "Plant ecology"
+    ]
+  },
+  {
+    "id": 9615,
+    "name": "Sagas of kings (Konunga sögur)",
+    "parents": [
+      "Individual sagas and historical works"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Agricultural ecology (General)",
+    "parents": [
+      "Soils, Climate & Agricultural Science"
+    ]
+  },
+  {
+    "id": 9542,
+    "name": "Industrial education (General)",
+    "parents": [
+      "Types of education"
+    ]
+  },
+  {
+    "id": 377,
+    "name": "Machine construction (General)",
+    "parents": [
+      "Machine Design & Production"
+    ]
+  },
+  {
+    "id": 3793,
+    "name": "Mon-Khmer (Mon-Anam) languages",
+    "parents": [
+      "Austroasiatic languages"
+    ]
+  },
+  {
+    "id": 7440,
+    "name": "Pain (Diagnostic significance)",
+    "parents": [
+      "Internal Medicine Diagnosis"
+    ]
+  },
+  {
+    "id": 9639,
+    "name": "Vocational education (General)",
+    "parents": [
+      "Types of education"
+    ]
+  },
+  {
+    "id": 6674,
+    "name": "Woodwind instruments (General)",
+    "parents": [
+      "Wind instruments"
+    ]
+  },
+  {
+    "id": 6870,
+    "name": "Bryozoa (Ectoprocta; Polyzoa)",
+    "parents": [
+      "Invertebrates"
+    ]
+  },
+  {
+    "id": 10679,
+    "name": "Columbus (Cristoforo Colombo)",
+    "parents": [
+      "Exploration of the Americas"
+    ]
+  },
+  {
+    "id": 6321,
+    "name": "Electronic circuits (General)",
+    "parents": [
+      "Electronics"
+    ]
+  },
+  {
+    "id": 7172,
+    "name": "Evolution of plants (General)",
+    "parents": [
+      "Plant ecology"
+    ]
+  },
+  {
+    "id": 8396,
+    "name": "Framing (House framing, etc.)",
+    "parents": [
+      "Building Details"
+    ]
+  },
+  {
+    "id": 8523,
+    "name": "Holocaust, Jewish (1939-1945)",
+    "parents": [
+      "Art Subjects"
+    ]
+  },
+  {
+    "id": 3328,
+    "name": "Cameroon (Cameroun, Kamerun)",
+    "parents": [
+      "Central African History"
+    ]
+  },
+  {
+    "id": 50817,
+    "name": "Colonial Louisiana (to 1803)",
+    "parents": [
+      "Colonial Period",
+      "Louisiana",
+      "French America"
+    ]
+  },
+  {
+    "id": 9478,
+    "name": "Feminine beauty (Aesthetics)",
+    "parents": [
+      "Art Subjects"
+    ]
+  },
+  {
+    "id": 7921,
+    "name": "Geographic names (Universal)",
+    "parents": [
+      "Toponymy"
+    ]
+  },
+  {
+    "id": 11208,
+    "name": "Islands (East African Coast)",
+    "parents": [
+      "Regional Modern Philosophy"
+    ]
+  },
+  {
+    "id": 10771,
+    "name": "Islands (East African coast)",
+    "parents": [
+      "East African History"
+    ]
+  },
+  {
+    "id": 10468,
+    "name": "Tasmania (Van Diemen's Land)",
+    "parents": [
+      "Oceanian History"
+    ]
+  },
+  {
+    "id": 11176,
+    "name": "Ancient (600 B.C.-430 A.D.)",
+    "parents": [
+      "Historical Periods"
+    ]
+  },
+  {
+    "id": 7818,
+    "name": "Baltic literature (General)",
+    "parents": [
+      "Baltic"
+    ]
+  },
+  {
+    "id": 9024,
+    "name": "Brass instruments (General)",
+    "parents": [
+      "Wind instruments"
+    ]
+  },
+  {
+    "id": 9196,
+    "name": "Celtic literature (English)",
+    "parents": [
+      "Regional English Literature"
+    ]
+  },
+  {
+    "id": 7836,
+    "name": "Civil aviation (Technology)",
+    "parents": [
+      "Aeronautics. Aeronautical engineering"
+    ]
+  },
+  {
+    "id": 7856,
+    "name": "Drug side effects (General)",
+    "parents": [
+      "Drugs and their actions"
+    ]
+  },
+  {
+    "id": 6416,
+    "name": "Exhibitions (by place held)",
+    "parents": [
+      "Watercolor painting"
+    ]
+  },
+  {
+    "id": 6754,
+    "name": "Exhibitions (by place held)",
+    "parents": [
+      "Furniture"
+    ]
+  },
+  {
+    "id": 6805,
+    "name": "Exhibitions (by place held)",
+    "parents": [
+      "Printmaking and engraving"
+    ]
+  },
+  {
+    "id": 8824,
+    "name": "Exhibitions (by place held)",
+    "parents": [
+      "Pictorial humor, caricature, etc."
+    ]
+  },
+  {
+    "id": 8038,
+    "name": "Medical geography (General)",
+    "parents": [
+      "Medical Geography"
+    ]
+  },
+  {
+    "id": 11131,
+    "name": "Netherlands (Low Countries)",
+    "parents": [
+      "Regional Modern Philosophy"
+    ]
+  },
+  {
+    "id": 7043,
+    "name": "Nonferrous metals (General)",
+    "parents": [
+      "Metal manufactures. Metalworking"
+    ]
+  },
+  {
+    "id": 497,
+    "name": "Passenger traffic (General)",
+    "parents": [
+      "Freight, Passenger & Delivery Services"
+    ]
+  },
+  {
+    "id": 10398,
+    "name": "Peace conferences (General)",
+    "parents": [
+      "Treaties with Axis powers"
+    ]
+  },
+  {
+    "id": 5369,
+    "name": "Political science (General)",
+    "parents": [
+      "Political Theory"
+    ]
+  },
+  {
+    "id": 8316,
+    "name": "Safety appliances (General)",
+    "parents": [
+      "Machine shops and machine shop practice"
+    ]
+  },
+  {
+    "id": 8509,
+    "name": "Textile machinery (General)",
+    "parents": [
+      "Textile industries"
+    ]
+  },
+  {
+    "id": 9858,
+    "name": "Thermoelectricity (Applied)",
+    "parents": [
+      "Direct Electricity Generation"
+    ]
+  },
+  {
+    "id": 50818,
+    "name": "Colonial Florida (to 1821)",
+    "parents": [
+      "Colonial Period",
+      "Florida",
+      "British America",
+      "French America"
+    ]
+  },
+  {
+    "id": 3330,
+    "name": "Congo (Kongo) River region",
+    "parents": [
+      "Central African History"
+    ]
+  },
+  {
+    "id": 7171,
+    "name": "Congresses (International)",
+    "parents": [
+      "Alcoholism & Temperance"
+    ]
+  },
+  {
+    "id": 9434,
+    "name": "Congresses (International)",
+    "parents": [
+      "Criminal Justice"
+    ]
+  },
+  {
+    "id": 10479,
+    "name": "East Central (Lake region)",
+    "parents": [
+      "Central African History"
+    ]
+  },
+  {
+    "id": 8850,
+    "name": "Forenames Christian names)",
+    "parents": [
+      "Personal and family names"
+    ]
+  },
+  {
+    "id": 10740,
+    "name": "Goths (General). Visigoths",
+    "parents": [
+      "Migrations"
+    ]
+  },
+  {
+    "id": 4377,
+    "name": "Letters (Literary history)",
+    "parents": [
+      "Literary History"
+    ]
+  },
+  {
+    "id": 50816,
+    "name": "New Netherland (1610–1664)",
+    "parents": [
+      "Colonial Period",
+      "New York",
+      "Dutch America"
+    ]
+  },
+  {
+    "id": 8021,
+    "name": "Pteridophyta (Ferns, etc.)",
+    "parents": [
+      "Cryptogams"
+    ]
+  },
+  {
+    "id": 7105,
+    "name": "Sediments (Unconsolidated)",
+    "parents": [
+      "Petrology"
+    ]
+  },
+  {
+    "id": 7731,
+    "name": "Brachiopoda (Lamp shells)",
+    "parents": [
+      "Invertebrates"
+    ]
+  },
+  {
+    "id": 9893,
+    "name": "Embroidery (Machine made)",
+    "parents": [
+      "Textile industries"
+    ]
+  },
+  {
+    "id": 4374,
+    "name": "Essays (Literary history)",
+    "parents": [
+      "Literary History"
+    ]
+  },
+  {
+    "id": 5065,
+    "name": "Folk literature (General)",
+    "parents": [
+      "Folklore"
+    ]
+  },
+  {
+    "id": 6464,
+    "name": "General (technique, etc.)",
+    "parents": [
+      "Cards & Invitations"
+    ]
+  },
+  {
+    "id": 10891,
+    "name": "Germany. Austria (German)",
+    "parents": [
+      "Regional Modern Philosophy"
+    ]
+  },
+  {
+    "id": 7481,
+    "name": "Imitation (in literature)",
+    "parents": [
+      "Authorship"
+    ]
+  },
+  {
+    "id": 3621,
+    "name": "Post-war history (1945- )",
+    "parents": [
+      "20th Century"
+    ]
+  },
+  {
+    "id": 9697,
+    "name": "Traffic surveys (General)",
+    "parents": [
+      "Traffic Engineering"
+    ]
+  },
+  {
+    "id": 13440,
+    "name": "Eastern Europe (General)",
+    "parents": [
+      "European Biographies"
+    ]
+  },
+  {
+    "id": 8189,
+    "name": "Plasma devices (General)",
+    "parents": [
+      "Plasma engineering"
+    ]
+  },
+  {
+    "id": 7874,
+    "name": "Recitations (in English)",
+    "parents": [
+      "Oratory. Elocution, etc."
+    ]
+  },
+  {
+    "id": 7418,
+    "name": "Translations (Collected)",
+    "parents": [
+      "Indo-Aryan literature"
+    ]
+  },
+  {
+    "id": 9569,
+    "name": "Vegetables (Preparation)",
+    "parents": [
+      "Cooking"
+    ]
+  },
+  {
+    "id": 6383,
+    "name": "History (of Egyptology)",
+    "parents": [
+      "Egyptology"
+    ]
+  },
+  {
+    "id": 10305,
+    "name": "Russo-German (Austrian)",
+    "parents": [
+      "Eastern"
+    ]
+  },
+  {
+    "id": 11110,
+    "name": "Scepticism (Pyrrhonism)",
+    "parents": [
+      "Greco-Roman philosophy"
+    ]
+  },
+  {
+    "id": 7035,
+    "name": "Statistics (Monographs)",
+    "parents": [
+      "Criminal Justice"
+    ]
+  },
+  {
+    "id": 10746,
+    "name": "1946-1963 (Federation)",
+    "parents": [
+      "Malaysian & Straits History"
+    ]
+  },
+  {
+    "id": 6259,
+    "name": "Avestan (Old Bactrian)",
+    "parents": [
+      "Iranian philology and literature"
+    ]
+  },
+  {
+    "id": 6878,
+    "name": "Biography (Collective)",
+    "parents": [
+      "History of German literature"
+    ]
+  },
+  {
+    "id": 6657,
+    "name": "Central Asia (General)",
+    "parents": [
+      "Asian Bibliography"
+    ]
+  },
+  {
+    "id": 7147,
+    "name": "German Africa (Former)",
+    "parents": [
+      "African Bibliography"
+    ]
+  },
+  {
+    "id": 11143,
+    "name": "Hedonism (Cyrenaicism)",
+    "parents": [
+      "Second period"
+    ]
+  },
+  {
+    "id": 1047,
+    "name": "Monotype (Printmaking)",
+    "parents": [
+      "Print media"
+    ]
+  },
+  {
+    "id": 4620,
+    "name": "Preaching (Homiletics)",
+    "parents": [
+      "Christian Ministry"
+    ]
+  },
+  {
+    "id": 2213,
+    "name": "America (except U.S.)",
+    "parents": [
+      "Schools & Colleges of the Americas"
+    ]
+  },
+  {
+    "id": 10549,
+    "name": "Arab (Islamic) Empire",
+    "parents": [
+      "Medieval History"
+    ]
+  },
+  {
+    "id": 10078,
+    "name": "Cereals (Preparation)",
+    "parents": [
+      "Cooking"
+    ]
+  },
+  {
+    "id": 7737,
+    "name": "Electronics (General)",
+    "parents": [
+      "Electricity for amateurs. Amateur"
+    ]
+  },
+  {
+    "id": 3340,
+    "name": "Gabon (Gaboon, Gabun)",
+    "parents": [
+      "French-speaking Equatorial Africa"
+    ]
+  },
+  {
+    "id": 5290,
+    "name": "General (Comparative)",
+    "parents": [
+      "International & Comparative Law"
+    ]
+  },
+  {
+    "id": 9383,
+    "name": "Haircutting (General)",
+    "parents": [
+      "Hairdressing & Beauty"
+    ]
+  },
+  {
+    "id": 8066,
+    "name": "Identity (Psychology)",
+    "parents": [
+      "Art Subjects"
+    ]
+  },
+  {
+    "id": 8623,
+    "name": "Malayāḷam (Malabar)",
+    "parents": [
+      "Dravidian languages"
+    ]
+  },
+  {
+    "id": 8099,
+    "name": "Map reading (General)",
+    "parents": [
+      "Cartography"
+    ]
+  },
+  {
+    "id": 10920,
+    "name": "Netherlands (Holland)",
+    "parents": [
+      "Regional Modern Philosophy"
+    ]
+  },
+  {
+    "id": 6920,
+    "name": "Tour guides (Persons)",
+    "parents": [
+      "Travel. Voyages and travels (General)"
+    ]
+  },
+  {
+    "id": 6547,
+    "name": "Fruits (Preparation)",
+    "parents": [
+      "Cooking"
+    ]
+  },
+  {
+    "id": 3680,
+    "name": "Micronesia (General)",
+    "parents": [
+      "Oceanian History"
+    ]
+  },
+  {
+    "id": 6213,
+    "name": "Nothing (Philosophy)",
+    "parents": [
+      "Ontology"
+    ]
+  },
+  {
+    "id": 6994,
+    "name": "Weaving (Industrial)",
+    "parents": [
+      "Textile industries"
+    ]
+  },
+  {
+    "id": 2191,
+    "name": "Education (General)",
+    "parents": [
+      "Policy, Philosophy & History"
+    ]
+  },
+  {
+    "id": 6840,
+    "name": "Evolution (General)",
+    "parents": [
+      "Chordates. Vertebrates"
+    ]
+  },
+  {
+    "id": 2863,
+    "name": "Fractures (General)",
+    "parents": [
+      "Orthopedic, Trauma & Emergency Surgery"
+    ]
+  },
+  {
+    "id": 2382,
+    "name": "Geography (General)",
+    "parents": [
+      "Geography, Places & Travel"
+    ]
+  },
+  {
+    "id": 10000,
+    "name": "Languages (General)",
+    "parents": [
+      "Indigenous Languages of the Americas"
+    ]
+  },
+  {
+    "id": 4745,
+    "name": "Libraries (General)",
+    "parents": [
+      "Libraries & Collections"
+    ]
+  },
+  {
+    "id": 6498,
+    "name": "Materials (General)",
+    "parents": [
+      "Electrical Equipment"
+    ]
+  },
+  {
+    "id": 3679,
+    "name": "Melanesia (General)",
+    "parents": [
+      "Oceanian History"
+    ]
+  },
+  {
+    "id": 3682,
+    "name": "Polynesia (General)",
+    "parents": [
+      "Oceanian History"
+    ]
+  },
+  {
+    "id": 2238,
+    "name": "Russia (Federation)",
+    "parents": [
+      "East European Schools & Colleges"
+    ]
+  },
+  {
+    "id": 12041,
+    "name": "Russia (Federation)",
+    "parents": [
+      "European Economic History"
+    ]
+  },
+  {
+    "id": 13469,
+    "name": "Russia (Federation)",
+    "parents": [
+      "European Folklore"
+    ]
+  },
+  {
+    "id": 13496,
+    "name": "Russia (Federation)",
+    "parents": [
+      "European Local Government"
+    ]
+  },
+  {
+    "id": 12757,
+    "name": "Valencia (province)",
+    "parents": [
+      "Spanish History"
+    ]
+  },
+  {
+    "id": 10057,
+    "name": "Aircraft (General)",
+    "parents": [
+      "Aeronautics. Aeronautical engineering"
+    ]
+  },
+  {
+    "id": 8329,
+    "name": "Contests (General)",
+    "parents": [
+      "Games and amusements"
+    ]
+  },
+  {
+    "id": 3342,
+    "name": "Ghana (Gold Coast)",
+    "parents": [
+      "West African History"
+    ]
+  },
+  {
+    "id": 3501,
+    "name": "Lebanon (Phenicia)",
+    "parents": [
+      "Middle Eastern History"
+    ]
+  },
+  {
+    "id": 2725,
+    "name": "Medicine (General)",
+    "parents": [
+      "Biomedical Foundations & Research"
+    ]
+  },
+  {
+    "id": 10910,
+    "name": "Medieval (General)",
+    "parents": [
+      "Witchcraft by Era"
+    ]
+  },
+  {
+    "id": 4379,
+    "name": "Medieval (to 1500)",
+    "parents": [
+      "Literary History"
+    ]
+  },
+  {
+    "id": 10037,
+    "name": "Nuts (Preparation)",
+    "parents": [
+      "Cooking"
+    ]
+  },
+  {
+    "id": 7980,
+    "name": "Place (Philosophy)",
+    "parents": [
+      "Art Subjects"
+    ]
+  },
+  {
+    "id": 7803,
+    "name": "Porifera (Sponges)",
+    "parents": [
+      "Invertebrates"
+    ]
+  },
+  {
+    "id": 10537,
+    "name": "Rome (Modern city)",
+    "parents": [
+      "Italian History"
+    ]
+  },
+  {
+    "id": 8960,
+    "name": "Boilers (General)",
+    "parents": [
+      "Heat engines"
+    ]
+  },
+  {
+    "id": 495,
+    "name": "Freight (General)",
+    "parents": [
+      "Freight, Passenger & Delivery Services"
+    ]
+  },
+  {
+    "id": 8550,
+    "name": "Hobbies (General)",
+    "parents": [
+      "Games and amusements"
+    ]
+  },
+  {
+    "id": 6738,
+    "name": "Reading (General)",
+    "parents": [
+      "Teaching (Principles and practice)"
+    ]
+  },
+  {
+    "id": 2407,
+    "name": "Surveys (General)",
+    "parents": [
+      "Mathematical geography. Cartography"
+    ]
+  },
+  {
+    "id": 8809,
+    "name": "Testing (General)",
+    "parents": [
+      "Motor vehicles. Cycles"
+    ]
+  },
+  {
+    "id": 2396,
+    "name": "Tropics (General)",
+    "parents": [
+      "Geography (General)"
+    ]
+  },
+  {
+    "id": 3758,
+    "name": "Dardic (Pisacha)",
+    "parents": [
+      "Indo-Iranian Languages"
+    ]
+  },
+  {
+    "id": 9547,
+    "name": "Europe (General)",
+    "parents": [
+      "Illustration"
+    ]
+  },
+  {
+    "id": 7889,
+    "name": "Tamil (or Tamul)",
+    "parents": [
+      "Dravidian languages"
+    ]
+  },
+  {
+    "id": 8246,
+    "name": "Valves (General)",
+    "parents": [
+      "Metal manufactures. Metalworking"
+    ]
+  },
+  {
+    "id": 10905,
+    "name": "Greece (Modern)",
+    "parents": [
+      "Regional Modern Philosophy"
+    ]
+  },
+  {
+    "id": 13456,
+    "name": "Greece (Modern)",
+    "parents": [
+      "European Folklore"
+    ]
+  },
+  {
+    "id": 7965,
+    "name": "Joint (General)",
+    "parents": [
+      "Musculoskeletal Surgery"
+    ]
+  },
+  {
+    "id": 10950,
+    "name": "Modern (1700- )",
+    "parents": [
+      "Ethics History"
+    ]
+  },
+  {
+    "id": 3860,
+    "name": "Prose (General)",
+    "parents": [
+      "American Literature"
+    ]
+  },
+  {
+    "id": 8219,
+    "name": "Prose (General)",
+    "parents": [
+      "Collections of American literature"
+    ]
+  },
+  {
+    "id": 9089,
+    "name": "Prose (General)",
+    "parents": [
+      "Collections of English literature"
+    ]
+  },
+  {
+    "id": 7918,
+    "name": "Telugu (Gentoo)",
+    "parents": [
+      "Dravidian languages"
+    ]
+  },
+  {
+    "id": 3371,
+    "name": "Tunisia (Tunis)",
+    "parents": [
+      "Maghrib. Barbary States"
+    ]
+  },
+  {
+    "id": 8468,
+    "name": "Solo voice(s)",
+    "parents": [
+      "Music Analysis"
+    ]
+  },
+  {
+    "id": 3338,
+    "name": "Chad (Tchad)",
+    "parents": [
+      "French-speaking Equatorial Africa"
+    ]
+  },
+  {
+    "id": 12824,
+    "name": "Odia (Oriya)",
+    "parents": [
+      "Particular languages and dialects"
+    ]
+  },
+  {
+    "id": 6710,
+    "name": "West (U.S.)",
+    "parents": [
+      "Art Subjects"
+    ]
+  }
+]

@@ -1,0 +1,134 @@
+{
+  "merges": {
+    "11033": {
+      "into": 10989,
+      "old_label": "Child Psychology Theory",
+      "surviving_label": "Child psychology"
+    },
+    "5394": {
+      "into": 10989,
+      "old_label": "Child",
+      "surviving_label": "Child psychology"
+    },
+    "10774": {
+      "into": 5392,
+      "old_label": "Adolescence. Youth",
+      "surviving_label": "Adolescent"
+    },
+    "11002": {
+      "into": 5393,
+      "old_label": "Adulthood",
+      "surviving_label": "Adulthood & Aging"
+    },
+    "5386": {
+      "into": 5425,
+      "old_label": "Character",
+      "surviving_label": "Personality"
+    },
+    "5396": {
+      "into": 5425,
+      "old_label": "Individual Differences",
+      "surviving_label": "Personality"
+    },
+    "10889": {
+      "into": 7467,
+      "old_label": "Personality testing",
+      "surviving_label": "Personality assessment. Research"
+    },
+    "5390": {
+      "into": 12877,
+      "old_label": "Creative Ability",
+      "surviving_label": "Creative Thinking"
+    },
+    "6751": {
+      "into": 6791,
+      "old_label": "Social influence",
+      "surviving_label": "Social Influence & Pressure"
+    },
+    "10902": {
+      "into": 6791,
+      "old_label": "Influence",
+      "surviving_label": "Social Influence & Pressure"
+    },
+    "6762": {
+      "into": 5398,
+      "old_label": "Pleasure & pain",
+      "surviving_label": "Emotions"
+    },
+    "10810": {
+      "into": 5398,
+      "old_label": "Expression of the emotions",
+      "surviving_label": "Emotions"
+    },
+    "5388": {
+      "into": 5383,
+      "old_label": "Human–Animal Psychology",
+      "surviving_label": "Animal & Comparative"
+    },
+    "11056": {
+      "into": 5455,
+      "old_label": "Computer Modeling & Simulation",
+      "surviving_label": "Research & Methodology"
+    },
+    "11199": {
+      "into": 5430,
+      "old_label": "Practice & Economics",
+      "surviving_label": "Practice Management"
+    }
+  },
+  "renamed": {
+    "10989": {
+      "before": "Child psychology",
+      "after": "Child Psychology"
+    },
+    "5392": {
+      "before": "Adolescent",
+      "after": "Adolescent Psychology"
+    },
+    "5393": {
+      "before": "Adulthood & Aging",
+      "after": "Adult & Aging Psychology"
+    },
+    "5425": {
+      "before": "Personality",
+      "after": "Personality & Individual Differences"
+    },
+    "7467": {
+      "before": "Personality assessment. Research",
+      "after": "Personality Assessment"
+    },
+    "12877": {
+      "before": "Creative Thinking",
+      "after": "Creativity"
+    },
+    "6791": {
+      "before": "Social Influence & Pressure",
+      "after": "Social Influence"
+    },
+    "5383": {
+      "before": "Animal & Comparative",
+      "after": "Animal & Comparative Psychology"
+    }
+  },
+  "moved": [
+    {
+      "id": 5430,
+      "before": [
+        5384
+      ],
+      "after": [
+        54941
+      ]
+    }
+  ],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "source_notes": [
+    "LCC HM259 explicitly redirects Social influence to HM1176+; BF774 concerns influence, pattern and example.",
+    "BF698.4 is Personality assessment/research and BF698.5+ its testing scope.",
+    "BF75 covers the practice and economics of psychology, including business methods; consolidated with BISAC PSY046000 Practice Management under Professional Practice."
+  ],
+  "scope": "Eight approved priority areas. Historical character-reading practices remain separate. All existing classification codes retained through transfers.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

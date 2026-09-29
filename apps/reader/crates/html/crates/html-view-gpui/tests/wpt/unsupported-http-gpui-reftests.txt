@@ -1,0 +1,26 @@
+# Exact GPUI WPT manifest entries that require HTTP response semantics.
+# The static reader harness does not emulate server headers or MIME behavior.
+css/CSS2/selectors/lang-selector-005.xht
+css/CSS2/syntax/at-charset-001.xht
+css/CSS2/syntax/at-charset-002.xht
+css/CSS2/syntax/at-charset-003.xht
+css/CSS2/syntax/at-charset-004.xht
+css/CSS2/syntax/at-charset-005.xht
+css/CSS2/syntax/at-charset-006.xht
+css/CSS2/syntax/at-charset-071.xht
+css/CSS2/syntax/at-charset-072.xht
+css/CSS2/syntax/at-charset-073.xht
+css/CSS2/syntax/at-charset-074.xht
+css/CSS2/syntax/at-charset-075.xht
+css/CSS2/syntax/at-charset-076.xht
+css/CSS2/syntax/at-charset-077.xht
+css/CSS2/syntax/character-encoding-031.xht
+css/CSS2/syntax/character-encoding-032.xht
+css/CSS2/syntax/character-encoding-033.xht
+css/CSS2/syntax/character-encoding-034.xht
+css/CSS2/syntax/character-encoding-035.xht
+css/CSS2/syntax/character-encoding-036.xht
+css/CSS2/syntax/character-encoding-037.xht
+css/CSS2/syntax/character-encoding-041.xht
+css/CSS2/syntax/content-type-000.xht
+css/CSS2/syntax/content-type-001.xht

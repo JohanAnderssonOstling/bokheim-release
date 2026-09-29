@@ -1,0 +1,23 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO blob_object(content_hash, size_bytes) VALUES ($1, $2)\nON CONFLICT (content_hash) DO UPDATE SET size_bytes=blob_object.size_bytes\nWHERE blob_object.size_bytes=EXCLUDED.size_bytes\nRETURNING content_hash\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "content_hash",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Int8"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "3ebcf7252d6a8380b5d0dce37d20d1f26d6a9467fa22bcec4c9a9d1fe385f4a5"
+}

@@ -1,0 +1,22 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE account_preferences\nSET application_theme = $2,\n    interface_font = $3,\n    heading_font = $4,\n    reader_theme = $5,\n    reader_font_family = $6,\n    text_alignment = $7,\n    hyphenation = $8,\n    line_height = $9,\n    updated_at = now()\nWHERE user_id = $1;\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "Text",
+        "Text",
+        "Text",
+        "Text",
+        "Text",
+        "Bool",
+        "Float4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "4185b6ed540bd1f56b0e00fd1fead635552c0e127279a5a55b6ff8392f76c25d"
+}

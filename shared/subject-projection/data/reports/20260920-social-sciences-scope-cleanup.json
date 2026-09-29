@@ -1,0 +1,228 @@
+{
+  "merges": {
+    "13040": {
+      "into": 9977,
+      "old_label": "Thinking",
+      "surviving_label": "Thought & Reasoning"
+    },
+    "6964": {
+      "into": 5473,
+      "old_label": "Social Degeneration Topics",
+      "surviving_label": "Degeneration"
+    },
+    "52931": {
+      "into": 5342,
+      "old_label": "General Intelligence Services",
+      "surviving_label": "Intelligence & Espionage"
+    },
+    "13311": {
+      "into": 5878,
+      "old_label": "Legal History—General",
+      "surviving_label": "Legal History & Roman Law"
+    },
+    "5260": {
+      "into": 5254,
+      "old_label": "General Military Studies",
+      "surviving_label": "Military Studies"
+    },
+    "5082": {
+      "into": 5075,
+      "old_label": "Race & Ethnic Relations",
+      "surviving_label": "Race & Race Relations"
+    },
+    "5505": {
+      "into": 5250,
+      "old_label": "Human Sexuality",
+      "surviving_label": "Sexuality"
+    },
+    "5408": {
+      "into": 5250,
+      "old_label": "Human Sexuality",
+      "surviving_label": "Sexuality"
+    },
+    "5507": {
+      "into": 12403,
+      "old_label": "LGBTQ+ Studies",
+      "surviving_label": "Sexual Orientation & Minorities"
+    },
+    "13820": {
+      "into": 13202,
+      "old_label": "Political Anthropology",
+      "surviving_label": "Political Anthropology"
+    }
+  },
+  "renamed": {
+    "5878": {
+      "before": "Legal History & Roman Law",
+      "after": "Legal History"
+    },
+    "5075": {
+      "before": "Race & Race Relations",
+      "after": "Race & Ethnic Relations"
+    },
+    "5250": {
+      "before": "Sexuality",
+      "after": "Human Sexuality"
+    },
+    "12403": {
+      "before": "Sexual Orientation & Minorities",
+      "after": "Sexual Orientation & LGBTQ+ Studies"
+    },
+    "12915": {
+      "before": "Economic Thought by Period",
+      "after": "History of Economic Thought by Period"
+    },
+    "13771": {
+      "before": "Economic Thought by Period",
+      "after": "Economic Works by Period"
+    },
+    "52769": {
+      "before": "Economic Thought before 1776",
+      "after": "Economic Works before 1776"
+    },
+    "52770": {
+      "before": "Classical Economic Thought",
+      "after": "Classical Economic Works"
+    },
+    "52771": {
+      "before": "Modern Economic Thought",
+      "after": "Modern Economic Works"
+    }
+  },
+  "moved": [
+    {
+      "id": 5075,
+      "before": [
+        5072,
+        5663
+      ],
+      "after": [
+        5072,
+        5663,
+        5056
+      ]
+    },
+    {
+      "id": 5250,
+      "before": [
+        54939
+      ],
+      "after": [
+        54939,
+        5661,
+        5381
+      ]
+    },
+    {
+      "id": 12403,
+      "before": [
+        5250
+      ],
+      "after": [
+        5250,
+        5661
+      ]
+    },
+    {
+      "id": 13202,
+      "before": [
+        5059
+      ],
+      "after": [
+        5059,
+        5690
+      ]
+    },
+    {
+      "id": 52925,
+      "before": [
+        52373
+      ],
+      "after": [
+        5662,
+        5665
+      ]
+    },
+    {
+      "id": 52926,
+      "before": [
+        52373
+      ],
+      "after": [
+        5662
+      ]
+    },
+    {
+      "id": 52927,
+      "before": [
+        52373
+      ],
+      "after": [
+        5665
+      ]
+    },
+    {
+      "id": 52693,
+      "before": [
+        5516,
+        52692
+      ],
+      "after": [
+        5516
+      ]
+    },
+    {
+      "id": 5078,
+      "before": [
+        5056,
+        5068
+      ],
+      "after": [
+        5056
+      ]
+    },
+    {
+      "id": 5288,
+      "before": [
+        5310,
+        5550
+      ],
+      "after": [
+        5281,
+        5550
+      ]
+    }
+  ],
+  "flattened": [
+    {
+      "id": 52373,
+      "placements": {
+        "52925": [
+          5662,
+          5665
+        ],
+        "52926": [
+          5662
+        ],
+        "52927": [
+          5665
+        ]
+      }
+    }
+  ],
+  "created": {},
+  "selector_repairs": [],
+  "retained_distinctions": [
+    "Economic histories versus economic works by period",
+    "Persons remains a coded legal subject",
+    "Social Conditions outside the U.S. retains its broader code scope",
+    "Conservatism/Liberalism, Fascism/Totalitarianism and Nationalism/Patriotism paired subjects retained"
+  ],
+  "source_notes": [
+    "LCC political-theory page 26 refers Political anthropology to GN492+. Existing JC21–JC31 coverage retained as legacy coverage.",
+    "LCC HB pages 14 and 17 distinguish history of economics by period from general economic works by period.",
+    "LCC HQ page 458 includes heterosexuality at HQ72.8; combined Sexual Orientation & LGBTQ+ Studies preserves that scope.",
+    "LCC HT page 522 includes race relations, conflicts and racism."
+  ],
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

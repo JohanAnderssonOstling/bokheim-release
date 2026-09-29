@@ -1,0 +1,1 @@
+SELECT system_id,subject_path,subject_position FROM book_subject_assignment_evidence WHERE book_row_id=?1

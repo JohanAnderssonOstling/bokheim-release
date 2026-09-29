@@ -1,0 +1,42 @@
+//! Shared presentation primitives for the GPUI desktop interface.
+
+pub mod account;
+pub mod assets;
+pub mod browser;
+pub mod buttons;
+pub mod contents;
+mod description;
+pub mod detail;
+pub mod graph;
+pub mod infinite_canvas;
+pub mod layout;
+pub mod library;
+mod menu_items;
+pub mod modal;
+pub mod reader;
+pub mod responsive;
+pub mod scroll;
+pub mod settings_stepper;
+pub mod theme;
+pub mod theme_picker;
+pub mod tokens;
+
+pub use account::*;
+pub use assets::*;
+pub use browser::*;
+pub use buttons::*;
+pub use contents::*;
+pub use detail::*;
+pub use graph::*;
+pub use infinite_canvas::*;
+pub use layout::*;
+pub use library::*;
+pub use menu_items::*;
+pub use modal::*;
+pub use reader::*;
+pub use responsive::*;
+pub use scroll::*;
+pub use settings_stepper::*;
+pub use theme::*;
+pub use theme_picker::*;
+pub use tokens::*;

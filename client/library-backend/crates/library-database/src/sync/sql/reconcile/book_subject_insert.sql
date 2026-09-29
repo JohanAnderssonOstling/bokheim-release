@@ -1,0 +1,1 @@
+INSERT INTO book_subject(book_row_id,position,name,source,authority,code) VALUES(?1,?2,?3,?4,?5,?6) ON CONFLICT(book_row_id,position) DO UPDATE SET name=excluded.name,source=excluded.source,authority=excluded.authority,code=excluded.code

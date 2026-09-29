@@ -1,0 +1,72 @@
+{
+  "created": [],
+  "renamed": [
+    {
+      "id": 4521,
+      "before": "Analytic",
+      "after": "Analytic Philosophy"
+    },
+    {
+      "id": 83,
+      "before": "Technical Documentation",
+      "after": "Computing Documentation"
+    },
+    {
+      "id": 4679,
+      "before": "Book industries and trade",
+      "after": "Book Industry & Trade"
+    },
+    {
+      "id": 4690,
+      "before": "Books. Writing. Paleography",
+      "after": "Books, Writing & Paleography"
+    }
+  ],
+  "flattened": [
+    {
+      "id": 5534,
+      "name": "Contemporary & Critical Movements",
+      "parents": [
+        4520
+      ],
+      "children": [
+        4521,
+        4522,
+        4523,
+        4529,
+        4533
+      ]
+    },
+    {
+      "id": 5573,
+      "name": "Programming & Software Engineering",
+      "parents": [
+        36
+      ],
+      "children": [
+        83,
+        152,
+        168,
+        11664
+      ]
+    },
+    {
+      "id": 5605,
+      "name": "Books, Manuscripts & Publishing",
+      "parents": [
+        4671
+      ],
+      "children": [
+        4679,
+        4690
+      ]
+    }
+  ],
+  "allowed_transitions": {},
+  "before_over30": 694,
+  "after_over30": 691,
+  "verified_code_groups": 2960835,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0
+}

@@ -1,0 +1,149 @@
+{
+  "candidate": 60,
+  "status": "verified",
+  "scope": "best-effort LCC recovery and durable unified-assignment evidence",
+  "versions": {
+    "lcc": 78,
+    "unified": 128
+  },
+  "full_scan": {
+    "codes": {
+      "examined": 11316630,
+      "gained": 73047,
+      "changed": 18254
+    },
+    "uses": {
+      "gained": 122741,
+      "changed": 21252
+    },
+    "remaining_codes": 121331,
+    "remaining_uses": 223964
+  },
+  "best_effort_phase_gains": {
+    "strings": 44192,
+    "uses": 78532
+  },
+  "incremental_from_57": {
+    "reviewed_inputs": 212632,
+    "evidence_rows": 239535,
+    "interpreted_inputs": 273,
+    "interpretation_evidence_methods": {
+      "Normalized": 272,
+      "BroadFallback": 1
+    },
+    "new_strings": 263,
+    "new_uses": 571,
+    "changed_existing": 4087,
+    "errors": []
+  },
+  "broad_support_audit": {
+    "reviewed_inputs": 212632,
+    "evidence_rows": 239535,
+    "evidence_methods": {
+      "RecoveredComponent": 59905,
+      "BroadFallback": 1512,
+      "Normalized": 56134,
+      "Exact": 653
+    },
+    "broad_fallback_inputs": 1510,
+    "independently_reconstructed_support_sets": 1511,
+    "distinct_support_scopes": 420,
+    "errors": []
+  },
+  "refinement_review": {
+    "inputs": 156,
+    "removed_id_records": 157,
+    "unexplained": 0
+  },
+  "release_tests": {
+    "projection": 232,
+    "storage_integration": 1,
+    "wider_store": {
+      "passed": 23,
+      "failed": 2,
+      "baseline_reproduced_failures": [
+        "incremental_crawl_publishes_pages_and_preserves_partial_progress",
+        "subject_browse_reuses_projected_hierarchy_and_paginates_sourced_books"
+      ]
+    }
+  },
+  "requirements": [
+    {
+      "requirement": "Keep strict exact/normalized matches ahead of recovery",
+      "evidence": [
+        "runtime::matching_concepts strict-return branch",
+        "11,316,630-string comparison; no lost matching strings"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Recover complete components; preserve malformed fragments",
+      "evidence": [
+        "232 release tests include joined fields, clipped tails, partial MARC/Unicode lists and independent boundary recovery",
+        "239,535 evidence rows checked against strict support and original text"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Use defensible broad shared-parent fallback without inventing missing endpoints",
+      "evidence": [
+        "1,511 numeric fallback support sets independently reconstructed over 420 scopes",
+        "Rust evidence audit checks shared/nearest/proper ancestry; incomplete fragments remain visible"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Bound ambiguous character interpretations and require agreement/shared parent",
+      "evidence": [
+        "273 interpreted inputs; 272 normalized evidence records and one shared-parent record",
+        "Numeric-prefix and publication-year guards; alternatives recorded; all interpretations have strict support"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Persist original source and assignment recovery evidence",
+      "evidence": [
+        "ProjectedLccEvidence on unified assignments",
+        "catalog_subject_lcc_evidence table and source/assignment cascading foreign keys",
+        "Release storage integration test proves reopen/backfill, all four methods, original strings, unresolved fragments and enriched source positions"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Keep processing markers/other authorities out of new LCC interpretations",
+      "evidence": [
+        "Declared unresolved LCC cannot fall through to topic labels",
+        "Release routing tests cover processing markers, NLM-looking values, and uncontrolled subjects",
+        "Full unmatched-value pattern triage retained separately from verified fixable counts"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Audit the complete code database and changed assignments",
+      "evidence": [
+        "Full scan with unchanged frozen taxonomy",
+        "212,632-input evidence audit covers all noncanonical inputs, cumulative changes and remaining unmatched values",
+        "157 removed-ID records across 156 inputs individually explained; no unexplained replacements",
+        "Current source/input hashes match candidate60"
+      ],
+      "status": "verified"
+    }
+  ],
+  "source_sha256": {
+    "shared/subject-projection/src/lib.rs": "1418a47decde4d6264baee1437451b05e115b88f451c9db29c7c80ce3112da64",
+    "shared/subject-projection/src/runtime.rs": "5644aef4c50ae9e146f2a7af77c53738e59e5acada4211c3e5a416354166ce2c",
+    "shared/subject-projection/src/lcc_recovery.rs": "e32d60898dd5d7de82b6e8944e700eed9efd2ef8e788fc09cb32989175aa60fc",
+    "servers/opds-cache/src/store/subjects.rs": "a15c48f2f10cca212e4abdda11763e8a31d6b0179fba8882d24f598cfd7bab7f",
+    "servers/opds-cache/src/store/schema.sql": "2c035c3dc77e23bde2445bae0d0cf988f2b7697231939401a70d481d13c4fa60",
+    "servers/opds-cache/src/store/tests.rs": "2fcd1c3b87833327e1cd05cd740c90faa0a8832b39ee03a3f7522621d7a4444b"
+  },
+  "superseded_candidates": {
+    "58": "Digit-to-Cutter alternatives could hide unrelated numeric damage. Not a retention baseline.",
+    "59": "Longest-prefix recovery could collapse independent components. Not a retention baseline."
+  },
+  "validation_environment_limits": [
+    "Server tests used an isolated schema-8 frozen taxonomy. The existing master-taxonomy file is schema 5, incompatible with the schema-8 build script; no live taxonomy file was replaced.",
+    "Two wider store-test failures reproduce with the same frozen fixture and code without the provenance changes."
+  ],
+  "remaining_values": "Unresolved raw values are preserved; remaining counts are not counts of fixable LCC errors. All 125 canonically accepted remaining numeric known-prefix values contain range punctuation; no standalone numeric selector gap was identified."
+}

@@ -1,0 +1,71 @@
+concept_id,label,direct_parent_id,direct_parent,intermediate_parent_id,intermediate_parent
+4854,Horticulture,2,Agriculture,5883,Horticulture & Garden Design
+134,Management Information Systems,5577,IT Applications & Management,100,Information Technology
+422,Radar,5566,Electrical & Electronic Engineering,250,Electrical Engineering
+393,Microwaves,5566,Electrical & Electronic Engineering,259,Electronics
+9005,Numerical Methods,5721,Applied & Computational Math,285,Engineering Mathematics
+328,Streets,320,Highway Engineering,325,Pavements
+600,Cinematography & videography,510,Arts & Media,915,Photography & Imaging
+689,Textile & Costume,647,Design & Decorative Arts,650,Decorative Arts
+968,Textile arts,647,Design & Decorative Arts,650,Decorative Arts
+548,Teddy Bears & Stuffed Animals,650,Decorative Arts,5743,"Toys, Dolls & Miniatures"
+551,Toys,650,Decorative Arts,5743,"Toys, Dolls & Miniatures"
+3094,Papercrafts,650,Decorative Arts,5684,"Paper, Printing & Book Arts"
+3106,Stenciling,650,Decorative Arts,5684,"Paper, Printing & Book Arts"
+933,Photojournalism,966,Photography Specialties,917,Applied photography
+961,Lighting,967,"Photo Methods, Gear & Materials",955,Photography Techniques
+2250,Multicultural Education,2169,Education,2293,Types of education
+2536,AIDS & HIV,2535,Health & Medicine,2640,Diseases & Conditions
+2557,Cardiology,2535,Health & Medicine,2718,Internal Medicine Specialties
+2559,Chemotherapy,2535,Health & Medicine,2888,Pharmacology & Therapeutics
+2602,Endocrinology & Metabolism,2535,Health & Medicine,2718,Internal Medicine Specialties
+2610,Gastroenterology,2535,Health & Medicine,2718,Internal Medicine Specialties
+2612,Geriatrics,2535,Health & Medicine,2717,Specialized Internal Medicine
+2694,Hematology,2535,Health & Medicine,2718,Internal Medicine Specialties
+2740,Mental Health,2535,Health & Medicine,2624,Health & Fitness
+2742,Military Medicine,2535,Health & Medicine,2717,Specialized Internal Medicine
+2771,Nutrition,2535,Health & Medicine,2634,Diet & Nutrition
+2771,Nutrition,2535,Health & Medicine,5925,Foundations & Clinical Skills
+2773,Oncology,2535,Health & Medicine,2854,Surgery
+2795,Otolaryngology,2535,Health & Medicine,5785,Surgical Specialties by System
+2799,Pain Management,2535,Health & Medicine,2624,Health & Fitness
+2837,Psychiatry,2535,Health & Medicine,2707,Internal Medicine
+2837,Psychiatry,2535,Health & Medicine,2713,Neuroscience & Neuropsychiatry
+2837,Psychiatry,2707,Internal Medicine,2713,Neuroscience & Neuropsychiatry
+2853,Sports Medicine,2535,Health & Medicine,2717,Specialized Internal Medicine
+2906,Tropical Medicine,2535,Health & Medicine,2717,Specialized Internal Medicine
+2907,Urology,2535,Health & Medicine,2718,Internal Medicine Specialties
+2603,Environmental Health,2535,Health & Medicine,6155,Environmental & Community Health
+2604,Epidemiology,2535,Health & Medicine,6156,"Prevention, Immunity & Disease"
+2693,Health Risk Assessment,2535,Health & Medicine,2810,Child Health
+2693,Health Risk Assessment,2535,Health & Medicine,6153,"Foundations, Ethics & Practice"
+2845,Public Health,2535,Health & Medicine,2840,Public aspects of medicine
+5448,Psychotherapy,2837,Psychiatry,5651,Clinical Psychology
+2901,Rehabilitation technology,2888,Pharmacology & Therapeutics,2902,Rehabilitation therapy
+50818,Colonial Florida to 1821,50813,British America,3409,Colonial Period
+12240,Slavery,5663,Inequality & Social Problems,5073,Social Classes
+3486,Afghan,3485,Asian,3508,South
+3834,Translating & Interpreting,3778,Linguistics,4412,Comparative Grammar & Linguistics
+3920,Diaries,5585,English,3907,English essays
+3920,Diaries,5585,English,3910,English letters
+3920,Diaries,5585,English,3926,Oratory & Speeches
+3928,English & World,5585,English,3907,English essays
+3928,English & World,5585,English,3910,English letters
+3928,English & World,5585,English,3926,Oratory & Speeches
+4489,Philosophical Cosmology,4487,Philosophy,4544,Metaphysics & Ontology
+4538,Philosophy of Religion,4487,Philosophy,4510,Modern Philosophy
+4491,Eastern Philosophy,4507,"History, Traditions & Regions",4538,Philosophy of Religion
+4550,Baha'i,4549,Religion,5859,Other Religions & Movements
+4605,Islam,4549,Religion,5859,Other Religions & Movements
+53242,Board & Strategy Games,4628,Recreation,4665,Indoor games & amusements
+4926,Calculus,5719,Analysis & Calculus,4922,Analysis
+4930,Differential Equations,5719,Analysis & Calculus,4922,Analysis
+4937,Functional Analysis,5719,Analysis & Calculus,4922,Analysis
+5492,Archaeology,5055,Social Sciences,5056,Anthropology
+5078,Customs & Traditions,5056,Anthropology,5068,"Manners, Customs & Material Culture"
+12272,Business Administration,5104,Economics & Business,5086,Business
+5142,Finance,5104,Economics & Business,5086,Business
+52471,Balance of Payments,5147,Foreign Exchange,52470,International Finance
+52472,Monetary Unions,5147,Foreign Exchange,52470,International Finance
+5288,Family Law,5550,Civil & Private Law,5310,Persons
+52693,European Social Conditions,5516,Social History & Conditions,52692,Social Conditions outside the U.S.

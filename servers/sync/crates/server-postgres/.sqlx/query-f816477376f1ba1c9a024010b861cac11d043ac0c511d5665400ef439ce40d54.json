@@ -1,0 +1,60 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH input AS MATERIALIZED (\n    SELECT content_hash, size_bytes, ordinal\n    FROM UNNEST($1::TEXT[], $2::BIGINT[]) WITH ORDINALITY\n         AS value(content_hash, size_bytes, ordinal)\n)\nSELECT input.content_hash AS \"content_hash!\",\n       input.size_bytes AS \"size_bytes!\",\n       object.size_bytes AS \"stored_size_bytes?\",\n       (charge.content_hash IS NOT NULL) AS \"owned!\",\n       reservation.id AS \"reservation_id?\",\n       reservation.library_id AS \"reservation_library_id?\",\n       reservation.size_bytes AS \"reservation_size_bytes?\"\nFROM input\nLEFT JOIN blob_object AS object\n  ON object.content_hash=input.content_hash\nLEFT JOIN user_blob_charge AS charge\n  ON charge.user_id=$3\n AND charge.content_hash=input.content_hash\nLEFT JOIN book_upload_reservation AS reservation\n  ON reservation.user_id=$3\n AND reservation.content_hash=input.content_hash\nORDER BY input.ordinal;\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "content_hash!",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 1,
+        "name": "size_bytes!",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 2,
+        "name": "stored_size_bytes?",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 3,
+        "name": "owned!",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 4,
+        "name": "reservation_id?",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "reservation_library_id?",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 6,
+        "name": "reservation_size_bytes?",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "TextArray",
+        "Int8Array",
+        "Text"
+      ]
+    },
+    "nullable": [
+      null,
+      null,
+      false,
+      null,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "f816477376f1ba1c9a024010b861cac11d043ac0c511d5665400ef439ce40d54"
+}

@@ -1,0 +1,21 @@
+id,parent,label,existing,hits,codes,moved_selectors
+bokheim:mathematics:history-education-reference,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,"History, Education & Reference",bokheim:mathematics:history-education-reference,29948,1246,36
+unified:47620673-8f94-5139-b48a-9a152a78d33b,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Logic,unified:47620673-8f94-5139-b48a-9a152a78d33b,2058,334,28
+bokheim:mathematics:foundations-discrete,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,"Foundations, Logic & Discrete Mathematics",bokheim:mathematics:foundations-discrete,19,4,1
+unified:1df8644e-4985-541c-8a40-156bcb37e455,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Study & Teaching,unified:1df8644e-4985-541c-8a40-156bcb37e455,2986,730,41
+unified:f023e530-aade-5130-b6ce-3a052aadeedc,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Algebra,unified:f023e530-aade-5130-b6ce-3a052aadeedc,3957,518,24
+unified:f7c4c681-9d8b-562a-9add-2dafbccbd449,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Elementary,unified:f7c4c681-9d8b-562a-9add-2dafbccbd449,2207,253,3
+unified:0f70b705-ab89-5dd7-b51f-be6da7276929,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Abstract,unified:0f70b705-ab89-5dd7-b51f-be6da7276929,3018,377,12
+unified:8a64d1c1-5470-5f64-8423-6b0c1ea5527e,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Combinatorics,unified:8a64d1c1-5470-5f64-8423-6b0c1ea5527e,1431,258,14
+unified:21b67f0c-588c-5f8a-bfe6-5ead1d4498e1,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Discrete Mathematics,unified:21b67f0c-588c-5f8a-bfe6-5ead1d4498e1,3501,449,31
+unified:64158487-dcd0-5ef5-986c-9a164030fd93,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Set Theory,unified:64158487-dcd0-5ef5-986c-9a164030fd93,1336,212,7
+unified:d065597c-a8e9-5564-88e6-b1fa435a639c,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Group Theory,unified:d065597c-a8e9-5564-88e6-b1fa435a639c,1472,343,20
+unified:4acbab63-c4a5-57ec-9dbd-fee590e0cfd2,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Linear,unified:4acbab63-c4a5-57ec-9dbd-fee590e0cfd2,1494,245,13
+unified:c8f7ba75-427a-5420-94e7-7973ba633e87,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Matrices,unified:c8f7ba75-427a-5420-94e7-7973ba633e87,842,161,7
+unified:e47339a9-8113-5c8c-8ad6-ab7cc7e01ffe,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Number Systems,unified:e47339a9-8113-5c8c-8ad6-ab7cc7e01ffe,111,23,2
+unified:475cbf21-911b-5a27-81f8-3c7050bdf532,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,History & Philosophy,unified:475cbf21-911b-5a27-81f8-3c7050bdf532,2054,310,9
+unified:3c6b2ce1-a085-5741-9436-d6826e01f4d2,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Graphic Methods,unified:3c6b2ce1-a085-5741-9436-d6826e01f4d2,21,5,1
+unified:293093c9-6caf-5c9d-a261-a4bd5e2a8568,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Numerical Analysis,unified:293093c9-6caf-5c9d-a261-a4bd5e2a8568,426,68,3
+unified:bbb83323-48af-58e9-8990-cfb664cfe214,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Number Theory,unified:bbb83323-48af-58e9-8990-cfb664cfe214,3351,524,21
+unified:a9a05e85-ba68-50ad-9f6a-b9f7870a3b62,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Game Theory,unified:a9a05e85-ba68-50ad-9f6a-b9f7870a3b62,762,130,4
+unified:baffdd1d-4a39-5d37-9fac-35451ec079c2,unified:f158bcdc-8f35-5cea-baa7-fce8bcbdc3b4,Essays,unified:baffdd1d-4a39-5d37-9fac-35451ec079c2,290,26,1

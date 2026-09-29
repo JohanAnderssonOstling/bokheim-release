@@ -1,0 +1,10 @@
+[package]
+name = "epub_provider"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+zip.workspace = true
+quick-xml = "0.31"
+serde_json = "1"
+book-model = { path = "../book-model", default-features = false }

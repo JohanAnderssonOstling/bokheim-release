@@ -1,0 +1,120 @@
+{
+  "anchors": [
+    {
+      "scope": "H",
+      "path": [
+        "Social sciences (General)"
+      ],
+      "concept_id": "unified:f8f652e6-6244-5dc5-97b7-9dece2de275f",
+      "subject": "Social Sciences"
+    },
+    {
+      "scope": "H",
+      "path": [
+        "Social sciences (General)",
+        "Study and teaching. Research"
+      ],
+      "concept_id": "bokheim:social-sciences:research",
+      "subject": "Research"
+    },
+    {
+      "scope": "H",
+      "path": [
+        "Social sciences (General)",
+        "Public policy (General). Policy sciences"
+      ],
+      "concept_id": "unified:40b5c498-0b47-5d4b-88d4-d1f15c11a199",
+      "subject": "Public Policy \u2014 General"
+    },
+    {
+      "scope": "Q",
+      "path": [
+        "Science (General)"
+      ],
+      "concept_id": "unified:2d01b451-4e64-5f6b-a068-a6f7ea63e386",
+      "subject": "Science & Nature"
+    },
+    {
+      "scope": "Q",
+      "path": [
+        "Science (General)",
+        "System theory"
+      ],
+      "concept_id": "unified:40501628-dfd1-5b7c-99ea-94af6ac8cb0c",
+      "subject": "System Theory"
+    },
+    {
+      "scope": "QH",
+      "path": [
+        "Biology (General)"
+      ],
+      "concept_id": "unified:ba1ce9c4-e1f0-5660-829a-d836b81a894b",
+      "subject": "Biology & Life Sciences"
+    },
+    {
+      "scope": "HC",
+      "path": [
+        "Economic history and conditions"
+      ],
+      "concept_id": "unified:ae997d9d-393b-5c24-be0e-70ce3ac19e14",
+      "subject": "Economic history"
+    },
+    {
+      "scope": "GV",
+      "path": [
+        "Recreation. Leisure"
+      ],
+      "concept_id": "unified:8caf059f-7a4f-5d99-a59d-bc38f1a72355",
+      "subject": "Recreation"
+    },
+    {
+      "scope": "AG",
+      "path": [
+        "Dictionaries and other general reference works"
+      ],
+      "concept_id": "unified:9bfe8837-3076-5b61-8dc7-b437b425d8f6",
+      "subject": "Reference & Information"
+    },
+    {
+      "scope": "QA",
+      "path": [
+        "Mathematics",
+        "Mathematical statistics"
+      ],
+      "concept_id": "unified:83f3a963-43d2-5c73-b86e-a3dbbb1b99a4",
+      "subject": "Probability & Statistics"
+    },
+    {
+      "scope": "BT",
+      "path": [
+        "Doctrinal theology"
+      ],
+      "concept_id": "unified:a75623fc-9deb-5c8b-afa9-da87a8734211",
+      "subject": "Christian Theology"
+    },
+    {
+      "scope": "RS",
+      "path": [
+        "Pharmacy and materia medica"
+      ],
+      "concept_id": "unified:48ae8643-7e51-54d3-beb2-fb13a78dba84",
+      "subject": "Pharmacy"
+    },
+    {
+      "scope": "HE",
+      "path": [
+        "Transportation and communications"
+      ],
+      "concept_id": "unified:2073112c-d517-56d2-a9d3-acc762bade5f",
+      "subject": "Transportation & Communications"
+    },
+    {
+      "scope": "VM",
+      "path": [
+        "Naval architecture. Shipbuilding. Marine engineering"
+      ],
+      "concept_id": "unified:ead6a752-002e-547f-911e-12249557b34a",
+      "subject": "Marine & Naval"
+    }
+  ]
+}

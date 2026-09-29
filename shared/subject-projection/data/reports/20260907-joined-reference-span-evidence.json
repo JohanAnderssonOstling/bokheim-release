@@ -1,0 +1,2204 @@
+{
+  "source": "lcc-mdsconnect-2016.sqlite3, classification_span joined to classification_record; scheme lcc",
+  "scope": "Documented complete numeric spans observed within unresolved strings, absent from shorter CSV outline; not reconstructed endpoints. A-prefixed relative table spans excluded.",
+  "spans": [
+    {
+      "spelling": "B5000-5289.2",
+      "observed_uses": 47,
+      "start": "B5000",
+      "end": "B5289.2",
+      "caption": "Asia"
+    },
+    {
+      "spelling": "BD300-450",
+      "observed_uses": 49,
+      "start": "BD300",
+      "end": "BD450",
+      "caption": "Ontology"
+    },
+    {
+      "spelling": "BF39-39.2",
+      "observed_uses": 2,
+      "start": "BF39",
+      "end": "BF39.2",
+      "caption": "Mathematical and statistical methods. Psychometrics"
+    },
+    {
+      "spelling": "BF455-463",
+      "observed_uses": 51,
+      "start": "BF455",
+      "end": "BF463",
+      "caption": "Psycholinguistics. Psychology of meaning"
+    },
+    {
+      "spelling": "BF531-BF593",
+      "observed_uses": 1,
+      "start": "BF531",
+      "end": "BF593",
+      "caption": "Emotion"
+    },
+    {
+      "spelling": "BF636.5-636.7",
+      "observed_uses": 22,
+      "start": "BF636.5",
+      "end": "BF636.7",
+      "caption": "Counseling psychology. Counseling"
+    },
+    {
+      "spelling": "BF721-723",
+      "observed_uses": 342,
+      "start": "BF721",
+      "end": "BF723",
+      "caption": "Child psychology"
+    },
+    {
+      "spelling": "BF81-107",
+      "observed_uses": 39,
+      "start": "BF81",
+      "end": "BF107",
+      "caption": "History"
+    },
+    {
+      "spelling": "BR118-BR119.2",
+      "observed_uses": 14,
+      "start": "BR118",
+      "end": "BR119.2",
+      "caption": "Christian theology"
+    },
+    {
+      "spelling": "BR1640-BR1643",
+      "observed_uses": 2,
+      "start": "BR1640",
+      "end": "BR1643",
+      "caption": "Evangelicalism"
+    },
+    {
+      "spelling": "BX800-BX4794",
+      "observed_uses": 2,
+      "start": "BX800",
+      "end": "BX4794",
+      "caption": "Catholic Church"
+    },
+    {
+      "spelling": "CB3-481",
+      "observed_uses": 33,
+      "start": "CB3",
+      "end": "CB481",
+      "caption": "History of civilization"
+    },
+    {
+      "spelling": "CB3-CB481",
+      "observed_uses": 380,
+      "start": "CB3",
+      "end": "CB481",
+      "caption": "History of civilization"
+    },
+    {
+      "spelling": "D13-D15",
+      "observed_uses": 75,
+      "start": "D13",
+      "end": "D15",
+      "caption": "Historiography"
+    },
+    {
+      "spelling": "D16.7-D16.9",
+      "observed_uses": 1,
+      "start": "D16.7",
+      "end": "D16.9",
+      "caption": "Philosophy of history"
+    },
+    {
+      "spelling": "D17-D24.5",
+      "observed_uses": 179,
+      "start": "D17",
+      "end": "D24.5",
+      "caption": "World histories"
+    },
+    {
+      "spelling": "D203.2-475",
+      "observed_uses": 428,
+      "start": "D203.2",
+      "end": "D475",
+      "caption": "Modern history, 1453-"
+    },
+    {
+      "spelling": "D203.2-D475",
+      "observed_uses": 19,
+      "start": "D203.2",
+      "end": "D475",
+      "caption": "Modern history, 1453-"
+    },
+    {
+      "spelling": "D25-D25.9",
+      "observed_uses": 103,
+      "start": "D25",
+      "end": "D25.9",
+      "caption": "Military history"
+    },
+    {
+      "spelling": "D51-D95",
+      "observed_uses": 35,
+      "start": "D51",
+      "end": "D95",
+      "caption": "Ancient history"
+    },
+    {
+      "spelling": "DG11-DG980.2",
+      "observed_uses": 17,
+      "start": "DG11",
+      "end": "DG980.2",
+      "caption": "History of Italy"
+    },
+    {
+      "spelling": "E16-E18.85",
+      "observed_uses": 146,
+      "start": "E16",
+      "end": "E18.85",
+      "caption": "History"
+    },
+    {
+      "spelling": "G575-G597",
+      "observed_uses": 3,
+      "start": "G575",
+      "end": "G597",
+      "caption": "Polar regions"
+    },
+    {
+      "spelling": "GE40-GE45",
+      "observed_uses": 17,
+      "start": "GE40",
+      "end": "GE45",
+      "caption": "Philosophy. Relation to other topics. Methodology"
+    },
+    {
+      "spelling": "GN562-GN564",
+      "observed_uses": 142,
+      "start": "GN562",
+      "end": "GN564",
+      "caption": "Central and South America. Latin America (General)"
+    },
+    {
+      "spelling": "GN575-GN585",
+      "observed_uses": 32,
+      "start": "GN575",
+      "end": "GN585",
+      "caption": "Europe"
+    },
+    {
+      "spelling": "GN625-GN635",
+      "observed_uses": 155,
+      "start": "GN625",
+      "end": "GN635",
+      "caption": "Asia"
+    },
+    {
+      "spelling": "GN643-GN661",
+      "observed_uses": 67,
+      "start": "GN643",
+      "end": "GN661",
+      "caption": "Africa"
+    },
+    {
+      "spelling": "GV557-GV558",
+      "observed_uses": 2,
+      "start": "GV557",
+      "end": "GV558",
+      "caption": "Sports sciences"
+    },
+    {
+      "spelling": "GV561-GV1198.995",
+      "observed_uses": 1,
+      "start": "GV561",
+      "end": "GV1198.995",
+      "caption": "Sports"
+    },
+    {
+      "spelling": "H61-H61.62",
+      "observed_uses": 91,
+      "start": "H61",
+      "end": "H61.62",
+      "caption": "Theory. Method. Relation to other subjects"
+    },
+    {
+      "spelling": "H96-H97.7",
+      "observed_uses": 242,
+      "start": "H96",
+      "end": "H97.7",
+      "caption": "Public policy (General). Policy sciences"
+    },
+    {
+      "spelling": "HB1-846.8",
+      "observed_uses": 584,
+      "start": "HB1",
+      "end": "HB846.8",
+      "caption": "Economic theory"
+    },
+    {
+      "spelling": "HB139-141",
+      "observed_uses": 157,
+      "start": "HB139",
+      "end": "HB141",
+      "caption": "Econometrics"
+    },
+    {
+      "spelling": "HB1951-2577",
+      "observed_uses": 24,
+      "start": "HB1951",
+      "end": "HB2577",
+      "caption": "Population geography. Migration"
+    },
+    {
+      "spelling": "HB90-HB99.722",
+      "observed_uses": 4,
+      "start": "HB90",
+      "end": "HB99.722",
+      "caption": "Special schools"
+    },
+    {
+      "spelling": "HC121-239.5",
+      "observed_uses": 1,
+      "start": "HC121",
+      "end": "HC239.5",
+      "caption": "Latin America"
+    },
+    {
+      "spelling": "HC411-HC495",
+      "observed_uses": 58,
+      "start": "HC411",
+      "end": "HC495",
+      "caption": "Asia"
+    },
+    {
+      "spelling": "HC471-480",
+      "observed_uses": 2,
+      "start": "HC471",
+      "end": "HC480",
+      "caption": "Iran. Persia"
+    },
+    {
+      "spelling": "HC800-1085",
+      "observed_uses": 1,
+      "start": "HC800",
+      "end": "HC1085",
+      "caption": "Africa"
+    },
+    {
+      "spelling": "HD1401-2210.2",
+      "observed_uses": 63,
+      "start": "HD1401",
+      "end": "HD2210.2",
+      "caption": "Agricultural economics"
+    },
+    {
+      "spelling": "HD2741-HD2749",
+      "observed_uses": 16,
+      "start": "HD2741",
+      "end": "HD2749",
+      "caption": "Corporate organization. Corporate governance"
+    },
+    {
+      "spelling": "HD62.4-HD62.45",
+      "observed_uses": 5,
+      "start": "HD62.4",
+      "end": "HD62.45",
+      "caption": "International business enterprises"
+    },
+    {
+      "spelling": "HD75-HD75.9",
+      "observed_uses": 13,
+      "start": "HD75",
+      "end": "HD75.9",
+      "caption": "Theory. Method. Relation to other subjects"
+    },
+    {
+      "spelling": "HD87-87.55",
+      "observed_uses": 440,
+      "start": "HD87",
+      "end": "HD87.55",
+      "caption": "Public policy (General). Economic policy"
+    },
+    {
+      "spelling": "HD87-HD87.55",
+      "observed_uses": 73,
+      "start": "HD87",
+      "end": "HD87.55",
+      "caption": "Public policy (General). Economic policy"
+    },
+    {
+      "spelling": "HD9696.2-9696.82",
+      "observed_uses": 2,
+      "start": "HD9696.2",
+      "end": "HD9696.82",
+      "caption": "Computer industry"
+    },
+    {
+      "spelling": "HD9980-9990",
+      "observed_uses": 17,
+      "start": "HD9980",
+      "end": "HD9990",
+      "caption": "Service industries (General)"
+    },
+    {
+      "spelling": "HF1351-1647",
+      "observed_uses": 410,
+      "start": "HF1351",
+      "end": "HF1647",
+      "caption": "International economic relations"
+    },
+    {
+      "spelling": "HF4999.2-6182",
+      "observed_uses": 1885,
+      "start": "HF4999.2",
+      "end": "HF6182",
+      "caption": "Business"
+    },
+    {
+      "spelling": "HF54.5-54.56",
+      "observed_uses": 413,
+      "start": "HF54.5",
+      "end": "HF54.56",
+      "caption": "Information services"
+    },
+    {
+      "spelling": "HF5601-5688",
+      "observed_uses": 271,
+      "start": "HF5601",
+      "end": "HF5688",
+      "caption": "Accounting. Bookkeeping"
+    },
+    {
+      "spelling": "HG3879-HG3898",
+      "observed_uses": 1,
+      "start": "HG3879",
+      "end": "HG3898",
+      "caption": "International finance. International monetary system. International banking"
+    },
+    {
+      "spelling": "HM1121-1126",
+      "observed_uses": 1,
+      "start": "HM1121",
+      "end": "HM1126",
+      "caption": "Interpersonal conflict. Interpersonal confrontation. Social conflict. Ethnic conflict. Culture conflict"
+    },
+    {
+      "spelling": "HM1206-1211",
+      "observed_uses": 5,
+      "start": "HM1206",
+      "end": "HM1211",
+      "caption": "Communication. Mass media"
+    },
+    {
+      "spelling": "HM206-208",
+      "observed_uses": 5,
+      "start": "HM206",
+      "end": "HM208",
+      "caption": "Environment. Regional sociology"
+    },
+    {
+      "spelling": "HM24-37",
+      "observed_uses": 47,
+      "start": "HM24",
+      "end": "HM37",
+      "caption": "Theory. Method. Relation to other subjects"
+    },
+    {
+      "spelling": "HM401-1281",
+      "observed_uses": 1317,
+      "start": "HM401",
+      "end": "HM1281",
+      "caption": "Sociology"
+    },
+    {
+      "spelling": "HM716-753.2",
+      "observed_uses": 118,
+      "start": "HM716",
+      "end": "HM753.2",
+      "caption": "Social groups. Group dynamics"
+    },
+    {
+      "spelling": "HM721-726",
+      "observed_uses": 108,
+      "start": "HM721",
+      "end": "HM726",
+      "caption": "Age groups. Peer groups"
+    },
+    {
+      "spelling": "HM742-HM743",
+      "observed_uses": 14,
+      "start": "HM742",
+      "end": "HM743",
+      "caption": "Online social networks"
+    },
+    {
+      "spelling": "HM821-821.17",
+      "observed_uses": 7,
+      "start": "HM821",
+      "end": "HM821.17",
+      "caption": "Social stratification. Social inequality. Equality"
+    },
+    {
+      "spelling": "HM846-851",
+      "observed_uses": 3,
+      "start": "HM846",
+      "end": "HM851",
+      "caption": "Technological innovations. Technology"
+    },
+    {
+      "spelling": "HM856-861",
+      "observed_uses": 1,
+      "start": "HM856",
+      "end": "HM861",
+      "caption": "Environment"
+    },
+    {
+      "spelling": "HN8-HN19",
+      "observed_uses": 339,
+      "start": "HN8",
+      "end": "HN19",
+      "caption": "History"
+    },
+    {
+      "spelling": "HQ1180-1186",
+      "observed_uses": 6,
+      "start": "HQ1180",
+      "end": "HQ1186",
+      "caption": "Women's studies. Study and teaching. Research"
+    },
+    {
+      "spelling": "HQ1190-HQ1194",
+      "observed_uses": 26,
+      "start": "HQ1190",
+      "end": "HQ1194",
+      "caption": "Feminist theory"
+    },
+    {
+      "spelling": "HT111-HT150",
+      "observed_uses": 4,
+      "start": "HT111",
+      "end": "HT150",
+      "caption": "History"
+    },
+    {
+      "spelling": "HV40-69.2",
+      "observed_uses": 209,
+      "start": "HV40",
+      "end": "HV69.2",
+      "caption": "Social service. Social work. Charity organization and practice"
+    },
+    {
+      "spelling": "HV40-HV69.2",
+      "observed_uses": 20,
+      "start": "HV40",
+      "end": "HV69.2",
+      "caption": "Social service. Social work. Charity organization and practice"
+    },
+    {
+      "spelling": "HV549-HV550",
+      "observed_uses": 1,
+      "start": "HV549",
+      "end": "HV550",
+      "caption": "Public safety"
+    },
+    {
+      "spelling": "HV6437-HV6453",
+      "observed_uses": 15,
+      "start": "HV6437",
+      "end": "HV6453",
+      "caption": "Illegal organizations"
+    },
+    {
+      "spelling": "HV701-HV1420.52",
+      "observed_uses": 2,
+      "start": "HV701",
+      "end": "HV1420.52",
+      "caption": "Children"
+    },
+    {
+      "spelling": "JA85-85.2",
+      "observed_uses": 98,
+      "start": "JA85",
+      "end": "JA85.2",
+      "caption": "Communication in politics. Political communication"
+    },
+    {
+      "spelling": "JC11-607",
+      "observed_uses": 521,
+      "start": "JC11",
+      "end": "JC607",
+      "caption": "Political theory. The state. Theories of the state"
+    },
+    {
+      "spelling": "JC421-JC472.2",
+      "observed_uses": 35,
+      "start": "JC421",
+      "end": "JC472.2",
+      "caption": "Democracy. Republicanism"
+    },
+    {
+      "spelling": "JF1001-JF1048.52",
+      "observed_uses": 6,
+      "start": "JF1001",
+      "end": "JF1048.52",
+      "caption": "Elections. Electoral systems. Voting"
+    },
+    {
+      "spelling": "JL950-969",
+      "observed_uses": 97,
+      "start": "JL950",
+      "end": "JL969",
+      "caption": "Latin America"
+    },
+    {
+      "spelling": "JN1-JN9692.2",
+      "observed_uses": 368,
+      "start": "JN1",
+      "end": "JN9692.2",
+      "caption": "Political institutions and public administration (Europe)"
+    },
+    {
+      "spelling": "JN2301-3009.22",
+      "observed_uses": 1,
+      "start": "JN2301",
+      "end": "JN3009.22",
+      "caption": "France"
+    },
+    {
+      "spelling": "JN26-JN50",
+      "observed_uses": 359,
+      "start": "JN26",
+      "end": "JN50",
+      "caption": "European Union. European Community. European communities"
+    },
+    {
+      "spelling": "JQ1-JQ1852",
+      "observed_uses": 212,
+      "start": "JQ1",
+      "end": "JQ1852",
+      "caption": "Asia"
+    },
+    {
+      "spelling": "JZ1317.5-1324",
+      "observed_uses": 20,
+      "start": "JZ1317.5",
+      "end": "JZ1324",
+      "caption": "International cooperation. Global governance. Globalization"
+    },
+    {
+      "spelling": "JZ2-6530",
+      "observed_uses": 1548,
+      "start": "JZ2",
+      "end": "JZ6530",
+      "caption": "International relations"
+    },
+    {
+      "spelling": "JZ5509.2-JZ6300",
+      "observed_uses": 20,
+      "start": "JZ5509.2",
+      "end": "JZ6300",
+      "caption": "Promotion of peace. Peaceful change"
+    },
+    {
+      "spelling": "JZ6378-6405",
+      "observed_uses": 121,
+      "start": "JZ6378",
+      "end": "JZ6405",
+      "caption": "The armed conflict. War and order"
+    },
+    {
+      "spelling": "K2201-2385.2",
+      "observed_uses": 7,
+      "start": "K2201",
+      "end": "K2385.2",
+      "caption": "Civil procedure"
+    },
+    {
+      "spelling": "K3236-3268.5",
+      "observed_uses": 40,
+      "start": "K3236",
+      "end": "K3268.5",
+      "caption": "Human rights. Civil and political rights"
+    },
+    {
+      "spelling": "K3236-K3268.5",
+      "observed_uses": 2,
+      "start": "K3236",
+      "end": "K3268.5",
+      "caption": "Human rights. Civil and political rights"
+    },
+    {
+      "spelling": "K3538-3544",
+      "observed_uses": 7,
+      "start": "K3538",
+      "end": "K3544",
+      "caption": "Building laws"
+    },
+    {
+      "spelling": "K3581-3598.22",
+      "observed_uses": 98,
+      "start": "K3581",
+      "end": "K3598.22",
+      "caption": "Environmental law. Environmental policy"
+    },
+    {
+      "spelling": "K366-K380.22",
+      "observed_uses": 2,
+      "start": "K366",
+      "end": "K380.22",
+      "caption": "Sociology of law. Sociological jurisprudence"
+    },
+    {
+      "spelling": "K4240-4343",
+      "observed_uses": 49,
+      "start": "K4240",
+      "end": "K4343",
+      "caption": "Communication. Mass media"
+    },
+    {
+      "spelling": "K7000-7720.22",
+      "observed_uses": 519,
+      "start": "K7000",
+      "end": "K7720.22",
+      "caption": "Private international law. Conflict of laws"
+    },
+    {
+      "spelling": "KNS1-4999",
+      "observed_uses": 1,
+      "start": "KNS1",
+      "end": "KNS4999",
+      "caption": "General"
+    },
+    {
+      "spelling": "KU1-4999",
+      "observed_uses": 24,
+      "start": "KU1",
+      "end": "KU4999",
+      "caption": "General"
+    },
+    {
+      "spelling": "KVC1-999",
+      "observed_uses": 1,
+      "start": "KVC1",
+      "end": "KVC999",
+      "caption": "General"
+    },
+    {
+      "spelling": "KZA1002-5205",
+      "observed_uses": 51,
+      "start": "KZA1002",
+      "end": "KZA5205",
+      "caption": "Law of the sea"
+    },
+    {
+      "spelling": "L1-991",
+      "observed_uses": 354,
+      "start": "L1",
+      "end": "L991",
+      "caption": "Education (General)"
+    },
+    {
+      "spelling": "LA1-LA2396",
+      "observed_uses": 52,
+      "start": "LA1",
+      "end": "LA2396",
+      "caption": "History of education"
+    },
+    {
+      "spelling": "LB1-3640",
+      "observed_uses": 1,
+      "start": "LB1",
+      "end": "LB3640",
+      "caption": "Theory and practice of education"
+    },
+    {
+      "spelling": "LB1024.2-1050.75",
+      "observed_uses": 1,
+      "start": "LB1024.2",
+      "end": "LB1050.75",
+      "caption": "Teaching (Principles and practice)"
+    },
+    {
+      "spelling": "LB1028.43-1028.75",
+      "observed_uses": 1,
+      "start": "LB1028.43",
+      "end": "LB1028.75",
+      "caption": "Computers in education. Electronic data processing"
+    },
+    {
+      "spelling": "LB2300-2799.3",
+      "observed_uses": 177,
+      "start": "LB2300",
+      "end": "LB2799.3",
+      "caption": "Higher education"
+    },
+    {
+      "spelling": "LB2395-2395.4",
+      "observed_uses": 1,
+      "start": "LB2395",
+      "end": "LB2395.4",
+      "caption": "Methods of study"
+    },
+    {
+      "spelling": "LC46-LC46.8",
+      "observed_uses": 1,
+      "start": "LC46",
+      "end": "LC46.8",
+      "caption": "Alternative education. Alternative schools"
+    },
+    {
+      "spelling": "LC71-LC188",
+      "observed_uses": 48,
+      "start": "LC71",
+      "end": "LC188",
+      "caption": "Education and the state"
+    },
+    {
+      "spelling": "N7629-7639",
+      "observed_uses": 1,
+      "start": "N7629",
+      "end": "N7639",
+      "caption": "Women in art. Feminine beauty (Aesthetics)"
+    },
+    {
+      "spelling": "NA2850-2853",
+      "observed_uses": 9,
+      "start": "NA2850",
+      "end": "NA2853",
+      "caption": "Interiors"
+    },
+    {
+      "spelling": "NC1765-NC1766",
+      "observed_uses": 4,
+      "start": "NC1765",
+      "end": "NC1766",
+      "caption": "Animated films"
+    },
+    {
+      "spelling": "NX1-8",
+      "observed_uses": 20,
+      "start": "NX1",
+      "end": "NX8",
+      "caption": "Periodicals"
+    },
+    {
+      "spelling": "P101-120",
+      "observed_uses": 118,
+      "start": "P101",
+      "end": "P120",
+      "caption": "Philosophy, origin, etc. of language"
+    },
+    {
+      "spelling": "P115-P115.5",
+      "observed_uses": 13,
+      "start": "P115",
+      "end": "P115.5",
+      "caption": "Bilingualism. Multilingualism"
+    },
+    {
+      "spelling": "P117-117.5",
+      "observed_uses": 5,
+      "start": "P117",
+      "end": "P117.5",
+      "caption": "Sign language. Gesture"
+    },
+    {
+      "spelling": "P129-138.7222",
+      "observed_uses": 105,
+      "start": "P129",
+      "end": "P138.7222",
+      "caption": "Applied linguistics"
+    },
+    {
+      "spelling": "P140-143.3",
+      "observed_uses": 31,
+      "start": "P140",
+      "end": "P143.3",
+      "caption": "Historical linguistics. Diachronic linguistics"
+    },
+    {
+      "spelling": "P151-152",
+      "observed_uses": 47,
+      "start": "P151",
+      "end": "P152",
+      "caption": "Theory of grammar"
+    },
+    {
+      "spelling": "P215-240",
+      "observed_uses": 28,
+      "start": "P215",
+      "end": "P240",
+      "caption": "Phonology. Phonetics"
+    },
+    {
+      "spelling": "P241-P259",
+      "observed_uses": 1,
+      "start": "P241",
+      "end": "P259",
+      "caption": "Morphology"
+    },
+    {
+      "spelling": "P291-298",
+      "observed_uses": 33,
+      "start": "P291",
+      "end": "P298",
+      "caption": "Syntax"
+    },
+    {
+      "spelling": "P35-35.5",
+      "observed_uses": 15,
+      "start": "P35",
+      "end": "P35.5",
+      "caption": "Relation to anthropology, ethnology and culture"
+    },
+    {
+      "spelling": "P37-37.5",
+      "observed_uses": 106,
+      "start": "P37",
+      "end": "P37.5",
+      "caption": "Relation to psychology. Psycholinguistics"
+    },
+    {
+      "spelling": "P40-40.5",
+      "observed_uses": 185,
+      "start": "P40",
+      "end": "P40.5",
+      "caption": "Relation to sociology. Sociolinguistics"
+    },
+    {
+      "spelling": "P409-P410",
+      "observed_uses": 1,
+      "start": "P409",
+      "end": "P410",
+      "caption": "Slang. Argot"
+    },
+    {
+      "spelling": "P51-59.4",
+      "observed_uses": 1,
+      "start": "P51",
+      "end": "P59.4",
+      "caption": "Study and teaching. Research"
+    },
+    {
+      "spelling": "P51-P59.4",
+      "observed_uses": 95,
+      "start": "P51",
+      "end": "P59.4",
+      "caption": "Study and teaching. Research"
+    },
+    {
+      "spelling": "P94.6-P94.65",
+      "observed_uses": 1,
+      "start": "P94.6",
+      "end": "P94.65",
+      "caption": "Relation to culture. Intercultural communication"
+    },
+    {
+      "spelling": "PD73-780",
+      "observed_uses": 10,
+      "start": "PD73",
+      "end": "PD780",
+      "caption": "Languages"
+    },
+    {
+      "spelling": "PG2001-2827",
+      "observed_uses": 3,
+      "start": "PG2001",
+      "end": "PG2827",
+      "caption": "Russian"
+    },
+    {
+      "spelling": "PJ3001-3095",
+      "observed_uses": 2,
+      "start": "PJ3001",
+      "end": "PJ3095",
+      "caption": "Semitic philology"
+    },
+    {
+      "spelling": "PJ305.2-PJ489",
+      "observed_uses": 18,
+      "start": "PJ305.2",
+      "end": "PJ489",
+      "caption": "Literature"
+    },
+    {
+      "spelling": "PL5021-6571",
+      "observed_uses": 3,
+      "start": "PL5021",
+      "end": "PL6571",
+      "caption": "Austronesian"
+    },
+    {
+      "spelling": "PN1010-PN1551",
+      "observed_uses": 220,
+      "start": "PN1010",
+      "end": "PN1551",
+      "caption": "Poetry"
+    },
+    {
+      "spelling": "PN171.4-PN239",
+      "observed_uses": 2,
+      "start": "PN171.4",
+      "end": "PN239",
+      "caption": "Technique. Literary composition, etc."
+    },
+    {
+      "spelling": "PN2100-PN2193",
+      "observed_uses": 110,
+      "start": "PN2100",
+      "end": "PN2193",
+      "caption": "History"
+    },
+    {
+      "spelling": "PN750-PN759",
+      "observed_uses": 46,
+      "start": "PN750",
+      "end": "PN759",
+      "caption": "18th (and early 19th) century. Romanticism"
+    },
+    {
+      "spelling": "PN760.5-PN769",
+      "observed_uses": 100,
+      "start": "PN760.5",
+      "end": "PN769",
+      "caption": "19th century"
+    },
+    {
+      "spelling": "PN770-PN779",
+      "observed_uses": 304,
+      "start": "PN770",
+      "end": "PN779",
+      "caption": "20th century"
+    },
+    {
+      "spelling": "PN843-PN846",
+      "observed_uses": 154,
+      "start": "PN843",
+      "end": "PN846",
+      "caption": "America"
+    },
+    {
+      "spelling": "Q175.4-175.55",
+      "observed_uses": 6,
+      "start": "Q175.4",
+      "end": "Q175.55",
+      "caption": "Social aspects"
+    },
+    {
+      "spelling": "Q334-342",
+      "observed_uses": 1585,
+      "start": "Q334",
+      "end": "Q342",
+      "caption": "Artificial intelligence"
+    },
+    {
+      "spelling": "QA150-272",
+      "observed_uses": 270,
+      "start": "QA150",
+      "end": "QA272",
+      "caption": "Algebra"
+    },
+    {
+      "spelling": "QA164-167.2",
+      "observed_uses": 73,
+      "start": "QA164",
+      "end": "QA167.2",
+      "caption": "Combinatorics. Combinatorial analysis"
+    },
+    {
+      "spelling": "QA166-166.247",
+      "observed_uses": 10,
+      "start": "QA166",
+      "end": "QA166.247",
+      "caption": "Graph theory"
+    },
+    {
+      "spelling": "QA172-172.4",
+      "observed_uses": 32,
+      "start": "QA172",
+      "end": "QA172.4",
+      "caption": "Ordered algebraic structures"
+    },
+    {
+      "spelling": "QA174-183",
+      "observed_uses": 84,
+      "start": "QA174",
+      "end": "QA183",
+      "caption": "Group theory"
+    },
+    {
+      "spelling": "QA184-205",
+      "observed_uses": 47,
+      "start": "QA184",
+      "end": "QA205",
+      "caption": "Linear and multilinear algebra. Matrices"
+    },
+    {
+      "spelling": "QA21-27",
+      "observed_uses": 237,
+      "start": "QA21",
+      "end": "QA27",
+      "caption": "History"
+    },
+    {
+      "spelling": "QA241-247.5",
+      "observed_uses": 178,
+      "start": "QA241",
+      "end": "QA247.5",
+      "caption": "Number theory"
+    },
+    {
+      "spelling": "QA247-QA247.45",
+      "observed_uses": 11,
+      "start": "QA247",
+      "end": "QA247.45",
+      "caption": "Algebraic fields. Algebraic numbers"
+    },
+    {
+      "spelling": "QA252-252.5",
+      "observed_uses": 21,
+      "start": "QA252",
+      "end": "QA252.5",
+      "caption": "Nonassociative rings and algebras"
+    },
+    {
+      "spelling": "QA269-272",
+      "observed_uses": 42,
+      "start": "QA269",
+      "end": "QA272",
+      "caption": "Game theory"
+    },
+    {
+      "spelling": "QA276-280",
+      "observed_uses": 829,
+      "start": "QA276",
+      "end": "QA280",
+      "caption": "Mathematical statistics"
+    },
+    {
+      "spelling": "QA297-299.4",
+      "observed_uses": 148,
+      "start": "QA297",
+      "end": "QA299.4",
+      "caption": "Numerical analysis"
+    },
+    {
+      "spelling": "QA312-312.5",
+      "observed_uses": 22,
+      "start": "QA312",
+      "end": "QA312.5",
+      "caption": "Measure and integration"
+    },
+    {
+      "spelling": "QA315-316",
+      "observed_uses": 94,
+      "start": "QA315",
+      "end": "QA316",
+      "caption": "Calculus of variations"
+    },
+    {
+      "spelling": "QA319-329.9",
+      "observed_uses": 98,
+      "start": "QA319",
+      "end": "QA329.9",
+      "caption": "Functional analysis"
+    },
+    {
+      "spelling": "QA329-329.9",
+      "observed_uses": 58,
+      "start": "QA329",
+      "end": "QA329.9",
+      "caption": "Operator theory"
+    },
+    {
+      "spelling": "QA331-355",
+      "observed_uses": 40,
+      "start": "QA331",
+      "end": "QA355",
+      "caption": "Theory of functions"
+    },
+    {
+      "spelling": "QA370-380",
+      "observed_uses": 203,
+      "start": "QA370",
+      "end": "QA380",
+      "caption": "Differential equations"
+    },
+    {
+      "spelling": "QA401-425",
+      "observed_uses": 85,
+      "start": "QA401",
+      "end": "QA425",
+      "caption": "Analytical methods used in the solution of physical problems"
+    },
+    {
+      "spelling": "QA402-402.37",
+      "observed_uses": 32,
+      "start": "QA402",
+      "end": "QA402.37",
+      "caption": "System analysis"
+    },
+    {
+      "spelling": "QA402.3-402.37",
+      "observed_uses": 165,
+      "start": "QA402.3",
+      "end": "QA402.37",
+      "caption": "Control theory (General and linear)"
+    },
+    {
+      "spelling": "QA402.5-402.6",
+      "observed_uses": 88,
+      "start": "QA402.5",
+      "end": "QA402.6",
+      "caption": "Mathematical optimization. Programming"
+    },
+    {
+      "spelling": "QA403-403.3",
+      "observed_uses": 10,
+      "start": "QA403",
+      "end": "QA403.3",
+      "caption": "Harmonic analysis (General)"
+    },
+    {
+      "spelling": "QA403.5-404.5",
+      "observed_uses": 24,
+      "start": "QA403.5",
+      "end": "QA404.5",
+      "caption": "Fourier analysis"
+    },
+    {
+      "spelling": "QA404.7-405",
+      "observed_uses": 14,
+      "start": "QA404.7",
+      "end": "QA405",
+      "caption": "Potential theory. Pluripotential theory"
+    },
+    {
+      "spelling": "QA451-469",
+      "observed_uses": 1,
+      "start": "QA451",
+      "end": "QA469",
+      "caption": "Elementary geometry"
+    },
+    {
+      "spelling": "QA564-609",
+      "observed_uses": 140,
+      "start": "QA564",
+      "end": "QA609",
+      "caption": "Algebraic geometry"
+    },
+    {
+      "spelling": "QA611-614.97",
+      "observed_uses": 40,
+      "start": "QA611",
+      "end": "QA614.97",
+      "caption": "Topology"
+    },
+    {
+      "spelling": "QA612-612.8",
+      "observed_uses": 37,
+      "start": "QA612",
+      "end": "QA612.8",
+      "caption": "Algebraic topology. Combinatorial topology"
+    },
+    {
+      "spelling": "QA613-613.8",
+      "observed_uses": 45,
+      "start": "QA613",
+      "end": "QA613.8",
+      "caption": "Manifolds and cell complexes"
+    },
+    {
+      "spelling": "QA614-614.97",
+      "observed_uses": 18,
+      "start": "QA614",
+      "end": "QA614.97",
+      "caption": "Global analysis. Analysis on manifolds"
+    },
+    {
+      "spelling": "QA639.5-640.7",
+      "observed_uses": 14,
+      "start": "QA639.5",
+      "end": "QA640.7",
+      "caption": "Convex geometry"
+    },
+    {
+      "spelling": "QA641-670",
+      "observed_uses": 128,
+      "start": "QA641",
+      "end": "QA670",
+      "caption": "Differential geometry"
+    },
+    {
+      "spelling": "QA76.6-76.66",
+      "observed_uses": 178,
+      "start": "QA76.6",
+      "end": "QA76.66",
+      "caption": "Programming"
+    },
+    {
+      "spelling": "QA76.7-76.73",
+      "observed_uses": 250,
+      "start": "QA76.7",
+      "end": "QA76.73",
+      "caption": "Programming languages"
+    },
+    {
+      "spelling": "QA8-QA10.4",
+      "observed_uses": 18,
+      "start": "QA8",
+      "end": "QA10.4",
+      "caption": "Philosophy"
+    },
+    {
+      "spelling": "QA8.9-10.3",
+      "observed_uses": 188,
+      "start": "QA8.9",
+      "end": "QA10.3",
+      "caption": "Mathematical logic"
+    },
+    {
+      "spelling": "QA8.9-QA10.3",
+      "observed_uses": 86,
+      "start": "QA8.9",
+      "end": "QA10.3",
+      "caption": "Mathematical logic"
+    },
+    {
+      "spelling": "QB495-500.269",
+      "observed_uses": 109,
+      "start": "QB495",
+      "end": "QB500.269",
+      "caption": "Universe. Space. Space sciences"
+    },
+    {
+      "spelling": "QB600-701",
+      "observed_uses": 126,
+      "start": "QB600",
+      "end": "QB701",
+      "caption": "Planets. Planetology"
+    },
+    {
+      "spelling": "QB600-QB701",
+      "observed_uses": 1,
+      "start": "QB600",
+      "end": "QB701",
+      "caption": "Planets. Planetology"
+    },
+    {
+      "spelling": "QC138-168.86",
+      "observed_uses": 11,
+      "start": "QC138",
+      "end": "QC168.86",
+      "caption": "Fluids. Fluid mechanics"
+    },
+    {
+      "spelling": "QC173.45-173.458",
+      "observed_uses": 16,
+      "start": "QC173.45",
+      "end": "QC173.458",
+      "caption": "Condensed matter physics"
+    },
+    {
+      "spelling": "QC173.5-173.65",
+      "observed_uses": 101,
+      "start": "QC173.5",
+      "end": "QC173.65",
+      "caption": "Relativity physics"
+    },
+    {
+      "spelling": "QC173.96-174.52",
+      "observed_uses": 100,
+      "start": "QC173.96",
+      "end": "QC174.52",
+      "caption": "Quantum theory. Quantum mechanics"
+    },
+    {
+      "spelling": "QC174.45-174.52",
+      "observed_uses": 1,
+      "start": "QC174.45",
+      "end": "QC174.52",
+      "caption": "Quantum field theory"
+    },
+    {
+      "spelling": "QC174.7-175.36",
+      "observed_uses": 124,
+      "start": "QC174.7",
+      "end": "QC175.36",
+      "caption": "Statistical physics"
+    },
+    {
+      "spelling": "QC176-176.9",
+      "observed_uses": 224,
+      "start": "QC176",
+      "end": "QC176.9",
+      "caption": "Solids. Solid state physics"
+    },
+    {
+      "spelling": "QC19.2-20.85",
+      "observed_uses": 194,
+      "start": "QC19.2",
+      "end": "QC20.85",
+      "caption": "Mathematical physics"
+    },
+    {
+      "spelling": "QC277.9-278.6",
+      "observed_uses": 7,
+      "start": "QC277.9",
+      "end": "QC278.6",
+      "caption": "Low temperatures"
+    },
+    {
+      "spelling": "QC319.8-338.5",
+      "observed_uses": 150,
+      "start": "QC319.8",
+      "end": "QC338.5",
+      "caption": "Heat transfer"
+    },
+    {
+      "spelling": "QC610.9-611.8",
+      "observed_uses": 31,
+      "start": "QC610.9",
+      "end": "QC611.8",
+      "caption": "Semiconductor physics"
+    },
+    {
+      "spelling": "QC611.9-611.98",
+      "observed_uses": 42,
+      "start": "QC611.9",
+      "end": "QC611.98",
+      "caption": "Superconductivity physics"
+    },
+    {
+      "spelling": "QC630-648",
+      "observed_uses": 117,
+      "start": "QC630",
+      "end": "QC648",
+      "caption": "Electrodynamics"
+    },
+    {
+      "spelling": "QC71.82-73.8",
+      "observed_uses": 17,
+      "start": "QC71.82",
+      "end": "QC73.8",
+      "caption": "Force and energy (General)"
+    },
+    {
+      "spelling": "QC764.5-766",
+      "observed_uses": 60,
+      "start": "QC764.5",
+      "end": "QC766",
+      "caption": "Magnetic materials"
+    },
+    {
+      "spelling": "QC790.95-791.8",
+      "observed_uses": 4,
+      "start": "QC790.95",
+      "end": "QC791.8",
+      "caption": "Nuclear fusion"
+    },
+    {
+      "spelling": "QC902.8-903.2",
+      "observed_uses": 151,
+      "start": "QC902.8",
+      "end": "QC903.2",
+      "caption": "Variations. Climatic changes"
+    },
+    {
+      "spelling": "QD11-QD18",
+      "observed_uses": 1,
+      "start": "QD11",
+      "end": "QD18",
+      "caption": "History"
+    },
+    {
+      "spelling": "QD320-327",
+      "observed_uses": 10,
+      "start": "QD320",
+      "end": "QD327",
+      "caption": "Carbohydrates"
+    },
+    {
+      "spelling": "QD380-388",
+      "observed_uses": 399,
+      "start": "QD380",
+      "end": "QD388",
+      "caption": "Polymers. Macromolecules"
+    },
+    {
+      "spelling": "QD410-412.5",
+      "observed_uses": 71,
+      "start": "QD410",
+      "end": "QD412.5",
+      "caption": "Organometallic chemistry and compounds"
+    },
+    {
+      "spelling": "QD431-431.7",
+      "observed_uses": 195,
+      "start": "QD431",
+      "end": "QD431.7",
+      "caption": "Proteins, peptides, amino acids, etc."
+    },
+    {
+      "spelling": "QD433-436",
+      "observed_uses": 12,
+      "start": "QD433",
+      "end": "QD436",
+      "caption": "Nucleic acids"
+    },
+    {
+      "spelling": "QD450-882",
+      "observed_uses": 549,
+      "start": "QD450",
+      "end": "QD882",
+      "caption": "Physical and theoretical chemistry"
+    },
+    {
+      "spelling": "QD551-578",
+      "observed_uses": 178,
+      "start": "QD551",
+      "end": "QD578",
+      "caption": "Electrochemistry. Electrolysis"
+    },
+    {
+      "spelling": "QD601-607",
+      "observed_uses": 21,
+      "start": "QD601",
+      "end": "QD607",
+      "caption": "Radiochemistry. Nuclear chemistry"
+    },
+    {
+      "spelling": "QD8-9.3",
+      "observed_uses": 22,
+      "start": "QD8",
+      "end": "QD9.3",
+      "caption": "Communication of chemical information"
+    },
+    {
+      "spelling": "QD95-96",
+      "observed_uses": 64,
+      "start": "QD95",
+      "end": "QD96",
+      "caption": "Spectrum analysis (Qualitative and quantitative)"
+    },
+    {
+      "spelling": "QE471-471.15",
+      "observed_uses": 11,
+      "start": "QE471",
+      "end": "QE471.15",
+      "caption": "Sedimentary rocks. Sedimentology"
+    },
+    {
+      "spelling": "QE514-516.5",
+      "observed_uses": 82,
+      "start": "QE514",
+      "end": "QE516.5",
+      "caption": "Geochemistry"
+    },
+    {
+      "spelling": "QH301-705",
+      "observed_uses": 629,
+      "start": "QH301",
+      "end": "QH705",
+      "caption": "Biology (General)"
+    },
+    {
+      "spelling": "QH324.2-324.25",
+      "observed_uses": 83,
+      "start": "QH324.2",
+      "end": "QH324.25",
+      "caption": "Data processing. Bioinformatics"
+    },
+    {
+      "spelling": "QH327-328",
+      "observed_uses": 32,
+      "start": "QH327",
+      "end": "QH328",
+      "caption": "Space biology"
+    },
+    {
+      "spelling": "QH601-602",
+      "observed_uses": 15,
+      "start": "QH601",
+      "end": "QH602",
+      "caption": "Cell membranes"
+    },
+    {
+      "spelling": "QH631-647",
+      "observed_uses": 14,
+      "start": "QH631",
+      "end": "QH647",
+      "caption": "Physiological properties"
+    },
+    {
+      "spelling": "QH75-77",
+      "observed_uses": 287,
+      "start": "QH75",
+      "end": "QH77",
+      "caption": "Nature conservation. Landscape protection. Biodiversity conservation. Endangered species and ecosystems (General). Habitat conservation. Ecosystem management. Conservation biology"
+    },
+    {
+      "spelling": "QK101-474.5",
+      "observed_uses": 15,
+      "start": "QK101",
+      "end": "QK474.5",
+      "caption": "Geographical distribution. Phytogeography"
+    },
+    {
+      "spelling": "QK474.8-493.5",
+      "observed_uses": 63,
+      "start": "QK474.8",
+      "end": "QK493.5",
+      "caption": "Trees and shrubs"
+    },
+    {
+      "spelling": "QK600-638",
+      "observed_uses": 36,
+      "start": "QK600",
+      "end": "QK638",
+      "caption": "Fungi"
+    },
+    {
+      "spelling": "QK861-899",
+      "observed_uses": 121,
+      "start": "QK861",
+      "end": "QK899",
+      "caption": "Botanical chemistry. Phytochemicals"
+    },
+    {
+      "spelling": "QL351-352",
+      "observed_uses": 134,
+      "start": "QL351",
+      "end": "QL352",
+      "caption": "Classification. Systematics and taxonomy"
+    },
+    {
+      "spelling": "QL81.5-84.7",
+      "observed_uses": 36,
+      "start": "QL81.5",
+      "end": "QL84.7",
+      "caption": "Wildlife conservation. Rare animals. Endangered species. Wildlife refuges. Wildlife habitat improvement"
+    },
+    {
+      "spelling": "QP171-177",
+      "observed_uses": 5,
+      "start": "QP171",
+      "end": "QP177",
+      "caption": "Metabolism"
+    },
+    {
+      "spelling": "QP34-38",
+      "observed_uses": 322,
+      "start": "QP34",
+      "end": "QP38",
+      "caption": "Human physiology"
+    },
+    {
+      "spelling": "QP360-360.7",
+      "observed_uses": 116,
+      "start": "QP360",
+      "end": "QP360.7",
+      "caption": "Neuropsychology. Physiological psychology. Psychophysiology"
+    },
+    {
+      "spelling": "QP82-82.2",
+      "observed_uses": 174,
+      "start": "QP82",
+      "end": "QP82.2",
+      "caption": "Influence of the environment (General). Animal ecophysiology. Physiological adaptation"
+    },
+    {
+      "spelling": "QR186.7-186.85",
+      "observed_uses": 6,
+      "start": "QR186.7",
+      "end": "QR186.85",
+      "caption": "Antibodies. Immunoglobulins"
+    },
+    {
+      "spelling": "QR189-189.5",
+      "observed_uses": 6,
+      "start": "QR189",
+      "end": "QR189.5",
+      "caption": "Vaccines"
+    },
+    {
+      "spelling": "QR251-255",
+      "observed_uses": 20,
+      "start": "QR251",
+      "end": "QR255",
+      "caption": "Medical parasitology"
+    },
+    {
+      "spelling": "QR74.8-99.5",
+      "observed_uses": 98,
+      "start": "QR74.8",
+      "end": "QR99.5",
+      "caption": "Bacteria"
+    },
+    {
+      "spelling": "R723-723.7",
+      "observed_uses": 24,
+      "start": "R723",
+      "end": "R723.7",
+      "caption": "Medical philosophy. Medical logic"
+    },
+    {
+      "spelling": "R724-726.2",
+      "observed_uses": 50,
+      "start": "R724",
+      "end": "R726.2",
+      "caption": "Medical ethics. Medical etiquette"
+    },
+    {
+      "spelling": "R735-845",
+      "observed_uses": 44,
+      "start": "R735",
+      "end": "R845",
+      "caption": "Medical education. Medical schools"
+    },
+    {
+      "spelling": "RA648.5-654",
+      "observed_uses": 64,
+      "start": "RA648.5",
+      "end": "RA654",
+      "caption": "Epidemics. Epidemiology"
+    },
+    {
+      "spelling": "RA791-954.22",
+      "observed_uses": 1,
+      "start": "RA791",
+      "end": "RA954.22",
+      "caption": "Medical geography. Climatology. Meteorology"
+    },
+    {
+      "spelling": "RA971.3-971.32",
+      "observed_uses": 3,
+      "start": "RA971.3",
+      "end": "RA971.32",
+      "caption": "Finance and business management"
+    },
+    {
+      "spelling": "RB155-155.8",
+      "observed_uses": 203,
+      "start": "RB155",
+      "end": "RB155.8",
+      "caption": "Heredity. Medical genetics"
+    },
+    {
+      "spelling": "RC1-1245",
+      "observed_uses": 496,
+      "start": "RC1",
+      "end": "RC1245",
+      "caption": "Internal medicine"
+    },
+    {
+      "spelling": "RC261-271",
+      "observed_uses": 355,
+      "start": "RC261",
+      "end": "RC271",
+      "caption": "Cancer and other malignant neoplasms"
+    },
+    {
+      "spelling": "RC321-580",
+      "observed_uses": 841,
+      "start": "RC321",
+      "end": "RC580",
+      "caption": "Neurosciences. Biological psychiatry. Neuropsychiatry"
+    },
+    {
+      "spelling": "RC346-429.2",
+      "observed_uses": 621,
+      "start": "RC346",
+      "end": "RC429.2",
+      "caption": "Neurology. Diseases of the nervous system"
+    },
+    {
+      "spelling": "RC423-428.8",
+      "observed_uses": 30,
+      "start": "RC423",
+      "end": "RC428.8",
+      "caption": "Communicative disorders. Speech and language disorders"
+    },
+    {
+      "spelling": "RC434.2-574",
+      "observed_uses": 833,
+      "start": "RC434.2",
+      "end": "RC574",
+      "caption": "Psychiatry"
+    },
+    {
+      "spelling": "RC434.2-RC574",
+      "observed_uses": 3,
+      "start": "RC434.2",
+      "end": "RC574",
+      "caption": "Psychiatry"
+    },
+    {
+      "spelling": "RC475-489.2",
+      "observed_uses": 312,
+      "start": "RC475",
+      "end": "RC489.2",
+      "caption": "Therapeutics. Psychotherapy"
+    },
+    {
+      "spelling": "RC583-598",
+      "observed_uses": 166,
+      "start": "RC583",
+      "end": "RC598",
+      "caption": "Allergy. Hypersensitivity, Immediate and delayed"
+    },
+    {
+      "spelling": "RC648-665.2",
+      "observed_uses": 294,
+      "start": "RC648",
+      "end": "RC665.2",
+      "caption": "Diseases of the endocrine glands. Clinical endocrinology"
+    },
+    {
+      "spelling": "RC666-701.2",
+      "observed_uses": 20,
+      "start": "RC666",
+      "end": "RC701.2",
+      "caption": "Diseases of the circulatory (cardiovascular) system"
+    },
+    {
+      "spelling": "RC681-688.2",
+      "observed_uses": 547,
+      "start": "RC681",
+      "end": "RC688.2",
+      "caption": "Diseases of the heart"
+    },
+    {
+      "spelling": "RC864-866",
+      "observed_uses": 10,
+      "start": "RC864",
+      "end": "RC866",
+      "caption": "Diseases of the rectum and anus. Proctology"
+    },
+    {
+      "spelling": "RC870-923.2",
+      "observed_uses": 344,
+      "start": "RC870",
+      "end": "RC923.2",
+      "caption": "Diseases of the genitourinary system. Urology"
+    },
+    {
+      "spelling": "RC875-RC899.5",
+      "observed_uses": 8,
+      "start": "RC875",
+      "end": "RC899.5",
+      "caption": "Diseases and functional disorders of the genital organs (General and male). Andrology"
+    },
+    {
+      "spelling": "RC902-918",
+      "observed_uses": 118,
+      "start": "RC902",
+      "end": "RC918",
+      "caption": "Diseases of the kidneys"
+    },
+    {
+      "spelling": "RC927-927.5",
+      "observed_uses": 79,
+      "start": "RC927",
+      "end": "RC927.5",
+      "caption": "Rheumatism"
+    },
+    {
+      "spelling": "RC960-962",
+      "observed_uses": 11,
+      "start": "RC960",
+      "end": "RC962",
+      "caption": "Tropical medicine"
+    },
+    {
+      "spelling": "RC963-969.2",
+      "observed_uses": 30,
+      "start": "RC963",
+      "end": "RC969.2",
+      "caption": "Industrial medicine"
+    },
+    {
+      "spelling": "RD137-139",
+      "observed_uses": 25,
+      "start": "RD137",
+      "end": "RD139",
+      "caption": "Surgery in childhood"
+    },
+    {
+      "spelling": "RD33.55-33.57",
+      "observed_uses": 17,
+      "start": "RD33.55",
+      "end": "RD33.57",
+      "caption": "Interventional radiology"
+    },
+    {
+      "spelling": "RD535.7-539.5",
+      "observed_uses": 17,
+      "start": "RD535.7",
+      "end": "RD539.5",
+      "caption": "Chest. Thoracic surgery"
+    },
+    {
+      "spelling": "RD540-548.2",
+      "observed_uses": 62,
+      "start": "RD540",
+      "end": "RD548.2",
+      "caption": "Abdomen. Gastrointestinal surgery"
+    },
+    {
+      "spelling": "RD592.5-596",
+      "observed_uses": 198,
+      "start": "RD592.5",
+      "end": "RD596",
+      "caption": "Nervous system. Neurosurgery"
+    },
+    {
+      "spelling": "RD597-598.7",
+      "observed_uses": 75,
+      "start": "RD597",
+      "end": "RD598.7",
+      "caption": "Cardiovascular system"
+    },
+    {
+      "spelling": "RD598.5-598.7",
+      "observed_uses": 23,
+      "start": "RD598.5",
+      "end": "RD598.7",
+      "caption": "Blood vessels. Vascular surgery"
+    },
+    {
+      "spelling": "RF51-52",
+      "observed_uses": 45,
+      "start": "RF51",
+      "end": "RF52",
+      "caption": "Surgery"
+    },
+    {
+      "spelling": "RG499.2-991",
+      "observed_uses": 150,
+      "start": "RG499.2",
+      "end": "RG991",
+      "caption": "Obstetrics"
+    },
+    {
+      "spelling": "RJ101-104.2",
+      "observed_uses": 23,
+      "start": "RJ101",
+      "end": "RJ104.2",
+      "caption": "Child health. Child health services. Preventive health services for children"
+    },
+    {
+      "spelling": "RM171-174",
+      "observed_uses": 7,
+      "start": "RM171",
+      "end": "RM174",
+      "caption": "Blood transfusion"
+    },
+    {
+      "spelling": "RM315-334",
+      "observed_uses": 60,
+      "start": "RM315",
+      "end": "RM334",
+      "caption": "Drugs acting on the nervous system. Neuropsychopharmacology"
+    },
+    {
+      "spelling": "RM695-950",
+      "observed_uses": 30,
+      "start": "RM695",
+      "end": "RM950",
+      "caption": "Physical medicine. Physical therapy"
+    },
+    {
+      "spelling": "RM735-735.7",
+      "observed_uses": 11,
+      "start": "RM735",
+      "end": "RM735.7",
+      "caption": "Occupational therapy. Rehabilitation"
+    },
+    {
+      "spelling": "RM845-862.5",
+      "observed_uses": 76,
+      "start": "RM845",
+      "end": "RM862.5",
+      "caption": "Radiotherapy"
+    },
+    {
+      "spelling": "RM930-950",
+      "observed_uses": 39,
+      "start": "RM930",
+      "end": "RM950",
+      "caption": "Rehabilitation therapy"
+    },
+    {
+      "spelling": "RT71-81",
+      "observed_uses": 1,
+      "start": "RT71",
+      "end": "RT81",
+      "caption": "Study and teaching"
+    },
+    {
+      "spelling": "RZ201-275.2",
+      "observed_uses": 14,
+      "start": "RZ201",
+      "end": "RZ275.2",
+      "caption": "Chiropractic"
+    },
+    {
+      "spelling": "SB123-123.5",
+      "observed_uses": 147,
+      "start": "SB123",
+      "end": "SB123.5",
+      "caption": "Breeding, crossing, selection, etc."
+    },
+    {
+      "spelling": "SB469-476.422",
+      "observed_uses": 13,
+      "start": "SB469",
+      "end": "SB476.422",
+      "caption": "Landscape gardening. Landscape architecture"
+    },
+    {
+      "spelling": "T14.7-T33",
+      "observed_uses": 4,
+      "start": "T14.7",
+      "end": "T33",
+      "caption": "History"
+    },
+    {
+      "spelling": "TA157-158.3",
+      "observed_uses": 20,
+      "start": "TA157",
+      "end": "TA158.3",
+      "caption": "Engineering as a profession. Engineers"
+    },
+    {
+      "spelling": "TA157-TA158.3",
+      "observed_uses": 1,
+      "start": "TA157",
+      "end": "TA158.3",
+      "caption": "Engineering as a profession. Engineers"
+    },
+    {
+      "spelling": "TA1637-1638",
+      "observed_uses": 323,
+      "start": "TA1637",
+      "end": "TA1638",
+      "caption": "Image processing"
+    },
+    {
+      "spelling": "TA1671-1707",
+      "observed_uses": 365,
+      "start": "TA1671",
+      "end": "TA1707",
+      "caption": "Lasers and laser applications"
+    },
+    {
+      "spelling": "TA1750-1750.22",
+      "observed_uses": 75,
+      "start": "TA1750",
+      "end": "TA1750.22",
+      "caption": "Applied electrooptics. Electrooptical devices. Optoelectronics"
+    },
+    {
+      "spelling": "TA342-343",
+      "observed_uses": 130,
+      "start": "TA342",
+      "end": "TA343",
+      "caption": "Mathematical models"
+    },
+    {
+      "spelling": "TA345-345.5",
+      "observed_uses": 211,
+      "start": "TA345",
+      "end": "TA345.5",
+      "caption": "Electronic data processing. Computer-aided engineering"
+    },
+    {
+      "spelling": "TA352-356",
+      "observed_uses": 161,
+      "start": "TA352",
+      "end": "TA356",
+      "caption": "Applied dynamics"
+    },
+    {
+      "spelling": "TA357-359",
+      "observed_uses": 289,
+      "start": "TA357",
+      "end": "TA359",
+      "caption": "Applied fluid mechanics"
+    },
+    {
+      "spelling": "TA365-367.5",
+      "observed_uses": 21,
+      "start": "TA365",
+      "end": "TA367.5",
+      "caption": "Acoustics in engineering. Acoustical engineering"
+    },
+    {
+      "spelling": "TA405-409.3",
+      "observed_uses": 4,
+      "start": "TA405",
+      "end": "TA409.3",
+      "caption": "Strength of materials. Mechanics of materials"
+    },
+    {
+      "spelling": "TA418.7-418.76",
+      "observed_uses": 102,
+      "start": "TA418.7",
+      "end": "TA418.76",
+      "caption": "Surface effects and tests"
+    },
+    {
+      "spelling": "TA459-492",
+      "observed_uses": 166,
+      "start": "TA459",
+      "end": "TA492",
+      "caption": "Metals"
+    },
+    {
+      "spelling": "TA640-643",
+      "observed_uses": 291,
+      "start": "TA640",
+      "end": "TA643",
+      "caption": "Computational methods"
+    },
+    {
+      "spelling": "TA703-705.4",
+      "observed_uses": 243,
+      "start": "TA703",
+      "end": "TA705.4",
+      "caption": "Engineering geology. Geotechnical engineering"
+    },
+    {
+      "spelling": "TA775-787",
+      "observed_uses": 78,
+      "start": "TA775",
+      "end": "TA787",
+      "caption": "Foundations"
+    },
+    {
+      "spelling": "TD201-500.2",
+      "observed_uses": 29,
+      "start": "TD201",
+      "end": "TD500.2",
+      "caption": "Water supply for domestic and industrial purposes"
+    },
+    {
+      "spelling": "TD881-890",
+      "observed_uses": 148,
+      "start": "TD881",
+      "end": "TD890",
+      "caption": "Air pollution and its control"
+    },
+    {
+      "spelling": "TD891-894",
+      "observed_uses": 9,
+      "start": "TD891",
+      "end": "TD894",
+      "caption": "Noise and its control"
+    },
+    {
+      "spelling": "TH9111-9745",
+      "observed_uses": 2,
+      "start": "TH9111",
+      "end": "TH9745",
+      "caption": "Protection from fire. Fire prevention and extinction"
+    },
+    {
+      "spelling": "TJ1075-1081",
+      "observed_uses": 22,
+      "start": "TJ1075",
+      "end": "TJ1081",
+      "caption": "Tribology. Lubrication and friction"
+    },
+    {
+      "spelling": "TJ210.2-211.495",
+      "observed_uses": 176,
+      "start": "TJ210.2",
+      "end": "TJ211.495",
+      "caption": "Mechanical devices and figures. Automata. Ingenious mechanisms. Robots (General)"
+    },
+    {
+      "spelling": "TK5105.5-5105.9",
+      "observed_uses": 518,
+      "start": "TK5105.5",
+      "end": "TK5105.9",
+      "caption": "Computer networks"
+    },
+    {
+      "spelling": "TK7867-7867.5",
+      "observed_uses": 15,
+      "start": "TK7867",
+      "end": "TK7867.5",
+      "caption": "Electronic circuits (General)"
+    },
+    {
+      "spelling": "TK7876-7876.42",
+      "observed_uses": 50,
+      "start": "TK7876",
+      "end": "TK7876.42",
+      "caption": "Microwaves"
+    },
+    {
+      "spelling": "TL1-4",
+      "observed_uses": 2,
+      "start": "TL1",
+      "end": "TL4",
+      "caption": "Periodicals and societies"
+    },
+    {
+      "spelling": "TL1-483",
+      "observed_uses": 269,
+      "start": "TL1",
+      "end": "TL483",
+      "caption": "Motor vehicles"
+    },
+    {
+      "spelling": "TL787-4050.22",
+      "observed_uses": 155,
+      "start": "TL787",
+      "end": "TL4050.22",
+      "caption": "Astronautics. Space travel"
+    },
+    {
+      "spelling": "TP807-823",
+      "observed_uses": 118,
+      "start": "TP807",
+      "end": "TP823",
+      "caption": "Ceramic technology. Pottery"
+    },
+    {
+      "spelling": "TS171-171.6",
+      "observed_uses": 14,
+      "start": "TS171",
+      "end": "TS171.6",
+      "caption": "Product design. Industrial design"
+    },
+    {
+      "spelling": "TS800-915",
+      "observed_uses": 14,
+      "start": "TS800",
+      "end": "TS915",
+      "caption": "Wood technology. Lumber"
+    },
+    {
+      "spelling": "Z4-Z15.2",
+      "observed_uses": 5,
+      "start": "Z4",
+      "end": "Z15.2",
+      "caption": "History of books and bookmaking"
+    },
+    {
+      "spelling": "Z5630-5635",
+      "observed_uses": 1,
+      "start": "Z5630",
+      "end": "Z5635",
+      "caption": "Communication. Mass media"
+    },
+    {
+      "spelling": "Z664.2-718.85",
+      "observed_uses": 24,
+      "start": "Z664.2",
+      "end": "Z718.85",
+      "caption": "Library science. Information science"
+    }
+  ]
+}

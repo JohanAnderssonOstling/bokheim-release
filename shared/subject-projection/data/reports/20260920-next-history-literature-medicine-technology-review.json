@@ -1,0 +1,2508 @@
+[
+  {
+    "id": 13859,
+    "label": "General, Reference & Historiography",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3677,
+        "label": "Australian"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DU80",
+          "DU113.5",
+          13859
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52295,
+    "label": "Historical Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3635,
+        "label": "Egyptian"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DT43",
+          "DT44.999",
+          52295
+        ],
+        [
+          "DT46",
+          "DT49.97",
+          52295
+        ],
+        [
+          "DT74",
+          "DT80.999",
+          52295
+        ]
+      ],
+      "lcc_selector": [
+        [
+          52295,
+          "DT43"
+        ],
+        [
+          52295,
+          "DT44"
+        ],
+        [
+          52295,
+          "DT46"
+        ],
+        [
+          52295,
+          "DT48"
+        ],
+        [
+          52295,
+          "DT49"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 51931,
+    "label": "Historical Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 51930,
+        "label": "Cypriot"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DS54.A2",
+          "DS54.A35",
+          51931
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13846,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3613,
+        "label": "Spanish"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DP1",
+          "DP86",
+          13846
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13888,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3611,
+        "label": "Portuguese"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DP501",
+          "DP520.5",
+          13888
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13933,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3584,
+        "label": "Swedish"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DL601",
+          "DL614.5",
+          13933
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13930,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3583,
+        "label": "Norwegian"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DL401",
+          "DL414.Z",
+          13930
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13937,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3581,
+        "label": "Finnish"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DL1002",
+          "DL1014.7",
+          13937
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13927,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3580,
+        "label": "Danish"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DL101",
+          "DL114.5",
+          13927
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13622,
+    "label": "Roman Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3571,
+        "label": "Ancient Era, to 476"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DG12.2",
+          "DG12.3",
+          13622
+        ],
+        [
+          "DG14",
+          "DG15",
+          13622
+        ]
+      ],
+      "lcc_selector": [
+        [
+          13622,
+          "DG11"
+        ],
+        [
+          13622,
+          "DG12"
+        ],
+        [
+          13622,
+          "DG12.5"
+        ],
+        [
+          13622,
+          "DG13"
+        ],
+        [
+          13622,
+          "DG16"
+        ],
+        [
+          13622,
+          "DG202"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52023,
+    "label": "Papal States & Vatican Historical Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 10562,
+        "label": "Papal States, Holy See & Vatican"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DG791",
+          "DG792.5",
+          52023
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52001,
+    "label": "Historical Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 52000,
+        "label": "Liechtenstein"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DB881",
+          "DB887",
+          52001
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13998,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3540,
+        "label": "Slovak"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DB2700",
+          "DB2717",
+          13998
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13882,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3538,
+        "label": "Czechoslovak"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DB2000",
+          "DB2043.9",
+          13882
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13872,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3537,
+        "label": "Austrian"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DB1",
+          "DB49",
+          13872
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13899,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3524,
+        "label": "German"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DD1",
+          "DD15.5",
+          13899
+        ],
+        [
+          "DD17",
+          "DD21.3",
+          13899
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13911,
+    "label": "Balkan Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3541,
+        "label": "Balkan Peninsula"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DR1",
+          "DR10",
+          13911
+        ],
+        [
+          "DR17",
+          "DR23.Z",
+          13911
+        ]
+      ],
+      "lcc_selector": [
+        [
+          13911,
+          "DR10.5"
+        ],
+        [
+          13911,
+          "DR11"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 51958,
+    "label": "Bosnian Historical Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 51957,
+        "label": "Bosnia and Herzegovina"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DR1652",
+          "DR1670.999",
+          51958
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 51946,
+    "label": "Historical Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 51945,
+        "label": "Slovenian"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DR1352",
+          "DR1370.999",
+          51946
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 51984,
+    "label": "Historical Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 51683,
+        "label": "Kosovo"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DR2075",
+          "DR2077",
+          51984
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13905,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3551,
+        "label": "Turkish"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DR401",
+          "DR420.Z",
+          13905
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13894,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3548,
+        "label": "Romanian"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DR201",
+          "DR206.9",
+          13894
+        ],
+        [
+          "DR211",
+          "DR214.2",
+          13894
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13916,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3545,
+        "label": "Bulgarian"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DR51",
+          "DR56.7",
+          13916
+        ],
+        [
+          "DR61",
+          "DR64.2.Z",
+          13916
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 14005,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3544,
+        "label": "Albanian"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DR901",
+          "DR908.9",
+          14005
+        ],
+        [
+          "DR910",
+          "DR914.5",
+          14005
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13969,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3603,
+        "label": "Ukrainian"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DK5001",
+          "DK5019",
+          13969
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13870,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3579,
+        "label": "Dutch"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DJ1",
+          "DJ92",
+          13870
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 51921,
+    "label": "Historical Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3578,
+        "label": "Luxembourg"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DH901",
+          "DH905.5",
+          51921
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13920,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3577,
+        "label": "Belgian"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DH401",
+          "DH430.5",
+          13920
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13987,
+    "label": "Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3586,
+        "label": "Azerbaijani"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb into the existing country/region/era parent, preserving its exact code coverage. This removes a general reference leaf, not a geographic or period subject.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DK690",
+          "DK697.09",
+          13987
+        ],
+        [
+          "DK697.81",
+          "DK698.99",
+          13987
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 53427,
+    "label": "General Studies",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3695,
+        "label": "World War II"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb broad general/publication/topic coverage into its existing parent; preserve named specialist children elsewhere.",
+    "codes": {
+      "lcc_range": [
+        [
+          "D743",
+          "D744.3",
+          53427
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 53428,
+    "label": "Special Topics",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3695,
+        "label": "World War II"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb broad general/publication/topic coverage into its existing parent; preserve named specialist children elsewhere.",
+    "codes": {
+      "lcc_range": [
+        [
+          "D810",
+          "D810.Z",
+          53428
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 6331,
+    "label": "Congresses & Conferences",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3694,
+        "label": "World War I"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb broad general/publication/topic coverage into its existing parent; preserve named specialist children elsewhere.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          6331,
+          "D504"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 50831,
+    "label": "Reference & Collected Works",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3622,
+        "label": "Civilization"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb broad general/publication/topic coverage into its existing parent; preserve named specialist children elsewhere.",
+    "codes": {
+      "lcc_range": [
+        [
+          "CB3",
+          "CB13",
+          50831
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 50833,
+    "label": "General Works on",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3622,
+        "label": "Civilization"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb broad general/publication/topic coverage into its existing parent; preserve named specialist children elsewhere.",
+    "codes": {
+      "lcc_range": [
+        [
+          "CB23",
+          "CB113.Z",
+          50833
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 8015,
+    "label": "Congresses & Conferences",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3621,
+        "label": "Post-war 1945-"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb broad general/publication/topic coverage into its existing parent; preserve named specialist children elsewhere.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          8015,
+          "D839.2"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 6665,
+    "label": "Essays",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3619,
+        "label": "Interwar Period, 1919–1939"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb broad general/publication/topic coverage into its existing parent; preserve named specialist children elsewhere.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          6665,
+          "D725"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13268,
+    "label": "Coins—General",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3675,
+        "label": "Numismatics"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb broad general/publication/topic coverage into its existing parent; preserve named specialist children elsewhere.",
+    "codes": {
+      "lcc_range": [
+        [
+          "CJ1",
+          "CJ200.9",
+          13268
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13698,
+    "label": "General Reference",
+    "status": "Recommended wrapper merge",
+    "parents": [
+      {
+        "id": 3402,
+        "label": "U.S."
+      }
+    ],
+    "children": [
+      {
+        "id": 51139,
+        "label": "U.S. Historic Places"
+      },
+      {
+        "id": 51140,
+        "label": "U.S. National & State Parks"
+      },
+      {
+        "id": 51141,
+        "label": "U.S. Social Life & Customs"
+      },
+      {
+        "id": 51142,
+        "label": "U.S. Geography"
+      },
+      {
+        "id": 51143,
+        "label": "U.S. Culture & Intellectual Life"
+      }
+    ],
+    "proposal": "Absorb into U.S. History, promoting existing historic-place, geography, culture, historiography and study children. Do not delete those substantive children.",
+    "codes": {
+      "lcc_range": [
+        [
+          "E151",
+          "E157.999",
+          13698
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13699,
+    "label": "Historical Reference",
+    "status": "Recommended wrapper merge",
+    "parents": [
+      {
+        "id": 3402,
+        "label": "U.S."
+      }
+    ],
+    "children": [
+      {
+        "id": 51133,
+        "label": "U.S. Historiography"
+      },
+      {
+        "id": 51134,
+        "label": "Teaching U.S."
+      },
+      {
+        "id": 51135,
+        "label": "Philosophy of U.S."
+      },
+      {
+        "id": 51138,
+        "label": "U.S. Historical Geography"
+      }
+    ],
+    "proposal": "Absorb into U.S. History, promoting existing historic-place, geography, culture, historiography and study children. Do not delete those substantive children.",
+    "codes": {
+      "lcc_range": [
+        [
+          "E171",
+          "E174.999",
+          13699
+        ],
+        [
+          "E178",
+          "E179.499",
+          13699
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 6953,
+    "label": "Roman Lit. Essays & Lectures",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 4457,
+        "label": "Roman Literary History"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          6953,
+          "PA6011"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 8411,
+    "label": "Greek Lit. Essays & Lectures",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 4256,
+        "label": "Greek Literary History"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          8411,
+          "PA3061"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 9004,
+    "label": "Societies. Congresses",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 4471,
+        "label": "Spanish Literary Studies"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          9004,
+          "PQ6002"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 7470,
+    "label": "Literary Criticism Essays",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3924,
+        "label": "Literary History & Criticism"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [
+        [
+          "PR67",
+          "PR78",
+          7470
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 6218,
+    "label": "General collections",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3919,
+        "label": "English Literary Collections"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [
+        [
+          "PR1101",
+          "PR1116",
+          6218
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": [
+        [
+          "828",
+          6218
+        ]
+      ]
+    }
+  },
+  {
+    "id": 6914,
+    "label": "Collected essays",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 3930,
+        "label": "Poetry"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          6914,
+          "PR503"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 7144,
+    "label": "Miscellaneous Essays",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 4382,
+        "label": "Poetry"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          7144,
+          "PN1055"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13733,
+    "label": "Drama Dictionaries & Indexes",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 4372,
+        "label": "Drama"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [
+        [
+          "PN1625",
+          "PN1627",
+          13733
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13735,
+    "label": "General Works on Drama & Stage",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 4372,
+        "label": "Drama"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [
+        [
+          "PN1654",
+          "PN1655",
+          13735
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 6866,
+    "label": "Dictionaries. Terminology",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 4386,
+        "label": "Performing Arts & Show Business"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          6866,
+          "PN1579"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 7582,
+    "label": "Congresses & Conferences",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 4386,
+        "label": "Performing Arts & Show Business"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          7582,
+          "PN1574"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13680,
+    "label": "U.S. Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 4311,
+        "label": "American Literary Criticism"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb study/reference/critical collections into the existing topical parent; these are not a recommendation to remove the separate literary essay genre.",
+    "codes": {
+      "lcc_range": [
+        [
+          "PS1",
+          "PS54",
+          13680
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 9042,
+    "label": "General collections",
+    "status": "Recommended wrapper merge",
+    "parents": [
+      {
+        "id": 4280,
+        "label": "Literary Collections"
+      }
+    ],
+    "children": [
+      {
+        "id": 54038,
+        "label": "American English"
+      },
+      {
+        "id": 54039,
+        "label": "English"
+      },
+      {
+        "id": 54040,
+        "label": "Other Germanic"
+      },
+      {
+        "id": 54041,
+        "label": "French, Occitan & Catalan"
+      },
+      {
+        "id": 54042,
+        "label": "Italian & Romanian"
+      },
+      {
+        "id": 54043,
+        "label": "Spanish & Portuguese"
+      },
+      {
+        "id": 54044,
+        "label": "Slavic"
+      },
+      {
+        "id": 54045,
+        "label": "Scandinavian"
+      },
+      {
+        "id": 54046,
+        "label": "Other Languages"
+      }
+    ],
+    "proposal": "Absorb General Collections into Literary Collections and promote all nine language-specific children.",
+    "codes": {
+      "lcc_range": [
+        [
+          "PN6010",
+          "PN6069",
+          9042
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": [
+        [
+          "080",
+          9042
+        ]
+      ]
+    }
+  },
+  {
+    "id": 13176,
+    "label": "Immunologic Diseases—General",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 7540,
+        "label": "Immunologic diseases"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/study bucket into its existing broader medical/scientific parent; retain clinical specialties and specific scientific topics.",
+    "codes": {
+      "lcc_range": [
+        [
+          "RC581",
+          "RC599.9",
+          13176
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 50829,
+    "label": "General & Clinical Foundations",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 2713,
+        "label": "Neuroscience & Neuropsychiatry"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/study bucket into its existing broader medical/scientific parent; retain clinical specialties and specific scientific topics.",
+    "codes": {
+      "lcc_range": [
+        [
+          "RC321",
+          "RC330.Z",
+          50829
+        ],
+        [
+          "RC332",
+          "RC336.Z",
+          50829
+        ],
+        [
+          "RC340",
+          "RC343.29",
+          50829
+        ],
+        [
+          "RC343.4",
+          "RC345.Z",
+          50829
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5764,
+    "label": "Reference & General Health",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 2624,
+        "label": "Health & Fitness"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/study bucket into its existing broader medical/scientific parent; retain clinical specialties and specific scientific topics.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          5764,
+          "HEA020000"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 53326,
+    "label": "Physiology Reference, Study & Research",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 5043,
+        "label": "Human Physiology"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/study bucket into its existing broader medical/scientific parent; retain clinical specialties and specific scientific topics.",
+    "codes": {
+      "lcc_range": [
+        [
+          "QP1",
+          "QP80",
+          53326
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 53334,
+    "label": "Neurophysiology Reference, Study & Methods",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 5046,
+        "label": "Neurophysiology & Neuropsychology"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/study bucket into its existing broader medical/scientific parent; retain clinical specialties and specific scientific topics.",
+    "codes": {
+      "lcc_range": [
+        [
+          "QP351",
+          "QP353.2",
+          53334
+        ],
+        [
+          "QP353.5",
+          "QP359.9",
+          53334
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 53333,
+    "label": "Experimental Pharmacology Reference & Methods",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 5045,
+        "label": "Experimental pharmacology"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/study bucket into its existing broader medical/scientific parent; retain clinical specialties and specific scientific topics.",
+    "codes": {
+      "lcc_range": [
+        [
+          "QP901",
+          "QP910",
+          53333
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 7107,
+    "label": "Miscellany & curiosa",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 5044,
+        "label": "Animal biochemistry"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/study bucket into its existing broader medical/scientific parent; retain clinical specialties and specific scientific topics.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          7107,
+          "QP521"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 53335,
+    "label": "Animal Biochemistry Reference, Study & Methods",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 5044,
+        "label": "Animal biochemistry"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/study bucket into its existing broader medical/scientific parent; retain clinical specialties and specific scientific topics.",
+    "codes": {
+      "lcc_range": [
+        [
+          "QP501",
+          "QP510.9",
+          53335
+        ],
+        [
+          "QP512",
+          "QP519.6",
+          53335
+        ],
+        [
+          "QP520",
+          "QP524.9",
+          53335
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13660,
+    "label": "General Medical Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 2725,
+        "label": "Medicine"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/study bucket into its existing broader medical/scientific parent; retain clinical specialties and specific scientific topics.",
+    "codes": {
+      "lcc_range": [
+        [
+          "R5",
+          "R130.5",
+          13660
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 53482,
+    "label": "Electrical Engineering History & Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 5566,
+        "label": "Electrical & Electronic Engineering"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/history bucket into its existing parent. Retain specific technical disciplines, products, methods and regional subjects.",
+    "codes": {
+      "lcc_range": [
+        [
+          "TK1",
+          "TK159",
+          53482
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 53270,
+    "label": "Applied Mechanics Fundamentals & Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 290,
+        "label": "Applied Mechanics"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/history bucket into its existing parent. Retain specific technical disciplines, products, methods and regional subjects.",
+    "codes": {
+      "lcc_range": [
+        [
+          "TA349",
+          "TA350.999",
+          53270
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52970,
+    "label": "Computer Science Periodicals & Societies",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 12684,
+        "label": "Computer Science Resources"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/history bucket into its existing parent. Retain specific technical disciplines, products, methods and regional subjects.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          52970,
+          "QA75.5"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52971,
+    "label": "Computer Science Dictionaries & Encyclopedias",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 12684,
+        "label": "Computer Science Resources"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/history bucket into its existing parent. Retain specific technical disciplines, products, methods and regional subjects.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          52971,
+          "QA76.15"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13151,
+    "label": "Plant Health Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 5887,
+        "label": "Plant Health, Pests & Protection"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/history bucket into its existing parent. Retain specific technical disciplines, products, methods and regional subjects.",
+    "codes": {
+      "lcc_range": [
+        [
+          "SB599",
+          "SB609.9",
+          13151
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12899,
+    "label": "General Flower Gardening",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 12343,
+        "label": "Flowers & Ornamental Plants"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/history bucket into its existing parent. Retain specific technical disciplines, products, methods and regional subjects.",
+    "codes": {
+      "lcc_range": [
+        [
+          "SB403",
+          "SB450.87",
+          12899
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          12899,
+          "GAR004000"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13010,
+    "label": "General Fisheries & Resources",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 24,
+        "label": "Fisheries"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/history bucket into its existing parent. Retain specific technical disciplines, products, methods and regional subjects.",
+    "codes": {
+      "lcc_range": [
+        [
+          "SH201",
+          "SH212.9",
+          13010
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13123,
+    "label": "Angling History & Reference",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 21,
+        "label": "Angling"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/history bucket into its existing parent. Retain specific technical disciplines, products, methods and regional subjects.",
+    "codes": {
+      "lcc_range": [
+        [
+          "SH400",
+          "SH446.9",
+          13123
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5794,
+    "label": "History & General Works",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 19,
+        "label": "Animal Husbandry"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/history bucket into its existing parent. Retain specific technical disciplines, products, methods and regional subjects.",
+    "codes": {
+      "lcc_range": [
+        [
+          "SF41",
+          "SF55",
+          5794
+        ],
+        [
+          "SF51",
+          "SF55",
+          5794
+        ],
+        [
+          "SF84",
+          "SF84.64",
+          5794
+        ],
+        [
+          "SF84.4",
+          "SF84.45",
+          5794
+        ],
+        [
+          "SF84.6",
+          "SF84.64",
+          5794
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 7612,
+    "label": "General Urban Plan Collections",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 555,
+        "label": "Urban Design"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/history bucket into its existing parent. Retain specific technical disciplines, products, methods and regional subjects.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          7612,
+          "NA9100"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 9152,
+    "label": "General & international",
+    "status": "Recommended merge",
+    "parents": [
+      {
+        "id": 568,
+        "label": "Competitions"
+      }
+    ],
+    "children": [],
+    "proposal": "Absorb the general/reference/history bucket into its existing parent. Retain specific technical disciplines, products, methods and regional subjects.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          9152,
+          "NA2335"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 6301,
+    "label": "Collected Works",
+    "status": "Correct scope first",
+    "parents": [
+      {
+        "id": 2718,
+        "label": "Internal Medicine Specialties"
+      }
+    ],
+    "children": [],
+    "proposal": "RC705 is collected works on respiratory diseases, not general internal medicine. Route it to the existing respiratory-disease/pulmonology subject rather than the current parent. Source: LCC RC page 153.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          6301,
+          "RC705"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 4374,
+    "label": "Essays Literary history",
+    "status": "Correct scope first",
+    "parents": [
+      {
+        "id": 4378,
+        "label": "Literary History"
+      }
+    ],
+    "children": [],
+    "proposal": "PN4500 is cross-referenced as essay writing in LCC PN page 29. Review the full entry and reconcile with an essay-writing subject, not general literary history.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [
+        [
+          4374,
+          "PN4500"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 7603,
+    "label": "Other special accessories",
+    "status": "Retain or clarify label",
+    "parents": [
+      {
+        "id": 203,
+        "label": "Building Details"
+      }
+    ],
+    "children": [],
+    "proposal": "TH2252–TH2279 covers actual building components: columns, fixed ladders, ramps and openings/fittings. Generic label does not imply miscellaneous publications. Source: LCC TH page 142.",
+    "codes": {
+      "lcc_range": [
+        [
+          "TH2252",
+          "TH2279",
+          7603
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 9453,
+    "label": "Miscellaneous fiber products",
+    "status": "Retain or clarify label",
+    "parents": [
+      {
+        "id": 358,
+        "label": "Textile industries"
+      }
+    ],
+    "children": [],
+    "proposal": "TS1784–TS1850 includes real fiber products, beginning with cordage. Do not treat it as bibliographic miscellany.",
+    "codes": {
+      "lcc_range": [
+        [
+          "TS1784",
+          "TS1850",
+          9453
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13896,
+    "label": "General Transylvania",
+    "status": "Retain geographic scope",
+    "parents": [
+      {
+        "id": 13762,
+        "label": "Local"
+      }
+    ],
+    "children": [],
+    "proposal": "General Transylvania is a geographic subject, not a generic reference leaf; merging into Local would lose the named region.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DR279",
+          "DR280.19",
+          13896
+        ],
+        [
+          "DR280.27",
+          "DR280.39",
+          13896
+        ],
+        [
+          "DR280.45",
+          "DR280.69",
+          13896
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 11572,
+    "label": "General & Soviet Era",
+    "status": "Separate hierarchy review",
+    "parents": [
+      {
+        "id": 3595,
+        "label": "Russian"
+      }
+    ],
+    "children": [
+      {
+        "id": 12626,
+        "label": "Society & Culture"
+      },
+      {
+        "id": 12627,
+        "label": "Peoples & Ethnography"
+      },
+      {
+        "id": 12628,
+        "label": "Military & Naval"
+      },
+      {
+        "id": 12629,
+        "label": "Foreign Relations"
+      },
+      {
+        "id": 12630,
+        "label": "Early Era, through 1613"
+      },
+      {
+        "id": 12631,
+        "label": "Romanov Era, 1613–1917"
+      },
+      {
+        "id": 12632,
+        "label": "Revolution & Civil War, 1917–1921"
+      },
+      {
+        "id": 12633,
+        "label": "Soviet Era, 1918–1991"
+      }
+    ],
+    "proposal": "General & Soviet Era mixes meaningful Russian historical periods; do not absorb based on the word General.",
+    "codes": {
+      "lcc_range": [
+        [
+          "DK1",
+          "DK18.9",
+          11572
+        ],
+        [
+          "DK36",
+          "DK49",
+          11572
+        ],
+        [
+          "DK60",
+          "DK64",
+          11572
+        ]
+      ],
+      "lcc_selector": [
+        [
+          11572,
+          "DK15"
+        ],
+        [
+          11572,
+          "DK18.7"
+        ],
+        [
+          11572,
+          "DK18.8"
+        ],
+        [
+          11572,
+          "DK293"
+        ],
+        [
+          11572,
+          "DK295"
+        ],
+        [
+          11572,
+          "DK30"
+        ],
+        [
+          11572,
+          "DK5095.M65"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 9349,
+    "label": "Literary Collections Miscellany",
+    "status": "Further source review",
+    "parents": [
+      {
+        "id": 4280,
+        "label": "Literary Collections"
+      }
+    ],
+    "children": [],
+    "proposal": "PN6249–PN6381 covers literary collection forms/topics; do not flatten based solely on Miscellany.",
+    "codes": {
+      "lcc_range": [
+        [
+          "PN6249",
+          "PN6381",
+          9349
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13843,
+    "label": "Theater Reference & Culture",
+    "status": "Further source review",
+    "parents": [
+      {
+        "id": 4373,
+        "label": "Theatrical Performance"
+      }
+    ],
+    "children": [],
+    "proposal": "Theater Reference & Culture has broad PN2000–PN2060.Z / PN2205–PN2217 scope; confirm cultural/theoretical content before deciding on parent absorption.",
+    "codes": {
+      "lcc_range": [
+        [
+          "PN2000",
+          "PN2060.Z",
+          13843
+        ],
+        [
+          "PN2205",
+          "PN2217",
+          13843
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 13684,
+    "label": "American Drama—Special Topics",
+    "status": "Further source review",
+    "parents": [
+      {
+        "id": 4311,
+        "label": "American Literary Criticism"
+      }
+    ],
+    "children": [],
+    "proposal": "American Drama—Special Topics is PS338; belongs to a particular literary form, not automatically all American literary criticism.",
+    "codes": {
+      "lcc_range": [
+        [
+          "PS338.A",
+          "PS338.Z",
+          13684
+        ]
+      ],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5931,
+    "label": "General Engineering Practice",
+    "status": "Retain useful grouping",
+    "parents": [
+      {
+        "id": 5564,
+        "label": "Civil, Structural & Construction"
+      }
+    ],
+    "children": [
+      {
+        "id": 280,
+        "label": "Engineering design"
+      },
+      {
+        "id": 281,
+        "label": "Engineering economy"
+      },
+      {
+        "id": 283,
+        "label": "Engineering Instruments"
+      },
+      {
+        "id": 284,
+        "label": "Engineering Tools & Machinery"
+      },
+      {
+        "id": 287,
+        "label": "Ergonomics"
+      },
+      {
+        "id": 288,
+        "label": "Engineering Management"
+      }
+    ],
+    "proposal": "Six substantive engineering-practice children. The word General does not make the parent redundant.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5784,
+    "label": "General & Operative Surgery",
+    "status": "Retain or separate surgical review",
+    "parents": [
+      {
+        "id": 2854,
+        "label": "Surgery"
+      }
+    ],
+    "children": [
+      {
+        "id": 2856,
+        "label": "Anesthesiology"
+      },
+      {
+        "id": 2869,
+        "label": "Operative Surgery Techniques"
+      },
+      {
+        "id": 2880,
+        "label": "Surgical pathology"
+      },
+      {
+        "id": 2881,
+        "label": "Surgical & Traumatic Shock"
+      },
+      {
+        "id": 6726,
+        "label": "Post anesthesia nursing"
+      }
+    ],
+    "proposal": "Contains anesthesiology, operative techniques, surgical pathology, shock and post-anesthesia nursing. Do not erase these specialties during a reference-bucket pass.",
+    "codes": {
+      "lcc_range": [
+        [
+          "RD91",
+          "RD91.5",
+          5784
+        ]
+      ],
+      "lcc_selector": [
+        [
+          5784,
+          "RD30"
+        ],
+        [
+          5784,
+          "RD31"
+        ],
+        [
+          5784,
+          "RD58"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 584,
+    "label": "Architect Essays",
+    "status": "Retain form pending explicit choice",
+    "parents": [
+      {
+        "id": 583,
+        "label": "Individual Architects & Firms"
+      }
+    ],
+    "children": [],
+    "proposal": "Architect Essays is BISAC ARC006010 and a recognizable author/form category; not an automatically redundant LCC general-works leaf.",
+    "codes": {
+      "lcc_range": [],
+      "lcc_selector": [],
+      "bisac_selector": [
+        [
+          584,
+          "ARC006010"
+        ]
+      ],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5888,
+    "label": "History, Regions & Reference",
+    "status": "Further source review",
+    "parents": [
+      {
+        "id": 35,
+        "label": "Plant Production & Horticulture"
+      }
+    ],
+    "children": [],
+    "proposal": "History, Regions & Reference mixes SB39 with agricultural geography/history; regional meaning should be checked before absorption.",
+    "codes": {
+      "lcc_range": [
+        [
+          "SB71",
+          "SB87",
+          5888
+        ],
+        [
+          "SB73",
+          "SB77",
+          5888
+        ],
+        [
+          "SB83",
+          "SB87",
+          5888
+        ]
+      ],
+      "lcc_selector": [
+        [
+          5888,
+          "SB39"
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  }
+]

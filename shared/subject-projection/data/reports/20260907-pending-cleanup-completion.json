@@ -1,0 +1,311 @@
+{
+  "items": [
+    {
+      "item": "Religion Reference",
+      "status": "complete",
+      "evidence": "Only REL054000 remains; Hinduism and regional spans relocated; all substantive children promoted."
+    },
+    {
+      "item": "Religion, Society & Culture",
+      "status": "complete",
+      "evidence": "Duplicate LCC subject merged into 5526; distinct BISAC topics routed to existing or new subjects."
+    },
+    {
+      "item": "Comparative & Interfaith Studies",
+      "status": "complete",
+      "evidence": "Comparative range consolidated; narrower BL410–424.99 belongs to Ecumenism & Interfaith."
+    },
+    {
+      "item": "Religious Organization & Leadership",
+      "status": "complete",
+      "evidence": "Original institutional range merged; monasticism, clergy, missions, prophecy, media, conversion, apostasy and religious freedom distinguished."
+    },
+    {
+      "item": "Philosophy of Religion",
+      "status": "complete",
+      "evidence": "BD573 consolidated into existing subject 4538; duplicate removed."
+    },
+    {
+      "item": "Religious Practice & Institutions",
+      "status": "complete",
+      "evidence": "Empty grouping removed; all seven children are direct Religion children."
+    },
+    {
+      "item": "Historical & Esoteric Psychology",
+      "status": "complete",
+      "evidence": "Palmistry duplicates merged into divination; hypnotism, mental training and hand topic promoted; historical methods retained together under psychology history."
+    },
+    {
+      "item": "Consumer, Product & Public Safety",
+      "status": "complete",
+      "evidence": {
+        "result": "Manufacturing, consumer protection, food, pharmaceuticals, hazardous materials, utilities, malpractice and trade separated.",
+        "remaining_on_original_id": {
+          "lcc_exact": 18,
+          "lcc_ranges": 15,
+          "bisac": 0
+        }
+      }
+    },
+    {
+      "item": "Government Structure & Elections",
+      "status": "complete",
+      "evidence": {
+        "result": "Federal/interstate, election, legislative, executive, judicial, state/local and statutory-reference topics separated; administrative selectors reused existing Administrative Law.",
+        "remaining_on_original_id": {
+          "lcc_exact": 2,
+          "lcc_ranges": 4,
+          "bisac": 1
+        }
+      }
+    },
+    {
+      "item": "Common, Customary & Indigenous Law",
+      "status": "complete",
+      "evidence": {
+        "result": "Common Law, Customary Law and Legal Anthropology distinguished; indigenous selectors allocated to three broad regions.",
+        "remaining_on_original_id": {
+          "lcc_exact": 17,
+          "lcc_ranges": 4,
+          "bisac": 0
+        }
+      }
+    },
+    {
+      "item": "Speculation, Futures & Derivatives",
+      "status": "complete",
+      "evidence": "Futures, options and weather derivatives have specific source subranges; general and stock speculation remain on Financial Speculation."
+    },
+    {
+      "item": "Remaining long names",
+      "status": "complete",
+      "evidence": {
+        "result": "All current labels over 35 characters reviewed; retained exceptions documented. Russian-only period duplicates corrected and merged; clear abbreviations and period names applied.",
+        "retained_count": 34
+      }
+    }
+  ],
+  "subjects_created": 47,
+  "duplicate_subjects_merged": 10,
+  "existing_labels_changed": 55,
+  "names_over35_remaining": 34,
+  "unique_observed_code_groups_checked": 2960835,
+  "aliases_added": 0,
+  "validation": "Every batch preserved all original selector strings and range bounds and observed coverage. Final live labels, routing, foreign keys, integrity and unique observed assignments verified.",
+  "retained_long_names": [
+    {
+      "id": 50871,
+      "name": "Brazilian Archaeology & Indigenous History",
+      "characters": 42,
+      "reason": "LCC intervals mix archaeology and Indigenous history, including ancient and modern material; no clean source boundary supports separating them."
+    },
+    {
+      "id": 1361,
+      "name": "Kids’ Self-Esteem & Self-Reliance Fiction",
+      "characters": 41,
+      "reason": "Preserves distinct combined topics plus audience and fiction context; shorter umbrella labels would lose specificity."
+    },
+    {
+      "id": 6943,
+      "name": "Cupping, Acupuncture & Counterirritation",
+      "characters": 40,
+      "reason": "Preserves medical distinctions; shortening would conflate different conditions or traditions. RM184 combines several therapies."
+    },
+    {
+      "id": 1184,
+      "name": "Kids’ Disability & Special Needs Fiction",
+      "characters": 40,
+      "reason": "Preserves distinct combined topics plus audience and fiction context; shorter umbrella labels would lose specificity."
+    },
+    {
+      "id": 50841,
+      "name": "Mexican Archaeology & Indigenous History",
+      "characters": 40,
+      "reason": "LCC intervals mix archaeology and Indigenous history, including ancient and modern material; no clean source boundary supports separating them."
+    },
+    {
+      "id": 2587,
+      "name": "Skin Hyperemia, Inflammation & Infection",
+      "characters": 40,
+      "reason": "Preserves medical distinctions; shortening would conflate different conditions or traditions. RM184 combines several therapies."
+    },
+    {
+      "id": 11818,
+      "name": "Socialism: Russia & Former Soviet Sphere",
+      "characters": 40,
+      "reason": "Historical Soviet-sphere scope is broader than Russia or the former USSR alone."
+    },
+    {
+      "id": 13295,
+      "name": "European Comparative Constitutional Law",
+      "characters": 39,
+      "reason": "User explicitly chose to retain Comparative and the legal field/geographic qualifiers."
+    },
+    {
+      "id": 13293,
+      "name": "European Comparative Labor & Social Law",
+      "characters": 39,
+      "reason": "User explicitly chose to retain Comparative and the legal field/geographic qualifiers."
+    },
+    {
+      "id": 1185,
+      "name": "Kids’ Diversity & Multicultural Fiction",
+      "characters": 39,
+      "reason": "Preserves distinct combined topics plus audience and fiction context; shorter umbrella labels would lose specificity."
+    },
+    {
+      "id": 1382,
+      "name": "Kids’ Visionary & Metaphysical Fiction",
+      "characters": 38,
+      "reason": "Preserves distinct combined topics plus audience and fiction context; shorter umbrella labels would lose specificity."
+    },
+    {
+      "id": 38,
+      "name": "Computer Vision & Pattern Recognition",
+      "characters": 37,
+      "reason": "One combined BISAC selector; keep both distinct topics rather than imply a supported selector split."
+    },
+    {
+      "id": 11279,
+      "name": "Independence, 1810–1830 (war to 1823)",
+      "characters": 37,
+      "reason": "Preserves historical scope, dates and any alternative or approximate period boundaries."
+    },
+    {
+      "id": 12702,
+      "name": "Middle High German, c. 1050–1450/1500",
+      "characters": 37,
+      "reason": "Preserves historical scope, dates and any alternative or approximate period boundaries."
+    },
+    {
+      "id": 51689,
+      "name": "Portuguese Political/Diplomatic Hist.",
+      "characters": 37,
+      "reason": "Reviewed historical fields, geographic scope and period retained; small overrun is acceptable."
+    },
+    {
+      "id": 11286,
+      "name": "Revolution, 1910–1920; Legacy to 1946",
+      "characters": 37,
+      "reason": "Preserves historical scope, dates and any alternative or approximate period boundaries."
+    },
+    {
+      "id": 5228,
+      "name": "Workplace Harassment & Discrimination",
+      "characters": 37,
+      "reason": "One combined BISAC selector; keep both distinct topics rather than imply a supported selector split."
+    },
+    {
+      "id": 1774,
+      "name": "YA Disability & Special Needs Fiction",
+      "characters": 37,
+      "reason": "Preserves distinct combined topics plus audience and fiction context; shorter umbrella labels would lose specificity."
+    },
+    {
+      "id": 13294,
+      "name": "Comparative European Court Procedure",
+      "characters": 36,
+      "reason": "User explicitly chose to retain Comparative and the legal field/geographic qualifiers."
+    },
+    {
+      "id": 5581,
+      "name": "Complementary & Traditional Medicine",
+      "characters": 36,
+      "reason": "Preserves medical distinctions; shortening would conflate different conditions or traditions. RM184 combines several therapies."
+    },
+    {
+      "id": 13132,
+      "name": "Entrepreneurship, Risk & Uncertainty",
+      "characters": 36,
+      "reason": "Established multi-part subject terminology retained for precision; small length overrun is acceptable."
+    },
+    {
+      "id": 5033,
+      "name": "Experimental & Descriptive Mechanics",
+      "characters": 36,
+      "reason": "Established multi-part subject terminology retained for precision; small length overrun is acceptable."
+    },
+    {
+      "id": 11432,
+      "name": "French Mandate/Occupation, 1919–1945",
+      "characters": 36,
+      "reason": "Preserves historical scope, dates and any alternative or approximate period boundaries."
+    },
+    {
+      "id": 51618,
+      "name": "Hungarian Political/Diplomatic Hist.",
+      "characters": 36,
+      "reason": "Reviewed historical fields, geographic scope and period retained; small overrun is acceptable."
+    },
+    {
+      "id": 51617,
+      "name": "Hungarian Society & Culture, 20th C.",
+      "characters": 36,
+      "reason": "Reviewed historical fields, geographic scope and period retained; small overrun is acceptable."
+    },
+    {
+      "id": 1187,
+      "name": "Kids’ Fairy Tales, Folklore & Fables",
+      "characters": 36,
+      "reason": "Preserves distinct combined topics plus audience and fiction context; shorter umbrella labels would lose specificity."
+    },
+    {
+      "id": 2405,
+      "name": "Mathematical Geography & Cartography",
+      "characters": 36,
+      "reason": "Established multi-part subject terminology retained for precision; small length overrun is acceptable."
+    },
+    {
+      "id": 797,
+      "name": "Music: Philosophy, Society & Physics",
+      "characters": 36,
+      "reason": "Established multi-part subject terminology retained for precision; small length overrun is acceptable."
+    },
+    {
+      "id": 10553,
+      "name": "Press, Censorship, Publicity & Radio",
+      "characters": 36,
+      "reason": "Preserves all four media and regulatory topics in the source selector."
+    },
+    {
+      "id": 6186,
+      "name": "Public Health: Noninfectious Disease",
+      "characters": 36,
+      "reason": "Preserves medical distinctions; shortening would conflate different conditions or traditions. RM184 combines several therapies."
+    },
+    {
+      "id": 10352,
+      "name": "Reformation–Consolidation, 1516–1648",
+      "characters": 36,
+      "reason": "Preserves historical scope, dates and any alternative or approximate period boundaries."
+    },
+    {
+      "id": 10136,
+      "name": "Spartan–Theban Supremacy, 404–362 BC",
+      "characters": 36,
+      "reason": "Preserves historical scope, dates and any alternative or approximate period boundaries."
+    },
+    {
+      "id": 1909,
+      "name": "YA Activism & Social Justice Fiction",
+      "characters": 36,
+      "reason": "Preserves distinct combined topics plus audience and fiction context; shorter umbrella labels would lose specificity."
+    },
+    {
+      "id": 1775,
+      "name": "YA Diversity & Multicultural Fiction",
+      "characters": 36,
+      "reason": "Preserves distinct combined topics plus audience and fiction context; shorter umbrella labels would lose specificity."
+    }
+  ],
+  "phase_reports": [
+    "20260907-pending-religion-cleanup.json",
+    "20260907-pending-psychology-investments.json",
+    "20260907-pending-law-cleanup.json",
+    "20260907-pending-name-review.json",
+    "20260907-pending-final-labels.json",
+    "20260907-pending-last-labels.json",
+    "20260907-pending-finish-labels.json",
+    "20260907-pending-concurrent-labels.json"
+  ]
+}

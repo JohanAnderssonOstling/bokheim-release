@@ -1,0 +1,64 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT application_theme, interface_font, heading_font, reader_theme,\n       reader_font_family, text_alignment, hyphenation, line_height\nFROM account_preferences\nWHERE user_id = $1\nFOR UPDATE;\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "application_theme",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 1,
+        "name": "interface_font",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "heading_font",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "reader_theme",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 4,
+        "name": "reader_font_family",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "text_alignment",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 6,
+        "name": "hyphenation",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 7,
+        "name": "line_height",
+        "type_info": "Float4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "ce4c5a8db1dacebd17cdc3b2637c141cc88beb22aecbc61e6f02ced9275e3bca"
+}

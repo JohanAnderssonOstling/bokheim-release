@@ -1,0 +1,28 @@
+{
+  "created": [],
+  "renamed": [
+    {
+      "id": 10959,
+      "before": "West Africa (Spanish Sahara to Zaire)",
+      "after": "West–Central African Philosophy"
+    },
+    {
+      "id": 51571,
+      "before": "First Turkish Republic & Kemalism, 1923–1960",
+      "after": "First Republic & Kemalism, 1923–1960"
+    },
+    {
+      "id": 51574,
+      "before": "Third Turkish Republic, 1980–Present",
+      "after": "Third Republic, 1980–Present"
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {},
+  "merged": [],
+  "empty_groupings_removed": [],
+  "verified_code_groups": 2960836,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0
+}

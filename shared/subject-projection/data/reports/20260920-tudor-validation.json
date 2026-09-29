@@ -1,0 +1,47 @@
+{
+  "observed_comparison": "Probes=11977153 changed=1727 losses=0 gains=0",
+  "boundary_comparison": "Probes=54700 changed=18 losses=0 gains=0",
+  "regression_tests": "13 passed after retry against updated routing source",
+  "library_tests": "253 passed; same four previously known failures; concurrent source changes added four tests",
+  "concept_count": 16735,
+  "usage_rows": 14024,
+  "database_sha256": "e9c0192ebe62c9ddc3ce3ddbf905cd04e0c2405591c8a89fc816c1b117db1872",
+  "changes_by_destination": [
+    {
+      "before": "3532",
+      "after": "10149",
+      "codes": 874,
+      "example": "DA355"
+    },
+    {
+      "before": "51438",
+      "after": "10149",
+      "codes": 509,
+      "example": "DA332"
+    },
+    {
+      "before": "51439",
+      "after": "10149",
+      "codes": 170,
+      "example": "DA347"
+    },
+    {
+      "before": "51430",
+      "after": "10149",
+      "codes": 100,
+      "example": "DA334.M8"
+    },
+    {
+      "before": "51437",
+      "after": "10149",
+      "codes": 74,
+      "example": "DA330"
+    }
+  ],
+  "viewer_verified": true,
+  "all_observed_changes_match_six_merges": true,
+  "all_selector_strings_and_range_boundaries_preserved": true,
+  "migration_replay_matches_preview": true,
+  "integrity_foreign_keys_cycles_sibling_labels_pass": true,
+  "tudor_is_leaf": true
+}

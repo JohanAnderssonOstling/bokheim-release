@@ -1,0 +1,1 @@
+CREATE TABLE asset_file(name TEXT PRIMARY KEY,physical_name TEXT);

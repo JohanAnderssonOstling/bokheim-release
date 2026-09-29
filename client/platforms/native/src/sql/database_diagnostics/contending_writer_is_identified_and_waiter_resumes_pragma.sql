@@ -1,0 +1,1 @@
+PRAGMA journal_mode=WAL; CREATE TABLE test(id INTEGER)

@@ -1,0 +1,40 @@
+{
+  "merges": {
+    "53131": {
+      "into": 9056,
+      "old_label": "Educational Technology",
+      "surviving_label": "Technology in Education"
+    }
+  },
+  "renamed": {
+    "9056": {
+      "before": "Technology in Education",
+      "after": "Educational Technology"
+    }
+  },
+  "moved": [],
+  "flattened": [
+    {
+      "id": 4586,
+      "parent": 4582,
+      "children": [
+        11479,
+        11481,
+        13833
+      ]
+    },
+    {
+      "id": 5862,
+      "parent": 3853,
+      "children": [
+        3859,
+        3862,
+        3863
+      ]
+    }
+  ],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply the three context-preserving proposals: flatten Christianity & Other Subjects and Authors, Audiences & Subjects; consolidate the equivalent educational-technology parent and child, retaining Robotics in Education beneath the survivor.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

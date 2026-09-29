@@ -1,0 +1,136 @@
+# Rust build output
+/target/
+**/target/
+# Dedicated Cargo target directory used for local Android deployment builds.
+# Keep this explicit: its name does not match the standard `target/` rule and
+# it can grow to several gigabytes.
+/target-mobile-deploy/
+/target-android-deploy/
+# Cargo target directory for the statically linked musl catalogue build; like
+# the entries above, its name does not match the standard `target/` rule.
+/.catalog-musl-target/
+/.android-tmp.*/
+/.deploy-tmp/
+/release/
+/squashfs-root/
+*.profraw
+*.profdata
+perf.data
+perf.data.old
+flamegraph.svg
+
+# Scratch analysis runs and test scratch directories. These hold multi-gigabyte
+# extracts and built wasm bundles, so they must never be staged.
+/tmp/
+/.test-tmp/
+/client/.test-tmp/
+/.orphan-sql-report
+
+# Keep generated Cargo lockfiles local.
+**/Cargo.lock
+
+# Local design and planning documents are excluded from the public repository.
+/docs/
+/.agents/
+/BACKEND_REFACTOR_HANDOFF.md
+/DATABASE_REFACTOR_HANDOFF.md
+/.restore_split_schemas.py
+
+# JavaScript dependencies, generated output, and tool caches
+**/node_modules/
+**/coverage/
+*.tsbuildinfo
+.npm/
+.pnpm-store/
+
+# IDEs, editors, and operating-system metadata
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local configuration and logs
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Databases and journals
+*.db
+*.sqlite
+*.sqlite3
+!client/library-model/data/unified-taxonomy-v2.sqlite3
+*.db-journal
+*.db-shm
+*.db-wal
+*.sqlite-journal
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite3-journal
+*.sqlite3-shm
+*.sqlite3-wal
+
+# Generated application state
+**/.biblos/thumbnails/
+**/.bookrium/thumbnails/
+/books/
+/thumbnails/
+/servers/sync/books/
+/servers/sync/thumbnails/
+# Legacy locations remain ignored so the layout migration never stages or
+# silently relocates developers' existing local server state.
+/Server/books/
+/Server/thumbnails/
+
+# Signing material and packaged Android applications
+*.jks
+*.keystore
+*.p12
+*.pfx
+key.properties
+keystore.properties
+*.apk
+*.aab
+*.apks
+*.idsig
+
+# Python environments and caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local colour and typography exploration page kept outside the repository.
+/sage-text-alternatives.html
+
+# Local books, large test assets, and external reference checkouts
+*.epub
+/TestData/
+/client/app/tests/test_folder/
+/reference/plato/
+/data-analysis/
+
+# Shared upstream Web Platform Tests checkout. Engine fixtures and GPUI ledgers
+# live outside this directory.
+/apps/renderers/html/testdata/wpt/
+/apps/reader/crates/html/testdata/wpt/
+# Screenshots emitted by ignored, human-inspection rendering tests.
+/apps/renderers/html/visual-artifacts/
+# Keep pre-migration external WPT checkouts ignored in place. Set
+# HTML_WPT_ROOT to use them without moving local data automatically.
+/HtmlRenderer/testdata/wpt/
+
+# Verified PDFium dependency cache and prepared platform inputs
+/.pdfium-cache/
+/.pdfium/

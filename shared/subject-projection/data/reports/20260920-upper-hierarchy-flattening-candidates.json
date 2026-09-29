@@ -1,0 +1,375 @@
+{
+  "scope": "Proposals only. Remove 14 uncoded intermediates in 10 groups within first two levels below roots, promoting their children intact. Preserve region, period, audience, life-stage and useful disciplinary groupings. Prior fourth leaf batch remains unapproved.",
+  "groups": [
+    {
+      "number": 1,
+      "parent": 3778,
+      "parent_label": "Linguistics",
+      "before_direct_children": 11,
+      "after_direct_children": 21,
+      "wrappers": [
+        {
+          "id": 5933,
+          "label": "Language Structure & Meaning",
+          "children": [
+            {
+              "id": 3750,
+              "label": "Grammar & Punctuation"
+            },
+            {
+              "id": 3781,
+              "label": "Morphology"
+            },
+            {
+              "id": 3785,
+              "label": "Semantics"
+            },
+            {
+              "id": 3787,
+              "label": "Syntax"
+            },
+            {
+              "id": 4412,
+              "label": "Comparative Grammar & Linguistics"
+            }
+          ],
+          "source_labels": []
+        },
+        {
+          "id": 5934,
+          "label": "Words, Sound & Writing Systems",
+          "children": [
+            {
+              "id": 3704,
+              "label": "Alphabets & Writing Systems"
+            },
+            {
+              "id": 3770,
+              "label": "Lexicography"
+            },
+            {
+              "id": 3779,
+              "label": "Etymology"
+            },
+            {
+              "id": 3782,
+              "label": "Phonetics & Phonology"
+            }
+          ],
+          "source_labels": []
+        },
+        {
+          "id": 5935,
+          "label": "Language, Society & Signs",
+          "children": [
+            {
+              "id": 3783,
+              "label": "Pragmatics"
+            },
+            {
+              "id": 3786,
+              "label": "Sociolinguistics"
+            },
+            {
+              "id": 4413,
+              "label": "Nonverbal Communication"
+            },
+            {
+              "id": 4414,
+              "label": "Semiotics, Signs & Symbols"
+            }
+          ],
+          "source_labels": []
+        }
+      ],
+      "action": "Remove uncoded wrappers; promote all children to parent; retain other child parents."
+    },
+    {
+      "number": 2,
+      "parent": 4628,
+      "parent_label": "Recreation",
+      "before_direct_children": 23,
+      "after_direct_children": 30,
+      "wrappers": [
+        {
+          "id": 5904,
+          "label": "Digital & Competitive Gaming",
+          "children": [
+            {
+              "id": 4639,
+              "label": "Fantasy Sports"
+            },
+            {
+              "id": 4657,
+              "label": "Video & Mobile"
+            },
+            {
+              "id": 4659,
+              "label": "eSports"
+            }
+          ],
+          "source_labels": []
+        },
+        {
+          "id": 5905,
+          "label": "Activity & Interactive Books",
+          "children": [
+            {
+              "id": 4629,
+              "label": "Activity Books"
+            },
+            {
+              "id": 4637,
+              "label": "Coloring Books"
+            },
+            {
+              "id": 4645,
+              "label": "Guided Journals"
+            },
+            {
+              "id": 4653,
+              "label": "Sticker Books"
+            }
+          ],
+          "source_labels": []
+        },
+        {
+          "id": 5906,
+          "label": "Magic, Juggling & Illusions",
+          "children": [
+            {
+              "id": 4646,
+              "label": "Juggling"
+            },
+            {
+              "id": 4648,
+              "label": "Magic"
+            },
+            {
+              "id": 4649,
+              "label": "Optical Illusions"
+            }
+          ],
+          "source_labels": []
+        }
+      ],
+      "action": "Remove uncoded wrappers; promote all children to parent; retain other child parents."
+    },
+    {
+      "number": 3,
+      "parent": 36,
+      "parent_label": "Computing & IT",
+      "before_direct_children": 16,
+      "after_direct_children": 17,
+      "wrappers": [
+        {
+          "id": 5576,
+          "label": "Security & Digital Forensics",
+          "children": [
+            {
+              "id": 87,
+              "label": "Forensics"
+            },
+            {
+              "id": 163,
+              "label": "Security"
+            }
+          ],
+          "source_labels": []
+        }
+      ],
+      "action": "Remove uncoded wrappers; promote all children to parent; retain other child parents."
+    },
+    {
+      "number": 4,
+      "parent": 193,
+      "parent_label": "Architecture",
+      "before_direct_children": 7,
+      "after_direct_children": 8,
+      "wrappers": [
+        {
+          "id": 5701,
+          "label": "Urban & Regional Planning",
+          "children": [
+            {
+              "id": 555,
+              "label": "Urban Design"
+            },
+            {
+              "id": 597,
+              "label": "Urban & Land Use Planning"
+            }
+          ],
+          "source_labels": []
+        }
+      ],
+      "action": "Remove uncoded wrappers; promote all children to parent; retain other child parents."
+    },
+    {
+      "number": 5,
+      "parent": 1,
+      "parent_label": "Applied Sciences & Technology",
+      "before_direct_children": 20,
+      "after_direct_children": 21,
+      "wrappers": [
+        {
+          "id": 5570,
+          "label": "Defense & Military Technology",
+          "children": [
+            {
+              "id": 311,
+              "label": "Explosives & Pyrotechnics"
+            },
+            {
+              "id": 394,
+              "label": "Military Science"
+            }
+          ],
+          "source_labels": []
+        }
+      ],
+      "action": "Remove uncoded wrappers; promote all children to parent; retain other child parents."
+    },
+    {
+      "number": 6,
+      "parent": 11442,
+      "parent_label": "Personal Growth",
+      "before_direct_children": 7,
+      "after_direct_children": 9,
+      "wrappers": [
+        {
+          "id": 5840,
+          "label": "Creativity & Expression",
+          "children": [
+            {
+              "id": 3173,
+              "label": "Creativity"
+            },
+            {
+              "id": 3179,
+              "label": "Fashion & Style"
+            },
+            {
+              "id": 3181,
+              "label": "Green Lifestyle"
+            }
+          ],
+          "source_labels": []
+        }
+      ],
+      "action": "Remove uncoded wrappers; promote all children to parent; retain other child parents."
+    },
+    {
+      "number": 7,
+      "parent": 3125,
+      "parent_label": "House & Home",
+      "before_direct_children": 9,
+      "after_direct_children": 11,
+      "wrappers": [
+        {
+          "id": 5923,
+          "label": "Utilities, Energy & Smart Home",
+          "children": [
+            {
+              "id": 3134,
+              "label": "Energy"
+            },
+            {
+              "id": 3135,
+              "label": "Entertainment Systems"
+            },
+            {
+              "id": 3146,
+              "label": "Smart Home"
+            }
+          ],
+          "source_labels": []
+        }
+      ],
+      "action": "Remove uncoded wrappers; promote all children to parent; retain other child parents."
+    },
+    {
+      "number": 8,
+      "parent": 5488,
+      "parent_label": "Sociology",
+      "before_direct_children": 14,
+      "after_direct_children": 16,
+      "wrappers": [
+        {
+          "id": 5666,
+          "label": "Technology & Everyday Life",
+          "children": [
+            {
+              "id": 5491,
+              "label": "Agriculture & Food"
+            },
+            {
+              "id": 5521,
+              "label": "Technology Studies"
+            },
+            {
+              "id": 12295,
+              "label": "Information Society"
+            }
+          ],
+          "source_labels": []
+        }
+      ],
+      "action": "Remove uncoded wrappers; promote all children to parent; retain other child parents."
+    },
+    {
+      "number": 9,
+      "parent": 5326,
+      "parent_label": "Politics & Government",
+      "before_direct_children": 10,
+      "after_direct_children": 12,
+      "wrappers": [
+        {
+          "id": 5692,
+          "label": "Rights & Citizenship",
+          "children": [
+            {
+              "id": 5329,
+              "label": "Civic Participation"
+            },
+            {
+              "id": 5330,
+              "label": "Human & Civil Rights"
+            },
+            {
+              "id": 5379,
+              "label": "Women in Politics"
+            }
+          ],
+          "source_labels": []
+        }
+      ],
+      "action": "Remove uncoded wrappers; promote all children to parent; retain other child parents."
+    },
+    {
+      "number": 10,
+      "parent": 4582,
+      "parent_label": "Christianity",
+      "before_direct_children": 10,
+      "after_direct_children": 11,
+      "wrappers": [
+        {
+          "id": 5530,
+          "label": "Christianity, Arts & Culture",
+          "children": [
+            {
+              "id": 4586,
+              "label": "Christianity & Other Subjects"
+            },
+            {
+              "id": 4590,
+              "label": "the Arts"
+            }
+          ],
+          "source_labels": []
+        }
+      ],
+      "action": "Remove uncoded wrappers; promote all children to parent; retain other child parents."
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+SELECT EXISTS(SELECT 1 FROM asset_file WHERE physical_name=?1)

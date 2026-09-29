@@ -1,0 +1,30 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT 'directory'::TEXT AS kind, dir_id AS id\nFROM sync_directory_state\nWHERE library_id = $1 AND dir_id = ANY($2::TEXT[])\n  AND component = 'lifecycle' AND value = 'present'\nUNION ALL\nSELECT 'book'::TEXT, book_id\nFROM sync_book_lifecycle_state\nWHERE library_id = $1 AND book_id = ANY($3::TEXT[])\nUNION ALL\nSELECT 'book'::TEXT, book_id\nFROM sync_book_placement_state\nWHERE library_id = $1 AND book_id = ANY($3::TEXT[]);\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "kind",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 1,
+        "name": "id",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "TextArray",
+        "TextArray"
+      ]
+    },
+    "nullable": [
+      null,
+      null
+    ]
+  },
+  "hash": "9f5eb6dee00af2adbdcf8e6f8b353ad6191ea91fbaea8aae24b7b1014e064695"
+}

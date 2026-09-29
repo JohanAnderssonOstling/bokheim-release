@@ -1,0 +1,1 @@
+CREATE TABLE asset_file(name TEXT PRIMARY KEY,physical_name TEXT); CREATE INDEX asset_file_physical ON asset_file(physical_name);

@@ -1,0 +1,1 @@
+INSERT INTO block VALUES(?1,?2,?3,?4) ON CONFLICT(hash,offset) DO UPDATE SET bytes=excluded.bytes,used=excluded.used

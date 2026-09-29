@@ -1,0 +1,21 @@
+[package]
+name = "library-model"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[features]
+default = ["random-ids"]
+random-ids = ["uuid/v4", "book-model/random-ids"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+content-address = { path = "../../shared/content-address" }
+book-model = { path = "../../shared/book-model", default-features = false }
+unicode-normalization.workspace = true
+uuid = { version = "1", features = ["v5", "serde"] }
+
+[dev-dependencies]
+wire = { path = "../../shared/wire" }
+serde_json = "1"
+tempfile = "3"

@@ -1,0 +1,239 @@
+{
+  "entries": [
+    {
+      "name": "Myth & Mythology in Literature",
+      "target": 52386,
+      "source": 8293,
+      "parent": 8293,
+      "parents": [
+        8293
+      ],
+      "code": "PN56.M94",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 189673,
+          "caption": "Myth",
+          "hierarchy": [
+            "Literature (General)",
+            "Theory. Philosophy. Esthetics",
+            "Relation to and treatment of special elements, problems, and subjects",
+            "Other special",
+            "Topics, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Myth & Mythology in Literature",
+      "target": 52386,
+      "source": 8293,
+      "parent": 8293,
+      "parents": [
+        8293
+      ],
+      "code": "PN56.M95",
+      "end": null,
+      "new": false,
+      "reference_records": [
+        {
+          "record_id": 189674,
+          "caption": "Mythology",
+          "hierarchy": [
+            "Literature (General)",
+            "Theory. Philosophy. Esthetics",
+            "Relation to and treatment of special elements, problems, and subjects",
+            "Other special",
+            "Topics, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Postcolonialism in Literature",
+      "target": 52387,
+      "source": 8293,
+      "parent": 8293,
+      "parents": [
+        8293
+      ],
+      "code": "PN56.P555",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 633981,
+          "caption": "Postcolonialism",
+          "hierarchy": [
+            "Literature (General)",
+            "Theory. Philosophy. Esthetics",
+            "Relation to and treatment of special elements, problems, and subjects",
+            "Other special",
+            "Topics, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Literature & Psychology",
+      "target": 52388,
+      "source": 8293,
+      "parent": 8293,
+      "parents": [
+        8293
+      ],
+      "code": "PN56.P93",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 189709,
+          "caption": "Psychology",
+          "hierarchy": [
+            "Literature (General)",
+            "Theory. Philosophy. Esthetics",
+            "Relation to and treatment of special elements, problems, and subjects",
+            "Other special",
+            "Topics, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Homosexuality in Literature",
+      "target": 52389,
+      "source": 8293,
+      "parent": 8293,
+      "parents": [
+        8293
+      ],
+      "code": "PN56.H57",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 628601,
+          "caption": "Homosexuality",
+          "hierarchy": [
+            "Literature (General)",
+            "Theory. Philosophy. Esthetics",
+            "Relation to and treatment of special elements, problems, and subjects",
+            "Other special",
+            "Topics, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cities in Literature",
+      "target": 52390,
+      "source": 8293,
+      "parent": 8293,
+      "parents": [
+        8293
+      ],
+      "code": "PN56.C55",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 189553,
+          "caption": "Cities and towns",
+          "hierarchy": [
+            "Literature (General)",
+            "Theory. Philosophy. Esthetics",
+            "Relation to and treatment of special elements, problems, and subjects",
+            "Other special",
+            "Topics, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Literature & the Internet",
+      "target": 52391,
+      "source": 8293,
+      "parent": 8293,
+      "parents": [
+        8293
+      ],
+      "code": "PN56.I64",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 29435,
+          "caption": "Internet",
+          "hierarchy": [
+            "Literature (General)",
+            "Theory. Philosophy. Esthetics",
+            "Relation to and treatment of special elements, problems, and subjects",
+            "Other special",
+            "Topics, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Death in Literature",
+      "target": 52392,
+      "source": 8293,
+      "parent": 8293,
+      "parents": [
+        8293
+      ],
+      "code": "PN56.D4",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 189568,
+          "caption": "Death",
+          "hierarchy": [
+            "Literature (General)",
+            "Theory. Philosophy. Esthetics",
+            "Relation to and treatment of special elements, problems, and subjects",
+            "Other special",
+            "Topics, A-Z"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Animals in Literature",
+      "target": 52393,
+      "source": 8293,
+      "parent": 8293,
+      "parents": [
+        8293
+      ],
+      "code": "PN56.A64",
+      "end": null,
+      "new": true,
+      "reference_records": [
+        {
+          "record_id": 189535,
+          "caption": "Animals",
+          "hierarchy": [
+            "Literature (General)",
+            "Theory. Philosophy. Esthetics",
+            "Relation to and treatment of special elements, problems, and subjects",
+            "Other special",
+            "Topics, A-Z"
+          ]
+        }
+      ]
+    }
+  ],
+  "new_ids": [
+    52386,
+    52387,
+    52388,
+    52389,
+    52390,
+    52391,
+    52392,
+    52393
+  ]
+}

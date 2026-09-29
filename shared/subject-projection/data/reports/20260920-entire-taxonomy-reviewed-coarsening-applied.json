@@ -1,0 +1,400 @@
+{
+  "merges": {
+    "13527": {
+      "into": 4779,
+      "old_label": "Yearbooks",
+      "surviving_label": "Science & Nature"
+    },
+    "13528": {
+      "into": 4779,
+      "old_label": "Collected Scientific Works",
+      "surviving_label": "Science & Nature"
+    },
+    "13531": {
+      "into": 4779,
+      "old_label": "Congresses",
+      "surviving_label": "Science & Nature"
+    },
+    "13532": {
+      "into": 4779,
+      "old_label": "Science Encyclopedias",
+      "surviving_label": "Science & Nature"
+    },
+    "13533": {
+      "into": 4779,
+      "old_label": "Science Dictionaries",
+      "surviving_label": "Science & Nature"
+    },
+    "13540": {
+      "into": 4779,
+      "old_label": "Directories",
+      "surviving_label": "Science & Nature"
+    },
+    "13543": {
+      "into": 4779,
+      "old_label": "General works & treatises",
+      "surviving_label": "Science & Nature"
+    },
+    "13546": {
+      "into": 4779,
+      "old_label": "Popular works",
+      "surviving_label": "Science & Nature"
+    },
+    "13549": {
+      "into": 4779,
+      "old_label": "Addresses, essays, lectures",
+      "surviving_label": "Science & Nature"
+    },
+    "13557": {
+      "into": 4779,
+      "old_label": "Science Handbooks & Tables",
+      "surviving_label": "Science & Nature"
+    },
+    "13522": {
+      "into": 4837,
+      "old_label": "Scientific ethics",
+      "surviving_label": "Ethics"
+    },
+    "13536": {
+      "into": 4840,
+      "old_label": "Science History Overview",
+      "surviving_label": "Science History"
+    },
+    "5726": {
+      "into": 4779,
+      "old_label": "Science Education & Institutions",
+      "surviving_label": "Science & Nature"
+    },
+    "4836": {
+      "into": 4779,
+      "old_label": "Science Essays",
+      "surviving_label": "Science & Nature"
+    },
+    "13520": {
+      "into": 4899,
+      "old_label": "Science Teaching & Study",
+      "surviving_label": "Science Education"
+    },
+    "13555": {
+      "into": 4899,
+      "old_label": "Science Teaching Aids",
+      "surviving_label": "Science Education"
+    },
+    "13554": {
+      "into": 4890,
+      "old_label": "Scientific Research",
+      "surviving_label": "Research & Methodology"
+    },
+    "13564": {
+      "into": 873,
+      "old_label": "Film Serials & Societies",
+      "surviving_label": "Film"
+    },
+    "13565": {
+      "into": 873,
+      "old_label": "Yearbooks",
+      "surviving_label": "Film"
+    },
+    "13567": {
+      "into": 873,
+      "old_label": "Film Dictionaries",
+      "surviving_label": "Film"
+    },
+    "13571": {
+      "into": 873,
+      "old_label": "Film Reference",
+      "surviving_label": "Film"
+    },
+    "13584": {
+      "into": 873,
+      "old_label": "Other special topics, A-Z",
+      "surviving_label": "Film"
+    },
+    "13586": {
+      "into": 873,
+      "old_label": "Film Miscellany",
+      "surviving_label": "Film"
+    },
+    "13569": {
+      "into": 13568,
+      "old_label": "Exams & Questions",
+      "surviving_label": "Film Education"
+    },
+    "2200": {
+      "into": 2169,
+      "old_label": "Education Essays",
+      "surviving_label": "Education"
+    },
+    "5676": {
+      "into": 2169,
+      "old_label": "Education Reference",
+      "surviving_label": "Education"
+    },
+    "2192": {
+      "into": 2169,
+      "old_label": "Educational Directories",
+      "surviving_label": "Education"
+    },
+    "2194": {
+      "into": 2169,
+      "old_label": "Education Reports & Documents",
+      "surviving_label": "Education"
+    },
+    "9683": {
+      "into": 2175,
+      "old_label": "Congresses. Conferences",
+      "surviving_label": "Adult & Continuing Education"
+    },
+    "2313": {
+      "into": 2201,
+      "old_label": "Education Testing & Measurement",
+      "surviving_label": "Education Assessment"
+    },
+    "13065": {
+      "into": 265,
+      "old_label": "General Electronic Circuits",
+      "surviving_label": "Electronic Circuits"
+    },
+    "7502": {
+      "into": 264,
+      "old_label": "Congresses. Conventions",
+      "surviving_label": "Electronics"
+    },
+    "10056": {
+      "into": 257,
+      "old_label": "General treatises",
+      "surviving_label": "Electric meters"
+    },
+    "2605": {
+      "into": 5582,
+      "old_label": "Medical Essays",
+      "surviving_label": "Education, Ethics & Reference"
+    },
+    "2595": {
+      "into": 5582,
+      "old_label": "Dictionaries & Terminology",
+      "surviving_label": "Education, Ethics & Reference"
+    },
+    "6163": {
+      "into": 6152,
+      "old_label": "Handbooks",
+      "surviving_label": "Public Health Study & Reference"
+    },
+    "6170": {
+      "into": 6152,
+      "old_label": "Addresses, Essays & Lectures",
+      "surviving_label": "Public Health Study & Reference"
+    },
+    "8688": {
+      "into": 2713,
+      "old_label": "Serials",
+      "surviving_label": "Neuroscience & Neuropsychiatry"
+    },
+    "3154": {
+      "into": 3148,
+      "old_label": "Essays & Narratives",
+      "surviving_label": "Pets"
+    },
+    "53252": {
+      "into": 9966,
+      "old_label": "Baking Reference & Fundamentals",
+      "surviving_label": "Baking. Confectionery"
+    },
+    "9008": {
+      "into": 51001,
+      "old_label": "U.S. Biographical Miscellany",
+      "surviving_label": "U.S. Biography"
+    },
+    "13408": {
+      "into": 13353,
+      "old_label": "European Biography Reference",
+      "surviving_label": "European Biographies"
+    },
+    "13827": {
+      "into": 3294,
+      "old_label": "Occultism Reference",
+      "surviving_label": "Occult sciences"
+    },
+    "13829": {
+      "into": 3294,
+      "old_label": "Miscellaneous Occult Studies",
+      "surviving_label": "Occult sciences"
+    },
+    "9810": {
+      "into": 3302,
+      "old_label": "General & History",
+      "surviving_label": "Seers & Prophecy"
+    },
+    "9342": {
+      "into": 3301,
+      "old_label": "General & History",
+      "surviving_label": "Oracles & Divination"
+    },
+    "3516": {
+      "into": 3319,
+      "old_label": "Essays",
+      "surviving_label": "History"
+    },
+    "50825": {
+      "into": 3666,
+      "old_label": "Reference",
+      "surviving_label": "Modern"
+    },
+    "3733": {
+      "into": 3710,
+      "old_label": "Language Study Miscellany",
+      "surviving_label": "Language Study & Reference"
+    },
+    "52309": {
+      "into": 4369,
+      "old_label": "Literary Reference",
+      "surviving_label": "General Literary Studies"
+    },
+    "13729": {
+      "into": 4372,
+      "old_label": "Drama Serials",
+      "surviving_label": "Drama"
+    },
+    "13868": {
+      "into": 3676,
+      "old_label": "Reference",
+      "surviving_label": "Oceanian"
+    },
+    "13985": {
+      "into": 3589,
+      "old_label": "Reference",
+      "surviving_label": "Georgian"
+    },
+    "13989": {
+      "into": 3522,
+      "old_label": "Reference",
+      "surviving_label": "East"
+    },
+    "14012": {
+      "into": 3609,
+      "old_label": "Reference",
+      "surviving_label": "North"
+    },
+    "13815": {
+      "into": 4605,
+      "old_label": "Islam—General & Reference",
+      "surviving_label": "Islam"
+    },
+    "13816": {
+      "into": 4605,
+      "old_label": "General Works on Islam",
+      "surviving_label": "Islam"
+    },
+    "13812": {
+      "into": 4619,
+      "old_label": "Practical Theology—General",
+      "surviving_label": "Practical Theology"
+    },
+    "12374": {
+      "into": 5731,
+      "old_label": "General Bible Study",
+      "surviving_label": "Bible Study & Interpretation"
+    },
+    "53271": {
+      "into": 4628,
+      "old_label": "Recreation Reference & Study",
+      "surviving_label": "Recreation"
+    },
+    "51361": {
+      "into": 5241,
+      "old_label": "Family Reference",
+      "surviving_label": "Family & Relationships"
+    },
+    "13170": {
+      "into": 5804,
+      "old_label": "Family Forms & Kinship—General",
+      "surviving_label": "Family Forms & Kinship"
+    },
+    "52818": {
+      "into": 5465,
+      "old_label": "Prison Methods & Practice",
+      "surviving_label": "Prisons & Corrections"
+    },
+    "52431": {
+      "into": 52430,
+      "old_label": "Prison Administration",
+      "surviving_label": "U.S. Prisons"
+    },
+    "52429": {
+      "into": 5465,
+      "old_label": "International Prison Systems",
+      "surviving_label": "Prisons & Corrections"
+    },
+    "52819": {
+      "into": 5465,
+      "old_label": "Prison Architecture",
+      "surviving_label": "Prisons & Corrections"
+    },
+    "52820": {
+      "into": 5465,
+      "old_label": "Prison Health & Nutrition",
+      "surviving_label": "Prisons & Corrections"
+    },
+    "52821": {
+      "into": 5465,
+      "old_label": "Prisoner Education & Support",
+      "surviving_label": "Prisons & Corrections"
+    },
+    "52822": {
+      "into": 5465,
+      "old_label": "Prison Labor",
+      "surviving_label": "Prisons & Corrections"
+    }
+  },
+  "renamed": {
+    "4837": {
+      "before": "Ethics",
+      "after": "Scientific Ethics"
+    },
+    "2201": {
+      "before": "Education Assessment",
+      "after": "Education Assessment & Testing"
+    },
+    "10966": {
+      "before": "Philosophy Reference Topics",
+      "after": "Philosophical Methods & Interdisciplinary Studies"
+    }
+  },
+  "moved": [
+    {
+      "id": 10966,
+      "before": [
+        5532
+      ],
+      "after": [
+        4487
+      ]
+    }
+  ],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [
+    {
+      "system": "lcc",
+      "from": 5532,
+      "to": 4487,
+      "coverage": [
+        "B1-B5802",
+        "B1–B99"
+      ],
+      "new_reference_ranges": [
+        "B35",
+        "B40–B51"
+      ],
+      "reason": "Reference must not own the entire philosophy schedule; B53–B67 describes methodology and relations to other fields."
+    }
+  ],
+  "source_notes": [
+    "SCI060000 is Science / Reference; SCI063000 is Study & Teaching. Removed the mislabeled Science Education & Institutions wrapper by absorption into Science, keeping consolidated Science Education.",
+    "SCI043000 is Research & Methodology; Scientific Research merged there rather than into its broader tools parent.",
+    "PN1998.A1 is directories; PN1998.A5–Z other miscellaneous works including film catalogs. These now resolve to Film; active biography classes PN1998.2+ were not moved.",
+    "HV9469–HV9470 is U.S. prison administration, transferred to U.S. Prisons.",
+    "The 346 automated leads were not treated as approvals; only the 37 reviewed proposal groups were implemented, including source-informed corrections."
+  ],
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

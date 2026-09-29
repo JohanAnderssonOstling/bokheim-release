@@ -1,0 +1,16 @@
+id,parent,label,country,existing,start,end,hits,codes,moved_selectors
+unified:4957d188-138d-5a0c-b218-08f443563cb6,unified:3754b57e-8d6a-5d89-b8bd-cedbb34ef143,Travel: France,,unified:4957d188-138d-5a0c-b218-08f443563cb6,,,3705,296,12
+unified:15efa901-8954-5026-964a-0691bee6ceee,unified:46059f35-84e2-546a-9b1d-b149357d5add,Travel: Spain,,unified:15efa901-8954-5026-964a-0691bee6ceee,,,2745,153,12
+bokheim:curation:cc179f53-fe83-5bef-b8b3-b0365b595170,unified:3754b57e-8d6a-5d89-b8bd-cedbb34ef143,Paris,France,,DC701,DC790,1960,259,132
+bokheim:curation:617d6014-657d-5ab4-8565-2ec7b1df1dc7,unified:3754b57e-8d6a-5d89-b8bd-cedbb34ef143,Provence,France,,DC611.P951,DC611.P979,305,45,10
+bokheim:curation:9f22b311-02d1-546e-b902-e8412d7be716,unified:3754b57e-8d6a-5d89-b8bd-cedbb34ef143,Brittany,France,,DC611.B841,DC611.B9173,611,46,12
+bokheim:curation:af5c83e4-eb1f-55e9-b593-17846eb3d0da,unified:3754b57e-8d6a-5d89-b8bd-cedbb34ef143,Corsica,France,,DC611.C8,DC611.C8365,461,31,9
+bokheim:curation:5b90febb-fdbf-54fe-9c51-fd6f058ae13a,unified:46059f35-84e2-546a-9b1d-b149357d5add,Catalonia,Spain,,DP302.C57,DP302.C69,3078,185,8
+bokheim:curation:0b2f6207-b6e7-5d79-8de5-f646d487bb7f,unified:46059f35-84e2-546a-9b1d-b149357d5add,Basque Provinces,Spain,,DP302.B41,DP302.B55,1181,76,0
+bokheim:curation:63cf1625-bcb8-5a80-899c-b49f0f86e849,unified:46059f35-84e2-546a-9b1d-b149357d5add,Andalusia,Spain,,DP302.A41,DP302.A55,831,57,0
+bokheim:curation:60bacfb1-406f-54b2-b2c3-648dbb751212,unified:46059f35-84e2-546a-9b1d-b149357d5add,Galicia,Spain,,DP302.G11,DP302.G2,716,32,6
+bokheim:curation:1806b6b4-0eaa-5bf9-8e82-da9bfad21a21,unified:46059f35-84e2-546a-9b1d-b149357d5add,Balearic Islands,Spain,,DP302.B16,DP302.B3,593,33,9
+bokheim:curation:fa637c96-d48b-5d10-9e6b-f3cd453489e5,unified:46059f35-84e2-546a-9b1d-b149357d5add,Canary Islands,Spain,,DP302.C36,DP302.C51,463,36,14
+bokheim:curation:2779f95f-0319-521c-978d-d8ea09990984,unified:46059f35-84e2-546a-9b1d-b149357d5add,Barcelona,Spain,,DP402.B2,DP402.B3,533,43,5
+bokheim:curation:6b477653-4f73-57bd-b061-1d1a85af08e0,unified:46059f35-84e2-546a-9b1d-b149357d5add,Madrid,Spain,,DP350,DP374,397,29,22
+bokheim:curation:39db995d-b23e-5096-8145-5798bde376d4,unified:46059f35-84e2-546a-9b1d-b149357d5add,Valencia (province),Spain,,DP302.V11,DP302.V25,444,34,9

@@ -1,0 +1,1 @@
+SELECT DISTINCT physical_name FROM asset_file WHERE physical_name>=?1 AND physical_name<?2

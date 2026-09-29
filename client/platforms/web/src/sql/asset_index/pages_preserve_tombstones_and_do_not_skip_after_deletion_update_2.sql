@@ -1,0 +1,1 @@
+UPDATE asset_file SET physical_name='__asset_objects/new-generation' WHERE name='assets/library/book/001'

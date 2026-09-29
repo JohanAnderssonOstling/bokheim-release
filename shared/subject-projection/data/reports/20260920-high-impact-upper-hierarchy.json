@@ -1,0 +1,31 @@
+{
+  "merges": {
+    "5670": {
+      "into": 969,
+      "old_label": "History, Theory & Education",
+      "surviving_label": "Visual Arts"
+    },
+    "5689": {
+      "into": 3042,
+      "old_label": "Mixed Media Crafts & Reference",
+      "surviving_label": "Crafts & Hobbies"
+    },
+    "967": {
+      "into": 915,
+      "old_label": "Photo Methods, Gear & Materials",
+      "surviving_label": "Photography & Imaging"
+    },
+    "966": {
+      "into": 915,
+      "old_label": "Photography Specialties",
+      "surviving_label": "Photography & Imaging"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply all four approved high-impact upper-hierarchy consolidations: History, Theory & Education into Visual Arts; Mixed Media Crafts & Reference into Crafts & Hobbies; Photo Methods, Gear & Materials and Photography Specialties into Photography & Imaging. Transfer all codes and promote children intact, preserving their other parent links.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

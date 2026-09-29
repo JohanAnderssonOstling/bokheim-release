@@ -1,0 +1,3510 @@
+[
+  {
+    "subject": 5561,
+    "selector": "KBM3378",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBM3379",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBM3380",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBM3381",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBM3382",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBM3383",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBM3384",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBM3388",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBM3392",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBP3379",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBP3380",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBP3381",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBP3382",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBP3383",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBP3384",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBP3386",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBP3388",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBP3392",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KBP3393",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KD2385",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KDG310",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KDK650",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KE3736",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KEO479",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KF1879",
+    "target": 51553
+  },
+  {
+    "subject": 5561,
+    "selector": "KFC412.A2",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KFC421",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KFN5418",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KFN5419",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KFN5421",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KIA302",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KIB1560",
+    "target": 51554
+  },
+  {
+    "subject": 5561,
+    "selector": "KIE1032",
+    "target": 51553
+  },
+  {
+    "subject": 5561,
+    "selector": "KIE1560",
+    "target": 51554
+  },
+  {
+    "subject": 5561,
+    "selector": "KIE1562",
+    "target": 51554
+  },
+  {
+    "subject": 5561,
+    "selector": "KIE1564",
+    "target": 51554
+  },
+  {
+    "subject": 5561,
+    "selector": "KJC6751",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KJC6752",
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6742",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6752",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6754",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6755",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6756",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6758",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6760",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6762",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6763",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6764",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6766",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE6776",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE882",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KJE886",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KKA6740",
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "selector": "KVJ1068",
+    "target": 51553
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "K",
+      "3921",
+      "3922"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "K",
+      "3921",
+      "3977.9"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KBM",
+      "3395",
+      "3397"
+    ],
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KBP",
+      "3395",
+      "3399"
+    ],
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KD",
+      "2375",
+      "2376"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KD",
+      "2380",
+      "2383"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KD",
+      "2395",
+      "2398"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KDK",
+      "630",
+      "635"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KE",
+      "1840",
+      "1842"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KF",
+      "1875",
+      "1876"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KF",
+      "1881",
+      "1886"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KF",
+      "1890",
+      "1893"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KFC",
+      "412.A3",
+      "412.Z"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KFC",
+      "416",
+      "417"
+    ],
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KFC",
+      "418",
+      "419"
+    ],
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KIA",
+      "303",
+      "304"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KIB",
+      "1033",
+      "1034"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KIB",
+      "1564",
+      "1565"
+    ],
+    "target": 51554
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KIE",
+      "1033",
+      "1034"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KIE",
+      "1045.A",
+      "1045.Z"
+    ],
+    "target": 51552
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KVJ",
+      "1070",
+      "1075"
+    ],
+    "target": 5561
+  },
+  {
+    "subject": 5561,
+    "range": [
+      "KVJ",
+      "1078",
+      "1092"
+    ],
+    "target": 51552
+  },
+  {
+    "subject": 5644,
+    "selector": "K3185",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "K3188",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "K3367",
+    "target": 51560
+  },
+  {
+    "subject": 5644,
+    "selector": "KE4275",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KE4278",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KE4280",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KF4605",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KF4606",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KF4608",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KF4612",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KF4613",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KF4615",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KF4618",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KF4625",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KF4627",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KF4629",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KFC693",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KFN5692",
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "selector": "KIE2284",
+    "target": 5644
+  },
+  {
+    "subject": 5644,
+    "selector": "KJA2976",
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "selector": "KJC30",
+    "target": 51562
+  },
+  {
+    "subject": 5644,
+    "selector": "KK4693",
+    "target": 5644
+  },
+  {
+    "subject": 5644,
+    "selector": "KK4696",
+    "target": 51560
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "K",
+      "3289.5",
+      "3304"
+    ],
+    "target": 51557
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "K",
+      "3310",
+      "3329"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "K",
+      "3332",
+      "3363.2"
+    ],
+    "target": 51559
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KDE",
+      "440",
+      "452"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KE",
+      "4285",
+      "4285.2"
+    ],
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KF",
+      "4621",
+      "4621.2"
+    ],
+    "target": 51556
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KFN",
+      "5709",
+      "5716"
+    ],
+    "target": 51557
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KFN",
+      "5720",
+      "5736"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KFN",
+      "5740",
+      "5747.2"
+    ],
+    "target": 51559
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KIB",
+      "1980",
+      "1990"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KIE",
+      "2180",
+      "2191"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KIE",
+      "2200",
+      "2222"
+    ],
+    "target": 51559
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KIE",
+      "2240",
+      "2280"
+    ],
+    "target": 5645
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJA",
+      "2973",
+      "2975"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJA",
+      "2980",
+      "3033"
+    ],
+    "target": 51559
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJA",
+      "3035",
+      "3037"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJC",
+      "27",
+      "29"
+    ],
+    "target": 51562
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJC",
+      "34",
+      "36"
+    ],
+    "target": 51562
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJC",
+      "5262",
+      "5272"
+    ],
+    "target": 51557
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJC",
+      "5310",
+      "5369"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJC",
+      "5349",
+      "5364"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJC",
+      "5379",
+      "5397"
+    ],
+    "target": 51559
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJC",
+      "5407",
+      "5445"
+    ],
+    "target": 5644
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJC",
+      "5408",
+      "5409"
+    ],
+    "target": 5644
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KJC",
+      "5412",
+      "5415"
+    ],
+    "target": 5644
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KK",
+      "4630",
+      "4636"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KK",
+      "4637",
+      "4653"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KK",
+      "4654",
+      "4664"
+    ],
+    "target": 51559
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KK",
+      "4667",
+      "4669"
+    ],
+    "target": 51559
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KK",
+      "4671",
+      "4692"
+    ],
+    "target": 51559
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KK",
+      "4791",
+      "4807.2"
+    ],
+    "target": 51557
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KK",
+      "4810",
+      "4819"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KK",
+      "4820",
+      "4824"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KK",
+      "4825",
+      "4826"
+    ],
+    "target": 5644
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KK",
+      "4828",
+      "4872"
+    ],
+    "target": 51559
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KKA",
+      "5869.3",
+      "5871"
+    ],
+    "target": 51561
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KKA",
+      "5873",
+      "5875.7"
+    ],
+    "target": 51561
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KNX",
+      "2510",
+      "2528"
+    ],
+    "target": 51558
+  },
+  {
+    "subject": 5644,
+    "range": [
+      "KNX",
+      "2530",
+      "2564"
+    ],
+    "target": 51559
+  },
+  {
+    "subject": 5879,
+    "selector": "KI510",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KI511",
+    "target": 51566
+  },
+  {
+    "subject": 5879,
+    "selector": "KI515.I58",
+    "target": 51566
+  },
+  {
+    "subject": 5879,
+    "selector": "KI515.N67",
+    "target": 51566
+  },
+  {
+    "subject": 5879,
+    "selector": "KI520",
+    "target": 51566
+  },
+  {
+    "subject": 5879,
+    "selector": "KI522 2009",
+    "target": 51566
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA1",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA1.15.A39",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA1.2.M47",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA18.2",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA19",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA2.3.C65",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA2.3.I53",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA2.5",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA2.6.P37",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA2.7.C66",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA3",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA3.2",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA3.3 2016",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA3.4",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA3.5",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIA4",
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "selector": "KIF1920",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIF1925",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIF1940",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIF1950",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIF1965",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIF1980",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIG5701",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIG5702",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIG5703",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIG5708",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIG5710",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIG5715",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIG5722",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIG5740",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIG5780",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIG5790",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5704",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5705",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5715",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5719",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5720",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5725",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5730",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5740",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5745",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5747",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5750",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5755",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5756",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5760",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5763",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5765",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5775",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5780",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5790",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIH5795",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIJ7580",
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM1",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM1.2.T47",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM2.T47",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM26.R43",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM29.C86",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM35",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM36",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM37",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM40",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM42",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM43",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM45",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM47",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM48",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM50",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM52",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM53",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM55",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM56",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM57",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM59",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM6",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM6.5",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM62",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM63",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM66",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM68",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM7.C66",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM70",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM72",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM76",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM76.2",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM77",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM77.5",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM78",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM79",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM80",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM82.S45",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM84",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM85.W65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM87",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM89",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM90",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM91",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM93",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM95",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIM97",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6038",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6040",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6042",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6043",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6044",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6046",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6049",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6049.2",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6049.3",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6050",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6052",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6053",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6054",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6060",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6063",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6065",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6066",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6072.W37",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6075",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6076",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6076.2",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6076.3",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6076.4",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6076.5",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6078",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6079",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6080",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6082",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6082.2",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6083",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6083.3",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6084",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6085",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6086",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6088",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6090",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6092",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6096.C63",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6096.L85",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6100",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6100.5",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6101",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6102",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6103",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6104",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6115",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6120",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6122",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6122.5",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6123",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6124",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6125",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6126",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6128",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6130.D44",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6130.D47",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6135",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6142",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6150",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6152",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6153",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6155",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6162",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6166",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6167",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6170",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6173",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6174.I58",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6178",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6179",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6179.3",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6180",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6181",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6182",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6182.5",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6183",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6183.3",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6184",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6185",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6186",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6187",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6187.2",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6188",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6190",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6191",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6191.5",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6192",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6194",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6196",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6197",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6198",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6200",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6220",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6230",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6232",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6250",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6265",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6435",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6471",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6477",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6478.C65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6478.C66",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6511",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6512.C36",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6586",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6617",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6618.C65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6651",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6666",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6706",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6731",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6732.C36",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6780",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ6855",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ7120",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ7480",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ7697",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ7737",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ7738.C65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ7817",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ7857",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ7866",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ7977",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ7978.C65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8017",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8057",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8058.C65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8137",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8138.C65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8146",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8217",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8218.C65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8260",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8291",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8292.C36",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8306",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8331",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8332.C36",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8337",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8371",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8372.Z66",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8377",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8411",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8412.Z66",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8451",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8452.Z66",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8491",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8492.C36",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8551",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8557",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8591",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8592.Z66",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8631",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8632.Z66",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8677",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8711",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8712.Z66",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8757",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8791",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8792.Z66",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8837",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8871",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8872.C36",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8877",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8886",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8911",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8912.A64",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ8951",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9091",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9106",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9137",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9138.C65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9171",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9177",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9211",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9251",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9266",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9297",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9298.C65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9306",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9337",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9338.C65",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9377",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9378.A95",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9417",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9466",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9506",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9586",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9611",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9612.M37",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9651",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9691",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9737",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9777",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9817",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9857",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9897",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9937",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "selector": "KIQ9976",
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "K",
+      "190",
+      "197"
+    ],
+    "target": 51565
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "K",
+      "196",
+      "197"
+    ],
+    "target": 51565
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KI",
+      "1",
+      "500"
+    ],
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KI",
+      "513.A",
+      "513.Z"
+    ],
+    "target": 51566
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KI",
+      "565.A",
+      "565.Z"
+    ],
+    "target": 51566
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIA",
+      "20.2",
+      "8900.2"
+    ],
+    "target": 51566
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIA",
+      "20.A",
+      "20.Z"
+    ],
+    "target": 51566
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIA",
+      "2001",
+      "8580.2"
+    ],
+    "target": 51566
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIA",
+      "201",
+      "1999"
+    ],
+    "target": 51566
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIA",
+      "4.2.A",
+      "4.2.Z"
+    ],
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIA",
+      "4.5.A",
+      "4.5.Z"
+    ],
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIA",
+      "5",
+      "18"
+    ],
+    "target": 5879
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIB",
+      "1",
+      "9999"
+    ],
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIC",
+      "1",
+      "9881"
+    ],
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KID",
+      "1",
+      "8860"
+    ],
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIE",
+      "1",
+      "3900"
+    ],
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIF",
+      "1",
+      "1820"
+    ],
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIG",
+      "1",
+      "5350"
+    ],
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIH",
+      "1",
+      "5650"
+    ],
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIJ",
+      "1",
+      "7050"
+    ],
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIK",
+      "1",
+      "6950"
+    ],
+    "target": 51567
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIL",
+      "1",
+      "2020"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIM",
+      "101",
+      "199"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIM",
+      "201",
+      "3000"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIM",
+      "3101",
+      "6000"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIM",
+      "6.2.A",
+      "6.2.Z"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIM",
+      "7101",
+      "9000"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIM",
+      "75.A",
+      "75.Z"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIN",
+      "1",
+      "5000"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIN",
+      "5101",
+      "7000"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIP",
+      "1",
+      "3000"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6001",
+      "6030"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6045.A",
+      "6045.Z"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6047.A",
+      "6047.Z"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6076.A",
+      "6076.Z"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6118.A",
+      "6118.Z"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6164.A",
+      "6164.Z"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6172.A",
+      "6172.Z"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6255.A",
+      "6255.Z"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6301",
+      "6330"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6341",
+      "6370"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6381",
+      "6410"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6441",
+      "6470"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6481",
+      "6510"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6531",
+      "6570"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6621",
+      "6650"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6741",
+      "6770"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6781",
+      "6810"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6821",
+      "6850"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6861",
+      "6890"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6901",
+      "6930"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6941",
+      "6970"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "6981",
+      "7010"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7021",
+      "7050"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7061",
+      "7090"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7121",
+      "7150"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7161",
+      "7190"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7201",
+      "7230"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7241",
+      "7270"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7281",
+      "7310"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7321",
+      "7350"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7361",
+      "7390"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7401",
+      "7430"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7441",
+      "7470"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7491",
+      "7520"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7531",
+      "7570"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7581",
+      "7610"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7621",
+      "7650"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7661",
+      "7690"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7701",
+      "7730"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7741",
+      "7770"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7781",
+      "7810"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7821",
+      "7850"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7901",
+      "7930"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7941",
+      "7970"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "7981",
+      "8010"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8021",
+      "8050"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8061",
+      "8090"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8101",
+      "8130"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8181",
+      "8210"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8221",
+      "8250"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8261",
+      "8290"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8341",
+      "8370"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8381",
+      "8410"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8421",
+      "8450"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8461",
+      "8490"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8521",
+      "8550"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8561",
+      "8590"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8601",
+      "8630"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8641",
+      "8670"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8681",
+      "8710"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8721",
+      "8750"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8761",
+      "8790"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8801",
+      "8830"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8841",
+      "8870"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "8921",
+      "8950"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9021",
+      "9050"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9061",
+      "9090"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9141",
+      "9170"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9181",
+      "9210"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9221",
+      "9250"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9341",
+      "9370"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9381",
+      "9410"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9421",
+      "9450"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9541",
+      "9570"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9621",
+      "9650"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9661",
+      "9690"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9701",
+      "9730"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9741",
+      "9770"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9781",
+      "9810"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9821",
+      "9850"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9861",
+      "9890"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9901",
+      "9930"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9941",
+      "9970"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIQ",
+      "9983.A",
+      "9983.Z"
+    ],
+    "target": 51568
+  },
+  {
+    "subject": 5879,
+    "range": [
+      "KIR",
+      "1",
+      "6000"
+    ],
+    "target": 51568
+  }
+]

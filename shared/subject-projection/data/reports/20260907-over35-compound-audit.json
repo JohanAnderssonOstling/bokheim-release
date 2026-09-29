@@ -1,0 +1,348 @@
+{
+  "source": "lcc-mdsconnect-2016.sqlite3",
+  "compounds": [
+    {
+      "id": 797,
+      "label": "Music: Philosophy, Society & Physics",
+      "assessment": "Already has eight children covering the main LCC divisions. Review the remaining broad parent and its general ML3800 material; creating the same children would duplicate existing subjects.",
+      "children": [
+        {
+          "id": 6720,
+          "label": "Music Criticism",
+          "ranges": [
+            [
+              "ML",
+              "3880",
+              "3915.6"
+            ]
+          ]
+        },
+        {
+          "id": 7800,
+          "label": "Physics and acoustics",
+          "ranges": [
+            [
+              "ML",
+              "3805",
+              "3817"
+            ]
+          ]
+        },
+        {
+          "id": 7808,
+          "label": "Music, Society & Politics",
+          "ranges": [
+            [
+              "ML",
+              "3916",
+              "3918"
+            ]
+          ]
+        },
+        {
+          "id": 7897,
+          "label": "Physiological aspects of music",
+          "ranges": [
+            [
+              "ML",
+              "3820",
+              "3820.22"
+            ]
+          ]
+        },
+        {
+          "id": 8564,
+          "label": "Religious aspects of music",
+          "ranges": [
+            [
+              "ML",
+              "3921",
+              "3921.8"
+            ]
+          ]
+        },
+        {
+          "id": 8801,
+          "label": "Music’s Moral & Healing Effects",
+          "ranges": [
+            [
+              "ML",
+              "3919",
+              "3920"
+            ]
+          ]
+        },
+        {
+          "id": 9286,
+          "label": "Aesthetics",
+          "ranges": [
+            [
+              "ML",
+              "3845",
+              "3877"
+            ]
+          ]
+        },
+        {
+          "id": 9409,
+          "label": "Psychology",
+          "ranges": [
+            [
+              "ML",
+              "3830",
+              "3840"
+            ]
+          ]
+        }
+      ],
+      "selectors": [
+        [
+          "ML3820"
+        ]
+      ],
+      "ranges": [
+        [
+          "ML",
+          "3800",
+          "3923"
+        ]
+      ]
+    },
+    {
+      "id": 2405,
+      "label": "Mathematical Geography & Cartography",
+      "assessment": "Cartography already exists as child 2406. LCC distinguishes GA1–87 Mathematical geography and GA101–1776 Cartography. Potential follow-up: promote Cartography and narrow/rename the parent after auditing GA fallback coverage and existing children.",
+      "children": [
+        {
+          "id": 2406,
+          "label": "Cartography",
+          "ranges": [
+            [
+              "GA",
+              "101",
+              "1776"
+            ]
+          ]
+        },
+        {
+          "id": 2407,
+          "label": "Surveys",
+          "ranges": [
+            [
+              "GA",
+              "51",
+              "51.2"
+            ],
+            [
+              "GA",
+              "51",
+              "87"
+            ],
+            [
+              "GA",
+              "57",
+              "63"
+            ],
+            [
+              "GA",
+              "70",
+              "71"
+            ],
+            [
+              "GA",
+              "75",
+              "76"
+            ],
+            [
+              "GA",
+              "80",
+              "87"
+            ]
+          ]
+        }
+      ],
+      "selectors": [
+        [
+          "GA"
+        ]
+      ],
+      "ranges": [
+        [
+          "GA",
+          "1",
+          "1776"
+        ]
+      ]
+    },
+    {
+      "id": 6943,
+      "label": "Cupping, Acupuncture & Counterirritation",
+      "assessment": "RM184 combines cupping, acupuncture, artificial hyperemia and mustard plasters. RM184.5 specifies acupuncture points and could move to an appropriate existing acupuncture subject, but the combined RM184 cannot be separated reliably by code.",
+      "children": [],
+      "selectors": [
+        [
+          "RM184"
+        ],
+        [
+          "RM184.5"
+        ]
+      ],
+      "ranges": []
+    },
+    {
+      "id": 2587,
+      "label": "Skin Hyperemia, Inflammation & Infection",
+      "assessment": "Rosacea, psoriasis, skin allergies, dermatitis and eczema already have children. Additional named diseases can be extracted from RL221, RL225, RL271, RL283, RL291, RL301 and RL311, but this would not remove the need for a broad parent.",
+      "children": [
+        {
+          "id": 6584,
+          "label": "Rosacea",
+          "ranges": []
+        },
+        {
+          "id": 8696,
+          "label": "Psoriasis",
+          "ranges": []
+        },
+        {
+          "id": 8900,
+          "label": "Skin Allergies",
+          "ranges": [
+            [
+              "RL",
+              "242",
+              "249"
+            ]
+          ]
+        },
+        {
+          "id": 9135,
+          "label": "Dermatitis",
+          "ranges": [
+            [
+              "RL",
+              "231",
+              "241"
+            ]
+          ]
+        },
+        {
+          "id": 9455,
+          "label": "Eczema",
+          "ranges": []
+        }
+      ],
+      "selectors": [],
+      "ranges": [
+        [
+          "RL",
+          "201",
+          "331"
+        ]
+      ]
+    },
+    {
+      "id": 13132,
+      "label": "Entrepreneurship, Risk & Uncertainty",
+      "assessment": "HB615 is one combined source heading: Entrepreneurship. Risk and uncertainty. No independent source divisions found within HB615–669.9; retain the combined meaning.",
+      "children": [],
+      "selectors": [],
+      "ranges": [
+        [
+          "HB",
+          "615",
+          "669.9"
+        ]
+      ]
+    },
+    {
+      "id": 5033,
+      "label": "Experimental & Descriptive Mechanics",
+      "assessment": "QC120–168.86 is a combined descriptive and experimental mechanics class. Existing children already separate history, early works, special topics, fluids and dynamics. No clean descriptive-versus-experimental division is supported.",
+      "children": [
+        {
+          "id": 6778,
+          "label": "Experimental Mechanics History",
+          "ranges": [
+            [
+              "QC",
+              "122",
+              "122.2"
+            ]
+          ]
+        },
+        {
+          "id": 7262,
+          "label": "Early works through 1800",
+          "ranges": []
+        },
+        {
+          "id": 7463,
+          "label": "Experimental Mechanics Topics",
+          "ranges": []
+        },
+        {
+          "id": 8328,
+          "label": "Fluids. Fluid mechanics",
+          "ranges": [
+            [
+              "QC",
+              "138",
+              "168.86"
+            ]
+          ]
+        },
+        {
+          "id": 8766,
+          "label": "Dynamics. Motion",
+          "ranges": [
+            [
+              "QC",
+              "133",
+              "136"
+            ]
+          ]
+        }
+      ],
+      "selectors": [
+        [
+          "QC120"
+        ],
+        [
+          "QC121"
+        ],
+        [
+          "QC121.6"
+        ],
+        [
+          "QC121.8"
+        ],
+        [
+          "QC127"
+        ],
+        [
+          "QC127.3"
+        ],
+        [
+          "QC127.4"
+        ],
+        [
+          "QC127.6"
+        ]
+      ],
+      "ranges": [
+        [
+          "QC",
+          "125",
+          "125.2"
+        ],
+        [
+          "QC",
+          "128",
+          "129.5"
+        ]
+      ]
+    }
+  ],
+  "structural_changes_applied": false
+}

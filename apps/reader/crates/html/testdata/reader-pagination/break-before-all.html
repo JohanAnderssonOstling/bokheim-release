@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Break-before pagination matrix</title>
+  <style>
+    body { margin: 34px; color: #18212b; background: #faf8f2; font-family: sans-serif; }
+    h1 { margin: 0 0 12px; font-size: 30px; }
+    h2 { margin: 0 0 8px; font-size: 23px; }
+    p { margin: 5px 0; line-height: 1.35; }
+    code { font-family: monospace; font-weight: bold; }
+    .card { box-sizing: border-box; min-height: 128px; margin: 0 0 18px; padding: 16px 18px; border: 4px solid #375a72; background: #e8f2f8; }
+    .auto { border-color: #56864c; background: #eaf5e6; }
+    .avoid-anchor { min-height: 92px; border-color: #a66b21; background: #fff0d8; }
+    .avoid { min-height: 112px; break-before: avoid; border-color: #a66b21; background: #fff7e9; }
+    .column { break-before: column; border-color: #176f7b; background: #dff5f5; }
+    .page { break-before: page; border-color: #684ca0; background: #eee7ff; }
+    .legacy { page-break-before: always; border-color: #9b3f65; background: #fde7f0; }
+    .left { break-before: left; border-color: #4357ad; background: #e7ebff; }
+    .right { break-before: right; border-color: #ad4343; background: #ffe8e8; }
+    .status { display: inline-block; margin-bottom: 8px; padding: 3px 8px; color: white; background: #253746; font-size: 13px; font-weight: bold; letter-spacing: .06em; }
+  </style>
+</head>
+<body>
+  <h1>CSS break-before — interactive matrix</h1>
+  <p>Resize the window, then use Left/Right or Page Up/Page Down. A reader page contains every visible column.</p>
+
+  <section class="card auto">
+    <span class="status">AUTO</span>
+    <h2><code>break-before: auto</code></h2>
+    <p>This card follows normal flow and consumes no forced boundary.</p>
+  </section>
+
+  <section class="card avoid-anchor">
+    <span class="status">AVOID PAIR — FIRST</span>
+    <p>This orange card is the previous sibling of the next card.</p>
+  </section>
+  <section class="card avoid">
+    <span class="status">AVOID PAIR — SECOND</span>
+    <h2><code>break-before: avoid</code></h2>
+    <p>If the boundary would fall between these two orange cards, both move together when they fit.</p>
+  </section>
+
+  <section class="card column">
+    <span class="status">NEXT COLUMN</span>
+    <h2><code>break-before: column</code></h2>
+    <p>This card must start at the top of the next column while remaining on the same reader page.</p>
+  </section>
+
+  <section class="card page">
+    <span class="status">NEXT READER PAGE</span>
+    <h2><code>break-before: page</code></h2>
+    <p>This card skips every column remaining on the previous reader page and starts in column one.</p>
+  </section>
+
+  <section class="card legacy">
+    <span class="status">LEGACY NEXT PAGE</span>
+    <h2><code>page-break-before: always</code></h2>
+    <p>The legacy EPUB spelling has the same reader-page behavior as <code>break-before: page</code>.</p>
+  </section>
+
+  <section class="card left">
+    <span class="status">LEFT FALLBACK</span>
+    <h2><code>break-before: left</code></h2>
+    <p>Facing-page parity is not modeled, so this safely degrades to an ordinary next-page break.</p>
+  </section>
+
+  <section class="card right">
+    <span class="status">RIGHT FALLBACK</span>
+    <h2><code>break-before: right</code></h2>
+    <p>Facing-page parity is not modeled, so this also degrades to an ordinary next-page break.</p>
+  </section>
+</body>
+</html>

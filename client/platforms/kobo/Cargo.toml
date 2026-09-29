@@ -1,0 +1,11 @@
+[package]
+name = "client-platform-kobo"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+device = ["dep:kobo-device"]
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+uuid = { version = "1", features = ["v4"] }
+kobo-device = { path = "../../../apps/kobo-device", optional = true }

@@ -1,0 +1,149 @@
+{
+  "new_subjects": [
+    {
+      "label": "Sustainable Engineering",
+      "concept_id": "bokheim:topics-2025:sustainable-engineering",
+      "parent_id": "unified:4dd89894-fba7-5e0b-b8d8-134b82881002",
+      "parent_label": "Engineering Foundations & Applied Science",
+      "codes": [
+        "TA163"
+      ]
+    },
+    {
+      "label": "Industry 4.0",
+      "concept_id": "bokheim:topics-2025:industry-4-0",
+      "parent_id": "unified:5b347b71-f4c8-544e-b09e-308e6be61641",
+      "parent_label": "Automation",
+      "codes": [
+        "T59.6"
+      ]
+    },
+    {
+      "label": "Microgrids",
+      "concept_id": "bokheim:topics-2025:microgrids",
+      "parent_id": "unified:e4d2c8e0-e7a9-5a97-978f-2ad868a47205",
+      "parent_label": "Distribution or transmission of electric power",
+      "codes": [
+        "TK3106"
+      ]
+    },
+    {
+      "label": "Wireless Power Transmission",
+      "concept_id": "bokheim:topics-2025:wireless-power-transmission",
+      "parent_id": "unified:e4d2c8e0-e7a9-5a97-978f-2ad868a47205",
+      "parent_label": "Distribution or transmission of electric power",
+      "codes": [
+        "TK3088"
+      ]
+    },
+    {
+      "label": "Perovskite Solar Cells",
+      "concept_id": "bokheim:topics-2025:perovskite-solar-cells",
+      "parent_id": "bokheim:lcc-detail:2f027003-4b4a-5774-aea6-126d70bb5b56",
+      "parent_label": "Solar batteries. Solar cells",
+      "codes": [
+        "TK2963.P47"
+      ]
+    },
+    {
+      "label": "Microbial Fuel Cells",
+      "concept_id": "bokheim:topics-2025:microbial-fuel-cells",
+      "parent_id": "bokheim:lcc-detail:fe927099-3312-5ed6-81f3-8a6d257219b9",
+      "parent_label": "Direct Chemical Electricity Generation",
+      "codes": [
+        "TK2933.M53"
+      ]
+    },
+    {
+      "label": "Sodium-Ion Batteries",
+      "concept_id": "bokheim:topics-2025:sodium-ion-batteries",
+      "parent_id": "bokheim:lcc-detail:fe927099-3312-5ed6-81f3-8a6d257219b9",
+      "parent_label": "Direct Chemical Electricity Generation",
+      "codes": [
+        "TK2945.S62"
+      ]
+    },
+    {
+      "label": "Flow Batteries",
+      "concept_id": "bokheim:topics-2025:flow-batteries",
+      "parent_id": "bokheim:lcc-detail:fe927099-3312-5ed6-81f3-8a6d257219b9",
+      "parent_label": "Direct Chemical Electricity Generation",
+      "codes": [
+        "TK2945.F56"
+      ]
+    },
+    {
+      "label": "Electric Airplanes",
+      "concept_id": "bokheim:topics-2025:electric-airplanes",
+      "parent_id": "bokheim:lcc-detail:fe1c45ee-aff5-5445-bf92-d68b9a465489",
+      "parent_label": "Aircraft (General)",
+      "codes": [
+        "TL683.3"
+      ]
+    },
+    {
+      "label": "Synthetic Biology",
+      "concept_id": "bokheim:topics-2025:synthetic-biology",
+      "parent_id": "unified:8df35c82-5deb-58f9-bacd-34b2191f93c8",
+      "parent_label": "Biotechnology",
+      "codes": [
+        "TP248.27.S95"
+      ]
+    },
+    {
+      "label": "Induced Pluripotent Stem Cells",
+      "concept_id": "bokheim:topics-2025:induced-pluripotent-stem-cells",
+      "parent_id": "bokheim:lcc-detail:19edb1b8-d954-5d5f-93d1-aa4aa2cda850",
+      "parent_label": "Cell populations",
+      "codes": [
+        "QH588.I63"
+      ]
+    },
+    {
+      "label": "3D Food Printing",
+      "concept_id": "bokheim:topics-2025:3d-food-printing",
+      "parent_id": "unified:bf419a72-6d43-5981-a69d-17f6f1921361",
+      "parent_label": "Food processing and manufacture",
+      "codes": [
+        "TP372.85"
+      ]
+    },
+    {
+      "label": "Online Identities",
+      "concept_id": "bokheim:topics-2025:online-identities",
+      "parent_id": "bokheim:sociology:identity-community",
+      "parent_label": "Identity & Community",
+      "codes": [
+        "HM754"
+      ]
+    },
+    {
+      "label": "Fear of Missing Out",
+      "concept_id": "bokheim:topics-2025:fear-of-missing-out",
+      "parent_id": "unified:e71c1e18-3630-5803-9ca3-0ec75dfd52bf",
+      "parent_label": "Emotions",
+      "codes": [
+        "BF575.F43"
+      ]
+    },
+    {
+      "label": "ASMR",
+      "concept_id": "bokheim:topics-2025:asmr",
+      "parent_id": "unified:8fd4ef30-39c5-527b-b72a-b788c51b1e6f",
+      "parent_label": "Sensation",
+      "codes": [
+        "BF299.A86"
+      ]
+    },
+    {
+      "label": "Vaping",
+      "concept_id": "bokheim:topics-2025:vaping",
+      "parent_id": "unified:afd5184b-9376-5931-ae26-d761d02878a3",
+      "parent_label": "Tobacco habit",
+      "codes": [
+        "HV5740.5"
+      ]
+    }
+  ],
+  "existing_subjects": []
+}

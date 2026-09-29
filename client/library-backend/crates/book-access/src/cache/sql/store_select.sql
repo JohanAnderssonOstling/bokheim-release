@@ -1,0 +1,1 @@
+SELECT checksum=?2 AND size=?3 FROM source WHERE hash=?1

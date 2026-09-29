@@ -1,0 +1,47 @@
+[package]
+name = "audiobook-player"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = ["native-rodio"]
+kobo = ["dep:rodio"]
+native-rodio = ["dep:rodio", "rodio/playback"]
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+library-backend = { path = "../../client/library-backend" }
+book-model = { path = "../../shared/book-model" }
+async-channel = "2"
+app = { path = "../../client/app", default-features = false }
+library-model = { path = "../../client/library-model" }
+ui-components = { path = "../components" }
+gpui.workspace = true
+gpui-component.workspace = true
+log = "0.4"
+crossbeam-channel = "0.5"
+serde = { version = "1", features = ["derive"] }
+uuid = { version = "1", features = ["v4", "js", "serde"] }
+web-time = "1"
+[target.'cfg(all(not(target_os = "android"), not(target_arch = "wasm32")))'.dependencies]
+rodio = { version = "0.22.2", default-features = false, features = ["mp4", "mp3", "symphonia-alac"], optional = true }
+wsola = "0.1.0"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+async-io = "2"
+
+[target.'cfg(target_os = "android")'.dependencies]
+serde_json = "1"
+tempfile = "3"
+
+[dev-dependencies]
+gpui = { workspace = true, features = ["test-support"] }
+serde_json = "1"
+tempfile = "3"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "0.2"
+js-sys = "0.3"
+serde_json = "1"

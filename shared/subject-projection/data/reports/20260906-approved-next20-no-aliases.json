@@ -1,0 +1,109 @@
+{
+  "changes": [
+    {
+      "id": 6615,
+      "before": "Admissions and entrance requirements",
+      "after": "Higher Education Admissions"
+    },
+    {
+      "id": 198,
+      "before": "Architectural engineering. Structural",
+      "after": "Structural & Building Engineering"
+    },
+    {
+      "id": 9563,
+      "before": "Balance. Rhythm. Symmetry. Proportion",
+      "after": "Drawing Composition"
+    },
+    {
+      "id": 7805,
+      "before": "Biography of orators, lecturers, etc.",
+      "after": "Public Speaker Biographies"
+    },
+    {
+      "id": 13150,
+      "before": "Business Cycles by Country or Region",
+      "after": "Regional Business Cycles"
+    },
+    {
+      "id": 7584,
+      "before": "Child & Adolescent Psychiatric Nursing",
+      "after": "Pediatric Psychiatric Nursing"
+    },
+    {
+      "id": 10032,
+      "before": "Collection and preservation of drugs",
+      "after": "Drug Collection & Preservation"
+    },
+    {
+      "id": 12983,
+      "before": "Collections, Acquisition & Processing",
+      "after": "Library Acquisition & Processing"
+    },
+    {
+      "id": 12439,
+      "before": "Colonialism & Colonial Administration",
+      "after": "Colonialism & Colonial Rule"
+    },
+    {
+      "id": 8843,
+      "before": "Communication of cooking information",
+      "after": "Culinary Communication"
+    },
+    {
+      "id": 7194,
+      "before": "Complications and unfavorable results",
+      "after": "Plastic Surgery Complications"
+    },
+    {
+      "id": 8692,
+      "before": "Convalescent care. Home care programs",
+      "after": "Home & Convalescent Care"
+    },
+    {
+      "id": 8987,
+      "before": "Copying and reproducing of paintings",
+      "after": "Painting Reproduction"
+    },
+    {
+      "id": 10326,
+      "before": "Dakota Indian or Sioux War, 1862-1865",
+      "after": "Dakota–Sioux War, 1862–1865"
+    },
+    {
+      "id": 7625,
+      "before": "Drawing-room management and practice",
+      "after": "Drafting Office Management"
+    },
+    {
+      "id": 9851,
+      "before": "Drugs acting on the digestive system",
+      "after": "Digestive System Drugs"
+    },
+    {
+      "id": 8321,
+      "before": "Drugs acting on the skeletal muscles",
+      "after": "Skeletal Muscle Drugs"
+    },
+    {
+      "id": 13199,
+      "before": "Economic Organization & Anthropology",
+      "after": "Economic Anthropology"
+    },
+    {
+      "id": 12917,
+      "before": "Economic Thought by Region or Country",
+      "after": "Regional Economic Thought"
+    },
+    {
+      "id": 9814,
+      "before": "Equipment, appliances, utensils, etc.",
+      "after": "Cooking Equipment"
+    }
+  ],
+  "count": 20,
+  "over40_before": 6,
+  "over40_after": 6,
+  "aliases_added": 0,
+  "current_over35": 369
+}

@@ -1,0 +1,4560 @@
+[
+  {
+    "id": 51683,
+    "label": "Kosovo History",
+    "themes": {},
+    "groups": {
+      "period": 54061
+    },
+    "period_children": [
+      51989,
+      51990,
+      51991,
+      51992,
+      51993
+    ],
+    "general": [
+      [
+        "DR2082",
+        "DR2082"
+      ]
+    ]
+  },
+  {
+    "id": 3337,
+    "label": "Central African Republic History",
+    "themes": {
+      "political": 54062
+    },
+    "groups": {
+      "period": 54063,
+      "local": 54067
+    },
+    "period_children": [
+      54064,
+      54065,
+      54066
+    ],
+    "general": [
+      [
+        "DT546.35",
+        "DT546.35"
+      ]
+    ],
+    "other_local": 54068
+  },
+  {
+    "id": 3338,
+    "label": "Chad Tchad",
+    "themes": {
+      "political": 54069
+    },
+    "groups": {
+      "period": 54070,
+      "local": 54074
+    },
+    "period_children": [
+      54071,
+      54072,
+      54073
+    ],
+    "general": [],
+    "other_local": 54075
+  },
+  {
+    "id": 3340,
+    "label": "Gabon Gaboon, Gabun",
+    "themes": {
+      "political": 54076
+    },
+    "groups": {
+      "period": 54077,
+      "local": 54081
+    },
+    "period_children": [
+      54078,
+      54079,
+      54080
+    ],
+    "general": [
+      [
+        "DT546.15",
+        "DT546.15"
+      ]
+    ],
+    "other_local": 54082
+  },
+  {
+    "id": 3326,
+    "label": "Burkina Faso. Upper Volta",
+    "themes": {
+      "political": 54083
+    },
+    "groups": {
+      "period": 54084,
+      "local": 54089
+    },
+    "period_children": [
+      54085,
+      54086,
+      54087,
+      54088
+    ],
+    "general": [
+      [
+        "DT555.57",
+        "DT555.57"
+      ]
+    ],
+    "other_local": 54090
+  },
+  {
+    "id": 3341,
+    "label": "Gambian History",
+    "themes": {
+      "political": 54091
+    },
+    "groups": {
+      "period": 54092,
+      "local": 54096
+    },
+    "period_children": [
+      54093,
+      54094,
+      54095
+    ],
+    "general": [
+      [
+        "DT509.5",
+        "DT509.5"
+      ]
+    ],
+    "other_local": 54097
+  },
+  {
+    "id": 3343,
+    "label": "Guinean History",
+    "themes": {
+      "political": 54098
+    },
+    "groups": {
+      "period": 54099,
+      "local": 54103
+    },
+    "period_children": [
+      54100,
+      54101,
+      54102
+    ],
+    "general": [
+      [
+        "DT543.5",
+        "DT543.5"
+      ]
+    ],
+    "other_local": 54104
+  },
+  {
+    "id": 3351,
+    "label": "Mali History",
+    "themes": {
+      "political": 54105
+    },
+    "groups": {
+      "period": 54106,
+      "local": 54111
+    },
+    "period_children": [
+      54107,
+      54108,
+      54109,
+      54110
+    ],
+    "general": [
+      [
+        "DT551.5",
+        "DT551.5"
+      ]
+    ],
+    "other_local": 54112
+  },
+  {
+    "id": 3352,
+    "label": "Mauritania",
+    "themes": {
+      "military": 54113,
+      "political": 54114
+    },
+    "groups": {
+      "period": 54115,
+      "local": 54119
+    },
+    "period_children": [
+      54116,
+      54117,
+      54118
+    ],
+    "general": [
+      [
+        "DT554.57",
+        "DT554.57"
+      ]
+    ],
+    "other_local": 54120
+  },
+  {
+    "id": 3355,
+    "label": "Nigerien History",
+    "themes": {
+      "political": 54121
+    },
+    "groups": {
+      "period": 54122,
+      "local": 54127
+    },
+    "period_children": [
+      54123,
+      54124,
+      54125,
+      54126
+    ],
+    "general": [
+      [
+        "DT547.5",
+        "DT547.5"
+      ]
+    ],
+    "other_local": 54128
+  },
+  {
+    "id": 3356,
+    "label": "Nigerian History",
+    "themes": {
+      "military": 54129,
+      "political": 54130
+    },
+    "groups": {
+      "period": 54131,
+      "local": 54136
+    },
+    "period_children": [
+      54132,
+      54133,
+      54134,
+      54135
+    ],
+    "general": [
+      [
+        "DT515.57",
+        "DT515.57"
+      ]
+    ],
+    "other_local": 54137
+  },
+  {
+    "id": 3363,
+    "label": "Senegalese History",
+    "themes": {
+      "military": 54138,
+      "political": 54139
+    },
+    "groups": {
+      "period": 54140,
+      "local": 54144
+    },
+    "period_children": [
+      54141,
+      54142,
+      54143
+    ],
+    "general": [
+      [
+        "DT549.5",
+        "DT549.5"
+      ]
+    ],
+    "other_local": 54145
+  },
+  {
+    "id": 3364,
+    "label": "Sierra Leonean History",
+    "themes": {
+      "political": 54146
+    },
+    "groups": {
+      "period": 54147,
+      "local": 54151
+    },
+    "period_children": [
+      54148,
+      54149,
+      54150
+    ],
+    "general": [
+      [
+        "DT516.5",
+        "DT516.5"
+      ]
+    ],
+    "other_local": 54152
+  },
+  {
+    "id": 3374,
+    "label": "West Sahara",
+    "themes": {},
+    "groups": {},
+    "period_children": [],
+    "general": []
+  },
+  {
+    "id": 3381,
+    "label": "Dominican Republic History",
+    "themes": {
+      "military": 54153,
+      "political": 54154
+    },
+    "groups": {
+      "period": 54155,
+      "local": 54160
+    },
+    "period_children": [
+      54156,
+      54157,
+      54158,
+      54159
+    ],
+    "general": [
+      [
+        "F1938",
+        "F1938"
+      ]
+    ],
+    "other_local": 54161
+  },
+  {
+    "id": 3382,
+    "label": "Haitian History",
+    "themes": {
+      "military": 54162,
+      "political": 54163
+    },
+    "groups": {
+      "period": 54164,
+      "local": 54171
+    },
+    "period_children": [
+      54165,
+      54166,
+      54167,
+      54168,
+      54169,
+      54170
+    ],
+    "general": [
+      [
+        "F1921",
+        "F1921"
+      ]
+    ],
+    "other_local": 54172
+  },
+  {
+    "id": 13768,
+    "label": "Beninese History",
+    "themes": {
+      "political": 54173
+    },
+    "groups": {
+      "period": 54174,
+      "local": 54178
+    },
+    "period_children": [
+      54175,
+      54176,
+      54177
+    ],
+    "general": [
+      [
+        "DT541.5",
+        "DT541.5"
+      ]
+    ],
+    "other_local": 54179
+  },
+  {
+    "id": 3345,
+    "label": "Kenyan History",
+    "themes": {
+      "political": 54180
+    },
+    "groups": {
+      "period": 54181,
+      "local": 54186
+    },
+    "period_children": [
+      54182,
+      54183,
+      54184,
+      54185
+    ],
+    "general": [
+      [
+        "DT433.557",
+        "DT433.557"
+      ]
+    ],
+    "other_local": 54187
+  },
+  {
+    "id": 3372,
+    "label": "Ugandan History",
+    "themes": {
+      "political": 54188
+    },
+    "groups": {
+      "period": 54189,
+      "local": 54194
+    },
+    "period_children": [
+      54190,
+      54191,
+      54192,
+      54193
+    ],
+    "general": [
+      [
+        "DT433.257",
+        "DT433.257"
+      ]
+    ],
+    "other_local": 54195
+  },
+  {
+    "id": 3380,
+    "label": "Cuban History",
+    "themes": {
+      "military": 54196,
+      "political": 54197
+    },
+    "groups": {
+      "period": 54198,
+      "local": 54199
+    },
+    "period_children": [
+      11225
+    ],
+    "general": [
+      [
+        "F1776",
+        "F1776"
+      ]
+    ],
+    "other_local": 54200
+  },
+  {
+    "id": 3383,
+    "label": "Jamaican History",
+    "themes": {
+      "political": 54201
+    },
+    "groups": {
+      "period": 54202,
+      "local": 54206
+    },
+    "period_children": [
+      54203,
+      54204,
+      54205
+    ],
+    "general": [
+      [
+        "F1881",
+        "F1881"
+      ]
+    ],
+    "other_local": 54207
+  },
+  {
+    "id": 3546,
+    "label": "Croatian History",
+    "themes": {
+      "military": 54208,
+      "political": 51743
+    },
+    "groups": {
+      "period": 54209,
+      "local": 54210
+    },
+    "period_children": [
+      51745,
+      51746,
+      51747,
+      51748,
+      51749,
+      51750
+    ],
+    "general": [
+      [
+        "DR1535",
+        "DR1535"
+      ]
+    ],
+    "other_local": 54211
+  },
+  {
+    "id": 3549,
+    "label": "Serbian History",
+    "themes": {
+      "military": 54212,
+      "political": 51675
+    },
+    "groups": {
+      "period": 54213,
+      "local": 54214
+    },
+    "period_children": [
+      51677,
+      51678,
+      51679,
+      51680,
+      51681,
+      51682
+    ],
+    "general": [
+      [
+        "DR1965",
+        "DR1965"
+      ]
+    ],
+    "other_local": 54215
+  },
+  {
+    "id": 10366,
+    "label": "Guyanese History",
+    "themes": {
+      "political": 54216
+    },
+    "groups": {
+      "period": 54217,
+      "local": 54218
+    },
+    "period_children": [
+      11268,
+      11306
+    ],
+    "general": [
+      [
+        "F2381",
+        "F2381"
+      ]
+    ],
+    "other_local": 54219
+  },
+  {
+    "id": 10467,
+    "label": "Montenegrin History",
+    "themes": {
+      "military": 54220,
+      "political": 54221
+    },
+    "groups": {
+      "period": 54222,
+      "local": 54229
+    },
+    "period_children": [
+      54223,
+      54224,
+      54225,
+      54226,
+      54227,
+      54228
+    ],
+    "general": [
+      [
+        "DR1835",
+        "DR1835"
+      ]
+    ],
+    "other_local": 54230
+  },
+  {
+    "id": 10589,
+    "label": "Surinamese History",
+    "themes": {},
+    "groups": {
+      "period": 54231,
+      "local": 54232
+    },
+    "period_children": [
+      11231,
+      11239,
+      11299
+    ],
+    "general": [
+      [
+        "F2421",
+        "F2421"
+      ]
+    ],
+    "other_local": 54233
+  },
+  {
+    "id": 10723,
+    "label": "Equatorial Guinean History",
+    "themes": {
+      "political": 54234
+    },
+    "groups": {
+      "period": 54235,
+      "local": 54239
+    },
+    "period_children": [
+      54236,
+      54237,
+      54238
+    ],
+    "general": [
+      [
+        "DT620.5",
+        "DT620.5"
+      ]
+    ],
+    "other_local": 54240
+  },
+  {
+    "id": 13830,
+    "label": "Puerto Rican History",
+    "themes": {},
+    "groups": {
+      "period": 54241,
+      "local": 54245
+    },
+    "period_children": [
+      54242,
+      54243,
+      54244
+    ],
+    "general": [
+      [
+        "F1971",
+        "F1971"
+      ]
+    ],
+    "other_local": 54246
+  },
+  {
+    "id": 50822,
+    "label": "French Guiana",
+    "themes": {},
+    "groups": {
+      "period": 54247,
+      "local": 54251
+    },
+    "period_children": [
+      54248,
+      54249,
+      54250
+    ],
+    "general": [
+      [
+        "F2461",
+        "F2461"
+      ]
+    ],
+    "other_local": 54252
+  },
+  {
+    "id": 50852,
+    "label": "Falkland Islands History",
+    "themes": {},
+    "groups": {},
+    "period_children": [],
+    "general": []
+  },
+  {
+    "id": 51930,
+    "label": "Cypriot History",
+    "themes": {
+      "political": 51935
+    },
+    "groups": {
+      "period": 54253,
+      "local": 51944
+    },
+    "period_children": [
+      51936,
+      51937,
+      51939
+    ],
+    "general": [
+      [
+        "DS54.5",
+        "DS54.5"
+      ]
+    ],
+    "other_local": 54254
+  },
+  {
+    "id": 51945,
+    "label": "Slovenian History",
+    "themes": {
+      "military": 54255,
+      "political": 54256
+    },
+    "groups": {
+      "period": 54257,
+      "local": 51955
+    },
+    "period_children": [
+      51951,
+      51952,
+      51953,
+      51954
+    ],
+    "general": [
+      [
+        "DR1385",
+        "DR1385"
+      ]
+    ],
+    "other_local": 54258
+  },
+  {
+    "id": 51957,
+    "label": "Bosnia and Herzegovina History",
+    "themes": {
+      "military": 54259,
+      "political": 54260
+    },
+    "groups": {
+      "period": 54261,
+      "local": 51968
+    },
+    "period_children": [
+      51963,
+      51964,
+      51965,
+      51966,
+      51967
+    ],
+    "general": [
+      [
+        "DR1685",
+        "DR1685"
+      ]
+    ],
+    "other_local": 54262
+  },
+  {
+    "id": 51970,
+    "label": "North Macedonian History",
+    "themes": {
+      "military": 54263,
+      "political": 51976
+    },
+    "groups": {
+      "period": 54264,
+      "local": 51982
+    },
+    "period_children": [
+      51977,
+      51978,
+      51979,
+      51980,
+      51981
+    ],
+    "general": [
+      [
+        "DR2185",
+        "DR2185"
+      ]
+    ],
+    "other_local": 54265
+  },
+  {
+    "id": 3321,
+    "label": "Algerian History",
+    "themes": {
+      "political": 54266
+    },
+    "groups": {
+      "period": 54267,
+      "local": 54276
+    },
+    "period_children": [
+      54268,
+      54269,
+      54270,
+      54271,
+      54272,
+      54273,
+      54274,
+      54275
+    ],
+    "general": [
+      [
+        "DT284",
+        "DT284"
+      ]
+    ],
+    "other_local": 54277
+  },
+  {
+    "id": 3327,
+    "label": "Burundian History",
+    "themes": {
+      "political": 54278
+    },
+    "groups": {
+      "period": 54279,
+      "local": 54286
+    },
+    "period_children": [
+      54280,
+      54281,
+      54282,
+      54283,
+      54284,
+      54285
+    ],
+    "general": [
+      [
+        "DT450.68",
+        "DT450.68"
+      ]
+    ],
+    "other_local": 54287
+  },
+  {
+    "id": 3328,
+    "label": "Cameroon Cameroun, Kamerun",
+    "themes": {
+      "political": 54288
+    },
+    "groups": {
+      "period": 54289,
+      "local": 54292
+    },
+    "period_children": [
+      54290,
+      54291
+    ],
+    "general": [
+      [
+        "DT572",
+        "DT572"
+      ]
+    ],
+    "other_local": 54293
+  },
+  {
+    "id": 3334,
+    "label": "Ethiopian History",
+    "themes": {
+      "political": 54294
+    },
+    "groups": {
+      "period": 54295
+    },
+    "period_children": [
+      54296,
+      54297,
+      54298
+    ],
+    "general": [
+      [
+        "DT381",
+        "DT381"
+      ],
+      [
+        "DT382",
+        "DT382"
+      ]
+    ]
+  },
+  {
+    "id": 3347,
+    "label": "Liberian History",
+    "themes": {
+      "political": 54299
+    },
+    "groups": {
+      "period": 54300,
+      "local": 54304
+    },
+    "period_children": [
+      54301,
+      54302,
+      54303
+    ],
+    "general": [
+      [
+        "DT631",
+        "DT631"
+      ]
+    ],
+    "other_local": 54305
+  },
+  {
+    "id": 3348,
+    "label": "Libyan History",
+    "themes": {
+      "political": 54306
+    },
+    "groups": {
+      "period": 54307,
+      "local": 54314
+    },
+    "period_children": [
+      54308,
+      54309,
+      54310,
+      54311,
+      54312,
+      54313
+    ],
+    "general": [
+      [
+        "DT224",
+        "DT224"
+      ]
+    ],
+    "other_local": 54315
+  },
+  {
+    "id": 3362,
+    "label": "Rwanda. Ruanda-Urundi",
+    "themes": {
+      "political": 54316
+    },
+    "groups": {
+      "period": 54317,
+      "local": 54324
+    },
+    "period_children": [
+      54318,
+      54319,
+      54320,
+      54321,
+      54322,
+      54323
+    ],
+    "general": [
+      [
+        "DT450.28",
+        "DT450.28"
+      ]
+    ],
+    "other_local": 54325
+  },
+  {
+    "id": 3365,
+    "label": "Somali & Somaliland History",
+    "themes": {
+      "political": 54326
+    },
+    "groups": {
+      "period": 54327,
+      "local": 54333
+    },
+    "period_children": [
+      54328,
+      54329,
+      54330,
+      54331,
+      54332
+    ],
+    "general": [
+      [
+        "DT403",
+        "DT403"
+      ]
+    ],
+    "other_local": 54334
+  },
+  {
+    "id": 3369,
+    "label": "Tanzania & German E. Africa Hist.",
+    "themes": {
+      "political": 54335
+    },
+    "groups": {
+      "period": 54336,
+      "local": 54340
+    },
+    "period_children": [
+      54337,
+      54338,
+      54339
+    ],
+    "general": [
+      [
+        "DT444",
+        "DT444"
+      ]
+    ],
+    "other_local": 54341
+  },
+  {
+    "id": 3370,
+    "label": "Togo. Togoland",
+    "themes": {
+      "political": 54342
+    },
+    "groups": {
+      "period": 54343,
+      "local": 54348
+    },
+    "period_children": [
+      54344,
+      54345,
+      54346,
+      54347
+    ],
+    "general": [
+      [
+        "DT582.5",
+        "DT582.5"
+      ]
+    ],
+    "other_local": 54349
+  },
+  {
+    "id": 3375,
+    "label": "DR Congo History",
+    "themes": {
+      "political": 54350
+    },
+    "groups": {
+      "period": 54351,
+      "local": 54356
+    },
+    "period_children": [
+      54352,
+      54353,
+      54354,
+      54355
+    ],
+    "general": [
+      [
+        "DT652",
+        "DT652"
+      ]
+    ],
+    "other_local": 54357
+  },
+  {
+    "id": 3386,
+    "label": "Bahamas",
+    "themes": {},
+    "groups": {
+      "period": 54358,
+      "local": 54360
+    },
+    "period_children": [
+      54359
+    ],
+    "general": [
+      [
+        "F1656",
+        "F1656"
+      ]
+    ],
+    "other_local": 54361
+  },
+  {
+    "id": 3387,
+    "label": "Belizean History",
+    "themes": {
+      "political": 54362
+    },
+    "groups": {
+      "period": 54363,
+      "local": 54364
+    },
+    "period_children": [
+      11305
+    ],
+    "general": [
+      [
+        "F1446",
+        "F1446"
+      ]
+    ],
+    "other_local": 54365
+  },
+  {
+    "id": 3388,
+    "label": "Costa Rican History",
+    "themes": {
+      "military": 54366,
+      "political": 54367
+    },
+    "groups": {
+      "period": 54368,
+      "local": 54369
+    },
+    "period_children": [
+      11275,
+      11303,
+      11311,
+      11323
+    ],
+    "general": [
+      [
+        "F1546",
+        "F1546"
+      ]
+    ],
+    "other_local": 54370
+  },
+  {
+    "id": 3389,
+    "label": "Guatemalan History",
+    "themes": {
+      "military": 54371,
+      "political": 54372
+    },
+    "groups": {
+      "period": 54373,
+      "local": 54374
+    },
+    "period_children": [
+      11269,
+      11301,
+      11308,
+      11324
+    ],
+    "general": [
+      [
+        "F1466",
+        "F1466"
+      ]
+    ],
+    "other_local": 54375
+  },
+  {
+    "id": 3390,
+    "label": "Honduran History",
+    "themes": {
+      "military": 54376,
+      "political": 54377
+    },
+    "groups": {
+      "period": 54378,
+      "local": 54379
+    },
+    "period_children": [
+      11232,
+      11273,
+      11277
+    ],
+    "general": [
+      [
+        "F1506",
+        "F1506"
+      ]
+    ],
+    "other_local": 54380
+  },
+  {
+    "id": 3392,
+    "label": "Nicaraguan History",
+    "themes": {
+      "military": 54381,
+      "political": 54382
+    },
+    "groups": {
+      "period": 54383,
+      "local": 54384
+    },
+    "period_children": [
+      11233,
+      11274,
+      11291,
+      11316,
+      11325
+    ],
+    "general": [
+      [
+        "F1526",
+        "F1526"
+      ]
+    ],
+    "other_local": 54385
+  },
+  {
+    "id": 3393,
+    "label": "Panamanian History",
+    "themes": {
+      "military": 54386,
+      "political": 54387
+    },
+    "groups": {
+      "period": 54388,
+      "local": 54389
+    },
+    "period_children": [
+      11245,
+      11247,
+      11248,
+      11321
+    ],
+    "general": [
+      [
+        "F1566",
+        "F1566"
+      ]
+    ],
+    "other_local": 54390
+  },
+  {
+    "id": 3394,
+    "label": "Salvadoran History",
+    "themes": {
+      "military": 54391,
+      "political": 54392
+    },
+    "groups": {
+      "period": 54393,
+      "local": 54394
+    },
+    "period_children": [
+      11226,
+      11227,
+      11251,
+      11260,
+      11289
+    ],
+    "general": [
+      [
+        "F1486",
+        "F1486"
+      ]
+    ],
+    "other_local": 54395
+  },
+  {
+    "id": 3426,
+    "label": "Bolivian History",
+    "themes": {
+      "military": 54396,
+      "political": 54397
+    },
+    "groups": {
+      "period": 54398,
+      "local": 54399
+    },
+    "period_children": [
+      11235,
+      11258,
+      11282,
+      11283,
+      11314,
+      11315
+    ],
+    "general": [
+      [
+        "F3321",
+        "F3321"
+      ]
+    ],
+    "other_local": 54400
+  },
+  {
+    "id": 3427,
+    "label": "Brazilian History",
+    "themes": {
+      "military": 54401,
+      "political": 54402
+    },
+    "groups": {
+      "period": 54403,
+      "local": 50873
+    },
+    "period_children": [
+      11228,
+      11240,
+      11241,
+      11256,
+      11257,
+      11259,
+      11261,
+      11290,
+      11296,
+      11312,
+      11313,
+      50823,
+      50824
+    ],
+    "general": [
+      [
+        "F2521",
+        "F2521"
+      ]
+    ],
+    "other_local": 54404
+  },
+  {
+    "id": 3428,
+    "label": "Chilean History",
+    "themes": {
+      "military": 54405,
+      "political": 54406
+    },
+    "groups": {
+      "period": 54407,
+      "local": 54408
+    },
+    "period_children": [
+      11266,
+      11270
+    ],
+    "general": [
+      [
+        "F3081",
+        "F3081"
+      ]
+    ],
+    "other_local": 54409
+  },
+  {
+    "id": 3429,
+    "label": "Peruvian History",
+    "themes": {
+      "military": 54410,
+      "political": 54411
+    },
+    "groups": {
+      "period": 54412,
+      "local": 54413
+    },
+    "period_children": [
+      11236,
+      11271,
+      11318,
+      11319
+    ],
+    "general": [
+      [
+        "F3431",
+        "F3431"
+      ]
+    ],
+    "other_local": 54414
+  },
+  {
+    "id": 3430,
+    "label": "Venezuelan History",
+    "themes": {
+      "military": 54415,
+      "political": 54416
+    },
+    "groups": {
+      "period": 54417,
+      "local": 54418
+    },
+    "period_children": [
+      11230,
+      11244,
+      11246,
+      11249,
+      11265,
+      11279,
+      11281,
+      11292,
+      11322
+    ],
+    "general": [
+      [
+        "F2321",
+        "F2321"
+      ]
+    ],
+    "other_local": 54419
+  },
+  {
+    "id": 3492,
+    "label": "Bruneian History",
+    "themes": {
+      "political": 54420
+    },
+    "groups": {
+      "period": 54421,
+      "local": 54422
+    },
+    "period_children": [
+      10318,
+      10455
+    ],
+    "general": [
+      [
+        "DS650.5",
+        "DS650.5"
+      ]
+    ],
+    "other_local": 54423
+  },
+  {
+    "id": 3497,
+    "label": "Indonesian History",
+    "themes": {
+      "military": 54424,
+      "political": 54425
+    },
+    "groups": {
+      "period": 54426,
+      "local": 54427
+    },
+    "period_children": [
+      10345,
+      10396,
+      10560,
+      10578,
+      10580,
+      10623,
+      10653
+    ],
+    "general": [
+      [
+        "DS634",
+        "DS634"
+      ],
+      [
+        "DS635",
+        "DS635"
+      ]
+    ],
+    "other_local": 54428
+  },
+  {
+    "id": 3503,
+    "label": "Malaysian & Straits History",
+    "themes": {
+      "political": 54429
+    },
+    "groups": {
+      "period": 54430,
+      "local": 54431
+    },
+    "period_children": [
+      10374,
+      10435,
+      10463,
+      10746
+    ],
+    "general": [
+      [
+        "DS596",
+        "DS596"
+      ]
+    ],
+    "other_local": 54432
+  },
+  {
+    "id": 3506,
+    "label": "Philippine History",
+    "themes": {
+      "military": 54433,
+      "political": 54434
+    },
+    "groups": {
+      "period": 54435,
+      "local": 54436
+    },
+    "period_children": [
+      10290,
+      10458,
+      10516
+    ],
+    "general": [
+      [
+        "DS668.A2",
+        "DS668.Z"
+      ],
+      [
+        "DS669",
+        "DS669"
+      ],
+      [
+        "DS668.A2",
+        "DS668.A2"
+      ],
+      [
+        "DS668.A3",
+        "DS668.Z"
+      ]
+    ],
+    "other_local": 54437
+  },
+  {
+    "id": 3507,
+    "label": "Singaporean History",
+    "themes": {
+      "political": 54438
+    },
+    "groups": {
+      "period": 54439,
+      "local": 54440
+    },
+    "period_children": [
+      10536,
+      10575,
+      10607,
+      10626
+    ],
+    "general": [
+      [
+        "DS610.4",
+        "DS610.4"
+      ]
+    ],
+    "other_local": 54441
+  },
+  {
+    "id": 3511,
+    "label": "Thai History",
+    "themes": {
+      "military": 54442,
+      "political": 54443
+    },
+    "groups": {
+      "period": 54444,
+      "local": 54445
+    },
+    "period_children": [
+      10340,
+      10387,
+      10703
+    ],
+    "general": [
+      [
+        "DS571",
+        "DS571"
+      ],
+      [
+        "DS572",
+        "DS572"
+      ]
+    ],
+    "other_local": 54446
+  },
+  {
+    "id": 3586,
+    "label": "Azerbaijani History",
+    "themes": {
+      "military": 54447,
+      "political": 54448
+    },
+    "groups": {
+      "period": 54449,
+      "local": 13988
+    },
+    "period_children": [
+      11335,
+      11356,
+      11376,
+      11397
+    ],
+    "general": [
+      [
+        "DK695.2",
+        "DK695.4"
+      ],
+      [
+        "DK695.2",
+        "DK695.2"
+      ],
+      [
+        "DK695.3",
+        "DK695.3"
+      ],
+      [
+        "DK695.4",
+        "DK695.4"
+      ]
+    ],
+    "other_local": 54450
+  },
+  {
+    "id": 3587,
+    "label": "Belarusian History",
+    "themes": {
+      "military": 51896,
+      "political": 51897
+    },
+    "groups": {
+      "period": 54451,
+      "local": 54452
+    },
+    "period_children": [
+      11334,
+      11346,
+      11349,
+      11355,
+      11358,
+      11390
+    ],
+    "general": [
+      [
+        "DK507.52",
+        "DK507.54"
+      ],
+      [
+        "DK507.52",
+        "DK507.52"
+      ],
+      [
+        "DK507.53",
+        "DK507.53"
+      ],
+      [
+        "DK507.54",
+        "DK507.54"
+      ]
+    ],
+    "other_local": 54453
+  },
+  {
+    "id": 3589,
+    "label": "Georgian History",
+    "themes": {
+      "military": 54454,
+      "political": 54455
+    },
+    "groups": {
+      "period": 54456,
+      "local": 13986
+    },
+    "period_children": [
+      11343,
+      11348,
+      11352,
+      11364,
+      11367,
+      11389
+    ],
+    "general": [
+      [
+        "DK675.2",
+        "DK675.4"
+      ],
+      [
+        "DK675.2",
+        "DK675.2"
+      ],
+      [
+        "DK675.3",
+        "DK675.3"
+      ],
+      [
+        "DK675.4",
+        "DK675.4"
+      ]
+    ],
+    "other_local": 54457
+  },
+  {
+    "id": 3590,
+    "label": "Kazakh History",
+    "themes": {
+      "military": 54458,
+      "political": 54459
+    },
+    "groups": {
+      "period": 54460,
+      "local": 13974
+    },
+    "period_children": [
+      11338,
+      11353,
+      11379,
+      11383,
+      11392,
+      11398
+    ],
+    "general": [
+      [
+        "DK908.6",
+        "DK908.6"
+      ]
+    ],
+    "other_local": 54461
+  },
+  {
+    "id": 3591,
+    "label": "Kyrgyz History",
+    "themes": {
+      "political": 54462
+    },
+    "groups": {
+      "period": 54463,
+      "local": 13976
+    },
+    "period_children": [
+      11360,
+      11369,
+      11380,
+      11387
+    ],
+    "general": [
+      [
+        "DK918.6",
+        "DK918.6"
+      ]
+    ],
+    "other_local": 54464
+  },
+  {
+    "id": 3594,
+    "label": "Moldovan History",
+    "themes": {
+      "military": 51916,
+      "political": 51917
+    },
+    "groups": {
+      "period": 54465,
+      "local": 54466
+    },
+    "period_children": [
+      11341,
+      11357,
+      11359,
+      11368
+    ],
+    "general": [
+      [
+        "DK509.52",
+        "DK509.54"
+      ],
+      [
+        "DK509.52",
+        "DK509.52"
+      ],
+      [
+        "DK509.53",
+        "DK509.53"
+      ],
+      [
+        "DK509.54",
+        "DK509.54"
+      ]
+    ],
+    "other_local": 54467
+  },
+  {
+    "id": 3596,
+    "label": "Tajik History",
+    "themes": {},
+    "groups": {
+      "period": 54468,
+      "local": 13978
+    },
+    "period_children": [
+      11363,
+      11372,
+      11373
+    ],
+    "general": [
+      [
+        "DK928.6",
+        "DK928.6"
+      ]
+    ],
+    "other_local": 54469
+  },
+  {
+    "id": 3597,
+    "label": "Turkmen History",
+    "themes": {},
+    "groups": {
+      "period": 54470,
+      "local": 13982
+    },
+    "period_children": [
+      11365,
+      13980,
+      13981
+    ],
+    "general": [
+      [
+        "DK938.6",
+        "DK938.6"
+      ]
+    ],
+    "other_local": 54471
+  },
+  {
+    "id": 3598,
+    "label": "Uzbek History",
+    "themes": {
+      "military": 54472,
+      "political": 54473
+    },
+    "groups": {
+      "period": 54474,
+      "local": 13984
+    },
+    "period_children": [
+      11340,
+      11345,
+      11362,
+      11375,
+      11384,
+      11391
+    ],
+    "general": [
+      [
+        "DK948.6",
+        "DK948.62"
+      ]
+    ],
+    "other_local": 54475
+  },
+  {
+    "id": 3603,
+    "label": "Ukrainian History",
+    "themes": {
+      "political": 54476
+    },
+    "groups": {
+      "period": 54477,
+      "local": 13963
+    },
+    "period_children": [
+      11361,
+      11381,
+      11388,
+      11393,
+      11395,
+      11396,
+      13961,
+      13962
+    ],
+    "general": [
+      [
+        "DK508.49",
+        "DK508.51"
+      ]
+    ],
+    "other_local": 54478
+  },
+  {
+    "id": 5542,
+    "label": "Colombian History",
+    "themes": {
+      "military": 54479,
+      "political": 54480
+    },
+    "groups": {
+      "period": 54481,
+      "local": 54482
+    },
+    "period_children": [
+      11237,
+      11243,
+      11254,
+      11264,
+      11276,
+      11284,
+      11295,
+      11310,
+      11320
+    ],
+    "general": [
+      [
+        "F2271",
+        "F2271"
+      ]
+    ],
+    "other_local": 54483
+  },
+  {
+    "id": 5543,
+    "label": "Ecuadorian History",
+    "themes": {
+      "military": 54484,
+      "political": 54485
+    },
+    "groups": {
+      "period": 54486,
+      "local": 54487
+    },
+    "period_children": [
+      11229,
+      11242,
+      11255,
+      11288,
+      11298,
+      11309
+    ],
+    "general": [
+      [
+        "F3731",
+        "F3731"
+      ]
+    ],
+    "other_local": 54488
+  },
+  {
+    "id": 5544,
+    "label": "Paraguayan History",
+    "themes": {
+      "military": 54489,
+      "political": 54490
+    },
+    "groups": {
+      "period": 54491,
+      "local": 54492
+    },
+    "period_children": [
+      11234,
+      11272,
+      11278,
+      11280,
+      11302,
+      11304,
+      11317
+    ],
+    "general": [
+      [
+        "F2681",
+        "F2681"
+      ]
+    ],
+    "other_local": 54493
+  },
+  {
+    "id": 5545,
+    "label": "Uruguayan History",
+    "themes": {
+      "military": 54494,
+      "political": 54495
+    },
+    "groups": {
+      "period": 54496,
+      "local": 54497
+    },
+    "period_children": [
+      11238,
+      11250,
+      11252,
+      11253,
+      11262,
+      11293
+    ],
+    "general": [
+      [
+        "F2721",
+        "F2721"
+      ]
+    ],
+    "other_local": 54498
+  },
+  {
+    "id": 10499,
+    "label": "Argentine History",
+    "themes": {
+      "military": 54499,
+      "political": 54500
+    },
+    "groups": {
+      "period": 54501,
+      "local": 54504
+    },
+    "period_children": [
+      54502,
+      54503
+    ],
+    "general": [
+      [
+        "F2831",
+        "F2831"
+      ]
+    ],
+    "other_local": 54505
+  },
+  {
+    "id": 10518,
+    "label": "Timorese History",
+    "themes": {},
+    "groups": {
+      "period": 54506,
+      "local": 54507
+    },
+    "period_children": [
+      10291,
+      10382,
+      10718
+    ],
+    "general": [
+      [
+        "DS649.5",
+        "DS649.5"
+      ]
+    ],
+    "other_local": 54508
+  },
+  {
+    "id": 10657,
+    "label": "Eritrean History",
+    "themes": {},
+    "groups": {
+      "period": 54509,
+      "local": 54516
+    },
+    "period_children": [
+      54510,
+      54511,
+      54512,
+      54513,
+      54514,
+      54515
+    ],
+    "general": [
+      [
+        "DT394",
+        "DT394"
+      ]
+    ],
+    "other_local": 54517
+  },
+  {
+    "id": 10717,
+    "label": "Armenian History",
+    "themes": {},
+    "groups": {
+      "period": 54518,
+      "local": 54519
+    },
+    "period_children": [
+      11370,
+      11378
+    ],
+    "general": [
+      [
+        "DK685.3",
+        "DK685.4"
+      ],
+      [
+        "DK685.3",
+        "DK685.3"
+      ],
+      [
+        "DK685.4",
+        "DK685.4"
+      ]
+    ],
+    "other_local": 54520
+  },
+  {
+    "id": 11216,
+    "label": "Estonian History",
+    "themes": {
+      "military": 54521,
+      "political": 51842
+    },
+    "groups": {
+      "period": 54522,
+      "local": 13948
+    },
+    "period_children": [
+      11347,
+      11374,
+      11386,
+      11394,
+      13947
+    ],
+    "general": [
+      [
+        "DK503.52",
+        "DK503.54"
+      ],
+      [
+        "DK503.52",
+        "DK503.52"
+      ],
+      [
+        "DK503.53",
+        "DK503.53"
+      ],
+      [
+        "DK503.54",
+        "DK503.54"
+      ]
+    ],
+    "other_local": 54523
+  },
+  {
+    "id": 11217,
+    "label": "Latvian History",
+    "themes": {
+      "military": 54524,
+      "political": 51851
+    },
+    "groups": {
+      "period": 54525,
+      "local": 13952
+    },
+    "period_children": [
+      11336,
+      11337,
+      11339,
+      11350,
+      13951
+    ],
+    "general": [
+      [
+        "DK504.52",
+        "DK504.54"
+      ],
+      [
+        "DK504.52",
+        "DK504.52"
+      ],
+      [
+        "DK504.53",
+        "DK504.53"
+      ],
+      [
+        "DK504.54",
+        "DK504.54"
+      ]
+    ],
+    "other_local": 54526
+  },
+  {
+    "id": 11221,
+    "label": "Lithuanian History",
+    "themes": {
+      "military": 54527,
+      "political": 51860
+    },
+    "groups": {
+      "period": 54528,
+      "local": 13955
+    },
+    "period_children": [
+      11344,
+      11351,
+      11354,
+      11371,
+      11377,
+      11382
+    ],
+    "general": [
+      [
+        "DK505.52",
+        "DK505.54"
+      ],
+      [
+        "DK505.52",
+        "DK505.52"
+      ],
+      [
+        "DK505.53",
+        "DK505.53"
+      ],
+      [
+        "DK505.54",
+        "DK505.54"
+      ]
+    ],
+    "other_local": 54529
+  },
+  {
+    "id": 3322,
+    "label": "Angolan History",
+    "themes": {
+      "political": 54530
+    },
+    "groups": {
+      "period": 54531,
+      "local": 54537
+    },
+    "period_children": [
+      54532,
+      54533,
+      54534,
+      54535,
+      54536
+    ],
+    "general": [
+      [
+        "DT1325",
+        "DT1325"
+      ]
+    ],
+    "other_local": 54538
+  },
+  {
+    "id": 3324,
+    "label": "Botswana. Bechuanaland",
+    "themes": {
+      "political": 54539
+    },
+    "groups": {
+      "period": 54540,
+      "local": 54544
+    },
+    "period_children": [
+      54541,
+      54542,
+      54543
+    ],
+    "general": [
+      [
+        "DT2475",
+        "DT2475"
+      ]
+    ],
+    "other_local": 54545
+  },
+  {
+    "id": 3346,
+    "label": "Lesotho. Basutoland",
+    "themes": {
+      "political": 54546
+    },
+    "groups": {
+      "period": 54547,
+      "local": 54550
+    },
+    "period_children": [
+      54548,
+      54549
+    ],
+    "general": [
+      [
+        "DT2615",
+        "DT2615"
+      ]
+    ],
+    "other_local": 54551
+  },
+  {
+    "id": 3350,
+    "label": "Malawi. Nyasaland",
+    "themes": {
+      "political": 54552
+    },
+    "groups": {
+      "period": 54553,
+      "local": 54558
+    },
+    "period_children": [
+      54554,
+      54555,
+      54556,
+      54557
+    ],
+    "general": [
+      [
+        "DT3201",
+        "DT3201"
+      ]
+    ],
+    "other_local": 54559
+  },
+  {
+    "id": 3353,
+    "label": "Mozambican History",
+    "themes": {
+      "political": 54560
+    },
+    "groups": {
+      "period": 54561,
+      "local": 54567
+    },
+    "period_children": [
+      54562,
+      54563,
+      54564,
+      54565,
+      54566
+    ],
+    "general": [
+      [
+        "DT3337",
+        "DT3337"
+      ]
+    ],
+    "other_local": 54568
+  },
+  {
+    "id": 3354,
+    "label": "Namibia. South-West Africa",
+    "themes": {
+      "political": 54569
+    },
+    "groups": {
+      "period": 54570,
+      "local": 54576
+    },
+    "period_children": [
+      54571,
+      54572,
+      54573,
+      54574,
+      54575
+    ],
+    "general": [
+      [
+        "DT1575",
+        "DT1575"
+      ]
+    ],
+    "other_local": 54577
+  },
+  {
+    "id": 3367,
+    "label": "South African History",
+    "themes": {
+      "military": 54578,
+      "political": 54579
+    },
+    "groups": {
+      "period": 54580,
+      "local": 54588
+    },
+    "period_children": [
+      54581,
+      54582,
+      54583,
+      54584,
+      54585,
+      54586,
+      54587
+    ],
+    "general": [
+      [
+        "DT1787",
+        "DT1787"
+      ]
+    ],
+    "other_local": 54589
+  },
+  {
+    "id": 3368,
+    "label": "Sudan. Anglo-Egyptian Sudan",
+    "themes": {
+      "military": 54590,
+      "political": 54591
+    },
+    "groups": {
+      "period": 54592,
+      "local": 54596
+    },
+    "period_children": [
+      54593,
+      54594,
+      54595
+    ],
+    "general": [
+      [
+        "DT155.58",
+        "DT155.6"
+      ],
+      [
+        "DT155.58",
+        "DT155.58"
+      ],
+      [
+        "DT155.6",
+        "DT155.6"
+      ]
+    ],
+    "other_local": 54597
+  },
+  {
+    "id": 3376,
+    "label": "Zambia. Northern Rhodesia",
+    "themes": {
+      "political": 54598
+    },
+    "groups": {
+      "period": 54599,
+      "local": 54605
+    },
+    "period_children": [
+      54600,
+      54601,
+      54602,
+      54603,
+      54604
+    ],
+    "general": [
+      [
+        "DT3071",
+        "DT3071"
+      ]
+    ],
+    "other_local": 54606
+  },
+  {
+    "id": 3377,
+    "label": "Zimbabwe. Southern Rhodesia",
+    "themes": {
+      "political": 54607
+    },
+    "groups": {
+      "period": 54608,
+      "local": 54615
+    },
+    "period_children": [
+      54609,
+      54610,
+      54611,
+      54612,
+      54613,
+      54614
+    ],
+    "general": [
+      [
+        "DT2925",
+        "DT2925"
+      ]
+    ],
+    "other_local": 54616
+  },
+  {
+    "id": 3391,
+    "label": "Mexican History",
+    "themes": {
+      "military": 54617,
+      "political": 54618
+    },
+    "groups": {
+      "period": 54619,
+      "local": 54620
+    },
+    "period_children": [
+      11263,
+      11267,
+      11285,
+      11286,
+      11287,
+      11294,
+      11297,
+      11300,
+      11307
+    ],
+    "general": [
+      [
+        "F1226",
+        "F1226"
+      ],
+      [
+        "F1227",
+        "F1227"
+      ]
+    ],
+    "other_local": 54621
+  },
+  {
+    "id": 3400,
+    "label": "Canadian History",
+    "themes": {
+      "military": 54622,
+      "political": 54623
+    },
+    "groups": {
+      "period": 54624,
+      "local": 50842
+    },
+    "period_children": [
+      10329,
+      10489,
+      10559,
+      10405,
+      10443
+    ],
+    "general": [
+      [
+        "F1026",
+        "F1026"
+      ]
+    ],
+    "other_local": 54625
+  },
+  {
+    "id": 3425,
+    "label": "Saint Pierre and Miquelon",
+    "themes": {},
+    "groups": {},
+    "period_children": [],
+    "general": []
+  },
+  {
+    "id": 3486,
+    "label": "Afghan History",
+    "themes": {
+      "military": 54626,
+      "political": 54627
+    },
+    "groups": {
+      "period": 54628,
+      "local": 54629
+    },
+    "period_children": [
+      10434,
+      10485,
+      10490,
+      10597,
+      10688
+    ],
+    "general": [
+      [
+        "DS356",
+        "DS356"
+      ],
+      [
+        "DS357",
+        "DS357"
+      ]
+    ],
+    "other_local": 54630
+  },
+  {
+    "id": 3488,
+    "label": "Armenian History",
+    "themes": {
+      "political": 54631
+    },
+    "groups": {
+      "period": 54632
+    },
+    "period_children": [
+      11406,
+      11407,
+      11408,
+      11413,
+      11434
+    ],
+    "general": [
+      [
+        "DS175",
+        "DS175"
+      ],
+      [
+        "DS176",
+        "DS176"
+      ]
+    ]
+  },
+  {
+    "id": 3490,
+    "label": "Bangladesh. East Pakistan",
+    "themes": {
+      "political": 54633
+    },
+    "groups": {
+      "period": 54634,
+      "local": 54635
+    },
+    "period_children": [
+      10404,
+      10513
+    ],
+    "general": [
+      [
+        "DS394.5",
+        "DS394.5"
+      ],
+      [
+        "DS394.6",
+        "DS394.6"
+      ]
+    ],
+    "other_local": 54636
+  },
+  {
+    "id": 3493,
+    "label": "Chinese History",
+    "themes": {
+      "military": 54637,
+      "political": 51024
+    },
+    "groups": {
+      "period": 54638,
+      "local": 50839
+    },
+    "period_children": [
+      10421,
+      10425,
+      10446,
+      10544,
+      10587,
+      10702,
+      10713,
+      52098
+    ],
+    "general": [
+      [
+        "DS735.A2",
+        "DS735.Z"
+      ],
+      [
+        "DS736",
+        "DS736"
+      ],
+      [
+        "DS735.A2",
+        "DS735.A2"
+      ],
+      [
+        "DS735.A3",
+        "DS735.Z"
+      ]
+    ],
+    "other_local": 54639
+  },
+  {
+    "id": 3496,
+    "label": "Indian History",
+    "themes": {
+      "military": 54640,
+      "political": 12724
+    },
+    "groups": {
+      "period": 54641,
+      "local": 50847
+    },
+    "period_children": [
+      12721,
+      12722,
+      12723
+    ],
+    "general": [
+      [
+        "DS437",
+        "DS437"
+      ],
+      [
+        "DS436.A1",
+        "DS436.A1"
+      ],
+      [
+        "DS436.A2",
+        "DS436.A2"
+      ],
+      [
+        "DS436.A3",
+        "DS436.Z"
+      ]
+    ],
+    "other_local": 54642
+  },
+  {
+    "id": 3498,
+    "label": "Japanese History",
+    "themes": {
+      "military": 54643,
+      "political": 54644
+    },
+    "groups": {
+      "period": 54645,
+      "local": 50848
+    },
+    "period_children": [
+      10380,
+      10483,
+      10648,
+      11567,
+      11568,
+      11569,
+      11570,
+      11571
+    ],
+    "general": [
+      [
+        "DS835",
+        "DS835"
+      ]
+    ],
+    "other_local": 54646
+  },
+  {
+    "id": 3499,
+    "label": "Jordan. Transjordan",
+    "themes": {
+      "military": 54647,
+      "political": 54648
+    },
+    "groups": {
+      "period": 54649,
+      "local": 54650
+    },
+    "period_children": [
+      11415,
+      11420
+    ],
+    "general": [
+      [
+        "DS154",
+        "DS154"
+      ]
+    ],
+    "other_local": 54651
+  },
+  {
+    "id": 3500,
+    "label": "Korean History",
+    "themes": {
+      "military": 10686,
+      "political": 10571
+    },
+    "groups": {
+      "period": 54652,
+      "local": 50845
+    },
+    "period_children": [
+      10334,
+      10351,
+      10477,
+      10484,
+      10673
+    ],
+    "general": [
+      [
+        "DS907.14",
+        "DS907.18"
+      ],
+      [
+        "DS907.14",
+        "DS907.14"
+      ],
+      [
+        "DS907.16",
+        "DS907.16"
+      ],
+      [
+        "DS907.18",
+        "DS907.18"
+      ]
+    ],
+    "other_local": 54653
+  },
+  {
+    "id": 3501,
+    "label": "Lebanon Phenicia",
+    "themes": {
+      "military": 54654,
+      "political": 54655
+    },
+    "groups": {
+      "period": 54656,
+      "local": 54657
+    },
+    "period_children": [
+      11409,
+      11425,
+      11431,
+      11432
+    ],
+    "general": [
+      [
+        "DS80.9",
+        "DS80.9"
+      ]
+    ],
+    "other_local": 54658
+  },
+  {
+    "id": 3505,
+    "label": "Pakistani History",
+    "themes": {
+      "military": 54659,
+      "political": 54660
+    },
+    "groups": {
+      "period": 54661,
+      "local": 54662
+    },
+    "period_children": [
+      10299,
+      10413
+    ],
+    "general": [
+      [
+        "DS383",
+        "DS383"
+      ]
+    ],
+    "other_local": 54663
+  },
+  {
+    "id": 3530,
+    "label": "Scottish History",
+    "themes": {
+      "military": 54664,
+      "political": 51602
+    },
+    "groups": {
+      "period": 54665,
+      "local": 54666
+    },
+    "period_children": [
+      10104,
+      10130,
+      10161,
+      10275,
+      10462,
+      10668
+    ],
+    "general": [
+      [
+        "DA760",
+        "DA760"
+      ],
+      [
+        "DA763",
+        "DA763"
+      ]
+    ],
+    "other_local": 54667
+  },
+  {
+    "id": 3534,
+    "label": "Welsh History",
+    "themes": {},
+    "groups": {
+      "period": 54668,
+      "local": 54669
+    },
+    "period_children": [
+      10601,
+      10701
+    ],
+    "general": [
+      [
+        "DA714",
+        "DA714"
+      ]
+    ],
+    "other_local": 54670
+  },
+  {
+    "id": 3540,
+    "label": "Slovak History",
+    "themes": {
+      "military": 54671,
+      "political": 54672
+    },
+    "groups": {
+      "period": 54673,
+      "local": 14003
+    },
+    "period_children": [
+      10357,
+      10423,
+      10428,
+      10436,
+      10551,
+      10615,
+      14001,
+      14002
+    ],
+    "general": [
+      [
+        "DB2761",
+        "DB2763"
+      ],
+      [
+        "DB2761",
+        "DB2761"
+      ],
+      [
+        "DB2762",
+        "DB2762"
+      ],
+      [
+        "DB2763",
+        "DB2763"
+      ]
+    ],
+    "other_local": 54674
+  },
+  {
+    "id": 3544,
+    "label": "Albanian History",
+    "themes": {
+      "military": 54675,
+      "political": 51829
+    },
+    "groups": {
+      "period": 54676,
+      "local": 14008
+    },
+    "period_children": [
+      10178,
+      10224,
+      10320,
+      10466,
+      11559
+    ],
+    "general": [
+      [
+        "DR939.5",
+        "DR941"
+      ],
+      [
+        "DR944",
+        "DR944"
+      ],
+      [
+        "DR939.5",
+        "DR939.5"
+      ],
+      [
+        "DR940",
+        "DR940"
+      ],
+      [
+        "DR941",
+        "DR941"
+      ]
+    ],
+    "other_local": 54677
+  },
+  {
+    "id": 3545,
+    "label": "Bulgarian History",
+    "themes": {
+      "military": 54678,
+      "political": 51733
+    },
+    "groups": {
+      "period": 54679,
+      "local": 13763
+    },
+    "period_children": [
+      11499,
+      11500,
+      11501,
+      11502,
+      11503,
+      11504,
+      11505,
+      11506,
+      13918
+    ],
+    "general": [
+      [
+        "DR67",
+        "DR67"
+      ]
+    ],
+    "other_local": 54680
+  },
+  {
+    "id": 3548,
+    "label": "Romanian History",
+    "themes": {
+      "military": 54681,
+      "political": 51624
+    },
+    "groups": {
+      "period": 54682,
+      "local": 13762
+    },
+    "period_children": [
+      11539,
+      11540,
+      11541,
+      11542,
+      11543,
+      11544,
+      11545,
+      11546,
+      11547,
+      11548,
+      11549,
+      11551,
+      11552
+    ],
+    "general": [
+      [
+        "DR217",
+        "DR217"
+      ],
+      [
+        "DR218",
+        "DR218"
+      ]
+    ],
+    "other_local": 54683
+  },
+  {
+    "id": 3551,
+    "label": "Turkish History",
+    "themes": {
+      "military": 54684,
+      "political": 54685
+    },
+    "groups": {
+      "period": 54686,
+      "local": 54687
+    },
+    "period_children": [
+      11399,
+      11400,
+      11401,
+      11561,
+      11562,
+      11563,
+      11564,
+      11565
+    ],
+    "general": [
+      [
+        "DR439",
+        "DR440"
+      ],
+      [
+        "DR441",
+        "DR441"
+      ],
+      [
+        "DR442",
+        "DR442"
+      ],
+      [
+        "DR439",
+        "DR439"
+      ],
+      [
+        "DR440",
+        "DR440"
+      ]
+    ],
+    "other_local": 54688
+  },
+  {
+    "id": 3554,
+    "label": "Andorran History",
+    "themes": {},
+    "groups": {
+      "period": 54689,
+      "local": 51998
+    },
+    "period_children": [
+      51996
+    ],
+    "general": [],
+    "other_local": 54690
+  },
+  {
+    "id": 3566,
+    "label": "English History",
+    "themes": {
+      "military": 50862,
+      "political": 54691
+    },
+    "groups": {
+      "period": 54692,
+      "local": 13659
+    },
+    "period_children": [
+      10093,
+      10099,
+      10115,
+      10149,
+      10155,
+      10213,
+      10229
+    ],
+    "general": [
+      [
+        "DA30",
+        "DA30"
+      ],
+      [
+        "DA32.A1",
+        "DA32.Z"
+      ],
+      [
+        "DA35",
+        "DA35"
+      ]
+    ],
+    "other_local": 54693
+  },
+  {
+    "id": 3568,
+    "label": "Modern Greek History",
+    "themes": {
+      "military": 52317,
+      "political": 54694
+    },
+    "groups": {
+      "period": 54695,
+      "local": 13741
+    },
+    "period_children": [
+      10156,
+      10223,
+      51546,
+      51547
+    ],
+    "general": [
+      [
+        "DF757",
+        "DF757"
+      ],
+      [
+        "DF758",
+        "DF758"
+      ],
+      [
+        "DF760",
+        "DF760"
+      ]
+    ],
+    "other_local": 54696
+  },
+  {
+    "id": 3580,
+    "label": "Danish History",
+    "themes": {
+      "military": 54697,
+      "political": 51761
+    },
+    "groups": {
+      "period": 54698,
+      "local": 13747
+    },
+    "period_children": [
+      11507,
+      11508,
+      11509,
+      11510,
+      11511,
+      11512,
+      11513,
+      11514,
+      11515
+    ],
+    "general": [
+      [
+        "DL147",
+        "DL148"
+      ],
+      [
+        "DL149",
+        "DL149"
+      ],
+      [
+        "DL151",
+        "DL151"
+      ],
+      [
+        "DL147",
+        "DL147"
+      ],
+      [
+        "DL148",
+        "DL148"
+      ]
+    ],
+    "other_local": 54699
+  },
+  {
+    "id": 3581,
+    "label": "Finnish History",
+    "themes": {
+      "military": 54700,
+      "political": 51805
+    },
+    "groups": {
+      "period": 54701,
+      "local": 13942
+    },
+    "period_children": [
+      11516,
+      11517,
+      11518,
+      11519,
+      13940,
+      13941
+    ],
+    "general": [
+      [
+        "DL1032",
+        "DL1032"
+      ]
+    ],
+    "other_local": 54702
+  },
+  {
+    "id": 3582,
+    "label": "Icelandic History",
+    "themes": {},
+    "groups": {
+      "period": 54703,
+      "local": 14019
+    },
+    "period_children": [
+      11520,
+      11521,
+      11522,
+      11523,
+      11524
+    ],
+    "general": [
+      [
+        "DL336",
+        "DL338"
+      ],
+      [
+        "DL339",
+        "DL339"
+      ],
+      [
+        "DL336",
+        "DL336"
+      ],
+      [
+        "DL338",
+        "DL338"
+      ]
+    ],
+    "other_local": 54704
+  },
+  {
+    "id": 3583,
+    "label": "Norwegian History",
+    "themes": {
+      "military": 54705,
+      "political": 51776
+    },
+    "groups": {
+      "period": 54706,
+      "local": 13746
+    },
+    "period_children": [
+      11534,
+      11535,
+      11536,
+      11537,
+      11538,
+      13744
+    ],
+    "general": [
+      [
+        "DL446",
+        "DL448"
+      ],
+      [
+        "DL449",
+        "DL449"
+      ],
+      [
+        "DL451",
+        "DL451"
+      ],
+      [
+        "DL446",
+        "DL446"
+      ],
+      [
+        "DL448",
+        "DL448"
+      ]
+    ],
+    "other_local": 54707
+  },
+  {
+    "id": 3584,
+    "label": "Swedish History",
+    "themes": {
+      "military": 54058,
+      "political": 13935
+    },
+    "groups": {
+      "period": 54057,
+      "local": 13749
+    },
+    "period_children": [
+      10132,
+      10206,
+      11555,
+      11556,
+      11557,
+      10138,
+      10644,
+      10665,
+      13936
+    ],
+    "general": [
+      [
+        "DL646",
+        "DL648"
+      ],
+      [
+        "DL649",
+        "DL649"
+      ],
+      [
+        "DL651",
+        "DL651"
+      ],
+      [
+        "DL646",
+        "DL646"
+      ],
+      [
+        "DL648",
+        "DL648"
+      ]
+    ],
+    "other_local": 54059
+  },
+  {
+    "id": 3606,
+    "label": "Irish History",
+    "themes": {
+      "military": 54708
+    },
+    "groups": {
+      "period": 54709,
+      "local": 54710
+    },
+    "period_children": [
+      10123,
+      10154,
+      10162,
+      10172,
+      10174,
+      10226,
+      10747
+    ],
+    "general": [
+      [
+        "DA910",
+        "DA910"
+      ],
+      [
+        "DA912",
+        "DA912"
+      ],
+      [
+        "DA913",
+        "DA913"
+      ]
+    ],
+    "other_local": 54711
+  },
+  {
+    "id": 3634,
+    "label": "Arabian Peninsula & Saudi Arabia",
+    "themes": {
+      "political": 54712
+    },
+    "groups": {
+      "period": 54713,
+      "local": 54714
+    },
+    "period_children": [
+      11410,
+      11422,
+      11424,
+      11427,
+      11435,
+      11436,
+      11437
+    ],
+    "general": [
+      [
+        "DS223",
+        "DS223"
+      ],
+      [
+        "DS225",
+        "DS225"
+      ]
+    ],
+    "other_local": 54715
+  },
+  {
+    "id": 3635,
+    "label": "Egyptian History",
+    "themes": {
+      "military": 52298,
+      "political": 51078
+    },
+    "groups": {
+      "period": 54716,
+      "local": 52302
+    },
+    "period_children": [
+      10277,
+      10296,
+      10415,
+      10521,
+      10678,
+      10767,
+      52299,
+      3481
+    ],
+    "general": [
+      [
+        "DT77",
+        "DT77"
+      ],
+      [
+        "DT79",
+        "DT79"
+      ]
+    ],
+    "other_local": 54717
+  },
+  {
+    "id": 3636,
+    "label": "Iranian History",
+    "themes": {
+      "military": 54718,
+      "political": 54719
+    },
+    "groups": {
+      "period": 54720,
+      "local": 50860
+    },
+    "period_children": [
+      11428
+    ],
+    "general": [
+      [
+        "DS272",
+        "DS272"
+      ],
+      [
+        "DS273",
+        "DS273"
+      ]
+    ],
+    "other_local": 54721
+  },
+  {
+    "id": 3637,
+    "label": "Iraqi History",
+    "themes": {
+      "military": 54722,
+      "political": 54723
+    },
+    "groups": {
+      "period": 54724,
+      "local": 54725
+    },
+    "period_children": [
+      11404,
+      11405,
+      11414,
+      11416,
+      11418,
+      11429
+    ],
+    "general": [
+      [
+        "DS70.9",
+        "DS70.9"
+      ]
+    ],
+    "other_local": 54726
+  },
+  {
+    "id": 3638,
+    "label": "Israel & Palestine",
+    "themes": {
+      "military": 54727,
+      "political": 54728
+    },
+    "groups": {
+      "period": 54729,
+      "local": 54730
+    },
+    "period_children": [
+      11412,
+      11423,
+      11426,
+      11430
+    ],
+    "general": [
+      [
+        "DS116",
+        "DS117"
+      ],
+      [
+        "DS120",
+        "DS120"
+      ],
+      [
+        "DS116",
+        "DS116"
+      ],
+      [
+        "DS117",
+        "DS117"
+      ]
+    ],
+    "other_local": 54731
+  },
+  {
+    "id": 3639,
+    "label": "Syrian History",
+    "themes": {
+      "political": 54732
+    },
+    "groups": {
+      "period": 54733,
+      "local": 54734
+    },
+    "period_children": [
+      11402,
+      11403,
+      11411,
+      11417,
+      11419,
+      11421,
+      11433
+    ],
+    "general": [
+      [
+        "DS95",
+        "DS95"
+      ]
+    ],
+    "other_local": 54735
+  },
+  {
+    "id": 3677,
+    "label": "Australian History",
+    "themes": {
+      "military": 54737,
+      "political": 54738
+    },
+    "groups": {
+      "period": 54739,
+      "local": 54740
+    },
+    "period_children": [
+      11331,
+      11332,
+      11333
+    ],
+    "general": [
+      [
+        "DU110",
+        "DU110"
+      ],
+      [
+        "DU112",
+        "DU112"
+      ]
+    ],
+    "other_local": 54741
+  },
+  {
+    "id": 3681,
+    "label": "New Zealand History",
+    "themes": {
+      "military": 54742,
+      "political": 54743
+    },
+    "groups": {
+      "period": 54744,
+      "local": 54745
+    },
+    "period_children": [
+      11326,
+      11327,
+      11328,
+      11329,
+      11330
+    ],
+    "general": [
+      [
+        "DU420",
+        "DU420"
+      ]
+    ],
+    "other_local": 54746
+  },
+  {
+    "id": 10281,
+    "label": "South Sudanese History",
+    "themes": {
+      "military": 54747,
+      "political": 54748
+    },
+    "groups": {
+      "period": 54749,
+      "local": 54751
+    },
+    "period_children": [
+      54750
+    ],
+    "general": [
+      [
+        "DT159.929",
+        "DT159.929"
+      ]
+    ],
+    "other_local": 54752
+  },
+  {
+    "id": 10535,
+    "label": "Mongolian History",
+    "themes": {
+      "political": 54753
+    },
+    "groups": {
+      "period": 54754,
+      "local": 54755
+    },
+    "period_children": [
+      10289,
+      10517,
+      10635,
+      10738,
+      10752
+    ],
+    "general": [
+      [
+        "DS798.5",
+        "DS798.5"
+      ]
+    ],
+    "other_local": 54756
+  },
+  {
+    "id": 10699,
+    "label": "Taiwanese History",
+    "themes": {
+      "military": 54757,
+      "political": 54758
+    },
+    "groups": {
+      "period": 54759,
+      "local": 54760
+    },
+    "period_children": [
+      10438,
+      10476,
+      10500,
+      10533,
+      10714
+    ],
+    "general": [
+      [
+        "DS799.5",
+        "DS799.5"
+      ]
+    ],
+    "other_local": 54761
+  },
+  {
+    "id": 52007,
+    "label": "Monaco History",
+    "themes": {},
+    "groups": {},
+    "period_children": [],
+    "general": []
+  },
+  {
+    "id": 3402,
+    "label": "U.S. History",
+    "themes": {
+      "military": 9765,
+      "political": 3416
+    },
+    "groups": {
+      "period": 3407,
+      "local": 3418
+    },
+    "period_children": [
+      3403,
+      3404,
+      3405,
+      3406,
+      3408,
+      3409,
+      3411,
+      3412,
+      3413,
+      3414,
+      3415,
+      3417,
+      3424
+    ],
+    "general": [
+      [
+        "E178",
+        "E179"
+      ],
+      [
+        "E178",
+        "E178"
+      ],
+      [
+        "E178.1",
+        "E178.1"
+      ],
+      [
+        "E178.2",
+        "E178.2"
+      ],
+      [
+        "E178.25",
+        "E178.25"
+      ],
+      [
+        "E178.3",
+        "E178.3"
+      ],
+      [
+        "E178.4",
+        "E178.4"
+      ],
+      [
+        "E178.5",
+        "E178.5"
+      ],
+      [
+        "E178.6",
+        "E178.6"
+      ],
+      [
+        "E178.9",
+        "E178.9"
+      ],
+      [
+        "E179",
+        "E179"
+      ]
+    ],
+    "other_local": 54762
+  },
+  {
+    "id": 3491,
+    "label": "Bhutanese History",
+    "themes": {
+      "political": 54763
+    },
+    "groups": {
+      "period": 54764,
+      "local": 54767
+    },
+    "period_children": [
+      54765,
+      54766
+    ],
+    "general": [
+      [
+        "DS492",
+        "DS492"
+      ]
+    ],
+    "other_local": 54768
+  },
+  {
+    "id": 3504,
+    "label": "Nepalese History",
+    "themes": {
+      "military": 54769,
+      "political": 54770
+    },
+    "groups": {
+      "period": 54771,
+      "local": 54776
+    },
+    "period_children": [
+      54772,
+      54773,
+      54774,
+      54775
+    ],
+    "general": [
+      [
+        "DS494.5",
+        "DS494.5"
+      ],
+      [
+        "DS494.6",
+        "DS494.6"
+      ]
+    ],
+    "other_local": 54777
+  },
+  {
+    "id": 3510,
+    "label": "Sri Lankan History",
+    "themes": {
+      "military": 54778
+    },
+    "groups": {
+      "period": 54779,
+      "local": 54784
+    },
+    "period_children": [
+      54780,
+      54781,
+      54782,
+      54783
+    ],
+    "general": [
+      [
+        "DS489.5",
+        "DS489.5"
+      ],
+      [
+        "DS489.55",
+        "DS489.55"
+      ]
+    ],
+    "other_local": 54785
+  },
+  {
+    "id": 3513,
+    "label": "Vietnamese History",
+    "themes": {
+      "military": 54786,
+      "political": 54787
+    },
+    "groups": {
+      "period": 54788,
+      "local": 54794
+    },
+    "period_children": [
+      54789,
+      54790,
+      54791,
+      54792,
+      54793
+    ],
+    "general": [
+      [
+        "DS556.5",
+        "DS556.5"
+      ]
+    ],
+    "other_local": 54795
+  },
+  {
+    "id": 3521,
+    "label": "British Isles History",
+    "themes": {
+      "political": 51030
+    },
+    "groups": {
+      "period": 11497
+    },
+    "period_children": [
+      3525,
+      3526,
+      3527,
+      3528,
+      3529,
+      3531,
+      3532,
+      3533
+    ],
+    "general": []
+  },
+  {
+    "id": 3523,
+    "label": "French History",
+    "themes": {
+      "military": 54796,
+      "political": 51031
+    },
+    "groups": {
+      "period": 54797,
+      "local": 52294
+    },
+    "period_children": [
+      3553,
+      3555,
+      8253,
+      9724,
+      10409,
+      11458,
+      11459,
+      11460,
+      11461,
+      11462,
+      11463,
+      11464,
+      11465,
+      52290,
+      52291,
+      52292,
+      52293
+    ],
+    "general": [
+      [
+        "DC37",
+        "DC38"
+      ],
+      [
+        "DC39",
+        "DC39"
+      ],
+      [
+        "DC40",
+        "DC40"
+      ],
+      [
+        "DC37",
+        "DC37"
+      ],
+      [
+        "DC38",
+        "DC38"
+      ]
+    ],
+    "other_local": 54798
+  },
+  {
+    "id": 3524,
+    "label": "German History",
+    "themes": {
+      "military": 54799,
+      "political": 51029
+    },
+    "groups": {
+      "period": 54800,
+      "local": 13904
+    },
+    "period_children": [
+      3557,
+      3558,
+      3559,
+      3560,
+      3561,
+      3563,
+      3564,
+      10121,
+      10222,
+      13706,
+      13901
+    ],
+    "general": [
+      [
+        "DD87",
+        "DD89"
+      ],
+      [
+        "DD90",
+        "DD90"
+      ],
+      [
+        "DD87",
+        "DD87"
+      ],
+      [
+        "DD88",
+        "DD88"
+      ],
+      [
+        "DD89",
+        "DD89"
+      ]
+    ],
+    "other_local": 54801
+  },
+  {
+    "id": 3535,
+    "label": "Greek History",
+    "themes": {},
+    "groups": {
+      "period": 54802
+    },
+    "period_children": [
+      3567,
+      3515
+    ],
+    "general": []
+  },
+  {
+    "id": 3537,
+    "label": "Austrian History",
+    "themes": {
+      "military": 54803,
+      "political": 54804
+    },
+    "groups": {
+      "period": 54805,
+      "local": 13761
+    },
+    "period_children": [
+      3536,
+      10107,
+      10147,
+      10210,
+      10212,
+      10214,
+      10232,
+      11558,
+      51596,
+      51597,
+      51598,
+      51599,
+      51600,
+      51601
+    ],
+    "general": [
+      [
+        "DB37",
+        "DB38"
+      ],
+      [
+        "DB39",
+        "DB39"
+      ],
+      [
+        "DB40",
+        "DB40"
+      ],
+      [
+        "DB37",
+        "DB37"
+      ],
+      [
+        "DB38",
+        "DB38"
+      ]
+    ],
+    "other_local": 54806
+  },
+  {
+    "id": 3538,
+    "label": "Czechoslovak History",
+    "themes": {
+      "military": 54807,
+      "political": 51722
+    },
+    "groups": {
+      "period": 54808,
+      "local": 54809
+    },
+    "period_children": [
+      10095,
+      10124,
+      10199,
+      13884
+    ],
+    "general": [
+      [
+        "DB2061",
+        "DB2063"
+      ],
+      [
+        "DB2061",
+        "DB2061"
+      ],
+      [
+        "DB2062",
+        "DB2062"
+      ],
+      [
+        "DB2063",
+        "DB2063"
+      ]
+    ],
+    "other_local": 54810
+  },
+  {
+    "id": 3539,
+    "label": "Hungarian History",
+    "themes": {
+      "military": 54811,
+      "political": 51618
+    },
+    "groups": {
+      "period": 54812,
+      "local": 54813
+    },
+    "period_children": [
+      10096,
+      10140,
+      10150,
+      10175,
+      10186,
+      10202,
+      10209,
+      10600,
+      10684,
+      10693,
+      10706,
+      10765,
+      51615,
+      51619,
+      10512
+    ],
+    "general": [
+      [
+        "DB924",
+        "DB925"
+      ],
+      [
+        "DB925.1",
+        "DB925.1"
+      ],
+      [
+        "DB925.3",
+        "DB925.3"
+      ],
+      [
+        "DB924",
+        "DB924"
+      ],
+      [
+        "DB925",
+        "DB925"
+      ]
+    ],
+    "other_local": 54814
+  },
+  {
+    "id": 3574,
+    "label": "Maltese History",
+    "themes": {
+      "military": 51905,
+      "political": 51907
+    },
+    "groups": {
+      "period": 54815,
+      "local": 54816
+    },
+    "period_children": [
+      11526,
+      11527,
+      11528,
+      11529
+    ],
+    "general": [
+      [
+        "DG990",
+        "DG990"
+      ]
+    ],
+    "other_local": 54817
+  },
+  {
+    "id": 3577,
+    "label": "Belgian History",
+    "themes": {
+      "military": 54818,
+      "political": 51790
+    },
+    "groups": {
+      "period": 54819,
+      "local": 13751
+    },
+    "period_children": [
+      10135,
+      10148,
+      10207,
+      13923,
+      13924,
+      13925,
+      13926
+    ],
+    "general": [
+      [
+        "DH517",
+        "DH521"
+      ],
+      [
+        "DH523",
+        "DH523"
+      ],
+      [
+        "DH527",
+        "DH527"
+      ],
+      [
+        "DH517",
+        "DH517"
+      ],
+      [
+        "DH521",
+        "DH521"
+      ]
+    ],
+    "other_local": 54820
+  },
+  {
+    "id": 3578,
+    "label": "Luxembourg History",
+    "themes": {
+      "political": 51925
+    },
+    "groups": {
+      "period": 54821,
+      "local": 54822
+    },
+    "period_children": [
+      11525,
+      51926,
+      51927
+    ],
+    "general": [
+      [
+        "DH908",
+        "DH908"
+      ]
+    ],
+    "other_local": 54823
+  },
+  {
+    "id": 3579,
+    "label": "Dutch History",
+    "themes": {
+      "military": 54824,
+      "political": 54825
+    },
+    "groups": {
+      "period": 54826,
+      "local": 13871
+    },
+    "period_children": [
+      11530,
+      11531,
+      11532,
+      11533
+    ],
+    "general": [
+      [
+        "DJ107",
+        "DJ109"
+      ],
+      [
+        "DJ111",
+        "DJ111"
+      ],
+      [
+        "DJ116",
+        "DJ116"
+      ],
+      [
+        "DJ107",
+        "DJ107"
+      ],
+      [
+        "DJ109",
+        "DJ109"
+      ]
+    ],
+    "other_local": 54827
+  },
+  {
+    "id": 3595,
+    "label": "Russian History",
+    "themes": {
+      "military": 54828,
+      "political": 51032
+    },
+    "groups": {
+      "period": 54829,
+      "local": 54830
+    },
+    "period_children": [
+      11342,
+      11366,
+      11385
+    ],
+    "general": [
+      [
+        "DK39",
+        "DK40"
+      ],
+      [
+        "DK39",
+        "DK39"
+      ],
+      [
+        "DK40",
+        "DK40"
+      ]
+    ],
+    "other_local": 54831
+  },
+  {
+    "id": 3602,
+    "label": "Swiss History",
+    "themes": {
+      "military": 54832,
+      "political": 51670
+    },
+    "groups": {
+      "period": 54833,
+      "local": 54834
+    },
+    "period_children": [
+      10097,
+      10108,
+      10127,
+      10180,
+      10208,
+      10228,
+      10307,
+      10401
+    ],
+    "general": [
+      [
+        "DQ53",
+        "DQ54"
+      ],
+      [
+        "DQ55",
+        "DQ55"
+      ],
+      [
+        "DQ56",
+        "DQ56"
+      ],
+      [
+        "DQ53",
+        "DQ53"
+      ],
+      [
+        "DQ54",
+        "DQ54"
+      ]
+    ],
+    "other_local": 54835
+  },
+  {
+    "id": 3607,
+    "label": "Italian History",
+    "themes": {
+      "political": 54836
+    },
+    "groups": {
+      "period": 54837,
+      "local": 13851
+    },
+    "period_children": [
+      3571,
+      3575,
+      3576,
+      13848
+    ],
+    "general": [],
+    "other_local": 54838
+  },
+  {
+    "id": 3610,
+    "label": "Polish History",
+    "themes": {
+      "military": 54839,
+      "political": 51542
+    },
+    "groups": {
+      "period": 54840,
+      "local": 50843
+    },
+    "period_children": [
+      10110,
+      10118,
+      10125,
+      10182,
+      10193
+    ],
+    "general": [
+      [
+        "DK4139.92",
+        "DK4149"
+      ],
+      [
+        "DK4150",
+        "DK4150"
+      ],
+      [
+        "DK4140",
+        "DK4140"
+      ]
+    ],
+    "other_local": 54841
+  },
+  {
+    "id": 3611,
+    "label": "Portuguese History",
+    "themes": {
+      "military": 54842,
+      "political": 51689
+    },
+    "groups": {
+      "period": 54843,
+      "local": 13891
+    },
+    "period_children": [
+      3585,
+      10117,
+      10328,
+      11578,
+      11579,
+      11580
+    ],
+    "general": [
+      [
+        "DP537",
+        "DP538"
+      ],
+      [
+        "DP539",
+        "DP539"
+      ],
+      [
+        "DP542",
+        "DP542"
+      ],
+      [
+        "DP537",
+        "DP537"
+      ],
+      [
+        "DP538",
+        "DP538"
+      ]
+    ],
+    "other_local": 54844
+  },
+  {
+    "id": 3613,
+    "label": "Spanish History",
+    "themes": {
+      "military": 54845,
+      "political": 54846
+    },
+    "groups": {
+      "period": 54847,
+      "local": 13847
+    },
+    "period_children": [
+      3600,
+      3601,
+      10129
+    ],
+    "general": [
+      [
+        "DP64",
+        "DP66"
+      ],
+      [
+        "DP68",
+        "DP68"
+      ],
+      [
+        "DP72",
+        "DP72"
+      ],
+      [
+        "DP64",
+        "DP64"
+      ],
+      [
+        "DP65",
+        "DP65"
+      ],
+      [
+        "DP66",
+        "DP66"
+      ]
+    ],
+    "other_local": 54848
+  },
+  {
+    "id": 13665,
+    "label": "Myanmar / Burma",
+    "themes": {
+      "military": 54849,
+      "political": 54850
+    },
+    "groups": {
+      "period": 54851,
+      "local": 54857
+    },
+    "period_children": [
+      54852,
+      54853,
+      54854,
+      54855,
+      54856
+    ],
+    "general": [
+      [
+        "DS528.5",
+        "DS528.5"
+      ]
+    ],
+    "other_local": 54858
+  },
+  {
+    "id": 13666,
+    "label": "Cambodian History",
+    "themes": {
+      "political": 54859
+    },
+    "groups": {
+      "period": 54860,
+      "local": 54864
+    },
+    "period_children": [
+      54861,
+      54862,
+      54863
+    ],
+    "general": [
+      [
+        "DS554.5",
+        "DS554.5"
+      ]
+    ],
+    "other_local": 54865
+  },
+  {
+    "id": 13667,
+    "label": "Laotian History",
+    "themes": {
+      "political": 54866
+    },
+    "groups": {
+      "period": 54867,
+      "local": 54872
+    },
+    "period_children": [
+      54868,
+      54869,
+      54870,
+      54871
+    ],
+    "general": [
+      [
+        "DS555.5",
+        "DS555.5"
+      ]
+    ],
+    "other_local": 54873
+  },
+  {
+    "id": 52000,
+    "label": "Liechtenstein History",
+    "themes": {
+      "political": 52004
+    },
+    "groups": {
+      "local": 52005
+    },
+    "period_children": [],
+    "general": [
+      [
+        "DB891",
+        "DB891"
+      ]
+    ],
+    "other_local": 54874
+  }
+]

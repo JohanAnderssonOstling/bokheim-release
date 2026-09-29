@@ -1,0 +1,110 @@
+{
+  "merges": {},
+  "renamed": {
+    "3615": {
+      "before": "West",
+      "after": "Western Europe"
+    }
+  },
+  "moved": [
+    {
+      "id": 3520,
+      "before": [
+        3615
+      ],
+      "after": [
+        3517
+      ]
+    },
+    {
+      "id": 3521,
+      "before": [
+        3615
+      ],
+      "after": [
+        3517
+      ]
+    },
+    {
+      "id": 3523,
+      "before": [
+        3615
+      ],
+      "after": [
+        3517
+      ]
+    },
+    {
+      "id": 3535,
+      "before": [
+        5541
+      ],
+      "after": [
+        3517
+      ]
+    },
+    {
+      "id": 3574,
+      "before": [
+        5541
+      ],
+      "after": [
+        3517
+      ]
+    },
+    {
+      "id": 3604,
+      "before": [
+        5541
+      ],
+      "after": [
+        3517
+      ]
+    },
+    {
+      "id": 3607,
+      "before": [
+        5541
+      ],
+      "after": [
+        3517
+      ]
+    },
+    {
+      "id": 3614,
+      "before": [
+        5541
+      ],
+      "after": [
+        3517
+      ]
+    },
+    {
+      "id": 51930,
+      "before": [
+        5541
+      ],
+      "after": [
+        3517
+      ]
+    },
+    {
+      "id": 52007,
+      "before": [
+        5541
+      ],
+      "after": [
+        3517
+      ]
+    }
+  ],
+  "flattened": [
+    {
+      "id": 5541,
+      "parent": 3517,
+      "children": []
+    }
+  ],
+  "created": {},
+  "selector_repairs": []
+}

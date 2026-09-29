@@ -1,0 +1,29 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT\n    COALESCE(revision.reading_revision, 0) AS reading_revision,\n    COALESCE(revision.other_revision, 0) AS other_revision\nFROM libraries AS library\nLEFT JOIN sync_library_revision AS revision ON revision.library_id = library.id\nWHERE library.id = $1 AND library.user_id = $2;\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "reading_revision",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 1,
+        "name": "other_revision",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      null,
+      null
+    ]
+  },
+  "hash": "a14a70c5d5273b22927e685499fca6dfcd9eba71ba174fb72b149cbe5daaabe1"
+}

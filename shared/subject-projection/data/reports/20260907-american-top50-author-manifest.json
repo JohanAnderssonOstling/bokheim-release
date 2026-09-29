@@ -1,0 +1,506 @@
+{
+  "entries": [
+    {
+      "code": "PS3568.O243",
+      "end": null,
+      "name": "Roberts, Nora",
+      "record": 674913,
+      "hits": 2280,
+      "target": 52111,
+      "source": 12719
+    },
+    {
+      "code": "PS1300",
+      "end": "PS1348",
+      "name": "Clemens, Samuel Langhorne (\"Mark Twain\")",
+      "record": 201998,
+      "hits": 2121,
+      "target": 52112,
+      "source": 13855
+    },
+    {
+      "code": "PS2110",
+      "end": "PS2128",
+      "name": "James, Henry",
+      "record": 202599,
+      "hits": 1823,
+      "target": 52113,
+      "source": 13855
+    },
+    {
+      "code": "PS3511.A86",
+      "end": null,
+      "name": "Faulkner, William, 1897-1962",
+      "record": 668715,
+      "hits": 1528,
+      "target": 52114,
+      "source": 12718
+    },
+    {
+      "code": "PS3515.E37",
+      "end": null,
+      "name": "Hemingway, Ernest, 1899-1961",
+      "record": 669512,
+      "hits": 1301,
+      "target": 52115,
+      "source": 12718
+    },
+    {
+      "code": "PS2380",
+      "end": "PS2388",
+      "name": "Melville, Herman",
+      "record": 202817,
+      "hits": 1261,
+      "target": 52116,
+      "source": 13855
+    },
+    {
+      "code": "PS2600",
+      "end": "PS2648",
+      "name": "Poe, Edgar Allan",
+      "record": 202956,
+      "hits": 1193,
+      "target": 52117,
+      "source": 13855
+    },
+    {
+      "code": "PS3509.L43",
+      "end": null,
+      "name": "Eliot, T. S. (Thomas Stearns), 1888-1965",
+      "record": 668598,
+      "hits": 1123,
+      "target": 52118,
+      "source": 12718
+    },
+    {
+      "code": "PS3561.I483",
+      "end": null,
+      "name": "King, Stephen, 1947-",
+      "record": 204131,
+      "hits": 1052,
+      "target": 52119,
+      "source": 12719
+    },
+    {
+      "code": "PS3511.I9",
+      "end": null,
+      "name": "Fitzgerald, F. Scott (Francis Scott), 1896-1940",
+      "record": 668801,
+      "hits": 984,
+      "target": 52120,
+      "source": 12718
+    },
+    {
+      "code": "PS1850",
+      "end": "PS1898",
+      "name": "Hawthorne, Nathaniel",
+      "record": 202449,
+      "hits": 982,
+      "target": 52121,
+      "source": 13855
+    },
+    {
+      "code": "PS3200",
+      "end": "PS3248",
+      "name": "Whitman, Walt",
+      "record": 203575,
+      "hits": 943,
+      "target": 52122,
+      "source": 13855
+    },
+    {
+      "code": "PS3566.A822",
+      "end": null,
+      "name": "Patterson, James",
+      "hits": 928,
+      "evidence": "https://catalog.wake.gov/Record/672271",
+      "target": 52123,
+      "source": 12719
+    },
+    {
+      "code": "PS3569.T33828",
+      "end": null,
+      "name": "Steel, Danielle",
+      "hits": 845,
+      "evidence": "https://discover.library.unt.edu/catalog/b2256653",
+      "target": 52124,
+      "source": 12719
+    },
+    {
+      "code": "PS3040",
+      "end": "PS3058",
+      "name": "Thoreau, Henry David",
+      "record": 203320,
+      "hits": 809,
+      "target": 52125,
+      "source": 13855
+    },
+    {
+      "code": "PS1600",
+      "end": "PS1648",
+      "name": "Emerson, Ralph Waldo",
+      "record": 202215,
+      "hits": 806,
+      "target": 52126,
+      "source": 13855
+    },
+    {
+      "code": "PS1541",
+      "end": null,
+      "name": "Dickinson, Emily",
+      "record": 202180,
+      "hits": 796,
+      "target": 52127,
+      "source": 13855
+    },
+    {
+      "code": "PS3531.O82",
+      "end": null,
+      "name": "Pound, Ezra, 1885-1972",
+      "record": 203874,
+      "hits": 760,
+      "target": 52128,
+      "source": 12718
+    },
+    {
+      "code": "PS3511.A87",
+      "end": null,
+      "name": "Faust, Frederick, 1892-1944",
+      "record": 203700,
+      "hits": 757,
+      "target": 52129,
+      "source": 12718
+    },
+    {
+      "code": "PS3545.H16",
+      "end": null,
+      "name": "Wharton, Edith, 1862-1937",
+      "record": 203959,
+      "hits": 734,
+      "target": 52130,
+      "source": 12718
+    },
+    {
+      "code": "PS3537.T3234",
+      "end": null,
+      "name": "Steinbeck, John, 1902-1968",
+      "record": 672666,
+      "hits": 688,
+      "target": 52131,
+      "source": 12718
+    },
+    {
+      "code": "PS3571.P4",
+      "name": "Updike, John",
+      "hits": 686,
+      "evidence": "https://librarycatalog.iowalakes.edu/cgi-bin/koha/opac-ISBDdetail.pl?biblionumber=16834",
+      "end": null,
+      "target": 52132,
+      "source": 12719
+    },
+    {
+      "code": "PS3505.A87",
+      "end": null,
+      "name": "Cather, Willa Sibert",
+      "record": 203461,
+      "hits": 673,
+      "target": 52133,
+      "source": 12718
+    },
+    {
+      "code": "PS3563.O8749",
+      "name": "Morrison, Toni",
+      "hits": 625,
+      "evidence": "https://guides.loc.gov/fiction-prize-toni-morrison/selected-bibliography",
+      "end": null,
+      "target": 52134,
+      "source": 12719
+    },
+    {
+      "code": "PS3523.O46",
+      "end": null,
+      "name": "London, Jack",
+      "record": 203803,
+      "hits": 608,
+      "target": 52135,
+      "source": 12718
+    },
+    {
+      "code": "PS3565.A8",
+      "end": null,
+      "name": "Oates, Joyce Carol, 1938-",
+      "record": 204166,
+      "hits": 584,
+      "target": 52136,
+      "source": 12719
+    },
+    {
+      "code": "PS3561.R44",
+      "end": null,
+      "name": "Krentz, Jayne Ann",
+      "record": 204136,
+      "hits": 550,
+      "target": 52137,
+      "source": 12719
+    },
+    {
+      "code": "PS3523.A446",
+      "end": null,
+      "name": "L'Amour, Louis, 1908-",
+      "record": 203787,
+      "hits": 536,
+      "target": 52138,
+      "source": 12718
+    },
+    {
+      "code": "PS3525.I5156",
+      "end": null,
+      "name": "Miller, Arthur, 1915-2005",
+      "record": 671001,
+      "hits": 536,
+      "target": 52139,
+      "source": 12718
+    },
+    {
+      "code": "PS3563.I27",
+      "end": null,
+      "name": "Michaels, Fern",
+      "record": 204169,
+      "hits": 519,
+      "target": 52140,
+      "source": 12719
+    },
+    {
+      "code": "PS3566.L27",
+      "name": "Plath, Sylvia",
+      "hits": 517,
+      "evidence": "https://onlinebooks.library.upenn.edu/webbin/book/lookupid?key=olbp108650",
+      "end": null,
+      "target": 52141,
+      "source": 12719
+    },
+    {
+      "code": "PS3563.A2364",
+      "name": "Macomber, Debbie",
+      "hits": 512,
+      "evidence": "https://catalog.wake.gov/Record/709324",
+      "end": null,
+      "target": 52142,
+      "source": 12719
+    },
+    {
+      "code": "PS3545.I5365",
+      "end": null,
+      "name": "Williams, Tennessee, 1911-1983",
+      "record": 673398,
+      "hits": 502,
+      "target": 52143,
+      "source": 12718
+    },
+    {
+      "code": "PS3553.U75",
+      "name": "Cussler, Clive",
+      "hits": 497,
+      "evidence": "https://library.usi.edu/record/265183",
+      "end": null,
+      "target": 52144,
+      "source": 12719
+    },
+    {
+      "code": "PS3561.O55",
+      "name": "Koontz, Dean",
+      "hits": 478,
+      "evidence": "https://library.usi.edu/record/322982",
+      "end": null,
+      "target": 52145,
+      "source": 12719
+    },
+    {
+      "code": "PS3563.O8742",
+      "name": "Morris, Gilbert",
+      "hits": 476,
+      "evidence": "https://ci.nii.ac.jp/ncid/BA23554129",
+      "end": null,
+      "target": 52146,
+      "source": 12719
+    },
+    {
+      "code": "PS3554.I3",
+      "end": null,
+      "name": "Dick, Philip K.",
+      "record": 673612,
+      "hits": 472,
+      "target": 52147,
+      "source": 12719
+    },
+    {
+      "code": "PS3537.T323",
+      "end": null,
+      "name": "Stein, Gertrude",
+      "record": 203921,
+      "hits": 461,
+      "target": 52148,
+      "source": 12718
+    },
+    {
+      "code": "PS3521.E735",
+      "end": null,
+      "name": "Kerouac, Jack, 1922-1969",
+      "record": 203776,
+      "hits": 452,
+      "target": 52149,
+      "source": 12718
+    },
+    {
+      "code": "PS3560.O415",
+      "name": "Johnstone, William W.",
+      "hits": 443,
+      "evidence": "https://library.cspc.edu.ph/cgi-bin/koha/opac-detail.pl?biblionumber=16000",
+      "end": null,
+      "target": 52150,
+      "source": 12719
+    },
+    {
+      "code": "PS3568.O855",
+      "name": "Roth, Philip",
+      "hits": 443,
+      "evidence": "https://library.usi.edu/record/325041",
+      "end": null,
+      "target": 52151,
+      "source": 12719
+    },
+    {
+      "code": "PS3566.A34",
+      "end": null,
+      "name": "Paine, Lauran",
+      "record": 204115,
+      "hits": 426,
+      "target": 52152,
+      "source": 12719
+    },
+    {
+      "code": "PS3553.L287",
+      "name": "Clark, Mary Higgins",
+      "hits": 423,
+      "evidence": "https://ci.nii.ac.jp/ncid/BA35379128",
+      "end": null,
+      "target": 52153,
+      "source": 12719
+    },
+    {
+      "code": "PS3552.R718",
+      "name": "Brown, Sandra",
+      "hits": 422,
+      "evidence": "https://catalog.wake.gov/Record/713942",
+      "end": null,
+      "target": 52154,
+      "source": 12719
+    },
+    {
+      "code": "PS1015",
+      "end": "PS1018",
+      "name": "Alcott, Louisa May",
+      "record": 201684,
+      "hits": 416,
+      "target": 52155,
+      "source": 13855
+    },
+    {
+      "code": "PS3557.R5355",
+      "name": "Grisham, John",
+      "hits": 412,
+      "evidence": "https://ci.nii.ac.jp/ncid/BA52240339",
+      "end": null,
+      "target": 52156,
+      "source": 12719
+    },
+    {
+      "code": "PS3513.R6545",
+      "end": null,
+      "name": "Grey, Zane, 1872-1939",
+      "record": 203727,
+      "hits": 401,
+      "target": 52157,
+      "source": 12718
+    },
+    {
+      "code": "PS3551.N454",
+      "name": "Andrews, V. C.",
+      "hits": 395,
+      "evidence": "https://ci.nii.ac.jp/ncid/BA12596295",
+      "end": null,
+      "target": 52158,
+      "source": 12719
+    },
+    {
+      "code": "PS3527.A15",
+      "end": null,
+      "name": "Nabokov, Vladimir Vladimirovich, 1899-1977",
+      "record": 671201,
+      "hits": 395,
+      "target": 52159,
+      "source": 12718
+    },
+    {
+      "code": "PS3566.A686",
+      "name": "Parker, Robert B.",
+      "hits": 395,
+      "evidence": "https://lawcat.berkeley.edu/record/260012",
+      "end": null,
+      "target": 52160,
+      "source": 12719
+    }
+  ],
+  "new_ids": [
+    52111,
+    52112,
+    52113,
+    52114,
+    52115,
+    52116,
+    52117,
+    52118,
+    52119,
+    52120,
+    52121,
+    52122,
+    52123,
+    52124,
+    52125,
+    52126,
+    52127,
+    52128,
+    52129,
+    52130,
+    52131,
+    52132,
+    52133,
+    52134,
+    52135,
+    52136,
+    52137,
+    52138,
+    52139,
+    52140,
+    52141,
+    52142,
+    52143,
+    52144,
+    52145,
+    52146,
+    52147,
+    52148,
+    52149,
+    52150,
+    52151,
+    52152,
+    52153,
+    52154,
+    52155,
+    52156,
+    52157,
+    52158,
+    52159,
+    52160
+  ]
+}

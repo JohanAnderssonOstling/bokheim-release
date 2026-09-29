@@ -1,0 +1,189 @@
+{
+  "scope": "Review only; four high-impact candidates with 4–6 direct children. Descendants count distinct reachable subjects per branch, not usage or unique global shortest-path reductions. Each route through removed grouping loses one level. Coded groupings require code transfer, not uncoded flatten operation. Both photography proposals result in 21 direct children. Preserve substantive descendant branches and all other parent links.",
+  "candidates": [
+    {
+      "number": 1,
+      "source": 5670,
+      "source_label": "History, Theory & Education",
+      "target": 969,
+      "target_label": "Visual Arts",
+      "children": [
+        {
+          "id": 980,
+          "label": "Arts in general"
+        },
+        {
+          "id": 1004,
+          "label": "Criticism & Theory"
+        },
+        {
+          "id": 1015,
+          "label": "Art History"
+        },
+        {
+          "id": 1065,
+          "label": "Art Education"
+        }
+      ],
+      "descendants": 97,
+      "parent_children_before": 5,
+      "parent_children_after_if_alone": 8,
+      "codes": {
+        "lcc_selector": [],
+        "lcc_range": [
+          [
+            "N7475",
+            "N7489.2",
+            5670
+          ]
+        ],
+        "bisac_selector": [
+          [
+            5670,
+            "ART025000"
+          ]
+        ],
+        "ddc_selector": []
+      },
+      "action": "Proposed merge of broad grouping into parent, transfer all codes, promote children intact and retain other links; no aliases."
+    },
+    {
+      "number": 2,
+      "source": 5689,
+      "source_label": "Mixed Media Crafts & Reference",
+      "target": 3042,
+      "target_label": "Crafts & Hobbies",
+      "children": [
+        {
+          "id": 3049,
+          "label": "Crafts for Children"
+        },
+        {
+          "id": 3059,
+          "label": "Folkcrafts"
+        },
+        {
+          "id": 3063,
+          "label": "Arts & Crafts"
+        },
+        {
+          "id": 3081,
+          "label": "Mixed Media"
+        }
+      ],
+      "descendants": 52,
+      "parent_children_before": 22,
+      "parent_children_after_if_alone": 25,
+      "codes": {
+        "lcc_selector": [],
+        "lcc_range": [],
+        "bisac_selector": [
+          [
+            5689,
+            "CRA032000"
+          ]
+        ],
+        "ddc_selector": []
+      },
+      "action": "Proposed merge of broad grouping into parent, transfer all codes, promote children intact and retain other links; no aliases."
+    },
+    {
+      "number": 3,
+      "source": 967,
+      "source_label": "Photo Methods, Gear & Materials",
+      "target": 915,
+      "target_label": "Photography & Imaging",
+      "children": [
+        {
+          "id": 919,
+          "label": "Cameras"
+        },
+        {
+          "id": 932,
+          "label": "Photo Processing"
+        },
+        {
+          "id": 934,
+          "label": "Photomechanical processes"
+        },
+        {
+          "id": 935,
+          "label": "Studio & laboratory"
+        },
+        {
+          "id": 955,
+          "label": "Photography Techniques"
+        },
+        {
+          "id": 961,
+          "label": "Lighting"
+        }
+      ],
+      "descendants": 31,
+      "parent_children_before": 12,
+      "parent_children_after_if_alone": 17,
+      "codes": {
+        "lcc_selector": [],
+        "lcc_range": [
+          [
+            "TR590",
+            "TR620",
+            967
+          ]
+        ],
+        "bisac_selector": [],
+        "ddc_selector": [
+          [
+            "771",
+            967
+          ]
+        ]
+      },
+      "action": "Proposed merge of broad grouping into parent, transfer all codes, promote children intact and retain other links; no aliases."
+    },
+    {
+      "number": 4,
+      "source": 966,
+      "source_label": "Photography Specialties",
+      "target": 915,
+      "target_label": "Photography & Imaging",
+      "children": [
+        {
+          "id": 917,
+          "label": "Applied photography"
+        },
+        {
+          "id": 918,
+          "label": "Astrophotography"
+        },
+        {
+          "id": 924,
+          "label": "Commercial"
+        },
+        {
+          "id": 926,
+          "label": "Forensic"
+        },
+        {
+          "id": 933,
+          "label": "Photojournalism"
+        }
+      ],
+      "descendants": 29,
+      "parent_children_before": 12,
+      "parent_children_after_if_alone": 16,
+      "codes": {
+        "lcc_selector": [],
+        "lcc_range": [],
+        "bisac_selector": [],
+        "ddc_selector": [
+          [
+            "778",
+            966
+          ]
+        ]
+      },
+      "action": "Proposed merge of broad grouping into parent, transfer all codes, promote children intact and retain other links; no aliases."
+    }
+  ]
+}

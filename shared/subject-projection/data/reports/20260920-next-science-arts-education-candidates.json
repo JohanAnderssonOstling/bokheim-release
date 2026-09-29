@@ -1,0 +1,543 @@
+[
+  {
+    "number": 1,
+    "id": 53336,
+    "label": "Chemistry Reference, History, Study & Methods",
+    "target": 4803,
+    "target_label": "Chemistry",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "QD1",
+          "QD65",
+          53336
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": [
+        [
+          "542",
+          53336
+        ]
+      ]
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 2,
+    "id": 53340,
+    "label": "Physical Chemistry Reference & Theory",
+    "target": 4808,
+    "target_label": "Physical & Theoretical Chem.",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "QD450",
+          "QD451.Z",
+          53340
+        ],
+        [
+          "QD452.6",
+          "QD461.9",
+          53340
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 3,
+    "id": 53339,
+    "label": "Organic Chemistry Reference, Study & Methods",
+    "target": 4807,
+    "target_label": "Organic chemistry",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "QD241",
+          "QD247.Z",
+          53339
+        ],
+        [
+          "QD248.6",
+          "QD257.5",
+          53339
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 4,
+    "id": 53338,
+    "label": "Inorganic Chemistry Reference, Study & Compounds",
+    "target": 4806,
+    "target_label": "Inorganic chemistry",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "QD146",
+          "QD160.Z",
+          53338
+        ],
+        [
+          "QD169.1",
+          "QD170.Z",
+          53338
+        ],
+        [
+          "QD172.1",
+          "QD188.Z",
+          53338
+        ],
+        [
+          "QD193.1",
+          "QD197",
+          53338
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 5,
+    "id": 53341,
+    "label": "Crystallography Reference, Study & Methods",
+    "target": 4805,
+    "target_label": "Crystallography",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "QD901",
+          "QD902.9",
+          53341
+        ],
+        [
+          "QD903.7",
+          "QD910",
+          53341
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 6,
+    "id": 53337,
+    "label": "Analytical Chemistry Reference & Methods",
+    "target": 4804,
+    "target_label": "Analytical chemistry",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "QD118",
+          "QD129.Z",
+          53337
+        ],
+        [
+          "QD140",
+          "QD142",
+          53337
+        ],
+        [
+          "QD71",
+          "QD80.Z",
+          53337
+        ],
+        [
+          "QD99",
+          "QD100.Z",
+          53337
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 7,
+    "id": 53322,
+    "label": "Environmental Science Reference & Methods",
+    "target": 2377,
+    "target_label": "Environmental sciences",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "GE1",
+          "GE69",
+          53322
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 8,
+    "id": 53345,
+    "label": "Heat Reference, Theory & Measurement",
+    "target": 5037,
+    "target_label": "Heat & Thermodynamics",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "QC251",
+          "QC269.Z",
+          53345
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 9,
+    "id": 53349,
+    "label": "Geophysics Reference & Study",
+    "target": 5036,
+    "target_label": "Geophysics",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "QC801",
+          "QC801.2",
+          53349
+        ],
+        [
+          "QC801.4",
+          "QC801.9",
+          53349
+        ],
+        [
+          "QC806",
+          "QC806.9",
+          53349
+        ],
+        [
+          "QC807.5",
+          "QC807.6",
+          53349
+        ],
+        [
+          "QC809",
+          "QC809.Z",
+          53349
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 10,
+    "id": 6075,
+    "label": "Reference, History & Study",
+    "target": 6073,
+    "target_label": "Electricity",
+    "status": "Proposed only; not applied",
+    "children": [
+      {
+        "id": 6090,
+        "label": "Electricity History"
+      },
+      {
+        "id": 6092,
+        "label": "Early Works"
+      },
+      {
+        "id": 6093,
+        "label": "Electricity Topics"
+      },
+      {
+        "id": 6094,
+        "label": "Study, Teaching & Research"
+      },
+      {
+        "id": 53348,
+        "label": "Electricity Reference & Textbooks"
+      }
+    ],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "additional_merge": {
+      "id": 53348,
+      "target": 6073,
+      "label": "Electricity Reference & Textbooks"
+    },
+    "action": "Flatten uncoded wrapper, merge reference/textbooks leaf into Electricity, promote other four children"
+  },
+  {
+    "number": 11,
+    "id": 6080,
+    "label": "Reference, History & Study",
+    "target": 6074,
+    "target_label": "Magnetism",
+    "status": "Proposed only; not applied",
+    "children": [
+      {
+        "id": 6100,
+        "label": "Magnetism Topics"
+      }
+    ],
+    "codes": {
+      "lcc_selector": [
+        [
+          6080,
+          "QC750"
+        ],
+        [
+          6080,
+          "QC750.15"
+        ],
+        [
+          6080,
+          "QC750.4"
+        ],
+        [
+          6080,
+          "QC751"
+        ],
+        [
+          6080,
+          "QC753.5"
+        ],
+        [
+          6080,
+          "QC753.7"
+        ],
+        [
+          6080,
+          "QC753.8"
+        ],
+        [
+          6080,
+          "QC753.9"
+        ]
+      ],
+      "lcc_range": [
+        [
+          "QC750",
+          "QC755.4",
+          6080
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 12,
+    "id": 6918,
+    "label": "Wood Engraving Reference & History",
+    "target": 1050,
+    "target_label": "Wood engraving",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "NE1030",
+          "NE1197.2",
+          6918
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 13,
+    "id": 7998,
+    "label": "General Works",
+    "target": 1048,
+    "target_label": "Printmaking & engraving",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [
+        [
+          7998,
+          "NE897"
+        ]
+      ],
+      "lcc_range": [
+        [
+          "NE830",
+          "NE893.5",
+          7998
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 14,
+    "id": 9330,
+    "label": "Poster Techniques & Reference",
+    "target": 671,
+    "target_label": "Posters",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [
+        [
+          9330,
+          "NC1810"
+        ]
+      ],
+      "lcc_range": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 15,
+    "id": 10020,
+    "label": "Rug & Carpet Reference",
+    "target": 658,
+    "target_label": "Rugs & carpets",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [
+        [
+          10020,
+          "NK2795"
+        ]
+      ],
+      "lcc_range": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 16,
+    "id": 13089,
+    "label": "Teacher Education\u2014General",
+    "target": 2318,
+    "target_label": "Teacher Education",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "LB1705",
+          "LB1770.9",
+          13089
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 17,
+    "id": 9794,
+    "label": "Higher Education \u2014 General Works",
+    "target": 2321,
+    "target_label": "Higher education",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [
+        [
+          9794,
+          "LB2319"
+        ],
+        [
+          9794,
+          "LB2321"
+        ],
+        [
+          9794,
+          "LB2322"
+        ],
+        [
+          9794,
+          "LB2322.2"
+        ],
+        [
+          9794,
+          "LB2395.7"
+        ]
+      ],
+      "lcc_range": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  },
+  {
+    "number": 18,
+    "id": 7934,
+    "label": "Early Education Miscellany",
+    "target": 2317,
+    "target_label": "Early Childhood Education",
+    "status": "Proposed only; not applied",
+    "children": [],
+    "codes": {
+      "lcc_selector": [
+        [
+          7934,
+          "LB1195"
+        ]
+      ],
+      "lcc_range": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    },
+    "action": "Merge into parent; promote any children"
+  }
+]

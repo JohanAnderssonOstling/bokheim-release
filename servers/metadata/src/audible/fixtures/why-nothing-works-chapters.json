@@ -1,0 +1,165 @@
+{
+  "content_metadata": {
+    "chapter_info": {
+      "brandIntroDurationMs": 4040,
+      "brandOutroDurationMs": 5061,
+      "chapters": [
+        {
+          "length_ms": 30882,
+          "start_offset_ms": 0,
+          "start_offset_sec": 0,
+          "title": "Opening Credits"
+        },
+        {
+          "length_ms": 7430,
+          "start_offset_ms": 30882,
+          "start_offset_sec": 30,
+          "title": "Dedication"
+        },
+        {
+          "length_ms": 49319,
+          "start_offset_ms": 38312,
+          "start_offset_sec": 38,
+          "title": "Epigraph"
+        },
+        {
+          "length_ms": 3371862,
+          "start_offset_ms": 87631,
+          "start_offset_sec": 87,
+          "title": "Introduction"
+        },
+        {
+          "chapters": [
+            {
+              "length_ms": 2168790,
+              "start_offset_ms": 6187744,
+              "start_offset_sec": 6187,
+              "title": "Roots of the Hamiltonian Impulse"
+            }
+          ],
+          "length_ms": 2728251,
+          "start_offset_ms": 3459493,
+          "start_offset_sec": 3459,
+          "title": "1. Servant or Master of the Public?"
+        },
+        {
+          "chapters": [
+            {
+              "length_ms": 2026776,
+              "start_offset_ms": 11305096,
+              "start_offset_sec": 11305,
+              "title": "Boys with Their Hair Ablaze"
+            }
+          ],
+          "length_ms": 2948562,
+          "start_offset_ms": 8356534,
+          "start_offset_sec": 8356,
+          "title": "2. The Price of Progress"
+        },
+        {
+          "chapters": [
+            {
+              "length_ms": 2267475,
+              "start_offset_ms": 15768945,
+              "start_offset_sec": 15768,
+              "title": "A Religious Awakening"
+            }
+          ],
+          "length_ms": 2437073,
+          "start_offset_ms": 13331872,
+          "start_offset_sec": 13331,
+          "title": "3. Bodies on the Machine"
+        },
+        {
+          "chapters": [
+            {
+              "length_ms": 2163170,
+              "start_offset_ms": 21578902,
+              "start_offset_sec": 21578,
+              "title": "A New and Different Agenda"
+            }
+          ],
+          "length_ms": 3542482,
+          "start_offset_ms": 18036420,
+          "start_offset_sec": 18036,
+          "title": "4. Manacling the Octopus"
+        },
+        {
+          "chapters": [
+            {
+              "length_ms": 2723050,
+              "start_offset_ms": 26576206,
+              "start_offset_sec": 26576,
+              "title": "Ideological Purgatory"
+            }
+          ],
+          "length_ms": 2834134,
+          "start_offset_ms": 23742072,
+          "start_offset_sec": 23742,
+          "title": "5. More Harm Than Good"
+        },
+        {
+          "chapters": [
+            {
+              "length_ms": 2704195,
+              "start_offset_ms": 31994117,
+              "start_offset_sec": 31994,
+              "title": "Grounds for Exclusion"
+            }
+          ],
+          "length_ms": 2694861,
+          "start_offset_ms": 29299256,
+          "start_offset_sec": 29299,
+          "title": "6. No Place to Call Home"
+        },
+        {
+          "chapters": [
+            {
+              "length_ms": 3066102,
+              "start_offset_ms": 37434272,
+              "start_offset_sec": 37434,
+              "title": "The Freeway Wars"
+            }
+          ],
+          "length_ms": 2735960,
+          "start_offset_ms": 34698312,
+          "start_offset_sec": 34698,
+          "title": "7. The Bridge to Nowhere"
+        },
+        {
+          "chapters": [
+            {
+              "length_ms": 2498327,
+              "start_offset_ms": 44288198,
+              "start_offset_sec": 44288,
+              "title": "From Reregulation to Paralysis"
+            }
+          ],
+          "length_ms": 3787824,
+          "start_offset_ms": 40500374,
+          "start_offset_sec": 40500,
+          "title": "8. A Tragedy of the Commons in Reverse"
+        },
+        {
+          "length_ms": 1836187,
+          "start_offset_ms": 46786525,
+          "start_offset_sec": 46786,
+          "title": "Conclusion"
+        },
+        {
+          "length_ms": 108621,
+          "start_offset_ms": 48622712,
+          "start_offset_sec": 48622,
+          "title": "End Credits"
+        }
+      ],
+      "is_accurate": true,
+      "runtime_length_ms": 48731333,
+      "runtime_length_sec": 48731
+    }
+  },
+  "response_groups": [
+    "always-returned",
+    "chapter_info"
+  ]
+}

@@ -1,0 +1,7 @@
+<resources>
+    <item name="account_email" type="id" />
+    <item name="account_password" type="id" />
+    <item name="account_pin" type="id" />
+    <item name="account_reset_token" type="id" />
+    <string name="asset_statements" translatable="false">[{\"include\":\"https://app.bokheim.se/.well-known/assetlinks.json\"}]</string>
+</resources>

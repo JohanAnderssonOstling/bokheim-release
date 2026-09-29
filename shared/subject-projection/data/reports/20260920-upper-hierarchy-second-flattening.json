@@ -1,0 +1,162 @@
+{
+  "merges": {},
+  "renamed": {},
+  "moved": [],
+  "flattened": [
+    {
+      "id": 5539,
+      "parent": 3702,
+      "children": [
+        3707,
+        3818,
+        3822,
+        3830,
+        4408
+      ]
+    },
+    {
+      "id": 5568,
+      "parent": 1,
+      "children": [
+        295,
+        313,
+        345,
+        415,
+        5475
+      ]
+    },
+    {
+      "id": 5601,
+      "parent": 5104,
+      "children": [
+        5111,
+        5122,
+        5140,
+        5151,
+        5182
+      ]
+    },
+    {
+      "id": 5602,
+      "parent": 5104,
+      "children": [
+        5112,
+        5113,
+        5114,
+        5126,
+        5128,
+        5197
+      ]
+    },
+    {
+      "id": 5688,
+      "parent": 3042,
+      "children": [
+        3053,
+        3075,
+        3084,
+        3093,
+        3108,
+        3110
+      ]
+    },
+    {
+      "id": 5703,
+      "parent": 193,
+      "children": [
+        554,
+        567,
+        570,
+        572,
+        588,
+        596
+      ]
+    },
+    {
+      "id": 5786,
+      "parent": 2854,
+      "children": [
+        2860,
+        2861,
+        2863,
+        2865,
+        2871
+      ]
+    },
+    {
+      "id": 5813,
+      "parent": 4309,
+      "children": [
+        4322,
+        4327,
+        4359,
+        4362
+      ]
+    },
+    {
+      "id": 5838,
+      "parent": 11442,
+      "children": [
+        3176,
+        3182,
+        3183,
+        3184,
+        3199,
+        3205
+      ]
+    },
+    {
+      "id": 5841,
+      "parent": 11442,
+      "children": [
+        3161,
+        3164,
+        3175,
+        3196
+      ]
+    },
+    {
+      "id": 5850,
+      "parent": 5254,
+      "children": [
+        12451,
+        12452,
+        12453
+      ]
+    },
+    {
+      "id": 6153,
+      "parent": 2845,
+      "children": [
+        6164,
+        6165,
+        6166,
+        6167,
+        6168,
+        2693
+      ]
+    },
+    {
+      "id": 6157,
+      "parent": 2845,
+      "children": [
+        6187,
+        6188,
+        2540
+      ]
+    },
+    {
+      "id": 54942,
+      "parent": 5055,
+      "children": [
+        5498,
+        5509,
+        12245
+      ]
+    }
+  ],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply all 11 approved upper-hierarchy flattening groups: remove 14 uncoded intermediates and promote their children intact, preserving other parent links. No leaf merges included.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

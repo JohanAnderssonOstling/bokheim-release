@@ -1,0 +1,137 @@
+{
+  "merges": {
+    "53285": {
+      "into": 5123,
+      "old_label": "Conflict Management",
+      "surviving_label": "Conflict Resolution & Mediation"
+    },
+    "53286": {
+      "into": 5195,
+      "old_label": "Workplace Negotiation & Persuasion",
+      "surviving_label": "Negotiating"
+    },
+    "52710": {
+      "into": 11593,
+      "old_label": "Delegation & Decentralization",
+      "surviving_label": "Organizations, Teams & Change"
+    },
+    "52711": {
+      "into": 11593,
+      "old_label": "Organizational Effectiveness",
+      "surviving_label": "Organizations, Teams & Change"
+    },
+    "52712": {
+      "into": 11593,
+      "old_label": "Workplace Teams",
+      "surviving_label": "Organizations, Teams & Change"
+    },
+    "52953": {
+      "into": 5207,
+      "old_label": "Operational Standardization & Waste Reduction",
+      "surviving_label": "Production & Operations Management"
+    },
+    "52954": {
+      "into": 5207,
+      "old_label": "Operational Support Services",
+      "surviving_label": "Production & Operations Management"
+    },
+    "52955": {
+      "into": 5207,
+      "old_label": "Workflow Management",
+      "surviving_label": "Production & Operations Management"
+    },
+    "52933": {
+      "into": 11591,
+      "old_label": "Technological Innovation Management",
+      "surviving_label": "Innovation & Technology Management"
+    },
+    "52788": {
+      "into": 12294,
+      "old_label": "Older People & Social Gerontology",
+      "surviving_label": "Aging & Gerontology"
+    },
+    "52918": {
+      "into": 5466,
+      "old_label": "Basic Needs",
+      "surviving_label": "Poverty & Homelessness"
+    },
+    "52920": {
+      "into": 5466,
+      "old_label": "Economic Poverty",
+      "surviving_label": "Poverty & Homelessness"
+    },
+    "10082": {
+      "into": 5474,
+      "old_label": "Drug Abuse Topics",
+      "surviving_label": "Drug Use & Abuse"
+    },
+    "6240": {
+      "into": 5486,
+      "old_label": "Regional Tobacco Use",
+      "surviving_label": "Tobacco habit"
+    },
+    "8217": {
+      "into": 5486,
+      "old_label": "Tobacco Use History",
+      "surviving_label": "Tobacco habit"
+    },
+    "8878": {
+      "into": 5486,
+      "old_label": "Pro-tobacco",
+      "surviving_label": "Tobacco habit"
+    },
+    "52811": {
+      "into": 5465,
+      "old_label": "U.S. Penology Records",
+      "surviving_label": "Prisons & Corrections"
+    },
+    "52812": {
+      "into": 5465,
+      "old_label": "Correctional Statistics",
+      "surviving_label": "Prisons & Corrections"
+    },
+    "52815": {
+      "into": 5465,
+      "old_label": "Famous Prisons & Prisoners",
+      "surviving_label": "Prisons & Corrections"
+    },
+    "12246": {
+      "into": 5509,
+      "old_label": "Research",
+      "surviving_label": "Methods"
+    },
+    "12304": {
+      "into": 12303,
+      "old_label": "Urban Culture & Recreation",
+      "surviving_label": "Urban Life"
+    }
+  },
+  "renamed": {
+    "5123": {
+      "before": "Conflict Resolution & Mediation",
+      "after": "Conflict Management & Mediation"
+    },
+    "5195": {
+      "before": "Negotiating",
+      "after": "Negotiation & Persuasion"
+    },
+    "5486": {
+      "before": "Tobacco habit",
+      "after": "Tobacco Use"
+    },
+    "5509": {
+      "before": "Methods",
+      "after": "Research & Methods"
+    },
+    "12303": {
+      "before": "Urban Life",
+      "after": "Urban Life & Culture"
+    }
+  },
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "All twelve approved topic-family coarsifications, including Regional Tobacco Use. Retain Intellectual Capital Management, Retirement, Famine & Food Scarcity, Anti-Poverty Programs, regional drug-abuse subjects and regional research detail.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

@@ -1,0 +1,703 @@
+{
+  "created": [
+    {
+      "id": 51343,
+      "name": "Child Abuse",
+      "parent": 5806
+    },
+    {
+      "id": 51344,
+      "name": "Elder Abuse",
+      "parent": 5806
+    },
+    {
+      "id": 51345,
+      "name": "Domestic Partner Abuse",
+      "parent": 5806
+    },
+    {
+      "id": 51346,
+      "name": "Bullying",
+      "parent": 5241
+    },
+    {
+      "id": 51347,
+      "name": "Dysfunctional Families",
+      "parent": 5241
+    }
+  ],
+  "renamed": [
+    {
+      "id": 5806,
+      "before": "Family Challenges, Abuse & Recovery",
+      "after": "Family Abuse"
+    },
+    {
+      "id": 547,
+      "before": "Stamps",
+      "after": "Stamp Collecting"
+    },
+    {
+      "id": 522,
+      "before": "Coins, Currency & Medals",
+      "after": "Coin, Currency & Medal Collecting"
+    },
+    {
+      "id": 1186,
+      "before": "Dystopian",
+      "after": "Kids’ Dystopian Fiction"
+    },
+    {
+      "id": 1187,
+      "before": "Fairy Tales, Folklore & Fables",
+      "after": "Kids’ Fairy Tales, Folklore & Fables"
+    },
+    {
+      "id": 1201,
+      "before": "Fantasy & Magic",
+      "after": "Kids’ Fantasy & Magic"
+    },
+    {
+      "id": 1202,
+      "before": "Ghost Stories",
+      "after": "Kids’ Ghost Stories"
+    },
+    {
+      "id": 1245,
+      "before": "Horror",
+      "after": "Kids’ Horror"
+    },
+    {
+      "id": 1251,
+      "before": "Legends, Myths, Fables",
+      "after": "Kids’ Legends, Myths & Fables"
+    },
+    {
+      "id": 1266,
+      "before": "Mermaids & Mermen",
+      "after": "Kids’ Merfolk Fiction"
+    },
+    {
+      "id": 1267,
+      "before": "Monsters",
+      "after": "Kids’ Monster Fiction"
+    },
+    {
+      "id": 1328,
+      "before": "Robots",
+      "after": "Kids’ Robot Fiction"
+    },
+    {
+      "id": 1329,
+      "before": "Royalty",
+      "after": "Kids’ Royalty Fiction"
+    },
+    {
+      "id": 1337,
+      "before": "Science Fiction",
+      "after": "Kids’ Science Fiction"
+    },
+    {
+      "id": 1367,
+      "before": "Steampunk",
+      "after": "Kids’ Steampunk"
+    },
+    {
+      "id": 1369,
+      "before": "Superheroes",
+      "after": "Kids’ Superhero Fiction"
+    },
+    {
+      "id": 1381,
+      "before": "Vampires",
+      "after": "Kids’ Vampire Fiction"
+    },
+    {
+      "id": 1382,
+      "before": "Visionary & Metaphysical",
+      "after": "Kids’ Visionary & Metaphysical Fiction"
+    },
+    {
+      "id": 1384,
+      "before": "Werewolves & Shifters",
+      "after": "Kids’ Werewolves & Shifters"
+    },
+    {
+      "id": 1386,
+      "before": "Zombies",
+      "after": "Kids’ Zombie Fiction"
+    },
+    {
+      "id": 5382,
+      "before": "Affection. Feeling. Emotion",
+      "after": "Emotion Psychology"
+    },
+    {
+      "id": 5386,
+      "before": "Character",
+      "after": "Character Psychology"
+    },
+    {
+      "id": 5390,
+      "before": "Creative Ability",
+      "after": "Creative Ability"
+    },
+    {
+      "id": 5398,
+      "before": "Emotions",
+      "after": "Emotions"
+    },
+    {
+      "id": 5413,
+      "before": "Motivation",
+      "after": "Motivation"
+    },
+    {
+      "id": 5425,
+      "before": "Personality",
+      "after": "Personality"
+    },
+    {
+      "id": 5459,
+      "before": "Temperament",
+      "after": "Temperament"
+    },
+    {
+      "id": 5461,
+      "before": "Will, Choice & Self-Control",
+      "after": "Will, Choice & Self-Control"
+    },
+    {
+      "id": 5396,
+      "before": "Individual Differences",
+      "after": "Individual Differences"
+    },
+    {
+      "id": 3044,
+      "before": "Baskets",
+      "after": "Basket Crafts"
+    },
+    {
+      "id": 3050,
+      "before": "Decorating",
+      "after": "Decorative Crafts"
+    },
+    {
+      "id": 3060,
+      "before": "Framing",
+      "after": "Picture Framing"
+    },
+    {
+      "id": 2672,
+      "before": "Holism",
+      "after": "Holistic Health"
+    },
+    {
+      "id": 2670,
+      "before": "Hearing & Speech",
+      "after": "Hearing & Speech Health"
+    },
+    {
+      "id": 2687,
+      "before": "Vision",
+      "after": "Vision Health"
+    },
+    {
+      "id": 3648,
+      "before": "Guerilla Warfare",
+      "after": "Guerrilla Warfare"
+    },
+    {
+      "id": 3649,
+      "before": "Intelligence & Espionage",
+      "after": "Military Intelligence & Espionage"
+    },
+    {
+      "id": 3657,
+      "before": "Strategy",
+      "after": "Military Strategy"
+    },
+    {
+      "id": 4099,
+      "before": "Royalty",
+      "after": "Royal Romance"
+    },
+    {
+      "id": 4104,
+      "before": "Western",
+      "after": "Western Romance"
+    },
+    {
+      "id": 4059,
+      "before": "Action & Adventure",
+      "after": "Action & Adventure Romance"
+    },
+    {
+      "id": 4102,
+      "before": "Suspense",
+      "after": "Romantic Suspense"
+    },
+    {
+      "id": 4061,
+      "before": "Billionaires",
+      "after": "Billionaire Romance"
+    },
+    {
+      "id": 4067,
+      "before": "Firefighters",
+      "after": "Firefighter Romance"
+    },
+    {
+      "id": 4087,
+      "before": "Medical",
+      "after": "Medical Romance"
+    },
+    {
+      "id": 4095,
+      "before": "Police & Law Enforcement",
+      "after": "Law Enforcement Romance"
+    },
+    {
+      "id": 4097,
+      "before": "Rock Stars",
+      "after": "Rock Star Romance"
+    },
+    {
+      "id": 4101,
+      "before": "Sports",
+      "after": "Sports Romance"
+    },
+    {
+      "id": 4105,
+      "before": "Workplace",
+      "after": "Workplace Romance"
+    },
+    {
+      "id": 4882,
+      "before": "Condensed Matter",
+      "after": "Condensed Matter Physics"
+    },
+    {
+      "id": 4888,
+      "before": "Relativity",
+      "after": "Relativity Physics"
+    },
+    {
+      "id": 9252,
+      "before": "Philosophy",
+      "after": "Geometry Philosophy"
+    },
+    {
+      "id": 9387,
+      "before": "Early works through 1800",
+      "after": "Geometry Works to 1800"
+    },
+    {
+      "id": 4972,
+      "before": "Transformations",
+      "after": "Geometric Transformations"
+    },
+    {
+      "id": 3640,
+      "before": "Military History, Wars & Conflicts",
+      "after": "Military History"
+    },
+    {
+      "id": 10555,
+      "before": "Holocaust Denial & Its Criticism",
+      "after": "Holocaust Denial & Criticism"
+    },
+    {
+      "id": 4469,
+      "before": "Spanish & Portuguese literatures",
+      "after": "Spanish & Portuguese Lit."
+    },
+    {
+      "id": 10373,
+      "before": "British WWI Military Operations",
+      "after": "British WWI Operations"
+    },
+    {
+      "id": 10495,
+      "before": "African WWI Military Operations",
+      "after": "WWI Operations in Africa"
+    },
+    {
+      "id": 11944,
+      "before": "Central American Spanish Literature",
+      "after": "Central American Spanish Lit."
+    },
+    {
+      "id": 11945,
+      "before": "South American Spanish Literature",
+      "after": "South American Spanish Lit."
+    },
+    {
+      "id": 12007,
+      "before": "Dominican Republic Economic History",
+      "after": "Dominican Republic Econ. Hist."
+    },
+    {
+      "id": 12010,
+      "before": "Trinidad & Tobago Economic History",
+      "after": "Trinidad & Tobago Econ. Hist."
+    },
+    {
+      "id": 3620,
+      "before": "Political and diplomatic history",
+      "after": "Political & Diplomatic History"
+    },
+    {
+      "id": 9104,
+      "before": "Political and diplomatic history",
+      "after": "Political & Diplomatic History"
+    },
+    {
+      "id": 10113,
+      "before": "Political and Diplomatic History",
+      "after": "Political & Diplomatic History"
+    },
+    {
+      "id": 10637,
+      "before": "Political and diplomatic history",
+      "after": "Political & Diplomatic History"
+    },
+    {
+      "id": 10690,
+      "before": "Political and diplomatic history",
+      "after": "Political & Diplomatic History"
+    }
+  ],
+  "flattened": [
+    {
+      "id": 5742,
+      "name": "Coins, Stamps, Medals & Currency",
+      "parents": [
+        511
+      ],
+      "children": [
+        522,
+        547
+      ]
+    },
+    {
+      "id": 5763,
+      "name": "Mental Wellness, Sleep & Longevity",
+      "parents": [
+        2624
+      ],
+      "children": [
+        2675,
+        2684,
+        2740
+      ]
+    },
+    {
+      "id": 5621,
+      "name": "Fantasy, Science Fiction & Horror",
+      "parents": [
+        1093
+      ],
+      "children": [
+        1186,
+        1187,
+        1201,
+        1202,
+        1245,
+        1251,
+        1266,
+        1267,
+        1271,
+        1328,
+        1329,
+        1337,
+        1367,
+        1369,
+        1381,
+        1382,
+        1384,
+        1386
+      ]
+    },
+    {
+      "id": 5648,
+      "name": "Personality, Emotion & Motivation",
+      "parents": [
+        5381
+      ],
+      "children": [
+        5382,
+        5386,
+        5390,
+        5398,
+        5413,
+        5425,
+        5459,
+        5461
+      ]
+    },
+    {
+      "id": 5650,
+      "name": "Development, Difference & Evolution",
+      "parents": [
+        5381
+      ],
+      "children": [
+        5383,
+        5391,
+        5396
+      ]
+    },
+    {
+      "id": 5685,
+      "name": "Jewelry, Beads & Decorative Crafts",
+      "parents": [
+        3042
+      ],
+      "children": [
+        3044,
+        3045,
+        3047,
+        3050,
+        3058,
+        3060,
+        3076,
+        3078,
+        3097,
+        3105,
+        3112
+      ]
+    },
+    {
+      "id": 5758,
+      "name": "Fitness, Movement & Healthy Living",
+      "parents": [
+        2624
+      ],
+      "children": [
+        2629,
+        2657,
+        2669,
+        2685,
+        2689,
+        2690
+      ]
+    },
+    {
+      "id": 5759,
+      "name": "Nutrition, Detox & Natural Health",
+      "parents": [
+        2624
+      ],
+      "children": [
+        2630,
+        2632,
+        2634,
+        2671,
+        2672,
+        2679
+      ]
+    },
+    {
+      "id": 5761,
+      "name": "Conditions, Treatment & Health Care",
+      "parents": [
+        2624
+      ],
+      "children": [
+        2626,
+        2640,
+        2666,
+        2668,
+        2670,
+        2680,
+        2681,
+        2686,
+        2687,
+        2799
+      ]
+    },
+    {
+      "id": 5818,
+      "name": "Military Strategy & Intelligence",
+      "parents": [
+        3640
+      ],
+      "children": [
+        3648,
+        3649,
+        3657
+      ]
+    },
+    {
+      "id": 5854,
+      "name": "History, Criticism & Photographers",
+      "parents": [
+        915
+      ],
+      "children": [
+        925,
+        927,
+        928
+      ]
+    },
+    {
+      "id": 5864,
+      "name": "Historical, Western & Royal Romance",
+      "parents": [
+        4058
+      ],
+      "children": [
+        4068,
+        4099,
+        4104
+      ]
+    },
+    {
+      "id": 5865,
+      "name": "Suspense, Action & Military Romance",
+      "parents": [
+        4058
+      ],
+      "children": [
+        4059,
+        4088,
+        4102
+      ]
+    },
+    {
+      "id": 5867,
+      "name": "Professions, Wealth & Social Status",
+      "parents": [
+        4058
+      ],
+      "children": [
+        4061,
+        4067,
+        4087,
+        4095,
+        4097,
+        4101,
+        4105
+      ]
+    },
+    {
+      "id": 5916,
+      "name": "Education, Organizations & Industry",
+      "parents": [
+        5563
+      ],
+      "children": [
+        444,
+        451
+      ]
+    },
+    {
+      "id": 5921,
+      "name": "Housekeeping, Organization & Moving",
+      "parents": [
+        3125
+      ],
+      "children": [
+        3126,
+        3140
+      ]
+    },
+    {
+      "id": 5922,
+      "name": "Furnishings, Equipment & Appliances",
+      "parents": [
+        3125
+      ],
+      "children": [
+        3127,
+        3136
+      ]
+    },
+    {
+      "id": 5936,
+      "name": "Modern, Atomic & Nuclear Physics",
+      "parents": [
+        5030
+      ],
+      "children": [
+        4882,
+        4887,
+        4888,
+        5032,
+        5039,
+        5041
+      ]
+    },
+    {
+      "id": 5943,
+      "name": "Ecology, Evolution & Classification",
+      "parents": [
+        4842
+      ],
+      "children": [
+        4846,
+        4851,
+        4852,
+        4861
+      ]
+    },
+    {
+      "id": 6077,
+      "name": "Electrostatics & Electric Current",
+      "parents": [
+        6073
+      ],
+      "children": [
+        6084,
+        6096
+      ]
+    },
+    {
+      "id": 6078,
+      "name": "Classical & Quantum Electrodynamics",
+      "parents": [
+        6073
+      ],
+      "children": [
+        6087,
+        6088,
+        6089,
+        6097
+      ]
+    },
+    {
+      "id": 12376,
+      "name": "Criticism, Exegesis & Hermeneutics",
+      "parents": [
+        5731
+      ],
+      "children": [
+        13135,
+        13136,
+        13137,
+        13138
+      ]
+    }
+  ],
+  "allowed_transitions": {
+    "5718": [
+      4939
+    ],
+    "5806": [
+      51343,
+      51344,
+      51345,
+      51346,
+      51347
+    ]
+  },
+  "before_over30": 769,
+  "after_over30": 735,
+  "verified_code_groups": 2960788,
+  "changed_code_groups": 380,
+  "transitions": {
+    "[5718] -> [4939]": 380
+  },
+  "aliases_added": 0
+}

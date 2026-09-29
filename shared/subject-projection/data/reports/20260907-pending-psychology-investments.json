@@ -1,0 +1,69 @@
+{
+  "created": [
+    {
+      "id": 51543,
+      "name": "Financial Derivatives",
+      "parent": 5183
+    },
+    {
+      "id": 51544,
+      "name": "Futures Contracts",
+      "parent": 51543
+    },
+    {
+      "id": 51545,
+      "name": "Financial Options",
+      "parent": 51543
+    }
+  ],
+  "renamed": [
+    {
+      "id": 5460,
+      "before": "The hand",
+      "after": "The Hand in Psychology"
+    },
+    {
+      "id": 5654,
+      "before": "Historical & Esoteric Psychology",
+      "after": "Historical Psychology Methods"
+    },
+    {
+      "id": 12769,
+      "before": "Speculation, Futures & Derivatives",
+      "after": "Financial Speculation"
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {
+    "5424": [
+      3274
+    ],
+    "9018": [
+      3274
+    ],
+    "12769": [
+      51543,
+      51544,
+      51545
+    ]
+  },
+  "merged": [
+    {
+      "removed": 5424,
+      "retained": 3274
+    },
+    {
+      "removed": 9018,
+      "retained": 3274
+    }
+  ],
+  "empty_groupings_removed": [],
+  "verified_code_groups": 2960836,
+  "changed_code_groups": 94,
+  "transitions": {
+    "[5424] -> [3274]": 69,
+    "[9018] -> [3274]": 22,
+    "[12769] -> [51543]": 3
+  },
+  "aliases_added": 0
+}

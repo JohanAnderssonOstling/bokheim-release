@@ -1,0 +1,64 @@
+{
+  "created": [
+    {
+      "id": 51475,
+      "name": "Atheism",
+      "parent": 5857
+    },
+    {
+      "id": 51476,
+      "name": "Deism",
+      "parent": 5857
+    }
+  ],
+  "renamed": [
+    {
+      "id": 5523,
+      "before": "Belief, Unbelief & Philosophy",
+      "after": "Theology"
+    },
+    {
+      "id": 13035,
+      "before": "General Rationalism",
+      "after": "Rationalism"
+    }
+  ],
+  "flattened": [
+    {
+      "id": 11635,
+      "name": "Natural Theology & the Supernatural",
+      "children": [
+        12997,
+        12998,
+        12999,
+        13000
+      ],
+      "destination": 4538
+    },
+    {
+      "id": 11728,
+      "name": "Rationalism, Atheism & Freethought",
+      "children": [
+        13035,
+        13036,
+        13037,
+        13038,
+        13039
+      ],
+      "destination": 5857
+    }
+  ],
+  "allowed_transitions": {
+    "5523": [
+      4538,
+      11137,
+      13036,
+      51475,
+      51476
+    ]
+  },
+  "verified_code_groups": 2960835,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0
+}

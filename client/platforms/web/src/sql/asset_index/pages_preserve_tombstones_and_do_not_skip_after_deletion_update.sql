@@ -1,0 +1,1 @@
+UPDATE asset_file SET physical_name=NULL WHERE name='assets/library/book/000'

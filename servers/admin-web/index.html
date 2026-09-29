@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Operations · Bokheim</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
+    <script type="module" src="/admin/admin.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div><p class="eyebrow">Bokheim operations</p><h1 id="page-title">Operations overview</h1></div>
+        <div class="header-actions"><span id="updated"></span><button id="logout" type="button" hidden>Sign out</button><button id="refresh" type="button">Refresh</button></div>
+      </header>
+
+      <nav class="section-nav" aria-label="Administrator dashboard">
+        <a href="/admin/" data-nav-page="overview">Overview</a>
+        <a href="/admin/traffic" data-nav-page="traffic">Traffic</a>
+        <a href="/admin/accounts" data-nav-page="accounts">Accounts</a>
+        <a href="/admin/authority" data-nav-page="authority">Authority</a>
+        <a href="/admin/authority-review" data-nav-page="authority-review">Manual review</a>
+        <a href="/admin/metadata" data-nav-page="metadata">Metadata</a>
+        <a href="/admin/security" data-nav-page="security">Security</a>
+      </nav>
+
+      <section id="notice" class="notice" hidden aria-live="polite">
+        <strong id="notice-title">Dashboard unavailable</strong>
+        <p id="notice-message"></p>
+        <form id="login-form" hidden>
+          <label>Email<input id="email" type="email" autocomplete="username" required /></label>
+          <label>Password<input id="password" type="password" autocomplete="current-password" required /></label>
+          <button id="login" type="submit">Sign in as administrator</button>
+        </form>
+        <button id="retry" type="button">Try again</button>
+      </section>
+
+      <section id="loading" class="notice" aria-live="polite">Loading operational history…</section>
+      <div id="dashboard" hidden>
+        <section id="cards" class="cards" aria-label="Current server status" data-page="overview"></section>
+
+        <section class="panel" data-page="traffic">
+          <div class="panel-heading">
+            <div><p class="eyebrow">History</p><h2>Request volume</h2></div>
+            <div id="ranges" class="range" role="group" aria-label="Traffic history range">
+              <button data-hours="1" type="button">1h</button><button data-hours="6" type="button">6h</button>
+              <button class="active" data-hours="24" type="button">24h</button><button data-hours="168" type="button">7d</button>
+            </div>
+          </div>
+          <p id="empty-chart" class="empty" hidden>No completed traffic buckets in this range yet.</p>
+          <div id="request-chart" class="chart">
+            <svg viewBox="0 0 720 180" preserveAspectRatio="none" role="img" aria-label="Request volume line chart">
+              <path class="grid" d="M0 45H720 M0 90H720 M0 135H720"></path>
+              <path id="requests-path" class="requests"></path><path id="errors-path" class="errors"></path>
+            </svg>
+            <div class="legend"><span><i class="request-dot"></i>Requests</span><span><i class="error-dot"></i>Errors</span><span id="chart-period"></span></div>
+          </div>
+        </section>
+
+        <section class="panel" data-page="authority-review">
+          <div class="panel-heading">
+            <div><p class="eyebrow">Authority enrichment</p><h2>Edition identity review</h2></div>
+            <span>Candidate evidence and decisions are retained in the private authority cache</span>
+          </div>
+          <div class="review-filters">
+            <label>Source<select id="review-source"><option value="">All sources</option></select></label>
+            <label>Status<select id="review-status"><option value="">All pending</option><option value="ambiguous">Ambiguous</option><option value="no_match">No match</option><option value="insufficient_metadata">Insufficient metadata</option><option value="failed">Failed</option></select></label>
+          </div>
+          <div id="review-cards" class="cards"></div>
+          <p id="reviews-empty" class="empty">No identity reviews match these filters.</p>
+          <div id="reviews" class="review-list"></div>
+        </section>
+
+        <section class="panel compact-chart" data-page="traffic">
+          <div class="panel-heading"><div><p class="eyebrow">Transfer</p><h2>Recorded bytes</h2></div><strong id="transfer-total"></strong></div>
+          <svg viewBox="0 0 720 180" preserveAspectRatio="none" role="img" aria-label="Transferred bytes line chart"><path class="grid" d="M0 45H720 M0 90H720 M0 135H720"></path><path id="bytes-path" class="bytes"></path></svg>
+        </section>
+
+        <section class="panel" data-page="traffic">
+          <div class="panel-heading"><div><p class="eyebrow">Breakdown</p><h2>Route categories</h2></div><span>Aggregate route data contains no identifiers</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Route</th><th>Requests</th><th>Errors</th><th>Inbound</th><th>Outbound</th><th>Max latency</th></tr></thead><tbody id="routes"></tbody></table></div>
+        </section>
+
+        <section class="panel" data-page="accounts">
+          <div class="panel-heading"><div><p class="eyebrow">Engagement</p><h2>Account activity · 30 days</h2></div><span>Daily aggregates · no identities exposed</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Date</th><th>Active accounts</th><th>Used sync</th><th>New verified accounts</th></tr></thead><tbody id="engagement"></tbody></table></div>
+        </section>
+
+        <section class="panel" data-page="accounts">
+          <div class="panel-heading"><div><p class="eyebrow">Registrations</p><h2>Registered email addresses</h2></div><span id="accounts-total">Account identities · every view is audited</span></div>
+          <p id="accounts-empty" class="empty" hidden>No account has registered an email address yet.</p>
+          <div class="table-wrap"><table><thead><tr><th>Email</th><th>Registered</th><th>Status</th><th>Last seen</th><th>Requests</th><th>Libraries</th></tr></thead><tbody id="accounts"></tbody></table></div>
+        </section>
+
+        <section class="panel" data-page="authority">
+          <div class="panel-heading"><div><p class="eyebrow">Authority</p><h2>Authority inventory &amp; workers</h2></div><span>Local service status through the authenticated admin API</span></div>
+          <p id="authority-unavailable" class="empty" hidden>The authority server is unavailable.</p>
+          <div id="authority-content">
+            <div class="panel-heading subsection process-heading"><div><p class="eyebrow">Processes</p><h2>Worker controls</h2></div><span>All workers start paused after a server restart; pausing takes effect after the current source, cover, book, or enrichment batch</span></div>
+            <div id="authority-processes" class="process-controls" aria-label="Authority process controls"></div>
+            <div id="authority-cards" class="cards"></div>
+            <div id="authority-metadata-backfill" hidden>
+              <div class="panel-heading subsection"><div><p class="eyebrow">Enrichment</p><h2>Metadata backfill</h2></div><span>Local metadata enrichment from previously extracted book data</span></div>
+              <div class="table-wrap"><table><thead><tr><th>Pending</th><th>Running</th><th>Succeeded</th><th>Recorded failures</th><th>Last error</th></tr></thead><tbody id="authority-metadata-backfill-status"></tbody></table></div>
+            </div>
+            <div id="authority-description-backfill" hidden>
+              <div class="panel-heading subsection"><div><p class="eyebrow">Enrichment</p><h2>Description backfill</h2></div><span>Open Library descriptions processed separately from regular metadata enrichment</span></div>
+              <div class="table-wrap"><table><thead><tr><th>Pending</th><th>Running</th><th>Succeeded</th><th>No OL description</th><th>Progress</th><th>Speed</th><th>Last error</th></tr></thead><tbody id="authority-description-backfill-status"></tbody></table></div>
+            </div>
+            <div class="panel-heading subsection"><div><p class="eyebrow">Live</p><h2>Current crawl</h2></div><span>Sources actively being fetched right now</span></div>
+            <p id="authority-current-crawl-empty" class="empty">No source is crawling right now.</p>
+            <div id="authority-current-crawl-wrap" class="table-wrap" hidden><table><thead><tr><th>Source</th><th>Started</th><th>Speed</th><th>Pages waiting</th><th>Cached pages</th><th>Books found</th><th>Enrichment queue</th></tr></thead><tbody id="authority-current-crawl"></tbody></table></div>
+            <div class="panel-heading subsection"><div><p class="eyebrow">Sources</p><h2>Crawl queue and inventory</h2></div><span>Pages waiting are discovered authority pages not fetched yet; the count can grow during a crawl</span></div>
+            <div class="table-wrap"><table><thead><tr><th>Source</th><th>Crawl status</th><th>Origin throttle</th><th>Pages waiting</th><th>Last success</th><th>Books</th><th>EPUBs</th><th>Queued / failed extractions</th></tr></thead><tbody id="authority-sources"></tbody></table></div>
+            <div class="panel-heading subsection"><div><p class="eyebrow">Diagnostics</p><h2>Book extraction failures</h2></div><span>Normalized categories and redacted examples · raw errors remain private</span></div>
+            <p id="authority-failures-empty" class="empty">No classified extraction failures.</p>
+            <div id="authority-failures-wrap" class="table-wrap" hidden><table><thead><tr><th>Category</th><th>Retry policy</th><th>Count</th><th>First / last seen</th><th>Next retry</th><th>Examples</th></tr></thead><tbody id="authority-failures"></tbody></table></div>
+          </div>
+        </section>
+
+        <section class="panel" data-page="metadata">
+          <div class="panel-heading"><div><p class="eyebrow">Metadata enrichment</p><h2>Snapshot coverage &amp; requests</h2></div><span>Aggregate operational data · no book queries retained</span></div>
+          <p id="metadata-unavailable" class="empty" hidden>The metadata enrichment server is unavailable.</p>
+          <div id="metadata-content">
+            <div id="metadata-cards" class="cards"></div>
+            <div class="table-wrap"><table><thead><tr><th>Snapshot metric</th><th>Value</th></tr></thead><tbody id="metadata-metrics"></tbody></table></div>
+          </div>
+        </section>
+
+        <section class="panel" data-page="security">
+          <div class="panel-heading"><div><p class="eyebrow">Incident response</p><h2>Recent request IPs</h2></div><span>Exact addresses · retained 7 days</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Time</th><th>Client IP</th><th>Route</th><th>Method</th><th>Status</th><th>Transfer</th><th>Latency</th></tr></thead><tbody id="request-ips"></tbody></table></div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

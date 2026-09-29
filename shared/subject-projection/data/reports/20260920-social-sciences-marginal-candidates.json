@@ -1,0 +1,392 @@
+[
+  {
+    "id": 52685,
+    "label": "History of Philanthropy",
+    "target": 5510,
+    "target_label": "Philanthropy & Charity",
+    "proposal": "History of Philanthropy into Philanthropy & Charity",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "HV16",
+          "HV25",
+          52685
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5485,
+    "label": "The church & charity",
+    "target": 5510,
+    "target_label": "Philanthropy & Charity",
+    "proposal": "The Church & Charity into Philanthropy & Charity",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [
+        [
+          5485,
+          "HV530"
+        ]
+      ],
+      "lcc_range": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5487,
+    "label": "Women & charity",
+    "target": 5510,
+    "target_label": "Philanthropy & Charity",
+    "proposal": "Women & Charity into Philanthropy & Charity",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [
+        [
+          5487,
+          "HV541"
+        ]
+      ],
+      "lcc_range": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 5477,
+    "label": "International social work",
+    "target": 5467,
+    "target_label": "Social Work",
+    "proposal": "International Social Work into Social Work",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [
+        [
+          5477,
+          "HV544.5"
+        ]
+      ],
+      "lcc_range": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52877,
+    "label": "Fresh-Air Funds",
+    "target": 12795,
+    "target_label": "Child Welfare",
+    "proposal": "Fresh-Air Funds into Child Welfare",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "HV931",
+          "HV941",
+          52877
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 51575,
+    "label": "Military Fitness & Sports",
+    "target": 12788,
+    "target_label": "Military Service",
+    "proposal": "Military Fitness & Sports into Military Service",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "U320",
+          "U329.99",
+          51575
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 51576,
+    "label": "Military Field Orders",
+    "target": 12788,
+    "target_label": "Military Service",
+    "proposal": "Military Field Orders into Military Service",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "U330",
+          "U349.99",
+          51576
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 51577,
+    "label": "Military Ceremonies & Honors",
+    "target": 12791,
+    "target_label": "Military Life & Customs",
+    "proposal": "Military Ceremonies & Honors into Military Life & Customs",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "U350",
+          "U369.99",
+          51577
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 51578,
+    "label": "Garrison Service",
+    "target": 12788,
+    "target_label": "Military Service",
+    "proposal": "Garrison Service into Military Service",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "U370",
+          "U379.99",
+          51578
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 51579,
+    "label": "Army Safety",
+    "target": 12788,
+    "target_label": "Military Service",
+    "proposal": "Army Safety into Military Service",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "U380",
+          "U389.99",
+          51579
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 51580,
+    "label": "Military Research",
+    "target": 5254,
+    "target_label": "Military Studies",
+    "proposal": "Military Research into Military Studies",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "U390",
+          "U399.9",
+          51580
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12953,
+    "label": "Statistical Services & Bureaus",
+    "target": 5520,
+    "target_label": "Statistics",
+    "proposal": "Statistical Services & Bureaus into Statistics",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [
+        [
+          12953,
+          "HA36"
+        ],
+        [
+          12953,
+          "HA36-HA37"
+        ]
+      ],
+      "lcc_range": [
+        [
+          "HA36",
+          "HA37.9",
+          12953
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 12945,
+    "label": "Reference",
+    "target": 5492,
+    "target_label": "Archaeology",
+    "proposal": "Archaeology Reference into Archaeology",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [
+        [
+          12945,
+          "CC"
+        ]
+      ],
+      "lcc_range": [
+        [
+          "CC1",
+          "CC71.9",
+          12945
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52703,
+    "label": "Family Life in Antiquity",
+    "target": 52555,
+    "target_label": "History",
+    "proposal": "Family Life in Antiquity into Family History",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "HQ505",
+          "HQ512",
+          52703
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52704,
+    "label": "Modern Family Life",
+    "target": 52555,
+    "target_label": "History",
+    "proposal": "Modern Family Life into Family History",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "HQ515",
+          "HQ518",
+          52704
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 53293,
+    "label": "Adultery",
+    "target": 12287,
+    "target_label": "Marriage & Long-Term Relationships",
+    "proposal": "Adultery into Marriage & Long-Term Relationships",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [
+        [
+          53293,
+          "HQ806"
+        ]
+      ],
+      "lcc_range": [],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52611,
+    "label": "Smoking Customs",
+    "target": 12312,
+    "target_label": "Private-Life Customs",
+    "proposal": "Smoking Customs into Private-Life Customs",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "GT3020",
+          "GT3030",
+          52611
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52517,
+    "label": "Chivalric Customs",
+    "target": 12313,
+    "target_label": "Public & Social Customs",
+    "proposal": "Chivalric Customs into Public & Social Customs",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "GT3600",
+          "GT3660",
+          52517
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  },
+  {
+    "id": 52531,
+    "label": "Coronations",
+    "target": 12313,
+    "target_label": "Public & Social Customs",
+    "proposal": "Coronations into Public & Social Customs",
+    "status": "Review only; not applied",
+    "codes": {
+      "lcc_selector": [],
+      "lcc_range": [
+        [
+          "GT5050",
+          "GT5051",
+          52531
+        ]
+      ],
+      "bisac_selector": [],
+      "ddc_selector": []
+    }
+  }
+]

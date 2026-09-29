@@ -1,0 +1,21 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO sync_bookmark_state(\n    library_id, bookmark_id, value,\n    changed_at, client_id, client_seq, version_rank, event_id\n)\nVALUES ($1, $2, $3, $4, $5, $6, $7, $8)\nON CONFLICT (library_id, bookmark_id) DO UPDATE SET\n    value = EXCLUDED.value,\n    changed_at = EXCLUDED.changed_at,\n    client_id = EXCLUDED.client_id,\n    client_seq = EXCLUDED.client_seq,\n    version_rank = EXCLUDED.version_rank,\n    event_id = EXCLUDED.event_id,\n    server_seq = DEFAULT;\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "Bytea",
+        "Int8",
+        "Text",
+        "Int8",
+        "Int2",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "65633f419a940dc7b3b0fc38b35406203b82c88f99958ae8d9c3b59199ab4576"
+}

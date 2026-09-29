@@ -1,0 +1,156 @@
+{
+  "merges": {
+    "53195": {
+      "into": 9501,
+      "old_label": "Flash Photography",
+      "surviving_label": "Photographic Exposure & Flash"
+    },
+    "53196": {
+      "into": 9501,
+      "old_label": "Electronic Flash",
+      "surviving_label": "Photographic Exposure & Flash"
+    },
+    "7193": {
+      "into": 919,
+      "old_label": "Miniature cameras",
+      "surviving_label": "Cameras"
+    },
+    "10003": {
+      "into": 919,
+      "old_label": "Automatic Cameras",
+      "surviving_label": "Cameras"
+    },
+    "6841": {
+      "into": 919,
+      "old_label": "Camera accessories",
+      "surviving_label": "Cameras"
+    },
+    "9079": {
+      "into": 932,
+      "old_label": "Enlargement & reduction",
+      "surviving_label": "Photo Processing"
+    },
+    "9116": {
+      "into": 932,
+      "old_label": "Photographic Print Finishing",
+      "surviving_label": "Photo Processing"
+    },
+    "9053": {
+      "into": 932,
+      "old_label": "Photo Coloring & Airbrushing",
+      "surviving_label": "Photo Processing"
+    },
+    "8852": {
+      "into": 962,
+      "old_label": "Lantern slides",
+      "surviving_label": "Transparencies"
+    },
+    "9126": {
+      "into": 917,
+      "old_label": "Dance photography",
+      "surviving_label": "Applied photography"
+    },
+    "9847": {
+      "into": 917,
+      "old_label": "Theater Photography",
+      "surviving_label": "Applied photography"
+    },
+    "7243": {
+      "into": 571,
+      "old_label": "Unbuilt projects",
+      "surviving_label": "Architectural Design & Drawing"
+    },
+    "6904": {
+      "into": 571,
+      "old_label": "Architectural Rendering",
+      "surviving_label": "Architectural Design & Drawing"
+    },
+    "9227": {
+      "into": 571,
+      "old_label": "Modeling",
+      "surviving_label": "Architectural Design & Drawing"
+    },
+    "53162": {
+      "into": 571,
+      "old_label": "Architectural Composition",
+      "surviving_label": "Architectural Design & Drawing"
+    },
+    "53163": {
+      "into": 571,
+      "old_label": "Architectural Space",
+      "surviving_label": "Architectural Design & Drawing"
+    },
+    "560": {
+      "into": 5698,
+      "old_label": "Architecture as a profession",
+      "surviving_label": "Architecture Theory & Practice"
+    },
+    "53127": {
+      "into": 8766,
+      "old_label": "Inertia",
+      "surviving_label": "Dynamics. Motion"
+    },
+    "8701": {
+      "into": 5041,
+      "old_label": "Instruments & apparatus",
+      "surviving_label": "Radiation Physics"
+    },
+    "8925": {
+      "into": 5031,
+      "old_label": "Mathematical theory",
+      "surviving_label": "Acoustics"
+    },
+    "6100": {
+      "into": 6074,
+      "old_label": "Magnetism Topics",
+      "surviving_label": "Magnetism"
+    },
+    "6824": {
+      "into": 4799,
+      "old_label": "Plant Anatomy Methods",
+      "surviving_label": "Plant anatomy"
+    },
+    "8373": {
+      "into": 4799,
+      "old_label": "Plant Anatomy Atlases",
+      "surviving_label": "Plant anatomy"
+    },
+    "9704": {
+      "into": 5049,
+      "old_label": "Animal Weaponry",
+      "surviving_label": "Animal Anatomy"
+    },
+    "7973": {
+      "into": 5052,
+      "old_label": "Laboratory manuals",
+      "surviving_label": "Embryology"
+    },
+    "10027": {
+      "into": 5052,
+      "old_label": "Embryology Atlases",
+      "surviving_label": "Embryology"
+    },
+    "8096": {
+      "into": 4788,
+      "old_label": "Rotating Fluid Equilibrium",
+      "surviving_label": "Celestial Mechanics"
+    },
+    "6234": {
+      "into": 4785,
+      "old_label": "Earth Shape Mathematics",
+      "surviving_label": "Geodesy"
+    },
+    "9176": {
+      "into": 4785,
+      "old_label": "Earth Density & Gravity Constant",
+      "surviving_label": "Geodesy"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply all 20 approved granular-leaf groups, merging 29 leaves into their existing parents. Geopolitics placement is outside this numbered batch and unchanged.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

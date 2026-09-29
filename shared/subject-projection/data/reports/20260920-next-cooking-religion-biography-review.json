@@ -1,0 +1,817 @@
+[
+  {
+    "group": "Cooking branches",
+    "proposal": "Consolidate the BISAC and LCC Cooking branches, reconciling children into dishes, methods, ingredients and cuisines rather than simply concatenating them.",
+    "subjects": [
+      {
+        "id": 2909,
+        "label": "Cooking",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              2909,
+              "CKB000000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 3117,
+        "label": "Cooking",
+        "codes": {
+          "lcc_selector": [
+            [
+              3117,
+              "TX648"
+            ],
+            [
+              3117,
+              "TX650"
+            ],
+            [
+              3117,
+              "TX726.4"
+            ],
+            [
+              3117,
+              "TX814.5.A75"
+            ],
+            [
+              3117,
+              "TX814.5.C35"
+            ],
+            [
+              3117,
+              "TX814.5.C63"
+            ],
+            [
+              3117,
+              "TX814.5.F5"
+            ],
+            [
+              3117,
+              "TX814.5.G4"
+            ],
+            [
+              3117,
+              "TX814.5.H45"
+            ],
+            [
+              3117,
+              "TX814.5.H66"
+            ],
+            [
+              3117,
+              "TX814.5.J35"
+            ],
+            [
+              3117,
+              "TX814.5.K83"
+            ],
+            [
+              3117,
+              "TX814.5.L68"
+            ],
+            [
+              3117,
+              "TX814.5.M63"
+            ],
+            [
+              3117,
+              "TX814.5.P38"
+            ],
+            [
+              3117,
+              "TX814.5.P66"
+            ],
+            [
+              3117,
+              "TX814.5.P76"
+            ],
+            [
+              3117,
+              "TX814.5.R53"
+            ],
+            [
+              3117,
+              "TX814.5.R58"
+            ],
+            [
+              3117,
+              "TX814.5.R6"
+            ],
+            [
+              3117,
+              "TX814.5.S34"
+            ],
+            [
+              3117,
+              "TX814.5.S44"
+            ],
+            [
+              3117,
+              "TX814.5.S47"
+            ],
+            [
+              3117,
+              "TX814.5.T45"
+            ],
+            [
+              3117,
+              "TX814.5.T48"
+            ],
+            [
+              3117,
+              "TX814.5.T63"
+            ],
+            [
+              3117,
+              "TX814.5.T64"
+            ],
+            [
+              3117,
+              "TX814.5.T65"
+            ]
+          ],
+          "lcc_range": [
+            [
+              "TX651",
+              "TX652.95",
+              3117
+            ],
+            [
+              "TX661",
+              "TX669",
+              3117
+            ],
+            [
+              "TX703",
+              "TX726.3",
+              3117
+            ],
+            [
+              "TX815",
+              "TX817",
+              3117
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "Bread",
+    "proposal": "One Bread & Bread Making subject.",
+    "subjects": [
+      {
+        "id": 2925,
+        "label": "Bread",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              2925,
+              "CKB009000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 53253,
+        "label": "Bread Making",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "TX769",
+              "TX770",
+              53253
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "Cakes",
+    "proposal": "One Cakes & Cake Decorating subject.",
+    "subjects": [
+      {
+        "id": 2928,
+        "label": "Cakes",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              2928,
+              "CKB014000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 53254,
+        "label": "Cakes & Cake Decorating",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "TX771",
+              "TX771.2",
+              53254
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "Sandwiches",
+    "proposal": "One Sandwiches subject.",
+    "subjects": [
+      {
+        "id": 2938,
+        "label": "Sandwiches",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              2938,
+              "CKB121000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 9382,
+        "label": "Sandwiches",
+        "codes": {
+          "lcc_selector": [
+            [
+              9382,
+              "TX818"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "Cooking equipment",
+    "proposal": "One Cooking Equipment & Utensils subject.",
+    "subjects": [
+      {
+        "id": 2942,
+        "label": "Equipment & Utensils",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              2942,
+              "CKB131000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 9814,
+        "label": "Cooking Equipment",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "TX656",
+              "TX658",
+              9814
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "French cooking",
+    "proposal": "One French Cooking subject.",
+    "subjects": [
+      {
+        "id": 3000,
+        "label": "French Cooking",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              3000,
+              "CKB034000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 12591,
+        "label": "French Cooking",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "TX719",
+              "TX719.2",
+              12591
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "Italian cooking",
+    "proposal": "One Italian Cooking subject.",
+    "subjects": [
+      {
+        "id": 3008,
+        "label": "Italian Cooking",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              3008,
+              "CKB047000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 12593,
+        "label": "Italian Cooking",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "TX723",
+              "TX723.2",
+              12593
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "Holy Spirit",
+    "proposal": "One Holy Spirit subject, preserving Christian-theology access.",
+    "subjects": [
+      {
+        "id": 13021,
+        "label": "Holy Spirit",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              13021,
+              "REL067090"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 12689,
+        "label": "The Holy Spirit",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "BT117",
+              "BT125.9",
+              12689
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "Systematic theology",
+    "proposal": "Absorb Systematic into Systematic Theology; retain Doctrine & Dogma as a meaningful child.",
+    "subjects": [
+      {
+        "id": 11477,
+        "label": "Systematic",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              11477,
+              "REL067110"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 5800,
+        "label": "Systematic Theology",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "BT95",
+              "BT97.3",
+              5800
+            ],
+            [
+              "BT990",
+              "BT1040",
+              5800
+            ]
+          ],
+          "bisac_selector": [
+            [
+              5800,
+              "REL067020"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "Buddhist doctrine",
+    "proposal": "Absorb the general Buddhist Doctrine leaf into Teachings & Doctrine.",
+    "subjects": [
+      {
+        "id": 13016,
+        "label": "Buddhist Doctrine",
+        "codes": {
+          "lcc_selector": [
+            [
+              13016,
+              "BQ133"
+            ],
+            [
+              13016,
+              "BQ135"
+            ]
+          ],
+          "lcc_range": [
+            [
+              "BQ4061",
+              "BQ4179.9",
+              13016
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 5751,
+        "label": "Teachings & Doctrine",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "Buddhist practice",
+    "proposal": "Absorb Buddhist Practice & Worship into Buddhist Practice & Ritual.",
+    "subjects": [
+      {
+        "id": 13059,
+        "label": "Buddhist Practice & Worship",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "BQ4911",
+              "BQ4964.9",
+              13059
+            ]
+          ],
+          "bisac_selector": [
+            [
+              13059,
+              "REL007020"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 5754,
+        "label": "Buddhist Practice & Ritual",
+        "codes": {
+          "lcc_selector": [
+            [
+              5754,
+              "BQ4911-BQ4918"
+            ],
+            [
+              5754,
+              "BQ4920-BQ4925"
+            ],
+            [
+              5754,
+              "BQ4930"
+            ],
+            [
+              5754,
+              "BQ4935-BQ4941"
+            ],
+            [
+              5754,
+              "BQ4945-BQ4950"
+            ],
+            [
+              5754,
+              "BQ4953"
+            ],
+            [
+              5754,
+              "BQ4955"
+            ],
+            [
+              5754,
+              "BQ4965-BQ5030"
+            ],
+            [
+              5754,
+              "BQ5035-BQ5065"
+            ],
+            [
+              5754,
+              "BQ5070-BQ5075"
+            ],
+            [
+              5754,
+              "BQ5080-BQ5085"
+            ],
+            [
+              5754,
+              "BQ5090-BQ5095"
+            ],
+            [
+              5754,
+              "BQ5100-BQ5125"
+            ],
+            [
+              5754,
+              "BQ5130-BQ5137"
+            ],
+            [
+              5754,
+              "BQ5140-BQ5355"
+            ],
+            [
+              5754,
+              "BQ5360-BQ5680"
+            ],
+            [
+              5754,
+              "BQ5485-BQ5530"
+            ],
+            [
+              5754,
+              "BQ5535-BQ5594"
+            ],
+            [
+              5754,
+              "BQ5635-BQ5675"
+            ],
+            [
+              5754,
+              "BQ6400"
+            ],
+            [
+              5754,
+              "BQ6410"
+            ],
+            [
+              5754,
+              "BQ6420"
+            ],
+            [
+              5754,
+              "BQ6430"
+            ],
+            [
+              5754,
+              "BQ6440"
+            ],
+            [
+              5754,
+              "BQ6460-BQ6495.2"
+            ]
+          ],
+          "lcc_range": [
+            [
+              "BQ4911",
+              "BQ5720",
+              5754
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "Christian apologetics",
+    "proposal": "Combine general and main Christian Apologetics; preserve specialist topics and interfaith distinctions.",
+    "subjects": [
+      {
+        "id": 13048,
+        "label": "General Christian Apologetics",
+        "codes": {
+          "lcc_selector": [
+            [
+              13048,
+              "BT1095"
+            ],
+            [
+              13048,
+              "BT1105"
+            ]
+          ],
+          "lcc_range": [
+            [
+              "BT1095",
+              "BT1106.9",
+              13048
+            ]
+          ],
+          "bisac_selector": [
+            [
+              13048,
+              "REL067030"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 13051,
+        "label": "Christian Apologetics",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "BT1120",
+              "BT1249.9",
+              13051
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "Collective biography",
+    "proposal": "Absorb World Biographies by Language into General Collective Biography; current child is a leaf, not a language grouping with children.",
+    "subjects": [
+      {
+        "id": 8514,
+        "label": "World Biographies by Language",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "CT88",
+              "CT203",
+              8514
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 3219,
+        "label": "General collective biography",
+        "codes": {
+          "lcc_selector": [],
+          "lcc_range": [
+            [
+              "CT88",
+              "CT206",
+              3219
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      }
+    ]
+  },
+  {
+    "group": "General reference",
+    "proposal": "Absorb General Reference Works into Reference Books, keeping dictionaries, encyclopedias and other useful forms.",
+    "subjects": [
+      {
+        "id": 13727,
+        "label": "General Reference Works",
+        "codes": {
+          "lcc_selector": [
+            [
+              13727,
+              "AG600"
+            ]
+          ],
+          "lcc_range": [
+            [
+              "AG103",
+              "AG190",
+              13727
+            ],
+            [
+              "AG240",
+              "AG241",
+              13727
+            ],
+            [
+              "AG244",
+              "AG250",
+              13727
+            ],
+            [
+              "AG305",
+              "AG313",
+              13727
+            ]
+          ],
+          "bisac_selector": [],
+          "ddc_selector": []
+        }
+      },
+      {
+        "id": 5604,
+        "label": "Reference Books",
+        "codes": {
+          "lcc_selector": [
+            [
+              5604,
+              "AG"
+            ],
+            [
+              5604,
+              "AG1"
+            ],
+            [
+              5604,
+              "AG2"
+            ]
+          ],
+          "lcc_range": [],
+          "bisac_selector": [
+            [
+              5604,
+              "REF008000"
+            ]
+          ],
+          "ddc_selector": []
+        }
+      }
+    ]
+  }
+]

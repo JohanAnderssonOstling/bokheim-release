@@ -1,0 +1,297 @@
+name: Kobo release
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Upload the installers to the shared draft release for this version
+        required: true
+        type: boolean
+        default: false
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+permissions:
+  contents: read
+  statuses: read
+
+concurrency:
+  group: kobo-release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_VERSION: 1.95.0
+  LINUXDEPLOY_VERSION: 1-alpha-20251107-1
+  APPIMAGETOOL_VERSION: 1.9.1
+
+jobs:
+  version:
+    name: Release version
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
+
+    steps:
+      - name: Check out Bokheim
+        uses: actions/checkout@v6
+        with:
+          path: bokheim
+
+      - name: Read and check release version
+        id: version
+        working-directory: bokheim
+        run: |
+          version=$(sed -n 's/^version = "\([^"]*\)"/\1/p' apps/desktop-gpui/Cargo.toml | head -n 1)
+          test -n "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=v${version}" >> "$GITHUB_OUTPUT"
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            test "v${version}" = "$GITHUB_REF_NAME"
+          fi
+
+  build-windows-installer:
+    name: Windows USB installer
+    needs: version
+    runs-on: windows-2025
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out Bokheim
+        uses: actions/checkout@v6
+        with:
+          path: bokheim
+
+      - name: Check the committed Kobo package
+        working-directory: bokheim
+        shell: bash
+        run: |
+          # The Kobo package is cross-compiled on a maintainer machine and
+          # committed to the repository: its ARMv7 musl toolchain comes from a
+          # single host that is too often unreachable to sit in the release
+          # path. The installers embed the committed package rather than
+          # rebuilding or downloading it, so a checkout is all CI needs.
+          package=apps/kobo-installer/package/Bokheim-Kobo-Libra2-armv7.tar.gz
+          if [ ! -s "$package" ]; then
+            echo "::error::$package is missing. Rebuild it with apps/desktop-gpui/scripts/package-kobo.sh and commit the result."
+            exit 1
+          fi
+          tar -tzf "$package" >/dev/null
+          ls -l "$package"
+
+      - name: Install Rust
+        shell: pwsh
+        run: |
+          rustup toolchain install $env:RUST_VERSION --profile minimal
+          rustup default $env:RUST_VERSION
+
+      - name: Restore installer dependencies and build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            bokheim/apps/kobo-installer/target
+          key: kobo-installer-windows-v3-${{ runner.os }}-rust-${{ env.RUST_VERSION }}-${{ hashFiles('bokheim/apps/kobo-installer/Cargo.lock') }}
+
+      - name: Test platform path conventions
+        working-directory: bokheim
+        shell: pwsh
+        run: cargo test --release --manifest-path apps/kobo-installer/Cargo.toml --lib tests::names_package_entries_with_slashes_on_every_platform -- --exact
+
+      - name: Build portable Windows installer
+        working-directory: bokheim
+        shell: pwsh
+        run: |
+          $archive = (Resolve-Path "apps/kobo-installer/package/Bokheim-Kobo-Libra2-armv7.tar.gz").Path
+          $env:BOKHEIM_KOBO_ARCHIVE = $archive
+          $env:BOKHEIM_VERSION = "${{ needs.version.outputs.version }}"
+          $env:RUSTFLAGS = "-C target-feature=+crt-static"
+          cargo build --release --manifest-path apps/kobo-installer/Cargo.toml
+          New-Item -ItemType Directory -Force -Path release | Out-Null
+          Copy-Item apps/kobo-installer/target/release/bokheim-kobo-installer.exe release/Bokheim-Kobo-Installer-Windows-x86_64.exe
+
+      - name: Verify and checksum Windows installer
+        working-directory: bokheim
+        shell: pwsh
+        run: |
+          $installer = "release/Bokheim-Kobo-Installer-Windows-x86_64.exe"
+          $archive = "apps/kobo-installer/package/Bokheim-Kobo-Libra2-armv7.tar.gz"
+          if (!(Test-Path $installer) -or (Get-Item $installer).Length -le (Get-Item $archive).Length) {
+            throw "The installer is missing its embedded Kobo package"
+          }
+          $signature = [System.IO.File]::ReadAllBytes($installer)[0..1]
+          if ($signature[0] -ne 0x4d -or $signature[1] -ne 0x5a) {
+            throw "The installer is not a Windows PE executable"
+          }
+          $name = Split-Path $installer -Leaf
+          $hash = (Get-FileHash -Algorithm SHA256 $installer).Hash.ToLowerInvariant()
+          "$hash  $name" | Out-File -FilePath "$installer.sha256" -Encoding ascii
+
+      - name: Retain Windows installer artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: bokheim-kobo-installer-windows-x86-64
+          path: bokheim/release/*
+          if-no-files-found: error
+
+
+  build-linux-installer:
+    name: Linux USB installer AppImage
+    needs: version
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out Bokheim
+        uses: actions/checkout@v6
+        with:
+          path: bokheim
+
+      - name: Check the committed Kobo package
+        working-directory: bokheim
+        shell: bash
+        run: |
+          # The Kobo package is cross-compiled on a maintainer machine and
+          # committed to the repository: its ARMv7 musl toolchain comes from a
+          # single host that is too often unreachable to sit in the release
+          # path. The installers embed the committed package rather than
+          # rebuilding or downloading it, so a checkout is all CI needs.
+          package=apps/kobo-installer/package/Bokheim-Kobo-Libra2-armv7.tar.gz
+          if [ ! -s "$package" ]; then
+            echo "::error::$package is missing. Rebuild it with apps/desktop-gpui/scripts/package-kobo.sh and commit the result."
+            exit 1
+          fi
+          tar -tzf "$package" >/dev/null
+          ls -l "$package"
+
+      - name: Install build and AppImage dependencies
+        run: |
+          sudo apt-get -o Acquire::Retries=3 update
+          sudo apt-get -o Acquire::Retries=3 install -y \
+            build-essential \
+            clang \
+            cmake \
+            curl \
+            file \
+            libfontconfig1-dev \
+            libfreetype6-dev \
+            libfuse2 \
+            libssl-dev \
+            libvulkan-dev \
+            libwayland-dev \
+            libxcb-xkb-dev \
+            libxkbcommon-dev \
+            libxkbcommon-x11-dev \
+            pkg-config
+
+      - name: Install Rust
+        run: |
+          rustup toolchain install "$RUST_VERSION" --profile minimal
+          rustup default "$RUST_VERSION"
+
+      - name: Restore installer dependencies and build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            bokheim/apps/kobo-installer/target
+          key: kobo-installer-linux-v3-${{ runner.os }}-rust-${{ env.RUST_VERSION }}-${{ hashFiles('bokheim/apps/kobo-installer/Cargo.lock') }}
+
+      - name: Download pinned AppImage tools
+        run: |
+          curl --fail --location --retry 3 \
+            "https://github.com/linuxdeploy/linuxdeploy/releases/download/${LINUXDEPLOY_VERSION}/linuxdeploy-x86_64.AppImage" \
+            --output "$RUNNER_TEMP/linuxdeploy-x86_64.AppImage"
+          curl --fail --location --retry 3 \
+            "https://github.com/AppImage/appimagetool/releases/download/${APPIMAGETOOL_VERSION}/appimagetool-x86_64.AppImage" \
+            --output "$RUNNER_TEMP/appimagetool-x86_64.AppImage"
+          chmod +x "$RUNNER_TEMP/linuxdeploy-x86_64.AppImage" "$RUNNER_TEMP/appimagetool-x86_64.AppImage"
+
+      - name: Test platform path conventions
+        working-directory: bokheim
+        run: cargo test --release --manifest-path apps/kobo-installer/Cargo.toml --lib tests::names_package_entries_with_slashes_on_every_platform -- --exact
+
+      - name: Build Linux installer
+        working-directory: bokheim
+        env:
+          BOKHEIM_KOBO_ARCHIVE: ${{ github.workspace }}/bokheim/apps/kobo-installer/package/Bokheim-Kobo-Libra2-armv7.tar.gz
+          BOKHEIM_VERSION: ${{ needs.version.outputs.version }}
+        run: cargo build --release --manifest-path apps/kobo-installer/Cargo.toml
+
+      - name: Build installer AppImage
+        working-directory: bokheim
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: "1"
+          LINUXDEPLOY: ${{ runner.temp }}/linuxdeploy-x86_64.AppImage
+          APPIMAGETOOL: ${{ runner.temp }}/appimagetool-x86_64.AppImage
+        run: apps/kobo-installer/linux/build-appimage.sh
+
+      - name: Verify Linux installer AppImage
+        working-directory: bokheim
+        run: |
+          release/Bokheim-Kobo-Installer-Linux-x86_64.AppImage --appimage-version
+          release/Bokheim-Kobo-Installer-Linux-x86_64.AppImage --appimage-extract >/dev/null
+          test -x squashfs-root/usr/bin/bokheim-kobo-installer
+          test -f squashfs-root/se.bokheim.KoboInstaller.desktop
+          (cd release && sha256sum --check Bokheim-Kobo-Installer-Linux-x86_64.AppImage.sha256)
+          ldd squashfs-root/usr/bin/bokheim-kobo-installer > "$RUNNER_TEMP/kobo-installer-ldd.txt"
+          if grep -F 'not found' "$RUNNER_TEMP/kobo-installer-ldd.txt"; then
+            cat "$RUNNER_TEMP/kobo-installer-ldd.txt"
+            exit 1
+          fi
+
+      - name: Retain Linux installer artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: bokheim-kobo-installer-linux-x86-64
+          path: bokheim/release/*
+          if-no-files-found: error
+
+
+  publish-draft:
+    permissions:
+      contents: write
+      statuses: read
+    name: Publish verified draft artifacts
+    needs: [build-windows-installer, build-linux-installer]
+    if: startsWith(github.ref, 'refs/tags/') || inputs.publish == true
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - name: Require shared tests for the exact source commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_REPOSITORY: ${{ github.repository }}
+        run: python3 scripts/ci/require-shared-tests.py "$SOURCE_REPOSITORY" "$(git rev-parse HEAD)"
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: bokheim-kobo-installer-*
+          path: release
+          merge-multiple: true
+      - name: Upload completed platform builds to draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          VERSION=$(sed -n 's/^version = "\([^"]*\)"/\1/p' apps/desktop-gpui/Cargo.toml | head -n 1)
+          test -n "$VERSION"
+          RELEASE_TAG="v${VERSION}"
+          if ! gh release view "$RELEASE_TAG" --repo "$GH_REPO" >/dev/null 2>&1; then
+            gh release create "$RELEASE_TAG" \
+              --repo "$GH_REPO" \
+              --target "$GITHUB_SHA" --draft --generate-notes --title "Bokheim ${VERSION}" || \
+              gh release view "$RELEASE_TAG" --repo "$GH_REPO" >/dev/null
+          fi
+          # Refuse to overwrite assets after a release has become public.
+          test "$(gh release view "$RELEASE_TAG" --repo "$GH_REPO" --json isDraft --jq .isDraft)" = true
+          printf '%s\n' "$(git rev-parse HEAD)" > release/kobo-source-commit.txt
+          gh release upload "$RELEASE_TAG" release/* \
+            --repo "$GH_REPO" --clobber

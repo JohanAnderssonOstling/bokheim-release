@@ -1,0 +1,297 @@
+{
+  "created": [],
+  "renamed": [
+    {
+      "id": 1141,
+      "before": "Bedtime & Dreams",
+      "after": "Kids’ Bedtime & Dream Stories"
+    },
+    {
+      "id": 1150,
+      "before": "Boys & Men",
+      "after": "Kids’ Fiction: Boys & Men"
+    },
+    {
+      "id": 1184,
+      "before": "Disabilities & Special Needs",
+      "after": "Kids’ Disability & Special Needs Fiction"
+    },
+    {
+      "id": 1185,
+      "before": "Diversity & Multicultural",
+      "after": "Kids’ Diversity & Multicultural Fiction"
+    },
+    {
+      "id": 1191,
+      "before": "Family",
+      "after": "Kids’ Family Fiction"
+    },
+    {
+      "id": 1203,
+      "before": "Girls & Women",
+      "after": "Kids’ Fiction: Girls & Women"
+    },
+    {
+      "id": 1249,
+      "before": "LGBTQ+",
+      "after": "Kids’ LGBTQ+ Fiction"
+    },
+    {
+      "id": 1259,
+      "before": "Lifestyles",
+      "after": "Kids’ Lifestyle Fiction"
+    },
+    {
+      "id": 1263,
+      "before": "Love & Romance",
+      "after": "Kids’ Romance"
+    },
+    {
+      "id": 1269,
+      "before": "Neurodiversity",
+      "after": "Kids’ Neurodiversity Fiction"
+    },
+    {
+      "id": 1342,
+      "before": "Social Themes",
+      "after": "Kids’ Fiction: Social Themes"
+    },
+    {
+      "id": 1747,
+      "before": "Boys & Men",
+      "after": "YA Fiction: Boys & Men"
+    },
+    {
+      "id": 1774,
+      "before": "Disabilities & Special Needs",
+      "after": "YA Disability & Special Needs Fiction"
+    },
+    {
+      "id": 1775,
+      "before": "Diversity & Multicultural",
+      "after": "YA Diversity & Multicultural Fiction"
+    },
+    {
+      "id": 1800,
+      "before": "Girls & Women",
+      "after": "YA Fiction: Girls & Women"
+    },
+    {
+      "id": 1826,
+      "before": "LGBTQ+",
+      "after": "YA LGBTQ+ Fiction"
+    },
+    {
+      "id": 1842,
+      "before": "Neurodiversity",
+      "after": "YA Neurodiversity Fiction"
+    },
+    {
+      "id": 1844,
+      "before": "Own Voices",
+      "after": "YA Own Voices Fiction"
+    },
+    {
+      "id": 1910,
+      "before": "Assimilation",
+      "after": "YA Assimilation Fiction"
+    },
+    {
+      "id": 1912,
+      "before": "Class Differences",
+      "after": "YA Class Differences Fiction"
+    },
+    {
+      "id": 1928,
+      "before": "Prejudice & Racism",
+      "after": "YA Prejudice & Racism Fiction"
+    },
+    {
+      "id": 1909,
+      "before": "Activism & Social Justice",
+      "after": "YA Activism & Social Justice Fiction"
+    },
+    {
+      "id": 1919,
+      "before": "Emigration & Immigration",
+      "after": "YA Migration Fiction"
+    },
+    {
+      "id": 1926,
+      "before": "Poverty & Homelessness",
+      "after": "YA Poverty & Homelessness Fiction"
+    },
+    {
+      "id": 1388,
+      "before": "Activism & Social Justice",
+      "after": "Youth Activism & Social Justice"
+    },
+    {
+      "id": 1701,
+      "before": "Emigration & Immigration",
+      "after": "Youth Migration"
+    },
+    {
+      "id": 1708,
+      "before": "Poverty & Homelessness",
+      "after": "Youth Poverty & Homelessness"
+    },
+    {
+      "id": 1733,
+      "before": "Volunteering",
+      "after": "Youth Volunteering"
+    },
+    {
+      "id": 1344,
+      "before": "Adolescence & Coming of Age",
+      "after": "Kids’ Coming-of-Age Fiction"
+    },
+    {
+      "id": 1346,
+      "before": "Dating & Relationships",
+      "after": "Kids’ Dating & Relationship Fiction"
+    },
+    {
+      "id": 1352,
+      "before": "Friendship",
+      "after": "Kids’ Friendship Fiction"
+    },
+    {
+      "id": 1354,
+      "before": "New Experience",
+      "after": "Kids’ New Experience Stories"
+    },
+    {
+      "id": 1355,
+      "before": "Peer Pressure",
+      "after": "Kids’ Peer Pressure Fiction"
+    },
+    {
+      "id": 1363,
+      "before": "Strangers",
+      "after": "Kids’ Stories About Strangers"
+    },
+    {
+      "id": 1347,
+      "before": "Death, Grief, Bereavement",
+      "after": "Kids’ Death & Grief Fiction"
+    },
+    {
+      "id": 1348,
+      "before": "Depression & Mental Illness",
+      "after": "Kids’ Mental Illness Fiction"
+    },
+    {
+      "id": 1351,
+      "before": "Emotions & Feelings",
+      "after": "Kids’ Emotion Stories"
+    },
+    {
+      "id": 1361,
+      "before": "Self-Esteem & Self-Reliance",
+      "after": "Kids’ Self-Esteem & Self-Reliance Fiction"
+    }
+  ],
+  "flattened": [
+    {
+      "id": 5623,
+      "name": "Family, Identity & Social Themes",
+      "parents": [
+        1093
+      ],
+      "children": [
+        1141,
+        1150,
+        1184,
+        1185,
+        1191,
+        1203,
+        1249,
+        1259,
+        1263,
+        1269,
+        1342
+      ]
+    },
+    {
+      "id": 5821,
+      "name": "Identity, Diversity & Inclusion",
+      "parents": [
+        1908
+      ],
+      "children": [
+        1747,
+        1774,
+        1775,
+        1800,
+        1826,
+        1842,
+        1844,
+        1910,
+        1912,
+        1928
+      ]
+    },
+    {
+      "id": 5825,
+      "name": "Social Justice, Migration & Poverty",
+      "parents": [
+        1908
+      ],
+      "children": [
+        1909,
+        1919,
+        1926
+      ]
+    },
+    {
+      "id": 5893,
+      "name": "Poverty, Migration & Social Justice",
+      "parents": [
+        1693,
+        2143
+      ],
+      "children": [
+        1388,
+        1701,
+        1708,
+        1733
+      ]
+    },
+    {
+      "id": 5937,
+      "name": "Relationships & Social Development",
+      "parents": [
+        1342
+      ],
+      "children": [
+        1344,
+        1346,
+        1352,
+        1354,
+        1355,
+        1363
+      ]
+    },
+    {
+      "id": 5938,
+      "name": "Emotional Well-being & Identity",
+      "parents": [
+        1342
+      ],
+      "children": [
+        1347,
+        1348,
+        1351,
+        1361
+      ]
+    }
+  ],
+  "allowed_transitions": {},
+  "before_over30": 691,
+  "after_over30": 694,
+  "verified_code_groups": 2960849,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0
+}

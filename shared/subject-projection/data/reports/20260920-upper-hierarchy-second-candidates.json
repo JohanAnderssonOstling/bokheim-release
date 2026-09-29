@@ -1,0 +1,467 @@
+{
+  "scope": "Proposals only. Remove 14 uncoded intermediates in 11 groups. No leaf merges or prior unapproved proposals included.",
+  "groups": [
+    {
+      "number": 1,
+      "parent": 3702,
+      "parent_label": "Language",
+      "before_direct_children": 12,
+      "after_direct_children": 16,
+      "wrappers": [
+        {
+          "id": 5539,
+          "label": "Communication & Rhetoric",
+          "children": [
+            {
+              "id": 3707,
+              "label": "Communication Studies"
+            },
+            {
+              "id": 3818,
+              "label": "Public Speaking & Speechwriting"
+            },
+            {
+              "id": 3822,
+              "label": "Rhetoric"
+            },
+            {
+              "id": 3830,
+              "label": "Speech & Pronunciation"
+            },
+            {
+              "id": 4408,
+              "label": "Communication & Media"
+            }
+          ]
+        }
+      ],
+      "action": "Flatten wrappers; preserve children, codes and all other parent links."
+    },
+    {
+      "number": 2,
+      "parent": 1,
+      "parent_label": "Applied Sciences & Technology",
+      "before_direct_children": 21,
+      "after_direct_children": 25,
+      "wrappers": [
+        {
+          "id": 5568,
+          "label": "Environmental, Energy & Safety",
+          "children": [
+            {
+              "id": 295,
+              "label": "Environmental"
+            },
+            {
+              "id": 313,
+              "label": "Fire Science"
+            },
+            {
+              "id": 345,
+              "label": "Industrial Health & Safety"
+            },
+            {
+              "id": 415,
+              "label": "Power Resources"
+            },
+            {
+              "id": 5475,
+              "label": "Emergency Management"
+            }
+          ]
+        }
+      ],
+      "action": "Flatten wrappers; preserve children, codes and all other parent links."
+    },
+    {
+      "number": 3,
+      "parent": 5104,
+      "parent_label": "Economics & Business",
+      "before_direct_children": 19,
+      "after_direct_children": 28,
+      "wrappers": [
+        {
+          "id": 5601,
+          "label": "Trade & Transportation",
+          "children": [
+            {
+              "id": 5111,
+              "label": "Business Communication"
+            },
+            {
+              "id": 5122,
+              "label": "Commercial Policy"
+            },
+            {
+              "id": 5140,
+              "label": "Exports & Imports"
+            },
+            {
+              "id": 5151,
+              "label": "Globalization"
+            },
+            {
+              "id": 5182,
+              "label": "International Trade"
+            }
+          ]
+        },
+        {
+          "id": 5602,
+          "label": "Governance & Ethics",
+          "children": [
+            {
+              "id": 5112,
+              "label": "Business Ethics"
+            },
+            {
+              "id": 5113,
+              "label": "Business Etiquette"
+            },
+            {
+              "id": 5114,
+              "label": "Business Law"
+            },
+            {
+              "id": 5126,
+              "label": "Corporate & Business History"
+            },
+            {
+              "id": 5128,
+              "label": "Corporate Governance"
+            },
+            {
+              "id": 5197,
+              "label": "Nonprofits & Charities"
+            }
+          ]
+        }
+      ],
+      "action": "Flatten wrappers; preserve children, codes and all other parent links."
+    },
+    {
+      "number": 4,
+      "parent": 3042,
+      "parent_label": "Crafts & Hobbies",
+      "before_direct_children": 17,
+      "after_direct_children": 22,
+      "wrappers": [
+        {
+          "id": 5688,
+          "label": "Home, Nature & Seasonal Crafts",
+          "children": [
+            {
+              "id": 3053,
+              "label": "Dough"
+            },
+            {
+              "id": 3075,
+              "label": "Holiday & Seasonal"
+            },
+            {
+              "id": 3084,
+              "label": "Nature Crafts"
+            },
+            {
+              "id": 3093,
+              "label": "Painting"
+            },
+            {
+              "id": 3108,
+              "label": "Taxidermy"
+            },
+            {
+              "id": 3110,
+              "label": "Upcycling & Repurposing"
+            }
+          ]
+        }
+      ],
+      "action": "Flatten wrappers; preserve children, codes and all other parent links."
+    },
+    {
+      "number": 5,
+      "parent": 193,
+      "parent_label": "Architecture",
+      "before_direct_children": 8,
+      "after_direct_children": 13,
+      "wrappers": [
+        {
+          "id": 5703,
+          "label": "Construction & Sustainability",
+          "children": [
+            {
+              "id": 554,
+              "label": "Adaptive Reuse & Renovation"
+            },
+            {
+              "id": 567,
+              "label": "Codes & Standards"
+            },
+            {
+              "id": 570,
+              "label": "Decoration & Ornament"
+            },
+            {
+              "id": 572,
+              "label": "Details & decoration"
+            },
+            {
+              "id": 588,
+              "label": "Methods & Materials"
+            },
+            {
+              "id": 596,
+              "label": "Sustainability & Green Design"
+            }
+          ]
+        }
+      ],
+      "action": "Flatten wrappers; preserve children, codes and all other parent links."
+    },
+    {
+      "number": 6,
+      "parent": 2854,
+      "parent_label": "Surgery",
+      "before_direct_children": 15,
+      "after_direct_children": 19,
+      "wrappers": [
+        {
+          "id": 5786,
+          "label": "Orthopedic & Emergency Surgery",
+          "children": [
+            {
+              "id": 2860,
+              "label": "Musculoskeletal Surgery"
+            },
+            {
+              "id": 2861,
+              "label": "Emergency & Trauma Surgery"
+            },
+            {
+              "id": 2863,
+              "label": "Fractures"
+            },
+            {
+              "id": 2865,
+              "label": "Military & naval surgery"
+            },
+            {
+              "id": 2871,
+              "label": "Orthopedic Surgery"
+            }
+          ]
+        }
+      ],
+      "action": "Flatten wrappers; preserve children, codes and all other parent links."
+    },
+    {
+      "number": 7,
+      "parent": 4309,
+      "parent_label": "Literary Criticism",
+      "before_direct_children": 5,
+      "after_direct_children": 8,
+      "wrappers": [
+        {
+          "id": 5813,
+          "label": "Theory, Comparison & Reading",
+          "children": [
+            {
+              "id": 4322,
+              "label": "Books & Reading"
+            },
+            {
+              "id": 4327,
+              "label": "Comparative"
+            },
+            {
+              "id": 4359,
+              "label": "Semiotics & Theory"
+            },
+            {
+              "id": 4362,
+              "label": "Subjects & Themes"
+            }
+          ]
+        }
+      ],
+      "action": "Flatten wrappers; preserve children, codes and all other parent links."
+    },
+    {
+      "number": 8,
+      "parent": 11442,
+      "parent_label": "Personal Growth",
+      "before_direct_children": 9,
+      "after_direct_children": 17,
+      "wrappers": [
+        {
+          "id": 5838,
+          "label": "Mindfulness & Inner Practice",
+          "children": [
+            {
+              "id": 3176,
+              "label": "Dreams"
+            },
+            {
+              "id": 3182,
+              "label": "Handwriting Analysis"
+            },
+            {
+              "id": 3183,
+              "label": "Journaling"
+            },
+            {
+              "id": 3184,
+              "label": "Meditations"
+            },
+            {
+              "id": 3199,
+              "label": "Self-Hypnosis"
+            },
+            {
+              "id": 3205,
+              "label": "Spiritual"
+            }
+          ]
+        },
+        {
+          "id": 5841,
+          "label": "Grief, Safety & Life Changes",
+          "children": [
+            {
+              "id": 3161,
+              "label": "Abuse"
+            },
+            {
+              "id": 3164,
+              "label": "Aging"
+            },
+            {
+              "id": 3175,
+              "label": "Death, Grief, Bereavement"
+            },
+            {
+              "id": 3196,
+              "label": "Safety & Security"
+            }
+          ]
+        }
+      ],
+      "action": "Flatten wrappers; preserve children, codes and all other parent links."
+    },
+    {
+      "number": 9,
+      "parent": 5254,
+      "parent_label": "Military Studies",
+      "before_direct_children": 17,
+      "after_direct_children": 19,
+      "wrappers": [
+        {
+          "id": 5850,
+          "label": "Military Support & Engineering",
+          "children": [
+            {
+              "id": 12451,
+              "label": "Military Administration"
+            },
+            {
+              "id": 12452,
+              "label": "Military Logistics & Supply"
+            },
+            {
+              "id": 12453,
+              "label": "Military Engineering"
+            }
+          ]
+        }
+      ],
+      "action": "Flatten wrappers; preserve children, codes and all other parent links."
+    },
+    {
+      "number": 10,
+      "parent": 2845,
+      "parent_label": "Public Health",
+      "before_direct_children": 8,
+      "after_direct_children": 15,
+      "wrappers": [
+        {
+          "id": 6153,
+          "label": "Foundations, Ethics & Practice",
+          "children": [
+            {
+              "id": 2693,
+              "label": "Health Risk Assessment"
+            },
+            {
+              "id": 6164,
+              "label": "Ethical Aspects"
+            },
+            {
+              "id": 6165,
+              "label": "Medical Screening"
+            },
+            {
+              "id": 6166,
+              "label": "Health Promotion"
+            },
+            {
+              "id": 6167,
+              "label": "Primary Health Care"
+            },
+            {
+              "id": 6168,
+              "label": "Public Health Labs & Institutes"
+            }
+          ]
+        },
+        {
+          "id": 6157,
+          "label": "Health Services & Preparedness",
+          "children": [
+            {
+              "id": 2540,
+              "label": "Emergency Medical Services"
+            },
+            {
+              "id": 6187,
+              "label": "Home Health Care Services"
+            },
+            {
+              "id": 6188,
+              "label": "War & Public Health"
+            }
+          ]
+        }
+      ],
+      "action": "Flatten wrappers; preserve children, codes and all other parent links."
+    },
+    {
+      "number": 11,
+      "parent": 5055,
+      "parent_label": "Social Sciences",
+      "before_direct_children": 14,
+      "after_direct_children": 16,
+      "wrappers": [
+        {
+          "id": 54942,
+          "label": "Methods & Reference",
+          "children": [
+            {
+              "id": 5498,
+              "label": "Essays"
+            },
+            {
+              "id": 5509,
+              "label": "Research & Methods"
+            },
+            {
+              "id": 12245,
+              "label": "Reference"
+            }
+          ]
+        }
+      ],
+      "action": "Flatten wrappers; preserve children, codes and all other parent links."
+    }
+  ]
+}

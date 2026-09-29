@@ -1,0 +1,180 @@
+{
+  "created": [
+    {
+      "id": 51550,
+      "name": "Public Utility Law",
+      "parent": 13302
+    },
+    {
+      "id": 51551,
+      "name": "Professional Malpractice Law",
+      "parent": 5552
+    },
+    {
+      "id": 51552,
+      "name": "Food & Beverage Law",
+      "parent": 5561
+    },
+    {
+      "id": 51553,
+      "name": "Pharmaceutical Industry Law",
+      "parent": 5561
+    },
+    {
+      "id": 51554,
+      "name": "Hazardous Materials Law",
+      "parent": 5552
+    },
+    {
+      "id": 51555,
+      "name": "Trade Regulation Law",
+      "parent": 5552
+    },
+    {
+      "id": 51556,
+      "name": "Federal & Interstate Law",
+      "parent": 5548
+    },
+    {
+      "id": 51557,
+      "name": "Election & Voting Law",
+      "parent": 5548
+    },
+    {
+      "id": 51558,
+      "name": "Legislatures & Lawmaking",
+      "parent": 5548
+    },
+    {
+      "id": 51559,
+      "name": "Executive Government Law",
+      "parent": 5548
+    },
+    {
+      "id": 51560,
+      "name": "Judicial Power Law",
+      "parent": 5548
+    },
+    {
+      "id": 51561,
+      "name": "State & Local Government Law",
+      "parent": 5548
+    },
+    {
+      "id": 51562,
+      "name": "Statute Collections & Indexes",
+      "parent": 5555
+    },
+    {
+      "id": 51563,
+      "name": "Customary Law",
+      "parent": 5547
+    },
+    {
+      "id": 51564,
+      "name": "Common Law",
+      "parent": 5547
+    },
+    {
+      "id": 51565,
+      "name": "Legal Anthropology",
+      "parent": 5547
+    },
+    {
+      "id": 51566,
+      "name": "Arctic Indigenous Law",
+      "parent": 5879
+    },
+    {
+      "id": 51567,
+      "name": "North American Indigenous Law",
+      "parent": 5879
+    },
+    {
+      "id": 51568,
+      "name": "Latin American Indigenous Law",
+      "parent": 5879
+    }
+  ],
+  "renamed": [
+    {
+      "id": 5561,
+      "before": "Consumer, Product & Public Safety",
+      "after": "Manufacturing Law"
+    },
+    {
+      "id": 6990,
+      "before": "Malpractice",
+      "after": "Medical Malpractice"
+    },
+    {
+      "id": 5644,
+      "before": "Government Structure & Elections",
+      "after": "Government Structure Law"
+    },
+    {
+      "id": 5879,
+      "before": "Common, Customary & Indigenous Law",
+      "after": "Indigenous Law"
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {
+    "13301": [
+      5561,
+      51552,
+      51555
+    ],
+    "5561": [
+      13299,
+      51550,
+      51551,
+      51552,
+      51553,
+      51554
+    ],
+    "5644": [
+      5645,
+      51556,
+      51557,
+      51558,
+      51559,
+      51560,
+      51561,
+      51562
+    ],
+    "5879": [
+      51563,
+      51564,
+      51565,
+      51566,
+      51567,
+      51568
+    ]
+  },
+  "merged": [
+    {
+      "removed": 13301,
+      "retained": 5561
+    }
+  ],
+  "empty_groupings_removed": [],
+  "verified_code_groups": 2960836,
+  "changed_code_groups": 457,
+  "transitions": {
+    "[5644] -> [51560]": 32,
+    "[5879] -> [51565]": 20,
+    "[5644] -> [51558]": 80,
+    "[5644] -> [51556]": 45,
+    "[5644] -> [51559]": 62,
+    "[5644] -> [51557]": 37,
+    "[13301] -> [5561]": 24,
+    "[13301] -> [51552]": 16,
+    "[5879] -> [51567]": 126,
+    "[5561] -> [51553]": 9,
+    "[5561] -> [51552]": 3,
+    "[5879] -> [51566]": 2,
+    "[5879] -> [51568]": 1
+  },
+  "aliases_added": 0
+}

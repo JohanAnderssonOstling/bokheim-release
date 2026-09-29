@@ -1,0 +1,280 @@
+{
+  "created": [
+    {
+      "id": 51348,
+      "name": "Ecumenism & Interfaith",
+      "parent": 5857
+    },
+    {
+      "id": 51349,
+      "name": "Religious Counseling",
+      "parent": 5858
+    },
+    {
+      "id": 51350,
+      "name": "Religious Missions & Education",
+      "parent": 5858
+    },
+    {
+      "id": 51351,
+      "name": "Religious Leadership",
+      "parent": 5858
+    },
+    {
+      "id": 51352,
+      "name": "Clergy",
+      "parent": 5858
+    },
+    {
+      "id": 51353,
+      "name": "Sermons",
+      "parent": 5858
+    },
+    {
+      "id": 51354,
+      "name": "Christian Sermons",
+      "parent": 51353
+    },
+    {
+      "id": 51355,
+      "name": "Jewish Sermons",
+      "parent": 51353
+    },
+    {
+      "id": 51356,
+      "name": "Education Research",
+      "parent": 2169
+    },
+    {
+      "id": 51357,
+      "name": "Bible Biography",
+      "parent": 4551
+    },
+    {
+      "id": 51358,
+      "name": "Bible Meditations",
+      "parent": 4551
+    },
+    {
+      "id": 51359,
+      "name": "Bible Quotations",
+      "parent": 4551
+    },
+    {
+      "id": 51360,
+      "name": "Bible Language Study",
+      "parent": 4551
+    },
+    {
+      "id": 51361,
+      "name": "Family Reference",
+      "parent": 5241
+    },
+    {
+      "id": 51362,
+      "name": "Family History & Genealogy",
+      "parent": 5241
+    }
+  ],
+  "renamed": [
+    {
+      "id": 5524,
+      "before": "Comparative & Interfaith Studies",
+      "after": "Comparative Religion"
+    },
+    {
+      "id": 5527,
+      "before": "Institutions, Ministry & Leadership",
+      "after": "Religious Institutions"
+    },
+    {
+      "id": 5676,
+      "before": "Assessment, Research & Reference",
+      "after": "Education Reference"
+    },
+    {
+      "id": 2201,
+      "before": "Evaluation & Assessment",
+      "after": "Education Assessment"
+    },
+    {
+      "id": 2294,
+      "before": "Standards",
+      "after": "Education Standards"
+    },
+    {
+      "id": 2295,
+      "before": "Statistics",
+      "after": "Education Statistics"
+    },
+    {
+      "id": 2313,
+      "before": "Testing & Measurement",
+      "after": "Education Testing & Measurement"
+    },
+    {
+      "id": 5732,
+      "before": "Biography, Meditation & Reference",
+      "after": "Bible Reference"
+    },
+    {
+      "id": 5808,
+      "before": "Activities, History & Reference",
+      "after": "Family Activities"
+    },
+    {
+      "id": 5236,
+      "before": "Management & Industrial Management",
+      "after": "Management"
+    },
+    {
+      "id": 168,
+      "before": "Software Development & Engineering",
+      "after": "Software Engineering"
+    },
+    {
+      "id": 4786,
+      "before": "Non-optical methods of astronomy",
+      "after": "Nonoptical Astronomy"
+    },
+    {
+      "id": 8641,
+      "before": "Chamber and solo instrumental music",
+      "after": "Chamber & Solo Instrumental Music"
+    },
+    {
+      "id": 10498,
+      "before": "Naples. Kingdom of the Two Sicilies",
+      "after": "Naples & the Two Sicilies"
+    },
+    {
+      "id": 11050,
+      "before": "England. Ireland. Scotland. Wales",
+      "after": "England, Ireland, Scotland & Wales"
+    },
+    {
+      "id": 4777,
+      "before": "Yearbooks. Almanacs. Directories",
+      "after": "Yearbooks, Almanacs & Directories"
+    },
+    {
+      "id": 9011,
+      "before": "Private patronage and collections",
+      "after": "Private Patronage & Collections"
+    },
+    {
+      "id": 4787,
+      "before": "Practical and spherical astronomy",
+      "after": "Practical & Spherical Astronomy"
+    },
+    {
+      "id": 356,
+      "before": "Production management. Operations",
+      "after": "Production & Operations Management"
+    },
+    {
+      "id": 2390,
+      "before": "Northern and Southern Hemispheres",
+      "after": "Northern & Southern Hemispheres"
+    },
+    {
+      "id": 9473,
+      "before": "Environmental impact statements",
+      "after": "Environmental Impact Statements"
+    },
+    {
+      "id": 8437,
+      "before": "Instruments and instrumental music",
+      "after": "Instruments & Instrumental Music"
+    },
+    {
+      "id": 2405,
+      "before": "Mathematical geography. Cartography",
+      "after": "Math Geography & Cartography"
+    },
+    {
+      "id": 380,
+      "before": "Machinery exclusive of prime movers",
+      "after": "Machinery Except Prime Movers"
+    },
+    {
+      "id": 6378,
+      "before": "Special languages (alphabetically)",
+      "after": "Special Languages"
+    },
+    {
+      "id": 10301,
+      "before": "Roman period, 146 B.C.-439 A.D.",
+      "after": "Roman Era, 146 BC–439 AD"
+    },
+    {
+      "id": 10192,
+      "before": "Foundations and Kings, 753-510 B.C.",
+      "after": "Founding & Kings, 753–510 BC"
+    },
+    {
+      "id": 10217,
+      "before": "Constitutional Empire, 27 BC–284 AD",
+      "after": "Constitutional Empire, 27 BC–AD 284"
+    },
+    {
+      "id": 10331,
+      "before": "Mesopotamia. Kut-el-Amara. Assyria",
+      "after": "Mesopotamia, Kut & Assyria"
+    },
+    {
+      "id": 5777,
+      "before": "Prehistoric & Mythical Creatures",
+      "after": "Prehistoric & Mythical Animals"
+    },
+    {
+      "id": 10553,
+      "before": "Press. Censorship. Publicity. Radio",
+      "after": "Press, Censorship, Publicity & Radio"
+    },
+    {
+      "id": 5842,
+      "before": "College Admissions & Financial Aid",
+      "after": "College Admission & Financial Aid"
+    },
+    {
+      "id": 5843,
+      "before": "Graduate & Professional Admissions",
+      "after": "Graduate & Professional Admission"
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {
+    "5524": [
+      51348
+    ],
+    "5527": [
+      51349,
+      51350,
+      51351,
+      51352,
+      51353,
+      51354,
+      51355
+    ],
+    "5676": [
+      51356
+    ],
+    "5732": [
+      51357,
+      51358,
+      51359,
+      51360
+    ],
+    "5808": [
+      51361,
+      51362
+    ]
+  },
+  "before_over30": 735,
+  "after_over30": 720,
+  "verified_code_groups": 2960788,
+  "changed_code_groups": 0,
+  "transitions": {},
+  "aliases_added": 0
+}

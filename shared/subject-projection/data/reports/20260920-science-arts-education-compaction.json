@@ -1,0 +1,112 @@
+{
+  "merges": {
+    "53336": {
+      "into": 4803,
+      "old_label": "Chemistry Reference, History, Study & Methods",
+      "surviving_label": "Chemistry"
+    },
+    "53340": {
+      "into": 4808,
+      "old_label": "Physical Chemistry Reference & Theory",
+      "surviving_label": "Physical & Theoretical Chem."
+    },
+    "53339": {
+      "into": 4807,
+      "old_label": "Organic Chemistry Reference, Study & Methods",
+      "surviving_label": "Organic chemistry"
+    },
+    "53338": {
+      "into": 4806,
+      "old_label": "Inorganic Chemistry Reference, Study & Compounds",
+      "surviving_label": "Inorganic chemistry"
+    },
+    "53341": {
+      "into": 4805,
+      "old_label": "Crystallography Reference, Study & Methods",
+      "surviving_label": "Crystallography"
+    },
+    "53337": {
+      "into": 4804,
+      "old_label": "Analytical Chemistry Reference & Methods",
+      "surviving_label": "Analytical chemistry"
+    },
+    "53322": {
+      "into": 2377,
+      "old_label": "Environmental Science Reference & Methods",
+      "surviving_label": "Environmental sciences"
+    },
+    "53345": {
+      "into": 5037,
+      "old_label": "Heat Reference, Theory & Measurement",
+      "surviving_label": "Heat & Thermodynamics"
+    },
+    "53349": {
+      "into": 5036,
+      "old_label": "Geophysics Reference & Study",
+      "surviving_label": "Geophysics"
+    },
+    "53348": {
+      "into": 6073,
+      "old_label": "Electricity Reference & Textbooks",
+      "surviving_label": "Electricity"
+    },
+    "6080": {
+      "into": 6074,
+      "old_label": "Reference, History & Study",
+      "surviving_label": "Magnetism"
+    },
+    "6918": {
+      "into": 1050,
+      "old_label": "Wood Engraving Reference & History",
+      "surviving_label": "Wood engraving"
+    },
+    "7998": {
+      "into": 1048,
+      "old_label": "General Works",
+      "surviving_label": "Printmaking & engraving"
+    },
+    "9330": {
+      "into": 671,
+      "old_label": "Poster Techniques & Reference",
+      "surviving_label": "Posters"
+    },
+    "10020": {
+      "into": 658,
+      "old_label": "Rug & Carpet Reference",
+      "surviving_label": "Rugs & carpets"
+    },
+    "13089": {
+      "into": 2318,
+      "old_label": "Teacher Education—General",
+      "surviving_label": "Teacher Education"
+    },
+    "9794": {
+      "into": 2321,
+      "old_label": "Higher Education — General Works",
+      "surviving_label": "Higher education"
+    },
+    "7934": {
+      "into": 2317,
+      "old_label": "Early Education Miscellany",
+      "surviving_label": "Early Childhood Education"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [
+    {
+      "id": 6075,
+      "parent": 6073,
+      "children": [
+        6090,
+        6092,
+        6093,
+        6094
+      ]
+    }
+  ],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply all 18 approved science, arts and education proposals. Flatten electricity wrapper and merge its reference/textbooks leaf; promote remaining electricity and magnetism children.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

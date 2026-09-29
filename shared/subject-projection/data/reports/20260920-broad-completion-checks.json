@@ -1,0 +1,11 @@
+{
+  "all_merged_ids_removed": true,
+  "scope_preserving_aesthetics_labels": true,
+  "one_science_subject_per_reviewed_discipline": true,
+  "merged_criticism_keeps_two_routes": true,
+  "practical_theology_not_under_ministry": true,
+  "country_specific_period_ranges_split": true,
+  "country_history_not_colonial_subtree": true,
+  "fallback_classifications_retained": true,
+  "no_duplicate_sibling_labels": true
+}

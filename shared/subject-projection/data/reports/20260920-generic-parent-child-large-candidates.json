@@ -1,0 +1,530 @@
+{
+  "scope": "Review only. Expanded list of general/topics parent-child consolidations under context-preservation rule. One intermediate with two children; remaining sources are leaves. This is mostly generic leaf consolidation, not top-of-tree wrapper flattening. No changes applied.",
+  "groups": [
+    {
+      "number": 1,
+      "target": 10936,
+      "target_label": "Classical Greek Philosophy",
+      "sources": [
+        {
+          "id": 10844,
+          "label": "Classical Greek Philosophy Topics",
+          "children": [
+            {
+              "id": 10818,
+              "label": "Greek Philosophy, Life & Literature"
+            },
+            {
+              "id": 11200,
+              "label": "Greek & Oriental Philosophy"
+            }
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                10844,
+                "B178.5"
+              ],
+              [
+                10844,
+                "B180"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 2,
+      "target": 11473,
+      "target_label": "Christology",
+      "sources": [
+        {
+          "id": 12855,
+          "label": "Christology Studies",
+          "children": [],
+          "codes": {
+            "lcc_selector": [],
+            "lcc_range": [
+              [
+                "BT198",
+                "BT295.9",
+                12855
+              ]
+            ],
+            "bisac_selector": [
+              [
+                12855,
+                "REL067040"
+              ]
+            ],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 3,
+      "target": 6073,
+      "target_label": "Electricity",
+      "sources": [
+        {
+          "id": 6093,
+          "label": "Electricity Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                6093,
+                "QC527.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 4,
+      "target": 5033,
+      "target_label": "Experimental & Descriptive Mechanics",
+      "sources": [
+        {
+          "id": 7463,
+          "label": "Experimental Mechanics Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                7463,
+                "QC131"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 5,
+      "target": 5041,
+      "target_label": "Radiation Physics",
+      "sources": [
+        {
+          "id": 9759,
+          "label": "Radiation Physics Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                9759,
+                "QC475.6"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 6,
+      "target": 5031,
+      "target_label": "Acoustics",
+      "sources": [
+        {
+          "id": 10017,
+          "label": "Acoustics Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                10017,
+                "QC225.7"
+              ]
+            ],
+            "lcc_range": [
+              [
+                "QC231",
+                "QC246",
+                10017
+              ]
+            ],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 7,
+      "target": 5036,
+      "target_label": "Geophysics",
+      "sources": [
+        {
+          "id": 9092,
+          "label": "Geophysics Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                9092,
+                "QC807"
+              ],
+              [
+                9092,
+                "QC816"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 8,
+      "target": 4905,
+      "target_label": "Dynamic & structural geology",
+      "sources": [
+        {
+          "id": 9951,
+          "label": "Structural Geology Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                9951,
+                "QE501.3"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 9,
+      "target": 4908,
+      "target_label": "Paleontology",
+      "sources": [
+        {
+          "id": 7044,
+          "label": "Paleontology Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                7044,
+                "QE721"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 10,
+      "target": 4807,
+      "target_label": "Organic chemistry",
+      "sources": [
+        {
+          "id": 7977,
+          "label": "Organic Chemistry Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                7977,
+                "QD255.4"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 11,
+      "target": 4808,
+      "target_label": "Physical & Theoretical Chem.",
+      "sources": [
+        {
+          "id": 8404,
+          "label": "Physical Chemistry Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                8404,
+                "QD455.2"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 12,
+      "target": 4804,
+      "target_label": "Analytical chemistry",
+      "sources": [
+        {
+          "id": 8170,
+          "label": "Analytical Chemistry Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                8170,
+                "QD75.3"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 13,
+      "target": 4862,
+      "target_label": "Virology",
+      "sources": [
+        {
+          "id": 8994,
+          "label": "Virology Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                8994,
+                "QR370"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 14,
+      "target": 4978,
+      "target_label": "Immunology",
+      "sources": [
+        {
+          "id": 10039,
+          "label": "Immunology Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                10039,
+                "QR182"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 15,
+      "target": 4793,
+      "target_label": "Evolution",
+      "sources": [
+        {
+          "id": 9199,
+          "label": "Evolution Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                9199,
+                "QH371"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9664,
+          "label": "Miscellany & curiosa",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                9664,
+                "QH369"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 16,
+      "target": 4939,
+      "target_label": "Geometry",
+      "sources": [
+        {
+          "id": 8025,
+          "label": "Geometry Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                8025,
+                "QA447"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 17,
+      "target": 4934,
+      "target_label": "Basic Math",
+      "sources": [
+        {
+          "id": 9754,
+          "label": "Arithmetic Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                9754,
+                "QA109"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 18,
+      "target": 4923,
+      "target_label": "Analytic mechanics",
+      "sources": [
+        {
+          "id": 9908,
+          "label": "Analytical Mechanics Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                9908,
+                "QA808"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 19,
+      "target": 4970,
+      "target_label": "Tables",
+      "sources": [
+        {
+          "id": 7045,
+          "label": "General tables",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                7045,
+                "QA47"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    },
+    {
+      "number": 20,
+      "target": 873,
+      "target_label": "Film",
+      "sources": [
+        {
+          "id": 13574,
+          "label": "Film Topics",
+          "children": [],
+          "codes": {
+            "lcc_selector": [
+              [
+                13574,
+                "PN1995"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "action": "Merge into existing parent, transferring codes and promoting any children; add no aliases."
+    }
+  ]
+}

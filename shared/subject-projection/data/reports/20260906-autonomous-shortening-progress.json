@@ -1,0 +1,26 @@
+{
+  "status": "complete",
+  "previously_renamed_ids_no_longer_present": [
+    50850,
+    51101
+  ],
+  "rename_events": 1118,
+  "unique_renamed_subjects": 1087,
+  "merged_subjects": 17,
+  "over35_before": 369,
+  "over35_now": 64,
+  "current_31_to_35": 721,
+  "unreviewed_queue_entries": 0,
+  "aliases_added": 0,
+  "pending_user_choices": [],
+  "approved_decisions": {
+    "ddr_children": {
+      "11566": "Early DDR, 1949\u20131961",
+      "11560": "Late DDR, 1971\u20131990"
+    },
+    "comparative_law": "Keep Comparative in the labels, per user confirmation."
+  },
+  "validation": "All naming batches passed production matching and preserved selectors, ranges, hierarchy, source labels, metadata and year tokens, except the explicitly approved removal of repeated parent-era dates from the two DDR labels. Merges preserved code coverage; 2042 regional-film code groups now choose the more specific existing descendant.",
+  "next": null,
+  "retained_long_labels": "remaining-label-review.json records reviewed exceptions to the ideal length; scope and standalone meaning take precedence."
+}

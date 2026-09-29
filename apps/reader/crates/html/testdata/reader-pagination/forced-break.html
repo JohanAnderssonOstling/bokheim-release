@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Forced page break visual test</title>
+  <style>
+    body { margin: 44px; color: #20242b; font-family: sans-serif; }
+    h1 { margin: 0 0 18px; font-size: 34px; }
+    p { max-width: 34em; font-size: 20px; line-height: 1.45; }
+    .chapter { break-before: page; border-left: 10px solid #7857d8; padding: 18px 24px; background: #eee9ff; }
+    .label { color: #6242bd; font-weight: bold; letter-spacing: 0.08em; }
+  </style>
+</head>
+<body>
+  <h1>End of chapter one</h1>
+  <p>This text deliberately leaves enough room for another block. The next chapter must still begin on a fresh reader page because it declares <strong>break-before: page</strong>.</p>
+  <section class="chapter">
+    <div class="label">PAGE TWO</div>
+    <h1>A clean chapter opening</h1>
+    <p>If the purple chapter panel appears on page one, the forced-break rule has failed.</p>
+  </section>
+</body>
+</html>

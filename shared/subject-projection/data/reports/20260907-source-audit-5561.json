@@ -1,0 +1,1007 @@
+[
+  {
+    "type": "exact",
+    "start": "KBM3378",
+    "end": null,
+    "source": [
+      [
+        17340,
+        null,
+        "Labeling"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBM3379",
+    "end": null,
+    "source": [
+      [
+        17341,
+        null,
+        "Purity"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBM3380",
+    "end": null,
+    "source": [
+      [
+        17342,
+        null,
+        "Cereal products"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBM3381",
+    "end": null,
+    "source": [
+      [
+        17343,
+        null,
+        "Fruits and vegetables"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBM3382",
+    "end": null,
+    "source": [
+      [
+        17344,
+        null,
+        "Confectionary industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBM3383",
+    "end": null,
+    "source": [
+      [
+        17345,
+        null,
+        "Meat and meat products"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBM3384",
+    "end": null,
+    "source": [
+      [
+        17346,
+        null,
+        "Poultry products"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBM3388",
+    "end": null,
+    "source": [
+      [
+        17347,
+        null,
+        "Dairy products"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBM3392",
+    "end": null,
+    "source": [
+      [
+        17348,
+        null,
+        "Fish. Seafood"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBP3379",
+    "end": null,
+    "source": [
+      [
+        18438,
+        null,
+        "Purity"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBP3380",
+    "end": null,
+    "source": [
+      [
+        18439,
+        null,
+        "Cereal products"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBP3381",
+    "end": null,
+    "source": [
+      [
+        18440,
+        null,
+        "Fruits and vegetables"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBP3382",
+    "end": null,
+    "source": [
+      [
+        18441,
+        null,
+        "Confectionary industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBP3383",
+    "end": null,
+    "source": [
+      [
+        18442,
+        null,
+        "Meat"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBP3384",
+    "end": null,
+    "source": [
+      [
+        18443,
+        null,
+        "Poultry products"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBP3386",
+    "end": null,
+    "source": [
+      [
+        18444,
+        null,
+        "Egg products"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBP3388",
+    "end": null,
+    "source": [
+      [
+        18445,
+        null,
+        "Dairy products"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBP3392",
+    "end": null,
+    "source": [
+      [
+        18446,
+        null,
+        "Fishery products. Seafood"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KBP3393",
+    "end": null,
+    "source": [
+      [
+        18447,
+        null,
+        "Oils and fats"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KD2385",
+    "end": null,
+    "source": [
+      [
+        227037,
+        null,
+        "Fur trade"
+      ],
+      [
+        227036,
+        "KD2385",
+        "Clothing industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KDG310",
+    "end": null,
+    "source": [
+      [
+        229570,
+        null,
+        "Meat industry. Meat inspection"
+      ],
+      [
+        229569,
+        "KDG310",
+        "Food processing industries"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KDK650",
+    "end": null,
+    "source": [
+      [
+        229868,
+        null,
+        "Diary industry. Dairy products industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KE3736",
+    "end": null,
+    "source": [
+      [
+        213326,
+        null,
+        "Alcohol production. Distilleries"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KEO479",
+    "end": null,
+    "source": [
+      [
+        214590,
+        null,
+        "Dairy industry. Dairy products industry. Milk production and distribution"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KF1879",
+    "end": null,
+    "source": [
+      [
+        136607,
+        null,
+        "Drug and pharmaceutical industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KFC412.A2",
+    "end": null,
+    "source": [
+      [
+        140876,
+        null,
+        "General"
+      ],
+      [
+        140874,
+        "KFC412.Z",
+        "Manufacturing industries"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KFC421",
+    "end": null,
+    "source": [
+      [
+        140948,
+        null,
+        "Dairy industry. Dairy products industry. Milk production and distribution"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KFN5418",
+    "end": null,
+    "source": [
+      [
+        140294,
+        null,
+        "Meat and poultry industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KFN5419",
+    "end": null,
+    "source": [
+      [
+        140295,
+        null,
+        "Poultry products. Eggs and egg products"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KFN5421",
+    "end": null,
+    "source": [
+      [
+        140296,
+        null,
+        "Dairy industry. Dairy products industry. Milk production and distribution"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA302",
+    "end": null,
+    "source": [
+      [
+        55482,
+        null,
+        "Textile industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIB1560",
+    "end": null,
+    "source": [
+      [
+        57417,
+        null,
+        "Poisons and toxic substances"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIE1032",
+    "end": null,
+    "source": [
+      [
+        56343,
+        null,
+        "Drug and pharmaceutical industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIE1560",
+    "end": null,
+    "source": [
+      [
+        56501,
+        null,
+        "Poisons. Toxic substances"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIE1562",
+    "end": null,
+    "source": [
+      [
+        56502,
+        null,
+        "Nuclear wastes. Radioactive wastes"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIE1564",
+    "end": null,
+    "source": [
+      [
+        56503,
+        null,
+        "Hazardous wastes"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJC6751",
+    "end": null,
+    "source": [
+      [
+        370901,
+        null,
+        "Labeling"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJC6752",
+    "end": null,
+    "source": [
+      [
+        370902,
+        null,
+        "Purity"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6742",
+    "end": null,
+    "source": [
+      [
+        372147,
+        null,
+        "Iron and steel industries"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6752",
+    "end": null,
+    "source": [
+      [
+        372151,
+        null,
+        "Agricultural machinery industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6754",
+    "end": null,
+    "source": [
+      [
+        372152,
+        null,
+        "Automobile industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6755",
+    "end": null,
+    "source": [
+      [
+        13167,
+        null,
+        "Biotechnology industries"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6756",
+    "end": null,
+    "source": [
+      [
+        372153,
+        null,
+        "Computer industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6758",
+    "end": null,
+    "source": [
+      [
+        372154,
+        null,
+        "Electrical industry. Electric utilities"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6760",
+    "end": null,
+    "source": [
+      [
+        372155,
+        null,
+        "Fertilizer industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6762",
+    "end": null,
+    "source": [
+      [
+        372156,
+        null,
+        "Footwear industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6763",
+    "end": null,
+    "source": [
+      [
+        443325,
+        null,
+        "Machinery industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6764",
+    "end": null,
+    "source": [
+      [
+        372157,
+        null,
+        "Measurement instruments industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6766",
+    "end": null,
+    "source": [
+      [
+        372158,
+        null,
+        "Nuclear power industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE6776",
+    "end": null,
+    "source": [
+      [
+        372163,
+        null,
+        "Textile industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE882",
+    "end": null,
+    "source": [
+      [
+        372176,
+        null,
+        "Electrical industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KJE886",
+    "end": null,
+    "source": [
+      [
+        372180,
+        null,
+        "Textile industry"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KKA6740",
+    "end": null,
+    "source": [
+      [
+        361446,
+        null,
+        "Recycling industries (General). Altstoffwirtschaft. Altrohstoffwirtschaft. Altrohstoffwirtschaft"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KVJ1068",
+    "end": null,
+    "source": [
+      [
+        58531,
+        null,
+        "Drug and pharmaceutical industry"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "K3921",
+    "end": "K3922",
+    "source": [
+      [
+        350969,
+        null,
+        "General"
+      ],
+      [
+        350968,
+        "K3922",
+        "Textile industry"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KBM3395",
+    "end": "KBM3397",
+    "source": [
+      [
+        17350,
+        null,
+        "Brewing"
+      ],
+      [
+        17349,
+        "KBM3397",
+        "Beverages"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KBP3395",
+    "end": "KBP3399",
+    "source": [
+      [
+        629421,
+        "KBP3399",
+        "Beverages"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KD2375",
+    "end": "KD2376",
+    "source": [
+      [
+        227025,
+        null,
+        "General"
+      ],
+      [
+        227024,
+        "KD2376",
+        "Chemical industries"
+      ],
+      [
+        227023,
+        "KD2398",
+        "Manufacturing industries"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KD2380",
+    "end": "KD2383",
+    "source": [
+      [
+        227031,
+        null,
+        "General"
+      ],
+      [
+        227030,
+        "KD2383",
+        "Textile industry"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KD2395",
+    "end": "KD2398",
+    "source": [
+      [
+        227038,
+        "KD2398",
+        "Individual types of manufacture"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KDK630",
+    "end": "KDK635",
+    "source": [
+      [
+        252625,
+        null,
+        "General"
+      ],
+      [
+        252624,
+        "KDK635",
+        "Textile industry"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KE1840",
+    "end": "KE1842",
+    "source": [
+      [
+        212848,
+        null,
+        "General works"
+      ],
+      [
+        212847,
+        "KE1842",
+        "Chemical industries"
+      ],
+      [
+        212846,
+        "KE1858",
+        "Manufacturing industries"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KF1875",
+    "end": "KF1876",
+    "source": [
+      [
+        136497,
+        null,
+        "General"
+      ],
+      [
+        136524,
+        "KF1876",
+        "Chemical industries"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KF1881",
+    "end": "KF1886",
+    "source": [
+      [
+        136526,
+        null,
+        "General"
+      ],
+      [
+        136534,
+        "KF1886",
+        "Textile industries"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KF1890",
+    "end": "KF1893",
+    "source": [
+      [
+        136540,
+        "KF1893",
+        "Individual types of manufacture"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KFC412.A3",
+    "end": "KFC412.Z",
+    "source": [
+      [
+        140894,
+        "KFC412.Z",
+        "By product"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KFC416",
+    "end": "KFC417",
+    "source": [
+      [
+        140926,
+        null,
+        "General"
+      ],
+      [
+        140940,
+        "KFC417",
+        "Agricultural products"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KFC418",
+    "end": "KFC419",
+    "source": [
+      [
+        140941,
+        null,
+        "General"
+      ],
+      [
+        140944,
+        "KFC419",
+        "Meat and poultry products"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIA303",
+    "end": "KIA304",
+    "source": [
+      [
+        55484,
+        null,
+        "General works"
+      ],
+      [
+        55483,
+        "KIA304",
+        "Consumer products. Light industries"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIB1033",
+    "end": "KIB1034",
+    "source": [
+      [
+        56839,
+        null,
+        "General works"
+      ],
+      [
+        56838,
+        "KIB1034",
+        "Textile industries"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIB1564",
+    "end": "KIB1565",
+    "source": [
+      [
+        57419,
+        null,
+        "General works"
+      ],
+      [
+        57418,
+        "KIB1565",
+        "Hazardous waste disposal"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIE1033",
+    "end": "KIE1034",
+    "source": [
+      [
+        56345,
+        null,
+        "General works"
+      ],
+      [
+        56344,
+        "KIE1034",
+        "Textile industry"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIE1045.A",
+    "end": "KIE1045.Z",
+    "source": [
+      [
+        56355,
+        "KIE1045.Z",
+        "Beverages"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KVJ1070",
+    "end": "KVJ1075",
+    "source": [
+      [
+        58533,
+        null,
+        "General works"
+      ],
+      [
+        58532,
+        "KVJ1075",
+        "Textile industry"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KVJ1078",
+    "end": "KVJ1092",
+    "source": [
+      [
+        58537,
+        null,
+        "General"
+      ],
+      [
+        58536,
+        "KVJ1092",
+        "Food processing industries"
+      ]
+    ]
+  }
+]

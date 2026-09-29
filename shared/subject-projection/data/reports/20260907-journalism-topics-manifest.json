@@ -1,0 +1,126 @@
+{
+  "entries": [
+    {
+      "name": "Reporting & Correspondence",
+      "target": 52365,
+      "source": 12544,
+      "parent": 12544,
+      "code": "PN4781",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 192505,
+          "caption": "Reporting, correspondence, etc."
+        }
+      ]
+    },
+    {
+      "name": "Broadcast Journalism",
+      "target": 52366,
+      "source": 12544,
+      "parent": 12544,
+      "code": "PN4784.B75",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 192513,
+          "caption": "Broadcast journalism"
+        }
+      ]
+    },
+    {
+      "name": "Television Journalism",
+      "target": 52367,
+      "source": 12544,
+      "parent": 52366,
+      "code": "PN4784.T4",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 192579,
+          "caption": "Television"
+        }
+      ]
+    },
+    {
+      "name": "Online Journalism",
+      "target": 52368,
+      "source": 12544,
+      "parent": 12544,
+      "code": "PN4784.O62",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 34706,
+          "caption": "Online journalism"
+        }
+      ]
+    },
+    {
+      "name": "Newspaper Style",
+      "target": 52369,
+      "source": 12544,
+      "parent": 12544,
+      "code": "PN4783",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 192506,
+          "caption": "Newspaper style"
+        }
+      ]
+    },
+    {
+      "name": "Journalistic Editing",
+      "target": 52370,
+      "source": 12544,
+      "parent": 12544,
+      "code": "PN4778",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 192504,
+          "caption": "The editor. Editing"
+        }
+      ]
+    },
+    {
+      "name": "War Reporting",
+      "target": 52371,
+      "source": 12544,
+      "parent": 52365,
+      "code": "PN4784.W37",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 192582,
+          "caption": "War"
+        }
+      ]
+    },
+    {
+      "name": "Sports Journalism",
+      "target": 52372,
+      "source": 12544,
+      "parent": 52365,
+      "code": "PN4784.S6",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 192573,
+          "caption": "Sports journalism"
+        }
+      ]
+    }
+  ],
+  "new_ids": [
+    52365,
+    52366,
+    52367,
+    52368,
+    52369,
+    52370,
+    52371,
+    52372
+  ]
+}

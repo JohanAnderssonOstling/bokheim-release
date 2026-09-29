@@ -1,0 +1,1 @@
+SELECT physical_name FROM asset_file WHERE name=?1

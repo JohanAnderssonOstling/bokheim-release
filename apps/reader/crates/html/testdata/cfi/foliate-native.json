@@ -1,0 +1,20 @@
+[
+  {
+    "name": "utf16-astral-character",
+    "html": "<html><body><p id=\"sample\">A😀B</p></body></html>",
+    "cfi": "epubcfi(/6/2[chapter]!/4/2[sample],/1:1[A,😀],/1:3[😀,B;s=a])",
+    "expected_text": "😀"
+  },
+  {
+    "name": "nested-multi-element-range",
+    "html": "<html><body><p id=\"sample\">A😀B <em>nested</em> tail</p></body></html>",
+    "cfi": "epubcfi(/6/2!/4/2[sample],/1:3,/3:3)",
+    "expected_text": "B nested ta"
+  },
+  {
+    "name": "adjacent-character-data-nodes",
+    "html": "<html><body><p id=\"sample\">one<!--split-->two</p></body></html>",
+    "cfi": "epubcfi(/6/2!/4/2[sample],/1:1,/1:5)",
+    "expected_text": "netw"
+  }
+]

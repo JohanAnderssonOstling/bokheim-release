@@ -1,0 +1,17 @@
+[package]
+name = "server-wire-http"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+axum = "0.7"
+wire = { package = "protobuf-wire", path = "../../../../shared/protobuf-wire" }
+serde = "1"
+tracing = "0.1"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt"] }

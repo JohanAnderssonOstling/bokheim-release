@@ -1,0 +1,83 @@
+{
+  "review": "Exact source-attested preliminary ranges; retain both explicit endpoints; do not complete trailing initials.",
+  "ranges": [
+    {
+      "notation": "PK2578.2.A-ZE",
+      "span": "PK2578.2.A-PK2578.2.Z",
+      "edition_key": "/books/OL22692188M",
+      "edition_path": "lcc-reviewed-preliminary-sources/OL22692188M.json",
+      "edition_sha256": "0eb937b291ae946242aca51f7aad0cab89f9a5cda7c854cfd4575e680950da00",
+      "lccn": "2008324294",
+      "marc_path": "lcc-reviewed-preliminary-sources/OL22692188M-loc.mrc",
+      "marc_sha256": "c5f69e6947520088d6ef52270dd2cef28d8079023b91a02c6573fa7ddbe11bf5",
+      "marc_url": "https://archive.org/download/marc_loc_2016/BooksAll.2016.part35.utf8",
+      "marc_byte_start": 191138111,
+      "marc_byte_length": 783
+    },
+    {
+      "notation": "PK1716.5.A-ZE",
+      "span": "PK1716.5.A-PK1716.5.Z",
+      "edition_key": "/books/OL3591468M",
+      "edition_path": "lcc-reviewed-preliminary-sources/OL3591468M.json",
+      "edition_sha256": "2fda6d495c16d8b6edbbcaa6aabec8f33800cbcdca9348272ad479331cda27f7",
+      "lccn": "2002294588",
+      "marc_path": "lcc-reviewed-preliminary-sources/OL3591468M-scriblio.mrc",
+      "marc_sha256": "ae5f92402b884ab1c8cc72c2cbaffcd746b6a29f04c41d39bd9e28c5d5f39704",
+      "marc_url": "https://archive.org/download/marc_records_scriblio_net/part14.dat",
+      "marc_byte_start": 60006964,
+      "marc_byte_length": 845
+    },
+    {
+      "notation": "PK2788.82.A-ZE",
+      "span": "PK2788.82.A-PK2788.82.Z",
+      "edition_key": "/books/OL23699174M",
+      "edition_path": "lcc-reviewed-preliminary-sources/OL23699174M.json",
+      "edition_sha256": "659c6c22d9ac0e8d9e8fe6f3579e21fca7f89b0cabc88822e26ea71136a43873",
+      "lccn": "2009346898",
+      "marc_path": "lcc-reviewed-preliminary-sources/OL23699174M-loc.mrc",
+      "marc_sha256": "a6b3cf81290330f0fc323e7a47921bce35e25df50fa06bf1d0b81d6fa7bc5d2f",
+      "marc_url": "https://archive.org/download/marc_loc_2016/BooksAll.2016.part36.utf8",
+      "marc_byte_start": 210474210,
+      "marc_byte_length": 1806
+    },
+    {
+      "notation": "PL4780.82.A-ZE",
+      "span": "PL4780.82.A-PL4780.82.Z",
+      "edition_key": "/books/OL3333066M",
+      "edition_path": "lcc-reviewed-preliminary-sources/OL3333066M.json",
+      "edition_sha256": "7a001feed2a8380cd405f49e1651b90a8b9918afea27a29e3e170cf2af89394c",
+      "lccn": "2004312103",
+      "marc_path": "lcc-reviewed-preliminary-sources/OL3333066M-loc.mrc",
+      "marc_sha256": "005eaa82823e11d0396e92a3ea9fe71d96cbbbc1df1743dace12a80cea883e6d",
+      "marc_url": "https://archive.org/download/marc_loc_2016/BooksAll.2016.part31.utf8",
+      "marc_byte_start": 230892752,
+      "marc_byte_length": 807
+    },
+    {
+      "notation": "PK1855.5.A-ZE",
+      "span": "PK1855.5.A-PK1855.5.Z",
+      "edition_key": "/books/OL23607135M",
+      "edition_path": "lcc-reviewed-preliminary-sources/OL23607135M.json",
+      "edition_sha256": "234901f2b84f750c9181d2c7d00e1ce1484dfc39dc035e16893ccac572983ee9",
+      "lccn": "2009311950",
+      "marc_path": "lcc-reviewed-preliminary-sources/OL23607135M-loc.mrc",
+      "marc_sha256": "e239cfcbc18e135c19dd53c72a89cce3c2ef4f9d2fc15e3a2aee847b39a52852",
+      "marc_url": "https://archive.org/download/marc_loc_2016/BooksAll.2016.part36.utf8",
+      "marc_byte_start": 184741081,
+      "marc_byte_length": 1111
+    },
+    {
+      "notation": "PK2598.A3-Z5.P",
+      "span": "PK2598.A3-PK2598.Z5",
+      "edition_key": "/books/OL3590416M",
+      "edition_path": "lcc-reviewed-preliminary-sources/OL3590416M.json",
+      "edition_sha256": "c527d3a19b88b3c1a1a2344657f0c4e9b6a9d2dc43eb4d4d3b11f7d132ecb344",
+      "lccn": "2002292899",
+      "marc_path": "lcc-reviewed-preliminary-sources/OL3590416M-loc.mrc",
+      "marc_sha256": "8a0b936df45897dd92018badb4fde125df830295739e31860d68356404534638",
+      "marc_url": "https://archive.org/download/marc_loc_2016/BooksAll.2016.part29.utf8",
+      "marc_byte_start": 244209658,
+      "marc_byte_length": 702
+    }
+  ]
+}

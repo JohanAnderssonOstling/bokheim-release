@@ -1,0 +1,805 @@
+{
+  "entries": [
+    {
+      "name": "Polish Theater",
+      "parent": 12674,
+      "target": 52327,
+      "source": 12674,
+      "code": "PN2859.P6",
+      "end": "PN2859.P66",
+      "caption": "Poland",
+      "hits": 1203,
+      "record": 204330,
+      "reference_records": [
+        {
+          "record_id": 204331,
+          "caption": "General works",
+          "end": null
+        },
+        {
+          "record_id": 204330,
+          "caption": "Poland",
+          "end": "PN2859.P66"
+        }
+      ]
+    },
+    {
+      "name": "Brazilian Theater",
+      "parent": 12674,
+      "target": 52328,
+      "source": 12674,
+      "code": "PN2470",
+      "end": "PN2474",
+      "caption": "Brazil",
+      "hits": 796,
+      "record": 191721,
+      "reference_records": [
+        {
+          "record_id": 191721,
+          "caption": "Brazil",
+          "end": "PN2474"
+        }
+      ]
+    },
+    {
+      "name": "Korean Theater",
+      "parent": 12674,
+      "target": 52329,
+      "source": 12674,
+      "code": "PN2930",
+      "end": "PN2938",
+      "caption": "Korea",
+      "hits": 665,
+      "record": 633691,
+      "reference_records": [
+        {
+          "record_id": 633691,
+          "caption": "Korea",
+          "end": "PN2938"
+        }
+      ]
+    },
+    {
+      "name": "Hungarian Theater",
+      "parent": 12674,
+      "target": 52330,
+      "source": 12674,
+      "code": "PN2859.H8",
+      "end": "PN2859.H86",
+      "caption": "Hungary",
+      "hits": 466,
+      "record": 191906,
+      "reference_records": [
+        {
+          "record_id": 432193,
+          "caption": "General works",
+          "end": null
+        },
+        {
+          "record_id": 191906,
+          "caption": "Hungary",
+          "end": "PN2859.H86"
+        }
+      ]
+    },
+    {
+      "name": "Argentine Theater",
+      "parent": 12674,
+      "target": 52331,
+      "source": 12674,
+      "code": "PN2450",
+      "end": "PN2454",
+      "caption": "Argentina",
+      "hits": 386,
+      "record": 191719,
+      "reference_records": [
+        {
+          "record_id": 191719,
+          "caption": "Argentina",
+          "end": "PN2454"
+        }
+      ]
+    },
+    {
+      "name": "Mexican Theater",
+      "parent": 12674,
+      "target": 52332,
+      "source": 12674,
+      "code": "PN2310",
+      "end": "PN2318",
+      "caption": "Mexico",
+      "hits": 349,
+      "record": 191689,
+      "reference_records": [
+        {
+          "record_id": 191689,
+          "caption": "Mexico",
+          "end": "PN2318"
+        }
+      ]
+    },
+    {
+      "name": "Canadian Theater",
+      "parent": 12674,
+      "target": 52333,
+      "source": 12674,
+      "code": "PN2300",
+      "end": "PN2306",
+      "caption": "Canada",
+      "hits": 312,
+      "record": 191676,
+      "reference_records": [
+        {
+          "record_id": 191677,
+          "caption": "Collections",
+          "end": null
+        },
+        {
+          "record_id": 191676,
+          "caption": "Canada",
+          "end": "PN2306"
+        }
+      ]
+    },
+    {
+      "name": "Turkish Theater",
+      "parent": 12674,
+      "target": 52334,
+      "source": 12674,
+      "code": "PN2959",
+      "end": "PN2959.8",
+      "caption": "Turkey",
+      "hits": 223,
+      "record": 192015,
+      "reference_records": [
+        {
+          "record_id": 192015,
+          "caption": "Turkey",
+          "end": "PN2959.8"
+        }
+      ]
+    },
+    {
+      "name": "Dutch Theater",
+      "parent": 12674,
+      "target": 52335,
+      "source": 12674,
+      "code": "PN2710",
+      "end": "PN2718",
+      "caption": "Netherlands",
+      "hits": 222,
+      "record": 191880,
+      "reference_records": [
+        {
+          "record_id": 191880,
+          "caption": "Netherlands",
+          "end": "PN2718"
+        }
+      ]
+    },
+    {
+      "name": "Egyptian Theater",
+      "parent": 12674,
+      "target": 52336,
+      "source": 12674,
+      "code": "PN2970",
+      "end": "PN2978",
+      "caption": "Egypt",
+      "hits": 213,
+      "record": 192021,
+      "reference_records": [
+        {
+          "record_id": 432735,
+          "caption": "Periodicals. Serials",
+          "end": null
+        },
+        {
+          "record_id": 192021,
+          "caption": "Egypt",
+          "end": "PN2978"
+        }
+      ]
+    },
+    {
+      "name": "Czech Theater",
+      "parent": 12674,
+      "target": 52337,
+      "source": 12674,
+      "code": "PN2859.C9",
+      "end": "PN2859.C96",
+      "caption": "Czech Republic",
+      "hits": 181,
+      "record": 191899,
+      "evidence_note": "Local 2025 PN schedule page 103 includes Czech biography at C95 and C96A\u2013C96Z, beyond the truncated reference-record span ending C93.",
+      "reference_records": [
+        {
+          "record_id": 191900,
+          "caption": "General works",
+          "end": null
+        },
+        {
+          "record_id": 191899,
+          "caption": "Czech Republic",
+          "end": "PN2859.C93"
+        }
+      ]
+    },
+    {
+      "name": "Brazilian Journalism",
+      "parent": 12675,
+      "target": 52338,
+      "source": 12675,
+      "code": "PN5021",
+      "end": "PN5030",
+      "caption": "Brazil",
+      "hits": 834,
+      "record": 192772,
+      "reference_records": [
+        {
+          "record_id": 192772,
+          "caption": "Brazil",
+          "end": "PN5030"
+        }
+      ]
+    },
+    {
+      "name": "Korean Journalism",
+      "parent": 12675,
+      "target": 52339,
+      "source": 12675,
+      "code": "PN5411",
+      "end": "PN5420",
+      "caption": "Korea",
+      "hits": 822,
+      "record": 192816,
+      "reference_records": [
+        {
+          "record_id": 192816,
+          "caption": "Korea",
+          "end": "PN5420"
+        }
+      ]
+    },
+    {
+      "name": "Canadian Journalism",
+      "parent": 12675,
+      "target": 52340,
+      "source": 12675,
+      "code": "PN4901",
+      "end": "PN4920",
+      "caption": "Canada",
+      "hits": 718,
+      "record": 192759,
+      "reference_records": [
+        {
+          "record_id": 192759,
+          "caption": "Canada",
+          "end": "PN4920"
+        }
+      ]
+    },
+    {
+      "name": "Polish Journalism",
+      "parent": 12675,
+      "target": 52341,
+      "source": 12675,
+      "code": "PN5355.P6",
+      "end": "PN5355.P64",
+      "caption": "Poland",
+      "hits": 572,
+      "record": 54167,
+      "reference_records": [
+        {
+          "record_id": 54167,
+          "caption": "Poland",
+          "end": "PN5355.P64"
+        }
+      ]
+    },
+    {
+      "name": "Argentine Journalism",
+      "parent": 12675,
+      "target": 52342,
+      "source": 12675,
+      "code": "PN5001",
+      "end": "PN5010",
+      "caption": "Argentina",
+      "hits": 442,
+      "record": 192770,
+      "reference_records": [
+        {
+          "record_id": 192770,
+          "caption": "Argentina",
+          "end": "PN5010"
+        }
+      ]
+    },
+    {
+      "name": "Australian Journalism",
+      "parent": 12675,
+      "target": 52343,
+      "source": 12675,
+      "code": "PN5510.2",
+      "end": "PN5590",
+      "caption": "Australia",
+      "hits": 427,
+      "record": 192828,
+      "reference_records": [
+        {
+          "record_id": 19552,
+          "caption": "Periodicals",
+          "end": null
+        },
+        {
+          "record_id": 192828,
+          "caption": "Australia",
+          "end": "PN5590"
+        }
+      ]
+    },
+    {
+      "name": "Mexican Journalism",
+      "parent": 12675,
+      "target": 52344,
+      "source": 12675,
+      "code": "PN4961",
+      "end": "PN4980",
+      "caption": "Mexico",
+      "hits": 379,
+      "record": 192765,
+      "reference_records": [
+        {
+          "record_id": 192765,
+          "caption": "Mexico",
+          "end": "PN4980"
+        }
+      ]
+    },
+    {
+      "name": "Dutch Journalism",
+      "parent": 12675,
+      "target": 52345,
+      "source": 12675,
+      "code": "PN5251",
+      "end": "PN5260",
+      "caption": "Netherlands",
+      "hits": 320,
+      "record": 192796,
+      "reference_records": [
+        {
+          "record_id": 192796,
+          "caption": "Netherlands",
+          "end": "PN5260"
+        },
+        {
+          "record_id": 192795,
+          "caption": "Low countries",
+          "end": "PN5270"
+        }
+      ]
+    },
+    {
+      "name": "Egyptian Journalism",
+      "parent": 12675,
+      "target": 52346,
+      "source": 12675,
+      "code": "PN5461",
+      "end": "PN5465",
+      "caption": "Egypt",
+      "hits": 303,
+      "record": 192825,
+      "reference_records": [
+        {
+          "record_id": 192825,
+          "caption": "Egypt",
+          "end": "PN5465"
+        },
+        {
+          "record_id": 192824,
+          "caption": "By country",
+          "end": "PN5499"
+        }
+      ]
+    },
+    {
+      "name": "Turkish Journalism",
+      "parent": 12675,
+      "target": 52347,
+      "source": 12675,
+      "code": "PN5355.T8",
+      "end": "PN5355.T84",
+      "caption": "Turkey",
+      "hits": 294,
+      "record": 54171,
+      "reference_records": [
+        {
+          "record_id": 54171,
+          "caption": "Turkey",
+          "end": "PN5355.T84"
+        }
+      ]
+    },
+    {
+      "name": "Swedish Journalism",
+      "parent": 12675,
+      "target": 52348,
+      "source": 12675,
+      "code": "PN5301",
+      "end": "PN5310",
+      "caption": "Sweden",
+      "hits": 251,
+      "record": 192804,
+      "reference_records": [
+        {
+          "record_id": 192804,
+          "caption": "Sweden",
+          "end": "PN5310"
+        }
+      ]
+    },
+    {
+      "name": "Ukrainian Journalism",
+      "parent": 12675,
+      "target": 52349,
+      "source": 12675,
+      "code": "PN5355.U38",
+      "end": "PN5355.U384",
+      "caption": "Ukraine",
+      "hits": 225,
+      "record": 54172,
+      "reference_records": [
+        {
+          "record_id": 54172,
+          "caption": "Ukraine",
+          "end": "PN5355.U384"
+        }
+      ]
+    },
+    {
+      "name": "Irish Journalism",
+      "parent": 12675,
+      "target": 52350,
+      "source": 12675,
+      "code": "PN5141",
+      "end": "PN5150",
+      "caption": "Ireland",
+      "hits": 214,
+      "record": 192788,
+      "reference_records": [
+        {
+          "record_id": 192788,
+          "caption": "Ireland",
+          "end": "PN5150"
+        }
+      ]
+    },
+    {
+      "name": "South African Journalism",
+      "parent": 12675,
+      "target": 52351,
+      "source": 12675,
+      "code": "PN5471",
+      "end": "PN5480",
+      "caption": "Republic of South Africa",
+      "hits": 211,
+      "record": 192826,
+      "reference_records": [
+        {
+          "record_id": 192826,
+          "caption": "Republic of South Africa",
+          "end": "PN5480"
+        }
+      ]
+    },
+    {
+      "name": "Literature & History",
+      "source": 8293,
+      "parent": 8293,
+      "target": 52352,
+      "code": "PN50",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 189518,
+          "caption": "Relation to history",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "Literature & Science",
+      "source": 8293,
+      "parent": 8293,
+      "target": 52353,
+      "code": "PN55",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 189522,
+          "caption": "Relation to science",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "Law in Literature",
+      "source": 8293,
+      "parent": 8293,
+      "target": 52354,
+      "code": "PN56.L33",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 189645,
+          "caption": "Law",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "War in Literature",
+      "source": 8293,
+      "parent": 8293,
+      "target": 52355,
+      "code": "PN56.W3",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 189780,
+          "caption": "War",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "Love in Literature",
+      "source": 8293,
+      "parent": 8293,
+      "target": 52356,
+      "code": "PN56.L6",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 189650,
+          "caption": "Love. Lovesickness",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "The Human Body in Literature",
+      "source": 8293,
+      "parent": 8293,
+      "target": 52357,
+      "code": "PN56.B62",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 189545,
+          "caption": "Body, Human",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "Utopias in Literature",
+      "source": 8293,
+      "parent": 8293,
+      "target": 52358,
+      "code": "PN56.U8",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 189771,
+          "caption": "Utopias",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "Holocaust in Literature",
+      "source": 8293,
+      "parent": 8293,
+      "target": 52359,
+      "code": "PN56.H55",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 189620,
+          "caption": "Holocaust, Jewish (1939-1945)",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "U.S. Theater History",
+      "source": 12511,
+      "parent": 12511,
+      "target": 52360,
+      "code": "PN2221",
+      "end": "PN2272.5",
+      "reference_records": [
+        {
+          "record_id": 191619,
+          "caption": "Comprehensive",
+          "end": null
+        },
+        {
+          "record_id": 191618,
+          "caption": "History",
+          "end": "PN2277"
+        }
+      ],
+      "evidence_note": "Split the documented U.S. theater history schedule before local theater begins at PN2273; PN2272..PN2272.5 is the documented 21st-century subdivision."
+    },
+    {
+      "name": "Regional U.S. Theater",
+      "source": 12511,
+      "parent": 12511,
+      "target": 52361,
+      "code": "PN2273",
+      "end": "PN2279",
+      "reference_records": [
+        {
+          "record_id": 191651,
+          "caption": "Local",
+          "end": "PN2279"
+        }
+      ]
+    },
+    {
+      "name": "U.S. Theater Biography",
+      "source": 12511,
+      "parent": 12511,
+      "target": 52362,
+      "code": "PN2285",
+      "end": "PN2287",
+      "reference_records": [
+        {
+          "record_id": 438388,
+          "caption": "General",
+          "end": null
+        },
+        {
+          "record_id": 191656,
+          "caption": "Collective",
+          "end": "PN2286.8"
+        },
+        {
+          "record_id": 191655,
+          "caption": "Biography",
+          "end": "PN2287"
+        }
+      ]
+    },
+    {
+      "name": "Animals",
+      "source": 691,
+      "parent": 702,
+      "target": 704,
+      "code": "PN6231.C23",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 204479,
+          "caption": "Cats",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "Cultural, Ethnic & Regional",
+      "source": 691,
+      "parent": 702,
+      "target": 707,
+      "code": "PN6231.J5",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 204630,
+          "caption": "Jewish",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "Men, Women & Relationships",
+      "source": 691,
+      "parent": 702,
+      "target": 713,
+      "code": "PN6231.M45",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 204662,
+          "caption": "Men",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "Men, Women & Relationships",
+      "source": 691,
+      "parent": 702,
+      "target": 713,
+      "code": "PN6231.W6",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 204860,
+          "caption": "Women",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "Politics",
+      "source": 691,
+      "parent": 702,
+      "target": 714,
+      "code": "PN6231.P6",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 204725,
+          "caption": "Politics",
+          "end": null
+        }
+      ]
+    },
+    {
+      "name": "Adult",
+      "source": 691,
+      "parent": 702,
+      "target": 703,
+      "code": "PN6231.S54",
+      "end": null,
+      "reference_records": [
+        {
+          "record_id": 204776,
+          "caption": "Sex",
+          "end": null
+        }
+      ]
+    }
+  ],
+  "new_ids": [
+    52327,
+    52328,
+    52329,
+    52330,
+    52331,
+    52332,
+    52333,
+    52334,
+    52335,
+    52336,
+    52337,
+    52338,
+    52339,
+    52340,
+    52341,
+    52342,
+    52343,
+    52344,
+    52345,
+    52346,
+    52347,
+    52348,
+    52349,
+    52350,
+    52351,
+    52352,
+    52353,
+    52354,
+    52355,
+    52356,
+    52357,
+    52358,
+    52359,
+    52360,
+    52361,
+    52362
+  ],
+  "selection_note": "Country candidates require at least 200 observed residual hits; Czech theater reaches the threshold when the locally documented C95\u2013C96 biographies are included."
+}

@@ -1,0 +1,19 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO book_upload_reservation(id, user_id, library_id, content_hash, size_bytes, expires_at)\nVALUES ($1, $2, $3, $4, $5, $6)\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "Text",
+        "Text",
+        "Int8",
+        "Timestamptz"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "c17bc0d84d62a80dc3947fa6dbdbc742ae7b52e61b596f72f53396478210ede5"
+}

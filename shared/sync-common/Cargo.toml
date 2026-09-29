@@ -1,0 +1,19 @@
+[package]
+name = "sync-common"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["random-ids"]
+random-ids = ["uuid/v4"]
+test-support = []
+
+[dependencies]
+content-address = { path = "../content-address" }
+protobuf-wire = { path = "../protobuf-wire" }
+wire = { path = "../wire" }
+serde = { version = "1", features = ["derive"] }
+uuid = { version = "1", features = ["v5", "serde"] }
+
+[dev-dependencies]
+serde_json = "1"

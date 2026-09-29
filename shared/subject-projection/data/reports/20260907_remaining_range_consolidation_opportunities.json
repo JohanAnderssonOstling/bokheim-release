@@ -1,0 +1,2556 @@
+{
+  "snapshot_release": 16,
+  "combined_audit_inputs": 99245,
+  "combined_new_matches": 18,
+  "combined_existing_changes": 0,
+  "candidates": [
+    {
+      "id": 3675,
+      "start": "CJ1",
+      "end": "CJ4625",
+      "caption": "Coins",
+      "selectors": [
+        "CJ101",
+        "CJ113",
+        "CJ115",
+        "CJ117",
+        "CJ1247",
+        "CJ1249",
+        "CJ1251",
+        "CJ1259",
+        "CJ1271",
+        "CJ1281",
+        "CJ1283",
+        "CJ129",
+        "CJ1323",
+        "CJ1325",
+        "CJ1327",
+        "CJ1335",
+        "CJ1339",
+        "CJ151",
+        "CJ1545",
+        "CJ1546",
+        "CJ1547",
+        "CJ1559",
+        "CJ1575",
+        "CJ1619",
+        "CJ1620",
+        "CJ1621",
+        "CJ1627",
+        "CJ1637",
+        "CJ1661",
+        "CJ1663",
+        "CJ1664",
+        "CJ1665",
+        "CJ1667",
+        "CJ1669",
+        "CJ1671",
+        "CJ1673",
+        "CJ1693",
+        "CJ1695",
+        "CJ1697",
+        "CJ1739",
+        "CJ1741",
+        "CJ1743",
+        "CJ1749",
+        "CJ1751",
+        "CJ1753",
+        "CJ1755",
+        "CJ1756",
+        "CJ223",
+        "CJ255",
+        "CJ265",
+        "CJ27",
+        "CJ323",
+        "CJ357",
+        "CJ359",
+        "CJ361",
+        "CJ373",
+        "CJ385",
+        "CJ413",
+        "CJ53",
+        "CJ55",
+        "CJ63",
+        "CJ81",
+        "CJ823",
+        "CJ849",
+        "CJ851",
+        "CJ855",
+        "CJ856",
+        "CJ857",
+        "CJ865",
+        "CJ885",
+        "CJ89",
+        "CJ925",
+        "CJ937",
+        "CJ943",
+        "CJ985",
+        "CJ987"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Numismatics"
+    },
+    {
+      "id": 5276,
+      "start": "KNS17.8",
+      "end": "KNS24.26",
+      "caption": "Law reports and related materials",
+      "selectors": [
+        "KNS17.8",
+        "KNS18",
+        "KNS18.5",
+        "KNS18.8",
+        "KNS19",
+        "KNS19.1",
+        "KNS19.15",
+        "KNS19.16",
+        "KNS19.19",
+        "KNS19.2",
+        "KNS19.25",
+        "KNS19.27",
+        "KNS19.28",
+        "KNS19.29",
+        "KNS19.3",
+        "KNS19.33",
+        "KNS19.35",
+        "KNS19.37",
+        "KNS19.38",
+        "KNS19.39",
+        "KNS19.4",
+        "KNS19.42",
+        "KNS19.44",
+        "KNS19.46",
+        "KNS20",
+        "KNS20.15",
+        "KNS20.2",
+        "KNS20.3",
+        "KNS20.4",
+        "KNS20.5",
+        "KNS20.6",
+        "KNS20.6.A",
+        "KNS20.6.Z",
+        "KNS21.15",
+        "KNS21.16",
+        "KNS21.17",
+        "KNS21.18",
+        "KNS21.2",
+        "KNS21.3",
+        "KNS21.31",
+        "KNS21.36",
+        "KNS21.38",
+        "KNS21.4",
+        "KNS21.41",
+        "KNS23",
+        "KNS24.26"
+      ],
+      "removable": [
+        "KNS17.8",
+        "KNS18",
+        "KNS18.5",
+        "KNS18.8",
+        "KNS19",
+        "KNS19.1",
+        "KNS19.15",
+        "KNS19.16",
+        "KNS19.19",
+        "KNS19.2",
+        "KNS19.25",
+        "KNS19.27",
+        "KNS19.28",
+        "KNS19.29",
+        "KNS19.3",
+        "KNS19.33",
+        "KNS19.35",
+        "KNS19.37",
+        "KNS19.38",
+        "KNS19.39",
+        "KNS19.4",
+        "KNS19.42",
+        "KNS19.44",
+        "KNS19.46",
+        "KNS20",
+        "KNS20.15",
+        "KNS20.2",
+        "KNS20.3",
+        "KNS20.4",
+        "KNS20.5",
+        "KNS20.6",
+        "KNS20.6.A",
+        "KNS20.6.Z",
+        "KNS21.15",
+        "KNS21.16",
+        "KNS21.17",
+        "KNS21.18",
+        "KNS21.2",
+        "KNS21.3",
+        "KNS21.31",
+        "KNS21.36",
+        "KNS21.38",
+        "KNS21.4",
+        "KNS21.41",
+        "KNS23",
+        "KNS24.26"
+      ],
+      "net_reduction": 45,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Law"
+    },
+    {
+      "id": 5276,
+      "start": "KNX2049.2",
+      "end": "KNX2677",
+      "caption": "Constitutional law",
+      "selectors": [
+        "KNX2049.2",
+        "KNX2064",
+        "KNX2064.51889",
+        "KNX2064.51946",
+        "KNX2064.61946",
+        "KNX2064.7",
+        "KNX2089.2",
+        "KNX2100.2",
+        "KNX2101",
+        "KNX2110",
+        "KNX2150",
+        "KNX2196",
+        "KNX2196.3",
+        "KNX2198",
+        "KNX2198.3",
+        "KNX2198.3.A",
+        "KNX2198.3.Z",
+        "KNX2200",
+        "KNX2201",
+        "KNX2202",
+        "KNX2205",
+        "KNX2206",
+        "KNX2207",
+        "KNX2208",
+        "KNX2209",
+        "KNX2210",
+        "KNX2211",
+        "KNX2212",
+        "KNX2213",
+        "KNX2214",
+        "KNX2214.5",
+        "KNX2215",
+        "KNX2216",
+        "KNX2217",
+        "KNX2218",
+        "KNX2219",
+        "KNX2219.3",
+        "KNX2240",
+        "KNX2500",
+        "KNX2613",
+        "KNX2677"
+      ],
+      "removable": [
+        "KNX2049.2",
+        "KNX2064",
+        "KNX2064.51889",
+        "KNX2064.51946",
+        "KNX2064.61946",
+        "KNX2064.7",
+        "KNX2089.2",
+        "KNX2100.2",
+        "KNX2101",
+        "KNX2110",
+        "KNX2150",
+        "KNX2196",
+        "KNX2196.3",
+        "KNX2198",
+        "KNX2198.3",
+        "KNX2198.3.A",
+        "KNX2198.3.Z",
+        "KNX2200",
+        "KNX2201",
+        "KNX2202",
+        "KNX2205",
+        "KNX2206",
+        "KNX2207",
+        "KNX2208",
+        "KNX2209",
+        "KNX2210",
+        "KNX2211",
+        "KNX2212",
+        "KNX2213",
+        "KNX2214",
+        "KNX2214.5",
+        "KNX2215",
+        "KNX2216",
+        "KNX2217",
+        "KNX2218",
+        "KNX2219",
+        "KNX2219.3",
+        "KNX2240",
+        "KNX2500",
+        "KNX2613",
+        "KNX2677"
+      ],
+      "net_reduction": 40,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Law"
+    },
+    {
+      "id": 5276,
+      "start": "KKT9850",
+      "end": "KKT9860",
+      "caption": "Cities",
+      "selectors": [
+        "KKT9850",
+        "KKT9851",
+        "KKT9852",
+        "KKT9853",
+        "KKT9854",
+        "KKT9855",
+        "KKT9856",
+        "KKT9857",
+        "KKT9858",
+        "KKT9859",
+        "KKT9860.A45",
+        "KKT9860.B32",
+        "KKT9860.B33",
+        "KKT9860.B37",
+        "KKT9860.B54",
+        "KKT9860.C37",
+        "KKT9860.C67",
+        "KKT9860.E42",
+        "KKT9860.G54",
+        "KKT9860.H67",
+        "KKT9860.J47",
+        "KKT9860.L45",
+        "KKT9860.M87",
+        "KKT9860.O84",
+        "KKT9860.P34",
+        "KKT9860.P35",
+        "KKT9860.P36",
+        "KKT9860.S22",
+        "KKT9860.S24",
+        "KKT9860.S25",
+        "KKT9860.S26",
+        "KKT9860.S82",
+        "KKT9860.S83",
+        "KKT9860.T37",
+        "KKT9860.V34",
+        "KKT9860.V53",
+        "KKT9860.V57",
+        "KKT9860.Z37"
+      ],
+      "removable": [
+        "KKT9850",
+        "KKT9851",
+        "KKT9852",
+        "KKT9853",
+        "KKT9854",
+        "KKT9855",
+        "KKT9856",
+        "KKT9857",
+        "KKT9858",
+        "KKT9859",
+        "KKT9860.A45",
+        "KKT9860.B32",
+        "KKT9860.B33",
+        "KKT9860.B37",
+        "KKT9860.B54",
+        "KKT9860.C37",
+        "KKT9860.C67",
+        "KKT9860.E42",
+        "KKT9860.G54",
+        "KKT9860.H67",
+        "KKT9860.J47",
+        "KKT9860.L45",
+        "KKT9860.M87",
+        "KKT9860.O84",
+        "KKT9860.P34",
+        "KKT9860.P35",
+        "KKT9860.P36",
+        "KKT9860.S22",
+        "KKT9860.S24",
+        "KKT9860.S25",
+        "KKT9860.S26",
+        "KKT9860.S82",
+        "KKT9860.S83",
+        "KKT9860.T37",
+        "KKT9860.V34",
+        "KKT9860.V53",
+        "KKT9860.V57",
+        "KKT9860.Z37"
+      ],
+      "net_reduction": 37,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Law"
+    },
+    {
+      "id": 5560,
+      "start": "KIE1610",
+      "end": "KIE1664",
+      "caption": "Education",
+      "selectors": [
+        "KIE1612",
+        "KIE1614",
+        "KIE1615",
+        "KIE1620",
+        "KIE1624",
+        "KIE1629",
+        "KIE1633",
+        "KIE1638",
+        "KIE1662",
+        "KIE1664"
+      ],
+      "removable": [
+        "KIE1612",
+        "KIE1614",
+        "KIE1615",
+        "KIE1620",
+        "KIE1624",
+        "KIE1629",
+        "KIE1633",
+        "KIE1638",
+        "KIE1662",
+        "KIE1664"
+      ],
+      "net_reduction": 9,
+      "existing_changes": 1,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KIE1610",
+          "before": [
+            "matched",
+            "51567"
+          ],
+          "after": [
+            "matched",
+            "5560"
+          ]
+        }
+      ],
+      "subject": "Social Welfare & Equality Law"
+    },
+    {
+      "id": 3675,
+      "start": "CJ5722.2",
+      "end": "CJ5793",
+      "caption": "Medieval and modern",
+      "selectors": [
+        "CJ5737",
+        "CJ5751",
+        "CJ5769",
+        "CJ5770",
+        "CJ5771",
+        "CJ5777",
+        "CJ5778",
+        "CJ5779",
+        "CJ5780"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Numismatics"
+    },
+    {
+      "id": 5300,
+      "start": "KZ6730",
+      "end": "KZ6785",
+      "caption": "The end of war. Armistice. Surrender. Postliminy",
+      "selectors": [
+        "KZ6740",
+        "KZ6749",
+        "KZ6753",
+        "KZ6757",
+        "KZ6758",
+        "KZ6760",
+        "KZ6768",
+        "KZ6775",
+        "KZ6785"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Law of nations"
+    },
+    {
+      "id": 3675,
+      "start": "CJ4861",
+      "end": "CJ4889",
+      "caption": "By period",
+      "selectors": [
+        "CJ4863",
+        "CJ4865",
+        "CJ4873",
+        "CJ4877",
+        "CJ4883",
+        "CJ4885",
+        "CJ4887",
+        "CJ4889"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Numismatics"
+    },
+    {
+      "id": 51568,
+      "start": "KIM1",
+      "end": "KIM30",
+      "caption": "General",
+      "selectors": [
+        "KIM1",
+        "KIM1.2.T47",
+        "KIM2.T47",
+        "KIM26.R43",
+        "KIM29.C86",
+        "KIM6",
+        "KIM6.5",
+        "KIM7.C66"
+      ],
+      "removable": [
+        "KIM1",
+        "KIM1.2.T47",
+        "KIM2.T47",
+        "KIM26.R43",
+        "KIM29.C86",
+        "KIM6",
+        "KIM6.5",
+        "KIM7.C66"
+      ],
+      "net_reduction": 7,
+      "existing_changes": 0,
+      "new_matches": 14,
+      "change_examples": [
+        {
+          "code": "KIM1.2",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "51568"
+          ]
+        },
+        {
+          "code": "KIM1.2.A",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "51568"
+          ]
+        },
+        {
+          "code": "KIM1.2.Z",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "51568"
+          ]
+        },
+        {
+          "code": "KIM2.A",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "51568"
+          ]
+        },
+        {
+          "code": "KIM2.Z",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "51568"
+          ]
+        },
+        {
+          "code": "KIM26.A",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "51568"
+          ]
+        },
+        {
+          "code": "KIM26.Z",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "51568"
+          ]
+        },
+        {
+          "code": "KIM29.A",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "51568"
+          ]
+        }
+      ],
+      "subject": "Latin American Indigenous Law"
+    },
+    {
+      "id": 13314,
+      "start": "KF1600.2",
+      "end": "KF1668",
+      "caption": "Trade regulation. Control of trade practices. Consumer protection",
+      "selectors": [
+        "KF1617.B7",
+        "KF1617.C65",
+        "KF1659",
+        "KF1659.1",
+        "KF1661",
+        "KF1663",
+        "KF1668"
+      ],
+      "removable": [
+        "KF1617.B7",
+        "KF1617.C65",
+        "KF1659",
+        "KF1659.1",
+        "KF1661",
+        "KF1663",
+        "KF1668"
+      ],
+      "net_reduction": 6,
+      "existing_changes": 14,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KF1600.2",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13314"
+          ]
+        },
+        {
+          "code": "KF1601",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13314"
+          ]
+        },
+        {
+          "code": "KF1610",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13314"
+          ]
+        },
+        {
+          "code": "KF1611",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13314"
+          ]
+        },
+        {
+          "code": "KF1611.2",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13314"
+          ]
+        },
+        {
+          "code": "KF1611.A2",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13314"
+          ]
+        },
+        {
+          "code": "KF1611.A2A",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13314"
+          ]
+        },
+        {
+          "code": "KF1611.A2Z",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13314"
+          ]
+        }
+      ],
+      "subject": "IP & Competition Law"
+    },
+    {
+      "id": 5368,
+      "start": "JN1601",
+      "end": "JN1999",
+      "caption": "Austrian Empire. Austria-Hungary",
+      "selectors": [
+        "JN1601",
+        "JN1604",
+        "JN1607",
+        "JN1611",
+        "JN1651",
+        "JN1941"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "European Government"
+    },
+    {
+      "id": 5359,
+      "start": "JS55",
+      "end": "JS67",
+      "caption": "History",
+      "selectors": [
+        "JS55",
+        "JS58",
+        "JS61",
+        "JS64",
+        "JS66",
+        "JS67"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Local & Municipal Government"
+    },
+    {
+      "id": 5281,
+      "start": "K1401",
+      "end": "K1578.25",
+      "caption": "Intellectual property",
+      "selectors": [
+        "K1402",
+        "K1405",
+        "K1408",
+        "K1409",
+        "K1488",
+        "K1490"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Comparative & Uniform Law"
+    },
+    {
+      "id": 5560,
+      "start": "KBM3138",
+      "end": "KBM3158.5",
+      "caption": "Education",
+      "selectors": [
+        "KBM3138.55",
+        "KBM3140.9",
+        "KBM3141",
+        "KBM3144.5",
+        "KBM3146",
+        "KBM3158.5"
+      ],
+      "removable": [
+        "KBM3138.55",
+        "KBM3140.9",
+        "KBM3141",
+        "KBM3144.5",
+        "KBM3146",
+        "KBM3158.5"
+      ],
+      "net_reduction": 5,
+      "existing_changes": 3,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KBM3138",
+          "before": [
+            "matched",
+            "13250"
+          ],
+          "after": [
+            "matched",
+            "5560"
+          ]
+        },
+        {
+          "code": "KBM3156.A",
+          "before": [
+            "matched",
+            "13250"
+          ],
+          "after": [
+            "matched",
+            "5560"
+          ]
+        },
+        {
+          "code": "KBM3156.Z",
+          "before": [
+            "matched",
+            "13250"
+          ],
+          "after": [
+            "matched",
+            "5560"
+          ]
+        }
+      ],
+      "subject": "Social Welfare & Equality Law"
+    },
+    {
+      "id": 5706,
+      "start": "KBR3838",
+      "end": "KBR3882",
+      "caption": "The contentious trial. De iudicio contentioso",
+      "selectors": [
+        "KBR3839",
+        "KBR3839.5",
+        "KBR3869",
+        "KBR3872",
+        "KBR3874",
+        "KBR3876"
+      ],
+      "removable": [
+        "KBR3839",
+        "KBR3839.5",
+        "KBR3869",
+        "KBR3872",
+        "KBR3874",
+        "KBR3876"
+      ],
+      "net_reduction": 5,
+      "existing_changes": 13,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KBR3838",
+          "before": [
+            "matched",
+            "5291"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KBR3840",
+          "before": [
+            "matched",
+            "5291"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KBR3842.A",
+          "before": [
+            "matched",
+            "5291"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KBR3842.A33",
+          "before": [
+            "matched",
+            "5291"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KBR3842.C53",
+          "before": [
+            "matched",
+            "5291"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KBR3842.I67",
+          "before": [
+            "matched",
+            "5291"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KBR3842.J84",
+          "before": [
+            "matched",
+            "5291"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KBR3842.Z",
+          "before": [
+            "matched",
+            "5291"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        }
+      ],
+      "subject": "Civil Litigation"
+    },
+    {
+      "id": 5562,
+      "start": "KF8217.8",
+      "end": "KF8218.63",
+      "caption": "Economic law. Regulation of industry, trade, and commerce",
+      "selectors": [
+        "KF8218.2.A328 <date>",
+        "KF8218.32.A328 <date>",
+        "KF8218.4.A328 <date>",
+        "KF8218.42.A328 <date>",
+        "KF8218.5.A328 <date>",
+        "KF8218.A328 <date>"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 48,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KF8217.8",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8218",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8218.2",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8218.2.A29",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8218.2.A328 1993",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8218.2.A328 2004",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8218.2.A338",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8218.2.A37",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        }
+      ],
+      "subject": "Other Specialized Law"
+    },
+    {
+      "id": 5562,
+      "start": "KF8419",
+      "end": "KF8510",
+      "caption": "Public property",
+      "selectors": [
+        "KF8426.A328 <date>",
+        "KF8440.A328 <date>",
+        "KF8442.A328 <date>",
+        "KF8450.A328 <date>",
+        "KF8460.A328 <date>",
+        "KF8510.A328 <date>"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 163,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KF8419",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8419.A",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8419.I63",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8419.Z",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8420",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8422",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8424",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KF8424.A",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        }
+      ],
+      "subject": "Other Specialized Law"
+    },
+    {
+      "id": 5368,
+      "start": "JN2301",
+      "end": "JN3009.22",
+      "caption": "France",
+      "selectors": [
+        "JN2301",
+        "JN2303",
+        "JN2306",
+        "JN2597",
+        "JN2606"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "European Government"
+    },
+    {
+      "id": 13314,
+      "start": "KD2204",
+      "end": "KD2233",
+      "caption": "Trade regulations. Control of trade practices. Consumer protection",
+      "selectors": [
+        "KD2212",
+        "KD2215",
+        "KD2227",
+        "KD2228",
+        "KD2233"
+      ],
+      "removable": [
+        "KD2212",
+        "KD2215",
+        "KD2227",
+        "KD2228",
+        "KD2233"
+      ],
+      "net_reduction": 4,
+      "existing_changes": 1,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KD2204",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13314"
+          ]
+        }
+      ],
+      "subject": "IP & Competition Law"
+    },
+    {
+      "id": 5562,
+      "start": "KEQ48",
+      "end": "KEQ89",
+      "caption": "Legislation",
+      "selectors": [
+        "KEQ67",
+        "KEQ70",
+        "KEQ72",
+        "KEQ73",
+        "KEQ74"
+      ],
+      "removable": [
+        "KEQ67",
+        "KEQ70",
+        "KEQ72",
+        "KEQ73",
+        "KEQ74"
+      ],
+      "net_reduction": 4,
+      "existing_changes": 18,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KEQ48",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KEQ48.2",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KEQ49",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KEQ50",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KEQ53",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KEQ54.92",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KEQ55",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        },
+        {
+          "code": "KEQ56",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "5562"
+          ]
+        }
+      ],
+      "subject": "Other Specialized Law"
+    },
+    {
+      "id": 5706,
+      "start": "KIE3090",
+      "end": "KIE3250",
+      "caption": "Civil procedure",
+      "selectors": [
+        "KIE3100",
+        "KIE3120",
+        "KIE3220",
+        "KIE3222",
+        "KIE3250"
+      ],
+      "removable": [
+        "KIE3100",
+        "KIE3120",
+        "KIE3220",
+        "KIE3222",
+        "KIE3250"
+      ],
+      "net_reduction": 4,
+      "existing_changes": 1,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KIE3090",
+          "before": [
+            "matched",
+            "51567"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        }
+      ],
+      "subject": "Civil Litigation"
+    },
+    {
+      "id": 51568,
+      "start": "KIM40",
+      "end": "KIM47",
+      "caption": "Indigenous jurisprudence",
+      "selectors": [
+        "KIM40",
+        "KIM42",
+        "KIM43",
+        "KIM45",
+        "KIM47"
+      ],
+      "removable": [
+        "KIM40",
+        "KIM42",
+        "KIM43",
+        "KIM45",
+        "KIM47"
+      ],
+      "net_reduction": 4,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Latin American Indigenous Law"
+    },
+    {
+      "id": 5368,
+      "start": "JN7009.2",
+      "end": "JN7066",
+      "caption": "Scandinavia. Northern Europe",
+      "selectors": [
+        "JN7011",
+        "JN7051",
+        "JN7056",
+        "JN7066"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "European Government"
+    },
+    {
+      "id": 5281,
+      "start": "K3620",
+      "end": "K3624",
+      "caption": "Animal protection. Animal welfare. Animal rights",
+      "selectors": [
+        "K3623",
+        "K3624",
+        "K3624.A",
+        "K3624.Z"
+      ],
+      "removable": [
+        "K3623",
+        "K3624",
+        "K3624.A",
+        "K3624.Z"
+      ],
+      "net_reduction": 3,
+      "existing_changes": 0,
+      "new_matches": 4,
+      "change_examples": [
+        {
+          "code": "K3624.A.A1",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "5281"
+          ]
+        },
+        {
+          "code": "K3624.A.Z9",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "5281"
+          ]
+        },
+        {
+          "code": "K3624.Z.A1",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "5281"
+          ]
+        },
+        {
+          "code": "K3624.Z.Z9",
+          "before": [
+            "unmatched",
+            ""
+          ],
+          "after": [
+            "matched",
+            "5281"
+          ]
+        }
+      ],
+      "subject": "Comparative & Uniform Law"
+    },
+    {
+      "id": 5560,
+      "start": "KB3138",
+      "end": "KB3158",
+      "caption": "Education",
+      "selectors": [
+        "KB3140",
+        "KB3143",
+        "KB3146",
+        "KB3147"
+      ],
+      "removable": [
+        "KB3140",
+        "KB3143",
+        "KB3146",
+        "KB3147"
+      ],
+      "net_reduction": 3,
+      "existing_changes": 2,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KB3138",
+          "before": [
+            "matched",
+            "5319"
+          ],
+          "after": [
+            "matched",
+            "5560"
+          ]
+        },
+        {
+          "code": "KB3158",
+          "before": [
+            "matched",
+            "5319"
+          ],
+          "after": [
+            "matched",
+            "5560"
+          ]
+        }
+      ],
+      "subject": "Social Welfare & Equality Law"
+    },
+    {
+      "id": 13314,
+      "start": "KEQ510",
+      "end": "KEQ519",
+      "caption": "Trade regulation. Control of trade practices. Consumer protection",
+      "selectors": [
+        "KEQ510.5",
+        "KEQ512",
+        "KEQ514",
+        "KEQ519"
+      ],
+      "removable": [
+        "KEQ510.5",
+        "KEQ512",
+        "KEQ514",
+        "KEQ519"
+      ],
+      "net_reduction": 3,
+      "existing_changes": 1,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KEQ510",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13314"
+          ]
+        }
+      ],
+      "subject": "IP & Competition Law"
+    },
+    {
+      "id": 5706,
+      "start": "KIA2500",
+      "end": "KIA2510",
+      "caption": "Civil procedure",
+      "selectors": [
+        "KIA2502",
+        "KIA2504",
+        "KIA2508",
+        "KIA2510"
+      ],
+      "removable": [
+        "KIA2502",
+        "KIA2504",
+        "KIA2508",
+        "KIA2510"
+      ],
+      "net_reduction": 3,
+      "existing_changes": 7,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KIA2500",
+          "before": [
+            "matched",
+            "5562"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KIA2506.A",
+          "before": [
+            "matched",
+            "5562"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KIA2506.A36",
+          "before": [
+            "matched",
+            "5562"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KIA2506.C48",
+          "before": [
+            "matched",
+            "5562"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KIA2506.M38",
+          "before": [
+            "matched",
+            "5562"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KIA2506.P38",
+          "before": [
+            "matched",
+            "5562"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        },
+        {
+          "code": "KIA2506.Z",
+          "before": [
+            "matched",
+            "5562"
+          ],
+          "after": [
+            "matched",
+            "5706"
+          ]
+        }
+      ],
+      "subject": "Civil Litigation"
+    },
+    {
+      "id": 5317,
+      "start": "KJC479.2",
+      "end": "KJC650",
+      "caption": "Regional divisions. Subregions",
+      "selectors": [
+        "KJC480",
+        "KJC510",
+        "KJC600",
+        "KJC630"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "European Comparative Law"
+    },
+    {
+      "id": 13308,
+      "start": "KJV8420",
+      "end": "KJV8495.2",
+      "caption": "Court organization",
+      "selectors": [
+        "KJV8420",
+        "KJV8440",
+        "KJV8460",
+        "KJV8464"
+      ],
+      "removable": [
+        "KJV8420",
+        "KJV8440",
+        "KJV8460",
+        "KJV8464"
+      ],
+      "net_reduction": 3,
+      "existing_changes": 3,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KJV8431",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13308"
+          ]
+        },
+        {
+          "code": "KJV8435.8",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13308"
+          ]
+        },
+        {
+          "code": "KJV8463.2",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13308"
+          ]
+        }
+      ],
+      "subject": "Courts, Organization & Procedure"
+    },
+    {
+      "id": 5281,
+      "start": "K526",
+      "end": "K526.5",
+      "caption": "Statutes and administrative regulations",
+      "selectors": [
+        "K526",
+        "K526.2",
+        "K526.5"
+      ],
+      "removable": [
+        "K526",
+        "K526.2",
+        "K526.5"
+      ],
+      "net_reduction": 2,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Comparative & Uniform Law"
+    },
+    {
+      "id": 51568,
+      "start": "KIM35",
+      "end": "KIM37",
+      "caption": "History",
+      "selectors": [
+        "KIM35",
+        "KIM36",
+        "KIM37"
+      ],
+      "removable": [
+        "KIM35",
+        "KIM36",
+        "KIM37"
+      ],
+      "net_reduction": 2,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Latin American Indigenous Law"
+    },
+    {
+      "id": 5643,
+      "start": "KJC4444",
+      "end": "KJC4447",
+      "caption": "Other sources",
+      "selectors": [
+        "KJC4444.8",
+        "KJC4444.9",
+        "KJC4447"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Constitutional Foundations & Rights"
+    },
+    {
+      "id": 5359,
+      "start": "JS7504",
+      "end": "JS7520",
+      "caption": "Arabian Peninsula. Arabia. Persian Gulf States",
+      "selectors": [
+        "JS7510",
+        "JS7520"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Local & Municipal Government"
+    },
+    {
+      "id": 13308,
+      "start": "KD6850",
+      "end": "KD7640.33",
+      "caption": "Courts. Procedure",
+      "selectors": [
+        "KD6857",
+        "KD7314"
+      ],
+      "removable": [
+        "KD6857",
+        "KD7314"
+      ],
+      "net_reduction": 1,
+      "existing_changes": 1,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "KD7324",
+          "before": [
+            "matched",
+            "5276"
+          ],
+          "after": [
+            "matched",
+            "13308"
+          ]
+        }
+      ],
+      "subject": "Courts, Organization & Procedure"
+    },
+    {
+      "id": 13308,
+      "start": "KDC842",
+      "end": "KDC869",
+      "caption": "Court organization and procedure",
+      "selectors": [
+        "KDC842",
+        "KDC843"
+      ],
+      "removable": [
+        "KDC842",
+        "KDC843"
+      ],
+      "net_reduction": 1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Courts, Organization & Procedure"
+    },
+    {
+      "id": 5317,
+      "start": "KJC3270.2",
+      "end": "KJC3428",
+      "caption": "Social insurance",
+      "selectors": [
+        "KJC3282",
+        "KJC3283"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "European Comparative Law"
+    },
+    {
+      "id": 5300,
+      "start": "KZ3670",
+      "end": "KZ3881.22",
+      "caption": "Objects of the law of nations",
+      "selectors": [
+        "KZ3881.2",
+        "KZ3881.22"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Law of nations"
+    },
+    {
+      "id": 3675,
+      "start": "CJ109",
+      "end": "CJ119",
+      "caption": "Coins of special materials (General)",
+      "selectors": [
+        "CJ113",
+        "CJ115",
+        "CJ117"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Numismatics"
+    },
+    {
+      "id": 3675,
+      "start": "CJ1543",
+      "end": "CJ1548",
+      "caption": "Coins of special materials (General)",
+      "selectors": [
+        "CJ1545",
+        "CJ1546",
+        "CJ1547"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Numismatics"
+    },
+    {
+      "id": 3675,
+      "start": "CJ1618",
+      "end": "CJ1622",
+      "caption": "Coins of special materials (General)",
+      "selectors": [
+        "CJ1619",
+        "CJ1620",
+        "CJ1621"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Numismatics"
+    },
+    {
+      "id": 3675,
+      "start": "CJ5767",
+      "end": "CJ5771",
+      "caption": "Renaissance",
+      "selectors": [
+        "CJ5769",
+        "CJ5770",
+        "CJ5771"
+      ],
+      "removable": [],
+      "net_reduction": -1,
+      "existing_changes": 0,
+      "new_matches": 0,
+      "change_examples": [],
+      "subject": "Numismatics"
+    },
+    {
+      "id": 986,
+      "start": "NX650.A",
+      "end": "NX650.Z",
+      "caption": "Special subjects or topics, A-Z",
+      "selectors": [
+        "NX650.A28",
+        "NX650.A3",
+        "NX650.A32",
+        "NX650.A33",
+        "NX650.A37",
+        "NX650.A67",
+        "NX650.A73",
+        "NX650.A84",
+        "NX650.A87",
+        "NX650.B34",
+        "NX650.B4",
+        "NX650.B47",
+        "NX650.B64",
+        "NX650.B66",
+        "NX650.B68",
+        "NX650.B84",
+        "NX650.C26",
+        "NX650.C29",
+        "NX650.C3",
+        "NX650.C48",
+        "NX650.C6",
+        "NX650.C63",
+        "NX650.C662",
+        "NX650.C663",
+        "NX650.C665",
+        "NX650.C67",
+        "NX650.C678",
+        "NX650.C68",
+        "NX650.C685",
+        "NX650.C69",
+        "NX650.C92",
+        "NX650.D35",
+        "NX650.D43",
+        "NX650.D45",
+        "NX650.D54",
+        "NX650.D63",
+        "NX650.D66",
+        "NX650.D72",
+        "NX650.D74",
+        "NX650.E35",
+        "NX650.F33",
+        "NX650.F35",
+        "NX650.F355",
+        "NX650.F37",
+        "NX650.F453",
+        "NX650.F55",
+        "NX650.F62",
+        "NX650.F68",
+        "NX650.F69",
+        "NX650.G37",
+        "NX650.G38",
+        "NX650.G46",
+        "NX650.G48",
+        "NX650.G64",
+        "NX650.G68",
+        "NX650.G69",
+        "NX650.H34",
+        "NX650.H36",
+        "NX650.H37",
+        "NX650.H4",
+        "NX650.H42",
+        "NX650.H44",
+        "NX650.H5",
+        "NX650.H67",
+        "NX650.H72",
+        "NX650.H76",
+        "NX650.H78",
+        "NX650.H84",
+        "NX650.H85",
+        "NX650.I34",
+        "NX650.I57",
+        "NX650.I58",
+        "NX650.I585",
+        "NX650.I74",
+        "NX650.J87",
+        "NX650.K65",
+        "NX650.L32",
+        "NX650.L33",
+        "NX650.L38",
+        "NX650.L56",
+        "NX650.M26",
+        "NX650.M29",
+        "NX650.M296",
+        "NX650.M3",
+        "NX650.M34",
+        "NX650.M47",
+        "NX650.M49",
+        "NX650.M52",
+        "NX650.M53",
+        "NX650.M532",
+        "NX650.M536",
+        "NX650.M537",
+        "NX650.M6",
+        "NX650.M64",
+        "NX650.M66",
+        "NX650.M68",
+        "NX650.M88",
+        "NX650.N35",
+        "NX650.N36",
+        "NX650.N376",
+        "NX650.N49",
+        "NX650.N52",
+        "NX650.N53",
+        "NX650.N54",
+        "NX650.N64",
+        "NX650.N65",
+        "NX650.N83",
+        "NX650.O73",
+        "NX650.P32",
+        "NX650.P35",
+        "NX650.P37",
+        "NX650.P377",
+        "NX650.P4",
+        "NX650.P47",
+        "NX650.P49",
+        "NX650.P498",
+        "NX650.P53",
+        "NX650.P63",
+        "NX650.P64",
+        "NX650.P65",
+        "NX650.P7",
+        "NX650.R33",
+        "NX650.R36",
+        "NX650.R39",
+        "NX650.R45",
+        "NX650.R48",
+        "NX650.R63",
+        "NX650.R65",
+        "NX650.R83",
+        "NX650.S28",
+        "NX650.S3",
+        "NX650.S4",
+        "NX650.S43",
+        "NX650.S435",
+        "NX650.S45",
+        "NX650.S49",
+        "NX650.S5",
+        "NX650.S53",
+        "NX650.S55",
+        "NX650.S56",
+        "NX650.S58",
+        "NX650.S83",
+        "NX650.S87",
+        "NX650.S88",
+        "NX650.S94",
+        "NX650.T27",
+        "NX650.T32",
+        "NX650.T37",
+        "NX650.T45",
+        "NX650.T47",
+        "NX650.T48",
+        "NX650.T6",
+        "NX650.T73",
+        "NX650.T74",
+        "NX650.U5",
+        "NX650.U53",
+        "NX650.V45",
+        "NX650.V47",
+        "NX650.V54",
+        "NX650.V69",
+        "NX650.W38",
+        "NX650.W48",
+        "NX650.W56",
+        "NX650.W57",
+        "NX650.W67"
+      ],
+      "removable": [
+        "NX650.A28",
+        "NX650.A3",
+        "NX650.A32",
+        "NX650.A33",
+        "NX650.A37",
+        "NX650.A67",
+        "NX650.A73",
+        "NX650.A84",
+        "NX650.A87",
+        "NX650.B34",
+        "NX650.B4",
+        "NX650.B47",
+        "NX650.B64",
+        "NX650.B66",
+        "NX650.B68",
+        "NX650.B84",
+        "NX650.C26",
+        "NX650.C29",
+        "NX650.C3",
+        "NX650.C48",
+        "NX650.C6",
+        "NX650.C63",
+        "NX650.C662",
+        "NX650.C663",
+        "NX650.C665",
+        "NX650.C67",
+        "NX650.C678",
+        "NX650.C68",
+        "NX650.C685",
+        "NX650.C69",
+        "NX650.C92",
+        "NX650.D35",
+        "NX650.D43",
+        "NX650.D45",
+        "NX650.D54",
+        "NX650.D63",
+        "NX650.D66",
+        "NX650.D72",
+        "NX650.D74",
+        "NX650.E35",
+        "NX650.F33",
+        "NX650.F35",
+        "NX650.F355",
+        "NX650.F37",
+        "NX650.F453",
+        "NX650.F55",
+        "NX650.F62",
+        "NX650.F68",
+        "NX650.F69",
+        "NX650.G37",
+        "NX650.G38",
+        "NX650.G46",
+        "NX650.G48",
+        "NX650.G64",
+        "NX650.G68",
+        "NX650.G69",
+        "NX650.H34",
+        "NX650.H36",
+        "NX650.H37",
+        "NX650.H4",
+        "NX650.H42",
+        "NX650.H44",
+        "NX650.H5",
+        "NX650.H67",
+        "NX650.H72",
+        "NX650.H76",
+        "NX650.H78",
+        "NX650.H84",
+        "NX650.H85",
+        "NX650.I34",
+        "NX650.I57",
+        "NX650.I58",
+        "NX650.I585",
+        "NX650.I74",
+        "NX650.J87",
+        "NX650.K65",
+        "NX650.L32",
+        "NX650.L33",
+        "NX650.L38",
+        "NX650.L56",
+        "NX650.M26",
+        "NX650.M29",
+        "NX650.M296",
+        "NX650.M3",
+        "NX650.M34",
+        "NX650.M47",
+        "NX650.M49",
+        "NX650.M52",
+        "NX650.M53",
+        "NX650.M532",
+        "NX650.M536",
+        "NX650.M537",
+        "NX650.M6",
+        "NX650.M64",
+        "NX650.M66",
+        "NX650.M68",
+        "NX650.M88",
+        "NX650.N35",
+        "NX650.N36",
+        "NX650.N376",
+        "NX650.N49",
+        "NX650.N52",
+        "NX650.N53",
+        "NX650.N54",
+        "NX650.N64",
+        "NX650.N65",
+        "NX650.N83",
+        "NX650.O73",
+        "NX650.P32",
+        "NX650.P35",
+        "NX650.P37",
+        "NX650.P377",
+        "NX650.P4",
+        "NX650.P47",
+        "NX650.P49",
+        "NX650.P498",
+        "NX650.P53",
+        "NX650.P63",
+        "NX650.P64",
+        "NX650.P65",
+        "NX650.P7",
+        "NX650.R33",
+        "NX650.R36",
+        "NX650.R39",
+        "NX650.R45",
+        "NX650.R48",
+        "NX650.R63",
+        "NX650.R65",
+        "NX650.R83",
+        "NX650.S28",
+        "NX650.S3",
+        "NX650.S4",
+        "NX650.S43",
+        "NX650.S435",
+        "NX650.S45",
+        "NX650.S49",
+        "NX650.S5",
+        "NX650.S53",
+        "NX650.S55",
+        "NX650.S56",
+        "NX650.S58",
+        "NX650.S83",
+        "NX650.S87",
+        "NX650.S88",
+        "NX650.S94",
+        "NX650.T27",
+        "NX650.T32",
+        "NX650.T37",
+        "NX650.T45",
+        "NX650.T47",
+        "NX650.T48",
+        "NX650.T6",
+        "NX650.T73",
+        "NX650.T74",
+        "NX650.U5",
+        "NX650.U53",
+        "NX650.V45",
+        "NX650.V47",
+        "NX650.V54",
+        "NX650.V69",
+        "NX650.W38",
+        "NX650.W48",
+        "NX650.W56",
+        "NX650.W57",
+        "NX650.W67"
+      ],
+      "net_reduction": 164,
+      "existing_changes": 54,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "NX650.A",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX650.A323",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX650.A46",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX650.A58",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX650.A64",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX650.A66",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX650.A76",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX650.B634",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        }
+      ],
+      "subject": "Art Subjects"
+    },
+    {
+      "id": 986,
+      "start": "NX653.A",
+      "end": "NX653.Z",
+      "caption": "Special geographic areas and places as subjects, A-Z",
+      "selectors": [
+        "NX653.5",
+        "NX653.C47",
+        "NX653.C48",
+        "NX653.D48",
+        "NX653.I82",
+        "NX653.I83",
+        "NX653.P38",
+        "NX653.T7",
+        "NX653.Y67"
+      ],
+      "removable": [
+        "NX653.C47",
+        "NX653.C48",
+        "NX653.D48",
+        "NX653.I82",
+        "NX653.I83",
+        "NX653.P38",
+        "NX653.T7",
+        "NX653.Y67"
+      ],
+      "net_reduction": 7,
+      "existing_changes": 13,
+      "new_matches": 0,
+      "change_examples": [
+        {
+          "code": "NX653.A",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX653.A35",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX653.A73",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX653.A84",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX653.B74",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX653.F74",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX653.M43",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        },
+        {
+          "code": "NX653.M46",
+          "before": [
+            "matched",
+            "980"
+          ],
+          "after": [
+            "matched",
+            "986"
+          ]
+        }
+      ],
+      "subject": "Art Subjects"
+    }
+  ]
+}

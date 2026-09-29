@@ -1,0 +1,45 @@
+[package]
+name = "reader-ui"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = []
+audiobooks = ["dep:audiobook-player"]
+native-audio = ["audiobook-player/native-rodio"]
+kobo = ["mobile", "dep:gpui_kobo", "app/kobo", "audiobooks", "audiobook-player/kobo", "ui-components/kobo"]
+mobile = ["ui-components/mobile"]
+packaged-pdfium = ["pdf-reader-core/packaged-pdfium"]
+
+[dependencies]
+library-backend = { path = "../../client/library-backend" }
+content-address = { path = "../../shared/content-address" }
+app-preferences = { path = "../../client/preferences" }
+app = { path = "../../client/app", default-features = false }
+async-channel = "2"
+futures-util = "0.3"
+ui-components = { path = "../components" }
+audiobook-player = { path = "../audiobook-player", default-features = false, optional = true }
+gpui.workspace = true
+gpui-component.workspace = true
+gpui_kobo = { path = "../../../GPUI-Fork/crates/gpui_kobo", optional = true }
+html-view-core.workspace = true
+html-view-gpui = { path = "crates/html/crates/html-view-gpui" }
+html.workspace = true
+html-book = { path = "crates/html/crates/html-book" }
+library-model = { path = "../../client/library-model" }
+book-model = { path = "../../shared/book-model", default-features = false }
+log = "0.4"
+serde = { version = "1", features = ["derive"] }
+uuid = { version = "1", features = ["v4", "js"] }
+web-time = "1"
+smallvec = "1"
+sync-common = { path = "../../shared/sync-common" }
+pdf-reader-core = { path = "../../shared/pdf-reader-core" }
+pdf-view-gpui = { path = "crates/pdf/pdf-view" }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+futures-util = "0.3"
+
+[dev-dependencies]
+gpui = { workspace = true, features = ["test-support"] }

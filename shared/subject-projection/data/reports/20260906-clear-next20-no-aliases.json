@@ -1,0 +1,108 @@
+{
+  "changes": [
+    {
+      "id": 9827,
+      "before": "Patent Solicitors’ & Inventors’ Manuals",
+      "after": "Patent Practice Manuals"
+    },
+    {
+      "id": 8116,
+      "before": "Commercial buildings. Office buildings",
+      "after": "Commercial & Office Buildings"
+    },
+    {
+      "id": 371,
+      "before": "Control engineering systems. Automatic",
+      "after": "Automatic Control Systems"
+    },
+    {
+      "id": 6294,
+      "before": "Data processing. Computer-aided design",
+      "after": "Commercial Art CAD"
+    },
+    {
+      "id": 6598,
+      "before": "Computer applications. Data processing",
+      "after": "Computing in Medical Physics"
+    },
+    {
+      "id": 7859,
+      "before": "Computer applications. Data processing",
+      "after": "Computing in Anesthesiology"
+    },
+    {
+      "id": 9981,
+      "before": "Editing of manuscripts for publication",
+      "after": "Manuscript Editing"
+    },
+    {
+      "id": 2319,
+      "before": "Educational consultants and consulting",
+      "after": "Educational Consulting"
+    },
+    {
+      "id": 6887,
+      "before": "Endoscopic surgery. Surgical endoscopy",
+      "after": "Endoscopic Surgery"
+    },
+    {
+      "id": 6834,
+      "before": "Factories and mills. Industrial plants",
+      "after": "Industrial Buildings"
+    },
+    {
+      "id": 11202,
+      "before": "Ethics of social groups, classes, etc.",
+      "after": "Social Group Ethics"
+    },
+    {
+      "id": 10021,
+      "before": "Diseases due to radioactive substances",
+      "after": "Radiation-Induced Diseases"
+    },
+    {
+      "id": 10070,
+      "before": "Direct Chemical Electricity Generation",
+      "after": "Chemical Power Generation"
+    },
+    {
+      "id": 5800,
+      "before": "Doctrine, Creeds & Systematic Theology",
+      "after": "Systematic Theology"
+    },
+    {
+      "id": 5698,
+      "before": "Design, Theory & Professional Practice",
+      "after": "Architectural Theory & Practice"
+    },
+    {
+      "id": 5858,
+      "before": "Practice, Institutions & Religious Life",
+      "after": "Religious Practice & Institutions"
+    },
+    {
+      "id": 12272,
+      "before": "Business Organization & Administration",
+      "after": "Business Administration"
+    },
+    {
+      "id": 13682,
+      "before": "Special Subjects in American Literature",
+      "after": "U.S. Literary Topics"
+    },
+    {
+      "id": 2291,
+      "before": "Religion and education. Education under",
+      "after": "Religion & Education"
+    },
+    {
+      "id": 7435,
+      "before": "Special types of rockets and propulsion",
+      "after": "Rocket Types & Propulsion"
+    }
+  ],
+  "count": 20,
+  "over40_before": 5,
+  "over40_after": 5,
+  "aliases_added": 0
+}

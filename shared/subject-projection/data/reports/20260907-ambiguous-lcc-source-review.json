@@ -1,0 +1,144 @@
+{
+  "reviewed_at": "2026-09-07T12:21:44.401435+00:00",
+  "records": [
+    {
+      "edition": "OL27986979M",
+      "title": "Islam and Controversy",
+      "source_url": "https://openlibrary.org/books/OL27986979M.json",
+      "classifications": [
+        "BL65.C8BL60HM621-HM6",
+        "PN605.I8 M66 2014"
+      ],
+      "source_records": [
+        "amazon:1137466073",
+        "bwb:9781137466075",
+        "marc:marc_loc_2016/BooksAll.2016.part41.utf8:179167381:4006",
+        "marc:marc_columbia/Columbia-extract-20221130-023.mrc:32218195:4353",
+        "marc:marc_nuls/NULS_PHC_180925.mrc:27937475:4003",
+        "ia:islamcontroversy0000mond",
+        "marc:harvard_bibliographic_metadata/ab.bib.14.20150123.full.mrc:347466433:4407",
+        "marc:harvard_bibliographic_metadata/20220215_041.bib.mrc:6614931:6783"
+      ],
+      "cached_matches": {
+        "BL65.C8BL60HM621-HM6": [],
+        "PN605.I8 M66 2014": [
+          {
+            "uses": "1",
+            "concept_id": "13672",
+            "path": "Literature / Studies / Literary History / Literary Movements & Relations"
+          }
+        ]
+      },
+      "decision": "Use independently supplied complete classifications; retain damaged values unmatched."
+    },
+    {
+      "edition": "OL26018494M",
+      "title": "Reimagining The European Family Cultures Of Immigration",
+      "source_url": "https://openlibrary.org/books/OL26018494M.json",
+      "classifications": [
+        "BL65.C8BL60HM621-HM6",
+        "HQ626 .S48 2013"
+      ],
+      "source_records": [
+        "bwb:9781137371836",
+        "marc:marc_loc_2016/BooksAll.2016.part40.utf8:229097636:1463",
+        "marc:marc_nuls/NULS_PHC_180925.mrc:222311306:1717",
+        "ia:reimaginingeurop0000simp",
+        "marc:harvard_bibliographic_metadata/ab.bib.13.20150123.full.mrc:1047729898:1691",
+        "marc:harvard_bibliographic_metadata/20220215_032.bib.mrc:67859172:3398"
+      ],
+      "cached_matches": {
+        "BL65.C8BL60HM621-HM6": [],
+        "HQ626 .S48 2013": [
+          {
+            "uses": "1",
+            "concept_id": "52559",
+            "path": "Social Sciences / Family, Population & Migration / Family, Marriage & Life Stages / Family Studies by Country"
+          }
+        ]
+      },
+      "decision": "Use independently supplied complete classifications; retain damaged values unmatched."
+    },
+    {
+      "edition": "OL26116404M",
+      "title": "Advertising Commercial Spaces And The Urban",
+      "source_url": "https://openlibrary.org/books/OL26116404M.json",
+      "classifications": [
+        "BL65.C8BL60HM621-HM6",
+        "HF5821 .C757 2010"
+      ],
+      "source_records": [
+        "bwb:9780230216808",
+        "marc:marc_loc_2016/BooksAll.2016.part37.utf8:163527032:1244",
+        "ia:advertisingcomme0000cron",
+        "promise:bwb_daily_pallets_2022-05-23",
+        "marc:harvard_bibliographic_metadata/ab.bib.12.20150123.full.mrc:521166515:1417",
+        "promise:bwb_daily_pallets_2022-11-30",
+        "marc:harvard_bibliographic_metadata/20220215_003.bib.mrc:53088222:3516"
+      ],
+      "cached_matches": {
+        "BL65.C8BL60HM621-HM6": [],
+        "HF5821 .C757 2010": [
+          {
+            "uses": "1",
+            "concept_id": "5189",
+            "path": "Social Sciences / Economics & Business / Commerce / Business / Marketing"
+          },
+          {
+            "uses": "1",
+            "concept_id": "5189",
+            "path": "Social Sciences / Economics & Business / Marketing & Sales / Marketing"
+          }
+        ]
+      },
+      "decision": "Use independently supplied complete classifications; retain damaged values unmatched."
+    },
+    {
+      "edition": "OL28214894M",
+      "title": "Social Cultural Engineering and the Singaporean State",
+      "source_url": "https://openlibrary.org/books/OL28214894M.json",
+      "classifications": [
+        "BL65.C8BL60GN301-GN6"
+      ],
+      "source_records": [
+        "amazon:9811069700",
+        "bwb:9789811069703"
+      ],
+      "cached_matches": {
+        "BL65.C8BL60GN301-GN6": []
+      },
+      "decision": "No complete classification on this exact edition; leave unmatched."
+    }
+  ],
+  "alternate_editions": [
+    {
+      "edition": "/books/OL28215909M",
+      "classifications": [
+        "H1-970.9"
+      ]
+    },
+    {
+      "edition": "/books/OL28214894M",
+      "classifications": [
+        "BL65.C8BL60GN301-GN6"
+      ]
+    }
+  ],
+  "limitations": [
+    "Original local source snapshot referenced by the aggregate cache is no longer present. These are current Open Library record checks, not a complete July 2026 edition-level audit."
+  ],
+  "mutations": "No source records, selectors or taxonomy assignments changed.",
+  "build_verification": {
+    "result": "Optimized release library build passed after removal of the duplicate navigation link.",
+    "migration": "20260907_remove_duplicate_mis_navigation_link.sql",
+    "log": "/tmp/lcc-source-review/build-recheck.log",
+    "duplicate_sibling_paths": 0
+  },
+  "source_snapshot_recovered": {
+    "host": "192.168.1.68",
+    "path": "/home/johan/data/openlibrary/current.sqlite",
+    "followup_report": "20260907-edition-lcc-coverage-audit.md",
+    "original_damaged_code_editions": 15,
+    "with_matching_alternative": 12
+  }
+}

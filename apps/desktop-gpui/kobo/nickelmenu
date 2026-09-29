@@ -1,0 +1,4 @@
+menu_item :main :Bokheim Kobo :cmd_spawn :quiet:/bin/sh /mnt/onboard/.adds/bokheim/run-monitored.sh
+menu_item :main :Bokheim Audio Probe :cmd_spawn :quiet:/bin/sh /mnt/onboard/.adds/bokheim/probe-kobo-audio.sh
+menu_item :main :Start Nickel Resource Monitor :cmd_spawn :quiet:/bin/sh /mnt/onboard/.adds/bokheim/monitor-nickel.sh start
+menu_item :main :Stop Nickel Resource Monitor :cmd_spawn :quiet:/bin/sh /mnt/onboard/.adds/bokheim/monitor-nickel.sh stop

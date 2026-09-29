@@ -1,0 +1,252 @@
+{
+  "full_observed_probes": 11977153,
+  "changed_observed_strings": 84267,
+  "coverage_losses": 0,
+  "boundary_probes": 41105,
+  "boundary_changes": 120,
+  "boundary_losses": 0,
+  "nonmerge_destination_groups": [
+    {
+      "system": "ddc",
+      "before": "7622",
+      "after": "4510",
+      "uses": 2287,
+      "example": "190"
+    },
+    {
+      "system": "lcc",
+      "before": "12668",
+      "after": "5434",
+      "uses": 1020,
+      "example": "RC552.T7"
+    },
+    {
+      "system": "ddc",
+      "before": "9891",
+      "after": "4509",
+      "uses": 920,
+      "example": "189"
+    },
+    {
+      "system": "lcc",
+      "before": "12668",
+      "after": "5436",
+      "uses": 340,
+      "example": "RC552.S62"
+    },
+    {
+      "system": "lcc",
+      "before": "11111",
+      "after": "54946",
+      "uses": 69,
+      "example": "B'4165'P473'R53'1989"
+    },
+    {
+      "system": "lcc",
+      "before": "11102",
+      "after": "54945",
+      "uses": 21,
+      "example": "B3399"
+    },
+    {
+      "system": "lcc",
+      "before": "5032|8372",
+      "after": "5030|8372",
+      "uses": 14,
+      "example": "TA1750-1750.22QC173."
+    },
+    {
+      "system": "lcc",
+      "before": "2707",
+      "after": "2837",
+      "uses": 6,
+      "example": "RC552*"
+    },
+    {
+      "system": "lcc",
+      "before": "4789|4797|5048",
+      "after": "4848|4863",
+      "uses": 6,
+      "example": "QK1-989QL1-991QH573-"
+    },
+    {
+      "system": "lcc",
+      "before": "4789|5048",
+      "after": "4863",
+      "uses": 5,
+      "example": "QL1-991GE1-350QH540-"
+    },
+    {
+      "system": "lcc",
+      "before": "2|4789|4797",
+      "after": "2|4848",
+      "uses": 4,
+      "example": "S1-S972QK1-989QH573-"
+    },
+    {
+      "system": "lcc",
+      "before": "4789|5013|5048",
+      "after": "4863|5013",
+      "uses": 4,
+      "example": "QH75-77QL1-991QH540-"
+    },
+    {
+      "system": "lcc",
+      "before": "4779|4789|4797",
+      "after": "4779|4848",
+      "uses": 4,
+      "example": "QK1-989QR1-502QH540-"
+    },
+    {
+      "system": "lcc",
+      "before": "3778|4487",
+      "after": "3778|4487|11215",
+      "uses": 2,
+      "example": "B108-5802P1-1091BH1-"
+    },
+    {
+      "system": "lcc",
+      "before": "4507",
+      "after": "54944",
+      "uses": 2,
+      "example": "BH83 .E95"
+    },
+    {
+      "system": "lcc",
+      "before": "4789|4797",
+      "after": "4848",
+      "uses": 2,
+      "example": "GE1-350QK1-989QH540-"
+    },
+    {
+      "system": "lcc",
+      "before": "5032|6096",
+      "after": "6096",
+      "uses": 2,
+      "example": "QC611.9-611.98QC173."
+    },
+    {
+      "system": "lcc",
+      "before": "2|4789|5048",
+      "after": "2|4863",
+      "uses": 2,
+      "example": "QL1-991S1-S972QH540-"
+    },
+    {
+      "system": "lcc",
+      "before": "4789|5050|13839",
+      "after": "4865|13839",
+      "uses": 2,
+      "example": "QL750-795HM545QH540-"
+    },
+    {
+      "system": "lcc",
+      "before": "4487|5532",
+      "after": "4487|5532|11215",
+      "uses": 1,
+      "example": "B1-5802BD300-450BH1-"
+    },
+    {
+      "system": "lcc",
+      "before": "4619",
+      "after": "4569",
+      "uses": 1,
+      "example": "BV2813*"
+    },
+    {
+      "system": "lcc",
+      "before": "4789|4912|5048",
+      "after": "4863|4912",
+      "uses": 1,
+      "example": "QL1-991QM1-695QH573-"
+    }
+  ],
+  "baseline_tests": "test result: FAILED. 249 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.93s",
+  "final_tests": "test result: FAILED. 249 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.97s",
+  "unchanged_test_failures": [
+    "runtime::tests::decorative_arts_lcc_detail_routes_to_existing_concepts",
+    "taxonomy_sqlite::tests::server_slice_is_persisted_as_an_ancestor_closed_local_overlay",
+    "tests::declared_damaged_lcc_reaches_unified_projection_with_original_position",
+    "tests::frequent_russian_geographic_codes_resolve_to_specific_regions"
+  ],
+  "new_scope_regressions": "6 passed, 0 failed",
+  "before_after_depths": {
+    "before": {
+      "Science & Nature": {
+        "nodes": 1105,
+        "max_levels": 6,
+        "routes_8_plus": 0
+      },
+      "Health & Medicine": {
+        "nodes": 1129,
+        "max_levels": 8,
+        "routes_8_plus": 13
+      },
+      "Philosophy": {
+        "nodes": 491,
+        "max_levels": 8,
+        "routes_8_plus": 35
+      },
+      "Literature": {
+        "nodes": 1491,
+        "max_levels": 7,
+        "routes_8_plus": 0
+      },
+      "Religion": {
+        "nodes": 455,
+        "max_levels": 7,
+        "routes_8_plus": 0
+      },
+      "Applied Sciences & Technology": {
+        "nodes": 1627,
+        "max_levels": 7,
+        "routes_8_plus": 0
+      },
+      "History": {
+        "nodes": 3497,
+        "max_levels": 10,
+        "routes_8_plus": 635
+      }
+    },
+    "after": {
+      "Science & Nature": {
+        "nodes": 1079,
+        "max_levels": 6,
+        "routes_8_plus": 0
+      },
+      "Health & Medicine": {
+        "nodes": 1118,
+        "max_levels": 7,
+        "routes_8_plus": 0
+      },
+      "Philosophy": {
+        "nodes": 491,
+        "max_levels": 7,
+        "routes_8_plus": 0
+      },
+      "Literature": {
+        "nodes": 1488,
+        "max_levels": 7,
+        "routes_8_plus": 0
+      },
+      "Religion": {
+        "nodes": 440,
+        "max_levels": 7,
+        "routes_8_plus": 0
+      },
+      "Applied Sciences & Technology": {
+        "nodes": 1621,
+        "max_levels": 7,
+        "routes_8_plus": 0
+      },
+      "History": {
+        "nodes": 3496,
+        "max_levels": 9,
+        "routes_8_plus": 625
+      }
+    }
+  },
+  "database_sha256": "e6cd33a418c099d05ce4e501bc5e7f96f17a391f20dd680495e250075b46e883",
+  "usage_rows": 14083,
+  "source_cache": "openlibrary-code-usage.sqlite3; scheme 1 DDC, scheme 2 LCC"
+}

@@ -1,0 +1,1 @@
+SELECT name, physical_name FROM asset_file WHERE name>=?1 AND name<?2 AND name>?3 AND physical_name IS NOT NULL ORDER BY name LIMIT 32

@@ -1,0 +1,116 @@
+{
+  "merges": {
+    "10844": {
+      "into": 10936,
+      "old_label": "Classical Greek Philosophy Topics",
+      "surviving_label": "Classical Greek Philosophy"
+    },
+    "12855": {
+      "into": 11473,
+      "old_label": "Christology Studies",
+      "surviving_label": "Christology"
+    },
+    "6093": {
+      "into": 6073,
+      "old_label": "Electricity Topics",
+      "surviving_label": "Electricity"
+    },
+    "7463": {
+      "into": 5033,
+      "old_label": "Experimental Mechanics Topics",
+      "surviving_label": "Experimental & Descriptive Mechanics"
+    },
+    "9759": {
+      "into": 5041,
+      "old_label": "Radiation Physics Topics",
+      "surviving_label": "Radiation Physics"
+    },
+    "10017": {
+      "into": 5031,
+      "old_label": "Acoustics Topics",
+      "surviving_label": "Acoustics"
+    },
+    "9092": {
+      "into": 5036,
+      "old_label": "Geophysics Topics",
+      "surviving_label": "Geophysics"
+    },
+    "9951": {
+      "into": 4905,
+      "old_label": "Structural Geology Topics",
+      "surviving_label": "Dynamic & structural geology"
+    },
+    "7044": {
+      "into": 4908,
+      "old_label": "Paleontology Topics",
+      "surviving_label": "Paleontology"
+    },
+    "7977": {
+      "into": 4807,
+      "old_label": "Organic Chemistry Topics",
+      "surviving_label": "Organic chemistry"
+    },
+    "8404": {
+      "into": 4808,
+      "old_label": "Physical Chemistry Topics",
+      "surviving_label": "Physical & Theoretical Chem."
+    },
+    "8170": {
+      "into": 4804,
+      "old_label": "Analytical Chemistry Topics",
+      "surviving_label": "Analytical chemistry"
+    },
+    "8994": {
+      "into": 4862,
+      "old_label": "Virology Topics",
+      "surviving_label": "Virology"
+    },
+    "10039": {
+      "into": 4978,
+      "old_label": "Immunology Topics",
+      "surviving_label": "Immunology"
+    },
+    "9199": {
+      "into": 4793,
+      "old_label": "Evolution Topics",
+      "surviving_label": "Evolution"
+    },
+    "9664": {
+      "into": 4793,
+      "old_label": "Miscellany & curiosa",
+      "surviving_label": "Evolution"
+    },
+    "8025": {
+      "into": 4939,
+      "old_label": "Geometry Topics",
+      "surviving_label": "Geometry"
+    },
+    "9754": {
+      "into": 4934,
+      "old_label": "Arithmetic Topics",
+      "surviving_label": "Basic Math"
+    },
+    "9908": {
+      "into": 4923,
+      "old_label": "Analytical Mechanics Topics",
+      "surviving_label": "Analytic mechanics"
+    },
+    "7045": {
+      "into": 4970,
+      "old_label": "General tables",
+      "surviving_label": "Tables"
+    },
+    "13574": {
+      "into": 873,
+      "old_label": "Film Topics",
+      "surviving_label": "Film"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply all 20 approved granular-leaf groups, merging 21 generic subjects into their parents and promoting the two Classical Greek Philosophy Topics children intact.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

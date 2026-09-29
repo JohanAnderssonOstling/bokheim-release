@@ -1,0 +1,49 @@
+name: Shared release tests (own runner)
+
+# Never execute untrusted pull requests automatically on the private runner.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  statuses: write
+
+concurrency:
+  group: shared-tests-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  shared-tests:
+    runs-on: [self-hosted, linux, x64, bokheim-shared]
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: bokheim
+    env:
+      RUSTUP_TOOLCHAIN: '1.95.0'
+      RUSTC_BOOTSTRAP: '1'
+      CARGO_TERM_COLOR: always
+      GH_TOKEN: ${{ github.token }}
+      REPORT_REPOSITORY: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: bokheim
+      # Match the pinned sibling sources used by desktop-release.yml.
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/GPUI-Fork
+          ref: cb2f5b981889d421153d5804526929e32c0788fd
+          path: GPUI-Fork
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/HtmlEngine
+          ref: 91766fb2db8d56b38dc0336ddf74972da9872520
+          path: HtmlEngine
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/HtmlViewCore
+          ref: 0d407738fd6ecfd6d6ea84f1a9ce0a488e3dfaf7
+          path: HtmlViewCore
+      - name: Run shared suite and report this commit
+        run: python3 scripts/ci/shared-tests.py --report "$REPORT_REPOSITORY"

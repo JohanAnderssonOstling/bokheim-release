@@ -1,0 +1,84 @@
+{
+  "merges": {
+    "51631": {
+      "into": 11531,
+      "old_label": "Dutch in the 19th Century",
+      "surviving_label": "19th Century–Present"
+    },
+    "51632": {
+      "into": 11531,
+      "old_label": "Wilhelmina, 1890–1948",
+      "surviving_label": "19th Century–Present"
+    },
+    "51633": {
+      "into": 11531,
+      "old_label": "Juliana, 1948–1980",
+      "surviving_label": "19th Century–Present"
+    },
+    "51634": {
+      "into": 11531,
+      "old_label": "Beatrix, 1980–2013",
+      "surviving_label": "19th Century–Present"
+    },
+    "51635": {
+      "into": 11531,
+      "old_label": "Willem-Alexander, 2013–Present",
+      "surviving_label": "19th Century–Present"
+    },
+    "10191": {
+      "into": 3585,
+      "old_label": "House of Burgundy, 1095–1383",
+      "surviving_label": "Medieval Era, 1095–1580"
+    },
+    "10194": {
+      "into": 3585,
+      "old_label": "House of Aviz, 1385–1580",
+      "surviving_label": "Medieval Era, 1095–1580"
+    },
+    "52321": {
+      "into": 51546,
+      "old_label": "Greece, 1830–1913",
+      "surviving_label": "Greece, 1821–1913"
+    },
+    "51448": {
+      "into": 10115,
+      "old_label": "Edward VII, 1901–1910",
+      "surviving_label": "20th century"
+    },
+    "51449": {
+      "into": 10115,
+      "old_label": "George V, 1910–1936",
+      "surviving_label": "20th century"
+    },
+    "51450": {
+      "into": 10115,
+      "old_label": "George VI, 1937–1952",
+      "surviving_label": "20th century"
+    },
+    "51451": {
+      "into": 10115,
+      "old_label": "Elizabeth II, 1952–2022",
+      "surviving_label": "20th century"
+    }
+  },
+  "renamed": {
+    "10115": {
+      "before": "20th century",
+      "after": "20th Century–Present"
+    }
+  },
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "retained": {
+    "10160": "War of Independence remains distinct under 1821–1913",
+    "10189": "Spanish Civil War retained",
+    "10220": "Franco Era retained",
+    "10205": "Democratic Era retained",
+    "3573": "Kingdom & Republic already a leaf; no finer Roman periods present",
+    "3572": "Roman Empire already a leaf; no individual rulers present"
+  },
+  "validation": "Deferred at user request until the batch is declared finished.",
+  "usage_refresh": "Deferred with classification validation."
+}

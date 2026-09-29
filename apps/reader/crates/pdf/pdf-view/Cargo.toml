@@ -1,0 +1,21 @@
+[package]
+name = "pdf-view-gpui"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+ui-components = { path = "../../../../components" }
+gpui.workspace = true
+gpui-component.workspace = true
+image = { version = "0.25", default-features = false }
+log = "0.4"
+pdf-reader-core = { path = "../../../../../shared/pdf-reader-core" }
+smallvec = "1"
+web-time = "1"
+
+[dev-dependencies]
+gpui = { workspace = true, features = ["test-support"] }
+gpui_platform = { workspace = true, features = ["test-support"] }
+gpui_wgpu = { path = "../../../../../../GPUI-Fork/crates/gpui_wgpu", features = ["font-kit", "test-support"] }
+lopdf = { version = "0.44", default-features = false }

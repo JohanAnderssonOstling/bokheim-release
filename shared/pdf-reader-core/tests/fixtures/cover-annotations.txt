@@ -1,0 +1,1 @@
+Synthetic regression fixture created with pikepdf: a blank 200x300 page, a red 1x1 stored /Thumb, and a full-page green Square annotation appearance. Cover rendering must return a white 100x150 image. No book content is included.

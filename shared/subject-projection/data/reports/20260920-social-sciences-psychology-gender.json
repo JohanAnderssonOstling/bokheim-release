@@ -1,0 +1,74 @@
+{
+  "merges": {
+    "5432": {
+      "into": 5385,
+      "old_label": "Psychological Testing",
+      "surviving_label": "Assessment, Testing & Measurement"
+    },
+    "7076": {
+      "into": 5401,
+      "old_label": "Psychological Experiments",
+      "surviving_label": "Experimental"
+    },
+    "11005": {
+      "into": 10808,
+      "old_label": "Literature",
+      "surviving_label": "Writing & Communication"
+    },
+    "11007": {
+      "into": 5381,
+      "old_label": "Psychology, 1851–",
+      "surviving_label": "Psychology"
+    }
+  },
+  "renamed": {
+    "5401": {
+      "before": "Experimental",
+      "after": "Experimental Psychology"
+    },
+    "52935": {
+      "before": "Scientific Family Research",
+      "after": "Family Research"
+    }
+  },
+  "moved": [
+    {
+      "id": 5501,
+      "before": [
+        5661
+      ],
+      "after": [
+        5661,
+        54939
+      ]
+    }
+  ],
+  "flattened": [
+    {
+      "id": 11802,
+      "parent": 5252,
+      "children": [
+        52935,
+        52936
+      ]
+    }
+  ],
+  "created": {},
+  "selector_repairs": [
+    {
+      "system": "bisac",
+      "selector": "SOC018000",
+      "from": 5501,
+      "to": 5248,
+      "reason": "BISAC Men's Studies; SOC032000 remains Gender Studies."
+    }
+  ],
+  "source_notes": [
+    "BF176 is psychological testing; its digital testing and behavioral assessment children promoted to Assessment, Testing & Measurement. Psychometrics remains separate.",
+    "BF198.7 is Psychological experiments within Experimental psychology; merged into parent.",
+    "BF76.8 is Psychological literature within Communication in psychology, absorbed into Writing & Communication.",
+    "BF121–BF149.5 is general psychological works published from 1851 onward, not a historical era subject. Merged into Psychology.",
+    "Gender Studies retains SOC032000 and now appears in Gender & Sexuality as well as sociology Identity & Community."
+  ],
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

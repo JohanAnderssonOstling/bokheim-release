@@ -1,0 +1,16 @@
+[package]
+name = "ui-components"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = []
+kobo = ["mobile"]
+mobile = []
+
+[dependencies]
+app-preferences = { path = "../../client/preferences" }
+gpui.workspace = true
+gpui-component.workspace = true
+gpui-component-assets.workspace = true
+unicode-normalization.workspace = true

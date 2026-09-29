@@ -1,0 +1,12 @@
+{
+  "changes": [
+    {
+      "id": 7258,
+      "before": "Anon. English Works, 1770/1800–1890/1900",
+      "after": "Anon. English Works, 1770–1900"
+    }
+  ],
+  "count": 1,
+  "over40_before": 3,
+  "over40_after": 3
+}

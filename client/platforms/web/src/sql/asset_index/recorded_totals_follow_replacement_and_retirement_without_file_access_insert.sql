@@ -1,0 +1,1 @@
+INSERT INTO asset_file VALUES('assets/a/book/one','absent',3),('assets/a/book/two','absent2',5),('assets/a/thumbnail/one','cover',90),('assets/other/book/one','other',100);

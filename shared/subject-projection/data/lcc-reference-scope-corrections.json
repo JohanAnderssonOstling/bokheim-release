@@ -1,0 +1,3282 @@
+{
+  "description": "Reviewed reference endpoint corrections verified against pinned printed schedules; original reference rows remain unchanged.",
+  "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+  "source_sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+  "corrections": [
+    {
+      "record_id": 6899,
+      "start_number": "GB1016",
+      "end_number": "GV1016.6",
+      "corrected_end_number": "GB1016.6",
+      "control_number": "CF 00441545",
+      "caption": "East. Atlantic coast",
+      "document_id": 9,
+      "pages": [
+        290
+      ]
+    },
+    {
+      "record_id": 6906,
+      "start_number": "GB1019",
+      "end_number": "GV1023",
+      "corrected_end_number": "GB1023",
+      "control_number": "CF 00441552",
+      "caption": "West",
+      "document_id": 9,
+      "pages": [
+        290
+      ]
+    },
+    {
+      "record_id": 6967,
+      "start_number": "GB1216",
+      "end_number": "GV1216.6",
+      "corrected_end_number": "GB1216.6",
+      "control_number": "CF 00441617",
+      "caption": "East. Atlantic coast",
+      "document_id": 9,
+      "pages": [
+        292
+      ]
+    },
+    {
+      "record_id": 6976,
+      "start_number": "GB1219",
+      "end_number": "GV1223",
+      "corrected_end_number": "GB1223",
+      "control_number": "CF 00441626",
+      "caption": "West",
+      "document_id": 9,
+      "pages": [
+        293
+      ]
+    },
+    {
+      "record_id": 7035,
+      "start_number": "GB1416",
+      "end_number": "GV1416.5",
+      "corrected_end_number": "GB1416.5",
+      "control_number": "CF 00441686",
+      "caption": "East. Atlantic coast",
+      "document_id": 9,
+      "pages": [
+        294
+      ]
+    },
+    {
+      "record_id": 7040,
+      "start_number": "GB1419",
+      "end_number": "GV1423",
+      "corrected_end_number": "GB1423",
+      "control_number": "CF 00441693",
+      "caption": "West",
+      "document_id": 9,
+      "pages": [
+        294,
+        295
+      ]
+    },
+    {
+      "record_id": 7138,
+      "start_number": "GB1616",
+      "end_number": "GV1616.5",
+      "corrected_end_number": "GB1616.5",
+      "control_number": "CF 00441792",
+      "caption": "East. Atlantic coast",
+      "document_id": 9,
+      "pages": [
+        296
+      ]
+    },
+    {
+      "record_id": 7144,
+      "start_number": "GB1619",
+      "end_number": "GV1623",
+      "corrected_end_number": "GB1623",
+      "control_number": "CF 00441798",
+      "caption": "West",
+      "document_id": 9,
+      "pages": [
+        296
+      ]
+    },
+    {
+      "record_id": 7207,
+      "start_number": "GB1816",
+      "end_number": "GV1816.5",
+      "corrected_end_number": "GB1816.5",
+      "control_number": "CF 00441862",
+      "caption": "East. Atlantic coast",
+      "document_id": 9,
+      "pages": [
+        298
+      ]
+    },
+    {
+      "record_id": 7214,
+      "start_number": "GB1819",
+      "end_number": "GV1823",
+      "corrected_end_number": "GB1823",
+      "control_number": "CF 00441869",
+      "caption": "West",
+      "document_id": 9,
+      "pages": [
+        298
+      ]
+    },
+    {
+      "record_id": 7287,
+      "start_number": "GB2216",
+      "end_number": "GV2216.5",
+      "corrected_end_number": "GB2216.5",
+      "control_number": "CF 00441942",
+      "caption": "East. Atlantic coast",
+      "document_id": 9,
+      "pages": [
+        299
+      ]
+    },
+    {
+      "record_id": 7294,
+      "start_number": "GB2219",
+      "end_number": "GV2223",
+      "corrected_end_number": "GB2223",
+      "control_number": "CF 00441949",
+      "caption": "West",
+      "document_id": 9,
+      "pages": [
+        299
+      ]
+    },
+    {
+      "record_id": 7417,
+      "start_number": "GB2416",
+      "end_number": "GV2416.5",
+      "corrected_end_number": "GB2416.5",
+      "control_number": "CF 00442072",
+      "caption": "East. Atlantic coast",
+      "document_id": 9,
+      "pages": [
+        301
+      ]
+    },
+    {
+      "record_id": 7427,
+      "start_number": "GB2419",
+      "end_number": "GV2423",
+      "corrected_end_number": "GB2423",
+      "control_number": "CF 00442082",
+      "caption": "West",
+      "document_id": 9,
+      "pages": [
+        301
+      ]
+    },
+    {
+      "record_id": 7493,
+      "start_number": "GB2616",
+      "end_number": "GV2616.5",
+      "corrected_end_number": "GB2616.5",
+      "control_number": "CF 00442148",
+      "caption": "East. Atlantic coast",
+      "document_id": 9,
+      "pages": [
+        302
+      ]
+    },
+    {
+      "record_id": 7500,
+      "start_number": "GB2619",
+      "end_number": "GV2623",
+      "corrected_end_number": "GB2623",
+      "control_number": "CF 00442155",
+      "caption": "West",
+      "document_id": 9,
+      "pages": [
+        302
+      ]
+    },
+    {
+      "record_id": 7561,
+      "start_number": "GB2816",
+      "end_number": "GV2816.5",
+      "corrected_end_number": "GB2816.5",
+      "control_number": "CF 00442216",
+      "caption": "East. Atlantic coast",
+      "document_id": 9,
+      "pages": [
+        303
+      ]
+    },
+    {
+      "record_id": 7568,
+      "start_number": "GB2819",
+      "end_number": "GV2823",
+      "corrected_end_number": "GB2823",
+      "control_number": "CF 00442223",
+      "caption": "West",
+      "document_id": 9,
+      "pages": [
+        303,
+        304
+      ]
+    },
+    {
+      "record_id": 633779,
+      "start_number": "B4165.M49",
+      "end_number": "M494",
+      "corrected_end_number": "B4165.M494",
+      "control_number": "PF 09011280",
+      "caption": "Meyer, Michel, 1950-",
+      "document_id": 2,
+      "pages": [
+        119
+      ],
+      "printed_notation": "4165.M49-.M494",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f"
+    },
+    {
+      "record_id": 644871,
+      "start_number": "B4691.D36",
+      "end_number": "D364",
+      "corrected_end_number": "B4691.D364",
+      "control_number": "PF 15026901",
+      "caption": "Da\u0328mbska, Izydora",
+      "document_id": 2,
+      "pages": [
+        128
+      ],
+      "printed_notation": "4691.D36-.D364",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f"
+    },
+    {
+      "record_id": 164121,
+      "start_number": "B605.P5",
+      "end_number": "B605.P44",
+      "corrected_end_number": "B605.P54",
+      "control_number": "CF 94110217",
+      "caption": "Polystratus",
+      "document_id": 2,
+      "pages": [
+        27
+      ],
+      "printed_notation": "605.P5-.P54",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f"
+    },
+    {
+      "record_id": 348885,
+      "start_number": "B945.R45",
+      "end_number": "B945.P454",
+      "corrected_end_number": "B945.R454",
+      "control_number": "CF 95327977",
+      "caption": "Rescher, Nicholas",
+      "document_id": 2,
+      "pages": [
+        52
+      ],
+      "printed_notation": "945.R45-.R454",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f"
+    },
+    {
+      "record_id": 166205,
+      "start_number": "BF697.5.A",
+      "end_number": "BF697.Z",
+      "corrected_end_number": "BF697.5.Z",
+      "control_number": "CF 94112323",
+      "caption": "Special aspects, A-Z",
+      "document_id": 2,
+      "pages": [
+        169
+      ],
+      "printed_notation": "697.5.A-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f"
+    },
+    {
+      "record_id": 303626,
+      "start_number": "BL1225.R345",
+      "end_number": "BL1225.B3454",
+      "corrected_end_number": "BL1225.R3454",
+      "control_number": "CF 95280482",
+      "caption": "Ran\u0307gana\u0304tha",
+      "document_id": 3,
+      "pages": [
+        48
+      ],
+      "printed_notation": "1225.R345-.R3454",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BL-BQ2025TEXT.pdf",
+      "source_sha256": "066a89198f2e1f66ffe25b4f802c8fe2d9dbfbc1d73245a8519e4ec42392ad46"
+    },
+    {
+      "record_id": 251052,
+      "start_number": "BM520.88.A3",
+      "end_number": "BM520.A39",
+      "corrected_end_number": "BM520.88.A39",
+      "control_number": "CF 95223261",
+      "caption": "Original selections. By date",
+      "document_id": 3,
+      "pages": [
+        135
+      ],
+      "printed_notation": "520.88.A3-.A39",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BL-BQ2025TEXT.pdf",
+      "source_sha256": "066a89198f2e1f66ffe25b4f802c8fe2d9dbfbc1d73245a8519e4ec42392ad46"
+    },
+    {
+      "record_id": 251053,
+      "start_number": "BM520.88.A4",
+      "end_number": "BM520.A49",
+      "corrected_end_number": "BM520.88.A49",
+      "control_number": "CF 95223262",
+      "caption": "Translations. By language, alphabetically",
+      "document_id": 3,
+      "pages": [
+        135
+      ],
+      "printed_notation": "520.88.A4-.A49",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BL-BQ2025TEXT.pdf",
+      "source_sha256": "066a89198f2e1f66ffe25b4f802c8fe2d9dbfbc1d73245a8519e4ec42392ad46"
+    },
+    {
+      "record_id": 637668,
+      "start_number": "BR65.R87",
+      "end_number": "R876",
+      "corrected_end_number": "BR65.R876",
+      "control_number": "PF 11016818",
+      "caption": "Ruricius I, Bishop of Limoges, d. ca. 507",
+      "document_id": 4,
+      "pages": [
+        6
+      ],
+      "printed_notation": "65.R87-.R876",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BR-BX2025TEXT.pdf",
+      "source_sha256": "b8f6169da2614373712672b6a479f6f81856833618c3de721e709dbc9c30898a"
+    },
+    {
+      "record_id": 633847,
+      "start_number": "BS2095.B37",
+      "end_number": "B372",
+      "corrected_end_number": "BS2095.B372",
+      "control_number": "PF 09011367",
+      "caption": "Barnstone",
+      "document_id": 4,
+      "pages": [
+        117
+      ],
+      "printed_notation": "2095.B37-B372",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BR-BX2025TEXT.pdf",
+      "source_sha256": "b8f6169da2614373712672b6a479f6f81856833618c3de721e709dbc9c30898a"
+    },
+    {
+      "record_id": 644491,
+      "start_number": "DK4600.P62",
+      "end_number": "P6289",
+      "corrected_end_number": "DK4600.P6289",
+      "control_number": "PF 15026380",
+      "caption": "Podkarpackie, Wojewo\u0301dztwo",
+      "document_id": 6,
+      "pages": [
+        470
+      ],
+      "printed_notation": "4600.P62-P6289",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "source_sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6"
+    },
+    {
+      "record_id": 286788,
+      "start_number": "DS632.3.A2",
+      "end_number": "DS632.Z",
+      "corrected_end_number": "DS632.3.Z",
+      "control_number": "CF 95261973",
+      "caption": "Individual elements, A-Z",
+      "document_id": 7,
+      "pages": [
+        125
+      ],
+      "printed_notation": "632.3.A2-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "source_sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147"
+    },
+    {
+      "record_id": 286876,
+      "start_number": "DS646.32.A2",
+      "end_number": "DS646.Z",
+      "corrected_end_number": "DS646.32.Z",
+      "control_number": "CF 95262065",
+      "caption": "Individual elements in the population, A-Z",
+      "document_id": 7,
+      "pages": [
+        128
+      ],
+      "printed_notation": "646.32.A2-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "source_sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147"
+    },
+    {
+      "record_id": 288543,
+      "start_number": "DS916.5.A3",
+      "end_number": "DS916.Z",
+      "corrected_end_number": "DS916.5.Z",
+      "control_number": "CF 95263819",
+      "caption": "Individual, A-Z",
+      "document_id": 7,
+      "pages": [
+        177
+      ],
+      "printed_notation": "916.5.A3-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "source_sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147"
+    },
+    {
+      "record_id": 80420,
+      "start_number": "F1776.3.A",
+      "end_number": "F1776.Z",
+      "corrected_end_number": "F1776.3.Z",
+      "control_number": "CF 94013507",
+      "caption": "Relations with individual countries, A-Z",
+      "document_id": 8,
+      "pages": [
+        458
+      ],
+      "printed_notation": "1776.3.A-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_E-F2025TEXT.pdf",
+      "source_sha256": "d826d127f49fc430fb72a2bcbd411c461d6e31a19a4ea9e47c28a2a63cb8b483"
+    },
+    {
+      "record_id": 133693,
+      "start_number": "N7067.5.A",
+      "end_number": "N7067.Z",
+      "corrected_end_number": "N7067.5.Z",
+      "control_number": "CF 94078513",
+      "caption": "Special aspects or movements, A-Z",
+      "document_id": 30,
+      "pages": [
+        103
+      ],
+      "printed_notation": "7067.5.A-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30"
+    },
+    {
+      "record_id": 150565,
+      "start_number": "NA279.A",
+      "end_number": "N279.Z",
+      "corrected_end_number": "NA279.Z",
+      "control_number": "CF 94096045",
+      "caption": "Special divisions, islands, etc., A-Z",
+      "document_id": 30,
+      "pages": [
+        148
+      ],
+      "printed_notation": "279.A-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30"
+    },
+    {
+      "record_id": 150675,
+      "start_number": "NA340.A",
+      "end_number": "N340.Z",
+      "corrected_end_number": "NA340.Z",
+      "control_number": "CF 94096162",
+      "caption": "Special architects, A-Z",
+      "document_id": 30,
+      "pages": [
+        150
+      ],
+      "printed_notation": "340.A-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30"
+    },
+    {
+      "record_id": 217968,
+      "start_number": "NK4894.3.A",
+      "end_number": "NK4894.Z",
+      "corrected_end_number": "NK4894.3.Z",
+      "control_number": "CF 94181244",
+      "caption": "Special types of dolls, A-Z",
+      "document_id": 30,
+      "pages": [
+        345
+      ],
+      "printed_notation": "4894.3.A-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30"
+    },
+    {
+      "record_id": 230845,
+      "start_number": "NX284.4.A",
+      "end_number": "NK284.4.Z",
+      "corrected_end_number": "NX284.4.Z",
+      "control_number": "CF 94198058",
+      "caption": "By region or state, A-Z",
+      "document_id": 30,
+      "pages": [
+        401
+      ],
+      "printed_notation": "284.4.A-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30"
+    },
+    {
+      "record_id": 230846,
+      "start_number": "NX284.5.A",
+      "end_number": "NK284.5.Z",
+      "corrected_end_number": "NX284.5.Z",
+      "control_number": "CF 94198060",
+      "caption": "Other regions or countries, A-Z",
+      "document_id": 30,
+      "pages": [
+        401
+      ],
+      "printed_notation": "284.5.A-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30"
+    },
+    {
+      "record_id": 225523,
+      "start_number": "PG1413.3.A",
+      "end_number": "PG1413.Z",
+      "corrected_end_number": "PG1413.3.Z",
+      "control_number": "CF 94192138",
+      "caption": "Special classes of authors, A-Z",
+      "document_id": 33,
+      "pages": [
+        154
+      ],
+      "printed_notation": "1413.3.A-Z",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PB-PH2025TEXT.pdf",
+      "source_sha256": "716f7e36d6dcfe2ee61b87f49b23ecba1f54b9ff33f9682eb3c3eeb04ffe649a"
+    },
+    {
+      "record_id": 642120,
+      "start_number": "Z5055.L45",
+      "end_number": "L454",
+      "corrected_end_number": "Z5055.L454",
+      "control_number": "PF 14023027",
+      "caption": "Libya",
+      "document_id": 45,
+      "pages": [
+        123
+      ],
+      "printed_notation": "5055.L45-L454",
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf",
+      "source_sha256": "bdede46225493d54d8a23a9000d2335c373f353f8507dc87432ae6cd4f25519a"
+    },
+    {
+      "record_id": 250400,
+      "start_number": "QE372",
+      "end_number": "Q372.2",
+      "corrected_end_number": "QE372.2",
+      "control_number": "CF 95222513",
+      "caption": "General works, treatises, and textbooks",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 248325,
+      "start_number": "QE372",
+      "end_number": "Q387",
+      "corrected_end_number": "QE387",
+      "control_number": "CF 95220199",
+      "caption": "Descriptive mineralogy",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250404,
+      "start_number": "QE373",
+      "end_number": "Q378",
+      "corrected_end_number": "QE378",
+      "control_number": "CF 95222517",
+      "caption": "North America",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250403,
+      "start_number": "QE373",
+      "end_number": "Q385.6",
+      "corrected_end_number": "QE385.6",
+      "control_number": "CF 95222516",
+      "caption": "Geographical divisions",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250405,
+      "start_number": "QE375",
+      "end_number": "Q375.5",
+      "corrected_end_number": "QE375.5",
+      "control_number": "CF 95222518",
+      "caption": "United States",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250406,
+      "start_number": "QE376",
+      "end_number": "Q376.5",
+      "corrected_end_number": "QE376.5",
+      "control_number": "CF 95222519",
+      "caption": "Canada",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250407,
+      "start_number": "QE377",
+      "end_number": "Q377.5",
+      "corrected_end_number": "QE377.5",
+      "control_number": "CF 95222520",
+      "caption": "Mexico",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250408,
+      "start_number": "QE377.7.A1",
+      "end_number": "Q377.7.Z",
+      "corrected_end_number": "QE377.7.Z",
+      "control_number": "CF 95222521",
+      "caption": "Central America",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250409,
+      "start_number": "QE378.A1",
+      "end_number": "Q378.Z",
+      "corrected_end_number": "QE378.Z",
+      "control_number": "CF 95222522",
+      "caption": "West Indies. Caribbean Area",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250410,
+      "start_number": "QE379.A1",
+      "end_number": "Q379.Z",
+      "corrected_end_number": "QE379.Z",
+      "control_number": "CF 95222523",
+      "caption": "South America",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250411,
+      "start_number": "QE381.A1",
+      "end_number": "Q381.Z",
+      "corrected_end_number": "QE381.Z",
+      "control_number": "CF 95222524",
+      "caption": "Europe",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250412,
+      "start_number": "QE382.A1",
+      "end_number": "Q382.Z",
+      "corrected_end_number": "QE382.Z",
+      "control_number": "CF 95222525",
+      "caption": "Asia",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250413,
+      "start_number": "QE383.A1",
+      "end_number": "Q383.Z",
+      "corrected_end_number": "QE383.Z",
+      "control_number": "CF 95222526",
+      "caption": "Africa",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250418,
+      "start_number": "QE384",
+      "end_number": "Q384.2",
+      "corrected_end_number": "QE384.2",
+      "control_number": "CF 95222531",
+      "caption": "Australia",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250419,
+      "start_number": "QE384.5",
+      "end_number": "Q384.7",
+      "corrected_end_number": "QE384.7",
+      "control_number": "CF 95222532",
+      "caption": "New Zealand",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250416,
+      "start_number": "QE385.5.A1",
+      "end_number": "Q385.5.Z",
+      "corrected_end_number": "QE385.5.Z",
+      "control_number": "CF 95222529",
+      "caption": "Arctic regions",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250417,
+      "start_number": "QE385.6.A1",
+      "end_number": "Q385.6.Z",
+      "corrected_end_number": "QE385.6.Z",
+      "control_number": "CF 95222530",
+      "caption": "Antarctica",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 250415,
+      "start_number": "QE385.A1",
+      "end_number": "Q385.Z",
+      "corrected_end_number": "QE385.Z",
+      "control_number": "CF 95222528",
+      "caption": "Pacific islands",
+      "document_id": 40,
+      "pages": [
+        184,
+        185
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be"
+    },
+    {
+      "record_id": 437914,
+      "start_number": "BP65.A1",
+      "end_number": "BP64.S7",
+      "corrected_end_number": "BP65.Z",
+      "control_number": "CF 98426241",
+      "caption": "Europe",
+      "document_id": 3,
+      "pages": [
+        165
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BL-BQ2025TEXT.pdf",
+      "source_sha256": "066a89198f2e1f66ffe25b4f802c8fe2d9dbfbc1d73245a8519e4ec42392ad46"
+    },
+    {
+      "record_id": 316264,
+      "start_number": "GV1131",
+      "end_number": "GC1132",
+      "corrected_end_number": "GV1132",
+      "control_number": "CF 95293893",
+      "caption": "Biography",
+      "document_id": 9,
+      "pages": [
+        507
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+      "source_sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d"
+    },
+    {
+      "record_id": 191134,
+      "start_number": "PN1991.77.A1",
+      "end_number": "PN1991.Z",
+      "corrected_end_number": "PN1991.77.Z",
+      "control_number": "CF 94152373",
+      "caption": "Programs. Scripts",
+      "document_id": 36,
+      "pages": [
+        63
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PN2025TEXT.pdf",
+      "source_sha256": "315e955b288ddc0624b283cebeb7d4870aa43a2a1dd357dc5c79f76814a1bae9"
+    },
+    {
+      "record_id": 629163,
+      "start_number": "B3197.6.A",
+      "end_number": "Z",
+      "control_number": "PF 07004409",
+      "caption": "Other topics, A-Z",
+      "corrected_end_number": "B3197.6.Z",
+      "document_id": 2,
+      "pages": [
+        99
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3197.6.A-Z                Other topics, A-Z"
+    },
+    {
+      "record_id": 645099,
+      "start_number": "BF322.5.A",
+      "end_number": "Z",
+      "control_number": "PF 16027209",
+      "caption": "Individual tests of apperception or attention, A-Z",
+      "corrected_end_number": "BF322.5.Z",
+      "document_id": 2,
+      "pages": [
+        155
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "322.5.A-Z        Individual tests of apperception or attention, A-Z"
+    },
+    {
+      "record_id": 651646,
+      "start_number": "BL1274.892.A",
+      "end_number": "Z",
+      "control_number": "PT 14002620",
+      "caption": "Founders and most important leaders, A-Z",
+      "corrected_end_number": "BL1274.892.Z",
+      "document_id": 3,
+      "pages": [
+        57
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BL-BQ2025TEXT.pdf",
+      "source_sha256": "066a89198f2e1f66ffe25b4f802c8fe2d9dbfbc1d73245a8519e4ec42392ad46",
+      "source_line": "1274.892.A-Z                       Founders and most important leaders, A-Z"
+    },
+    {
+      "record_id": 645540,
+      "start_number": "BL2054.A",
+      "end_number": "Z",
+      "control_number": "PF 16027776",
+      "caption": "By ethnic group, A-Z",
+      "corrected_end_number": "BL2054.Z",
+      "document_id": 3,
+      "pages": [
+        83
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BL-BQ2025TEXT.pdf",
+      "source_sha256": "066a89198f2e1f66ffe25b4f802c8fe2d9dbfbc1d73245a8519e4ec42392ad46",
+      "source_line": "2054.A-Z                    By ethnic group, A-Z"
+    },
+    {
+      "record_id": 626402,
+      "start_number": "BV3299.5.A",
+      "end_number": "Z",
+      "control_number": "PF 06000252",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "BV3299.5.Z",
+      "document_id": 4,
+      "pages": [
+        220
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BR-BX2025TEXT.pdf",
+      "source_sha256": "b8f6169da2614373712672b6a479f6f81856833618c3de721e709dbc9c30898a",
+      "source_line": "3299.5.A-Z                    Individual, A-Z"
+    },
+    {
+      "record_id": 640270,
+      "start_number": "BX4711.754.A",
+      "end_number": "Z",
+      "control_number": "PF 12020296",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "BX4711.754.Z",
+      "document_id": 4,
+      "pages": [
+        357
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BR-BX2025TEXT.pdf",
+      "source_sha256": "b8f6169da2614373712672b6a479f6f81856833618c3de721e709dbc9c30898a",
+      "source_line": "4711.754.A-Z                  Individual, A-Z"
+    },
+    {
+      "record_id": 635261,
+      "start_number": "BX5145.6.A3",
+      "end_number": "Z",
+      "control_number": "PF 10013440",
+      "caption": "Criticism",
+      "corrected_end_number": "BX5145.6.Z",
+      "document_id": 4,
+      "pages": [
+        371
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BR-BX2025TEXT.pdf",
+      "source_sha256": "b8f6169da2614373712672b6a479f6f81856833618c3de721e709dbc9c30898a",
+      "source_line": "5145.6.A3-Z           Criticism"
+    },
+    {
+      "record_id": 639165,
+      "start_number": "CR5960.A3",
+      "end_number": "Z",
+      "control_number": "PF 11018796",
+      "caption": "Particular orders, A-Z",
+      "corrected_end_number": "CR5960.Z",
+      "document_id": 5,
+      "pages": [
+        107
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_C2025TEXT.pdf",
+      "source_sha256": "656def039a2ea7d5fa96b0adc2161200c1cadb8ca6de89c10a3eed64dab1b38b",
+      "source_line": "5960.A3-Z               Particular orders, A-Z"
+    },
+    {
+      "record_id": 627121,
+      "start_number": "CS1019.6.A",
+      "end_number": "Z",
+      "control_number": "PF 07001442",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "CS1019.6.Z",
+      "document_id": 5,
+      "pages": [
+        118
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_C2025TEXT.pdf",
+      "source_sha256": "656def039a2ea7d5fa96b0adc2161200c1cadb8ca6de89c10a3eed64dab1b38b",
+      "source_line": "1019.6.A-Z              Individual, A-Z"
+    },
+    {
+      "record_id": 628888,
+      "start_number": "CS859.64.A",
+      "end_number": "Z",
+      "control_number": "PF 07004008",
+      "caption": "By province (or other subdivision), A-Z",
+      "corrected_end_number": "CS859.64.Z",
+      "document_id": 5,
+      "pages": [
+        117
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_C2025TEXT.pdf",
+      "source_sha256": "656def039a2ea7d5fa96b0adc2161200c1cadb8ca6de89c10a3eed64dab1b38b",
+      "source_line": "859.64.A-Z            By province (or other subdivision), A-Z"
+    },
+    {
+      "record_id": 628891,
+      "start_number": "CS859.7.A",
+      "end_number": "Z",
+      "control_number": "PF 07004014",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "CS859.7.Z",
+      "document_id": 5,
+      "pages": [
+        117
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_C2025TEXT.pdf",
+      "source_sha256": "656def039a2ea7d5fa96b0adc2161200c1cadb8ca6de89c10a3eed64dab1b38b",
+      "source_line": "859.7.A-Z             Individual, A-Z"
+    },
+    {
+      "record_id": 631336,
+      "start_number": "D212.2.A",
+      "end_number": "Z",
+      "control_number": "PF 08007669",
+      "caption": "Individual elements in the population not limited to special territorial divisions, A-Z",
+      "corrected_end_number": "D212.2.Z",
+      "document_id": 6,
+      "pages": [
+        9
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "source_sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+      "source_line": "212.2.A-Z       Individual elements in the population not limited to special territorial divisions, A-Z"
+    },
+    {
+      "record_id": 630764,
+      "start_number": "D726.72.A",
+      "end_number": "Z",
+      "control_number": "PF 08006800",
+      "caption": "Individual elements in the population not limited to special territorial divisions, A-Z",
+      "corrected_end_number": "D726.72.Z",
+      "document_id": 6,
+      "pages": [
+        42
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "source_sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+      "source_line": "726.72.A-Z       Individual elements in the population not limited to special territorial divisions, A-Z"
+    },
+    {
+      "record_id": 643025,
+      "start_number": "DA916.3.A",
+      "end_number": "Z",
+      "control_number": "PF 14024338",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "DA916.3.Z",
+      "document_id": 6,
+      "pages": [
+        115
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "source_sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+      "source_line": "916.3.A-Z              Individual, A-Z"
+    },
+    {
+      "record_id": 643757,
+      "start_number": "DC1.6.A",
+      "end_number": "Z",
+      "control_number": "PF 15025371",
+      "caption": "Individual. By place, A-Z",
+      "corrected_end_number": "DC1.6.Z",
+      "document_id": 6,
+      "pages": [
+        156
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "source_sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+      "source_line": "1.6.A-Z       Individual. By place, A-Z"
+    },
+    {
+      "record_id": 627871,
+      "start_number": "DC432.A",
+      "end_number": "Z",
+      "control_number": "PF 07002562",
+      "caption": "Individual A-Z",
+      "corrected_end_number": "DC432.Z",
+      "document_id": 6,
+      "pages": [
+        189
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "source_sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+      "source_line": "432.A-Z            Individual A-Z"
+    },
+    {
+      "record_id": 648227,
+      "start_number": "DG869.62.A",
+      "end_number": "Z",
+      "control_number": "PF 18031685",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "DG869.62.Z",
+      "document_id": 6,
+      "pages": [
+        352
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "source_sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+      "source_line": "869.62.A-Z                 Individual, A-Z"
+    },
+    {
+      "record_id": 631576,
+      "start_number": "DK4306.364.A",
+      "end_number": "Z",
+      "control_number": "PF 08008014",
+      "caption": "Individual campaigns, battles, etc., A-Z",
+      "corrected_end_number": "DK4306.364.Z",
+      "document_id": 6,
+      "pages": [
+        463
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "source_sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+      "source_line": "4306.364.A-Z               Individual campaigns, battles, etc., A-Z"
+    },
+    {
+      "record_id": 632600,
+      "start_number": "DK4309.8.A",
+      "end_number": "Z",
+      "control_number": "PF 09009498",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "DK4309.8.Z",
+      "document_id": 6,
+      "pages": [
+        463
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "source_sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+      "source_line": "4309.8.A-Z                Individual, A-Z"
+    },
+    {
+      "record_id": 631002,
+      "start_number": "DR2067.A",
+      "end_number": "Z",
+      "control_number": "PF 08007185",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "DR2067.Z",
+      "document_id": 6,
+      "pages": [
+        618
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "source_sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+      "source_line": "2067.A-Z                   Individual, A-Z"
+    },
+    {
+      "record_id": 637025,
+      "start_number": "DR296.A2",
+      "end_number": "Z",
+      "control_number": "PF 11015911",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "DR296.Z",
+      "document_id": 6,
+      "pages": [
+        580
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_D-DR2025TEXT.pdf",
+      "source_sha256": "9ac0b17151977b1a80dee7ed72475362bcd88cb01df082d22ef8dbaa0d9afca6",
+      "source_line": "296.A2-Z             Individual, A-Z"
+    },
+    {
+      "record_id": 641445,
+      "start_number": "DS371.41252.A",
+      "end_number": "Z",
+      "control_number": "PF 13022006",
+      "caption": "By region or country, A-Z",
+      "corrected_end_number": "DS371.41252.Z",
+      "document_id": 7,
+      "pages": [
+        64
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "source_sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+      "source_line": "371.41252.A-Z                  By region or country, A-Z"
+    },
+    {
+      "record_id": 645158,
+      "start_number": "DS641.62.A",
+      "end_number": "Z",
+      "control_number": "PF 16027281",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "DS641.62.Z",
+      "document_id": 7,
+      "pages": [
+        126
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "source_sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+      "source_line": "641.62.A-Z                Individual, A-Z"
+    },
+    {
+      "record_id": 637043,
+      "start_number": "DS649.45.A",
+      "end_number": "Z",
+      "control_number": "PF 11015936",
+      "caption": "Individual elements in the population, A-Z",
+      "corrected_end_number": "DS649.45.Z",
+      "document_id": 7,
+      "pages": [
+        130
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "source_sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+      "source_line": "649.45.A-Z         Individual elements in the population, A-Z"
+    },
+    {
+      "record_id": 634905,
+      "start_number": "DS79.766.A2",
+      "end_number": "Z",
+      "control_number": "PF 09012904",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "DS79.766.Z",
+      "document_id": 7,
+      "pages": [
+        17
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "source_sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+      "source_line": "79.766.A2-Z              Individual, A-Z"
+    },
+    {
+      "record_id": 634906,
+      "start_number": "DS79.767.A",
+      "end_number": "Z",
+      "control_number": "PF 09012905",
+      "caption": "Special topics, A-Z",
+      "corrected_end_number": "DS79.767.Z",
+      "document_id": 7,
+      "pages": [
+        17
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "source_sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+      "source_line": "79.767.A-Z              Special topics, A-Z"
+    },
+    {
+      "record_id": 637917,
+      "start_number": "DT546.3863.A",
+      "end_number": "Z",
+      "control_number": "PF 11017181",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "DT546.3863.Z",
+      "document_id": 7,
+      "pages": [
+        256
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "source_sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+      "source_line": "546.3863.A-Z                      Individual, A-Z"
+    },
+    {
+      "record_id": 626668,
+      "start_number": "F3101.4.A2",
+      "end_number": "Z",
+      "control_number": "PF 07000717",
+      "caption": "Biography",
+      "corrected_end_number": "F3101.4.Z",
+      "document_id": 8,
+      "pages": [
+        523
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_E-F2025TEXT.pdf",
+      "source_sha256": "d826d127f49fc430fb72a2bcbd411c461d6e31a19a4ea9e47c28a2a63cb8b483",
+      "source_line": "3101.4.A2-Z             Biography"
+    },
+    {
+      "record_id": 626670,
+      "start_number": "F3101.4.A3",
+      "end_number": "Z",
+      "control_number": "PF 07000719",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "F3101.4.Z",
+      "document_id": 8,
+      "pages": [
+        523
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_E-F2025TEXT.pdf",
+      "source_sha256": "d826d127f49fc430fb72a2bcbd411c461d6e31a19a4ea9e47c28a2a63cb8b483",
+      "source_line": "3101.4.A3-Z               Individual, A-Z"
+    },
+    {
+      "record_id": 636717,
+      "start_number": "GB462.A",
+      "end_number": "Z",
+      "control_number": "PF 10015497",
+      "caption": "Special reef landforms, A-Z",
+      "corrected_end_number": "GB462.Z",
+      "document_id": 9,
+      "pages": [
+        279
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+      "source_sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+      "source_line": "462.A-Z            Special reef landforms, A-Z"
+    },
+    {
+      "record_id": 633535,
+      "start_number": "GB622.52.A",
+      "end_number": "Z",
+      "control_number": "PF 09010961",
+      "caption": "Special methods, A-Z",
+      "corrected_end_number": "GB622.52.Z",
+      "document_id": 9,
+      "pages": [
+        282
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+      "source_sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+      "source_line": "622.52.A-Z            Special methods, A-Z"
+    },
+    {
+      "record_id": 642114,
+      "start_number": "GT2348.5.A",
+      "end_number": "Z",
+      "control_number": "PF 14023015",
+      "caption": "By region or country, A-Z",
+      "corrected_end_number": "GT2348.5.Z",
+      "document_id": 9,
+      "pages": [
+        419
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+      "source_sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+      "source_line": "2348.5.A-Z          By region or country, A-Z"
+    },
+    {
+      "record_id": 630613,
+      "start_number": "GV1072.A2",
+      "end_number": "Z",
+      "control_number": "PF 08006582",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "GV1072.Z",
+      "document_id": 9,
+      "pages": [
+        504
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+      "source_sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+      "source_line": "1072.A2-Z              Individual, A-Z"
+    },
+    {
+      "record_id": 627190,
+      "start_number": "GV1469.18.A",
+      "end_number": "Z",
+      "control_number": "PF 07001550",
+      "caption": "Associations, clubs, etc. By name, A-Z",
+      "corrected_end_number": "GV1469.18.Z",
+      "document_id": 9,
+      "pages": [
+        519
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+      "source_sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+      "source_line": "1469.18.A-Z          Associations, clubs, etc. By name, A-Z"
+    },
+    {
+      "record_id": 645511,
+      "start_number": "GV647.775.A",
+      "end_number": "Z",
+      "control_number": "PF 16027738",
+      "caption": "By city, A-Z",
+      "corrected_end_number": "GV647.775.Z",
+      "document_id": 9,
+      "pages": [
+        464
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+      "source_sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+      "source_line": "647.775.A-Z               By city, A-Z"
+    },
+    {
+      "record_id": 645514,
+      "start_number": "GV647.785.A",
+      "end_number": "Z",
+      "control_number": "PF 16027742",
+      "caption": "By city, A-Z",
+      "corrected_end_number": "GV647.785.Z",
+      "document_id": 9,
+      "pages": [
+        464
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+      "source_sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+      "source_line": "647.785.A-Z               By city, A-Z"
+    },
+    {
+      "record_id": 642304,
+      "start_number": "GV734.72.A",
+      "end_number": "Z",
+      "control_number": "PF 14023292",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "GV734.72.Z",
+      "document_id": 9,
+      "pages": [
+        471
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+      "source_sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+      "source_line": "734.72.A-Z          Individual, A-Z"
+    },
+    {
+      "record_id": 634248,
+      "start_number": "HD3872.A",
+      "end_number": "Z",
+      "control_number": "PF 09011935",
+      "caption": "By region or country, A-Z",
+      "corrected_end_number": "HD3872.Z",
+      "document_id": 11,
+      "pages": [
+        81
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+      "source_sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+      "source_line": "3872.A-Z          By region or country, A-Z"
+    },
+    {
+      "record_id": 636322,
+      "start_number": "HD5858.A",
+      "end_number": "Z",
+      "control_number": "PF 10014949",
+      "caption": "By region or country, A-Z",
+      "corrected_end_number": "HD5858.Z",
+      "document_id": 11,
+      "pages": [
+        98
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+      "source_sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+      "source_line": "5858.A-Z         By region or country, A-Z"
+    },
+    {
+      "record_id": 636407,
+      "start_number": "HM743.A",
+      "end_number": "Z",
+      "control_number": "PF 10015062",
+      "caption": "Particular networks, A-Z",
+      "corrected_end_number": "HM743.Z",
+      "document_id": 11,
+      "pages": [
+        442
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+      "source_sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+      "source_line": "743.A-Z          Particular networks, A-Z"
+    },
+    {
+      "record_id": 637440,
+      "start_number": "HV550.A",
+      "end_number": "Z",
+      "control_number": "PF 11016518",
+      "caption": "By region or country, A-Z",
+      "corrected_end_number": "HV550.Z",
+      "document_id": 11,
+      "pages": [
+        527
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+      "source_sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+      "source_line": "550.A-Z            By region or country, A-Z"
+    },
+    {
+      "record_id": 641813,
+      "start_number": "HV554.33.A",
+      "end_number": "Z",
+      "control_number": "PF 13022580",
+      "caption": "Special topics, A-Z",
+      "corrected_end_number": "HV554.33.Z",
+      "document_id": 11,
+      "pages": [
+        527
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+      "source_sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+      "source_line": "554.33.A-Z              Special topics, A-Z"
+    },
+    {
+      "record_id": 629241,
+      "start_number": "HV6433.786.A",
+      "end_number": "Z",
+      "control_number": "PF 07004520",
+      "caption": "By region or country, A-Z",
+      "corrected_end_number": "HV6433.786.Z",
+      "document_id": 11,
+      "pages": [
+        578
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+      "source_sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+      "source_line": "6433.786.A-Z             By region or country, A-Z"
+    },
+    {
+      "record_id": 645688,
+      "start_number": "HV6452.4.A",
+      "end_number": "Z",
+      "control_number": "PF 16027958",
+      "caption": "By region or province, A-Z",
+      "corrected_end_number": "HV6452.4.Z",
+      "document_id": 11,
+      "pages": [
+        579
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+      "source_sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+      "source_line": "6452.4.A-Z                      By region or province, A-Z"
+    },
+    {
+      "record_id": 645691,
+      "start_number": "HV6452.6.A",
+      "end_number": "Z",
+      "control_number": "PF 16027961",
+      "caption": "Other special bands, A-Z",
+      "corrected_end_number": "HV6452.6.Z",
+      "document_id": 11,
+      "pages": [
+        579
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+      "source_sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+      "source_line": "6452.6.A-Z                        Other special bands, A-Z"
+    },
+    {
+      "record_id": 636174,
+      "start_number": "JN8800.A",
+      "end_number": "Z",
+      "control_number": "PF 10014747",
+      "caption": "Special topics, A-Z",
+      "corrected_end_number": "JN8800.Z",
+      "document_id": 12,
+      "pages": [
+        96
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_J2025TEXT.pdf",
+      "source_sha256": "08f51d0de6854af2be53b522db3d92cc9672f9f7f67809ad688bdc573d4f1138",
+      "source_line": "8800.A-Z         Special topics, A-Z"
+    },
+    {
+      "record_id": 630472,
+      "start_number": "LC5158.7.A",
+      "end_number": "Z",
+      "control_number": "PF 08006339",
+      "caption": "By region or country, A-Z",
+      "corrected_end_number": "LC5158.7.Z",
+      "document_id": 28,
+      "pages": [
+        164
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_L2025TEXT.pdf",
+      "source_sha256": "b596eeb2eb1d5c36c59de0e3f9a6a22c18bbe895bbc31858953d74be26452dc8",
+      "source_line": "5158.7.A-Z         By region or country, A-Z"
+    },
+    {
+      "record_id": 644831,
+      "start_number": "LG22.A",
+      "end_number": "Z",
+      "control_number": "PF 15026844",
+      "caption": "Schools. By place, A-Z",
+      "corrected_end_number": "LG22.Z",
+      "document_id": 28,
+      "pages": [
+        242
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_L2025TEXT.pdf",
+      "source_sha256": "b596eeb2eb1d5c36c59de0e3f9a6a22c18bbe895bbc31858953d74be26452dc8",
+      "source_line": "22.A-Z             Schools. By place, A-Z"
+    },
+    {
+      "record_id": 634733,
+      "start_number": "LG422.A",
+      "end_number": "Z",
+      "control_number": "PF 09012639",
+      "caption": "Schools. By place, A-Z",
+      "corrected_end_number": "LG422.Z",
+      "document_id": 28,
+      "pages": [
+        265
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_L2025TEXT.pdf",
+      "source_sha256": "b596eeb2eb1d5c36c59de0e3f9a6a22c18bbe895bbc31858953d74be26452dc8",
+      "source_line": "422.A-Z            Schools. By place, A-Z"
+    },
+    {
+      "record_id": 644845,
+      "start_number": "N7018.65.A",
+      "end_number": "Z",
+      "control_number": "PF 15026863",
+      "caption": "Special aspects or movements, A-Z",
+      "corrected_end_number": "N7018.65.Z",
+      "document_id": 30,
+      "pages": [
+        103
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30",
+      "source_line": "7018.65.A-Z                 Special aspects or movements, A-Z"
+    },
+    {
+      "record_id": 628066,
+      "start_number": "N7406.75.A",
+      "end_number": "Z",
+      "control_number": "PF 07002845",
+      "caption": "Special aspects or movements, A-Z",
+      "corrected_end_number": "N7406.75.Z",
+      "document_id": 30,
+      "pages": [
+        111
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30",
+      "source_line": "7406.75.A-Z              Special aspects or movements, A-Z"
+    },
+    {
+      "record_id": 637344,
+      "start_number": "NK3047.7.A",
+      "end_number": "Z",
+      "control_number": "PF 11016378",
+      "caption": "Special aspects or movements, A-Z",
+      "corrected_end_number": "NK3047.7.Z",
+      "document_id": 30,
+      "pages": [
+        327
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30",
+      "source_line": "3047.7.A-Z                 Special aspects or movements, A-Z"
+    },
+    {
+      "record_id": 637345,
+      "start_number": "NK3047.8.A",
+      "end_number": "Z",
+      "control_number": "PF 11016379",
+      "caption": "Other special, A-Z",
+      "corrected_end_number": "NK3047.8.Z",
+      "document_id": 30,
+      "pages": [
+        327
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30",
+      "source_line": "3047.8.A-Z                 Other special, A-Z"
+    },
+    {
+      "record_id": 639769,
+      "start_number": "NK3055.A5",
+      "end_number": "Z",
+      "control_number": "PF 12019649",
+      "caption": "Other special, A-Z",
+      "corrected_end_number": "NK3055.Z",
+      "document_id": 30,
+      "pages": [
+        327
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30",
+      "source_line": "3055.A5-Z                    Other special, A-Z"
+    },
+    {
+      "record_id": 633563,
+      "start_number": "PF913.A",
+      "end_number": "Z",
+      "control_number": "PF 09010990",
+      "caption": "Other regions or countries, A-Z",
+      "corrected_end_number": "PF913.Z",
+      "document_id": 33,
+      "pages": [
+        110
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PB-PH2025TEXT.pdf",
+      "source_sha256": "716f7e36d6dcfe2ee61b87f49b23ecba1f54b9ff33f9682eb3c3eeb04ffe649a",
+      "source_line": "913.A-Z            Other regions or countries, A-Z"
+    },
+    {
+      "record_id": 648803,
+      "start_number": "PG5025.7.A",
+      "end_number": "Z",
+      "control_number": "PF 18032594",
+      "caption": "Special forms or topics, A-Z",
+      "corrected_end_number": "PG5025.7.Z",
+      "document_id": 33,
+      "pages": [
+        435
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PB-PH2025TEXT.pdf",
+      "source_sha256": "716f7e36d6dcfe2ee61b87f49b23ecba1f54b9ff33f9682eb3c3eeb04ffe649a",
+      "source_line": "5025.7.A-Z             Special forms or topics, A-Z"
+    },
+    {
+      "record_id": 626834,
+      "start_number": "PG5412.5.A",
+      "end_number": "Z",
+      "control_number": "PF 07001003",
+      "caption": "Special topics, A-Z",
+      "corrected_end_number": "PG5412.5.Z",
+      "document_id": 33,
+      "pages": [
+        443
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PB-PH2025TEXT.pdf",
+      "source_sha256": "716f7e36d6dcfe2ee61b87f49b23ecba1f54b9ff33f9682eb3c3eeb04ffe649a",
+      "source_line": "5412.5.A-Z               Special topics, A-Z"
+    },
+    {
+      "record_id": 631345,
+      "start_number": "PG7027.2.A",
+      "end_number": "Z",
+      "control_number": "PF 08007681",
+      "caption": "Special, A-Z",
+      "corrected_end_number": "PG7027.2.Z",
+      "document_id": 33,
+      "pages": [
+        450
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PB-PH2025TEXT.pdf",
+      "source_sha256": "716f7e36d6dcfe2ee61b87f49b23ecba1f54b9ff33f9682eb3c3eeb04ffe649a",
+      "source_line": "7027.2.A-Z           Special, A-Z"
+    },
+    {
+      "record_id": 647295,
+      "start_number": "PJ3038.A",
+      "end_number": "Z",
+      "control_number": "PF 17030217",
+      "caption": "Other special, A-Z",
+      "corrected_end_number": "PJ3038.Z",
+      "document_id": 34,
+      "pages": [
+        18
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PJ-PK2025TEXT.pdf",
+      "source_sha256": "aa423831deddd50e7c053b419e4263c613011eec23f31edb3c28b16bbf39be45",
+      "source_line": "3038.A-Z          Other special, A-Z"
+    },
+    {
+      "record_id": 630392,
+      "start_number": "PJ7672.A",
+      "end_number": "Z",
+      "control_number": "PF 08006229",
+      "caption": "Special, A-Z",
+      "corrected_end_number": "PJ7672.Z",
+      "document_id": 34,
+      "pages": [
+        86
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PJ-PK2025TEXT.pdf",
+      "source_sha256": "aa423831deddd50e7c053b419e4263c613011eec23f31edb3c28b16bbf39be45",
+      "source_line": "7672.A-Z             Special, A-Z"
+    },
+    {
+      "record_id": 634343,
+      "start_number": "PK2339.5.A",
+      "end_number": "Z",
+      "control_number": "PF 09012082",
+      "caption": "Special. By name or place, A-Z",
+      "corrected_end_number": "PK2339.5.Z",
+      "document_id": 34,
+      "pages": [
+        169
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PJ-PK2025TEXT.pdf",
+      "source_sha256": "aa423831deddd50e7c053b419e4263c613011eec23f31edb3c28b16bbf39be45",
+      "source_line": "2339.5.A-Z             Special. By name or place, A-Z"
+    },
+    {
+      "record_id": 635225,
+      "start_number": "PL1880.A",
+      "end_number": "Z",
+      "control_number": "PF 10013385",
+      "caption": "By place, A-Z",
+      "corrected_end_number": "PL1880.Z",
+      "document_id": 35,
+      "pages": [
+        107
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "1880.A-Z                   By place, A-Z"
+    },
+    {
+      "record_id": 646178,
+      "start_number": "PL4328.9.A",
+      "end_number": "Z",
+      "control_number": "PF 16028617",
+      "caption": "Individual authors or works, A-Z",
+      "corrected_end_number": "PL4328.9.Z",
+      "document_id": 35,
+      "pages": [
+        208
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "4328.9.A-Z               Individual authors or works, A-Z"
+    },
+    {
+      "record_id": 631187,
+      "start_number": "PL4583.9.A",
+      "end_number": "Z",
+      "control_number": "PF 08007451",
+      "caption": "Individual authors or works, A-Z",
+      "corrected_end_number": "PL4583.9.Z",
+      "document_id": 35,
+      "pages": [
+        211
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "4583.9.A-Z                Individual authors or works, A-Z"
+    },
+    {
+      "record_id": 631479,
+      "start_number": "PL8508.95.A",
+      "end_number": "Z",
+      "control_number": "PF 08007881",
+      "caption": "Special. By name or place, A-Z",
+      "corrected_end_number": "PL8508.95.Z",
+      "document_id": 35,
+      "pages": [
+        274
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "8508.95.A-Z                  Special. By name or place, A-Z"
+    },
+    {
+      "record_id": 633431,
+      "start_number": "PL907.5.A",
+      "end_number": "Z",
+      "control_number": "PF 09010838",
+      "caption": "By region or country, A-Z",
+      "corrected_end_number": "PL907.5.Z",
+      "document_id": 35,
+      "pages": [
+        68
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "907.5.A-Z         By region or country, A-Z"
+    },
+    {
+      "record_id": 633432,
+      "start_number": "PL907.6.A",
+      "end_number": "Z",
+      "control_number": "PF 09010839",
+      "caption": "By school, A-Z",
+      "corrected_end_number": "PL907.6.Z",
+      "document_id": 35,
+      "pages": [
+        68
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "907.6.A-Z         By school, A-Z"
+    },
+    {
+      "record_id": 633433,
+      "start_number": "PL907.7.A",
+      "end_number": "Z",
+      "control_number": "PF 09010840",
+      "caption": "By research institute, A-Z",
+      "corrected_end_number": "PL907.7.Z",
+      "document_id": 35,
+      "pages": [
+        68
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "907.7.A-Z         By research institute, A-Z"
+    },
+    {
+      "record_id": 633454,
+      "start_number": "PL914.6.A",
+      "end_number": "Z",
+      "control_number": "PF 09010862",
+      "caption": "By language, A-Z",
+      "corrected_end_number": "PL914.6.Z",
+      "document_id": 35,
+      "pages": [
+        69
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "914.6.A-Z           By language, A-Z"
+    },
+    {
+      "record_id": 633492,
+      "start_number": "PL946.7.A",
+      "end_number": "Z",
+      "control_number": "PF 09010903",
+      "caption": "Special topics, A-Z",
+      "corrected_end_number": "PL946.7.Z",
+      "document_id": 35,
+      "pages": [
+        71
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "946.7.A-Z           Special topics, A-Z"
+    },
+    {
+      "record_id": 631644,
+      "start_number": "PN22.5.A3",
+      "end_number": "Z",
+      "control_number": "PF 08008119",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "PN22.5.Z",
+      "document_id": 36,
+      "pages": [
+        1
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PN2025TEXT.pdf",
+      "source_sha256": "315e955b288ddc0624b283cebeb7d4870aa43a2a1dd357dc5c79f76814a1bae9",
+      "source_line": "22.5.A3-Z        Individual, A-Z"
+    },
+    {
+      "record_id": 631627,
+      "start_number": "PN22.A3",
+      "end_number": "Z",
+      "control_number": "PF 08008102",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "PN22.Z",
+      "document_id": 36,
+      "pages": [
+        1
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PN2025TEXT.pdf",
+      "source_sha256": "315e955b288ddc0624b283cebeb7d4870aa43a2a1dd357dc5c79f76814a1bae9",
+      "source_line": "22.A3-Z          Individual, A-Z"
+    },
+    {
+      "record_id": 627303,
+      "start_number": "PN2272.5.A",
+      "end_number": "Z",
+      "control_number": "PF 07001708",
+      "caption": "Special topics, A-Z",
+      "corrected_end_number": "PN2272.5.Z",
+      "document_id": 36,
+      "pages": [
+        95
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PN2025TEXT.pdf",
+      "source_sha256": "315e955b288ddc0624b283cebeb7d4870aa43a2a1dd357dc5c79f76814a1bae9",
+      "source_line": "2272.5.A-Z                   Special topics, A-Z"
+    },
+    {
+      "record_id": 631631,
+      "start_number": "PN23.A3",
+      "end_number": "Z",
+      "control_number": "PF 08008106",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "PN23.Z",
+      "document_id": 36,
+      "pages": [
+        1
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PN2025TEXT.pdf",
+      "source_sha256": "315e955b288ddc0624b283cebeb7d4870aa43a2a1dd357dc5c79f76814a1bae9",
+      "source_line": "23.A3-Z          Individual, A-Z"
+    },
+    {
+      "record_id": 631634,
+      "start_number": "PN24.A3",
+      "end_number": "Z",
+      "control_number": "PF 08008109",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "PN24.Z",
+      "document_id": 36,
+      "pages": [
+        1
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PN2025TEXT.pdf",
+      "source_sha256": "315e955b288ddc0624b283cebeb7d4870aa43a2a1dd357dc5c79f76814a1bae9",
+      "source_line": "24.A3-Z          Individual, A-Z"
+    },
+    {
+      "record_id": 631637,
+      "start_number": "PN25.A3",
+      "end_number": "Z",
+      "control_number": "PF 08008112",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "PN25.Z",
+      "document_id": 36,
+      "pages": [
+        1
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PN2025TEXT.pdf",
+      "source_sha256": "315e955b288ddc0624b283cebeb7d4870aa43a2a1dd357dc5c79f76814a1bae9",
+      "source_line": "25.A3-Z          Individual, A-Z"
+    },
+    {
+      "record_id": 631640,
+      "start_number": "PN26.A3",
+      "end_number": "Z",
+      "control_number": "PF 08008115",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "PN26.Z",
+      "document_id": 36,
+      "pages": [
+        1
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PN2025TEXT.pdf",
+      "source_sha256": "315e955b288ddc0624b283cebeb7d4870aa43a2a1dd357dc5c79f76814a1bae9",
+      "source_line": "26.A3-Z          Individual, A-Z"
+    },
+    {
+      "record_id": 627452,
+      "start_number": "PR9387.9.A",
+      "end_number": "Z",
+      "control_number": "PF 07001956",
+      "caption": "Individual authors or works, A-Z",
+      "corrected_end_number": "PR9387.9.Z",
+      "document_id": 38,
+      "pages": [
+        253
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PR-PS_PZ2025TEXT.pdf",
+      "source_sha256": "6fd4ecbe10d0b2972bda2de6f1100d93dd5bdfdbefe81b2f21343e00bd4731d5",
+      "source_line": "9387.9.A-Z             Individual authors or works, A-Z"
+    },
+    {
+      "record_id": 627106,
+      "start_number": "PT1417.3.A",
+      "end_number": "Z",
+      "control_number": "PF 07001412",
+      "caption": "Translations. By language, A-Z",
+      "corrected_end_number": "PT1417.3.Z",
+      "document_id": 39,
+      "pages": [
+        33
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PT2025TEXT.pdf",
+      "source_sha256": "0ce968c808c5ec7df5d34ad5c25e5b020319ca47a6803b4eca06b9d8b6cc9e72",
+      "source_line": "1417.3.A-Z               Translations. By language, A-Z"
+    },
+    {
+      "record_id": 634014,
+      "start_number": "PT5083.A",
+      "end_number": "Z",
+      "control_number": "PF 09011613",
+      "caption": "Awards, prizes, A-Z",
+      "corrected_end_number": "PT5083.Z",
+      "document_id": 39,
+      "pages": [
+        227
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PT2025TEXT.pdf",
+      "source_sha256": "0ce968c808c5ec7df5d34ad5c25e5b020319ca47a6803b4eca06b9d8b6cc9e72",
+      "source_line": "5083.A-Z       Awards, prizes, A-Z"
+    },
+    {
+      "record_id": 639399,
+      "start_number": "QA76.774.A",
+      "end_number": "Z",
+      "control_number": "PF 12019133",
+      "caption": "Individual operating systems. By system, A-Z",
+      "corrected_end_number": "QA76.774.Z",
+      "document_id": 40,
+      "pages": [
+        21
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be",
+      "source_line": "76.774.A-Z               Individual operating systems. By system, A-Z"
+    },
+    {
+      "record_id": 648552,
+      "start_number": "QC668.A",
+      "end_number": "Z",
+      "control_number": "PF 18032218",
+      "caption": "Special equipment, A-Z",
+      "corrected_end_number": "QC668.Z",
+      "document_id": 40,
+      "pages": [
+        109
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be",
+      "source_line": "668.A-Z             Special equipment, A-Z"
+    },
+    {
+      "record_id": 636719,
+      "start_number": "QE565.5.A",
+      "end_number": "Z",
+      "control_number": "PF 10015501",
+      "caption": "By region or country, A-Z",
+      "corrected_end_number": "QE565.5.Z",
+      "document_id": 40,
+      "pages": [
+        198
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be",
+      "source_line": "565.5.A-Z       By region or country, A-Z"
+    },
+    {
+      "record_id": 638489,
+      "start_number": "QH344.3.A",
+      "end_number": "Z",
+      "control_number": "PF 11017904",
+      "caption": "By region or country, A-Z",
+      "corrected_end_number": "QH344.3.Z",
+      "document_id": 40,
+      "pages": [
+        241
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be",
+      "source_line": "344.3.A-Z         By region or country, A-Z"
+    },
+    {
+      "record_id": 635838,
+      "start_number": "QH77.3.A",
+      "end_number": "Z",
+      "control_number": "PF 10014251",
+      "caption": "Special topics, A-Z",
+      "corrected_end_number": "QH77.3.Z",
+      "document_id": 40,
+      "pages": [
+        220
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be",
+      "source_line": "77.3.A-Z     Special topics, A-Z"
+    },
+    {
+      "record_id": 628243,
+      "start_number": "QL638.875.A",
+      "end_number": "Z",
+      "control_number": "PF 07003086",
+      "caption": "By family, A-Z",
+      "corrected_end_number": "QL638.875.Z",
+      "document_id": 40,
+      "pages": [
+        399
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be",
+      "source_line": "638.875.A-Z           By family, A-Z"
+    },
+    {
+      "record_id": 636777,
+      "start_number": "QL693.3.A",
+      "end_number": "Z",
+      "control_number": "PF 10015569",
+      "caption": "By state, territory, or region, A-Z",
+      "corrected_end_number": "QL693.3.Z",
+      "document_id": 40,
+      "pages": [
+        407
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be",
+      "source_line": "693.3.A-Z             By state, territory, or region, A-Z"
+    },
+    {
+      "record_id": 634700,
+      "start_number": "QL733.5.A",
+      "end_number": "Z",
+      "control_number": "PF 09012585",
+      "caption": "By state, territory, or region, A-Z",
+      "corrected_end_number": "QL733.5.Z",
+      "document_id": 40,
+      "pages": [
+        414
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be",
+      "source_line": "733.5.A-Z              By state, territory, or region, A-Z"
+    },
+    {
+      "record_id": 638248,
+      "start_number": "QR131.A",
+      "end_number": "Z",
+      "control_number": "PF 11017597",
+      "caption": "Other environments, A-Z",
+      "corrected_end_number": "QR131.Z",
+      "document_id": 40,
+      "pages": [
+        478
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf",
+      "source_sha256": "cddfa0e7dc27f0efc7ce9e0c6383a6b1254ced3b92740e6c0f12271300d456be",
+      "source_line": "131.A-Z         Other environments, A-Z"
+    },
+    {
+      "record_id": 640613,
+      "start_number": "RA644.36.A",
+      "end_number": "Z",
+      "control_number": "PF 12020755",
+      "caption": "By region or state, A-Z",
+      "corrected_end_number": "RA644.36.Z",
+      "document_id": 41,
+      "pages": [
+        42
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf",
+      "source_sha256": "889d4c6492f9ac80dd433ed4e419157395e0303220c3d04838708ae087c7b5a3",
+      "source_line": "644.36.A-Z          By region or state, A-Z"
+    },
+    {
+      "record_id": 640614,
+      "start_number": "RA644.37.A",
+      "end_number": "Z",
+      "control_number": "PF 12020756",
+      "caption": "Other regions or countries, A-Z",
+      "corrected_end_number": "RA644.37.Z",
+      "document_id": 41,
+      "pages": [
+        42
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf",
+      "source_sha256": "889d4c6492f9ac80dd433ed4e419157395e0303220c3d04838708ae087c7b5a3",
+      "source_line": "644.37.A-Z        Other regions or countries, A-Z"
+    },
+    {
+      "record_id": 640615,
+      "start_number": "RA644.38.A",
+      "end_number": "Z",
+      "control_number": "PF 12020757",
+      "caption": "Individual diseases or groups of diseases, A-Z",
+      "corrected_end_number": "RA644.38.Z",
+      "document_id": 41,
+      "pages": [
+        42
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf",
+      "source_sha256": "889d4c6492f9ac80dd433ed4e419157395e0303220c3d04838708ae087c7b5a3",
+      "source_line": "644.38.A-Z      Individual diseases or groups of diseases, A-Z"
+    },
+    {
+      "record_id": 639208,
+      "start_number": "RC802.32.A",
+      "end_number": "Z",
+      "control_number": "PF 11018855",
+      "caption": "Individual, A-Z",
+      "corrected_end_number": "RC802.32.Z",
+      "document_id": 41,
+      "pages": [
+        156
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_R2025TEXT.pdf",
+      "source_sha256": "889d4c6492f9ac80dd433ed4e419157395e0303220c3d04838708ae087c7b5a3",
+      "source_line": "802.32.A-Z         Individual, A-Z"
+    },
+    {
+      "record_id": 630964,
+      "start_number": "SF994.563.A",
+      "end_number": "Z",
+      "control_number": "PF 08007116",
+      "caption": "By family, A-Z",
+      "corrected_end_number": "SF994.563.Z",
+      "document_id": 42,
+      "pages": [
+        204
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_S2025TEXT.pdf",
+      "source_sha256": "bc2337d632ff20a6d601e329783e37d50addef0ba458ad247b5980952ba378d7",
+      "source_line": "994.563.A-Z            By family, A-Z"
+    },
+    {
+      "record_id": 630870,
+      "start_number": "SF995.52.A",
+      "end_number": "Z",
+      "control_number": "PF 08006983",
+      "caption": "Individual species or groups, A-Z",
+      "corrected_end_number": "SF995.52.Z",
+      "document_id": 42,
+      "pages": [
+        205
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_S2025TEXT.pdf",
+      "source_sha256": "bc2337d632ff20a6d601e329783e37d50addef0ba458ad247b5980952ba378d7",
+      "source_line": "995.52.A-Z              Individual species or groups, A-Z"
+    },
+    {
+      "record_id": 643796,
+      "start_number": "SH348.5.A",
+      "end_number": "Z",
+      "control_number": "PF 15025420",
+      "caption": "By region or state, A-Z",
+      "corrected_end_number": "SH348.5.Z",
+      "document_id": 42,
+      "pages": [
+        225
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_S2025TEXT.pdf",
+      "source_sha256": "bc2337d632ff20a6d601e329783e37d50addef0ba458ad247b5980952ba378d7",
+      "source_line": "348.5.A-Z          By region or state, A-Z"
+    },
+    {
+      "record_id": 643797,
+      "start_number": "SH349.5.A",
+      "end_number": "Z",
+      "control_number": "PF 15025421",
+      "caption": "By region, province, or territory, A-Z",
+      "corrected_end_number": "SH349.5.Z",
+      "document_id": 42,
+      "pages": [
+        225
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_S2025TEXT.pdf",
+      "source_sha256": "bc2337d632ff20a6d601e329783e37d50addef0ba458ad247b5980952ba378d7",
+      "source_line": "349.5.A-Z          By region, province, or territory, A-Z"
+    },
+    {
+      "record_id": 642159,
+      "start_number": "T386.A",
+      "end_number": "Z",
+      "control_number": "PF 14023086",
+      "caption": "Special programs, A-Z",
+      "corrected_end_number": "T386.Z",
+      "document_id": 43,
+      "pages": [
+        17
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf",
+      "source_sha256": "fa05a75891f21db6e958642f5bb0708003cc25186fe397e81728aeee72604e1c",
+      "source_line": "386.A-Z         Special programs, A-Z"
+    },
+    {
+      "record_id": 646425,
+      "start_number": "TD886.6.A",
+      "end_number": "Z",
+      "control_number": "PF 17028962",
+      "caption": "Special topics, A-Z",
+      "corrected_end_number": "TD886.6.Z",
+      "document_id": 43,
+      "pages": [
+        112
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf",
+      "source_sha256": "fa05a75891f21db6e958642f5bb0708003cc25186fe397e81728aeee72604e1c",
+      "source_line": "886.6.A-Z           Special topics, A-Z"
+    },
+    {
+      "record_id": 634032,
+      "start_number": "TJ853.4.A",
+      "end_number": "Z",
+      "control_number": "PF 09011642",
+      "caption": "Special topics, A-Z",
+      "corrected_end_number": "TJ853.4.Z",
+      "document_id": 43,
+      "pages": [
+        197
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf",
+      "source_sha256": "fa05a75891f21db6e958642f5bb0708003cc25186fe397e81728aeee72604e1c",
+      "source_line": "853.4.A-Z       Special topics, A-Z"
+    },
+    {
+      "record_id": 627435,
+      "start_number": "TK5105.8868.A",
+      "end_number": "Z",
+      "control_number": "PF 07001935",
+      "caption": "Special, A-Z",
+      "corrected_end_number": "TK5105.8868.Z",
+      "document_id": 43,
+      "pages": [
+        232
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf",
+      "source_sha256": "fa05a75891f21db6e958642f5bb0708003cc25186fe397e81728aeee72604e1c",
+      "source_line": "5105.8868.A-Z              Special, A-Z"
+    },
+    {
+      "record_id": 642370,
+      "start_number": "TL236.15.A",
+      "end_number": "Z",
+      "control_number": "PF 14023393",
+      "caption": "Special makes, A-Z",
+      "corrected_end_number": "TL236.15.Z",
+      "document_id": 43,
+      "pages": [
+        266
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf",
+      "source_sha256": "fa05a75891f21db6e958642f5bb0708003cc25186fe397e81728aeee72604e1c",
+      "source_line": "236.15.A-Z       Special makes, A-Z"
+    },
+    {
+      "record_id": 643204,
+      "start_number": "TP495.3.A",
+      "end_number": "Z",
+      "control_number": "PF 14024609",
+      "caption": "Special parts and equipment, A-Z",
+      "corrected_end_number": "TP495.3.Z",
+      "document_id": 43,
+      "pages": [
+        347
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf",
+      "source_sha256": "fa05a75891f21db6e958642f5bb0708003cc25186fe397e81728aeee72604e1c",
+      "source_line": "495.3.A-Z       Special parts and equipment, A-Z"
+    },
+    {
+      "record_id": 647894,
+      "start_number": "TT836.A",
+      "end_number": "Z",
+      "control_number": "PF 18031114",
+      "caption": "Special patterns and techniques, A-Z",
+      "corrected_end_number": "TT836.Z",
+      "document_id": 43,
+      "pages": [
+        426
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf",
+      "source_sha256": "fa05a75891f21db6e958642f5bb0708003cc25186fe397e81728aeee72604e1c",
+      "source_line": "836.A-Z        Special patterns and techniques, A-Z"
+    },
+    {
+      "record_id": 641070,
+      "start_number": "TX796.A",
+      "end_number": "Z",
+      "control_number": "PF 13021400",
+      "caption": "Special forms, flavors, etc. A-Z",
+      "corrected_end_number": "TX796.Z",
+      "document_id": 43,
+      "pages": [
+        451
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf",
+      "source_sha256": "fa05a75891f21db6e958642f5bb0708003cc25186fe397e81728aeee72604e1c",
+      "source_line": "796.A-Z            Special forms, flavors, etc. A-Z"
+    },
+    {
+      "record_id": 645342,
+      "start_number": "AM69.S47",
+      "end_number": ".S473",
+      "control_number": "PF 16027540",
+      "caption": "Serbia",
+      "corrected_end_number": "AM69.S473",
+      "document_id": 1,
+      "pages": [
+        18
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_A2025TEXT.pdf",
+      "source_sha256": "8818cf6e2b4c8c34cb34bb375f40fcd13f1ff9a23fcff94bf30ad120fb958012",
+      "source_line": "69.S47-.S473              Serbia (Table A17)"
+    },
+    {
+      "record_id": 646075,
+      "start_number": "B133.M33",
+      "end_number": ".M334",
+      "control_number": "PF 16028468",
+      "caption": "Maitreyi\u0304, active 8th century B.C.",
+      "corrected_end_number": "B133.M334",
+      "document_id": 2,
+      "pages": [
+        12
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "133.M33-.M334                 Maitreyi\u0304, active 8th century B.C. (Table B-BJ5)"
+    },
+    {
+      "record_id": 647330,
+      "start_number": "B1409.D38",
+      "end_number": ".D384",
+      "control_number": "PF 17030257",
+      "caption": "Davidson, Thomas, 1840-1900",
+      "corrected_end_number": "B1409.D384",
+      "document_id": 2,
+      "pages": [
+        61
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "1409.D38-.D384             Davidson, Thomas, 1840-1900 (Table B-BJ5)"
+    },
+    {
+      "record_id": 642175,
+      "start_number": "B2655.D54",
+      "end_number": ".D544",
+      "control_number": "PF 14023104",
+      "caption": "Diez, Immanuel Carl, 1766-1796",
+      "corrected_end_number": "B2655.D544",
+      "document_id": 2,
+      "pages": [
+        84
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "2655.D54-.D544               Diez, Immanuel Carl, 1766-1796 (Table B-BJ5)"
+    },
+    {
+      "record_id": 634636,
+      "start_number": "B3219.D7",
+      "end_number": ".D74",
+      "control_number": "PF 09012492",
+      "caption": "Drobisch, Moritz Wilhelm, 1802-1896",
+      "corrected_end_number": "B3219.D74",
+      "document_id": 2,
+      "pages": [
+        101
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3219.D7-.D74                  Drobisch, Moritz Wilhelm, 1802-1896 (Table B-BJ5)"
+    },
+    {
+      "record_id": 631202,
+      "start_number": "B3288.L67",
+      "end_number": ".L674",
+      "control_number": "PF 08007471",
+      "caption": "Lotz, Johannes Baptist, 1903-",
+      "corrected_end_number": "B3288.L674",
+      "document_id": 2,
+      "pages": [
+        104
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3288.L67-.L674                 Lotz, Johannes Baptist, 1903- (Table B-BJ5)"
+    },
+    {
+      "record_id": 632951,
+      "start_number": "B3349.T83",
+      "end_number": ".T834",
+      "control_number": "PF 09010035",
+      "caption": "Tugendhat, Ernst",
+      "corrected_end_number": "B3349.T834",
+      "document_id": 2,
+      "pages": [
+        108
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3349.T83-.T834               Tugendhat, Ernst (Table B-BJ5)"
+    },
+    {
+      "record_id": 630407,
+      "start_number": "B3613.B53",
+      "end_number": ".B534",
+      "control_number": "PF 08006247",
+      "caption": "Bonatelli, Francesco, 1830-1911",
+      "corrected_end_number": "B3613.B534",
+      "document_id": 2,
+      "pages": [
+        111
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3613.B53-.B534                 Bonatelli, Francesco, 1830-1911 (Table B-BJ5)"
+    },
+    {
+      "record_id": 630630,
+      "start_number": "B3614.C276",
+      "end_number": ".C2764",
+      "control_number": "PF 08006606",
+      "caption": "Capitini, Aldo",
+      "corrected_end_number": "B3614.C2764",
+      "document_id": 2,
+      "pages": [
+        112
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3614.C276-.C2764                  Capitini, Aldo (Table B-BJ5)"
+    },
+    {
+      "record_id": 647850,
+      "start_number": "B3614.C277",
+      "end_number": ".C2774",
+      "control_number": "PF 18031045",
+      "caption": "Carabellese, Pantaleo",
+      "corrected_end_number": "B3614.C2774",
+      "document_id": 2,
+      "pages": [
+        112
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3614.C277-.C2774                  Carabellese, Pantaleo (Table B-BJ5)"
+    },
+    {
+      "record_id": 631684,
+      "start_number": "B3614.C278",
+      "end_number": ".C2784",
+      "control_number": "PF 08008171",
+      "caption": "Caracciolo, Alberto, 1918-",
+      "corrected_end_number": "B3614.C2784",
+      "document_id": 2,
+      "pages": [
+        112
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3614.C278-.C2784                  Caracciolo, Alberto, 1918- (Table B-BJ5)"
+    },
+    {
+      "record_id": 633122,
+      "start_number": "B3631.L55",
+      "end_number": ".L554",
+      "control_number": "PF 09010341",
+      "caption": "Lanza del Vasto, Joseph Jean, 1901-1981",
+      "corrected_end_number": "B3631.L554",
+      "document_id": 2,
+      "pages": [
+        113
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3631.L55-.L554                   Lanza del Vasto, Joseph Jean, 1901-1981 (Table B-BJ5)"
+    },
+    {
+      "record_id": 630617,
+      "start_number": "B3634.L3",
+      "end_number": ".L34",
+      "control_number": "PF 08006587",
+      "caption": "Limentani, Ludovico, 1884-1940",
+      "corrected_end_number": "B3634.L34",
+      "document_id": 2,
+      "pages": [
+        113
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3634.L3-.L34                     Limentani, Ludovico, 1884-1940 (Table B-BJ5)"
+    },
+    {
+      "record_id": 630514,
+      "start_number": "B3636.N38",
+      "end_number": ".N384",
+      "control_number": "PF 08006387",
+      "caption": "Natoli, Salvatore",
+      "corrected_end_number": "B3636.N384",
+      "document_id": 2,
+      "pages": [
+        114
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3636.N38-.N384                  Natoli, Salvatore (Table B-BJ5)"
+    },
+    {
+      "record_id": 635865,
+      "start_number": "B3636.N48",
+      "end_number": ".N484",
+      "control_number": "PF 10014290",
+      "caption": "Neri, Guido D.",
+      "corrected_end_number": "B3636.N484",
+      "document_id": 2,
+      "pages": [
+        114
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3636.N48-.N484                  Neri, Guido D. (Table B-BJ5)"
+    },
+    {
+      "record_id": 632089,
+      "start_number": "B3652.S26",
+      "end_number": ".S264",
+      "control_number": "PF 08008732",
+      "caption": "Santucci, Antonio",
+      "corrected_end_number": "B3652.S264",
+      "document_id": 2,
+      "pages": [
+        115
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3652.S26-.S264                 Santucci, Antonio (Table B-BJ5)"
+    },
+    {
+      "record_id": 629972,
+      "start_number": "B3656.V49",
+      "end_number": ".V494",
+      "control_number": "PF 08005631",
+      "caption": "Vidari, Giovanni, 1871-1934",
+      "corrected_end_number": "B3656.V494",
+      "document_id": 2,
+      "pages": [
+        115
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "3656.V49-.V494                  Vidari, Giovanni, 1871-1934 (Table B-BJ5)"
+    },
+    {
+      "record_id": 642528,
+      "start_number": "B5134.M65",
+      "end_number": ".M654",
+      "control_number": "PF 14023600",
+      "caption": "Murty, K. Satchidananda",
+      "corrected_end_number": "B5134.M654",
+      "document_id": 2,
+      "pages": [
+        131
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "5134.M65-.M654                    Murty, K. Satchidananda (Table B-BJ5)"
+    },
+    {
+      "record_id": 634146,
+      "start_number": "B5244.I36",
+      "end_number": ".I364",
+      "control_number": "PF 09011787",
+      "caption": "Ikai, Keish, 1761-1845",
+      "corrected_end_number": "B5244.I364",
+      "document_id": 2,
+      "pages": [
+        134
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "5244.I36-.I364                   Ikai, Keish, 1761-1845 (Table B-BJ5)"
+    },
+    {
+      "record_id": 633016,
+      "start_number": "B781.B24",
+      "end_number": ".B244",
+      "control_number": "PF 09010178",
+      "caption": "Bernardi, Antonio, 1502-1565",
+      "corrected_end_number": "B781.B244",
+      "document_id": 2,
+      "pages": [
+        38
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "781.B24-.B244        Bernardi, Antonio, 1502-1565 (Table B-BJ5)"
+    },
+    {
+      "record_id": 631733,
+      "start_number": "B785.D3",
+      "end_number": ".D34",
+      "control_number": "PF 08008247",
+      "caption": "Drohobych, Heorhii, ca. 1450-1494",
+      "corrected_end_number": "B785.D34",
+      "document_id": 2,
+      "pages": [
+        39
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "785.D3-.D34             Drohobych, Heorhii, ca. 1450-1494 (Table B-BJ5)"
+    },
+    {
+      "record_id": 634723,
+      "start_number": "BS2095.P38",
+      "end_number": ".P382",
+      "control_number": "PF 09012627",
+      "caption": "Paul",
+      "corrected_end_number": "BS2095.P382",
+      "document_id": 4,
+      "pages": [
+        117
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BR-BX2025TEXT.pdf",
+      "source_sha256": "b8f6169da2614373712672b6a479f6f81856833618c3de721e709dbc9c30898a",
+      "source_line": "2095.P38-.P382                  Paul (Table BS2)"
+    },
+    {
+      "record_id": 633310,
+      "start_number": "BS2095.P53",
+      "end_number": ".P532",
+      "control_number": "PF 09010631",
+      "caption": "Plain English",
+      "corrected_end_number": "BS2095.P532",
+      "document_id": 4,
+      "pages": [
+        117
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_BR-BX2025TEXT.pdf",
+      "source_sha256": "b8f6169da2614373712672b6a479f6f81856833618c3de721e709dbc9c30898a",
+      "source_line": "2095.P53-.P532                  Plain English (Table BS2)"
+    },
+    {
+      "record_id": 628568,
+      "start_number": "DS135.S35",
+      "end_number": ".S353",
+      "control_number": "PF 07003521",
+      "caption": "Serbia",
+      "corrected_end_number": "DS135.S353",
+      "document_id": 7,
+      "pages": [
+        41
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "source_sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+      "source_line": "135.S35-.S353               Serbia (Table DS-DX7)"
+    },
+    {
+      "record_id": 626398,
+      "start_number": "DS135.S57",
+      "end_number": ".S573",
+      "control_number": "PF 06000243",
+      "caption": "Slovenia",
+      "corrected_end_number": "DS135.S573",
+      "document_id": 7,
+      "pages": [
+        41
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_DS-DX2025TEXT.pdf",
+      "source_sha256": "5e2cba9d1a431988cbabb50c220dc08200e4d51946ef90f967073fa14c858147",
+      "source_line": "135.S57-.S573               Slovenia (Table DS-DX7)"
+    },
+    {
+      "record_id": 310234,
+      "start_number": "GV54.H3",
+      "end_number": ".H32",
+      "control_number": "CF 95287538",
+      "caption": "Hawaii",
+      "corrected_end_number": "GV54.H32",
+      "document_id": 9,
+      "pages": [
+        436
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_G2025TEXT.pdf",
+      "source_sha256": "a9d66a4263099e1ebc8dcab490ebef4d41812d5d3e7a4ff9bd66ae251711156d",
+      "source_line": "54.H3-.H32                  Hawaii"
+    },
+    {
+      "record_id": 628943,
+      "start_number": "HD8039.R455",
+      "end_number": ".R4552",
+      "control_number": "PF 07004106",
+      "caption": "Railroad equipment industry employees",
+      "corrected_end_number": "HD8039.R4552",
+      "document_id": 11,
+      "pages": [
+        129
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_H2025TEXT.pdf",
+      "source_sha256": "2fc6723d716df48e5189e5932d27804b28831aacb0a4df076938180e87c33bce",
+      "source_line": "8039.R455-.R4552       Railroad equipment industry employees (Table H50)"
+    },
+    {
+      "record_id": 638021,
+      "start_number": "ML3502.B86",
+      "end_number": ".B868",
+      "control_number": "PF 11017306",
+      "caption": "Burma",
+      "corrected_end_number": "ML3502.B868",
+      "document_id": 29,
+      "pages": [
+        182
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_M2025TEXT.pdf",
+      "source_sha256": "7c3a838766cdebe575007b6e09408265e82c29112f0c7c62b7797c8f2fddbbe4",
+      "source_line": "3502.B86-.B868             Burma (Table M10)"
+    },
+    {
+      "record_id": 637452,
+      "start_number": "ML3503.B87",
+      "end_number": ".B878",
+      "control_number": "PF 11016540",
+      "caption": "Burkina Faso",
+      "corrected_end_number": "ML3503.B878",
+      "document_id": 29,
+      "pages": [
+        183
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_M2025TEXT.pdf",
+      "source_sha256": "7c3a838766cdebe575007b6e09408265e82c29112f0c7c62b7797c8f2fddbbe4",
+      "source_line": "3503.B87-.B878            Burkina Faso (Table M10)"
+    },
+    {
+      "record_id": 628741,
+      "start_number": "NK3639.B46",
+      "end_number": ".B466",
+      "control_number": "PF 07003791",
+      "caption": "Bengali",
+      "corrected_end_number": "NK3639.B466",
+      "document_id": 30,
+      "pages": [
+        330
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_N2025TEXT.pdf",
+      "source_sha256": "12d79219f2334af958ac8a1333a66a5e45c86acc62a42d2c91fddc319fa95a30",
+      "source_line": "3639.B46-.B466            Bengali (Table N14)"
+    },
+    {
+      "record_id": 636283,
+      "start_number": "P94.5.C45",
+      "end_number": ".C452",
+      "control_number": "PF 10014895",
+      "caption": "Celebrities",
+      "corrected_end_number": "P94.5.C452",
+      "document_id": 32,
+      "pages": [
+        7
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_P-PA2025TEXT.pdf",
+      "source_sha256": "ae12870f6ad1d691f11ca546bdb3d1d7ce3d6af85a4bec7581448c56db713632",
+      "source_line": "94.5.C45-.C452            Celebrities (Table P1)"
+    },
+    {
+      "record_id": 648436,
+      "start_number": "P94.5.P35",
+      "end_number": ".P352",
+      "control_number": "PF 18032052",
+      "caption": "Palestinian Arabs",
+      "corrected_end_number": "P94.5.P352",
+      "document_id": 32,
+      "pages": [
+        9
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_P-PA2025TEXT.pdf",
+      "source_sha256": "ae12870f6ad1d691f11ca546bdb3d1d7ce3d6af85a4bec7581448c56db713632",
+      "source_line": "94.5.P35-.P352            Palestinian Arabs (Table P1)"
+    },
+    {
+      "record_id": 646703,
+      "start_number": "P94.5.P46",
+      "end_number": ".P462",
+      "control_number": "PF 17029327",
+      "caption": "People with disabilities",
+      "corrected_end_number": "P94.5.P462",
+      "document_id": 32,
+      "pages": [
+        9
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_P-PA2025TEXT.pdf",
+      "source_sha256": "ae12870f6ad1d691f11ca546bdb3d1d7ce3d6af85a4bec7581448c56db713632",
+      "source_line": "94.5.P46-.P462            People with disabilities (Table P1)"
+    },
+    {
+      "record_id": 646843,
+      "start_number": "P96.N68",
+      "end_number": ".N682",
+      "control_number": "PF 17029527",
+      "caption": "Nostalgia",
+      "corrected_end_number": "P96.N682",
+      "document_id": 32,
+      "pages": [
+        14
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_P-PA2025TEXT.pdf",
+      "source_sha256": "ae12870f6ad1d691f11ca546bdb3d1d7ce3d6af85a4bec7581448c56db713632",
+      "source_line": "96.N68-.N682          Nostalgia (Table P1)"
+    },
+    {
+      "record_id": 638150,
+      "start_number": "P96.R86",
+      "end_number": ".R862",
+      "control_number": "PF 11017462",
+      "caption": "Rumor",
+      "corrected_end_number": "P96.R862",
+      "document_id": 32,
+      "pages": [
+        14
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_P-PA2025TEXT.pdf",
+      "source_sha256": "ae12870f6ad1d691f11ca546bdb3d1d7ce3d6af85a4bec7581448c56db713632",
+      "source_line": "96.R86-.R862           Rumor (Table P1)"
+    },
+    {
+      "record_id": 634254,
+      "start_number": "P96.S25",
+      "end_number": ".S252",
+      "control_number": "PF 09011942",
+      "caption": "Savage, Doc (Fictitious character)",
+      "corrected_end_number": "P96.S252",
+      "document_id": 32,
+      "pages": [
+        14
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_P-PA2025TEXT.pdf",
+      "source_sha256": "ae12870f6ad1d691f11ca546bdb3d1d7ce3d6af85a4bec7581448c56db713632",
+      "source_line": "96.S25-.S252           Savage, Doc (Fictitious character) (Table P1)"
+    },
+    {
+      "record_id": 626383,
+      "start_number": "PF3987.M47",
+      "end_number": ".M473",
+      "control_number": "PF 06000223",
+      "caption": "Merseburger Zauberspruche",
+      "corrected_end_number": "PF3987.M473",
+      "document_id": 33,
+      "pages": [
+        117
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PB-PH2025TEXT.pdf",
+      "source_sha256": "716f7e36d6dcfe2ee61b87f49b23ecba1f54b9ff33f9682eb3c3eeb04ffe649a",
+      "source_line": "3987.M47-.M473            Merseburger Zauberspruche (Table P-PZ43)"
+    },
+    {
+      "record_id": 38247,
+      "start_number": "PK2708.9.B264",
+      "end_number": ".B2643",
+      "control_number": "CF 05476116",
+      "caption": "Bagar\u0323a\u0304vata Maha\u0304bha\u0304rata",
+      "corrected_end_number": "PK2708.9.B2643",
+      "document_id": 34,
+      "pages": [
+        181
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PJ-PK2025TEXT.pdf",
+      "source_sha256": "aa423831deddd50e7c053b419e4263c613011eec23f31edb3c28b16bbf39be45",
+      "source_line": "2708.9.B264-.B2643            Bagar\u0323a\u0304vata Maha\u0304bha\u0304rata (Table P-PZ43)"
+    },
+    {
+      "record_id": 632149,
+      "start_number": "PL4758.9.A723",
+      "end_number": ".A7233",
+      "control_number": "PF 08008826",
+      "caption": "A\u0304rkolo\u0304 caturar",
+      "corrected_end_number": "PL4758.9.A7233",
+      "document_id": 35,
+      "pages": [
+        224
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "4758.9.A723-.A7233           A\u0304rkolo\u0304 caturar (Table P-PZ43)"
+    },
+    {
+      "record_id": 628607,
+      "start_number": "PL4758.9.I742",
+      "end_number": ".I7423",
+      "control_number": "PF 07003588",
+      "caption": "Ira\u0304van\u0323e\u0304svaran\u0332 pu\u0304jai",
+      "corrected_end_number": "PL4758.9.I7423",
+      "document_id": 35,
+      "pages": [
+        226
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "4758.9.I742-.I7423             Ira\u0304van\u0323e\u0304svaran\u0332 pu\u0304jai (Table P-PZ43)"
+    },
+    {
+      "record_id": 636293,
+      "start_number": "PL4758.9.K2218",
+      "end_number": ".K22183",
+      "control_number": "PF 10014909",
+      "caption": "Kalittokai",
+      "corrected_end_number": "PL4758.9.K22183",
+      "document_id": 35,
+      "pages": [
+        226
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "4758.9.K2218-.K22183           Kalittokai (Table P-PZ43)"
+    },
+    {
+      "record_id": 636272,
+      "start_number": "PL4758.9.N3556",
+      "end_number": ".N35563",
+      "control_number": "PF 10014883",
+      "caption": "Nar\u0332r\u0332in\u0332ai",
+      "corrected_end_number": "PL4758.9.N35563",
+      "document_id": 35,
+      "pages": [
+        228
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "4758.9.N3556-.N35563           Nar\u0332r\u0332in\u0332ai (Table P-PZ43)"
+    },
+    {
+      "record_id": 636292,
+      "start_number": "PL4758.9.P2943",
+      "end_number": ".P29433",
+      "control_number": "PF 10014908",
+      "caption": "Paripa\u0304t\u0323al",
+      "corrected_end_number": "PL4758.9.P29433",
+      "document_id": 35,
+      "pages": [
+        229
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "4758.9.P2943-.P29433           Paripa\u0304t\u0323al (Table P-PZ43)"
+    },
+    {
+      "record_id": 636291,
+      "start_number": "PL4758.9.P3286",
+      "end_number": ".P32863",
+      "control_number": "PF 10014907",
+      "caption": "Patir\u0332r\u0332uppattu",
+      "corrected_end_number": "PL4758.9.P32863",
+      "document_id": 35,
+      "pages": [
+        229
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "4758.9.P3286-.P32863           Patir\u0332r\u0332uppattu (Table P-PZ43)"
+    },
+    {
+      "record_id": 644962,
+      "start_number": "PL6253.L62",
+      "end_number": ".L6295",
+      "control_number": "PF 16027024",
+      "caption": "Lihir",
+      "corrected_end_number": "PL6253.L6295",
+      "document_id": 35,
+      "pages": [
+        251
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PL-PM2025TEXT.pdf",
+      "source_sha256": "151262022d78bbc0f23db7bbac7a88708c79921d56b662f97f240d75e5cc5c26",
+      "source_line": "6253.L62-.L6295                Lihir (Table P-PZ16)"
+    },
+    {
+      "record_id": 629689,
+      "start_number": "PN5355.R86",
+      "end_number": ".R864",
+      "control_number": "PF 07005215",
+      "caption": "Romania",
+      "corrected_end_number": "PN5355.R864",
+      "document_id": 36,
+      "pages": [
+        144
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PN2025TEXT.pdf",
+      "source_sha256": "315e955b288ddc0624b283cebeb7d4870aa43a2a1dd357dc5c79f76814a1bae9",
+      "source_line": "5355.R86-.R864            Romania (Table PN4)"
+    },
+    {
+      "record_id": 631938,
+      "start_number": "PQ2175.W35",
+      "end_number": ".W352",
+      "control_number": "PF 08008528",
+      "caption": "Wann-Chlore",
+      "corrected_end_number": "PQ2175.W352",
+      "document_id": 37,
+      "pages": [
+        108
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PQ2025TEXT.pdf",
+      "source_sha256": "e9ce80ecbe345d72b5200666f253230c2269907a09658ba5f8384a04e1f6a0f7",
+      "source_line": "2175.W35-.W352              Wann-Chlore (Table P-PZ43a)"
+    },
+    {
+      "record_id": 648117,
+      "start_number": "PQ4556.S35",
+      "end_number": ".S353",
+      "control_number": "PF 18031520",
+      "caption": "Serventese del Dio d'amore",
+      "corrected_end_number": "PQ4556.S353",
+      "document_id": 37,
+      "pages": [
+        222
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PQ2025TEXT.pdf",
+      "source_sha256": "e9ce80ecbe345d72b5200666f253230c2269907a09658ba5f8384a04e1f6a0f7",
+      "source_line": "4556.S35-.S353        Serventese del Dio d'amore (Table P-PZ43)"
+    },
+    {
+      "record_id": 638098,
+      "start_number": "PT7296.T52",
+      "end_number": ".T54",
+      "control_number": "PF 11017399",
+      "caption": "Tiodielis saga",
+      "corrected_end_number": "PT7296.T54",
+      "document_id": 39,
+      "pages": [
+        268
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_PT2025TEXT.pdf",
+      "source_sha256": "0ce968c808c5ec7df5d34ad5c25e5b020319ca47a6803b4eca06b9d8b6cc9e72",
+      "source_line": "7296.T52-.T54           Tiodielis saga (Table P-PZ42a)"
+    },
+    {
+      "record_id": 627630,
+      "start_number": "Z447.A53",
+      "end_number": ".A5386",
+      "control_number": "PF 07002225",
+      "caption": "Andorra",
+      "corrected_end_number": "Z447.A5386",
+      "document_id": 45,
+      "pages": [
+        32
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf",
+      "source_sha256": "bdede46225493d54d8a23a9000d2335c373f353f8507dc87432ae6cd4f25519a",
+      "source_line": "447.A53-.A5386             Andorra (Table Z9)"
+    },
+    {
+      "record_id": 639015,
+      "start_number": "Z447.S52",
+      "end_number": ".S5286",
+      "control_number": "PF 11018595",
+      "caption": "Serbia",
+      "corrected_end_number": "Z447.S5286",
+      "document_id": 45,
+      "pages": [
+        32
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf",
+      "source_sha256": "bdede46225493d54d8a23a9000d2335c373f353f8507dc87432ae6cd4f25519a",
+      "source_line": "447.S52-.S5286            Serbia (Table Z9)"
+    },
+    {
+      "record_id": 637944,
+      "start_number": "Z666.63.A",
+      "end_number": ".Z",
+      "control_number": "PF 11017213",
+      "caption": "Other individual models, A-Z",
+      "corrected_end_number": "Z666.63.Z",
+      "document_id": 45,
+      "pages": [
+        43
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf",
+      "source_sha256": "bdede46225493d54d8a23a9000d2335c373f353f8507dc87432ae6cd4f25519a",
+      "source_line": "666.63.A-.Z         Other individual models, A-Z"
+    },
+    {
+      "record_id": 366056,
+      "start_number": "AS602.5",
+      "end_number": "AS405.Z9",
+      "corrected_end_number": "AS604.Z9",
+      "control_number": "CF 95349642",
+      "caption": "International associations, congresses, conferences, etc.",
+      "document_id": 1,
+      "pages": [
+        35
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_A2025TEXT.pdf",
+      "source_sha256": "8818cf6e2b4c8c34cb34bb375f40fcd13f1ff9a23fcff94bf30ad120fb958012",
+      "source_line": "604.Z9A-.Z9Z               Projects for intellectual cooperation. By author, A-Z"
+    },
+    {
+      "record_id": 366135,
+      "start_number": "AS702.5",
+      "end_number": "AS604.Z9",
+      "corrected_end_number": "AS704.Z9",
+      "control_number": "CF 95349721",
+      "caption": "International associations, congresses, conferences, etc.",
+      "document_id": 1,
+      "pages": [
+        37
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_A2025TEXT.pdf",
+      "source_sha256": "8818cf6e2b4c8c34cb34bb375f40fcd13f1ff9a23fcff94bf30ad120fb958012",
+      "source_line": "704.Z9A-.Z9Z             Projects for intellectual cooperation. By author, A-Z"
+    },
+    {
+      "record_id": 444734,
+      "start_number": "B2556",
+      "end_number": "B2263",
+      "corrected_end_number": "B2563",
+      "control_number": "CF 99433511",
+      "caption": "Translations",
+      "document_id": 2,
+      "pages": [
+        82
+      ],
+      "source_url": "https://www.loc.gov/aba/publications/FreeLCC/LCC_B-BJ2025TEXT.pdf",
+      "source_sha256": "a61ef625438b6c7ee8ff1c20102ba63604ca8b081c1bde59d75b46aba58f2c2f",
+      "source_line": "2563.A-Z                     Other languages, A-Z"
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+parent_id,parent_label,child_id,child_label,existing_child,hits,codes,selectors
+bokheim:lcc-detail:1ab4048e-328d-5469-8c2c-0c62986bdfd2,American and English,bokheim:curation:64e3990a-0158-5f55-8a66-818fbc6bbbbf,1870–2014,False,260355,96313,PZ7..PZ7
+bokheim:lcc-detail:1ab4048e-328d-5469-8c2c-0c62986bdfd2,American and English,bokheim:curation:551ac2e5-18c8-5a9e-ab6f-4e9529d8eccd,2015–,False,19464,14965,PZ7.1..PZ7.1
+bokheim:lcc-detail:1ab4048e-328d-5469-8c2c-0c62986bdfd2,American and English,bokheim:curation:9cf1c68b-6f85-53f5-9392-d85175f76e6b,Science & Industry Stories,False,676,360,PZ10..PZ10
+bokheim:lcc-detail:1ab4048e-328d-5469-8c2c-0c62986bdfd2,American and English,bokheim:curation:379b2d39-9f35-572e-83f1-9677d6b185ab,Humorous Stories,False,215,53,PZ8.7..PZ8.7
+bokheim:lcc-detail:2767854c-576a-5035-bf03-db9a8fbbb465,"Comic books, strips, etc.",bokheim:curation:7726212b-eecc-5911-8248-6c39c8a4a081,United States,False,38869,9397,PN6725..PN6728
+bokheim:lcc-detail:2767854c-576a-5035-bf03-db9a8fbbb465,"Comic books, strips, etc.",bokheim:curation:a62e5442-9f65-584f-98b5-9814b883041f,Great Britain,False,3610,638,PN6735..PN6738
+bokheim:lcc-detail:2767854c-576a-5035-bf03-db9a8fbbb465,"Comic books, strips, etc.",bokheim:curation:68cede97-f68c-56b1-9faf-22df344e793d,France,False,3198,1080,PN6745..PN6748
+bokheim:lcc-detail:2767854c-576a-5035-bf03-db9a8fbbb465,"Comic books, strips, etc.",bokheim:curation:2a2cf670-281f-5a7a-9da5-805d82855e09,Italy,False,1903,747,PN6765..PN6768
+bokheim:lcc-detail:2767854c-576a-5035-bf03-db9a8fbbb465,"Comic books, strips, etc.",bokheim:curation:77292eec-d418-53bc-a66d-ec4c074d038f,Canada,False,1273,445,PN6731..PN6734
+bokheim:lcc-detail:2767854c-576a-5035-bf03-db9a8fbbb465,"Comic books, strips, etc.",bokheim:curation:832361a2-b531-5594-abb9-b89f2bf1df65,Other Countries,False,25633,1677,PN6790..PN6790
+bokheim:lcc-detail:562989c4-2c0f-54e6-8c4b-385b49e1b67e,Biography,bokheim:curation:ff811339-af45-51d5-a60e-bc264ca1808c,Composers & Arrangers,False,34460,7913,ML390..ML390; ML410..ML410
+bokheim:lcc-detail:562989c4-2c0f-54e6-8c4b-385b49e1b67e,Biography,bokheim:curation:221815bf-4b14-52bc-96ab-23273124af1a,Singers,False,18668,6293,ML400..ML400; ML420..ML420
+bokheim:lcc-detail:562989c4-2c0f-54e6-8c4b-385b49e1b67e,Biography,bokheim:curation:4d36a3ad-b890-5196-aefd-7d5913569474,Musical Groups,False,6587,2083,ML421..ML421
+bokheim:lcc-detail:562989c4-2c0f-54e6-8c4b-385b49e1b67e,Biography,bokheim:curation:09b7808f-d146-5641-8bcb-b0667569797a,Conductors,False,1849,823,ML402..ML402; ML422..ML422
+bokheim:lcc-detail:562989c4-2c0f-54e6-8c4b-385b49e1b67e,Biography,bokheim:curation:06587146-caf6-5a7e-b106-07d37fac7d54,Instrumentalists,False,7149,3173,ML395..ML399; ML416..ML419
+bokheim:lcc-detail:562989c4-2c0f-54e6-8c4b-385b49e1b67e,Biography,bokheim:curation:f04021c8-65be-5f4a-b03f-0743d8b13bbc,Music Scholars & Critics,False,1798,907,ML403..ML403; ML423..ML423
+bokheim:lcc-detail:562989c4-2c0f-54e6-8c4b-385b49e1b67e,Biography,bokheim:curation:9c6fa01b-5b34-5f5f-9968-51bed2b65d64,Music Publishers & Instrument Makers,False,641,313,ML404..ML405; ML424..ML424; ML427..ML427
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,unified:11d7ff25-d626-51a2-9bb6-ae5d0b3278ef,Koran & Sacred Writings,True,8477,1017,BP100..BP137.5
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,unified:1a690c83-6071-5be5-9727-4ee66b849d3e,Shi'a,True,2698,280,BP192..BP194.92
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,unified:1d7ceae6-3c3e-5805-bc77-25a7fae12cc9,Rituals & Practice,True,3719,502,BP174..BP187.9
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,unified:29064019-3ffc-55c3-b816-ec4a4eb25d31,History,True,7555,1017,BP49..BP68
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,unified:4c346e9f-5fdf-5950-8cc9-6913e03f6b1b,Sufi,True,5262,678,BP188.45..BP189.7
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,unified:9bd18944-a3f6-5ed3-9b22-800797bae0de,Theology,True,3905,318,BP166..BP166.94
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,bokheim:curation:30129d1e-8a74-5431-9e56-865dc162fc47,Biography,False,6574,1948,BP70..BP80
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,bokheim:curation:553f761c-956f-5101-b82f-699f730280e9,Islamic Literature,False,469,188,BP85.42..BP89
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,bokheim:curation:cd22478e-1ed6-551a-8c61-d5fe3eda0bd6,Islamic Law,False,287,43,BP140..BP157
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,bokheim:curation:0d0cd5d4-0b30-5678-be97-4fd067aa185d,Islam & Other Religions,False,2480,272,BP171..BP173
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,bokheim:curation:d283fbbf-3428-593d-8ae0-564dfe73dab2,Islam & Society,False,4021,290,BP173.25..BP173.7
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,bokheim:curation:96c8e06c-664a-5eb8-b0d5-fbbda81e5497,Religious Life & Devotion,False,976,119,BP188..BP188.3
+unified:1534a8df-3f1b-5058-8745-870315e0141e,Islam,bokheim:curation:14783cd3-7775-5496-875f-bcacbb2039db,"Study, Teaching & Religious Education",False,920,134,BP42..BP48
+unified:a29a783b-cf65-5566-b653-31a77a986f0d,Russian literature,bokheim:curation:61a4615a-1d11-58a6-8418-ffe33b9524c7,Collections & Translations,False,2602,403,PG3199..PG3299
+unified:a29a783b-cf65-5566-b653-31a77a986f0d,Russian literature,bokheim:curation:e0bb06a8-58eb-5ad8-b51d-dcc3f40799ae,"Early Literature, through 1700",False,285,52,PG3300..PG3308
+unified:a29a783b-cf65-5566-b653-31a77a986f0d,Russian literature,bokheim:curation:afeeefd4-5a3b-56e1-b035-33b36dacc7cc,1800–1870,False,2124,256,PG3320..PG3447
+unified:a29a783b-cf65-5566-b653-31a77a986f0d,Russian literature,bokheim:curation:6cc96629-50ad-5750-91c6-b1f458147197,1870–1917,False,2742,389,PG3450..PG3470
+unified:a29a783b-cf65-5566-b653-31a77a986f0d,Russian literature,bokheim:curation:fe5fe9ef-6163-5433-bd4b-2e891352f418,1917–1960,False,9431,1419,PG3475..PG3476
+unified:a29a783b-cf65-5566-b653-31a77a986f0d,Russian literature,bokheim:curation:53c38ad0-6c84-5af9-ae72-a616f43e3dc2,1961–2000,False,30074,10259,PG3477..PG3490
+unified:a29a783b-cf65-5566-b653-31a77a986f0d,Russian literature,bokheim:curation:610f26ec-3ff6-5a66-b79f-4c58d2fce139,2001–,False,8808,5052,PG3491.2..PG3493.96
+unified:a29a783b-cf65-5566-b653-31a77a986f0d,Russian literature,bokheim:curation:da43a18d-0fe2-5b7f-99c3-5e0adafd52bb,Regional & Overseas Literature,False,2336,869,PG3500..PG3505; PG3515..PG3550
+bokheim:religion:practical-theology:christian-life,Christian Life & Devotion,bokheim:curation:37a7cc48-09ed-526a-8f43-5ddce3984a6f,Christian Family Life,False,1023,160,BV4526..BV4526.9
+bokheim:religion:practical-theology:christian-life,Christian Life & Devotion,bokheim:curation:2af484a1-8bfb-54b8-a9c7-fc4a66ffa342,Women,False,2907,739,BV4527..BV4528.15
+bokheim:religion:practical-theology:christian-life,Christian Life & Devotion,bokheim:curation:5a52fc63-8259-5604-8798-8f9d75cf175d,Parenting,False,1163,320,BV4529..BV4529.15
+bokheim:religion:practical-theology:christian-life,Christian Life & Devotion,bokheim:curation:ffd6d131-60ea-5649-b315-b4c422a4a94a,Children & Young People,False,2461,569,BV4530..BV4579
+bokheim:religion:practical-theology:christian-life,Christian Life & Devotion,bokheim:curation:64e67bb8-d0c7-5daf-9f71-cffc48f06d6e,Moral Theology & Christian Ethics,False,7169,1657,BV4622..BV4780
+bokheim:religion:practical-theology:christian-life,Christian Life & Devotion,bokheim:curation:e089f483-90fe-5544-a72f-64a5f01d0eb5,Meditation & Devotion,False,8892,1499,BV4800..BV4897
+bokheim:religion:practical-theology:christian-life,Christian Life & Devotion,bokheim:curation:81add41a-460a-53d5-b1b9-c19fb3a7575c,Consolation & Encouragement,False,3772,947,BV4900..BV4911
+bokheim:religion:practical-theology:christian-life,Christian Life & Devotion,bokheim:curation:6be5c2f1-2869-52c5-a78a-6919742c9134,Religious Experience & Conversion,False,776,336,BV4912..BV4950
+bokheim:religion:practical-theology:christian-life,Christian Life & Devotion,bokheim:curation:911b5678-cd57-5bb1-a08c-f0624897b97f,Asceticism,False,738,183,BV5015..BV5069.2
+bokheim:religion:practical-theology:christian-life,Christian Life & Devotion,bokheim:curation:16588866-4a43-5e25-9466-b8f653a887cb,Mysticism,False,3303,632,BV5070..BV5095
+unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d,Dramatic representation. The theater,bokheim:curation:c19b183c-27d0-53f6-8cad-435f9b5e67b9,Acting,False,3390,526,PN2061..PN2071
+unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d,Dramatic representation. The theater,bokheim:curation:a2c2399f-3e4e-50db-bf60-3c0cbf66767e,Stagecraft & Design,False,1529,222,PN2085..PN2091
+unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d,Dramatic representation. The theater,bokheim:curation:2923041a-f3cd-5640-8a26-c84995dbcd14,Theater History by Period,False,733,107,PN2131..PN2193
+unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d,Dramatic representation. The theater,bokheim:curation:52222b16-83a4-50e6-b353-569527c55356,United States,False,14492,4774,PN2219.52..PN2298
+unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d,Dramatic representation. The theater,bokheim:curation:ed9cddca-e921-5a29-8f3a-499621061588,Britain & Ireland,False,6119,1564,PN2575..PN2609
+unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d,Dramatic representation. The theater,bokheim:curation:4d942c26-8d92-51c0-b3e7-a1c26d8eea8e,France,False,2345,636,PN2620..PN2639.5
+unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d,Dramatic representation. The theater,bokheim:curation:eeace844-40f5-5866-9b9c-8f38153bc9d7,Germany,False,2257,724,PN2640..PN2659.5
+unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d,Dramatic representation. The theater,bokheim:curation:59531d23-cb87-5181-9740-b147870cebd7,Italy,False,1872,560,PN2670..PN2689.5
+unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d,Dramatic representation. The theater,bokheim:curation:9546f258-167f-5ebc-9aaf-d395f40bd3ef,Amateur Theater,False,1484,280,PN3151..PN3171
+unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d,Dramatic representation. The theater,bokheim:curation:aa692a26-f24f-5869-afee-d12a7329bfbb,Pageants & Performance Events,False,297,99,PN3203..PN3299
+bokheim:lcc-detail:80fbdade-0bf9-57d0-9196-67e4e55870f1,Literature,bokheim:curation:46a60cda-5043-5a78-bea4-3c41b182b7cf,Old Church Slavic Literature,False,330,112,PG700.12..PG716
+bokheim:lcc-detail:80fbdade-0bf9-57d0-9196-67e4e55870f1,Literature,bokheim:curation:ceb0c36b-79a8-5537-b1b2-4f3ffde73475,Bulgarian Literature,False,7989,2492,PG1000..PG1146
+bokheim:lcc-detail:80fbdade-0bf9-57d0-9196-67e4e55870f1,Literature,bokheim:curation:5512bb01-5b75-5a48-b8cd-1a7806f76888,Macedonian Literature,False,3266,851,PG1180..PG1199
+bokheim:lcc-detail:80fbdade-0bf9-57d0-9196-67e4e55870f1,Literature,bokheim:curation:eccd613b-c222-5085-bf2e-c19ccacd82d3,Slovenian Literature,False,3559,1049,PG1900..PG1962
+bokheim:lcc-detail:80fbdade-0bf9-57d0-9196-67e4e55870f1,Literature,bokheim:curation:0aca8a59-279f-5db3-aae1-5f79866bc3fa,Belarusian Literature,False,2029,610,PG2834.17..PG2847
+bokheim:lcc-detail:80fbdade-0bf9-57d0-9196-67e4e55870f1,Literature,bokheim:curation:a746c1a9-9f91-55f2-9bd9-0123e3f4e96d,Ukrainian Literature,False,9767,3094,PG3900..PG3987
+bokheim:lcc-detail:80fbdade-0bf9-57d0-9196-67e4e55870f1,Literature,bokheim:curation:70483089-0d4d-5ae4-a05a-6aa750d79b7d,Slovak Literature,False,3315,1059,PG5400..PG5546
+bokheim:lcc-detail:80fbdade-0bf9-57d0-9196-67e4e55870f1,Literature,bokheim:curation:f1bad190-0896-562e-8d1a-43819709b443,Polish Literature,False,22490,5818,PG7001..PG7446
+unified:45517dc7-6533-59f8-b204-566d1acf319a,Political theory. The state. Theories of the state,bokheim:curation:5b893dd2-1263-54d9-ac9d-a89728bee15b,Ancient Political Thought,False,2395,452,JC51..JC93
+unified:45517dc7-6533-59f8-b204-566d1acf319a,Political theory. The state. Theories of the state,bokheim:curation:f9cbbdb1-79de-54d9-9706-86d4fe3eb73a,Medieval Political Thought,False,392,82,JC109..JC128.2
+unified:45517dc7-6533-59f8-b204-566d1acf319a,Political theory. The state. Theories of the state,bokheim:curation:52e3ad99-349f-5531-80af-97108e763988,Modern Political Thought,False,8404,1721,JC131..JC273.2
+unified:45517dc7-6533-59f8-b204-566d1acf319a,Political theory. The state. Theories of the state,bokheim:curation:65f544c4-da8b-5250-bb01-45ebf93483a8,Geopolitics,False,2068,214,JC319..JC323
+unified:45517dc7-6533-59f8-b204-566d1acf319a,Political theory. The state. Theories of the state,bokheim:curation:e1e40518-d593-5cc8-9ebb-7ac31746dc73,Political Change,False,1296,173,JC489..JC497
+unified:45517dc7-6533-59f8-b204-566d1acf319a,Political theory. The state. Theories of the state,bokheim:curation:473ea6fe-8cc7-5884-8952-9cb1498e201f,Human & Civil Rights,False,16662,2449,JC571..JC607
+unified:8f9bbdb0-3b57-5a62-8bb2-74f15f3357ed,Japanese literature,bokheim:curation:c1377e01-118c-577c-b380-22f9b03edad6,History & Criticism,False,12830,1664,PL700..PL751.5
+unified:8f9bbdb0-3b57-5a62-8bb2-74f15f3357ed,Japanese literature,bokheim:curation:89ee3d13-1a53-57f4-acff-bfb8740b9c36,Collections & Translations,False,3313,673,PL752..PL783
+unified:8f9bbdb0-3b57-5a62-8bb2-74f15f3357ed,Japanese literature,bokheim:curation:fe40a33d-5334-51df-bb69-f8f0c647c0df,"Early Literature, through 794",False,396,27,PL784..PL786
+unified:8f9bbdb0-3b57-5a62-8bb2-74f15f3357ed,Japanese literature,bokheim:curation:e830bfef-82df-579f-b610-7af8a2c24a16,"Heian Period, 794–1185",False,2791,259,PL787..PL789
+unified:8f9bbdb0-3b57-5a62-8bb2-74f15f3357ed,Japanese literature,bokheim:curation:270831d0-d773-56de-ad8b-0fcbc3f48d56,"Kamakura–Momoyama Periods, 1185–1600",False,1313,251,PL790..PL792
+unified:8f9bbdb0-3b57-5a62-8bb2-74f15f3357ed,Japanese literature,bokheim:curation:9fbb9777-206f-54ec-9d24-3e0cb987bad1,"Early Edo Period, 1600–1788",False,1508,237,PL793..PL795
+unified:8f9bbdb0-3b57-5a62-8bb2-74f15f3357ed,Japanese literature,bokheim:curation:96ea20eb-2e70-5e59-986c-c87fc67b8977,"Late Edo Period, 1789–1867",False,596,129,PL796..PL799
+unified:8f9bbdb0-3b57-5a62-8bb2-74f15f3357ed,Japanese literature,bokheim:curation:1f70928c-0580-5ecf-a04b-ee06aeb8796a,"Meiji–Taisho Period, 1868–1926",False,4671,440,PL800..PL820
+unified:8f9bbdb0-3b57-5a62-8bb2-74f15f3357ed,Japanese literature,bokheim:curation:15b702f2-6906-566d-be08-1eb83df1242d,"Showa Period, 1926–1945",False,6360,1010,PL821..PL843
+unified:8f9bbdb0-3b57-5a62-8bb2-74f15f3357ed,Japanese literature,bokheim:curation:197751e3-2649-50a3-85b4-d4b221da572d,"Showa Period, 1945–1989",False,11083,2363,PL844..PL866
+unified:8f9bbdb0-3b57-5a62-8bb2-74f15f3357ed,Japanese literature,bokheim:curation:2801dfa0-3ff6-589d-b663-0d6039b7b15c,Regional & Overseas Literature,False,490,122,PL885..PL889
+unified:b8bc95f0-f6d0-5663-bf2a-850111c65b57,"Journalism. The periodical press, etc",bokheim:curation:06035ecc-ec89-5926-baed-d1336eb299ec,Press Freedom & Government,False,1370,242,PN4735..PN4748
+unified:b8bc95f0-f6d0-5663-bf2a-850111c65b57,"Journalism. The periodical press, etc",bokheim:curation:dd2d99fe-4467-52e0-9724-08ff0d1574e6,Practical Journalism,False,6063,1017,PN4775..PN4784
+unified:b8bc95f0-f6d0-5663-bf2a-850111c65b57,"Journalism. The periodical press, etc",bokheim:curation:e95b5303-860c-5681-b271-2f7eba58e539,Study & Teaching,False,226,83,PN4785..PN4793
+unified:b8bc95f0-f6d0-5663-bf2a-850111c65b57,"Journalism. The periodical press, etc",bokheim:curation:43b97992-f1ed-56dc-bbb1-0103b4cc7d51,History of Journalism,False,268,35,PN4801..PN4815.22
+unified:b8bc95f0-f6d0-5663-bf2a-850111c65b57,"Journalism. The periodical press, etc",bokheim:curation:90001c0b-1ee0-57b8-b8a6-2c6c7447d343,Magazines & Periodicals,False,400,53,PN4832..PN4836
+unified:b8bc95f0-f6d0-5663-bf2a-850111c65b57,"Journalism. The periodical press, etc",bokheim:curation:f5a44b4f-4221-55c2-99b5-3d362c074410,United States,False,7478,3025,PN4840.2..PN4900
+unified:b8bc95f0-f6d0-5663-bf2a-850111c65b57,"Journalism. The periodical press, etc",bokheim:curation:5eac17eb-546e-57ec-934a-887d2cadad76,Great Britain & England,False,2179,702,PN5111..PN5130
+unified:b8bc95f0-f6d0-5663-bf2a-850111c65b57,"Journalism. The periodical press, etc",bokheim:curation:442fefb1-7d1c-55d3-ae57-7d8c3a932db9,France,False,1428,498,PN5171..PN5190
+unified:b8bc95f0-f6d0-5663-bf2a-850111c65b57,"Journalism. The periodical press, etc",bokheim:curation:96ac00c5-b512-5224-b15a-b0b1ca05c1a8,Germany,False,2000,632,PN5201..PN5220
+bokheim:management:general-strategy,General & Strategic Management,bokheim:curation:da0d76ba-6c16-5121-80ad-7f5170d7130e,Information Technology & Management Systems,False,6344,1155,HD30.2..HD30.215
+bokheim:management:general-strategy,General & Strategic Management,bokheim:curation:d9484f7b-8549-5ef4-9f12-24cb068abb0d,Managerial Economics,False,762,89,HD30.22..HD30.22
+bokheim:management:general-strategy,General & Strategic Management,bokheim:curation:e47df99b-0ad4-586c-9771-5a064217b48e,Decision Making,False,2231,289,HD30.23..HD30.23
+bokheim:management:general-strategy,General & Strategic Management,bokheim:curation:775cfd27-2f18-5b0d-991c-8e2f195e59fc,Environmental Management,False,1115,181,HD30.255..HD30.255
+bokheim:management:general-strategy,General & Strategic Management,bokheim:curation:c01189aa-fc5f-5adf-b55c-eb2541e35ddc,Strategic & Business Planning,False,9688,945,HD30.28..HD30.285
+bokheim:management:general-strategy,General & Strategic Management,bokheim:curation:757ca8a4-2695-5161-b6a4-2712ce08cd00,Organizational Communication,False,2667,458,HD30.3..HD30.36
+bokheim:management:general-strategy,General & Strategic Management,bokheim:curation:8af55aa0-575a-5adf-92a2-61a5dc214a8f,Computer Networks & Information Security,False,940,157,HD30.37..HD30.385
+bokheim:management:general-strategy,General & Strategic Management,bokheim:curation:b9e8ab22-0565-5a9c-ab5b-d95aa1f597fe,Management Education & Research,False,2197,397,HD30.4..HD30.42
+bokheim:bible:new-testament,New Testament,bokheim:curation:2e9f9ffa-49e9-57ce-87b3-2bcd8c4d5d70,Texts & Translations,False,931,185,BS1901..BS2213.72
+bokheim:bible:new-testament,New Testament,bokheim:curation:373be362-7d44-54aa-ac22-ea6f45302bb8,Commentaries,False,533,102,BS2333..BS2348
+bokheim:bible:new-testament,New Testament,bokheim:curation:c1e59154-31de-58d3-9227-115623691172,Criticism & Interpretation,False,1659,366,BS2350..BS2393
+bokheim:bible:new-testament,New Testament,bokheim:curation:7b843e55-a922-5ba2-bf73-fd57d1d55700,New Testament People,False,3011,514,BS2429.2..BS2520
+bokheim:bible:new-testament,New Testament,bokheim:curation:8602921c-88c2-50e3-bb64-eb57862596c4,Gospels,False,12439,2483,BS2549..BS2619
+bokheim:bible:new-testament,New Testament,bokheim:curation:6e24ef77-f5b2-5714-8761-f665dcbbf28c,Acts of the Apostles,False,1397,295,BS2620..BS2625.6
+bokheim:bible:new-testament,New Testament,bokheim:curation:30645989-9480-5297-800a-87f4cd7bdf3e,Pauline Epistles,False,9660,2211,BS2640..BS2765.6
+bokheim:bible:new-testament,New Testament,bokheim:curation:b7d5cf2c-9549-5d85-b71e-fe3a99189d31,General Epistles,False,2754,599,BS2770..BS2815.6
+bokheim:bible:new-testament,New Testament,bokheim:curation:07a9a645-2557-5dfb-a57c-72e6fee5f331,Revelation,False,2301,457,BS2820..BS2825.6
+bokheim:bible:new-testament,New Testament,bokheim:curation:316bcbd1-c5f2-58b3-baf0-1448cf52e05c,New Testament Apocrypha,False,1067,265,BS2831..BS2970
+bokheim:lcc-detail:ccb7b0af-297d-5bdf-b549-bbcc9230426f,Artistic photography,bokheim:curation:e68596a6-0d6e-5011-b8b9-82cf91d8fe05,Exhibitions,False,11337,1334,TR644..TR647
+bokheim:lcc-detail:ccb7b0af-297d-5bdf-b549-bbcc9230426f,Artistic photography,bokheim:curation:e2305746-2ee3-500c-8235-525772773187,Photographic Collections,False,12130,865,TR650..TR655
+bokheim:lcc-detail:ccb7b0af-297d-5bdf-b549-bbcc9230426f,Artistic photography,bokheim:curation:cbdedeb5-02f6-5518-a0fe-76506ca8290c,Photography of Art,False,301,24,TR657..TR658.3
+bokheim:lcc-detail:ccb7b0af-297d-5bdf-b549-bbcc9230426f,Artistic photography,bokheim:curation:600a6b36-00e1-54cb-b494-f1e367f1c9b4,Architectural Photography,False,1445,109,TR659..TR659.3
+bokheim:lcc-detail:ccb7b0af-297d-5bdf-b549-bbcc9230426f,Artistic photography,bokheim:curation:cd209319-de8a-505c-a0d0-8ef7ffec731d,Street Photography,False,829,76,TR659.8..TR659.8
+bokheim:lcc-detail:ccb7b0af-297d-5bdf-b549-bbcc9230426f,Artistic photography,bokheim:curation:35f46a0b-9852-5b37-81df-d9af46822716,Landscape Photography,False,1870,204,TR660..TR660.5
+bokheim:lcc-detail:ccb7b0af-297d-5bdf-b549-bbcc9230426f,Artistic photography,bokheim:curation:a6453996-6baf-5b5d-9fbc-21fab43349e3,Nude & Figure Photography,False,926,94,TR674..TR675
+bokheim:lcc-detail:ccb7b0af-297d-5bdf-b549-bbcc9230426f,Artistic photography,bokheim:curation:8c58257b-8ba0-5a07-b37f-69110090cd20,Fashion Photography,False,636,81,TR679..TR679
+bokheim:lcc-detail:ccb7b0af-297d-5bdf-b549-bbcc9230426f,Artistic photography,bokheim:curation:8357dc8c-9781-52ce-907d-834031414fef,Portrait Photography,False,7377,924,TR680..TR681
+bokheim:social-history:other-countries-regions,Other Countries & Regions,bokheim:curation:9b3e40c9-3d3a-554e-9ff1-1a03f2c4ee50,Korea,False,2296,74,HN730.5..HN730.5
+bokheim:social-history:other-countries-regions,Other Countries & Regions,bokheim:curation:c49d2b2f-82e9-5aaa-a45d-3620e8046595,Russia,False,2271,170,HN530.2..HN530.2
+bokheim:social-history:other-countries-regions,Other Countries & Regions,bokheim:curation:8e575f7d-efee-575b-8f2e-f4f80ab5415e,Spain,False,1564,255,HN581..HN590
+bokheim:social-history:other-countries-regions,Other Countries & Regions,bokheim:curation:0a8db10c-72e3-5936-bda3-94145dfc031a,Italy,False,1434,212,HN471..HN490
+bokheim:social-history:other-countries-regions,Other Countries & Regions,bokheim:curation:28f50338-914d-5320-81f8-166ac1d1438a,Mexico,False,1373,211,HN111..HN120
+bokheim:social-history:other-countries-regions,Other Countries & Regions,bokheim:curation:11f9b761-362d-5240-83f5-4107623aca1f,Brazil,False,1332,172,HN281..HN290
+bokheim:social-history:other-countries-regions,Other Countries & Regions,bokheim:curation:56523a34-154e-59bb-8bdc-f235c153cf89,Canada,False,1145,191,HN101..HN110
+bokheim:social-history:other-countries-regions,Other Countries & Regions,bokheim:curation:b47f9a77-421f-584e-ad92-6234ddc38eae,Poland,False,1323,134,HN536..HN539.5
+bokheim:social-history:other-countries-regions,Other Countries & Regions,bokheim:curation:0d461fec-1a19-511b-9333-9ef62890e195,South Africa,False,557,111,HN801..HN801
+bokheim:social-history:other-countries-regions,Other Countries & Regions,bokheim:curation:5b773bda-7439-524a-a256-b2aa982a5282,Developing Countries,False,849,152,HN978..HN981
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:3eb9ed1b-7fb5-56b9-90f6-c333f8cdda68,American Cooking,False,10095,2105,TX715..TX715.2
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:e4847bb5-a871-5868-8b8c-aaf9d127ba8b,British & Irish Cooking,False,1987,125,TX717..TX717.7
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:de8c5847-984b-55fa-8042-568fa6766898,French Cooking,False,1812,262,TX719..TX719.2
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:01b8c2fc-8d53-5ab2-87a1-5fd81f7d1d2f,German & Austrian Cooking,False,389,43,TX721..TX721
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:1e4754d1-3cfb-5509-b200-2492d538e905,Italian Cooking,False,2338,431,TX723..TX723.2
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:1d1704c1-cf86-5351-9458-770c671ead98,Jewish & Israeli Cooking,False,1038,187,TX724..TX724.2
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:10e17781-0029-5da9-8811-4421edf4b076,"Early Cookbooks, through 1800",False,232,34,TX703..TX713
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:86a37529-8b74-513b-9c57-afe8fa32314c,Cooking with Alcoholic Beverages,False,333,51,TX726..TX726.3
+unified:68cb5226-6697-5d3e-b247-e0bf9d5deafb,Political science (General),bokheim:curation:7c7196bc-89c4-5661-8858-c29f4a992247,Political Psychology,False,983,143,JA74.5..JA74.5
+unified:68cb5226-6697-5d3e-b247-e0bf9d5deafb,Political science (General),bokheim:curation:15ea14ed-f624-5503-8f3a-eaf4c5ebf230,Political Culture,False,785,100,JA75.7..JA75.7
+unified:68cb5226-6697-5d3e-b247-e0bf9d5deafb,Political science (General),bokheim:curation:d9852653-4cde-5dc5-bf94-215d6a5bb40c,Political Sociology,False,1980,148,JA76..JA76
+unified:68cb5226-6697-5d3e-b247-e0bf9d5deafb,Political science (General),bokheim:curation:4fd93504-1892-5905-9c95-ba207c567d63,Political Ethics,False,1001,121,JA79..JA79
+unified:68cb5226-6697-5d3e-b247-e0bf9d5deafb,Political science (General),bokheim:curation:0ad5deb0-fa17-554f-b349-ba4d920886b3,History of Political Science,False,5318,686,JA81..JA84
+unified:68cb5226-6697-5d3e-b247-e0bf9d5deafb,Political science (General),bokheim:curation:5abbf783-d1b1-50c7-97d2-4b0c89f7961d,Political Communication,False,1879,382,JA85..JA85.2
+unified:68cb5226-6697-5d3e-b247-e0bf9d5deafb,Political science (General),bokheim:curation:88b11e94-e18d-5e6a-93c2-884954eb9f8d,"Study, Teaching & Research",False,1078,172,JA86..JA88
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:f167d8f5-25b5-5dd4-b383-6dca05b920f6,Government Buildings,False,1749,654,NA4195..NA4510
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:8574dc2a-7096-5999-8d26-961da30591b3,Religious Architecture,False,6770,2190,NA4590..NA6114
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:d9e2cea9-024e-527d-add1-4579b90a171d,Cemetery Architecture,False,415,90,NA6120..NA6199
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:571d449a-ba6e-5c80-8de2-2de53cb18e92,Commercial Buildings,False,2097,415,NA6210..NA6280
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:6c1bd556-12fa-5523-b821-a0ad282eff7d,Transport Buildings,False,491,145,NA6300..NA6333
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:f99cf71b-abb1-5c33-afaa-d2569d335c6d,Educational Buildings,False,305,83,NA6590..NA6610
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:e29f7047-2543-5d6a-8843-c7ab363e8249,Museums & Galleries,False,644,210,NA6690..NA6700
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:98c4fb6e-0158-5033-8223-1415c56248dd,Houses & Dwellings,False,13441,3552,NA7100..NA7700
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:24824571-73ca-5c16-aa3b-36e3aa8ed277,Castles & Palaces,False,3993,1353,NA7710..NA7792.52
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:102a1ee8-0cff-5ac8-a4b0-347d3504f642,Hotels & Restaurants,False,1425,289,NA7800..NA7884
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:07da7948-e352-5c8d-9bb5-25ddee9cd5b3,Farm Architecture,False,1087,199,NA8200..NA8260
+unified:b1a3b0f0-6b59-5354-91e8-1b2a794a2b37,Classed by use,bokheim:curation:4fc6b3ac-16d5-595e-a3f0-f540039a5415,"Outbuildings, Gates & Fences",False,566,98,NA8300..NA8392
+bokheim:lcc-detail:c9f19200-59d5-515d-a637-75729bb5f02e,Special regions or countries,bokheim:curation:1d82b434-f12c-5110-8001-66380105d266,Spain,False,5197,1557,ND801..ND813.3
+bokheim:lcc-detail:c9f19200-59d5-515d-a637-75729bb5f02e,Special regions or countries,bokheim:curation:7a99e1e2-6522-560f-b735-55d678640809,Netherlands,False,4107,949,ND641..ND653.3
+bokheim:lcc-detail:c9f19200-59d5-515d-a637-75729bb5f02e,Special regions or countries,bokheim:curation:b9e5d5f0-fc9b-5f16-9b50-1a7b1659b6a5,Belgium,False,2464,608,ND661..ND673.3
+bokheim:lcc-detail:c9f19200-59d5-515d-a637-75729bb5f02e,Special regions or countries,bokheim:curation:e3d81174-a416-588d-9558-a078aa0076c6,Russia & Soviet Union,False,2972,1049,ND681..ND699
+bokheim:lcc-detail:c9f19200-59d5-515d-a637-75729bb5f02e,Special regions or countries,bokheim:curation:8861c249-6690-50b8-accc-a5de40a7ba08,Canada,False,1691,743,ND240..ND249.5
+bokheim:lcc-detail:c9f19200-59d5-515d-a637-75729bb5f02e,Special regions or countries,bokheim:curation:d27f4e6c-6821-5870-aef9-a273aa37260a,Mexico,False,1625,444,ND250..ND259
+bokheim:lcc-detail:c9f19200-59d5-515d-a637-75729bb5f02e,Special regions or countries,bokheim:curation:ba346b79-1830-58c6-b8b9-a2636b3b4dd1,Switzerland,False,1173,555,ND841..ND853.3
+bokheim:lcc-detail:c9f19200-59d5-515d-a637-75729bb5f02e,Special regions or countries,bokheim:curation:6d3294bd-20e1-55ac-bd96-16b1b6823eed,Austria,False,1142,429,ND501..ND511.6
+bokheim:lcc-detail:c9f19200-59d5-515d-a637-75729bb5f02e,Special regions or countries,bokheim:curation:30231bed-6eca-5d38-b718-5dd024aa0d19,Australia,False,918,343,ND1100..ND1105.3
+bokheim:lcc-detail:c9f19200-59d5-515d-a637-75729bb5f02e,Special regions or countries,bokheim:curation:80862169-d79f-58c0-8853-081bea6341ad,Korea & South Korea,False,1255,370,ND1060..ND1069.6
+bokheim:history:soviet-union-former-republics,General History & Soviet Era,bokheim:curation:386c8cdc-eef6-56fe-a933-39f54d4326fa,Society & Culture,False,1204,43,DK32..DK32.7
+bokheim:history:soviet-union-former-republics,General History & Soviet Era,bokheim:curation:d98f8fc2-d10a-5e78-8b89-0a517ac41ae5,Peoples & Ethnography,False,3256,228,DK33..DK35.5
+bokheim:history:soviet-union-former-republics,General History & Soviet Era,bokheim:curation:bfe9a9cb-bd10-53d6-b32e-190854aba803,Military & Naval History,False,548,40,DK50..DK59
+bokheim:history:soviet-union-former-republics,General History & Soviet Era,bokheim:curation:3f23d345-c001-5160-b8ce-7ba237a2aae4,Foreign Relations,False,2275,324,DK65..DK69.7
+bokheim:history:soviet-union-former-republics,General History & Soviet Era,bokheim:curation:e82d00b5-7799-57cf-9fcd-88a3819cf599,"Early Russia, through 1613",False,2075,139,DK70..DK112.42
+bokheim:history:soviet-union-former-republics,General History & Soviet Era,bokheim:curation:855cbde0-122d-5953-9a8d-db8e150b8486,"Romanov Russia, 1613–1917",False,8992,1457,DK112.8..DK264.8
+bokheim:history:soviet-union-former-republics,General History & Soviet Era,bokheim:curation:c4f68a15-5584-569e-bc08-2b59776d8431,"Revolution & Civil War, 1917–1921",False,3247,428,DK265..DK265.95
+bokheim:history:soviet-union-former-republics,General History & Soviet Era,bokheim:curation:a0ca8cad-e492-50f6-aa86-e873ce317e01,"Soviet Era, 1918–1991",False,10222,1603,DK266..DK292
+unified:793cde23-3896-5a3b-9124-07b24efc6115,Korean literature,bokheim:curation:c61664b2-3433-596b-a265-f769e1597be3,History & Criticism,False,10662,593,PL950.2..PL969.5
+unified:793cde23-3896-5a3b-9124-07b24efc6115,Korean literature,bokheim:curation:6a402e7c-93c6-5e04-934d-11367c8b50f6,Collections & Translations,False,3528,334,PL969.8..PL985
+unified:793cde23-3896-5a3b-9124-07b24efc6115,Korean literature,bokheim:curation:da2bfd37-8473-52dc-bd14-bbd95b1fc3f7,1392–1598,False,533,150,PL988..PL988.96
+unified:793cde23-3896-5a3b-9124-07b24efc6115,Korean literature,bokheim:curation:01509b40-61a4-54b5-b326-db9e6144a32e,1598–1894,False,1357,329,PL989..PL989.98
+unified:793cde23-3896-5a3b-9124-07b24efc6115,Korean literature,bokheim:curation:7309cdc7-e38b-5787-b825-bf2fa5790283,1894–1919,False,361,58,PL990..PL990.98
+unified:793cde23-3896-5a3b-9124-07b24efc6115,Korean literature,bokheim:curation:5baf320c-e4f1-5b0e-ae92-2a412589e5e7,1919–1945,False,2450,269,PL991..PL991.98
+unified:793cde23-3896-5a3b-9124-07b24efc6115,Korean literature,bokheim:curation:221b824b-cbd4-5394-ba6e-6d237f5a3fbd,1945–2000,False,12112,3390,PL992..PL992.98
+unified:793cde23-3896-5a3b-9124-07b24efc6115,Korean literature,bokheim:curation:16894d64-7878-56e6-8dd0-96e289eb2b27,2001–,False,4277,2431,PL994..PL994.98
+unified:793cde23-3896-5a3b-9124-07b24efc6115,Korean literature,bokheim:curation:afeffdd3-9ca4-5815-83f1-7423535dc760,Regional & Overseas Literature,False,724,100,PL997..PL998
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:ac5a2b4f-2b58-5c25-a7f7-bca95c05a1ea,School Improvement,False,1962,549,LB2822.8..LB2822.84
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:decee1cd-ef2a-557a-97da-449297d393dd,School Finance & Business Management,False,1323,318,LB2823.5..LB2830.5
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:d948cc8c-b736-5fc6-a777-e7c2e95c3275,School Leadership & Administrative Staff,False,1982,621,LB2831.6..LB2831.99
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:a795f181-d2bc-5f70-9706-eea466bde55f,Teachers & Personnel Management,False,3733,860,LB2832..LB2844.1
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:e55404ed-b339-57f5-9c18-f228f05ab593,Unions & Collective Bargaining,False,437,127,LB2844.52..LB2844.632
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:112c8a32-919c-5af1-b456-e2fdffcb9d04,School Safety,False,435,116,LB2864.5..LB2866.5
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:226312d4-8751-53a2-8933-bf6b2ea2228f,School Discipline,False,676,142,LB3012..LB3012.4
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:b4f98342-3ed0-57b7-a469-5bd1257d1430,Classroom Management,False,1981,379,LB3013..LB3013.25
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:9f3c28cf-a483-55e0-b5b0-5558b0047fb1,School Violence,False,1795,390,LB3013.3..LB3013.34
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:e1d2c7ee-94cb-5b8a-ae4f-e2ec041275b9,Textbooks & Educational Media,False,893,163,LB3044..LB3048
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:0d5b5ebd-2f18-5793-93c9-afcc09e335d7,Testing & Assessment,False,4949,998,LB3050..LB3060.87
+bokheim:bible:old-testament,Old Testament,bokheim:curation:87adc6d3-6322-5cdb-8cee-54e982f4e56d,Texts & Translations,False,1027,197,BS701..BS1013.52
+bokheim:bible:old-testament,Old Testament,bokheim:curation:1d6d2aca-7e1c-5c76-b008-0abbe6161c44,Commentaries,False,447,64,BS1143..BS1158
+bokheim:bible:old-testament,Old Testament,bokheim:curation:8bdb338e-ce0f-5e83-9964-015aabe1aafb,Pentateuch & Torah,False,6564,1339,BS1221..BS1285.6
+bokheim:bible:old-testament,Old Testament,bokheim:curation:468df3d4-d386-513b-8138-9868c798c0b6,Historical Books,False,3646,898,BS1291..BS1375.6
+bokheim:bible:old-testament,Old Testament,bokheim:curation:312e6abc-4623-526b-9dd8-8d34904f2c3b,Poetry & Wisdom Books,False,7120,1463,BS1401..BS1489
+bokheim:bible:old-testament,Old Testament,bokheim:curation:460f16f6-0270-5641-9109-4a679074d948,Prophets,False,6208,1422,BS1501..BS1675.6
+bokheim:bible:old-testament,Old Testament,bokheim:curation:773f9af7-71b0-586e-a44e-b30106957e1d,Apocrypha,False,1783,478,BS1691..BS1830
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:8f234227-00e1-558b-9e3d-e8faebbc1fda,Schizophrenia,False,1866,327,RC514..RC514
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:9c346a99-5d12-548e-949d-286c81080077,Bipolar Disorder,False,858,216,RC516..RC516
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:a12e3372-7e13-5141-858d-555ef4ab1780,Dementia & Alzheimer’s Disease,False,3420,683,RC521..RC524
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:e1eafbe9-28af-5e7b-a029-a76f276cc95f,Anxiety & Phobias,False,1606,336,RC531..RC531; RC535..RC535
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:e348f66a-44fc-56cb-a0ff-dd2fea2a4e34,Obsessive-Compulsive Disorder,False,1046,236,RC533..RC533
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:c6d68e51-599d-5c3f-b15e-0923ef63e80c,Depression & Mood Disorders,False,3464,634,RC537..RC545
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:db90e57d-43ce-5018-bac0-e2e2dae6366e,Sleep Disorders,False,1029,187,RC547..RC549.3
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:080f1d59-a121-51f8-9410-da452e6cf389,Eating Disorders,False,2645,581,RC552.A5; RC552.B84; RC552.C65; RC552.E18; RC552.N55
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:b8de6857-1a9d-5f59-933b-5da1ab823941,Post-Traumatic Stress Disorder,False,1590,357,RC552.P67
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:17736b11-2c17-535e-8709-4552fa25d4e3,Personality Disorders,False,847,164,RC554..RC555
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:9a5ff634-f269-575e-b304-26886dd84609,Sexuality & Sexual Health,False,2066,401,RC556..RC560
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:ae89d220-d376-514e-bee8-ee3a039679ea,Substance Use & Addiction,False,5275,1123,RC563..RC568
+unified:4c4e0f3a-3cf1-51c8-9018-7d254ba8cca9,Psychopathology,bokheim:curation:16d52879-7c6a-5471-9f7b-5ef993f718e3,Suicide & Suicidal Behavior,False,615,135,RC569..RC569
+unified:8bc63d4d-4256-5d29-a828-b68e94f1cb2d,Dramatic representation. The theater,bokheim:curation:9d5576d4-b911-5156-a63c-e5147a144bc3,Other Countries & Regions,False,22789,5487,PN2219.3..PN3030
+unified:b8bc95f0-f6d0-5663-bf2a-850111c65b57,"Journalism. The periodical press, etc",bokheim:curation:5303c864-f841-5936-a054-d7a2843d9372,Other Countries & Regions,False,19180,5852,PN4840..PN5648
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:1fa33ee4-5e41-547d-8cb4-770955ef9d2c,Latin American Cooking,False,1839,328,TX716..TX716
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:bb11ebe0-2c1c-555d-8abf-31eb0bca05e4,Asian Cooking,False,5199,654,TX724.5..TX724.5
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:1a448543-50e3-5709-ba99-6d08d706a921,Other European Cooking,False,2025,248,TX723.5..TX723.5
+bokheim:lcc-detail:aa6b3a63-e1db-525f-996e-5daaa7f42f73,Cookbooks,bokheim:curation:f69a95aa-41ff-5080-802e-d0fec56214bd,International & Other Cuisines,False,4074,656,TX725..TX725
+bokheim:lcc-detail:17750227-b125-5635-a70a-4d9db40476db,1961-2000,bokheim:curation:1981f13b-57de-54b7-b855-3fe3eb41bf4e,Author Biographies & Criticism,False,252,222,PQ2663.I9Z4613; PQ2665.R67Z46713; PQ2672.E25Z768; PQ2673.U65Z46; PQ2663.I9Z47713; PQ2663.I9Z62713; PQ2663.I9Z634; PQ2663.I9Z745; PQ2664.E5117Z6413; PQ2665.R67Z4613; PQ2665.R67Z46413; PQ2668.O77Z723; PQ2671.R547Z73; PQ2673.O3Z75; PQ2674.O896Z8713; PQ2676.E67Z64; PQ2676.E67Z875; PQ2678.E955Z54; PQ2682.I586Z478; PQ2683.I32Z467; PQ2683.I32Z52313; PQ2683.I32Z583; PQ2683.I8Z78; PQ2661.N4.Z463; PQ2662.A323Z95; PQ2662.A49Z63; PQ2662.B716.Z5; PQ2662.E253Z8513; PQ2662.I733Z46413; PQ2662.L355Z69; PQ2662.O12Z72; PQ2662.O5717Z82; PQ2662.O7755Z75; PQ2662.O7755Z93; PQ2663.A2925Z65; PQ2663.A389Z46213; PQ2663.A38Z69; PQ2663.A544Z88; PQ2663.A7678Z4613; PQ2663.A7Z65; PQ2663.H259Z4613; PQ2663.H352Z46; PQ2663.H379Z55; PQ2663.H396Z54; PQ2663.I913Z46; PQ2663.I9Z46; PQ2663.I9Z47715; PQ2663.I9Z555; PQ2663.I9Z558; PQ2663.I9Z6; PQ2663.I9Z62813; PQ2663.I9Z636; PQ2663.I9Z66; PQ2663.I9Z692; PQ2663.I9Z755; PQ2663.I9Z814; PQ2663.I9Z835; PQ2663.I9Z84; PQ2663.O575Z75; PQ2663.U64Z56; PQ2664.A7214Z55; PQ2664.A7214Z56; PQ2664.A7214Z88; PQ2664.E45Z59; PQ2664.E5117Z77; PQ2664.E7895Z46; PQ2664.E7895Z4613; PQ2664.U288Z95; PQ2664U695Z53; PQ2665.C5Z55; PQ2665.R67Z46513; PQ2665.R67Z47813; PQ2665.R67Z69; PQ2665.R67Z73; PQ2665.R67Z76; PQ2665.R67Z85; PQ2666.E32Z4613; PQ2666.E47Z46; PQ2666.E696Z62; PQ2666.L43Z86; PQ2667.A6858Z46; PQ2667.A74Z63; PQ2667.A873Z65; PQ2667.A8Z73; PQ2667.O43Z63; PQ2667.U4612Z87; PQ2667.U9Z46; PQ2667.U9Z4613; PQ2668.A65Z67; PQ2668.O77.Z87; PQ2668.O77Z4813; PQ2668.O77Z57; PQ2668.O77Z72; PQ2668.O77Z89; PQ2668.O77Z95; PQ2668.Y83Z895; PQ2668.Y83Z93; PQ2670.A57Z46; PQ2671.A425Z62; PQ2671.A425Z66; PQ2671.A425Z85; PQ2671.R547.Z73; PQ2671.R547Z467; PQ2671.R547Z85; PQ2672.A2417Z49; PQ2672.A2893Z83; PQ2672.A73Z46413; PQ2672.E1113Z78; PQ2672.E11455Z46; PQ2672.E25Z46; PQ2672.E25Z543; PQ2672.E25Z74; PQ2672.E25Z749; PQ2672.E25Z7495; PQ2672.E25Z86; PQ2672.E25Z895; PQ2673.A38416Z63; PQ2673.A46Z97; PQ2673.A5Z78; PQ2673.A836Z77; PQ2673.E67Z62; PQ2673.E67Z65; PQ2673.E67Z68; PQ2673.E712Z737; PQ2673.I298.Z711513; PQ2673.I3368Z4613; PQ2673.O3Z4613; PQ2673.O3Z62; PQ2673.O3Z79; PQ2673.O3Z8; PQ2674.D53Z4613; PQ2674.D53Z63; PQ2674.D53Z64; PQ2674.O27Z58; PQ2674.O778Z46; PQ2674.O778Z54; PQ2674.O778Z93; PQ2674.Y68Z464; PQ2674Y79Z53; PQ2675.R33Z464; PQ2676.E67.Z53; PQ2676.E67Z52; PQ2676.E67Z73; PQ2676.E67Z96; PQ2676.E74Z68; PQ2678.E28Z83; PQ2678.E955Z735; PQ2678.E955Z74; PQ2678.E98Z46; PQ2678.I2265Z85; PQ2678.I563Z713; PQ2678.O7677Z75; PQ2678.O77Z75; PQ2678.O77Z78; PQ2678.O77Z79; PQ2678E56Z743; PQ2679.A52435Z75; PQ2679.A7Z76; PQ2679.E244Z46; PQ2679.E4Z79; PQ2679.E4Z88; PQ2679.O4Z5613; PQ2679.O4Z58; PQ2679.U75Z46; PQ2679A5224Z5; PQ2680.A734Z824; PQ2680.E824Z4613; PQ2680.O83Z52713; PQ2680.O83Z55; PQ2680.O83Z58; PQ2680.O83Z67; PQ2680.O83Z678; PQ2680.O83Z78; PQ2680.O83Z846; PQ2680.O83Z96; PQ2680.O86Z4628; PQ2680.O86Z64; PQ2680.O86Z86; PQ2682.A72Z68; PQ2682.A72Z84; PQ2682.I586.Z459; PQ2682.I79Z9513; PQ2682.O436Z93; PQ2683.E3463Z4613; PQ2683.I32.Z51713; PQ2683.I32Z4613; PQ2683.I32Z4618; PQ2683.I32Z462; PQ2683.I32Z463; PQ2683.I32Z46313; PQ2683.I32Z464; PQ2683.I32Z465; PQ2683.I32Z48; PQ2683.I32Z51713; PQ2683.I32Z56; PQ2683.I32Z58; PQ2683.I32Z582; PQ2683.I32Z6; PQ2683.I32Z63; PQ2683.I32Z65; PQ2683.I32Z654; PQ2683.I32Z655; PQ2683.I32Z656; PQ2683.I32Z658; PQ2683.I32Z66; PQ2683.I32Z6635; PQ2683.I32Z664; PQ2683.I32Z6645; PQ2683.I32Z68; PQ2683.I32Z683; PQ2683.I32Z725; PQ2683.I32Z84; PQ2683.I32Z874; PQ2683.I32Z875; PQ2683.I32Z8754; PQ2683.I32Z879; PQ2683.I32Z885; PQ2683.I32Z886; PQ2683.I32Z926; PQ2683.I32Z93; PQ2683.I8Z63; PQ2683.I8Z8
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:e3e168cd-ac87-5877-83d5-067d4aac2a79,Curriculum Planning,False,1198,224,LB2806.15..LB2806.15
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:b4f3d4fe-97c4-536c-8e83-00349b1bd0eb,Educational Accountability,False,337,78,LB2806.22..LB2806.22
+unified:677c6ec8-5079-5e68-abcb-0646cbd36dea,"School Administration, Management & Discipline",bokheim:curation:59139303-8bf3-5d1a-ba3a-d94f53dbb67d,School Governance & Supervision,False,950,218,LB2806.3..LB2806.5

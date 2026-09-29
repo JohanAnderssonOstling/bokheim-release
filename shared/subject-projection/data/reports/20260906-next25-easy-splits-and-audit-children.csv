@@ -1,0 +1,49 @@
+parent,parent_id,child,concept_id,lcc_grouping,hits_moved,codes_moved,existing_selectors_transferred,child_selector_count
+German & Related Literatures,unified:03a138ff-b2da-58b0-b6b9-d3c47edd8ca1,Collections,bokheim:curation:65224c6e-bd20-5e67-b1c7-cefe69e35f40,PT1100..PT1374,1747,331,387,490
+German & Related Literatures,unified:03a138ff-b2da-58b0-b6b9-d3c47edd8ca1,"Middle High German, ca. 1050–1450/1500",bokheim:curation:69ba30fb-c3b1-5ba8-be13-f86718b8d4e7,PT1501..PT1695,1939,590,421,785
+German & Related Literatures,unified:03a138ff-b2da-58b0-b6b9-d3c47edd8ca1,1500–ca. 1700,bokheim:curation:0b2b3fea-163a-5522-ba54-1bd7c1485d7c,PT1701..PT1797,925,261,332,446
+German & Related Literatures,unified:03a138ff-b2da-58b0-b6b9-d3c47edd8ca1,1860/70–1960,bokheim:curation:5cb8ede8-56b1-5d59-b0b7-b20e4578d95d,PT2600..PT2653,32809,4741,882,5256
+German & Related Literatures,unified:03a138ff-b2da-58b0-b6b9-d3c47edd8ca1,1961–2000,bokheim:curation:ddd2ad07-b7f7-5166-8705-5bf2fff63ea1,PT2660..PT2688,38555,8421,54,8428
+Spanish,unified:d43f1490-5dbd-5bd8-8bb4-e9ba924c59b2,Poetry Collections,bokheim:curation:897a1fbf-3d77-569f-a811-6db0779e35a6,PQ6174.95..PQ6215,1122,129,160,200
+Spanish,unified:d43f1490-5dbd-5bd8-8bb4-e9ba924c59b2,Prose Collections,bokheim:curation:ece740f0-b53a-50cf-beda-97d5bd2adb46,PQ6247..PQ6269,923,101,46,106
+Spanish,unified:d43f1490-5dbd-5bd8-8bb4-e9ba924c59b2,1700–ca. 1868,bokheim:curation:b99ceb89-eca8-554e-99a4-ecc8fa01a718,PQ6500..PQ6576,2554,414,315,556
+Spanish,unified:d43f1490-5dbd-5bd8-8bb4-e9ba924c59b2,1868–1960,bokheim:curation:2db3fc10-c967-5a9b-9d6a-aca57ec66aa2,PQ6600..PQ6647,13984,1625,309,1761
+Spanish,unified:d43f1490-5dbd-5bd8-8bb4-e9ba924c59b2,1961–2000,bokheim:curation:8181c801-2079-566e-b72c-3ac541c111e8,PQ6650..PQ6676,30389,8150,40,8157
+Spanish,unified:d43f1490-5dbd-5bd8-8bb4-e9ba924c59b2,2001–,bokheim:curation:59b2fc47-1fdb-5752-a131-7d42e7a13fbd,PQ6700..PQ6726,11228,6131,32,6135
+Italian literature,unified:4acef480-967a-56b1-8155-7dc47592254a,Collections,bokheim:curation:790b6d15-b404-5f1d-b546-58dfb388dccf,PQ4201..PQ4263,1500,155,173,215
+Italian literature,unified:4acef480-967a-56b1-8155-7dc47592254a,1400–1700,bokheim:curation:f139c8a9-3fb9-5fa7-9365-c9eb29ec135d,PQ4561..PQ4639,2089,481,678,829
+Italian literature,unified:4acef480-967a-56b1-8155-7dc47592254a,1701–1900,bokheim:curation:3167941d-1f6d-5ded-aadb-420360d5c19d,PQ4675..PQ4734,3462,413,875,969
+Italian literature,unified:4acef480-967a-56b1-8155-7dc47592254a,1900–1960,bokheim:curation:7cb57288-5d24-5cfd-b33b-a5d77c5bfffd,PQ4800..PQ4851,10992,1248,270,1371
+Italian literature,unified:4acef480-967a-56b1-8155-7dc47592254a,1961–2000,bokheim:curation:50da3931-dbb7-5916-b068-06534dccd5a7,PQ4860..PQ4886,25469,7150,32,7160
+Italian literature,unified:4acef480-967a-56b1-8155-7dc47592254a,2001–,bokheim:curation:0eaf3746-e02f-54c1-8da4-fac94e8f2747,PQ4900..PQ4926,13589,7746,27,7753
+American,unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa,1900–1960,bokheim:curation:4d24af59-aa33-540e-b8b0-c561217ab8c3,PS3500..PS3549,35805,7929,6657,12658
+American,unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa,1961–2000,bokheim:curation:eea452b2-e068-51a0-9f67-aebfdad03ed7,PS3550..PS3576,237127,69913,248,69930
+American,unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa,2001–,bokheim:curation:7f803776-b174-5f9a-9c48-e51a105a6841,PS3600..PS3626,146254,64166,123,64205
+French literature outside of France,bokheim:lcc-detail:9e303e24-d523-5d9d-9fd2-1a6cd06beb90,Canada,bokheim:curation:4394b866-beed-5e3b-ab62-d362b8d98531,PQ3900..PQ3919.3,15531,4077,0,1
+French literature outside of France,bokheim:lcc-detail:9e303e24-d523-5d9d-9fd2-1a6cd06beb90,West Indies,bokheim:curation:65e30cd3-cee4-52e1-84ee-c5151edc19b3,PQ3940..PQ3949.3,2519,651,0,1
+French literature outside of France,bokheim:lcc-detail:9e303e24-d523-5d9d-9fd2-1a6cd06beb90,Asia,bokheim:curation:fe887bf6-b66a-5322-a206-c34944661f03,PQ3960..PQ3979.3,591,210,0,1
+French literature outside of France,bokheim:lcc-detail:9e303e24-d523-5d9d-9fd2-1a6cd06beb90,Africa,bokheim:curation:8a1fa51b-dda6-5601-b866-0dde101dddcd,PQ3980..PQ3989.3,12682,4563,0,1
+Criminology,unified:eef99aec-2e4e-552d-89e2-5908191745c9,Criminal Psychology,bokheim:curation:8680688b-edac-59a9-b8c8-575ada7403ff,HV6080..HV6113,1118,128,17,134
+Criminology,unified:eef99aec-2e4e-552d-89e2-5908191745c9,Causes of Crime,bokheim:curation:b8fe1ab1-539b-5a96-a309-0b9b19b6416d,HV6115..HV6190,707,125,28,129
+Criminology,unified:eef99aec-2e4e-552d-89e2-5908191745c9,Victims of Crime & Victimology,bokheim:curation:f5a7082f-05c9-548a-98f9-89150b9d3169,HV6250..HV6250.4,2964,426,18,427
+Criminology,unified:eef99aec-2e4e-552d-89e2-5908191745c9,Domestic Violence & Abuse,bokheim:curation:2c7f9d2c-b978-5483-90de-9980ad734a6e,HV6625..HV6626.7,3030,538,7,538
+Criminology,unified:eef99aec-2e4e-552d-89e2-5908191745c9,Property Crime,bokheim:curation:6f59ed93-35a2-55dd-ae23-9074582801ea,HV6635..HV6700,1166,210,21,213
+Criminology,unified:eef99aec-2e4e-552d-89e2-5908191745c9,Financial Crime,bokheim:curation:6eb7feb5-f4f5-52c1-baf0-e919bf9e6ef9,HV6763..HV6771,1739,190,4,190
+Criminology,unified:eef99aec-2e4e-552d-89e2-5908191745c9,Computer Crime,bokheim:curation:c3fe81e3-4d68-580b-ace8-193b27569db0,HV6772..HV6773.3,1414,329,10,329
+India (Bharat),unified:0ba918c7-85ce-54fd-98ad-22519dc0583e,997–1761,bokheim:curation:0915314d-7d3f-5aab-8fef-022a4de1165e,DS452..DS461.8,880,145,0,1
+India (Bharat),unified:0ba918c7-85ce-54fd-98ad-22519dc0583e,"British Rule, 1761–1947",bokheim:curation:c8071b55-b37c-5342-a3db-f2655359e4cf,DS463..DS480.83,3202,479,0,1
+India (Bharat),unified:0ba918c7-85ce-54fd-98ad-22519dc0583e,1947–,bokheim:curation:c50e278b-e349-5e0c-8ef3-74c0513bde46,DS480.832..DS480.859,1866,200,0,1
+India (Bharat),unified:0ba918c7-85ce-54fd-98ad-22519dc0583e,Political & Diplomatic History,bokheim:curation:3d1626dd-cfd7-59b5-95b9-c37347a658d5,DS444..DS450,1541,280,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,Canada,bokheim:curation:962b0834-d119-5d37-8298-f98809c8e3dd,LA410..LA419,718,108,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,Mexico,bokheim:curation:f54486b3-2833-5290-971a-1ac6d39b02f4,LA420..LA430,821,100,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,Brazil,bokheim:curation:a6df9d6e-dce8-56b0-a0ce-bfde6d013915,LA555..LA559,961,78,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,United Kingdom,bokheim:curation:399a1f55-be90-5cde-ae0d-80100fac0ab6,LA630..LA669.5,2644,393,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,France,bokheim:curation:7e193bf3-dcdc-5834-9801-ce8aa9b7aa9d,LA690..LA718,1059,108,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,Germany,bokheim:curation:652db8d9-2aa6-551f-808b-fcc32ef85426,LA720..LA779.2,2318,337,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,Italy,bokheim:curation:3ecdf245-fa7e-5bca-af83-363219fffeb7,LA790..LA799,647,97,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,Poland,bokheim:curation:d292aff8-8f9a-50f4-85f4-e27e84afecae,LA840..LA844,583,71,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,Spain,bokheim:curation:978f898b-aec0-57e6-915c-4e5740a80171,LA910..LA919,818,125,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,China,bokheim:curation:58b12cba-57d5-5d1f-8357-fcd8e9fe0131,LA1130..LA1134,2721,289,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,India,bokheim:curation:21c4ff71-9f31-5122-8c4f-a1bc2180cbdb,LA1150..LA1154,809,132,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,Japan,bokheim:curation:bbbcb23f-7078-5764-9043-39d728a89e8e,LA1310..LA1319,1846,135,0,1
+Other regions or countries,unified:ff303c1e-a2f0-5bbc-b551-427d9242396a,Korea,bokheim:curation:3fc9a719-3769-5bcf-9717-ca670d7ff45e,LA1330..LA1339,1183,56,0,1

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Bokheim Kobo Installer
+Comment=Install Bokheim on a connected Kobo Libra 2
+Exec=bokheim-kobo-installer
+Icon=se.bokheim.KoboInstaller
+Terminal=false
+Categories=Utility;

@@ -1,0 +1,181 @@
+{
+  "merges": {
+    "6755": {
+      "into": 4910,
+      "old_label": "Petrofabric analysis",
+      "surviving_label": "Petrology"
+    },
+    "7724": {
+      "into": 4910,
+      "old_label": "Rock Microscopy",
+      "surviving_label": "Petrology"
+    },
+    "9379": {
+      "into": 4910,
+      "old_label": "Chemical analysis of rocks",
+      "surviving_label": "Petrology"
+    },
+    "6367": {
+      "into": 4910,
+      "old_label": "Laterite",
+      "surviving_label": "Petrology"
+    },
+    "9745": {
+      "into": 4910,
+      "old_label": "Collection & preservation",
+      "surviving_label": "Petrology"
+    },
+    "7446": {
+      "into": 4910,
+      "old_label": "Petrology Topics",
+      "surviving_label": "Petrology"
+    },
+    "6601": {
+      "into": 4907,
+      "old_label": "Fossil Wood & Trees",
+      "surviving_label": "Paleobotany"
+    },
+    "8738": {
+      "into": 4908,
+      "old_label": "Paleontology Careers",
+      "surviving_label": "Paleontology"
+    },
+    "9725": {
+      "into": 4908,
+      "old_label": "Paleontology Atlases",
+      "surviving_label": "Paleontology"
+    },
+    "6587": {
+      "into": 4908,
+      "old_label": "Collection & preservation",
+      "surviving_label": "Paleontology"
+    },
+    "8518": {
+      "into": 4906,
+      "old_label": "Mineralogy Atlases",
+      "surviving_label": "Mineralogy"
+    },
+    "8909": {
+      "into": 4906,
+      "old_label": "Collection & preservation",
+      "surviving_label": "Mineralogy"
+    },
+    "8000": {
+      "into": 4906,
+      "old_label": "Mineralogy Topics",
+      "surviving_label": "Mineralogy"
+    },
+    "10005": {
+      "into": 4906,
+      "old_label": "Rock-forming minerals",
+      "surviving_label": "Mineralogy"
+    },
+    "9140": {
+      "into": 2378,
+      "old_label": "Activity programs",
+      "surviving_label": "Environmental education"
+    },
+    "6945": {
+      "into": 3074,
+      "old_label": "Tools & supplies",
+      "surviving_label": "Woodworking & Upholstery"
+    },
+    "9260": {
+      "into": 3074,
+      "old_label": "Woodworking Basics",
+      "surviving_label": "Woodworking & Upholstery"
+    },
+    "7687": {
+      "into": 3073,
+      "old_label": "Curtain Making",
+      "surviving_label": "Soft home furnishings"
+    },
+    "6848": {
+      "into": 3071,
+      "old_label": "Metal turning",
+      "surviving_label": "Metalworking"
+    },
+    "8494": {
+      "into": 3071,
+      "old_label": "Wire craft",
+      "surviving_label": "Metalworking"
+    },
+    "7077": {
+      "into": 3069,
+      "old_label": "General & domestic",
+      "surviving_label": "Laundry work"
+    },
+    "9111": {
+      "into": 3069,
+      "old_label": "Materials. Machinery",
+      "surviving_label": "Laundry work"
+    },
+    "6845": {
+      "into": 4794,
+      "old_label": "In situ hybridization",
+      "surviving_label": "Genetics"
+    },
+    "7839": {
+      "into": 4794,
+      "old_label": "Cytoplasmic inheritance",
+      "surviving_label": "Genetics"
+    },
+    "6927": {
+      "into": 4794,
+      "old_label": "Genetics Atlases",
+      "surviving_label": "Genetics"
+    },
+    "8595": {
+      "into": 4794,
+      "old_label": "Data processing",
+      "surviving_label": "Genetics"
+    },
+    "6373": {
+      "into": 4791,
+      "old_label": "Nucleolus",
+      "surviving_label": "Cytology"
+    },
+    "8417": {
+      "into": 4791,
+      "old_label": "Cell Biology Atlases",
+      "surviving_label": "Cytology"
+    },
+    "9688": {
+      "into": 4862,
+      "old_label": "Classification. Nomenclature",
+      "surviving_label": "Virology"
+    },
+    "6909": {
+      "into": 4862,
+      "old_label": "Variation",
+      "surviving_label": "Virology"
+    },
+    "9609": {
+      "into": 4978,
+      "old_label": "Specificity",
+      "surviving_label": "Immunology"
+    },
+    "6387": {
+      "into": 4978,
+      "old_label": "Chemotaxis",
+      "surviving_label": "Immunology"
+    },
+    "9158": {
+      "into": 4867,
+      "old_label": "Methods, culture, etc.",
+      "surviving_label": "Invertebrates"
+    },
+    "8579": {
+      "into": 4867,
+      "old_label": "Invertebrate Classification",
+      "surviving_label": "Invertebrates"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply all 20 approved granular-leaf groups, merging 34 leaves into their existing parents. Geopolitics placement is outside this numbered batch and unchanged.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

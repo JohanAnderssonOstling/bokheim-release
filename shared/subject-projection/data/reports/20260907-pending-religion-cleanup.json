@@ -1,0 +1,238 @@
+{
+  "created": [
+    {
+      "id": 51511,
+      "name": "Religion by Region",
+      "parent": 4549
+    },
+    {
+      "id": 51512,
+      "name": "Religion in Developing Nations",
+      "parent": 51511
+    },
+    {
+      "id": 51513,
+      "name": "Indo-European Religions",
+      "parent": 51511
+    },
+    {
+      "id": 51514,
+      "name": "Ural-Altaic Religions",
+      "parent": 51511
+    },
+    {
+      "id": 51515,
+      "name": "Mediterranean Religions",
+      "parent": 51511
+    },
+    {
+      "id": 51516,
+      "name": "Religious Archaeology",
+      "parent": 5857
+    },
+    {
+      "id": 51517,
+      "name": "Religion Essays",
+      "parent": 5857
+    },
+    {
+      "id": 51518,
+      "name": "Ancient Religions",
+      "parent": 4549
+    },
+    {
+      "id": 51519,
+      "name": "History of Religion",
+      "parent": 5857
+    },
+    {
+      "id": 51520,
+      "name": "Religious Fundamentalism",
+      "parent": 5526
+    },
+    {
+      "id": 51521,
+      "name": "Religion, Politics & State",
+      "parent": 5526
+    },
+    {
+      "id": 51522,
+      "name": "Religion, Sexuality & Gender",
+      "parent": 5526
+    },
+    {
+      "id": 51523,
+      "name": "Religion & Science",
+      "parent": 5526
+    },
+    {
+      "id": 51524,
+      "name": "Religious Intolerance & Conflict",
+      "parent": 5526
+    },
+    {
+      "id": 51525,
+      "name": "Religious Monasticism",
+      "parent": 5527
+    },
+    {
+      "id": 51526,
+      "name": "Prophets & Prophecy",
+      "parent": 4549
+    },
+    {
+      "id": 51527,
+      "name": "Religious Media",
+      "parent": 4549
+    },
+    {
+      "id": 51528,
+      "name": "Religious Conversion",
+      "parent": 4549
+    },
+    {
+      "id": 51529,
+      "name": "Religious Freedom",
+      "parent": 4549
+    }
+  ],
+  "renamed": [
+    {
+      "id": 4600,
+      "before": "Rituals & Practice",
+      "after": "Hindu Rituals & Practice"
+    },
+    {
+      "id": 4601,
+      "before": "Sacred Writings",
+      "after": "Hindu Sacred Texts"
+    },
+    {
+      "id": 4602,
+      "before": "Theology",
+      "after": "Hindu Theology"
+    },
+    {
+      "id": 4501,
+      "before": "Religious ethics",
+      "after": "Religious Ethics"
+    },
+    {
+      "id": 5525,
+      "before": "Practice & Spiritual Life",
+      "after": "Religious Practice & Spiritual Life"
+    }
+  ],
+  "flattened": [],
+  "allowed_transitions": {
+    "5529": [
+      4549,
+      4598,
+      4599,
+      4600,
+      4601,
+      4602,
+      51512,
+      51513,
+      51514,
+      51515,
+      51516,
+      51517,
+      51518
+    ],
+    "13780": [
+      4549
+    ],
+    "11632": [
+      5526,
+      51521,
+      51522,
+      51524
+    ],
+    "5526": [
+      4501,
+      10945,
+      51519,
+      51520,
+      51521,
+      51522,
+      51523,
+      51524
+    ],
+    "11637": [
+      5524,
+      51348
+    ],
+    "11057": [
+      4538
+    ],
+    "11642": [
+      4552,
+      5527,
+      51350,
+      51352,
+      51525,
+      51526,
+      51527,
+      51528,
+      51529
+    ]
+  },
+  "merged": [
+    {
+      "removed": 13780,
+      "retained": 4549
+    },
+    {
+      "removed": 11632,
+      "retained": 5526
+    },
+    {
+      "removed": 11637,
+      "retained": 5524
+    },
+    {
+      "removed": 11057,
+      "retained": 4538
+    },
+    {
+      "removed": 11642,
+      "retained": 5527
+    }
+  ],
+  "empty_groupings_removed": [
+    5858
+  ],
+  "verified_code_groups": 2960836,
+  "changed_code_groups": 6696,
+  "transitions": {
+    "[13780] -> [4549]": 1276,
+    "[11632] -> [5526]": 1409,
+    "[5529] -> [4549]": 1,
+    "[11632] -> [51521]": 268,
+    "[11637] -> [51348]": 91,
+    "[5529] -> [4598]": 1251,
+    "[5529] -> [4601]": 806,
+    "[11632] -> [51522]": 81,
+    "[5529] -> [4602]": 249,
+    "[11642] -> [51529]": 43,
+    "[5529] -> [51513]": 12,
+    "[5529] -> [4600]": 507,
+    "[11642] -> [51528]": 32,
+    "[5529] -> [51515]": 20,
+    "[5529] -> [4599]": 530,
+    "[11057] -> [4538]": 12,
+    "[11637] -> [5524]": 25,
+    "[11642] -> [51526]": 12,
+    "[11642] -> [51527]": 18,
+    "[11642] -> [51525]": 8,
+    "[11642] -> [5527]": 20,
+    "[11632] -> [51524]": 11,
+    "[11642] -> [51352]": 4,
+    "[5529] -> [51514]": 1,
+    "[11642] -> [4552]": 4,
+    "[11642] -> [51350]": 4,
+    "[5529] -> [51512]": 1
+  },
+  "aliases_added": 0
+}

@@ -1,0 +1,38 @@
+{
+  "merges": {},
+  "renamed": {
+    "5433": {
+      "before": "Sexual Behavior",
+      "after": "Psychology of Sexuality"
+    }
+  },
+  "moved": [
+    {
+      "id": 5250,
+      "before": [
+        5381,
+        5661,
+        54939
+      ],
+      "after": [
+        5661,
+        54939
+      ]
+    }
+  ],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [
+    {
+      "system": "bisac",
+      "selector": "PSY016000",
+      "from": 5250,
+      "to": 5433
+    }
+  ],
+  "scope": "Separate existing psychology and sociological sexuality subjects. Human Sexuality retains SOC065000, HQ coverage and social children; Psychology of Sexuality retains BF692 coverage and Male Psychology & Masculinity, gaining PSY016000. No new subject or alternate label created.",
+  "source_notes": [
+    "LCC BF pages 168–169 explicitly separate Psychology of sex / Sexual behavior at BF692 from HQ12+ sociology. Current Human Sexuality descendants use HQ coverage and remain in the social branch."
+  ],
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

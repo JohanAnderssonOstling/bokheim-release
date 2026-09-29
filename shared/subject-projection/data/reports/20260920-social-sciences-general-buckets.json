@@ -1,0 +1,116 @@
+{
+  "merges": {
+    "12249": {
+      "into": 5253,
+      "old_label": "Women — General Works",
+      "surviving_label": "Women & Feminism"
+    },
+    "12330": {
+      "into": 5233,
+      "old_label": "Industry — General",
+      "surviving_label": "Industry & Organization"
+    },
+    "12391": {
+      "into": 5229,
+      "old_label": "General Banking",
+      "surviving_label": "Banking"
+    },
+    "12427": {
+      "into": 5231,
+      "old_label": "General Agricultural Economics",
+      "surviving_label": "Agricultural Economics"
+    },
+    "12772": {
+      "into": 5235,
+      "old_label": "Land Use: General & History",
+      "surviving_label": "Land Use"
+    },
+    "12801": {
+      "into": 5189,
+      "old_label": "General Marketing",
+      "surviving_label": "Marketing"
+    },
+    "12847": {
+      "into": 5071,
+      "old_label": "General, History & Study",
+      "surviving_label": "Prehistoric"
+    },
+    "12918": {
+      "into": 5877,
+      "old_label": "General, Methodology & History",
+      "surviving_label": "Legal Philosophy"
+    },
+    "12951": {
+      "into": 5520,
+      "old_label": "General Statistics",
+      "surviving_label": "Statistics"
+    },
+    "12979": {
+      "into": 5058,
+      "old_label": "General Ethnology",
+      "surviving_label": "Cultural & Social"
+    },
+    "13001": {
+      "into": 5069,
+      "old_label": "General Physical Anthropology",
+      "surviving_label": "Physical"
+    },
+    "13128": {
+      "into": 5099,
+      "old_label": "Income & Factor Shares—General",
+      "surviving_label": "Income. Factor shares"
+    },
+    "13145": {
+      "into": 5093,
+      "old_label": "Business Cycles—General",
+      "surviving_label": "Business Cycles"
+    },
+    "13210": {
+      "into": 5517,
+      "old_label": "Societies—General",
+      "surviving_label": "Secret & Benevolent Societies"
+    },
+    "13319": {
+      "into": 5100,
+      "old_label": "Economic Methodology—General",
+      "surviving_label": "Economic Research Methods"
+    },
+    "52928": {
+      "into": 12731,
+      "old_label": "Computer Crime — General",
+      "surviving_label": "Computer Crime"
+    },
+    "52948": {
+      "into": 5065,
+      "old_label": "General Folk Literature",
+      "surviving_label": "Folk literature"
+    },
+    "53302": {
+      "into": 5058,
+      "old_label": "Ethnology General Works & Textbooks",
+      "surviving_label": "Cultural & Social"
+    },
+    "12265": {
+      "into": 5086,
+      "old_label": "Business — General & Reference",
+      "surviving_label": "Business"
+    }
+  },
+  "renamed": {},
+  "moved": [
+    {
+      "id": 53301,
+      "before": [
+        12304
+      ],
+      "after": [
+        5077
+      ]
+    }
+  ],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "validation": "Deferred at user request; usage refresh also deferred.",
+  "scope": "19 approved general-subject merges and Urban Ecology placement; conditional review candidates remain unapplied."
+}

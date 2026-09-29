@@ -1,0 +1,23 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT EXISTS(\n    SELECT 1 FROM libraries WHERE id = $1 AND user_id = $2\n);\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "exists",
+        "type_info": "Bool"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "28410e5fd999e32088e88b2202fdfef3d9a7d02bf5f0bcb2cc7ff77a684fdcde"
+}

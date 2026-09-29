@@ -1,0 +1,204 @@
+{
+  "observed_codes_full_pass": 11977153,
+  "music_refinement_probes": 2324614,
+  "parent_refinement_probes": 249848,
+  "boundary_probes": 41087,
+  "final_changed_observed_codes": 37385,
+  "classification_losses": 0,
+  "non_merge_changes": [
+    {
+      "system": "lcc",
+      "code": "M1490",
+      "before": [
+        806
+      ],
+      "after": [
+        54943
+      ],
+      "uses": 5
+    },
+    {
+      "system": "lcc",
+      "code": "M1490.I73 A2 1988",
+      "before": [
+        806
+      ],
+      "after": [
+        54943
+      ],
+      "uses": 2
+    },
+    {
+      "system": "lcc",
+      "code": "MT10*",
+      "before": [
+        5660
+      ],
+      "after": [
+        720
+      ],
+      "uses": 2
+    },
+    {
+      "system": "lcc",
+      "code": "M1490 .P64 2021",
+      "before": [
+        806
+      ],
+      "after": [
+        54943
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "M1490 L69 M3 1613a",
+      "before": [
+        806
+      ],
+      "after": [
+        54943
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "M1490 W66 M3 1598a",
+      "before": [
+        806
+      ],
+      "after": [
+        54943
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "M1490 Y65 M9 1588a",
+      "before": [
+        806
+      ],
+      "after": [
+        54943
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "ML38.",
+      "before": [
+        5946
+      ],
+      "after": [
+        782
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "MT2.5",
+      "before": [
+        762
+      ],
+      "after": [
+        806
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "MT2.5 .S79 1998",
+      "before": [
+        762
+      ],
+      "after": [
+        806
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "MT2.5 .S85",
+      "before": [
+        762
+      ],
+      "after": [
+        806
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "MT2.5 .S85 1985",
+      "before": [
+        762
+      ],
+      "after": [
+        806
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "MT2.5 .S85 1991",
+      "before": [
+        762
+      ],
+      "after": [
+        806
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "Q334-342Q342QA76.76.",
+      "before": [
+        36,
+        7614
+      ],
+      "after": [
+        7614
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "Q334-342TA174QA76.9.",
+      "before": [
+        36,
+        280,
+        7614
+      ],
+      "after": [
+        280,
+        7614
+      ],
+      "uses": 1
+    },
+    {
+      "system": "lcc",
+      "code": "TA174Q334-342QA76.9.",
+      "before": [
+        36,
+        280,
+        7614
+      ],
+      "after": [
+        280,
+        7614
+      ],
+      "uses": 1
+    }
+  ],
+  "baseline_tests": "test result: FAILED. 245 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.97s",
+  "final_tests": "test result: FAILED. 245 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.85s",
+  "unchanged_test_failures": [
+    "runtime::tests::decorative_arts_lcc_detail_routes_to_existing_concepts",
+    "taxonomy_sqlite::tests::server_slice_is_persisted_as_an_ancestor_closed_local_overlay",
+    "tests::declared_damaged_lcc_reaches_unified_projection_with_original_position",
+    "tests::frequent_russian_geographic_codes_resolve_to_specific_regions"
+  ],
+  "database_sha256": "2d75cdec8a96276420213f650250704d6cc837ea5ab5dd544f42ded0c134af38",
+  "matcher_binary_sha256": "8abf83e7197f1116e9b99624b90ae1e7db79fa3a880c8a292817a45c6fea13b0",
+  "validation_scope": "Full observed DDC/LCC pass to intermediate snapshot, followed by music refinements on all DDC and LCC strings containing M, and parent refinements on normalized LB/ND-containing LCC strings. All final selector/range endpoints compared. LCC usage counts rebuilt from full pass and weighted refinement deltas."
+}

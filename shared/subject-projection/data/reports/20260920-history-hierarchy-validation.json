@@ -1,0 +1,793 @@
+{
+  "observed_comparison": "Probes=11977153 changed=82047 losses=0 gains=0",
+  "boundary_comparison": "Probes=54700 changed=654 losses=0 gains=0",
+  "regression_tests": "12 passed",
+  "library_tests": "249 passed, 4 pre-existing failures (same baseline and final)",
+  "concept_count": 16791,
+  "usage_rows": 14079,
+  "database_sha256": "30395be440f77168a724e4ec75066ca179e0d826e93868953a9ab21d106edf6a",
+  "changes_by_destination": [
+    {
+      "before": "54646",
+      "after": "50848",
+      "codes": 8266,
+      "example": "DS896.38"
+    },
+    {
+      "before": "54642",
+      "after": "50847",
+      "codes": 8032,
+      "example": "DS485.H6"
+    },
+    {
+      "before": "54841",
+      "after": "50843",
+      "codes": 7872,
+      "example": "DK4706"
+    },
+    {
+      "before": "54621",
+      "after": "54620",
+      "codes": 5519,
+      "example": "F1376"
+    },
+    {
+      "before": "54404",
+      "after": "50873",
+      "codes": 5505,
+      "example": "F2546"
+    },
+    {
+      "before": "54653",
+      "after": "50845",
+      "codes": 4541,
+      "example": "DS925.S43"
+    },
+    {
+      "before": "54478",
+      "after": "13963",
+      "codes": 4041,
+      "example": "DK508.9.K78"
+    },
+    {
+      "before": "54715",
+      "after": "54714",
+      "codes": 3252,
+      "example": "DS247.D72"
+    },
+    {
+      "before": "54505",
+      "after": "54504",
+      "codes": 2997,
+      "example": "F2936"
+    },
+    {
+      "before": "54428",
+      "after": "54427",
+      "codes": 2105,
+      "example": "DS647.B2"
+    },
+    {
+      "before": "54721",
+      "after": "50860",
+      "codes": 2020,
+      "example": "DS326"
+    },
+    {
+      "before": "54731",
+      "after": "54730",
+      "codes": 1794,
+      "example": "DS110.W47"
+    },
+    {
+      "before": "13688",
+      "after": "3684",
+      "codes": 1525,
+      "example": "D16.2"
+    },
+    {
+      "before": "10347",
+      "after": "3687",
+      "codes": 1196,
+      "example": "D157"
+    },
+    {
+      "before": "54483",
+      "after": "54482",
+      "codes": 1170,
+      "example": "F2281.C32 V34 2008"
+    },
+    {
+      "before": "54432",
+      "after": "54431",
+      "codes": 976,
+      "example": "DS598.S7"
+    },
+    {
+      "before": "54446",
+      "after": "54445",
+      "codes": 954,
+      "example": "DS589.B2"
+    },
+    {
+      "before": "54735",
+      "after": "54734",
+      "codes": 888,
+      "example": "DS99.D3"
+    },
+    {
+      "before": "54663",
+      "after": "54662",
+      "codes": 879,
+      "example": "DS392.S58"
+    },
+    {
+      "before": "54589",
+      "after": "54588",
+      "codes": 865,
+      "example": "DT2405.C363"
+    },
+    {
+      "before": "54419",
+      "after": "54418",
+      "codes": 861,
+      "example": "F2331.A2 R36 2008"
+    },
+    {
+      "before": "54409",
+      "after": "54408",
+      "codes": 795,
+      "example": "F3126"
+    },
+    {
+      "before": "54761",
+      "after": "54760",
+      "codes": 757,
+      "example": "DS799.9.C476 A2513 2009"
+    },
+    {
+      "before": "54137",
+      "after": "54136",
+      "codes": 721,
+      "example": "DT515.9.B37"
+    },
+    {
+      "before": "54597",
+      "after": "54596",
+      "codes": 697,
+      "example": "DT159.6.D27"
+    },
+    {
+      "before": "54262",
+      "after": "51968",
+      "codes": 692,
+      "example": "DR1785"
+    },
+    {
+      "before": "13769",
+      "after": "3331",
+      "codes": 670,
+      "example": "DT545.84"
+    },
+    {
+      "before": "54746",
+      "after": "54745",
+      "codes": 627,
+      "example": "DU430.S57"
+    },
+    {
+      "before": "54277",
+      "after": "54276",
+      "codes": 559,
+      "example": "DT298.K2"
+    },
+    {
+      "before": "54200",
+      "after": "54199",
+      "codes": 558,
+      "example": "F1799.H33"
+    },
+    {
+      "before": "54450",
+      "after": "13988",
+      "codes": 542,
+      "example": "DK699.N34"
+    },
+    {
+      "before": "54457",
+      "after": "13986",
+      "codes": 525,
+      "example": "DK679.A25 K87 2008"
+    },
+    {
+      "before": "54414",
+      "after": "54413",
+      "codes": 507,
+      "example": "F3451.A5"
+    },
+    {
+      "before": "54488",
+      "after": "54487",
+      "codes": 468,
+      "example": "F3741.G2"
+    },
+    {
+      "before": "54795",
+      "after": "54794",
+      "codes": 456,
+      "example": "DS559.93.H36"
+    },
+    {
+      "before": "54258",
+      "after": "51955",
+      "codes": 395,
+      "example": "DR1475.J67 M37 1998"
+    },
+    {
+      "before": "10731",
+      "after": "3673",
+      "codes": 388,
+      "example": "D804.348"
+    },
+    {
+      "before": "54437",
+      "after": "54436",
+      "codes": 376,
+      "example": "DS688.M2"
+    },
+    {
+      "before": "10430",
+      "after": "3345",
+      "codes": 355,
+      "example": "DT433.52"
+    },
+    {
+      "before": "54651",
+      "after": "54650",
+      "codes": 335,
+      "example": "DS154.9.P48"
+    },
+    {
+      "before": "54726",
+      "after": "54725",
+      "codes": 308,
+      "example": "DS79.9.B25"
+    },
+    {
+      "before": "54498",
+      "after": "54497",
+      "codes": 261,
+      "example": "F2781.2 .T47 2007"
+    },
+    {
+      "before": "54636",
+      "after": "54635",
+      "codes": 260,
+      "example": "DS396.9.D3+"
+    },
+    {
+      "before": "54785",
+      "after": "54784",
+      "codes": 260,
+      "example": "DS490.K3+"
+    },
+    {
+      "before": "54658",
+      "after": "54657",
+      "codes": 259,
+      "example": "DS89.B4"
+    },
+    {
+      "before": "54777",
+      "after": "54776",
+      "codes": 254,
+      "example": "DS495.8.E9"
+    },
+    {
+      "before": "54400",
+      "after": "54399",
+      "codes": 253,
+      "example": "F3351.P85"
+    },
+    {
+      "before": "54475",
+      "after": "13984",
+      "codes": 240,
+      "example": "DK949.5"
+    },
+    {
+      "before": "54390",
+      "after": "54389",
+      "codes": 222,
+      "example": "F1569.C2"
+    },
+    {
+      "before": "54341",
+      "after": "54340",
+      "codes": 205,
+      "example": "DT449.Z22"
+    },
+    {
+      "before": "54265",
+      "after": "51982",
+      "codes": 205,
+      "example": "DR2285.G35 G56 1995"
+    },
+    {
+      "before": "54630",
+      "after": "54629",
+      "codes": 191,
+      "example": "DS374.H5"
+    },
+    {
+      "before": "10488",
+      "after": "54314",
+      "codes": 190,
+      "example": "DT238.T8"
+    },
+    {
+      "before": "54385",
+      "after": "54384",
+      "codes": 182,
+      "example": "F1529.M9 F78 2007"
+    },
+    {
+      "before": "54161",
+      "after": "54160",
+      "codes": 172,
+      "example": "F1939.S22 R63 2007"
+    },
+    {
+      "before": "10488",
+      "after": "3348",
+      "codes": 167,
+      "example": "DT219"
+    },
+    {
+      "before": "54461",
+      "after": "13974",
+      "codes": 160,
+      "example": "DK909.24 .C65 2007"
+    },
+    {
+      "before": "54187",
+      "after": "54186",
+      "codes": 159,
+      "example": "DT434.E26 K415"
+    },
+    {
+      "before": "54370",
+      "after": "54369",
+      "codes": 156,
+      "example": "F1549.G9 A72 1999"
+    },
+    {
+      "before": "54865",
+      "after": "54864",
+      "codes": 136,
+      "example": "DS554.98.A5"
+    },
+    {
+      "before": "54357",
+      "after": "54356",
+      "codes": 125,
+      "example": "DT665.K3"
+    },
+    {
+      "before": "54520",
+      "after": "54519",
+      "codes": 124,
+      "example": "DK689.N69 M57 2007"
+    },
+    {
+      "before": "54246",
+      "after": "54245",
+      "codes": 120,
+      "example": "F1981.S2 R569 2005"
+    },
+    {
+      "before": "54145",
+      "after": "54144",
+      "codes": 107,
+      "example": "DT549.9.C36 D53 2008"
+    },
+    {
+      "before": "54756",
+      "after": "54755",
+      "codes": 100,
+      "example": "DS798.9.U57 P865 2004"
+    },
+    {
+      "before": "54858",
+      "after": "54857",
+      "codes": 97,
+      "example": "DS530.9.R3"
+    },
+    {
+      "before": "54577",
+      "after": "54576",
+      "codes": 87,
+      "example": "DT1685.W38 P37 2007"
+    },
+    {
+      "before": "54375",
+      "after": "54374",
+      "codes": 85,
+      "example": "F1469.H8 T45 2002"
+    },
+    {
+      "before": "54230",
+      "after": "54229",
+      "codes": 73,
+      "example": "DR1925.B57 R35 1994"
+    },
+    {
+      "before": "54293",
+      "after": "54292",
+      "codes": 73,
+      "example": "DT581.A43 G37 1981"
+    },
+    {
+      "before": "54112",
+      "after": "54111",
+      "codes": 68,
+      "example": "DT551.9.S44 D53 1997"
+    },
+    {
+      "before": "54380",
+      "after": "54379",
+      "codes": 67,
+      "example": "F1509.M9"
+    },
+    {
+      "before": "54464",
+      "after": "13976",
+      "codes": 65,
+      "example": "DK919.24 .P75 1994"
+    },
+    {
+      "before": "54493",
+      "after": "54492",
+      "codes": 64,
+      "example": "F2691.C4 A44 2008"
+    },
+    {
+      "before": "54616",
+      "after": "54615",
+      "codes": 61,
+      "example": "DT3025.G84"
+    },
+    {
+      "before": "54395",
+      "after": "54394",
+      "codes": 58,
+      "example": "F1496.C5 M3 1995"
+    },
+    {
+      "before": "54172",
+      "after": "54171",
+      "codes": 45,
+      "example": "F1929.B7 P56 1996"
+    },
+    {
+      "before": "54469",
+      "after": "13978",
+      "codes": 44,
+      "example": "DK929.K85 S56 2009"
+    },
+    {
+      "before": "54361",
+      "after": "54360",
+      "codes": 42,
+      "example": "F1659.T9"
+    },
+    {
+      "before": "54606",
+      "after": "54605",
+      "codes": 42,
+      "example": "DT3140.V54R43 2020"
+    },
+    {
+      "before": "54195",
+      "after": "54194",
+      "codes": 39,
+      "example": "DT433.29.A54 D64 2001"
+    },
+    {
+      "before": "54207",
+      "after": "54206",
+      "codes": 38,
+      "example": "F1895.K5 H69 2005"
+    },
+    {
+      "before": "54568",
+      "after": "54567",
+      "codes": 37,
+      "example": "DT3410.Z36 C6613 2009"
+    },
+    {
+      "before": "10264",
+      "after": "10258",
+      "codes": 36,
+      "example": "D374"
+    },
+    {
+      "before": "54075",
+      "after": "54074",
+      "codes": 32,
+      "example": "DT546.49.O95 A227"
+    },
+    {
+      "before": "54873",
+      "after": "54872",
+      "codes": 32,
+      "example": "DS555.98.L68 D43 2010"
+    },
+    {
+      "before": "54471",
+      "after": "13982",
+      "codes": 30,
+      "example": "DK939.C47 B87 1993"
+    },
+    {
+      "before": "54538",
+      "after": "54537",
+      "codes": 27,
+      "example": "DT1450.C33 N48 2005"
+    },
+    {
+      "before": "54252",
+      "after": "54251",
+      "codes": 27,
+      "example": "F2467.I4 .M66 2007"
+    },
+    {
+      "before": "54441",
+      "after": "54440",
+      "codes": 25,
+      "example": "DS610.9.T36 T36 1989"
+    },
+    {
+      "before": "54120",
+      "after": "54119",
+      "codes": 23,
+      "example": "DT554.9.T33 D82 1993"
+    },
+    {
+      "before": "54128",
+      "after": "54127",
+      "codes": 22,
+      "example": "DT547.9.A4 G452 1997"
+    },
+    {
+      "before": "54545",
+      "after": "54544",
+      "codes": 18,
+      "example": "DT2520.O53 G74 2015"
+    },
+    {
+      "before": "54365",
+      "after": "54364",
+      "codes": 18,
+      "example": "F1449.S24 S74 2010"
+    },
+    {
+      "before": "54349",
+      "after": "54348",
+      "codes": 17,
+      "example": "DT582.9.L65 M38 1993"
+    },
+    {
+      "before": "54334",
+      "after": "54333",
+      "codes": 16,
+      "example": "DT409.A73 D47 1997"
+    },
+    {
+      "before": "54104",
+      "after": "54103",
+      "codes": 14,
+      "example": "DT543.9.B65 B73 1996"
+    },
+    {
+      "before": "54517",
+      "after": "54516",
+      "codes": 12,
+      "example": "DT398.M3 M57 2008"
+    },
+    {
+      "before": "54219",
+      "after": "54218",
+      "codes": 11,
+      "example": "F2389.V53 A76 1999"
+    },
+    {
+      "before": "54233",
+      "after": "54232",
+      "codes": 11,
+      "example": "F2429.M65 M65 2006"
+    },
+    {
+      "before": "54090",
+      "after": "54089",
+      "codes": 11,
+      "example": "DT555.9.B63 V55 2013"
+    },
+    {
+      "before": "54325",
+      "after": "54324",
+      "codes": 8,
+      "example": "DT450.49.B88 G85 2005"
+    },
+    {
+      "before": "54240",
+      "after": "54239",
+      "codes": 8,
+      "example": "DT620.9.F47 S86 1996"
+    },
+    {
+      "before": "54551",
+      "after": "54550",
+      "codes": 7,
+      "example": "DT2680.D73 C55 2001"
+    },
+    {
+      "before": "54068",
+      "after": "54067",
+      "codes": 7,
+      "example": "DT546.39.K34 T66 1996"
+    },
+    {
+      "before": "54559",
+      "after": "54558",
+      "codes": 6,
+      "example": "DT3257.B53 G39 1996"
+    },
+    {
+      "before": "54752",
+      "after": "54751",
+      "codes": 5,
+      "example": "DT159.977.E27"
+    },
+    {
+      "before": "54082",
+      "after": "54081",
+      "codes": 5,
+      "example": "DT546.19.L5 A45 2014"
+    },
+    {
+      "before": "54287",
+      "after": "54286",
+      "codes": 4,
+      "example": "DT450.95.M38 N7 1980"
+    },
+    {
+      "before": "54690",
+      "after": "51998",
+      "codes": 4,
+      "example": "DC932.A63 C37 1997"
+    },
+    {
+      "before": "54423",
+      "after": "54422",
+      "codes": 4,
+      "example": "DS650.98.B45 W37 2016"
+    },
+    {
+      "before": "54768",
+      "after": "54767",
+      "codes": 3,
+      "example": "DS492.9.A-ZM+"
+    },
+    {
+      "before": "54152",
+      "after": "54151",
+      "codes": 3,
+      "example": "DT516.9.F7 H37"
+    },
+    {
+      "before": "54097",
+      "after": "54096",
+      "codes": 3,
+      "example": "DT509.9.B36 B445 2002"
+    },
+    {
+      "before": "54305",
+      "after": "54304",
+      "codes": 3,
+      "example": "DT637.M6"
+    },
+    {
+      "before": "54874",
+      "after": "52005",
+      "codes": 2,
+      "example": "DB898.S34 G66 2005"
+    },
+    {
+      "before": "4671|54642",
+      "after": "4671|50847",
+      "codes": 2,
+      "example": "DS484; A82 no. 15"
+    },
+    {
+      "before": "720|54478",
+      "after": "720|13963",
+      "codes": 1,
+      "example": "DK508.95.L86 M34*"
+    },
+    {
+      "before": "2169|54642",
+      "after": "2169|50847",
+      "codes": 1,
+      "example": "DS485.B81 L8+"
+    },
+    {
+      "before": "2|54446",
+      "after": "2|54445",
+      "codes": 1,
+      "example": "DS588.S85 S83+"
+    },
+    {
+      "before": "2|54432",
+      "after": "2|54431",
+      "codes": 1,
+      "example": "DS597.335.B35 S45+"
+    },
+    {
+      "before": "5369|54432",
+      "after": "5369|54431",
+      "codes": 1,
+      "example": "DS597.367 Kel.Ja 2014"
+    },
+    {
+      "before": "1|54432",
+      "after": "1|54431",
+      "codes": 1,
+      "example": "DS598.J7 T76+"
+    },
+    {
+      "before": "5055|54646",
+      "after": "5055|50848",
+      "codes": 1,
+      "example": "DS895.R92 H35+"
+    },
+    {
+      "before": "54315",
+      "after": "54314",
+      "codes": 1,
+      "example": "DT238"
+    },
+    {
+      "before": "4671|54277",
+      "after": "4671|54276",
+      "codes": 1,
+      "example": "DT298.N8; A5 Nr. 96"
+    }
+  ],
+  "viewer_verified": true,
+  "all_original_selector_strings_and_range_boundaries_preserved": true,
+  "all_existing_spatial_and_period_group_ids_preserved": true,
+  "migration_replay_matches_preview": true,
+  "integrity_foreign_keys_cycles_sibling_labels_pass": true,
+  "non_merge_changes_reviewed": [
+    {
+      "before": "10488",
+      "after": "54314",
+      "codes": 190,
+      "example": "DT238.T8"
+    }
+  ],
+  "non_merge_change_reason": "Libyan locality codes reach Local after duplicate country consolidation removes a competing country-level range destination.",
+  "history_before": {
+    "subjects": 3496,
+    "routes": 3855,
+    "deep_routes": 625,
+    "max_depth": 9
+  },
+  "history_after": {
+    "subjects": 3378,
+    "routes": 3729,
+    "deep_routes": 624,
+    "max_depth": 9
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "changes": [
+    {
+      "id": 50871,
+      "before": "Brazilian Antiquities & Indigenous History",
+      "after": "Brazilian Archaeology & Indigenous History"
+    },
+    {
+      "id": 50861,
+      "before": "English Antiquities, Society & Ethnography",
+      "after": "English Archaeology & Social History"
+    },
+    {
+      "id": 6157,
+      "before": "Health Services & Emergency Preparedness",
+      "after": "Health Services & Preparedness"
+    },
+    {
+      "id": 4674,
+      "before": "International Associations & Conferences",
+      "after": "International Societies & Conferences"
+    },
+    {
+      "id": 1147,
+      "before": "Kids’ Latin American Fictional Biography",
+      "after": "Kids’ Latin American Biofiction"
+    },
+    {
+      "id": 8545,
+      "before": "Languages of Southern and Western Europe",
+      "after": "Extinct S. & W. European Languages"
+    },
+    {
+      "id": 5703,
+      "before": "Materials, Construction & Sustainability",
+      "after": "Construction & Sustainability"
+    },
+    {
+      "id": 50841,
+      "before": "Mexican Antiquities & Indigenous History",
+      "after": "Mexican Archaeology & Indigenous History"
+    },
+    {
+      "id": 12858,
+      "before": "Miracles, Apparitions, Relics & Devotion",
+      "after": "Christ’s Miracles & Devotion"
+    },
+    {
+      "id": 12878,
+      "before": "Psycholinguistics, Meaning & Synesthesia",
+      "after": "Psycholinguistics & Synesthesia"
+    },
+    {
+      "id": 6816,
+      "before": "Strain and overpressure. Mental capacity",
+      "after": "School Stress & Mental Capacity"
+    },
+    {
+      "id": 1548,
+      "before": "Symbols, Monuments, National Parks, etc.",
+      "after": "Children’s Heritage & Landmarks"
+    },
+    {
+      "id": 3369,
+      "before": "Tanzania. Tanganyika. German East Africa",
+      "after": "Tanzanian & German East African History"
+    },
+    {
+      "id": 13230,
+      "before": "Territory & Objects of International Law",
+      "after": "International Law: Territory & Objects"
+    }
+  ],
+  "count": 14,
+  "over40_before": 3,
+  "over40_after": 2,
+  "aliases_added": 0,
+  "deferred": {
+    "8937": "RL775 includes pinta; fungal-only label would narrow scope.",
+    "6943": "Previously marked keep.",
+    "2587": "Previously marked keep pending medical scope review.",
+    "11818": "Previously marked geographic scope check."
+  }
+}

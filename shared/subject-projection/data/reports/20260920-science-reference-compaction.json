@@ -1,0 +1,93 @@
+{
+  "merges": {
+    "53351": {
+      "into": 5030,
+      "old_label": "Physics Reference, History & Study",
+      "surviving_label": "Physics"
+    },
+    "53342": {
+      "into": 5033,
+      "old_label": "Experimental Mechanics Reference & Study",
+      "surviving_label": "Experimental & Descriptive Mechanics"
+    },
+    "53347": {
+      "into": 5041,
+      "old_label": "Radiation Physics Reference & General Theory",
+      "surviving_label": "Radiation Physics"
+    },
+    "53346": {
+      "into": 5040,
+      "old_label": "Optics Reference, Biography & Study",
+      "surviving_label": "Optics"
+    },
+    "53343": {
+      "into": 5032,
+      "old_label": "Atomic Physics Reference & Textbooks",
+      "surviving_label": "Atomic & Molecular Physics"
+    },
+    "53344": {
+      "into": 5031,
+      "old_label": "Acoustics Reference, Study & Laboratories",
+      "surviving_label": "Acoustics"
+    },
+    "53320": {
+      "into": 4904,
+      "old_label": "Geology Reference & Institutions",
+      "surviving_label": "Geology"
+    },
+    "53313": {
+      "into": 4863,
+      "old_label": "Zoology Reference & Institutions",
+      "surviving_label": "Zoology"
+    },
+    "53311": {
+      "into": 4848,
+      "old_label": "Botany Reference & Institutions",
+      "surviving_label": "Botany"
+    },
+    "53318": {
+      "into": 4780,
+      "old_label": "Astronomy Reference & Institutions",
+      "surviving_label": "Astronomy & Space Science"
+    },
+    "13331": {
+      "into": 4956,
+      "old_label": "Number Theory—General",
+      "surviving_label": "Number Theory"
+    },
+    "13694": {
+      "into": 4916,
+      "old_label": "General Mathematical Works",
+      "surviving_label": "Mathematics"
+    },
+    "13856": {
+      "into": 5722,
+      "old_label": "General Reference",
+      "surviving_label": "History, Education & Reference"
+    },
+    "53225": {
+      "into": 4789,
+      "old_label": "Biology Reference & General",
+      "surviving_label": "Biology"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [
+    {
+      "id": 13696,
+      "parent": 4789,
+      "children": [
+        53226,
+        53227,
+        53228,
+        53229,
+        53230
+      ]
+    }
+  ],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Apply all 14 science recommendations: 13 reference/general leaf merges, plus Biology Reference & General into Biology and flatten the uncoded General Biology & Research wrapper, promoting its five remaining specialist children.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

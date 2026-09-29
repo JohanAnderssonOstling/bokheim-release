@@ -1,0 +1,757 @@
+{
+  "scope": "Proposed only; no taxonomy modifications. Leaf-to-parent coarsening based on browsing granularity, not duplicates or usage. Preserve classification codes and add no aliases if approved.",
+  "groups": [
+    {
+      "number": 1,
+      "sources": [
+        {
+          "id": 6755,
+          "label": "Petrofabric analysis",
+          "parents": [
+            4910
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6755,
+                "QE440"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 7724,
+          "label": "Rock Microscopy",
+          "parents": [
+            4910
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7724,
+                "QE434"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9379,
+          "label": "Chemical analysis of rocks",
+          "parents": [
+            4910
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9379,
+                "QE438"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4910,
+      "target_label": "Petrology"
+    },
+    {
+      "number": 2,
+      "sources": [
+        {
+          "id": 6367,
+          "label": "Laterite",
+          "parents": [
+            4910
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6367,
+                "QE495"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4910,
+      "target_label": "Petrology"
+    },
+    {
+      "number": 3,
+      "sources": [
+        {
+          "id": 9745,
+          "label": "Collection & preservation",
+          "parents": [
+            4910
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9745,
+                "QE433.6"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 7446,
+          "label": "Petrology Topics",
+          "parents": [
+            4910
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7446,
+                "QE431.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4910,
+      "target_label": "Petrology"
+    },
+    {
+      "number": 4,
+      "sources": [
+        {
+          "id": 6601,
+          "label": "Fossil Wood & Trees",
+          "parents": [
+            4907
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6601,
+                "QE991"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4907,
+      "target_label": "Paleobotany"
+    },
+    {
+      "number": 5,
+      "sources": [
+        {
+          "id": 8738,
+          "label": "Paleontology Careers",
+          "parents": [
+            4908
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8738,
+                "QE714.7"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9725,
+          "label": "Paleontology Atlases",
+          "parents": [
+            4908
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9725,
+                "QE714"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 6587,
+          "label": "Collection & preservation",
+          "parents": [
+            4908
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6587,
+                "QE718"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4908,
+      "target_label": "Paleontology"
+    },
+    {
+      "number": 6,
+      "sources": [
+        {
+          "id": 8518,
+          "label": "Mineralogy Atlases",
+          "parents": [
+            4906
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8518,
+                "QE363.8"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8909,
+          "label": "Collection & preservation",
+          "parents": [
+            4906
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8909,
+                "QE366.2"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8000,
+          "label": "Mineralogy Topics",
+          "parents": [
+            4906
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8000,
+                "QE364"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4906,
+      "target_label": "Mineralogy"
+    },
+    {
+      "number": 7,
+      "sources": [
+        {
+          "id": 10005,
+          "label": "Rock-forming minerals",
+          "parents": [
+            4906
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                10005,
+                "QE397"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4906,
+      "target_label": "Mineralogy"
+    },
+    {
+      "number": 8,
+      "sources": [
+        {
+          "id": 9140,
+          "label": "Activity programs",
+          "parents": [
+            2378
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9140,
+                "GE77"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2378,
+      "target_label": "Environmental education"
+    },
+    {
+      "number": 9,
+      "sources": [
+        {
+          "id": 6945,
+          "label": "Tools & supplies",
+          "parents": [
+            3074
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6945,
+                "TT186"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9260,
+          "label": "Woodworking Basics",
+          "parents": [
+            3074
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9260,
+                "TT185"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 3074,
+      "target_label": "Woodworking & Upholstery"
+    },
+    {
+      "number": 10,
+      "sources": [
+        {
+          "id": 7687,
+          "label": "Curtain Making",
+          "parents": [
+            3073
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7687,
+                "TT390"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 3073,
+      "target_label": "Soft home furnishings"
+    },
+    {
+      "number": 11,
+      "sources": [
+        {
+          "id": 6848,
+          "label": "Metal turning",
+          "parents": [
+            3071
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6848,
+                "TT207"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8494,
+          "label": "Wire craft",
+          "parents": [
+            3071
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8494,
+                "TT214.3"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 3071,
+      "target_label": "Metalworking"
+    },
+    {
+      "number": 12,
+      "sources": [
+        {
+          "id": 7077,
+          "label": "General & domestic",
+          "parents": [
+            3069
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7077,
+                "TT985"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9111,
+          "label": "Materials. Machinery",
+          "parents": [
+            3069
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9111,
+                "TT997"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 3069,
+      "target_label": "Laundry work"
+    },
+    {
+      "number": 13,
+      "sources": [
+        {
+          "id": 6845,
+          "label": "In situ hybridization",
+          "parents": [
+            4794
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6845,
+                "QH452.8"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4794,
+      "target_label": "Genetics"
+    },
+    {
+      "number": 14,
+      "sources": [
+        {
+          "id": 7839,
+          "label": "Cytoplasmic inheritance",
+          "parents": [
+            4794
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7839,
+                "QH452"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4794,
+      "target_label": "Genetics"
+    },
+    {
+      "number": 15,
+      "sources": [
+        {
+          "id": 6927,
+          "label": "Genetics Atlases",
+          "parents": [
+            4794
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6927,
+                "QH436"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8595,
+          "label": "Data processing",
+          "parents": [
+            4794
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8595,
+                "QH441.2"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4794,
+      "target_label": "Genetics"
+    },
+    {
+      "number": 16,
+      "sources": [
+        {
+          "id": 6373,
+          "label": "Nucleolus",
+          "parents": [
+            4791
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6373,
+                "QH596"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4791,
+      "target_label": "Cytology"
+    },
+    {
+      "number": 17,
+      "sources": [
+        {
+          "id": 8417,
+          "label": "Cell Biology Atlases",
+          "parents": [
+            4791
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8417,
+                "QH582"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4791,
+      "target_label": "Cytology"
+    },
+    {
+      "number": 18,
+      "sources": [
+        {
+          "id": 9688,
+          "label": "Classification. Nomenclature",
+          "parents": [
+            4862
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9688,
+                "QR394"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 6909,
+          "label": "Variation",
+          "parents": [
+            4862
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6909,
+                "QR392"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4862,
+      "target_label": "Virology"
+    },
+    {
+      "number": 19,
+      "sources": [
+        {
+          "id": 9609,
+          "label": "Specificity",
+          "parents": [
+            4978
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9609,
+                "QR186.9"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 6387,
+          "label": "Chemotaxis",
+          "parents": [
+            4978
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6387,
+                "QR187.4"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4978,
+      "target_label": "Immunology"
+    },
+    {
+      "number": 20,
+      "sources": [
+        {
+          "id": 9158,
+          "label": "Methods, culture, etc.",
+          "parents": [
+            4867
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9158,
+                "QL362.8"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8579,
+          "label": "Invertebrate Classification",
+          "parents": [
+            4867
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8579,
+                "QL362.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4867,
+      "target_label": "Invertebrates"
+    }
+  ]
+}

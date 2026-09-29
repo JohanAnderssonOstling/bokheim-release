@@ -1,0 +1,110 @@
+{
+  "merges": {
+    "6276": {
+      "into": 5469,
+      "old_label": "Psychology of alcoholism",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "6392": {
+      "into": 5469,
+      "old_label": "Alcoholism & economics",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "6413": {
+      "into": 5469,
+      "old_label": "Alcoholism & the child",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "6481": {
+      "into": 5469,
+      "old_label": "Alcohol & older people",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "7004": {
+      "into": 5469,
+      "old_label": "Alcoholism & Families",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "7022": {
+      "into": 5469,
+      "old_label": "Alcoholism & education",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "7171": {
+      "into": 5469,
+      "old_label": "Congresses International",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "7301": {
+      "into": 5469,
+      "old_label": "Alcohol & gay people",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "7325": {
+      "into": 5469,
+      "old_label": "Alcoholism & Temperance History",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "7335": {
+      "into": 5469,
+      "old_label": "Women & temperance reform",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "7373": {
+      "into": 5469,
+      "old_label": "Alcohol & women",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "7643": {
+      "into": 5469,
+      "old_label": "Encyclopedias & dictionaries",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "8004": {
+      "into": 5469,
+      "old_label": "Alcohol & youth",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "8149": {
+      "into": 5469,
+      "old_label": "Popular physiological",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "8231": {
+      "into": 5469,
+      "old_label": "Alcoholism & religion",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "8778": {
+      "into": 5469,
+      "old_label": "Social degeneration & alcoholism",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "9837": {
+      "into": 5469,
+      "old_label": "Alcohol & Temperance Miscellany",
+      "surviving_label": "Alcoholism & Temperance"
+    },
+    "9913": {
+      "into": 5469,
+      "old_label": "Alcohol Policy",
+      "surviving_label": "Alcoholism & Temperance"
+    }
+  },
+  "renamed": {
+    "5469": {
+      "before": "Alcoholism & Temperance",
+      "after": "Alcohol Use & Social Effects"
+    },
+    "9842": {
+      "before": "Regional Alcoholism",
+      "after": "By Region"
+    }
+  },
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "Approved coarse alcohol branch: parent absorbs general, historical, policy and demographic detail; retains Alcohol Rehabilitation and By Region.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

@@ -1,0 +1,167 @@
+{
+  "entries": [
+    {
+      "name": "Themed Literary Collections",
+      "target": 52306,
+      "source": 4369,
+      "parent": 4280,
+      "code": "PN6071",
+      "end": null
+    },
+    {
+      "name": "Fiction Writing",
+      "target": 3843,
+      "source": 4383,
+      "parent": 4383,
+      "code": "PN3355",
+      "end": "PN3383"
+    },
+    {
+      "name": "History of Fiction",
+      "target": 52307,
+      "source": 4383,
+      "parent": 4383,
+      "code": "PN3451",
+      "end": "PN3503.2"
+    },
+    {
+      "name": "Fiction Theory",
+      "target": 52308,
+      "source": 4383,
+      "parent": 4383,
+      "code": "PN3329",
+      "end": "PN3352"
+    },
+    {
+      "name": "Science Fiction & Fantasy",
+      "target": 4358,
+      "source": 4383,
+      "parent": 4383,
+      "code": "PN3433",
+      "end": "PN3433.8"
+    },
+    {
+      "name": "Literary Reference",
+      "target": 52309,
+      "source": 4369,
+      "parent": 4369,
+      "code": "PN41",
+      "end": "PN44.5"
+    },
+    {
+      "name": "Mystery & Detective",
+      "target": 4354,
+      "source": 4383,
+      "parent": 4383,
+      "code": "PN3448.D4",
+      "end": null
+    },
+    {
+      "name": "Science Fiction & Fantasy",
+      "target": 4358,
+      "source": 4383,
+      "parent": 4383,
+      "code": "PN3435",
+      "end": null
+    },
+    {
+      "name": "Modernism in Literature",
+      "target": 52310,
+      "source": 8293,
+      "parent": 8293,
+      "code": "PN56.M54",
+      "end": null
+    },
+    {
+      "name": "Literature & Psychoanalysis",
+      "target": 52311,
+      "source": 8293,
+      "parent": 8293,
+      "code": "PN56.P92",
+      "end": null
+    },
+    {
+      "name": "Travel in Literature",
+      "target": 52312,
+      "source": 8293,
+      "parent": 8293,
+      "code": "PN56.T7",
+      "end": null
+    },
+    {
+      "name": "Women as Literary Characters",
+      "target": 52313,
+      "source": 8293,
+      "parent": 8293,
+      "code": "PN56.5.W64",
+      "end": null
+    }
+  ],
+  "new_ids": [
+    52306,
+    52307,
+    52308,
+    52309,
+    52310,
+    52311,
+    52312,
+    52313
+  ],
+  "added_parents": [
+    [
+      52306,
+      4280,
+      0
+    ],
+    [
+      3843,
+      4383,
+      1
+    ],
+    [
+      52307,
+      4383,
+      0
+    ],
+    [
+      52308,
+      4383,
+      0
+    ],
+    [
+      4358,
+      4383,
+      1
+    ],
+    [
+      52309,
+      4369,
+      0
+    ],
+    [
+      4354,
+      4383,
+      1
+    ],
+    [
+      52310,
+      8293,
+      0
+    ],
+    [
+      52311,
+      8293,
+      0
+    ],
+    [
+      52312,
+      8293,
+      0
+    ],
+    [
+      52313,
+      8293,
+      0
+    ]
+  ]
+}

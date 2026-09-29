@@ -1,0 +1,72 @@
+[package]
+name = "desktop-gpui"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["rlib", "cdylib"]
+path = "src/lib.rs"
+
+[features]
+default = ["desktop"]
+audiobooks = ["reader-ui/audiobooks", "application-shell/audiobooks"]
+desktop = [
+    "audiobooks",
+    "reader-ui/native-audio",
+    "dep:gpui_platform",
+    "dep:image",
+    "dep:update-client",
+    "dep:linux-update-host",
+    "browser-ui/filesystem-libraries",
+]
+# Flatpak installs PDFium as /app/lib/libpdfium.so. Keep this separate from the
+# normal desktop feature, which loads the executable-relative PDFium package.
+flatpak = ["desktop", "reader-ui/packaged-pdfium", "application-shell/packaged-pdfium"]
+# Kobo is a touch device, so it takes the mobile surface too: swipe handling
+# is gated on `mobile`, and without it the hardware buttons were the only way
+# to turn a page on a touchscreen reader.
+kobo = ["mobile", "dep:gpui_kobo", "dep:kobo-device", "browser-ui/kobo", "reader-ui/kobo", "application-shell/kobo"]
+mobile = ["browser-ui/mobile", "reader-ui/mobile", "application-shell/mobile", "ui-components/mobile"]
+android = ["mobile", "audiobooks", "dep:audiobook-player", "dep:gpui_android", "dep:gpui_platform", "dep:update-client", "dep:linux-update-host"]
+
+[[bin]]
+name = "desktop-gpui"
+path = "src/main.rs"
+required-features = ["desktop"]
+
+[[bin]]
+name = "desktop-gpui-kobo"
+path = "src/bin/desktop-gpui-kobo.rs"
+required-features = ["kobo"]
+
+[dependencies]
+async-channel = "2"
+application-shell = { path = "../application-shell", default-features = false }
+ui-components = { path = "../components" }
+browser-ui = { path = "../browser", default-features = false }
+app = { path = "../../client/app", default-features = false }
+gpui.workspace = true
+gpui_android = { path = "../../../GPUI-Fork/crates/gpui_android", optional = true }
+gpui-component.workspace = true
+gpui_platform = { workspace = true, optional = true }
+gpui_kobo = { path = "../../../GPUI-Fork/crates/gpui_kobo", optional = true }
+fs2 = "0.4"
+image = { version = "0.25.1", default-features = false, features = ["png"], optional = true }
+kobo-device = { path = "../kobo-device", optional = true }
+log = "0.4"
+reader-ui = { path = "../reader", default-features = false }
+rustls = { version = "0.23", default-features = false, features = ["ring"] }
+update-client = { path = "../../shared/update-client", features = ["blocking"], optional = true }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["net", "rt", "time"] }
+tempfile = "3"
+
+[target.'cfg(target_os = "android")'.dependencies]
+audiobook-player = { path = "../audiobook-player", default-features = false, optional = true }
+anyhow = "1"
+jni = "0.22.4"
+uuid = { version = "1", features = ["v4"] }
+
+[target.'cfg(any(target_os = "linux", target_os = "android", target_os = "windows"))'.dependencies]
+linux-update-host = { path = "../../client/update-host", optional = true }

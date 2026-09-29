@@ -1,0 +1,135 @@
+{
+  "scope": "Three proposals only. Preserve concrete child subjects, historical-method context and larger groupings. Descendant counts are distinct within each branch, not usage or changes to shortest paths. No changes applied.",
+  "candidates": [
+    {
+      "number": 1,
+      "source": 5675,
+      "source_label": "Policy, Philosophy & History",
+      "target": 2169,
+      "target_label": "Education",
+      "children": [
+        {
+          "id": 2176,
+          "label": "Objectives"
+        },
+        {
+          "id": 2182,
+          "label": "Comparative"
+        },
+        {
+          "id": 2196,
+          "label": "Educational Policy & Reform"
+        },
+        {
+          "id": 2203,
+          "label": "History of education"
+        },
+        {
+          "id": 2254,
+          "label": "Foundations of Education"
+        }
+      ],
+      "descendants": 45,
+      "parent_children_before": 26,
+      "parent_children_after": 30,
+      "codes": {
+        "lcc_selector": [],
+        "lcc_range": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "action": "Flatten uncoded groupings; merge coded grouping into parent with code transfer; promote children intact, preserve other parents and add no aliases."
+    },
+    {
+      "number": 2,
+      "source": 5652,
+      "source_label": "History, Theory & Schools",
+      "target": 5381,
+      "target_label": "Psychology",
+      "children": [
+        {
+          "id": 5407,
+          "label": "History"
+        },
+        {
+          "id": 5414,
+          "label": "Movements"
+        },
+        {
+          "id": 5426,
+          "label": "Foundations"
+        },
+        {
+          "id": 5654,
+          "label": "Historical Methods"
+        },
+        {
+          "id": 11147,
+          "label": "Mind & Body"
+        }
+      ],
+      "descendants": 36,
+      "parent_children_before": 23,
+      "parent_children_after": 27,
+      "codes": {
+        "lcc_selector": [],
+        "lcc_range": [],
+        "bisac_selector": [],
+        "ddc_selector": []
+      },
+      "action": "Flatten uncoded groupings; merge coded grouping into parent with code transfer; promote children intact, preserve other parents and add no aliases."
+    },
+    {
+      "number": 3,
+      "source": 5917,
+      "source_label": "Technical Communication & Reference",
+      "target": 5563,
+      "target_label": "Technology & Engineering",
+      "children": [
+        {
+          "id": 441,
+          "label": "Technical Writing"
+        },
+        {
+          "id": 443,
+          "label": "Technical Communication"
+        },
+        {
+          "id": 445,
+          "label": "Industrial directories"
+        }
+      ],
+      "descendants": 11,
+      "parent_children_before": 13,
+      "parent_children_after": 15,
+      "codes": {
+        "lcc_selector": [
+          [
+            5917,
+            "T1-13"
+          ]
+        ],
+        "lcc_range": [
+          [
+            "T1",
+            "T10.4",
+            5917
+          ],
+          [
+            "T12.6",
+            "T13",
+            5917
+          ]
+        ],
+        "bisac_selector": [
+          [
+            5917,
+            "TEC035000"
+          ]
+        ],
+        "ddc_selector": []
+      },
+      "action": "Flatten uncoded groupings; merge coded grouping into parent with code transfer; promote children intact, preserve other parents and add no aliases."
+    }
+  ]
+}

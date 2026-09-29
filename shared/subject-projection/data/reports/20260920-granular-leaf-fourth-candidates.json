@@ -1,0 +1,757 @@
+{
+  "scope": "Proposals only, not applied. Coarsening based on current leaf scope and parent placement, not usage. Preserve all codes and add no aliases upon approval.",
+  "groups": [
+    {
+      "number": 1,
+      "sources": [
+        {
+          "id": 7968,
+          "label": "Class Schedules",
+          "parents": [
+            2330
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7968,
+                "LB1038"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2330,
+      "target_label": "Teaching Principles & Practice"
+    },
+    {
+      "number": 2,
+      "sources": [
+        {
+          "id": 7180,
+          "label": "Information services",
+          "parents": [
+            2330
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7180,
+                "LB1028.26"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 7355,
+          "label": "Computer network resources",
+          "parents": [
+            2330
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7355,
+                "LB1044.87"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2330,
+      "target_label": "Teaching Principles & Practice"
+    },
+    {
+      "number": 3,
+      "sources": [
+        {
+          "id": 7993,
+          "label": "Classroom observation",
+          "parents": [
+            2330
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7993,
+                "LB1027.28"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8715,
+          "label": "Interaction analysis in education",
+          "parents": [
+            2330
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8715,
+                "LB1034"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2330,
+      "target_label": "Teaching Principles & Practice"
+    },
+    {
+      "number": 4,
+      "sources": [
+        {
+          "id": 8284,
+          "label": "Minor works",
+          "parents": [
+            2330
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8284,
+                "LB1045"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2330,
+      "target_label": "Teaching Principles & Practice"
+    },
+    {
+      "number": 5,
+      "sources": [
+        {
+          "id": 7468,
+          "label": "Class reunions",
+          "parents": [
+            2326
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7468,
+                "LB3618"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8515,
+          "label": "Student Correspondence",
+          "parents": [
+            2326
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8515,
+                "LB3614"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2326,
+      "target_label": "Student Life & Customs"
+    },
+    {
+      "number": 6,
+      "sources": [
+        {
+          "id": 9191,
+          "label": "Time management",
+          "parents": [
+            2326
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9191,
+                "LB3607.8"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2326,
+      "target_label": "Student Life & Customs"
+    },
+    {
+      "number": 7,
+      "sources": [
+        {
+          "id": 8449,
+          "label": "Student Union Centers",
+          "parents": [
+            2326
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8449,
+                "LB3640"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9975,
+          "label": "Student Recreation",
+          "parents": [
+            2326
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9975,
+                "LB3608"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2326,
+      "target_label": "Student Life & Customs"
+    },
+    {
+      "number": 8,
+      "sources": [
+        {
+          "id": 7748,
+          "label": "School sites",
+          "parents": [
+            2324
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7748,
+                "LB3220"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 7991,
+          "label": "School Building Care",
+          "parents": [
+            2324
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7991,
+                "LB3235"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9475,
+          "label": "Vandalism",
+          "parents": [
+            2324
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9475,
+                "LB3249"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2324,
+      "target_label": "School Facilities & Architecture"
+    },
+    {
+      "number": 9,
+      "sources": [
+        {
+          "id": 6629,
+          "label": "College credits",
+          "parents": [
+            2321
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6629,
+                "LB2359.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 7853,
+          "label": "Student & Credit Transfers",
+          "parents": [
+            2321
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7853,
+                "LB2360"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2321,
+      "target_label": "Higher education"
+    },
+    {
+      "number": 10,
+      "sources": [
+        {
+          "id": 7632,
+          "label": "Trustees",
+          "parents": [
+            2321
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7632,
+                "LB2342.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2321,
+      "target_label": "Higher education"
+    },
+    {
+      "number": 11,
+      "sources": [
+        {
+          "id": 9040,
+          "label": "University Telecommunications",
+          "parents": [
+            2321
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9040,
+                "LB2342.75"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9517,
+          "label": "Information resources management",
+          "parents": [
+            2321
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9517,
+                "LB2342.77"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2321,
+      "target_label": "Higher education"
+    },
+    {
+      "number": 12,
+      "sources": [
+        {
+          "id": 8536,
+          "label": "College Reminiscences",
+          "parents": [
+            2321
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8536,
+                "LB2397"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9019,
+          "label": "Humor & Satire",
+          "parents": [
+            2321
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9019,
+                "LB2326"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2321,
+      "target_label": "Higher education"
+    },
+    {
+      "number": 13,
+      "sources": [
+        {
+          "id": 8938,
+          "label": "Higher Education Associations",
+          "parents": [
+            2321
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8938,
+                "LB2301"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2321,
+      "target_label": "Higher education"
+    },
+    {
+      "number": 14,
+      "sources": [
+        {
+          "id": 6221,
+          "label": "Seminars",
+          "parents": [
+            2321
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6221,
+                "LB2393.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 7063,
+          "label": "Lectures in college teaching",
+          "parents": [
+            2321
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7063,
+                "LB2393"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 7749,
+          "label": "Fieldwork",
+          "parents": [
+            2321
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7749,
+                "LB2394"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2321,
+      "target_label": "Higher education"
+    },
+    {
+      "number": 15,
+      "sources": [
+        {
+          "id": 9846,
+          "label": "School-Day Reminiscences",
+          "parents": [
+            2322
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9846,
+                "LB1602"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2322,
+      "target_label": "Primary Education"
+    },
+    {
+      "number": 16,
+      "sources": [
+        {
+          "id": 9802,
+          "label": "Societies & Documents",
+          "parents": [
+            2316
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9802,
+                "LB1103"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 2316,
+      "target_label": "Child study"
+    },
+    {
+      "number": 17,
+      "sources": [
+        {
+          "id": 7019,
+          "label": "Technical editing",
+          "parents": [
+            443
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7019,
+                "T11.4"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 7813,
+          "label": "Translating",
+          "parents": [
+            443
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7813,
+                "T11.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 443,
+      "target_label": "Technical Communication"
+    },
+    {
+      "number": 18,
+      "sources": [
+        {
+          "id": 7797,
+          "label": "Patent literature",
+          "parents": [
+            450
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7797,
+                "T210"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9827,
+          "label": "Patent Practice Manuals",
+          "parents": [
+            450
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9827,
+                "T339"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 450,
+      "target_label": "Patents. Trademarks"
+    },
+    {
+      "number": 19,
+      "sources": [
+        {
+          "id": 7192,
+          "label": "Styles",
+          "parents": [
+            653
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7192,
+                "NK2235"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8261,
+          "label": "Furniture Design Collections",
+          "parents": [
+            653
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8261,
+                "NK2260"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 653,
+      "target_label": "Furniture"
+    },
+    {
+      "number": 20,
+      "sources": [
+        {
+          "id": 9575,
+          "label": "Conservation & restoration",
+          "parents": [
+            659
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9575,
+                "NK2997"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 659,
+      "target_label": "Tapestries"
+    }
+  ]
+}

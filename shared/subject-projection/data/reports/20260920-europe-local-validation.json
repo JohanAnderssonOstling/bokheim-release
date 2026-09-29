@@ -1,0 +1,326 @@
+{
+  "observed_comparison": "Probes=11977153 changed=10061 losses=0 gains=0",
+  "boundary_comparison": "Probes=54700 changed=144 losses=0 gains=0",
+  "regression_tests": "13 passed",
+  "library_tests": "249 passed, 4 pre-existing failures (same baseline and final)",
+  "concept_count": 16741,
+  "usage_rows": 14029,
+  "database_sha256": "684d5d9a6aaacffd0ca43f56fa1cf3daff046036e5ee1440e0aee05a18e34fa9",
+  "changes_by_destination": [
+    {
+      "before": "50936",
+      "after": "3472",
+      "codes": 1783,
+      "example": "F390"
+    },
+    {
+      "before": "50979",
+      "after": "3450",
+      "codes": 666,
+      "example": "F68"
+    },
+    {
+      "before": "51483",
+      "after": "11448",
+      "codes": 615,
+      "example": "DD881"
+    },
+    {
+      "before": "50915",
+      "after": "50907",
+      "codes": 587,
+      "example": "F594"
+    },
+    {
+      "before": "50937",
+      "after": "3472",
+      "codes": 520,
+      "example": "F391"
+    },
+    {
+      "before": "50913",
+      "after": "50907",
+      "codes": 516,
+      "example": "F592"
+    },
+    {
+      "before": "50933",
+      "after": "3435",
+      "codes": 457,
+      "example": "F865"
+    },
+    {
+      "before": "50986",
+      "after": "3475",
+      "codes": 410,
+      "example": "F229"
+    },
+    {
+      "before": "50914",
+      "after": "50907",
+      "codes": 346,
+      "example": "F593"
+    },
+    {
+      "before": "50916",
+      "after": "50907",
+      "codes": 280,
+      "example": "F595"
+    },
+    {
+      "before": "51182",
+      "after": "3422",
+      "codes": 274,
+      "example": "F215"
+    },
+    {
+      "before": "50938",
+      "after": "3472",
+      "codes": 268,
+      "example": "F391.2"
+    },
+    {
+      "before": "50943",
+      "after": "50921",
+      "codes": 263,
+      "example": "F128.55"
+    },
+    {
+      "before": "51183",
+      "after": "3422",
+      "codes": 252,
+      "example": "F216.2"
+    },
+    {
+      "before": "50935",
+      "after": "3435",
+      "codes": 228,
+      "example": "F866.2"
+    },
+    {
+      "before": "50918",
+      "after": "50907",
+      "codes": 226,
+      "example": "F595.3"
+    },
+    {
+      "before": "50941",
+      "after": "50921",
+      "codes": 213,
+      "example": "F128.5"
+    },
+    {
+      "before": "51181",
+      "after": "3422",
+      "codes": 208,
+      "example": "F213"
+    },
+    {
+      "before": "50983",
+      "after": "3467",
+      "codes": 207,
+      "example": "F152"
+    },
+    {
+      "before": "50980",
+      "after": "3450",
+      "codes": 170,
+      "example": "F69"
+    },
+    {
+      "before": "50942",
+      "after": "50921",
+      "codes": 154,
+      "example": "F128.52"
+    },
+    {
+      "before": "50818",
+      "after": "3439",
+      "codes": 115,
+      "example": "F314"
+    },
+    {
+      "before": "50978",
+      "after": "3439",
+      "codes": 112,
+      "example": "F316.2 .C58 2007"
+    },
+    {
+      "before": "50940",
+      "after": "50921",
+      "codes": 97,
+      "example": "F128.47"
+    },
+    {
+      "before": "50939",
+      "after": "50921",
+      "codes": 88,
+      "example": "F128.44"
+    },
+    {
+      "before": "50934",
+      "after": "3435",
+      "codes": 88,
+      "example": "F866"
+    },
+    {
+      "before": "50987",
+      "after": "3475",
+      "codes": 86,
+      "example": "F230"
+    },
+    {
+      "before": "51300",
+      "after": "3431",
+      "codes": 78,
+      "example": "F330"
+    },
+    {
+      "before": "51286",
+      "after": "50911",
+      "codes": 71,
+      "example": "F200"
+    },
+    {
+      "before": "50917",
+      "after": "50907",
+      "codes": 69,
+      "example": "F595.2"
+    },
+    {
+      "before": "50977",
+      "after": "3439",
+      "codes": 64,
+      "example": "F316"
+    },
+    {
+      "before": "50817",
+      "after": "3447",
+      "codes": 60,
+      "example": "F372 .B44 1989"
+    },
+    {
+      "before": "50947",
+      "after": "50929",
+      "codes": 53,
+      "example": "F158.44 .B65 1994"
+    },
+    {
+      "before": "50984",
+      "after": "3467",
+      "codes": 46,
+      "example": "F153"
+    },
+    {
+      "before": "51287",
+      "after": "50911",
+      "codes": 41,
+      "example": "F201 .M39 2005"
+    },
+    {
+      "before": "50949",
+      "after": "50929",
+      "codes": 38,
+      "example": "F158.52 .K36 2000"
+    },
+    {
+      "before": "50945",
+      "after": "50928",
+      "codes": 37,
+      "example": "F73.5"
+    },
+    {
+      "before": "51285",
+      "after": "50911",
+      "codes": 31,
+      "example": "F199"
+    },
+    {
+      "before": "50988",
+      "after": "3475",
+      "codes": 30,
+      "example": "F231 .G73 1995"
+    },
+    {
+      "before": "50944",
+      "after": "50928",
+      "codes": 27,
+      "example": "F73.44 .C6 2000"
+    },
+    {
+      "before": "50982",
+      "after": "3450",
+      "codes": 26,
+      "example": "F71 .P476 2008"
+    },
+    {
+      "before": "50976",
+      "after": "3439",
+      "codes": 26,
+      "example": "F315"
+    },
+    {
+      "before": "50985",
+      "after": "3467",
+      "codes": 23,
+      "example": "F154 .B8935 1996"
+    },
+    {
+      "before": "50946",
+      "after": "50928",
+      "codes": 23,
+      "example": "F73.52"
+    },
+    {
+      "before": "51284",
+      "after": "50911",
+      "codes": 22,
+      "example": "F198 .E43 1975"
+    },
+    {
+      "before": "50948",
+      "after": "50929",
+      "codes": 21,
+      "example": "F158.5"
+    },
+    {
+      "before": "51283",
+      "after": "50911",
+      "codes": 21,
+      "example": "F197 .A76 1990"
+    },
+    {
+      "before": "50981",
+      "after": "3450",
+      "codes": 14,
+      "example": "F70.C85 B855 2009"
+    },
+    {
+      "before": "50989",
+      "after": "3475",
+      "codes": 11,
+      "example": "F231.2 .A88 2006"
+    }
+  ],
+  "viewer_verified": true,
+  "all_observed_changes_are_expected_period_to_place_merges": true,
+  "all_original_selector_strings_and_range_boundaries_preserved": true,
+  "stats": {
+    "before": {
+      "subjects": 16791,
+      "history_subjects": 3378,
+      "history_routes": 3729,
+      "deep_routes": 624,
+      "max_depth": 9
+    },
+    "after": {
+      "subjects": 16741,
+      "history_subjects": 3328,
+      "history_routes": 3677,
+      "deep_routes": 378,
+      "max_depth": 9
+    }
+  },
+  "migration_replay_matches_preview": true,
+  "integrity_foreign_keys_cycles_sibling_labels_pass": true
+}

@@ -1,0 +1,16 @@
+[package]
+name = "outbound-http"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lints]
+workspace = true
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+reqwest = { version = "0.11", default-features = false, features = ["rustls-tls"] }
+tokio = { version = "1", features = ["net", "time"] }
+
+[dev-dependencies]
+axum = "0.7"
+tokio = { version = "1", features = ["macros", "net", "rt-multi-thread"] }

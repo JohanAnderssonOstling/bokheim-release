@@ -1,0 +1,132 @@
+{
+  "changes": [
+    {
+      "id": 9255,
+      "before": "Diseases of the external ear and auricle",
+      "after": "External Ear Diseases"
+    },
+    {
+      "id": 7298,
+      "before": "Diseases of the internal ear (Labyrinth)",
+      "after": "Inner Ear Diseases"
+    },
+    {
+      "id": 253,
+      "before": "Dynamoelectric machinery and auxiliaries",
+      "after": "Electrical Machines"
+    },
+    {
+      "id": 9260,
+      "before": "Elementary works, outline, syllabi, etc.",
+      "after": "Woodworking Basics"
+    },
+    {
+      "id": 6118,
+      "before": "Exhibitions of Books, Etc., in Libraries",
+      "after": "Library Exhibitions"
+    },
+    {
+      "id": 9446,
+      "before": "General works on the science of archives",
+      "after": "Archival Science"
+    },
+    {
+      "id": 6798,
+      "before": "Genitourinary organs. Urological surgery",
+      "after": "Urological Surgery"
+    },
+    {
+      "id": 8601,
+      "before": "Government policy. Aeronautics and state",
+      "after": "Aviation Policy"
+    },
+    {
+      "id": 320,
+      "before": "Highway engineering. Roads and pavements",
+      "after": "Highway Engineering"
+    },
+    {
+      "id": 8858,
+      "before": "Interpersonal relations. Social behavior",
+      "after": "Social Interaction"
+    },
+    {
+      "id": 289,
+      "before": "Materials for Engineering & Construction",
+      "after": "Engineering Materials"
+    },
+    {
+      "id": 8729,
+      "before": "Medical corporations. Corporate practice",
+      "after": "Corporate Medical Practice"
+    },
+    {
+      "id": 7000,
+      "before": "Mutilation or defacement of works of art",
+      "after": "Art Vandalism"
+    },
+    {
+      "id": 9780,
+      "before": "Nursing homes. Long-term care facilities",
+      "after": "Long-Term Care Facilities"
+    },
+    {
+      "id": 8276,
+      "before": "Outdoor Recreation Planning & Management",
+      "after": "Outdoor Recreation Management"
+    },
+    {
+      "id": 7403,
+      "before": "Public relations. Hospital and community",
+      "after": "Hospital Public Relations"
+    },
+    {
+      "id": 2326,
+      "before": "School life. Student manners and customs",
+      "after": "Student Life & Customs"
+    },
+    {
+      "id": 2297,
+      "before": "Student fraternities and societies, U.S.",
+      "after": "U.S. Student Societies"
+    },
+    {
+      "id": 837,
+      "before": "Teachers= and supervisors= manuals, etc.",
+      "after": "Teaching & Supervision Manuals"
+    },
+    {
+      "id": 506,
+      "before": "Traffic engineering. Roads and highways.",
+      "after": "Traffic Engineering"
+    },
+    {
+      "id": 9116,
+      "before": "Trimming, mounting and framing of prints",
+      "after": "Photographic Print Finishing"
+    },
+    {
+      "id": 5959,
+      "before": "Vocational Guidance & Career Development",
+      "after": "Career Development"
+    },
+    {
+      "id": 8064,
+      "before": "Whole and parts (Philosophy). \"Ganzheit\"",
+      "after": "Wholes & Parts in Philosophy"
+    },
+    {
+      "id": 6174,
+      "before": "World Health & International Cooperation",
+      "after": "Global Health Cooperation"
+    },
+    {
+      "id": 2085,
+      "before": "YA Australian & Oceanian People & Places",
+      "after": "YA Oceanian People & Places"
+    }
+  ],
+  "count": 25,
+  "over40_before": 0,
+  "over40_after": 0
+}

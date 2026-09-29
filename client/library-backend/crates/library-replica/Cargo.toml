@@ -1,0 +1,25 @@
+[package]
+name = "library-replica"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[features]
+default = ["random-ids"]
+random-ids = ["library-model/random-ids", "sync-common/random-ids"]
+
+[dependencies]
+# Projection v1 freezes normalization tables as well as lowercase mappings.
+unicode-normalization = "=0.1.25"
+book-model = { path = "../../../../shared/book-model" }
+serde_json = "1"
+pdf-view-common = { path = "../../../../shared/pdf-view-common" }
+library-model = { path = "../../../library-model", default-features = false }
+serde = { version = "1", features = ["derive"] }
+sync-common = { path = "../../../../shared/sync-common", default-features = false }
+
+[lints]
+workspace = true
+
+[dev-dependencies]
+test-support = { path = "../../../test-support" }

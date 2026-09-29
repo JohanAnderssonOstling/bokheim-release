@@ -1,0 +1,553 @@
+{
+  "version": 1,
+  "merges": [
+    {
+      "loser_id": "bokheim:history-lcc-full:024a8f11-7327-535d-8049-ee99767efeb2",
+      "winner_id": "bokheim:history-lcc-full:a33f04b0-cd18-528d-9c89-42a12ec17032",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:04974513-8403-5586-ba97-639b569ab696",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:05dcf11b-7d63-575b-8832-e1ff47b30b4b",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:08a9a43c-a76a-5758-8f5b-b043e483c4d9",
+      "winner_id": "bokheim:history-lcc-full:5316cac1-0668-5611-8e16-d594eca94ae4",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:0e53a22e-675f-5bba-b89d-83352eeec02c",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:0e6f835b-1ceb-563d-a40e-a5556a3fc30b",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:15f1469d-13eb-5cc5-974d-78a210e71456",
+      "winner_id": "bokheim:history-lcc-full:3d6979fa-60ec-50d8-8f6c-75ab88c0fabf",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:16e4457a-95b6-589a-9e47-4f108d4975ae",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:19400bdc-2bea-5a32-99d9-b3de7c2adcce",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:1c74b983-5b60-5ec3-93c2-da2891765732",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:1d2e6ba3-b26d-5121-8477-d00ae3ec26b7",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:1de67fd5-8163-53d8-a5ee-b655a0368ee5",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:211b371f-e990-5130-b3d3-8c8dd5621796",
+      "winner_id": "bokheim:history-lcc-full:268847c9-82be-55b4-8116-77af8fac9446",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:215126b3-4046-5550-9c22-ee158bfb7a36",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:23b7811a-c20a-5212-a172-7e367682805a",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:27531251-3b4b-5251-b7e9-50d63ce83d71",
+      "winner_id": "bokheim:history-lcc-full:4a801ef7-3dd7-54ac-b837-fc1a056a5618",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:283cd319-a52c-58a5-ab6c-dd19237c14c2",
+      "winner_id": "bokheim:history-lcc-full:266ca990-cb06-5d45-8600-c3f4a259d9f9",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:28ea1734-4586-5a2d-b0c3-0e5ad3bc53ef",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:2b6f4891-f33b-5f5f-a280-95a8dae7d7a5",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:32baa0b3-9b85-51c1-a51e-1ce5e7b37cf2",
+      "winner_id": "unified:27de458b-5965-5eed-8605-979a51bfd9fc",
+      "reason": "duplicate state branch; reuse existing regional state concept"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:33b8154f-57a1-5e26-800e-a86f451f692f",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:343602cc-e440-599b-8979-2db8312c553c",
+      "winner_id": "bokheim:history-lcc-full:77879630-790c-509d-9c0e-a68a3cc3e6f7",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:36ae14cc-e4cf-592c-9f6f-d05954a3e091",
+      "winner_id": "bokheim:history-lcc-full:9c224767-55f7-500f-8fc0-dfa851de3224",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:399bc7ea-b3d7-5b5e-991d-c2d2c53977a7",
+      "winner_id": "bokheim:history-lcc-full:5e36496c-31a3-50a2-8bfd-5fc87eec447a",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:3a18124e-0ec4-579e-8353-faf7549488b8",
+      "winner_id": "bokheim:history-lcc-full:320faf6d-2357-5dd6-ae0d-753b7ae9ae67",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:408e66f3-98c9-5420-88ae-939851ba85e2",
+      "winner_id": "bokheim:history-lcc-full:55ea6c95-b4d0-586b-8db6-798c625fc4ae",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:418d6bde-6ad0-5944-88e9-eaf42018448d",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:441bbf31-bedd-508a-8668-3373a02bbe29",
+      "winner_id": "bokheim:history-lcc-full:ff0db956-1d83-5b6e-8205-2934cb97caf2",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:44626cde-9137-59cf-b19f-2682eb90822f",
+      "winner_id": "bokheim:history-lcc-full:0219ec2f-1123-5ea6-88ec-66f52f660463",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:465c0c3f-720e-5a33-ab5e-ac7d19023460",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:4ac2440a-43b6-5bbd-9ad4-5cf36372cca3",
+      "winner_id": "bokheim:history-lcc-full:76194942-4d7c-584c-8a22-42583ff14889",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:4de21a5d-659a-5f1b-8f38-129598f1a009",
+      "winner_id": "bokheim:history-lcc-full:c12e5550-b236-5f3c-948d-9377797e2b57",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:4f727f37-3352-5381-9573-7bc07dffa815",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:5524f03b-de9a-5846-b0eb-6c6fa726364d",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:55823e5b-db33-5b3d-964c-d08cf88e4f98",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:5ab3bf62-6e42-5285-a39d-0f94ee83bb69",
+      "winner_id": "bokheim:history-lcc-full:5f397767-8135-5d4b-8def-a38f9324429e",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:5cdf5dbe-5c67-593a-8213-934a178d7850",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:5d73c49b-2fba-5fa1-b994-8beae7f239e1",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:603d9d94-d46f-5b12-9214-438a4ca2fb1a",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:616c0caa-3441-57b8-9e4e-b2ba23f763ce",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:630e1bc8-ffc7-5cbb-9c16-b804ae9bcb28",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:63605c6e-5921-56c8-a41e-35015f93c4fd",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:64c44216-cc91-5bbd-9966-70649ee9da3b",
+      "winner_id": "bokheim:history-lcc-full:448a2484-9c10-5bc0-9933-745d55986bab",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:666de71f-52b6-549a-8915-0e3e8c7a60b6",
+      "winner_id": "bokheim:history-lcc-full:813c6451-c965-55b5-b251-8faac0607302",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:680ffab1-ee4a-5866-a669-8215ed25e99b",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:6a2e2413-bd55-5e12-bfda-e41b21b23cac",
+      "winner_id": "bokheim:history-lcc-full:34745cca-afde-5314-ae13-d1b1eadb0873",
+      "reason": "equivalent place labels with the same LCC span"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:7c622e44-429b-5273-b8f4-e3340e463c6a",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:7d00e312-814f-50db-8436-bb736535e4b5",
+      "winner_id": "unified:c88f2aa1-6718-5632-8f23-7b488f7c9e16",
+      "reason": "duplicate state branch; reuse existing regional state concept"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:7e9023f9-94d5-533d-99d6-e8ac67036cc6",
+      "winner_id": "bokheim:history-lcc-full:f2df32ad-b99d-550f-91e2-15e132ae528b",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:8144632e-77f2-57ed-b496-50bc9af01abd",
+      "winner_id": "bokheim:history-lcc-full:2c6d7559-3a8c-5101-b792-289e6a0a2767",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:83520ef3-8f12-5b83-ae20-d93c5e5b16fe",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:86b4a784-05af-50e7-bdc4-f251f1fbb88d",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:8a0c304f-7473-5f31-a75e-10edb761b5ca",
+      "winner_id": "unified:40ff90ed-51fc-50e3-bcfa-417e152c8b03",
+      "reason": "parallel locality umbrella"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:8dbe424d-d250-5423-ad5c-31815bb5d361",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:8ecba910-76c0-5fa4-b94a-117432da3c22",
+      "winner_id": "bokheim:history-lcc-full:8892cbf9-b0d1-5899-b81a-b98a8672f8f2",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:8ed702c8-c773-5343-b797-5703bea3f3d5",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:903c5a72-d4f2-50ee-bbc7-18de0f955451",
+      "winner_id": "bokheim:history-lcc-full:bc813d35-2670-5e87-9fc8-d458de9b80fc",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:9049df92-517b-518b-90f3-52f08034c5e0",
+      "winner_id": "bokheim:history-lcc-full:65117f79-c4cb-58be-8968-6f9414b88d17",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:9324c5c6-2688-57ec-8c51-16a8ac1448a8",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:94d6f83f-5d18-5658-b103-d1ba2ae8eaa7",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:9540893f-b58d-53da-9aaa-78c2e654f1eb",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:98828433-fbbd-5a72-9648-3a560630ad68",
+      "winner_id": "bokheim:history-lcc-full:532b9e38-a819-51be-b6ec-044ec747f22f",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:9a6e2f0b-39a6-56ff-9d0e-21df308af62b",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:9c85dbe2-846a-5bd5-9d20-e871be1b28b8",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:9c8d7eff-5a3d-5b98-ae9c-cab90e592e30",
+      "winner_id": "bokheim:history-lcc-full:0f3baaa6-ecb2-5b44-a583-f0c1c63b4b01",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:9f08c09a-7245-5c4e-9347-6c7ebb92dc6f",
+      "winner_id": "bokheim:history-lcc-full:78e2a0f5-633a-5103-abd3-fdb20728a47f",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:a5db3039-ea7a-5791-be68-0d6bc1ba227b",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:aa6159ea-e1d0-5d47-8e67-e645887d62fc",
+      "winner_id": "bokheim:history-lcc-full:17ae47ba-86f9-5465-ae29-161c21aa1f45",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:ac7a26f3-9250-57a9-ad31-c537662a71ce",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:aee4ce80-9846-5a8b-aacd-279a3d4f2274",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:afe7f536-7a95-508b-8431-3fe2c9fc3928",
+      "winner_id": "bokheim:history-lcc-full:0828ac8e-6483-53f8-b835-8d20f6e3b2d4",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:b28c4caf-e591-59ee-afbe-aa5babb16611",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:b3d03f2a-2335-540e-a72a-eddf18ae21ac",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:b76adea7-b436-5270-b391-a1b5f998be47",
+      "winner_id": "bokheim:history-lcc-full:14e70c09-0871-5844-9ba3-fe6d28620731",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:b844022c-deed-58bc-9b5c-b13fb7ae3de8",
+      "winner_id": "bokheim:history-lcc-full:46d6b842-0071-5795-9244-980a54b08023",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:b89cf545-972a-52b0-a957-52bff956708e",
+      "winner_id": "bokheim:history-lcc-full:50cbd534-36a5-5511-be25-1d098e6d1196",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:b91a8ceb-50d6-5da0-877d-53070c2a3855",
+      "winner_id": "bokheim:history-lcc-full:a196eafb-76ce-58cb-9ab4-ca6642b74386",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:b9eb8a39-e38c-5724-a74c-4cb162ff8536",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:bb34d260-e9d6-5055-b70a-b5b8d2c8bef8",
+      "winner_id": "bokheim:history-lcc-full:73987d13-1331-5fb5-85fd-ea44b7487c4d",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:bb4fbc88-e7d5-5019-8bab-1b0ddcf2f979",
+      "winner_id": "bokheim:history-lcc-full:b4d98372-8b9a-5e9c-b6b1-e1443e00af34",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:bc23bc4e-bede-5025-9a88-d7c54fbff758",
+      "winner_id": "bokheim:history-lcc-full:5197124b-a8b6-5d84-80da-a78b948155b3",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:bd552c3d-2f77-59f8-9303-f83388ef8a8a",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:c1a9ffd2-5ac2-538e-b994-92d7bd90fe81",
+      "winner_id": "unified:b3e15c0c-de1e-5845-b3ec-b86b4ba3c222",
+      "reason": "parallel locality umbrella"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:c1de62c9-bb97-5162-be99-49815290ba31",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:c829c997-9d81-5f5a-a17e-2e90f6143b91",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:cd091f2b-4b41-53d6-b4a4-349855b112d1",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:d13b73a9-0c10-5a0b-aea1-205a2510d230",
+      "winner_id": "bokheim:history-lcc-full:44d2272e-9175-5b8f-95c5-f052e0f7498c",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:da403f9e-6dd3-5429-b1c6-cd25db72cfaa",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:dba34fd6-d5c5-5488-acd7-41c55ae3af65",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:dcb220ae-052c-5198-aff3-3c3a08b74a22",
+      "winner_id": "bokheim:history-lcc-full:880f7074-93ae-5d3a-aa23-b2c7765ca013",
+      "reason": "redundant nested structural wrapper"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:dd6e203e-4cf5-5f5d-b8ff-62a9ba6347ba",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:de884a42-58b1-5b6e-8338-8eaeac552fde",
+      "winner_id": "unified:908d5b88-21aa-5741-979e-4f74123ceb95",
+      "reason": "parallel locality umbrella"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:e0d0f26d-4121-54bd-8be2-735f201caa11",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:e3dd83bf-0ff6-50aa-bbd3-7e45a7483d8d",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:e52fffc2-44c6-58ed-abf2-df947c3ff997",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:e7e3a78d-de57-5d45-ba08-2239799535ab",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:e8cd9c7f-a8d0-59b6-9515-79354319c9d7",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:ea6970e4-6fab-5d6f-af8b-313392662e60",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:ecb795df-ddb1-5727-8f5b-3542de2f3702",
+      "winner_id": "bokheim:history-lcc-full:f7ae18ab-9fd3-5fc4-bcbc-73f8e5f745f3",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:edc639cf-a58b-5da1-aa27-2ff99f4db11b",
+      "winner_id": "unified:626005e3-5cb3-5dee-9dbd-8cda20b0057a",
+      "reason": "parallel locality umbrella"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:f102fc6c-7f33-5a98-a322-ba80ebb2b66a",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:f46c2f69-91d8-59d1-99e2-2712e1281a62",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:f71a847d-8b2d-54ae-a18b-27f3d0570698",
+      "winner_id": "bokheim:history-lcc-full:ad905918-f028-5701-b6fc-72604e866fca",
+      "reason": "alphabetic or generic locality filing bucket"
+    },
+    {
+      "loser_id": "bokheim:history-lcc-full:fa7ebcd4-6550-5365-8e6e-e48f5e12332b",
+      "winner_id": "bokheim:history-lcc-full:517c33b7-eb98-5a13-aa42-6f4c6954c543",
+      "reason": "redundant nested structural wrapper"
+    }
+  ],
+  "renames": [
+    {
+      "concept_id": "bokheim:history-lcc-full:34745cca-afde-5314-ae13-d1b1eadb0873",
+      "preferred_label": "Corfu (Kerkyra)"
+    },
+    {
+      "concept_id": "unified:40ff90ed-51fc-50e3-bcfa-417e152c8b03",
+      "preferred_label": "Local History & Places"
+    },
+    {
+      "concept_id": "unified:626005e3-5cb3-5dee-9dbd-8cda20b0057a",
+      "preferred_label": "Local History & Places"
+    },
+    {
+      "concept_id": "unified:908d5b88-21aa-5741-979e-4f74123ceb95",
+      "preferred_label": "Local History & Places"
+    },
+    {
+      "concept_id": "unified:b3e15c0c-de1e-5845-b3ec-b86b4ba3c222",
+      "preferred_label": "Local History & Places"
+    }
+  ],
+  "deleted_ambiguous_span_concepts": [
+    "bokheim:history-lcc-full:0b3a232e-af66-5a55-ad9f-bf5d1b73a416",
+    "bokheim:history-lcc-full:13b705db-dd94-5d81-91b0-23384ae7712f"
+  ],
+  "transferred_selectors": 104,
+  "transferred_labels": 146
+}

@@ -1,0 +1,9 @@
+[package]
+name = "pdf-range-reader"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+pdf-view-common = { path = "../pdf-view-common" }
+lopdf = { version = "0.44", default-features = false }

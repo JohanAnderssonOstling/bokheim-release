@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="en">
+<head>
+  <title>Popup-only footnote visual test</title>
+  <style>
+    body { margin: 44px; color: #20242b; font-family: sans-serif; }
+    h1 { margin: 0 0 18px; font-size: 34px; }
+    p { max-width: 32em; font-size: 22px; line-height: 1.55; }
+    a { color: #6242bd; font-weight: bold; }
+    aside { margin-top: 30px; padding: 28px; color: #ffffff; background: #ff006e; font-size: 42px; }
+  </style>
+</head>
+<body>
+  <h1>Footnotes stay out of pagination</h1>
+  <p>The numbered marker remains available for the reader popup<a epub:type="noteref" href="#note-1">1</a>, while the note body itself must not consume page space.</p>
+  <p>The large magenta warning panel below exists in the source solely as a leak detector. It should not be visible in this screenshot.</p>
+  <aside id="note-1" epub:type="footnote"><p>FAIL: INLINE FOOTNOTE LEAKED INTO THE READING PAGE.</p></aside>
+</body>
+</html>

@@ -1,0 +1,811 @@
+concept_id,levels,shortest_levels,path
+11239,10,6,History > By Region > European > West > Benelux Countries > Dutch > Dutch America > Surinamese > By Period > 1604-1814
+11299,10,6,History > By Region > European > West > Benelux Countries > Dutch > Dutch America > Surinamese > By Period > 1950-1975
+11231,10,6,History > By Region > European > West > Benelux Countries > Dutch > Dutch America > Surinamese > By Period > 1975-
+54233,10,6,History > By Region > European > West > Benelux Countries > Dutch > Dutch America > Surinamese > Local > Other
+11306,10,6,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Guyanese > By Period > 1803-1966
+11268,10,6,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Guyanese > By Period > 1966-
+54219,10,6,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Guyanese > Local > Other
+53170,9,9,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Musical research > Ethnomusicology > Applied Ethnomusicology"
+53171,9,9,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Musical research > Ethnomusicology > Ecomusicology"
+53172,9,9,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Musical research > Ethnomusicology > Ethnomusicology Foundations"
+51463,9,4,"History > By Region > European > East > Russian > General & Soviet Era > Soviet Era, 1918–1991 > Stalin Period, 1925–1953 > Joseph Stalin"
+51549,9,9,"History > By Region > European > South > Greek > Modern > By Period > Greece since 1913 > Democracy Restored, 1974–Present"
+52322,9,9,"History > By Region > European > South > Greek > Modern > By Period > Greece since 1913 > Greece, 1913–1967"
+51548,9,9,"History > By Region > European > South > Greek > Modern > By Period > Greece since 1913 > Greek Civil War, 1944–1949"
+10480,9,9,"History > By Region > European > South > Greek > Modern > By Period > Greece since 1913 > Military Rule, 1967–1974"
+52321,9,9,"History > By Region > European > South > Greek > Modern > By Period > Greece, 1821–1913 > Greece, 1830–1913"
+10160,9,9,"History > By Region > European > South > Greek > Modern > By Period > Greece, 1821–1913 > War of Independence, 1821–1829"
+10194,9,9,"History > By Region > European > South > Iberia > Portuguese > By Period > Medieval Era, 1095–1580 > House of Aviz, 1385–1580"
+10191,9,9,"History > By Region > European > South > Iberia > Portuguese > By Period > Medieval Era, 1095–1580 > House of Burgundy, 1095–1383"
+51690,9,9,"History > By Region > European > South > Iberia > Portuguese > By Period > Portugal, 20th Century > Portuguese Republic, 1910–Present"
+10111,9,9,History > By Region > European > South > Iberia > Spanish > By Period > Ancient > Pre-Roman Spain
+10103,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Ancient > Roman Rule, 218 BC–414 AD"
+10134,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Ancient > Visigothic Rule, 414–711"
+10230,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Medieval, 711–1516 > Aragon"
+10197,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Medieval, 711–1516 > Castile & León"
+10641,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Medieval, 711–1516 > Granada"
+10126,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Medieval, 711–1516 > Navarre"
+10101,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Modern, 1516–Present > Bourbon Era, 1700–1808"
+3599,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Modern, 1516–Present > Bourbon Restoration, 1814–1868"
+10189,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Modern, 1516–Present > Civil War, 1936–1939"
+10205,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Modern, 1516–Present > Democratic Era, 1975–Present"
+10137,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Modern, 1516–Present > First Republic, 1873–1875"
+10220,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Modern, 1516–Present > Franco Era, 1939–1975"
+10183,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Modern, 1516–Present > Habsburg Era, 1516–1700"
+10094,9,9,"History > By Region > European > South > Iberia > Spanish > By Period > Modern, 1516–Present > Napoleonic Period, 1808–1814"
+51502,9,9,History > By Region > European > South > Iberia > Spanish > Local > Balearic Islands > Majorca
+10279,9,9,"History > By Region > European > West > Benelux Countries > Belgian > By Period > Austrian Rule, 1714–1794 > Brabant Revolution, 1789–1790"
+51791,9,9,"History > By Region > European > West > Benelux Countries > Belgian > By Period > Belgium in the 20th Century > Albert I, 1909–1934"
+51794,9,9,"History > By Region > European > West > Benelux Countries > Belgian > By Period > Belgium in the 20th Century > Albert II, 1993–2013"
+51793,9,9,"History > By Region > European > West > Benelux Countries > Belgian > By Period > Belgium in the 20th Century > Baudouin, 1951–1993"
+51792,9,9,"History > By Region > European > West > Benelux Countries > Belgian > By Period > Belgium in the 20th Century > Leopold III, 1934–1951"
+51795,9,9,"History > By Region > European > West > Benelux Countries > Belgian > By Period > Belgium in the 21st Century > Philippe, 2013–Present"
+10190,9,9,"History > By Region > European > West > Benelux Countries > Belgian > By Period > Independence Era, 1830–1909 > Revolution, 1830"
+51634,9,9,"History > By Region > European > West > Benelux Countries > Dutch > By Period > 19th-20th centuries > Beatrix, 1980–2013"
+51631,9,9,History > By Region > European > West > Benelux Countries > Dutch > By Period > 19th-20th centuries > Dutch in the 19th Century
+51633,9,9,"History > By Region > European > West > Benelux Countries > Dutch > By Period > 19th-20th centuries > Juliana, 1948–1980"
+51632,9,9,"History > By Region > European > West > Benelux Countries > Dutch > By Period > 19th-20th centuries > Wilhelmina, 1890–1948"
+51635,9,9,"History > By Region > European > West > Benelux Countries > Dutch > By Period > 19th-20th centuries > Willem-Alexander, 2013–Present"
+54231,9,5,History > By Region > European > West > Benelux Countries > Dutch > Dutch America > Surinamese > By Period
+54232,9,5,History > By Region > European > West > Benelux Countries > Dutch > Dutch America > Surinamese > Local
+50818,9,5,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Colonial Period > Colonial Florida to 1821
+50817,9,5,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Colonial Period > Colonial Louisiana to 1803
+50816,9,5,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Colonial Period > New Netherland 1610–1664
+54217,9,5,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Guyanese > By Period
+54218,9,5,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Guyanese > Local
+54216,9,5,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Guyanese > Political & Foreign Relations
+51442,9,9,"History > By Region > European > West > British Isles > English > By Period > 17th century > Civil War & Commonwealth, 1642–1660"
+51441,9,9,"History > By Region > European > West > British Isles > English > By Period > 17th century > Early Stuarts, 1603–1642"
+51443,9,9,"History > By Region > European > West > British Isles > English > By Period > 17th century > Later Stuarts, 1660–1702"
+51444,9,9,"History > By Region > European > West > British Isles > English > By Period > 18th century > Anne to George II, 1702–1760"
+51445,9,9,"History > By Region > European > West > British Isles > English > By Period > 18th century > George III, 1760–1820"
+51431,9,4,History > By Region > European > West > British Isles > English > By Period > 19th century > Benjamin Disraeli
+51446,9,9,"History > By Region > European > West > British Isles > English > By Period > 19th century > Regency & Early 19th C., 1801–1837"
+51447,9,9,"History > By Region > European > West > British Isles > English > By Period > 19th century > Victorian England, 1837–1901"
+51453,9,7,"History > By Region > European > West > British Isles > English > By Period > 20th century > British Diplomatic Hist., 20th C."
+51448,9,9,"History > By Region > European > West > British Isles > English > By Period > 20th century > Edward VII, 1901–1910"
+51451,9,9,"History > By Region > European > West > British Isles > English > By Period > 20th century > Elizabeth II, 1952–2022"
+51449,9,9,"History > By Region > European > West > British Isles > English > By Period > 20th century > George V, 1910–1936"
+51450,9,9,"History > By Region > European > West > British Isles > English > By Period > 20th century > George VI, 1937–1952"
+51404,9,4,History > By Region > European > West > British Isles > English > By Period > 20th century > Margaret Thatcher
+51403,9,4,History > By Region > European > West > British Isles > English > By Period > 20th century > Winston Churchill
+51432,9,9,"History > By Region > European > West > British Isles > English > By Period > Early Era, to 1066 > Roman Britain"
+51433,9,9,"History > By Region > European > West > British Isles > English > By Period > Early Era, to 1066 > Saxon England, 445–1066"
+51436,9,9,"History > By Region > European > West > British Isles > English > By Period > Medieval Era, 1066–1485 > Lancastrian & Yorkist, 1399–1485"
+51434,9,9,"History > By Region > European > West > British Isles > English > By Period > Medieval Era, 1066–1485 > Norman England, 1066–1154"
+51435,9,9,"History > By Region > European > West > British Isles > English > By Period > Medieval Era, 1066–1485 > Plantagenet England, 1154–1399"
+51439,9,9,"History > By Region > European > West > British Isles > English > By Period > Tudor era, 1485-1603 > Edward VI & Mary I, 1547–1558"
+51440,9,9,"History > By Region > European > West > British Isles > English > By Period > Tudor era, 1485-1603 > Elizabeth I, 1558–1603"
+51437,9,9,"History > By Region > European > West > British Isles > English > By Period > Tudor era, 1485-1603 > Henry VII, 1485–1509"
+51438,9,9,"History > By Region > European > West > British Isles > English > By Period > Tudor era, 1485-1603 > Henry VIII, 1509–1547"
+51430,9,4,"History > By Region > European > West > British Isles > English > By Period > Tudor era, 1485-1603 > Thomas More"
+51407,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Cornwall
+51414,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Cotswold Hills
+51408,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Devon
+51415,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Dorset
+51411,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Essex
+51428,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Gloucestershire
+51409,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Kent
+51406,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Lake District
+51416,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Lancashire
+51410,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Norfolk
+51413,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Sussex
+51412,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Thames River
+51405,9,9,History > By Region > European > West > British Isles > English > Local > Counties & Regions > Yorkshire
+51427,9,9,History > By Region > European > West > British Isles > English > Local > London > East End of
+54248,9,6,History > By Region > European > West > French > French America > French Guiana > By Period > 1626-1814
+54249,9,6,History > By Region > European > West > French > French America > French Guiana > By Period > 1814-1946
+54250,9,6,History > By Region > European > West > French > French America > French Guiana > By Period > 1947-
+54252,9,6,History > By Region > European > West > French > French America > French Guiana > Local > Other
+50958,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > Cities & Towns > Brooklyn
+50939,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > City > 1775–1865
+50940,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > City > 1865–1900
+50941,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > City > 1901–1950
+50942,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > City > 1951–1980
+50943,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > City > 1981–
+51369,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > City > Statue of Liberty
+51368,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > Regions & Counties > Adirondack Mountains
+51367,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > Regions & Counties > Hudson River Valley
+51387,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > Regions & Counties > Long Island
+50930,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > Pennsylvania > Cities & Towns > Pittsburgh
+50947,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > Pennsylvania > Philadelphia > 1775–1865
+50948,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > Pennsylvania > Philadelphia > 1865–1950
+50949,9,9,History > By Region > North American > U.S. > Local > Middle Atlantic > Pennsylvania > Philadelphia > 1951–
+51233,9,9,History > By Region > North American > U.S. > Local > Midwest > Michigan > Cities & Towns > Detroit
+51225,9,9,History > By Region > North American > U.S. > Local > Midwest > Ohio > Cities & Towns > Cincinnati
+51226,9,9,History > By Region > North American > U.S. > Local > Midwest > Ohio > Cities & Towns > Cleveland
+50944,9,9,History > By Region > North American > U.S. > Local > New England > Massachusetts > Boston > 1775–1865
+50945,9,9,History > By Region > North American > U.S. > Local > New England > Massachusetts > Boston > 1865–1950
+50946,9,9,History > By Region > North American > U.S. > Local > New England > Massachusetts > Boston > 1951–
+50960,9,9,History > By Region > North American > U.S. > Local > New England > Massachusetts > Regions & Counties > Cape Cod
+51303,9,9,History > By Region > North American > U.S. > Local > South > Alabama > Cities & Towns > Birmingham
+51304,9,9,History > By Region > North American > U.S. > Local > South > Alabama > Cities & Towns > Mobile
+51298,9,9,History > By Region > North American > U.S. > Local > South > Carolina > Cities & Towns > Charleston
+50967,9,9,History > By Region > North American > U.S. > Local > South > Florida > Cities & Towns > Key West
+50963,9,9,History > By Region > North American > U.S. > Local > South > Florida > Cities & Towns > Miami
+50964,9,9,History > By Region > North American > U.S. > Local > South > Florida > Cities & Towns > Orlando
+50965,9,9,History > By Region > North American > U.S. > Local > South > Florida > Cities & Towns > St. Augustine
+50966,9,9,History > By Region > North American > U.S. > Local > South > Florida > Cities & Towns > Tampa
+51218,9,9,History > By Region > North American > U.S. > Local > South > Georgia > Cities & Towns > Atlanta
+51370,9,9,History > By Region > North American > U.S. > Local > South > Georgia > Cities & Towns > Savannah
+50969,9,9,History > By Region > North American > U.S. > Local > South > Louisiana > Cities & Towns > New Orleans
+51198,9,9,History > By Region > North American > U.S. > Local > South > Maryland > Cities & Towns > Baltimore
+51372,9,9,History > By Region > North American > U.S. > Local > South > Maryland > Regions & Counties > Chesapeake Bay Region
+51310,9,9,History > By Region > North American > U.S. > Local > South > Tennessee > Cities & Towns > Memphis
+51311,9,9,History > By Region > North American > U.S. > Local > South > Tennessee > Cities & Towns > Nashville
+51390,9,9,History > By Region > North American > U.S. > Local > South > Tennessee > Regions & Counties > Great Smoky Mountains
+50924,9,9,History > By Region > North American > U.S. > Local > South > Texas > Cities & Towns > Austin
+50925,9,9,History > By Region > North American > U.S. > Local > South > Texas > Cities & Towns > Dallas
+50974,9,9,History > By Region > North American > U.S. > Local > South > Texas > Cities & Towns > Fort Worth
+50926,9,9,History > By Region > North American > U.S. > Local > South > Texas > Cities & Towns > Houston
+50927,9,9,History > By Region > North American > U.S. > Local > South > Texas > Cities & Towns > San Antonio
+51388,9,9,History > By Region > North American > U.S. > Local > South > Virginia > Cities & Towns > Jamestown
+51202,9,9,History > By Region > North American > U.S. > Local > South > Virginia > Cities & Towns > Richmond
+51386,9,9,History > By Region > North American > U.S. > Local > South > Virginia > Cities & Towns > Williamsburg
+51383,9,9,"History > By Region > North American > U.S. > Local > South > Washington, D.C. > Buildings > White House"
+50922,9,9,History > By Region > North American > U.S. > Local > West > California > Cities & Towns > Los Angeles
+50955,9,9,History > By Region > North American > U.S. > Local > West > California > Cities & Towns > Sacramento
+50954,9,9,History > By Region > North American > U.S. > Local > West > California > Cities & Towns > San Diego
+50923,9,9,History > By Region > North American > U.S. > Local > West > California > Cities & Towns > San Francisco
+51391,9,9,History > By Region > North American > U.S. > Local > West > California > Regions & Counties > Death Valley
+51382,9,9,History > By Region > North American > U.S. > Local > West > California > Regions & Counties > San Francisco Bay Region
+51389,9,9,History > By Region > North American > U.S. > Local > West > California > Regions & Counties > Sierra Nevada
+51366,9,9,History > By Region > North American > U.S. > Local > West > California > Regions & Counties > Yosemite National Park
+51317,9,9,History > By Region > North American > U.S. > Local > West > Colorado > Cities & Towns > Denver
+10254,9,9,History > Eras > Modern > 20th Century > Post-war 1945- > 1945-1965 > Political & Diplomatic > Soviet Bloc > Warsaw Pact
+10566,9,8,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Turkey & the Near East > Arabia
+10278,9,8,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Turkey & the Near East > Dardanelles. Gallipoli
+10509,9,8,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Turkey & the Near East > Egyptian WWI
+10414,9,8,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Turkey & the Near East > Palestinian WWI
+10526,9,8,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Turkey & the Near East > Persia. Iran
+10331,9,8,"History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Turkey & the Near East > WWI: Mesopotamia, Kut & Assyria"
+9948,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Institutions & Careers > Music librarianship > Sound recordings"
+7539,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Reference & Bibliography > Directories. Almanacs > Global Music Directories"
+7472,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Reference & Bibliography > Directories. Almanacs > U.S. Music Directories"
+8302,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Reference & Bibliography > Music Bibliography > Catalogs"
+6543,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Reference & Bibliography > Music Bibliography > Discography"
+6659,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Reference & Bibliography > Music Bibliography > Global Music Bibliographies"
+7291,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Reference & Bibliography > Music Bibliography > Graded Lists by Medium"
+7191,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Reference & Bibliography > Music Bibliography > Manuscripts"
+8131,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Reference & Bibliography > Music Bibliography > Moving image media"
+9880,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Reference & Bibliography > Music Bibliography > Musician Bibliographies"
+7477,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Reference & Bibliography > Music Manuscripts > Manuscript studies"
+9832,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Music Reference & Bibliography > Music Manuscripts > Manuscripts"
+7810,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Publishing, Texts & Programs > Librettos. Texts. Scenarios > Ballet, Masque & Mime Libretti"
+9020,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Publishing, Texts & Programs > Librettos. Texts. Scenarios > Miscellaneous collections"
+8831,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Publishing, Texts & Programs > Librettos. Texts. Scenarios > Operas"
+7508,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Publishing, Texts & Programs > Librettos. Texts. Scenarios > Oratorios"
+8111,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Publishing, Texts & Programs > Librettos. Texts. Scenarios > Other choral works"
+8186,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Publishing, Texts & Programs > Librettos. Texts. Scenarios > Solo vocal works"
+7173,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Publishing, Texts & Programs > Literature for children > Children’s Literature Studies"
+7873,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Publishing, Texts & Programs > Music printing & publishing > Music title pages"
+7696,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Publishing, Texts & Programs > Programs > Concerts"
+6985,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Historical Studies > Composition & performance"
+8027,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Historical Studies > Dance music"
+6330,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Historical Studies > Folk, National & Ethnic Music"
+8437,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Historical Studies > Instruments & Instrumental Music"
+6961,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Historical Studies > Music History by Era"
+8525,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Historical Studies > Music on particular topics"
+8638,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Historical Studies > Musical journalism"
+9561,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Historical Studies > Popular music"
+6491,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Historical Studies > Program music"
+8142,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Historical Studies > Regional Music History"
+10068,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Historical Studies > Vocal music"
+9906,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Anecdotes, humor, etc."
+7464,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Broadcast Music"
+8950,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Children & music"
+8933,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Competitions & Prizes"
+7981,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Computers & music"
+7315,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Grants & scholarships"
+10022,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Literary authors & music"
+8873,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Music Essay Collections"
+9505,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Music Quotations"
+9419,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Music in Literature"
+8671,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Musical prodigies"
+9454,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Visual & pictorial topics"
+7251,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Women & music"
+7723,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music Overview > Writings of musicians"
+9286,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music: Philosophy, Society & Physics > Aesthetics"
+6720,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music: Philosophy, Society & Physics > Music Criticism"
+7808,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music: Philosophy, Society & Physics > Music, Society & Politics"
+8801,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music: Philosophy, Society & Physics > Music’s Moral & Healing Effects"
+7800,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music: Philosophy, Society & Physics > Physics & acoustics"
+7897,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music: Philosophy, Society & Physics > Physiological aspects of music"
+9409,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music: Philosophy, Society & Physics > Psychology"
+8564,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Music: Philosophy, Society & Physics > Religious aspects of music"
+8448,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Musical research > Ethnomusicology"
+9206,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Musical research > Music archaeology"
+9845,8,8,"Arts & Media > Music > History, Culture & Criticism > Music History & Criticism > Music Research & Reference > Research, History & Context > Musical research > Musicology"
+7289,8,6,Arts & Media > Music > Theory & Education > Instruction & Study > Music study abroad > Vocal music > Singing & vocal technique > History of Voice Teaching
+8385,8,6,Arts & Media > Music > Theory & Education > Instruction & Study > Music study abroad > Vocal music > Singing & vocal technique > Self-instructors
+9388,8,6,Arts & Media > Music > Theory & Education > Instruction & Study > Music study abroad > Vocal music > Singing & vocal technique > Specific techniques
+7547,8,6,Arts & Media > Music > Theory & Education > Instruction & Study > Music study abroad > Vocal music > Singing & vocal technique > Studies & exercises
+8862,8,6,Arts & Media > Music > Theory & Education > Instruction & Study > Music study abroad > Vocal music > Singing & vocal technique > Systems & methods
+8856,8,6,Arts & Media > Music > Theory & Education > Instruction & Study > Music study abroad > Vocal music > Singing & vocal technique > Vocal Interpretation
+6959,8,6,Arts & Media > Music > Theory & Education > Instruction & Study > Music study abroad > Vocal music > Singing & vocal technique > Vocal techniques for children
+9076,8,6,Arts & Media > Music > Theory & Education > Instruction & Study > Music study abroad > Vocal music > Singing & vocal technique > Voice Physiology & Care
+53447,8,8,"Arts & Media > Visual Arts > Media, Techniques & Practices > Sculpture & Applied Arts > Sculpture > Sculpture History > Regional Sculpture History > European Sculpture"
+53446,8,8,"Arts & Media > Visual Arts > Media, Techniques & Practices > Sculpture & Applied Arts > Sculpture > Sculpture History > Regional Sculpture History > Sculpture in the Americas"
+5435,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Addiction
+5436,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Anxieties & Phobias
+5437,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Attention-Deficit Disorder
+5438,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Autism Spectrum Disorders
+5439,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Bipolar Disorder
+5440,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Compulsive Behavior
+5441,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Depression
+5442,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Dissociative Identity Disorder
+5443,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Eating Disorders
+5444,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Memory Disorders
+5445,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Personality Disorders
+5446,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Post-Traumatic Stress Disorder
+5447,8,6,Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Schizophrenia
+54065,8,8,History > By Region > African > Central > Francophone Equatorial Africa > Central African Republic > By Period > 1910-1960. French colony
+54066,8,8,History > By Region > African > Central > Francophone Equatorial Africa > Central African Republic > By Period > 1960- . Independent
+54064,8,8,History > By Region > African > Central > Francophone Equatorial Africa > Central African Republic > By Period > Early to 1910
+54068,8,8,History > By Region > African > Central > Francophone Equatorial Africa > Central African Republic > Local > Other
+54072,8,8,History > By Region > African > Central > Francophone Equatorial Africa > Chad Tchad > By Period > 1910-1960
+54073,8,8,History > By Region > African > Central > Francophone Equatorial Africa > Chad Tchad > By Period > 1960- . Independent
+54071,8,8,History > By Region > African > Central > Francophone Equatorial Africa > Chad Tchad > By Period > Early to 1910
+54075,8,8,History > By Region > African > Central > Francophone Equatorial Africa > Chad Tchad > Local > Other
+54079,8,8,"History > By Region > African > Central > Francophone Equatorial Africa > Gabon Gaboon, Gabun > By Period > 1886-1960. French colony and territory"
+54080,8,8,"History > By Region > African > Central > Francophone Equatorial Africa > Gabon Gaboon, Gabun > By Period > 1960- . Independent"
+54078,8,8,"History > By Region > African > Central > Francophone Equatorial Africa > Gabon Gaboon, Gabun > By Period > Early to 1886"
+54082,8,8,"History > By Region > African > Central > Francophone Equatorial Africa > Gabon Gaboon, Gabun > Local > Other"
+10358,8,7,"History > By Region > African > North > Egyptian > By Period > Egypt, 1952–2011 > Egypt Political, 1952–"
+10612,8,6,"History > By Region > African > North > Egyptian > By Period > Egypt, 1952–2011 > Egyptian Diplomatic, 1952–"
+54176,8,8,"History > By Region > African > West > French West Africa, Sahara & Sahel > Beninese > By Period > 1894-1960. French territory and colony"
+54177,8,8,"History > By Region > African > West > French West Africa, Sahara & Sahel > Beninese > By Period > 1960- . Independent"
+54175,8,8,"History > By Region > African > West > French West Africa, Sahara & Sahel > Beninese > By Period > Early to 1894"
+54179,8,8,"History > By Region > African > West > French West Africa, Sahara & Sahel > Beninese > Local > Other"
+52101,8,7,"History > By Region > Asian > East > Chinese > By Period > China, 1949–1976 > Chinese Foreign Relations, 1949–1976"
+52100,8,8,"History > By Region > Asian > East > Chinese > By Period > China, 1949–1976 > Chinese Political, 1949–1976"
+52099,8,8,"History > By Region > Asian > East > Chinese > By Period > China, 1949–1976 > Chinese Social & Cultural, 1949–1976"
+52103,8,8,"History > By Region > Asian > East > Chinese > By Period > China, 1949–1976 > Cultural Revolution, 1966–1976"
+52109,8,4,"History > By Region > Asian > East > Chinese > By Period > China, 1949–1976 > Deng Xiaoping"
+52108,8,4,"History > By Region > Asian > East > Chinese > By Period > China, 1949–1976 > Mao Zedong"
+52110,8,4,"History > By Region > Asian > East > Chinese > By Period > China, 1949–1976 > Zhou Enlai"
+52106,8,7,"History > By Region > Asian > East > Chinese > By Period > China, 1976–2002 > Chinese Foreign Relations, 1976–2002"
+52105,8,8,"History > By Region > Asian > East > Chinese > By Period > China, 1976–2002 > Chinese Political, 1976–2002"
+52104,8,8,"History > By Region > Asian > East > Chinese > By Period > China, 1976–2002 > Chinese Social & Cultural, 1976–2002"
+52109,8,4,"History > By Region > Asian > East > Chinese > By Period > China, 1976–2002 > Deng Xiaoping"
+52172,8,7,"History > By Region > Asian > East > Chinese > By Period > China, 2002–Present > Chinese Foreign Relations, 2002–Present"
+52171,8,8,"History > By Region > Asian > East > Chinese > By Period > China, 2002–Present > Chinese Political, 2002–Present"
+52170,8,8,"History > By Region > Asian > East > Chinese > By Period > China, 2002–Present > Chinese Social & Cultural, 2002–Present"
+52161,8,8,"History > By Region > Asian > East > Chinese > By Period > Republican China, 1912–1949 > China, 1912–1928"
+52162,8,8,"History > By Region > Asian > East > Chinese > By Period > Republican China, 1912–1949 > China, 1928–1937"
+52163,8,8,"History > By Region > Asian > East > Chinese > By Period > Republican China, 1912–1949 > China, 1937–1945"
+52164,8,8,"History > By Region > Asian > East > Chinese > By Period > Republican China, 1912–1949 > China, 1945–1949"
+52167,8,7,"History > By Region > Asian > East > Chinese > By Period > Republican China, 1912–1949 > Republican Chinese Foreign Relations"
+52166,8,8,"History > By Region > Asian > East > Chinese > By Period > Republican China, 1912–1949 > Republican Chinese Political"
+52165,8,8,"History > By Region > Asian > East > Chinese > By Period > Republican China, 1912–1949 > Republican Chinese Social & Cultural"
+10715,8,8,"History > By Region > European > Balkan Peninsula > Albanian > By Period > Ottoman Rule, 1501–1912 > National Awakening, 1840–1912"
+51831,8,8,"History > By Region > European > Balkan Peninsula > Albanian > By Period > Post-Communism, 1990–Present > Post-Communist Political"
+51751,8,8,History > By Region > European > Balkan Peninsula > Croatian > By Period > Croatia since 1990 > Political since 1990
+51571,8,8,"History > By Region > European > Balkan Peninsula > Turkish > By Period > 20th century > 1st Republic & Kemalism, 1923–1960"
+51569,8,8,"History > By Region > European > Balkan Peninsula > Turkish > By Period > 20th century > Mehmed V, 1909–1918"
+51570,8,8,"History > By Region > European > Balkan Peninsula > Turkish > By Period > 20th century > Mehmed VI, 1918–1922"
+51573,8,8,"History > By Region > European > Balkan Peninsula > Turkish > By Period > 20th century > Second Turkish Republic, 1960–1980"
+51574,8,8,"History > By Region > European > Balkan Peninsula > Turkish > By Period > 20th century > Third Republic, 1980–Present"
+10625,8,8,"History > By Region > European > By Period > Medieval > Late Medieval, 11th–15th C. > 11th-12th centuries > 11th century"
+10385,8,8,"History > By Region > European > By Period > Medieval > Late Medieval, 11th–15th C. > 11th-12th centuries > 12th century"
+10491,8,8,"History > By Region > European > By Period > Medieval > Late Medieval, 11th–15th C. > 13th-15th centuries > 13th century"
+10694,8,8,"History > By Region > European > By Period > Medieval > Late Medieval, 11th–15th C. > 13th-15th centuries > 14th century"
+10346,8,8,"History > By Region > European > By Period > Medieval > Late Medieval, 11th–15th C. > 13th-15th centuries > 15th century"
+10429,8,8,"History > By Region > European > Central > Austrian > By Period > Early & Medieval Era, to 1521 > Margraviate & Duchy, 976–1246"
+10146,8,8,"History > By Region > European > Central > Austrian > By Period > Habsburg Monarchy, 1521–1792 > Absolutist Monarchy, 1648–1740"
+10179,8,8,"History > By Region > European > Central > Austrian > By Period > Habsburg Monarchy, 1521–1792 > Reformation & War, 1521–1648"
+10173,8,8,"History > By Region > European > Central > Austrian > By Period > Habsburg Monarchy, 1521–1792 > Theresian–Josephine Era, 1740–1792"
+10603,8,8,"History > By Region > European > Central > Czechoslovak > By Period > Early & Medieval, to 1526 > Late Medieval, 1437–1526"
+10502,8,8,"History > By Region > European > Central > Czechoslovak > By Period > Early & Medieval, to 1526 > Luxembourg Dynasty, 1311–1437"
+10372,8,8,"History > By Region > European > Central > Czechoslovak > By Period > Early & Medieval, to 1526 > Přemyslid Dynasty, c. 900–1310"
+10391,8,8,"History > By Region > European > Central > Czechoslovak > By Period > Union & Republic, 1918–1993 > 1918–1939"
+10460,8,8,"History > By Region > European > Central > Czechoslovak > By Period > Union & Republic, 1918–1993 > 1989–1993"
+10624,8,8,"History > By Region > European > Central > Czechoslovak > By Period > Union & Republic, 1918–1993 > German Occupation, 1939–1945"
+10736,8,8,"History > By Region > European > Central > Czechoslovak > By Period > Union & Republic, 1918–1993 > Munich Crisis, 1938"
+10730,8,8,"History > By Region > European > Central > Czechoslovak > By Period > Union & Republic, 1918–1993 > Normalization, 1968–1989"
+10353,8,8,"History > By Region > European > Central > Czechoslovak > By Period > Union & Republic, 1918–1993 > Velvet Revolution, 1989"
+11566,8,8,"History > By Region > European > Central > German > By Period > Democratic Republic, 1949–1990 > Early DDR, 1949–1961"
+11560,8,8,"History > By Region > European > Central > German > By Period > Democratic Republic, 1949–1990 > Late DDR, 1971–1990"
+11453,8,8,"History > By Region > European > Central > German > By Period > Early & Medieval, 481–1519 > Frankish Era, 481–918"
+10133,8,8,"History > By Region > European > Central > German > By Period > Early & Medieval, 481–1519 > Habsburg & Luxemburg, 1273–1519"
+10116,8,8,"History > By Region > European > Central > German > By Period > Early & Medieval, 481–1519 > Hohenstaufen period, 1125-1273"
+10215,8,8,"History > By Region > European > Central > German > By Period > Early & Medieval, 481–1519 > House of Franconia, 1024-1125"
+10211,8,8,"History > By Region > European > Central > German > By Period > Early & Medieval, 481–1519 > House of Saxony, 919-1024"
+10181,8,8,"History > By Region > European > Central > German > By Period > Early Modern, 1519–1815 > Enlightenment Era, 1740–1789"
+10141,8,8,"History > By Region > European > Central > German > By Period > Early Modern, 1519–1815 > Post-Westphalian Era, 1648–1740"
+3556,8,8,"History > By Region > European > Central > German > By Period > Early Modern, 1519–1815 > Reformation, 1519–1648"
+10152,8,8,"History > By Region > European > Central > German > By Period > Early Modern, 1519–1815 > Revolution & Napoleon, 1789–1815"
+10218,8,8,"History > By Region > European > Central > German > By Period > Early Modern, 1519–1815 > Thirty Years’ War, 1618–1648"
+51477,8,4,"History > By Region > European > Central > German > By Period > Nazi Era, 1933–1945 > Adolf Hitler"
+51478,8,8,"History > By Region > European > Central > German > By Period > Nazi Era, 1933–1945 > Resistance to Nazism"
+51480,8,7,"History > By Region > European > Central > German > By Period > Reunification Era, 1990– > Post-Reunification Diplomacy"
+51479,8,8,"History > By Region > European > Central > German > By Period > Reunification Era, 1990– > Post-Reunification Politics"
+51482,8,4,History > By Region > European > Central > German > Local > Bavaria > Ludwig II of Bavaria
+51483,8,8,"History > By Region > European > Central > German > Local > Berlin > Berlin, 1945–1990"
+51484,8,8,History > By Region > European > Central > German > Local > Berlin > Social & Cultural
+51617,8,8,"History > By Region > European > Central > Hungarian > By Period > 20th-Century > Hungarian Society & Culture, 20th C."
+51616,8,8,"History > By Region > European > Central > Hungarian > By Period > 20th-Century > Hungary, 1918–1945"
+10284,8,8,"History > By Region > European > Central > Hungarian > By Period > Ottoman & Habsburg Rule, 1526–1711 > Early Ottoman Rule, 1526–1606"
+10381,8,8,"History > By Region > European > Central > Hungarian > By Period > Ottoman & Habsburg Rule, 1526–1711 > Late Ottoman Rule, 1606–1699"
+10360,8,8,"History > By Region > European > Central > Hungarian > By Period > People’s Republic, 1949–1989 > Revolution, 1956"
+10352,8,8,"History > By Region > European > Central > Swiss > By Period > Early Modern Confederacy, 1516–1798 > Reformation–Consolidation, 1516–1648"
+10704,8,8,"History > By Region > European > Central > Swiss > By Period > Regeneration, 1830–1848 > Sonderbund War, 1847"
+10418,8,8,"History > By Region > European > Central > Swiss > By Period > Revolution & Napoleon, 1789–1815 > Helvetic Republic, 1798–1803"
+10311,8,8,"History > By Region > European > East > Polish > By Period > Partitions Era, 1795–1918 > Early Partition Era, 1795–1864"
+10769,8,8,"History > By Region > European > East > Polish > By Period > Partitions Era, 1795–1918 > Late Partition Era, 1864–1918"
+10457,8,8,"History > By Region > European > East > Polish > By Period > People’s Republic, 1945–1989 > Post-Stalinist Era, 1956–1980"
+10496,8,8,"History > By Region > European > East > Polish > By Period > People’s Republic, 1945–1989 > Solidarity & Communism, 1980–1989"
+10431,8,8,"History > By Region > European > East > Polish > By Period > People’s Republic, 1945–1989 > Stalinist Era, 1945–1956"
+10313,8,8,"History > By Region > European > East > Polish > By Period > Pre-Partition Era, to 1795 > Early Era, to 1572"
+10324,8,8,"History > By Region > European > East > Polish > By Period > Pre-Partition Era, to 1795 > Elective Monarchy, 1572–1763"
+10445,8,8,"History > By Region > European > East > Polish > By Period > Pre-Partition Era, to 1795 > Partition Era, 1763–1795"
+10524,8,8,"History > By Region > European > East > Polish > By Period > Second Republic & WWII, 1918–1945 > Early Second Republic, 1918–1926"
+10605,8,8,"History > By Region > European > East > Polish > By Period > Second Republic & WWII, 1918–1945 > Sanation Era, 1926–1939"
+10410,8,8,"History > By Region > European > East > Polish > By Period > Second Republic & WWII, 1918–1945 > WWII Occupation, 1939–1945"
+51462,8,7,"History > By Region > European > East > Russian > By Period > Federation, 1991–Present > Post-Soviet Foreign Relations"
+51461,8,8,"History > By Region > European > East > Russian > By Period > Federation, 1991–Present > Post-Soviet Political"
+51472,8,4,"History > By Region > European > East > Russian > By Period > Federation, 1991–Present > Vladimir Putin"
+51034,8,7,History > By Region > European > East > Russian > General & Soviet Era > Foreign Relations > U.S.–Soviet Union Relations
+51471,8,4,"History > By Region > European > East > Russian > General & Soviet Era > Revolution & Civil War, 1917–1921 > Leon Trotsky"
+51456,8,8,"History > By Region > European > East > Russian > General & Soviet Era > Romanov Era, 1613–1917 > Nicholas II, 1894–1917"
+51455,8,8,"History > By Region > European > East > Russian > General & Soviet Era > Romanov Era, 1613–1917 > Russia in the 19th Century"
+51457,8,8,"History > By Region > European > East > Russian > General & Soviet Era > Soviet Era, 1918–1991 > Early Soviet Period, 1918–1924"
+51460,8,8,"History > By Region > European > East > Russian > General & Soviet Era > Soviet Era, 1918–1991 > Perestroika & Breakup, 1985–1991"
+51459,8,8,"History > By Region > European > East > Russian > General & Soviet Era > Soviet Era, 1918–1991 > Soviet Union, 1953–1985"
+51458,8,8,"History > By Region > European > East > Russian > General & Soviet Era > Soviet Era, 1918–1991 > Stalin Period, 1925–1953"
+51464,8,8,History > By Region > European > East > Russian > Local > Northern Caucasus > Chechnya
+51470,8,8,History > By Region > European > East > Russian > Local > Northern Caucasus > Dagestan
+51474,8,8,History > By Region > European > East > Russian > Local > Northern Caucasus > North Ossetia
+51473,8,8,History > By Region > European > East > Russian > Local > Siberia > Russian Far East
+51465,8,8,History > By Region > European > East > Russian > Local > Tatarstan & Kazan Region > Tatarstan
+51466,8,8,History > By Region > European > East > Russian > Local > Volga Region > Volga River & Valley
+51591,8,8,"History > By Region > European > East > Ukrainian > By Period > 20th century > Soviet Ukraine, 1921–1944"
+51593,8,8,"History > By Region > European > East > Ukrainian > By Period > 20th century > Soviet Ukraine, 1945–1991"
+51590,8,8,"History > By Region > European > East > Ukrainian > By Period > 20th century > Ukrainian Independence, 1917–1921"
+51595,8,8,"History > By Region > European > East > Ukrainian > By Period > Independence Era, 1991–2014 > Post-Soviet Ukrainian Diplomacy"
+51594,8,8,"History > By Region > European > East > Ukrainian > By Period > Independence Era, 1991–2014 > Post-Soviet Ukrainian Politics"
+51763,8,8,"History > By Region > European > North > Danish > By Period > 20th century > Christian X, 1912–1947"
+51764,8,8,"History > By Region > European > North > Danish > By Period > 20th century > Frederik IX, 1947–1972"
+51765,8,8,"History > By Region > European > North > Danish > By Period > 20th century > Margrethe II, 1972–2024"
+51809,8,8,"History > By Region > European > North > Finnish > By Period > 20th century > Finland in World War II, 1939–1945"
+51811,8,8,History > By Region > European > North > Finnish > By Period > 20th century > Finland since 1981
+51807,8,8,"History > By Region > European > North > Finnish > By Period > 20th century > Finnish Revolution, 1917–1918"
+51808,8,8,"History > By Region > European > North > Finnish > By Period > 20th century > Interwar Finland, 1918–1939"
+51810,8,8,"History > By Region > European > North > Finnish > By Period > 20th century > Postwar Finland, 1945–1981"
+51777,8,8,"History > By Region > European > North > Norwegian > By Period > 20th century > Haakon VII, 1905–1957"
+51779,8,8,"History > By Region > European > North > Norwegian > By Period > 20th century > Harald V, 1991–Present"
+51778,8,8,"History > By Region > European > North > Norwegian > By Period > 20th century > Olav V, 1957–1991"
+10165,8,8,"History > By Region > European > South > Greek > By Period > Ancient Era > Age of Pericles, 479–431 BC"
+10122,8,8,"History > By Region > European > South > Greek > By Period > Ancient Era > Alexander the Great, 336–323 BC"
+10344,8,8,"History > By Region > European > South > Greek > By Period > Ancient Era > Archaic Era, c. 800–500 BC"
+10749,8,8,History > By Region > European > South > Greek > By Period > Ancient Era > Bronze Age
+10102,8,8,"History > By Region > European > South > Greek > By Period > Ancient Era > Hellenistic Era, 323–146 BC"
+10143,8,8,"History > By Region > European > South > Greek > By Period > Ancient Era > Macedonian Ascendancy, 359–336 BC"
+10109,8,8,"History > By Region > European > South > Greek > By Period > Ancient Era > Peloponnesian War, 431–404 BC"
+10221,8,8,"History > By Region > European > South > Greek > By Period > Ancient Era > Persian Wars, 499–479 BC"
+10188,8,8,"History > By Region > European > South > Greek > By Period > Ancient Era > Roman Rule, 146 BC–323 AD"
+10136,8,8,"History > By Region > European > South > Greek > By Period > Ancient Era > Spartan–Theban Supremacy, 404–362 BC"
+10227,8,7,"History > By Region > European > South > Greek > By Period > Byzantine Era, 323–1453 > Eastern Empire, 323/476-1057"
+10105,8,7,"History > By Region > European > South > Greek > By Period > Byzantine Era, 323–1453 > Late Byzantine, 1057–1453"
+51547,8,8,History > By Region > European > South > Greek > Modern > By Period > Greece since 1913
+51546,8,8,"History > By Region > European > South > Greek > Modern > By Period > Greece, 1821–1913"
+10223,8,8,"History > By Region > European > South > Greek > Modern > By Period > Ottoman Rule, 1453–1821"
+10156,8,8,"History > By Region > European > South > Greek > Modern > By Period > Second Republic, 1924–1935"
+52315,8,8,History > By Region > European > South > Greek > Modern > Local > Aegean Islands
+13742,8,8,History > By Region > European > South > Greek > Modern > Local > Athens
+54696,8,8,History > By Region > European > South > Greek > Modern > Local > Other
+51996,8,8,History > By Region > European > South > Iberia > Andorran > By Period > Medieval & Early Modern Andorra
+54690,8,8,History > By Region > European > South > Iberia > Andorran > Local > Other
+10328,8,8,"History > By Region > European > South > Iberia > Portuguese > By Period > Early Era, to 1095"
+11578,8,8,"History > By Region > European > South > Iberia > Portuguese > By Period > House of Braganza, 1640–1816"
+10117,8,8,"History > By Region > European > South > Iberia > Portuguese > By Period > Iberian Union, 1580–1640"
+3585,8,8,"History > By Region > European > South > Iberia > Portuguese > By Period > Medieval Era, 1095–1580"
+11579,8,8,"History > By Region > European > South > Iberia > Portuguese > By Period > Monarchy, 1816–1908"
+11580,8,8,"History > By Region > European > South > Iberia > Portuguese > By Period > Portugal, 20th Century"
+51688,8,8,History > By Region > European > South > Iberia > Portuguese > Ethnography > Portuguese Abroad
+13890,8,8,History > By Region > European > South > Iberia > Portuguese > Local > Lisbon
+54844,8,8,History > By Region > European > South > Iberia > Portuguese > Local > Other
+51694,8,8,History > By Region > European > South > Iberia > Portuguese > Local > Porto
+3600,8,8,History > By Region > European > South > Iberia > Spanish > By Period > Ancient
+10129,8,8,"History > By Region > European > South > Iberia > Spanish > By Period > Medieval, 711–1516"
+3601,8,8,"History > By Region > European > South > Iberia > Spanish > By Period > Modern, 1516–Present"
+52072,8,8,History > By Region > European > South > Iberia > Spanish > Local > Alicante
+52071,8,8,History > By Region > European > South > Iberia > Spanish > Local > Almería
+12751,8,8,History > By Region > European > South > Iberia > Spanish > Local > Andalusia
+51501,8,8,History > By Region > European > South > Iberia > Spanish > Local > Asturias
+12753,8,8,History > By Region > European > South > Iberia > Spanish > Local > Balearic Islands
+12755,8,8,History > By Region > European > South > Iberia > Spanish > Local > Barcelona
+12750,8,8,History > By Region > European > South > Iberia > Spanish > Local > Basque Provinces
+52069,8,8,History > By Region > European > South > Iberia > Spanish > Local > Bilbao
+12754,8,8,History > By Region > European > South > Iberia > Spanish > Local > Canary Islands
+52063,8,8,History > By Region > European > South > Iberia > Spanish > Local > Cantabrian Mountains
+51508,8,8,History > By Region > European > South > Iberia > Spanish > Local > Castilla y León
+52066,8,8,History > By Region > European > South > Iberia > Spanish > Local > Castilla-La Mancha
+12749,8,8,History > By Region > European > South > Iberia > Spanish > Local > Catalonia
+51506,8,8,History > By Region > European > South > Iberia > Spanish > Local > Córdoba
+51507,8,8,History > By Region > European > South > Iberia > Spanish > Local > Extremadura
+12752,8,8,History > By Region > European > South > Iberia > Spanish > Local > Galicia
+52074,8,8,History > By Region > European > South > Iberia > Spanish > Local > Gibraltar
+52058,8,8,History > By Region > European > South > Iberia > Spanish > Local > Girona
+51504,8,8,History > By Region > European > South > Iberia > Spanish > Local > Granada
+52065,8,8,History > By Region > European > South > Iberia > Spanish > Local > Huelva
+52067,8,8,History > By Region > European > South > Iberia > Spanish > Local > La Rioja
+52059,8,8,History > By Region > European > South > Iberia > Spanish > Local > Lleida
+12756,8,8,History > By Region > European > South > Iberia > Spanish > Local > Madrid
+52060,8,8,History > By Region > European > South > Iberia > Spanish > Local > Madrid Region
+51505,8,8,History > By Region > European > South > Iberia > Spanish > Local > Murcia
+51510,8,8,History > By Region > European > South > Iberia > Spanish > Local > Málaga
+54848,8,8,History > By Region > European > South > Iberia > Spanish > Local > Other
+52068,8,8,History > By Region > European > South > Iberia > Spanish > Local > Pyrenees
+52070,8,8,History > By Region > European > South > Iberia > Spanish > Local > Salamanca
+52061,8,8,History > By Region > European > South > Iberia > Spanish > Local > Santiago de Compostela
+52056,8,8,History > By Region > European > South > Iberia > Spanish > Local > Seville
+52055,8,8,History > By Region > European > South > Iberia > Spanish > Local > Tarragona
+52073,8,8,History > By Region > European > South > Iberia > Spanish > Local > Valencia
+12757,8,8,History > By Region > European > South > Iberia > Spanish > Local > Valencia province
+52057,8,8,History > By Region > European > South > Iberia > Spanish > Local > Valladolid
+52062,8,8,History > By Region > European > South > Iberia > Spanish > Local > Zaragoza
+52064,8,8,History > By Region > European > South > Iberia > Spanish > Local > Álava
+51065,8,7,History > By Region > European > South > Iberia > Spanish > Political & Foreign Relations > U.S.–Spain Relations
+13625,8,8,"History > By Region > European > South > Italian > By Period > Ancient Era, to 476 > Antiquities, Civilization & Culture"
+13626,8,8,"History > By Region > European > South > Italian > By Period > Ancient Era, to 476 > Ethnography"
+13623,8,8,"History > By Region > European > South > Italian > By Period > Ancient Era, to 476 > Geography & Description"
+3573,8,8,"History > By Region > European > South > Italian > By Period > Ancient Era, to 476 > Kingdom & Republic"
+13624,8,8,"History > By Region > European > South > Italian > By Period > Ancient Era, to 476 > Local"
+10621,8,8,"History > By Region > European > South > Italian > By Period > Ancient Era, to 476 > Pre-Roman Italy"
+3572,8,8,"History > By Region > European > South > Italian > By Period > Ancient Era, to 476 > Roman Empire"
+13622,8,8,"History > By Region > European > South > Italian > By Period > Ancient Era, to 476 > Roman Reference"
+3483,8,8,"History > By Region > European > South > Italian > By Period > Ancient Era, to 476 > Rome"
+3570,8,8,"History > By Region > European > South > Italian > By Period > Medieval Era, 476–1492 > Early Medieval, 476–1268"
+3569,8,8,"History > By Region > European > South > Italian > By Period > Medieval Era, 476–1492 > Late Medieval, 1268–1492"
+8279,8,8,"History > By Region > European > South > Italian > By Period > Modern Era, 1492–Present > Contemporary Era, 1975–Present"
+9340,8,8,"History > By Region > European > South > Italian > By Period > Modern Era, 1492–Present > Early Modern Era, 1601–1795"
+8430,8,8,"History > By Region > European > South > Italian > By Period > Modern Era, 1492–Present > Fascism & WWII, 1919–1944"
+13766,8,8,"History > By Region > European > South > Italian > By Period > Modern Era, 1492–Present > Historiography"
+9215,8,8,"History > By Region > European > South > Italian > By Period > Modern Era, 1492–Present > Kingdom, 1861–1900"
+8129,8,8,"History > By Region > European > South > Italian > By Period > Modern Era, 1492–Present > Liberal Era & WWI, 1901–1918"
+9283,8,8,"History > By Region > European > South > Italian > By Period > Modern Era, 1492–Present > Napoleonic Era, 1796–1815"
+9133,8,8,"History > By Region > European > South > Italian > By Period > Modern Era, 1492–Present > Postwar Republic, 1945–1974"
+8213,8,8,"History > By Region > European > South > Italian > By Period > Modern Era, 1492–Present > Renaissance–Reformation, 1501–1600"
+6307,8,8,"History > By Region > European > South > Italian > By Period > Modern Era, 1492–Present > Restoration–Risorgimento, 1816–1860"
+10148,8,8,"History > By Region > European > West > Benelux Countries > Belgian > By Period > Austrian Rule, 1714–1794"
+13925,8,8,History > By Region > European > West > Benelux Countries > Belgian > By Period > Belgium in the 20th Century
+13926,8,8,History > By Region > European > West > Benelux Countries > Belgian > By Period > Belgium in the 21st Century
+13923,8,8,"History > By Region > European > West > Benelux Countries > Belgian > By Period > Early & Medieval Era, to 1555"
+10135,8,8,"History > By Region > European > West > Benelux Countries > Belgian > By Period > French & Dutch Rule, 1794–1830"
+10207,8,8,"History > By Region > European > West > Benelux Countries > Belgian > By Period > Independence Era, 1830–1909"
+13924,8,8,"History > By Region > European > West > Benelux Countries > Belgian > By Period > Spanish Rule, 1555–1714"
+51788,8,8,History > By Region > European > West > Benelux Countries > Belgian > Ethnography > Walloons
+51798,8,8,History > By Region > European > West > Benelux Countries > Belgian > Local > Antwerp
+51799,8,8,History > By Region > European > West > Benelux Countries > Belgian > Local > Bruges
+13752,8,8,History > By Region > European > West > Benelux Countries > Belgian > Local > Brussels
+51796,8,8,History > By Region > European > West > Benelux Countries > Belgian > Local > Flanders
+54820,8,8,History > By Region > European > West > Benelux Countries > Belgian > Local > Other
+51797,8,8,History > By Region > European > West > Benelux Countries > Belgian > Local > Wallonia
+11531,8,8,History > By Region > European > West > Benelux Countries > Dutch > By Period > 19th-20th centuries
+11532,8,8,"History > By Region > European > West > Benelux Countries > Dutch > By Period > Batavian Republic, 1795-1806"
+11533,8,8,History > By Region > European > West > Benelux Countries > Dutch > By Period > Early & medieval to 1555
+11530,8,8,"History > By Region > European > West > Benelux Countries > Dutch > By Period > Republic, 1555–1795"
+50823,8,5,"History > By Region > European > West > Benelux Countries > Dutch > Dutch America > Dutch Rule, 1624–1654"
+50820,8,5,History > By Region > European > West > Benelux Countries > Dutch > Dutch America > Dutch West Indies
+50816,8,5,History > By Region > European > West > Benelux Countries > Dutch > Dutch America > New Netherland 1610–1664
+10589,8,4,History > By Region > European > West > Benelux Countries > Dutch > Dutch America > Surinamese
+51640,8,8,History > By Region > European > West > Benelux Countries > Dutch > Local > Amsterdam
+54827,8,8,History > By Region > European > West > Benelux Countries > Dutch > Local > Other
+51641,8,8,History > By Region > European > West > Benelux Countries > Dutch > Local > Rotterdam
+51642,8,8,History > By Region > European > West > Benelux Countries > Dutch > Local > Utrecht
+51927,8,8,"History > By Region > European > West > Benelux Countries > Luxembourg > By Period > Duchy of Luxembourg, 1354–1815"
+51926,8,8,"History > By Region > European > West > Benelux Countries > Luxembourg > By Period > Early Luxembourg, to 1354"
+11525,8,8,"History > By Region > European > West > Benelux Countries > Luxembourg > By Period > Grand Duchy, 1815–Present"
+51928,8,8,History > By Region > European > West > Benelux Countries > Luxembourg > Local > Luxembourg City
+54823,8,8,History > By Region > European > West > Benelux Countries > Luxembourg > Local > Other
+10443,8,5,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > 1763-1867
+50819,8,5,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > British West Indies
+50818,8,5,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Colonial Florida to 1821
+3409,8,5,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Colonial Period
+10366,8,4,History > By Region > European > West > British Isles > British Empire & Commonwealth > British America > Guyanese
+51429,8,8,History > By Region > European > West > British Isles > English > Archaeology & Social Hist. > Muslims in England
+51426,8,8,History > By Region > European > West > British Isles > English > Archaeology & Social Hist. > South Asians in England
+10099,8,8,History > By Region > European > West > British Isles > English > By Period > 17th century
+10155,8,8,History > By Region > European > West > British Isles > English > By Period > 18th century
+10213,8,8,History > By Region > European > West > British Isles > English > By Period > 19th century
+10115,8,8,History > By Region > European > West > British Isles > English > By Period > 20th century
+10093,8,8,"History > By Region > European > West > British Isles > English > By Period > Early Era, to 1066"
+3527,8,8,"History > By Region > European > West > British Isles > English > By Period > Georgian Era, 1714–1837"
+10229,8,8,"History > By Region > European > West > British Isles > English > By Period > Medieval Era, 1066–1485"
+3531,8,8,"History > By Region > European > West > British Isles > English > By Period > Stuart Era, 1603–1714"
+3532,8,8,"History > By Region > European > West > British Isles > English > By Period > Tudor & Elizabethan Era, 1485–1603"
+10149,8,8,"History > By Region > European > West > British Isles > English > By Period > Tudor era, 1485-1603"
+3533,8,8,"History > By Region > European > West > British Isles > English > By Period > Victorian Era, 1837–1901"
+52175,8,6,History > By Region > European > West > British Isles > English > Historic Places & Monuments > Chinese Historical Sites & Monuments
+51425,8,8,History > By Region > European > West > British Isles > English > Historic Places & Monuments > Hadrian’s Wall
+51423,8,8,History > By Region > European > West > British Isles > English > Local > Bath
+51422,8,8,History > By Region > European > West > British Isles > English > Local > Birmingham
+51417,8,8,History > By Region > European > West > British Isles > English > Local > Bristol
+13658,8,8,History > By Region > European > West > British Isles > English > Local > Counties & Regions
+51418,8,8,History > By Region > European > West > British Isles > English > Local > Liverpool
+13835,8,8,History > By Region > European > West > British Isles > English > Local > London
+51419,8,8,History > By Region > European > West > British Isles > English > Local > Manchester
+54693,8,8,History > By Region > European > West > British Isles > English > Local > Other
+51420,8,8,History > By Region > European > West > British Isles > English > Local > Oxford
+51421,8,8,History > By Region > European > West > British Isles > English > Local > York
+51424,8,4,History > By Region > European > West > British Isles > English > Military & Naval > Horatio Nelson
+10123,8,8,History > By Region > European > West > British Isles > Irish > By Period > 17th century
+10174,8,8,History > By Region > European > West > British Isles > Irish > By Period > 18th century
+10226,8,8,History > By Region > European > West > British Isles > Irish > By Period > 19th century
+10162,8,8,History > By Region > European > West > British Isles > Irish > By Period > 20th century
+10172,8,8,History > By Region > European > West > British Isles > Irish > By Period > 21st century
+10747,8,8,"History > By Region > European > West > British Isles > Irish > By Period > Early Era, to 1172"
+10154,8,8,"History > By Region > European > West > British Isles > Irish > By Period > Medieval & Tudor Era, 1172–1603"
+51583,8,8,History > By Region > European > West > British Isles > Irish > Local > Belfast
+51584,8,8,History > By Region > European > West > British Isles > Irish > Local > Cork
+51586,8,8,History > By Region > European > West > British Isles > Irish > Local > Derry
+51582,8,8,History > By Region > European > West > British Isles > Irish > Local > Dublin
+51585,8,8,History > By Region > European > West > British Isles > Irish > Local > Limerick
+51581,8,8,History > By Region > European > West > British Isles > Irish > Local > Northern Irish
+54711,8,8,History > By Region > European > West > British Isles > Irish > Local > Other
+10104,8,8,History > By Region > European > West > British Isles > Scottish > By Period > 18th century
+10275,8,8,History > By Region > European > West > British Isles > Scottish > By Period > 19th century
+10462,8,8,History > By Region > European > West > British Isles > Scottish > By Period > 20th century
+10668,8,8,History > By Region > European > West > British Isles > Scottish > By Period > 21st century
+10161,8,8,"History > By Region > European > West > British Isles > Scottish > By Period > Early & Medieval Era, to 1603"
+10130,8,8,"History > By Region > European > West > British Isles > Scottish > By Period > Early Modern Era, 1603–1707"
+51614,8,8,History > By Region > European > West > British Isles > Scottish > Local > Aberdeen
+51612,8,8,History > By Region > European > West > British Isles > Scottish > Local > Edinburgh
+51613,8,8,History > By Region > European > West > British Isles > Scottish > Local > Glasgow
+51609,8,8,History > By Region > European > West > British Isles > Scottish > Local > Hebrides
+51610,8,8,History > By Region > European > West > British Isles > Scottish > Local > Orkney Islands
+54667,8,8,History > By Region > European > West > British Isles > Scottish > Local > Other
+51608,8,8,History > By Region > European > West > British Isles > Scottish > Local > Scottish Highlands & Clans
+51611,8,8,History > By Region > European > West > British Isles > Scottish > Local > Shetland Islands
+10601,8,8,History > By Region > European > West > British Isles > Welsh > By Period > Early & medieval Wales
+10701,8,8,History > By Region > European > West > British Isles > Welsh > By Period > Modern Era
+51822,8,8,History > By Region > European > West > British Isles > Welsh > Local > Cardiff
+51819,8,8,History > By Region > European > West > British Isles > Welsh > Local > Glamorgan
+54670,8,8,History > By Region > European > West > British Isles > Welsh > Local > Other
+51820,8,8,History > By Region > European > West > British Isles > Welsh > Local > Pembrokeshire
+51821,8,8,History > By Region > European > West > British Isles > Welsh > Local > Snowdonia
+11455,8,8,History > By Region > European > West > French > By Period > Early & Medieval > Frankish Period
+11454,8,8,History > By Region > European > West > French > By Period > Early & Medieval > Gaul & Celts
+11457,8,8,"History > By Region > European > West > French > By Period > Early & Medieval > Hundred Years’ War, 1337–1453"
+11456,8,8,"History > By Region > European > West > French > By Period > Early & Medieval > Late Medieval, 1328–1515"
+51535,8,7,"History > By Region > European > West > French > By Period > Fifth Republic, 1958–Present > 5th Republic Politics & Diplomacy"
+51530,8,4,"History > By Region > European > West > French > By Period > Fifth Republic, 1958–Present > Charles de Gaulle, 1958–1969"
+51533,8,4,"History > By Region > European > West > French > By Period > Fifth Republic, 1958–Present > François Mitterrand, 1981–1995"
+51531,8,4,"History > By Region > European > West > French > By Period > Fifth Republic, 1958–Present > Georges Pompidou, 1969–1974"
+51534,8,4,"History > By Region > European > West > French > By Period > Fifth Republic, 1958–Present > Jacques Chirac, 1995–2007"
+51532,8,4,"History > By Region > European > West > French > By Period > Fifth Republic, 1958–Present > Valéry Giscard d’Estaing, 1974–1981"
+54247,8,5,History > By Region > European > West > French > French America > French Guiana > By Period
+54251,8,5,History > By Region > European > West > French > French America > French Guiana > Local
+51536,8,8,History > By Region > European > West > French > Local > Paris > Social & Cultural
+51092,8,5,"History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Armies & Troops, 1861–1865"
+51091,8,5,History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Confederate States of America
+51088,8,5,History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Diplomacy
+51090,8,5,History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Finance & Commerce
+51096,8,5,History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Medicine & Hospitals
+51098,8,5,History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Memorials
+51089,8,5,"History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Military Operations, 1861–1865"
+51093,8,5,"History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Naval, 1861–1865"
+51094,8,5,History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Personal Narratives
+51095,8,5,History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Prisoners & Prisons
+51097,8,5,History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Relief & Charities
+51099,8,5,History > By Region > North American > U.S. > By Period > 19th Century > Civil War Period > Visual Material
+3693,8,4,"History > By Region > North American > U.S. > By Period > 19th Century > Early 19th Century, 1809–1845 > War of 1812"
+3693,8,4,"History > By Region > North American > U.S. > By Period > Revolution to Civil War, 1775–1861 > Early 19th Century, 1809–1845 > War of 1812"
+51332,8,8,History > By Region > North American > U.S. > Local > Middle Atlantic > New Jersey > Cities & Towns
+51331,8,8,History > By Region > North American > U.S. > Local > Middle Atlantic > New Jersey > Regions & Counties
+50957,8,8,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > Cities & Towns
+50921,8,8,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > City
+50816,8,5,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > New Netherland 1610–1664
+50956,8,8,History > By Region > North American > U.S. > Local > Middle Atlantic > New York > Regions & Counties
+50984,8,8,History > By Region > North American > U.S. > Local > Middle Atlantic > Pennsylvania > 1775–1865
+50985,8,8,History > By Region > North American > U.S. > Local > Middle Atlantic > Pennsylvania > 1865–
+50971,8,8,History > By Region > North American > U.S. > Local > Middle Atlantic > Pennsylvania > Cities & Towns
+50983,8,8,History > By Region > North American > U.S. > Local > Middle Atlantic > Pennsylvania > Colonial Pennsylvania to 1775
+50929,8,8,History > By Region > North American > U.S. > Local > Middle Atlantic > Pennsylvania > Philadelphia
+50970,8,8,History > By Region > North American > U.S. > Local > Middle Atlantic > Pennsylvania > Regions & Counties
+50914,8,8,History > By Region > North American > U.S. > Local > Midwest > Great Plains > 1848–1860
+50915,8,8,History > By Region > North American > U.S. > Local > Midwest > Great Plains > 1860–1880
+50916,8,8,History > By Region > North American > U.S. > Local > Midwest > Great Plains > 1880–1950
+50917,8,8,History > By Region > North American > U.S. > Local > Midwest > Great Plains > 1951–1980
+50918,8,8,History > By Region > North American > U.S. > Local > Midwest > Great Plains > 1981–
+50913,8,8,History > By Region > North American > U.S. > Local > Midwest > Great Plains > Early to 1848
+50919,8,8,"History > By Region > North American > U.S. > Local > Midwest > Great Plains > Frontier, Pioneer & Ranch Life"
+50920,8,8,History > By Region > North American > U.S. > Local > Midwest > Great Plains > Population Groups
+50912,8,8,History > By Region > North American > U.S. > Local > Midwest > Great Plains > Regional
+50931,8,8,History > By Region > North American > U.S. > Local > Midwest > Illinois > Chicago
+50975,8,8,History > By Region > North American > U.S. > Local > Midwest > Illinois > Cities & Towns
+51232,8,8,History > By Region > North American > U.S. > Local > Midwest > Michigan > Cities & Towns
+51231,8,8,History > By Region > North American > U.S. > Local > Midwest > Michigan > Regions & Counties
+51224,8,8,History > By Region > North American > U.S. > Local > Midwest > Ohio > Cities & Towns
+51223,8,8,History > By Region > North American > U.S. > Local > Midwest > Ohio > Regions & Counties
+50980,8,8,History > By Region > North American > U.S. > Local > New England > Massachusetts > 1775–1865
+50981,8,8,History > By Region > North American > U.S. > Local > New England > Massachusetts > 1865–1950
+50982,8,8,History > By Region > North American > U.S. > Local > New England > Massachusetts > 1951–
+50928,8,8,History > By Region > North American > U.S. > Local > New England > Massachusetts > Boston
+50961,8,8,History > By Region > North American > U.S. > Local > New England > Massachusetts > Cities & Towns
+50979,8,8,History > By Region > North American > U.S. > Local > New England > Massachusetts > Early Massachusetts to 1775
+50959,8,8,History > By Region > North American > U.S. > Local > New England > Massachusetts > Regions & Counties
+51302,8,8,History > By Region > North American > U.S. > Local > South > Alabama > Cities & Towns
+51301,8,8,History > By Region > North American > U.S. > Local > South > Alabama > Regions & Counties
+51300,8,8,History > By Region > North American > U.S. > Local > South > Alabama > Since 1951
+51297,8,8,History > By Region > North American > U.S. > Local > South > Carolina > Cities & Towns
+51296,8,8,History > By Region > North American > U.S. > Local > South > Carolina > Regions & Counties
+50976,8,8,History > By Region > North American > U.S. > Local > South > Florida > 1821–1865
+50977,8,8,History > By Region > North American > U.S. > Local > South > Florida > 1865–1950
+50978,8,8,History > By Region > North American > U.S. > Local > South > Florida > 1951–
+50962,8,8,History > By Region > North American > U.S. > Local > South > Florida > Cities & Towns
+50818,8,5,History > By Region > North American > U.S. > Local > South > Florida > Colonial Florida to 1821
+51217,8,8,History > By Region > North American > U.S. > Local > South > Georgia > Cities & Towns
+51216,8,8,History > By Region > North American > U.S. > Local > South > Georgia > Regions & Counties
+50968,8,8,History > By Region > North American > U.S. > Local > South > Louisiana > Cities & Towns
+50817,8,5,History > By Region > North American > U.S. > Local > South > Louisiana > Colonial Louisiana to 1803
+51196,8,8,History > By Region > North American > U.S. > Local > South > Maryland > Cities & Towns
+51195,8,8,History > By Region > North American > U.S. > Local > South > Maryland > Regions & Counties
+51210,8,8,History > By Region > North American > U.S. > Local > South > North Carolina > Cities & Towns
+51209,8,8,History > By Region > North American > U.S. > Local > South > North Carolina > Regions & Counties
+51308,8,8,History > By Region > North American > U.S. > Local > South > Tennessee > Cities & Towns
+51307,8,8,History > By Region > North American > U.S. > Local > South > Tennessee > Regions & Counties
+50937,8,8,History > By Region > North American > U.S. > Local > South > Texas > 1846–1950
+50938,8,8,History > By Region > North American > U.S. > Local > South > Texas > 1951–
+50973,8,8,History > By Region > North American > U.S. > Local > South > Texas > Cities & Towns
+50936,8,8,History > By Region > North American > U.S. > Local > South > Texas > Early Texas to 1846
+50972,8,8,History > By Region > North American > U.S. > Local > South > Texas > Regions & Counties
+50987,8,8,History > By Region > North American > U.S. > Local > South > Virginia > 1775–1865
+50988,8,8,History > By Region > North American > U.S. > Local > South > Virginia > 1865–1950
+50989,8,8,History > By Region > North American > U.S. > Local > South > Virginia > 1951–
+51201,8,8,History > By Region > North American > U.S. > Local > South > Virginia > Cities & Towns
+50986,8,8,History > By Region > North American > U.S. > Local > South > Virginia > Early Virginia to 1775
+51200,8,8,History > By Region > North American > U.S. > Local > South > Virginia > Regions & Counties
+51284,8,8,"History > By Region > North American > U.S. > Local > South > Washington, D.C. > 1815–1878"
+51285,8,8,"History > By Region > North American > U.S. > Local > South > Washington, D.C. > 1878–1950"
+51286,8,8,"History > By Region > North American > U.S. > Local > South > Washington, D.C. > 1951–1980"
+51287,8,8,"History > By Region > North American > U.S. > Local > South > Washington, D.C. > 1981–"
+51290,8,8,"History > By Region > North American > U.S. > Local > South > Washington, D.C. > Buildings"
+51289,8,8,"History > By Region > North American > U.S. > Local > South > Washington, D.C. > D.C. Places & Monuments"
+51288,8,8,"History > By Region > North American > U.S. > Local > South > Washington, D.C. > Neighborhoods"
+51283,8,8,"History > By Region > North American > U.S. > Local > South > Washington, D.C. > To 1815"
+51325,8,8,History > By Region > North American > U.S. > Local > West > Alaska > Cities & Towns
+51324,8,8,History > By Region > North American > U.S. > Local > West > Alaska > Regions & Boroughs
+50933,8,8,History > By Region > North American > U.S. > Local > West > California > 1848–1856
+50934,8,8,History > By Region > North American > U.S. > Local > West > California > 1856–1950
+50935,8,8,History > By Region > North American > U.S. > Local > West > California > 1951–
+50953,8,8,History > By Region > North American > U.S. > Local > West > California > Cities & Towns
+50932,8,8,History > By Region > North American > U.S. > Local > West > California > Early & Spanish-Mexican
+50951,8,8,History > By Region > North American > U.S. > Local > West > California > Northern
+50952,8,8,History > By Region > North American > U.S. > Local > West > California > Regions & Counties
+50950,8,8,History > By Region > North American > U.S. > Local > West > California > Southern
+51316,8,8,History > By Region > North American > U.S. > Local > West > Colorado > Cities & Towns
+51363,8,8,History > By Region > North American > U.S. > Local > West > Colorado > Colorado River & Canyon
+51315,8,8,History > By Region > North American > U.S. > Local > West > Colorado > Regions & Counties
+51364,8,8,History > By Region > North American > U.S. > Local > West > Nevada > Las Vegas
+51363,8,8,History > By Region > North American > U.S. > Local > West > New Southwest > Colorado River & Canyon
+51365,8,8,History > By Region > North American > U.S. > Local > West > Rocky Mountains > Yellowstone National Park
+51385,8,8,History > By Region > North American > U.S. > Local > West > Washington > Seattle
+10432,8,8,History > By Region > The Americas > Indians of North America > Education > U.S. Indigenous > Indian schools > Tribal Colleges
+10262,8,8,History > Eras > Modern > 20th Century > Post-war 1945- > 1945-1965 > Political & Diplomatic > NATO
+10260,8,8,History > Eras > Modern > 20th Century > Post-war 1945- > 1945-1965 > Political & Diplomatic > Soviet Bloc
+10274,8,8,History > Eras > Modern > 20th Century > Post-war 1945- > 1965-1989 > Political & Diplomatic > Soviet Bloc
+10495,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Colonial > WWI Operations in Africa
+10519,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Balkan
+10333,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Italian WWI Campaigns
+10654,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Romanian
+10636,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Russo-Austrian
+10305,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Russo-German Austrian
+10367,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Salonica & Macedonian Campaign
+10337,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Siberia
+10726,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Eastern > Turkey & the Near East
+10453,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > U.S. WWI Military Operations > Aerial operations
+10677,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Western > Anglo-French. Allies
+10507,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Western > Austrian. Austro-Hungarian
+10373,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Western > British WWI Operations
+10341,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Western > French WWI Military Operations
+10692,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Western > German WWI Military Operations
+10579,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Western > Hungarian WWI Campaigns
+10649,8,7,History > Eras > Modern > 20th Century > World War I > Military operations > Western > WWI: Belgium & Belgian Forces
+10675,8,7,History > Eras > Modern > 20th Century > World War II > Aerial operations > U.S. WWII Air Operations > Navy
+10530,8,7,History > Eras > Modern > 20th Century > World War II > Holocaust > Rescue efforts > Righteous Gentiles
+10739,8,7,History > Eras > Modern > 20th Century > World War II > Holocaust > Special groups of Jewish victims > Children
+10685,8,7,History > Eras > Modern > 20th Century > World War II > Holocaust > Special groups of Jewish victims > Women
+10327,8,7,History > Eras > Modern > 20th Century > World War II > Military Operations > 1945 > VE Day to VJ Day
+10697,8,7,History > Eras > Modern > 20th Century > World War II > Peace > Treaties with Axis powers > Japanese WWII
+10398,8,7,History > Eras > Modern > 20th Century > World War II > Peace > Treaties with Axis powers > Peace conferences
+10566,8,8,History > Military > World Wars > World War I > Military operations > Eastern > Turkey & the Near East > Arabia
+10278,8,8,History > Military > World Wars > World War I > Military operations > Eastern > Turkey & the Near East > Dardanelles. Gallipoli
+10509,8,8,History > Military > World Wars > World War I > Military operations > Eastern > Turkey & the Near East > Egyptian WWI
+10414,8,8,History > Military > World Wars > World War I > Military operations > Eastern > Turkey & the Near East > Palestinian WWI
+10526,8,8,History > Military > World Wars > World War I > Military operations > Eastern > Turkey & the Near East > Persia. Iran
+10331,8,8,"History > Military > World Wars > World War I > Military operations > Eastern > Turkey & the Near East > WWI: Mesopotamia, Kut & Assyria"
+53263,8,8,Language > Languages & Language Families > Indo-European Languages > Germanic Languages > English Language > Textbooks & Readers > Grammar Textbooks & Exercises > English Grammar Quizzes & Examinations
+53262,8,8,Language > Languages & Language Families > Indo-European Languages > Germanic Languages > English Language > Textbooks & Readers > Grammar Textbooks & Exercises > English Grammar Textbooks
+11200,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Ancient & Classical Philosophy > Occident > Classical Greek Philosophy > Classical Greek Philosophy Topics > Greek & Oriental Philosophy"
+10818,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Ancient & Classical Philosophy > Occident > Classical Greek Philosophy > Classical Greek Philosophy Topics > Greek Philosophy, Life & Literature"
+11143,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Ancient & Classical Philosophy > Occident > Classical Greek Philosophy > Second period > Hedonism Cyrenaicism"
+11083,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Ancient & Classical Philosophy > Occident > Classical Greek Philosophy > Second period > Sophism"
+11132,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Ancient & Classical Philosophy > Orient > Ancient Eastern Religious Thought > Judaism > Before Christian era"
+11195,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Asian Modern Philosophy > Middle Eastern Modern Philosophy > Iranian Modern Philosophy"
+10847,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Asian Modern Philosophy > Middle Eastern Modern Philosophy > Israeli Modern Philosophy"
+11043,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Asian Modern Philosophy > Southern Asia. Indian Ocean region > Indian Modern Philosophy"
+10880,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Asian Modern Philosophy > Southern Asia. Indian Ocean region > Pakistani Modern Philosophy"
+10841,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > East European Modern Philosophy > Former Soviet States’ Philosophy > Belarusian Modern Philosophy"
+10894,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > East European Modern Philosophy > Former Soviet States’ Philosophy > Georgian Modern Philosophy"
+10912,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > East European Modern Philosophy > Former Soviet States’ Philosophy > Kazakh Modern Philosophy"
+10922,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > East European Modern Philosophy > Former Soviet States’ Philosophy > Lithuanian Modern Philosophy"
+10941,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > East European Modern Philosophy > Former Soviet States’ Philosophy > Ukrainian Modern Philosophy"
+11000,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > England, Ireland, Scotland & Wales > 19th & 20th centuries > Early 19th C., to 1860/1870"
+10803,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > England, Ireland, Scotland & Wales > 19th & 20th centuries > Later 19th & 20th centuries"
+4535,8,4,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > England, Ireland, Scotland & Wales > 19th & 20th centuries > Utilitarianism"
+10946,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Germany. Austria German > Later 19th & 20th centuries > Idealism"
+11166,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Germany. Austria German > Later 19th & 20th centuries > Neo-Kantianism"
+11159,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Latin American Modern Philosophy > South American Modern Philosophy > Argentine Modern Philosophy"
+11192,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Latin American Modern Philosophy > South American Modern Philosophy > Brazilian Modern Philosophy"
+11207,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Latin American Modern Philosophy > South American Modern Philosophy > Chilean Modern Philosophy"
+10868,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Latin American Modern Philosophy > South American Modern Philosophy > Colombian Modern Philosophy"
+10837,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Latin American Modern Philosophy > South American Modern Philosophy > Peruvian Modern Philosophy"
+11013,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Latin American Modern Philosophy > South American Modern Philosophy > Uruguayan Modern Philosophy"
+11018,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Latin American Modern Philosophy > South American Modern Philosophy > Venezuelan Modern Philosophy"
+11061,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Oceanian Modern Philosophy > Regional Oceanian Philosophy > Australian Modern Philosophy"
+11065,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Oceanian Modern Philosophy > Regional Oceanian Philosophy > New Zealand Modern Philosophy"
+10885,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Scandinavian Modern Philosophy > Danish Modern Philosophy > 19th century"
+10985,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Scandinavian Modern Philosophy > Danish Modern Philosophy > 20th century"
+11042,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Scandinavian Modern Philosophy > Norwegian Modern Philosophy > 20th century"
+11044,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Scandinavian Modern Philosophy > Swedish Modern Philosophy > 17th & 18th centuries"
+11048,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Scandinavian Modern Philosophy > Swedish Modern Philosophy > 19th century"
+10836,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Scandinavian Modern Philosophy > Swedish Modern Philosophy > 20th century"
+10952,8,8,"Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > U.S. Modern Philosophy > 19th & 20th centuries > Early 19th century to 1860"
+52677,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > Banking by Country > Banking in the Americas
+52680,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > Banking by Country > European Banking
+52678,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > Banking by Country > North American Banking
+52683,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > Banking by Country > Trust Companies by Country
+52681,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > Banking by Country > Trust Services & Companies
+52679,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > Banking by Country > U.S. Banking
+52682,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > Banking by Country > U.S. Trust Companies
+52839,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > General Banking > Banking Periodicals
+52843,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > General Banking > Banking Reference Works
+52840,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > General Banking > Banking Societies
+52842,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > General Banking > Banking Statistics
+52841,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Banking > General Banking > History of Banking
+52653,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Corporate Finance > General Corporate Finance > Corporate Finance by Country
+52652,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Corporate Finance > General Corporate Finance > U.S. Corporate Finance
+52471,8,5,Social Sciences > Economics & Business > Commerce > Business > Finance > Foreign Exchange > International Finance > Balance of Payments
+52981,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Foreign Exchange > International Finance > Compensatory Financing
+52980,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Foreign Exchange > International Finance > International Capital Flows
+52983,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Foreign Exchange > International Finance > International Clearing
+52985,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Foreign Exchange > International Finance > International Financial Institutions
+52982,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Foreign Exchange > International Finance > International Lending & External Debt
+52984,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Foreign Exchange > International Finance > International Liquidity
+52472,8,5,Social Sciences > Economics & Business > Commerce > Business > Finance > Foreign Exchange > International Finance > Monetary Unions
+51545,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Investments & Securities > Financial Derivatives > Financial Options
+51544,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Investments & Securities > Financial Derivatives > Futures Contracts
+52878,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Investments & Securities > General Investing > Investment Periodicals
+52879,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Investments & Securities > General Investing > Investment Theory & Methods
+52794,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Investments & Securities > Investment by Region > European Investment
+52790,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Investments & Securities > Investment by Region > Investment in the Americas
+52793,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Investments & Securities > Investment by Region > Investment outside the Americas
+52791,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Investments & Securities > Investment by Region > North American Investment
+52792,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Investments & Securities > Investment by Region > U.S. Investment
+52772,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Money & Monetary Policy > Money & Liquidity > History of Money
+52773,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Money & Monetary Policy > Money & Liquidity > Medieval Monetary History
+52774,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Money & Monetary Policy > Money & Liquidity > Money in the 16th–18th Centuries
+52775,8,6,Social Sciences > Economics & Business > Commerce > Business > Finance > Money & Monetary Policy > Money & Liquidity > Money in the 20th Century
+52647,8,5,Social Sciences > Economics & Business > Commerce > Business > Finance > Public Finance > Taxation > Direct Taxation
+52645,8,5,Social Sciences > Economics & Business > Commerce > Business > Finance > Public Finance > Taxation > European Taxation
+52651,8,5,Social Sciences > Economics & Business > Commerce > Business > Finance > Public Finance > Taxation > Government Fees & User Charges
+52650,8,5,Social Sciences > Economics & Business > Commerce > Business > Finance > Public Finance > Taxation > Income Taxation
+52649,8,5,Social Sciences > Economics & Business > Commerce > Business > Finance > Public Finance > Taxation > Land & Real-Property Taxation
+52644,8,5,Social Sciences > Economics & Business > Commerce > Business > Finance > Public Finance > Taxation > Latin American Taxation
+52648,8,5,Social Sciences > Economics & Business > Commerce > Business > Finance > Public Finance > Taxation > Property Taxation
+52646,8,5,Social Sciences > Economics & Business > Commerce > Business > Finance > Public Finance > Taxation > Tax Administration & Procedure
+52643,8,5,Social Sciences > Economics & Business > Commerce > Business > Finance > Public Finance > Taxation > U.S. Taxation
+52799,8,8,"Social Sciences > Family, Population & Migration > Family, Gender & Life Course > Gender & Sexuality > Sexuality > Sexual Orientation & Minorities > Gay & Lesbian Studies > Gay & Lesbian Press"
+52797,8,8,"Social Sciences > Family, Population & Migration > Family, Gender & Life Course > Gender & Sexuality > Sexuality > Sexual Orientation & Minorities > Gay & Lesbian Studies > Gay Men’s Studies"
+52796,8,8,"Social Sciences > Family, Population & Migration > Family, Gender & Life Course > Gender & Sexuality > Sexuality > Sexual Orientation & Minorities > Gay & Lesbian Studies > Lesbian Studies"
+53452,8,8,"Social Sciences > Family, Population & Migration > Family, Gender & Life Course > Gender & Sexuality > Women & Feminism > Women by Region or Country > Women in Other Countries > Women in China"
+53449,8,8,"Social Sciences > Family, Population & Migration > Family, Gender & Life Course > Gender & Sexuality > Women & Feminism > Women by Region or Country > Women in Other Countries > Women in Germany"
+53448,8,8,"Social Sciences > Family, Population & Migration > Family, Gender & Life Course > Gender & Sexuality > Women & Feminism > Women by Region or Country > Women in Other Countries > Women in Great Britain"
+53450,8,8,"Social Sciences > Family, Population & Migration > Family, Gender & Life Course > Gender & Sexuality > Women & Feminism > Women by Region or Country > Women in Other Countries > Women in India"
+53451,8,8,"Social Sciences > Family, Population & Migration > Family, Gender & Life Course > Gender & Sexuality > Women & Feminism > Women by Region or Country > Women in Other Countries > Women in Japan"
+52907,8,8,Social Sciences > Military Studies > Land Forces > Army Organization & Status > Armies by Country > North American Armies > U.S. Armies > U.S. Army
+52906,8,8,Social Sciences > Military Studies > Land Forces > Army Organization & Status > Armies by Country > North American Armies > U.S. Armies > U.S. Defense Organization
+52908,8,8,Social Sciences > Military Studies > Land Forces > Army Organization & Status > Armies by Country > North American Armies > U.S. Armies > U.S. National Guard & Reserves

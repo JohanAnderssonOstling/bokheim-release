@@ -1,0 +1,1215 @@
+{
+  "patch_id": "computing-2025-v1",
+  "description": "Reviewed computing and related LCC reference additions through 2025; partial supplement to the 2016 baseline, not a complete 2025 LCC release.",
+  "additions": [
+    {
+      "start": "Q325.65",
+      "end": null,
+      "caption": "Federated learning",
+      "hierarchy": [
+        "Science (General)",
+        "Cybernetics",
+        "Self-organizing systems. Conscious automata",
+        "Machine learning"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=9"
+    },
+    {
+      "start": "Q325.73",
+      "end": null,
+      "caption": "Deep learning",
+      "hierarchy": [
+        "Science (General)",
+        "Cybernetics",
+        "Self-organizing systems. Conscious automata",
+        "Machine learning"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=9"
+    },
+    {
+      "start": "Q325.785",
+      "end": null,
+      "caption": "Support vector machines",
+      "hierarchy": [
+        "Science (General)",
+        "Cybernetics",
+        "Self-organizing systems. Conscious automata",
+        "Machine learning"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=9"
+    },
+    {
+      "start": "Q325.787",
+      "end": null,
+      "caption": "Transfer learning",
+      "hierarchy": [
+        "Science (General)",
+        "Cybernetics",
+        "Self-organizing systems. Conscious automata",
+        "Machine learning"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=9"
+    },
+    {
+      "start": "Q334.7",
+      "end": null,
+      "caption": "Philosophy",
+      "hierarchy": [
+        "Science (General)",
+        "Cybernetics",
+        "Self-organizing systems. Conscious automata",
+        "Artificial intelligence"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=10"
+    },
+    {
+      "start": "Q343",
+      "end": null,
+      "caption": "Virtual humans",
+      "hierarchy": [
+        "Science (General)",
+        "Cybernetics",
+        "Self-organizing systems. Conscious automata",
+        "Artificial intelligence"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=10"
+    },
+    {
+      "start": "QA76.546.E84",
+      "end": null,
+      "caption": "Ethereum",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Real-time data processing",
+        "Special systems, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=15"
+    },
+    {
+      "start": "QA76.583",
+      "end": null,
+      "caption": "Edge computing",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=15"
+    },
+    {
+      "start": "QA76.6115",
+      "end": null,
+      "caption": "Juvenile works",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=16"
+    },
+    {
+      "start": "QA76.6117",
+      "end": null,
+      "caption": "Choreographic programming",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=16"
+    },
+    {
+      "start": "QA76.637",
+      "end": null,
+      "caption": "Modular programming",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=16"
+    },
+    {
+      "start": "QA76.73.B29",
+      "end": null,
+      "caption": "Bash",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming languages",
+        "Individual languages, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=16"
+    },
+    {
+      "start": "QA76.73.G73",
+      "end": null,
+      "caption": "GraphQL",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming languages",
+        "Individual languages, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=17"
+    },
+    {
+      "start": "QA76.73.H57",
+      "end": null,
+      "caption": "Hopscotch",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming languages",
+        "Individual languages, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=17"
+    },
+    {
+      "start": "QA76.73.J85",
+      "end": null,
+      "caption": "Julia",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming languages",
+        "Individual languages, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=17"
+    },
+    {
+      "start": "QA76.73.K68",
+      "end": null,
+      "caption": "Kotlin",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming languages",
+        "Individual languages, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=17"
+    },
+    {
+      "start": "QA76.73.P79",
+      "end": null,
+      "caption": "Pseudocode",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming languages",
+        "Individual languages, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=18"
+    },
+    {
+      "start": "QA76.73.R87",
+      "end": null,
+      "caption": "Rust",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming languages",
+        "Individual languages, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=18"
+    },
+    {
+      "start": "QA76.73.W56",
+      "end": null,
+      "caption": "Windows PowerShell",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming languages",
+        "Individual languages, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=18"
+    },
+    {
+      "start": "QA76.73.X575",
+      "end": null,
+      "caption": "XQuery",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Programming languages",
+        "Individual languages, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=18"
+    },
+    {
+      "start": "QA76.76.C52",
+      "end": null,
+      "caption": "Chatbots",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Computer software",
+        "Special topics, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=19"
+    },
+    {
+      "start": "QA76.76.N38",
+      "end": null,
+      "caption": "NativeScript",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Computer software",
+        "Special topics, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=20"
+    },
+    {
+      "start": "QA76.76.P77",
+      "end": null,
+      "caption": "Prototyping",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Computer software",
+        "Special topics, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=20"
+    },
+    {
+      "start": "QA76.76.S58",
+      "end": null,
+      "caption": "Software container technologies",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Computer software",
+        "Special topics, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=20"
+    },
+    {
+      "start": "QA76.76.V54",
+      "end": null,
+      "caption": "Video games",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Computer software",
+        "Special topics, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=20"
+    },
+    {
+      "start": "QA76.8.B35",
+      "end": null,
+      "caption": "BBC Microcomputer",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Special computers, computer systems, and microprocessors. By name, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=21"
+    },
+    {
+      "start": "QA76.8.M47",
+      "end": null,
+      "caption": "Micro:bit",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Special computers, computer systems, and microprocessors. By name, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=21"
+    },
+    {
+      "start": "QA76.8.P53",
+      "end": null,
+      "caption": "PLATO",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Special computers, computer systems, and microprocessors. By name, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=21"
+    },
+    {
+      "start": "QA76.9.B56",
+      "end": null,
+      "caption": "Blockchains",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Other topics, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=22"
+    },
+    {
+      "start": "QA76.9.D335",
+      "end": null,
+      "caption": "Data encryption",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Other topics, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=23"
+    },
+    {
+      "start": "QA76.9.P735",
+      "end": null,
+      "caption": "Privacy-preserving techniques",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Other topics, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=25"
+    },
+    {
+      "start": "QA76.9.S57",
+      "end": null,
+      "caption": "Sentiment analysis",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Other topics, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=25"
+    },
+    {
+      "start": "QA76.9.V65",
+      "end": null,
+      "caption": "Voice computing",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Other topics, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=25"
+    },
+    {
+      "start": "QA276.45.J56",
+      "end": null,
+      "caption": "JMP (Computer file)",
+      "hierarchy": [
+        "Mathematics",
+        "Mathematical statistics",
+        "Data processing",
+        "Special programs or languages, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=33"
+    },
+    {
+      "start": "QA276.45.M38",
+      "end": null,
+      "caption": "Mata",
+      "hierarchy": [
+        "Mathematics",
+        "Mathematical statistics",
+        "Data processing",
+        "Special programs or languages, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Q2025TEXT.pdf#page=33"
+    },
+    {
+      "start": "T386.F54",
+      "end": null,
+      "caption": "Figma",
+      "hierarchy": [
+        "Technology (General)",
+        "Mechanical drawing. Engineering graphics",
+        "Computer-assisted drafting. Computer graphics",
+        "Special programs, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=17"
+    },
+    {
+      "start": "T386.F87",
+      "end": null,
+      "caption": "Fusion 360",
+      "hierarchy": [
+        "Technology (General)",
+        "Mechanical drawing. Engineering graphics",
+        "Computer-assisted drafting. Computer graphics",
+        "Special programs, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=17"
+    },
+    {
+      "start": "T386.O64",
+      "end": null,
+      "caption": "OpenGL",
+      "hierarchy": [
+        "Technology (General)",
+        "Mechanical drawing. Engineering graphics",
+        "Computer-assisted drafting. Computer graphics",
+        "Special programs, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=17"
+    },
+    {
+      "start": "T386.P76",
+      "end": null,
+      "caption": "Procreate",
+      "hierarchy": [
+        "Technology (General)",
+        "Mechanical drawing. Engineering graphics",
+        "Computer-assisted drafting. Computer graphics",
+        "Special programs, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=17"
+    },
+    {
+      "start": "T386.S53",
+      "end": null,
+      "caption": "Sketch",
+      "hierarchy": [
+        "Technology (General)",
+        "Mechanical drawing. Engineering graphics",
+        "Computer-assisted drafting. Computer graphics",
+        "Special programs, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=17"
+    },
+    {
+      "start": "T386.S535",
+      "end": null,
+      "caption": "SketchUp",
+      "hierarchy": [
+        "Technology (General)",
+        "Mechanical drawing. Engineering graphics",
+        "Computer-assisted drafting. Computer graphics",
+        "Special programs, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=17"
+    },
+    {
+      "start": "T386.W44",
+      "end": null,
+      "caption": "WebGPU",
+      "hierarchy": [
+        "Technology (General)",
+        "Mechanical drawing. Engineering graphics",
+        "Computer-assisted drafting. Computer graphics",
+        "Special programs, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=17"
+    },
+    {
+      "start": "TA345.5.C38",
+      "end": null,
+      "caption": "CATIA",
+      "hierarchy": [
+        "Engineering (General). Civil engineering (General)",
+        "Engineering mathematics. Engineering analysis",
+        "Electronic data processing. Computer-aided engineering",
+        "Special systems, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=29"
+    },
+    {
+      "start": "TA345.5.O64",
+      "end": null,
+      "caption": "OpenSees",
+      "hierarchy": [
+        "Engineering (General). Civil engineering (General)",
+        "Engineering mathematics. Engineering analysis",
+        "Electronic data processing. Computer-aided engineering",
+        "Special systems, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=29"
+    },
+    {
+      "start": "TJ211.28",
+      "end": null,
+      "caption": "Moral and ethical aspects",
+      "hierarchy": [
+        "Mechanical engineering and machinery",
+        "Mechanical devices and figures. Automata. Ingenious mechanisms. Robots (General)"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=184"
+    },
+    {
+      "start": "TJ211.34",
+      "end": null,
+      "caption": "Autonomous underwater vehicles",
+      "hierarchy": [
+        "Mechanical engineering and machinery",
+        "Mechanical devices and figures. Automata. Ingenious mechanisms. Robots (General)"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=184"
+    },
+    {
+      "start": "TJ211.38",
+      "end": null,
+      "caption": "Ethorobotics",
+      "hierarchy": [
+        "Mechanical engineering and machinery",
+        "Mechanical devices and figures. Automata. Ingenious mechanisms. Robots (General)"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=184"
+    },
+    {
+      "start": "TJ211.46",
+      "end": null,
+      "caption": "Search and rescue",
+      "hierarchy": [
+        "Mechanical engineering and machinery",
+        "Mechanical devices and figures. Automata. Ingenious mechanisms. Robots (General)"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=184"
+    },
+    {
+      "start": "TK5105.514",
+      "end": null,
+      "caption": "Popular works. Juvenile works",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=228"
+    },
+    {
+      "start": "TK5105.5658",
+      "end": null,
+      "caption": "Data Plane Development Kit",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks",
+        "Computer network protocols. Standards"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=229"
+    },
+    {
+      "start": "TK5105.5663",
+      "end": null,
+      "caption": "Diameter",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks",
+        "Computer network protocols. Standards"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=229"
+    },
+    {
+      "start": "TK5105.5744",
+      "end": null,
+      "caption": "Network slicing (Computer network architecture)",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks",
+        "Computer network protocols. Standards"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=229"
+    },
+    {
+      "start": "TK5105.883.T67",
+      "end": null,
+      "caption": "Tor",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks",
+        "Wide area networks",
+        "Specific aspects of, or services on, the Internet",
+        "Browsers",
+        "Special, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=231"
+    },
+    {
+      "start": "TK5105.8864",
+      "end": null,
+      "caption": "Metaverse",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks",
+        "Wide area networks",
+        "Specific aspects of, or services on, the Internet"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=231"
+    },
+    {
+      "start": "TK5105.88645",
+      "end": null,
+      "caption": "Telepresence",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks",
+        "Wide area networks",
+        "Specific aspects of, or services on, the Internet"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=231"
+    },
+    {
+      "start": "TK5105.8868.T55",
+      "end": null,
+      "caption": "TikTok",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks",
+        "Wide area networks",
+        "Specific aspects of, or services on, the Internet",
+        "Internet videos",
+        "Special, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=232"
+    },
+    {
+      "start": "TK5105.8885.M39",
+      "end": null,
+      "caption": "Markdown",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks",
+        "Wide area networks",
+        "Specific aspects of, or services on, the Internet",
+        "World Wide Web",
+        "Web authoring software",
+        "Special, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=233"
+    },
+    {
+      "start": "TK5105.8885.N54",
+      "end": null,
+      "caption": "NGINX",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks",
+        "Wide area networks",
+        "Specific aspects of, or services on, the Internet",
+        "World Wide Web",
+        "Web authoring software",
+        "Special, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=233"
+    },
+    {
+      "start": "TK5105.8885.S94",
+      "end": null,
+      "caption": "Svelte",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks",
+        "Wide area networks",
+        "Specific aspects of, or services on, the Internet",
+        "World Wide Web",
+        "Web authoring software",
+        "Special, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=233"
+    },
+    {
+      "start": "TR897.72.A335",
+      "end": null,
+      "caption": "Adobe After effects",
+      "hierarchy": [
+        "Photography",
+        "Cinematography. Motion pictures. Video recording",
+        "Animated motion pictures",
+        "Computer animation",
+        "Special software, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=382"
+    },
+    {
+      "start": "TR897.72.R46",
+      "end": null,
+      "caption": "RenderMan",
+      "hierarchy": [
+        "Photography",
+        "Cinematography. Motion pictures. Video recording",
+        "Animated motion pictures",
+        "Computer animation",
+        "Special software, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=382"
+    },
+    {
+      "start": "TR897.72.S38",
+      "end": null,
+      "caption": "Scratch",
+      "hierarchy": [
+        "Photography",
+        "Cinematography. Motion pictures. Video recording",
+        "Animated motion pictures",
+        "Computer animation",
+        "Special software, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_T2025TEXT.pdf#page=382"
+    },
+    {
+      "start": "Z666.63.I44",
+      "end": null,
+      "caption": "IFLA Library Reference Model",
+      "hierarchy": [
+        "Libraries",
+        "Library science. Information science",
+        "Information organization",
+        "Conceptual models",
+        "Other individual models, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=43"
+    },
+    {
+      "start": "Z666.73.D54",
+      "end": null,
+      "caption": "Digital media",
+      "hierarchy": [
+        "Libraries",
+        "Library science. Information science",
+        "Information organization",
+        "Metadata",
+        "By type of metadata or type of media or content, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=43"
+    },
+    {
+      "start": "ZA3073",
+      "end": null,
+      "caption": "Information ethics. Moral and ethical aspects of information use",
+      "hierarchy": [
+        "Information resources (General)"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3073.5",
+      "end": null,
+      "caption": "Information integrity",
+      "hierarchy": [
+        "Information resources (General)"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3082",
+      "end": null,
+      "caption": "Information overload",
+      "hierarchy": [
+        "Information resources (General)",
+        "Seeking and finding information. Information retrieval"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3083",
+      "end": null,
+      "caption": "General works",
+      "hierarchy": [
+        "Information resources (General)",
+        "Seeking and finding information. Information retrieval",
+        "Information filtering systems"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3084",
+      "end": null,
+      "caption": "Recommender systems",
+      "hierarchy": [
+        "Information resources (General)",
+        "Seeking and finding information. Information retrieval",
+        "Information filtering systems"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3085",
+      "end": null,
+      "caption": "Filter bubbles",
+      "hierarchy": [
+        "Information resources (General)",
+        "Seeking and finding information. Information retrieval",
+        "Information filtering systems"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3085.5",
+      "end": null,
+      "caption": "Information resources management. Knowledge management",
+      "hierarchy": [
+        "Information resources (General)"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3086",
+      "end": null,
+      "caption": "General works",
+      "hierarchy": [
+        "Information resources (General)",
+        "Information security"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3086.5.C93",
+      "end": null,
+      "caption": "Behavioral cybersecurity",
+      "hierarchy": [
+        "Information resources (General)",
+        "Information security",
+        "Special topics, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3088",
+      "end": null,
+      "caption": "General",
+      "hierarchy": [
+        "Information resources (General)",
+        "Information literacy"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3088.5.C65",
+      "end": null,
+      "caption": "College students",
+      "hierarchy": [
+        "Information resources (General)",
+        "Information literacy",
+        "Special groups, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3088.5.H54",
+      "end": null,
+      "caption": "High school students",
+      "hierarchy": [
+        "Information resources (General)",
+        "Information literacy",
+        "Special groups, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3088.5.S34",
+      "end": null,
+      "caption": "School children",
+      "hierarchy": [
+        "Information resources (General)",
+        "Information literacy",
+        "Special groups, A-Z"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=404"
+    },
+    {
+      "start": "ZA3260",
+      "end": null,
+      "caption": "Information policy",
+      "hierarchy": [
+        "Information resources (General)"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=405"
+    },
+    {
+      "start": "ZA3273",
+      "end": null,
+      "caption": "General works",
+      "hierarchy": [
+        "Information resources (General)",
+        "Information organization"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=405"
+    },
+    {
+      "start": "ZA3274",
+      "end": null,
+      "caption": "Metadata",
+      "hierarchy": [
+        "Information resources (General)",
+        "Information organization"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=405"
+    },
+    {
+      "start": "ZA4210",
+      "end": null,
+      "caption": "Podcasts",
+      "hierarchy": [
+        "Information resources (General)",
+        "Information in specific formats or media",
+        "Electronic information resources",
+        "Computer network resources",
+        "Resources of particular networks, online services, etc.",
+        "Internet"
+      ],
+      "source": "https://www.loc.gov/aba/publications/FreeLCC/LCC_Z2025TEXT.pdf#page=406"
+    },
+    {
+      "start": "QA76.8.A662",
+      "end": null,
+      "caption": "Apple II (Computer)",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Special computers, computer systems, and microprocessors. By name, A-Z"
+      ],
+      "source": "https://classweb.org/approved/2501.html"
+    },
+    {
+      "start": "QA76.8.A66225",
+      "end": null,
+      "caption": "Apple IIc (Computer)",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Special computers, computer systems, and microprocessors. By name, A-Z"
+      ],
+      "source": "https://classweb.org/approved/2501.html"
+    },
+    {
+      "start": "QA76.8.A6623",
+      "end": null,
+      "caption": "Apple IIe (Computer)",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Special computers, computer systems, and microprocessors. By name, A-Z"
+      ],
+      "source": "https://classweb.org/approved/2501.html"
+    },
+    {
+      "start": "QA76.8.A66235",
+      "end": null,
+      "caption": "Apple IIGS (Computer)",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Special computers, computer systems, and microprocessors. By name, A-Z"
+      ],
+      "source": "https://classweb.org/approved/2501.html"
+    },
+    {
+      "start": "QA76.8.A663",
+      "end": null,
+      "caption": "Apple III (Computer)",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Special computers, computer systems, and microprocessors. By name, A-Z"
+      ],
+      "source": "https://classweb.org/approved/2501.html"
+    },
+    {
+      "start": "TK5105.8875",
+      "end": null,
+      "caption": "Free ad-supported streaming television",
+      "hierarchy": [
+        "Electrical engineering. Electronics. Nuclear engineering",
+        "Telecommunication",
+        "Computer networks",
+        "Wide area networks",
+        "Specific aspects of, or services on, the Internet"
+      ],
+      "source": "https://classweb.org/approved/2501.html"
+    },
+    {
+      "start": "QA276.45.J36",
+      "end": null,
+      "caption": "Jamovi (Computer file)",
+      "hierarchy": [
+        "Mathematics",
+        "Mathematical statistics",
+        "Data processing",
+        "Special programs or languages, A-Z"
+      ],
+      "source": "https://classweb.org/approved/2504.html"
+    },
+    {
+      "start": "TJ211.44",
+      "end": null,
+      "caption": "Soft robotics",
+      "hierarchy": [
+        "Mechanical engineering and machinery",
+        "Mechanical devices and figures. Automata. Ingenious mechanisms. Robots (General)"
+      ],
+      "source": "https://classweb.org/approved/2505.html"
+    },
+    {
+      "start": "QA76.546.A",
+      "end": "QA76.546.Z",
+      "caption": "Special systems, A-Z",
+      "hierarchy": [
+        "Mathematics",
+        "Instruments and machines",
+        "Calculating machines",
+        "Electronic computers. Computer science",
+        "Digital computers",
+        "Real-time data processing"
+      ],
+      "source": "https://classweb.org/approved/2209.html"
+    },
+    {
+      "start": "ZA3086.5.A",
+      "end": "ZA3086.5.Z",
+      "caption": "Special topics, A-Z",
+      "hierarchy": [
+        "Information resources (General)",
+        "Information security"
+      ],
+      "source": "https://classweb.org/approved/2308.html"
+    },
+    {
+      "start": "ZA3088.5.A",
+      "end": "ZA3088.5.Z",
+      "caption": "Special groups, A-Z",
+      "hierarchy": [
+        "Information resources (General)",
+        "Information literacy"
+      ],
+      "source": "https://classweb.org/approved/2001.html"
+    }
+  ],
+  "caption_updates": [
+    {
+      "code": "QA76.9.A94",
+      "old": "Augmented reality",
+      "new": "Augmented reality. Mixed reality. Virtual reality",
+      "source": "https://classweb.org/approved/2212.html"
+    },
+    {
+      "code": "QA76.76.C68",
+      "old": "Computer viruses",
+      "new": "Computer viruses. Malware",
+      "source": "https://classweb.org/approved/2501.html"
+    },
+    {
+      "code": "QA76.8.M3",
+      "old": "Macintosh",
+      "new": "Macintosh computers",
+      "source": "https://classweb.org/approved/2501.html"
+    }
+  ],
+  "redirects": [
+    {
+      "code": "QA76.76.C672",
+      "target": "QA76.76.V54",
+      "source": "https://classweb.org/approved/2210c.html"
+    },
+    {
+      "code": "QA76.76.S69",
+      "target": "QA76.76.C68",
+      "source": "https://classweb.org/approved/2501.html"
+    },
+    {
+      "code": "Z667.6",
+      "target": "ZA3083",
+      "source": "https://classweb.org/approved/1902.html"
+    },
+    {
+      "code": "Z667.63",
+      "target": "ZA3084",
+      "source": "https://classweb.org/approved/1902.html"
+    }
+  ],
+  "notes": [
+    {
+      "code": "QA76.9.V5",
+      "note": "Class here works on computer simulation of another computer system. For augmented, mixed, and virtual reality environments see QA76.9.A94.",
+      "source": "https://classweb.org/approved/2212.html"
+    },
+    {
+      "code": "QA76.76.V54",
+      "note": "Class here works on programming video games. General works on video games and actual games/software belong in GV1469.3-.45.",
+      "source": "https://classweb.org/approved/2210c.html"
+    },
+    {
+      "code": "Q334.7",
+      "note": "Including moral and ethical aspects.",
+      "source": "https://classweb.org/approved/1706.html"
+    }
+  ]
+}

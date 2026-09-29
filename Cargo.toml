@@ -1,0 +1,87 @@
+[workspace]
+resolver = "3"
+members = [
+    "client/app",
+    "client/client-runtime",
+    "client/library-backend",
+    "client/library-backend/crates/library-database",
+    "client/library-backend/crates/library-replica",
+    "client/app/crates/library-registry",
+    "client/library-backend/crates/book-metadata",
+    "client/library-backend/crates/thumbnail",
+    "client/preferences",
+    "client/library-model",
+    "client/test-support",
+    "shared/content-address",
+    "shared/pdf-view-common",
+    "shared/pdf-reader-core",
+    "shared/reader-style",
+    "shared/outbound-http",
+    "shared/book-model",
+    "shared/audiobook-folder",
+    "shared/epub",
+    "client/library-backend/crates/book-inspection",
+    "shared/subject-projection",
+    "shared/account-contract",
+    "client/library-backend/crates/metadata-client",
+    "client/library-backend/crates/cpu-host",
+    "shared/wire",
+    "shared/protobuf-wire",
+    "shared/metadata-contract",
+    "shared/taxonomy-contract",
+    "shared/update-client",
+    "client/update-host",
+    "shared/sync-common",
+    "apps/desktop-gpui",
+    "apps/web-gpui",
+    "apps/web-backend-worker",
+    "apps/kobo-device",
+    "servers/metadata",
+    "servers/updates",
+    "servers/taxonomy",
+    "servers/taxonomy/curation"
+]
+exclude = ["servers/sync"]
+
+[workspace.lints]
+
+[profile.web-release]
+inherits = "release"
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true
+
+[workspace.dependencies]
+blake3 = "1"
+html = { package = "html-engine", git = "https://github.com/JohanAnderssonOstling/HtmlEngine", rev = "91766fb2db8d56b38dc0336ddf74972da9872520" }
+html-view-core = { git = "https://github.com/JohanAnderssonOstling/HtmlViewCore", rev = "0d407738fd6ecfd6d6ea84f1a9ce0a488e3dfaf7" }
+kurbo = "0.11.3"
+peniko = "0.2.0"
+lightningcss = { version = "1.0.0-alpha.72", features = ["substitute_variables"] }
+parcel_selectors = "0.28.2"
+scraper = "0.27"
+unicode-normalization = "0.1"
+gpui = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd", version = "=0.2.2" }
+gpui_platform = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd", features = ["wayland", "x11"] }
+gpui-component = { git = "https://github.com/longbridge/gpui-component", rev = "88f102d13654fe25aa2fede076274b6b751a3704" }
+gpui-component-assets = { git = "https://github.com/longbridge/gpui-component", rev = "88f102d13654fe25aa2fede076274b6b751a3704" }
+pdfium-render = { version = "0.9.3", default-features = false }
+zip = { version = "8.6.0", default-features = false, features = ["deflate"] }
+mobi = "0.8.0"
+encoding_rs = "0.8"
+
+[patch.crates-io]
+zip = { path = "vendor/zip" }
+gpui = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd", version = "=0.2.2" }
+pdfium-render = { path = "vendor/pdfium-render" }
+
+[patch."https://github.com/zed-industries/zed"]
+gpui = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd", version = "=0.2.2" }
+gpui_macros = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd" }
+gpui_platform = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "cb2f5b981889d421153d5804526929e32c0788fd" }
+
+# See vendor/gpui-component/LOCAL-PATCHES.md.
+[patch."https://github.com/longbridge/gpui-component"]
+gpui-component = { path = "vendor/gpui-component/crates/ui" }
+gpui-component-assets = { path = "vendor/gpui-component/crates/assets" }

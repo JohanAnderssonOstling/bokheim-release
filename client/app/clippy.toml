@@ -1,0 +1,6 @@
+await-holding-invalid-types = [
+    "app::storage::database::DatabaseConnection",
+    "rusqlite::Connection",
+    "rusqlite::Transaction",
+    "rusqlite::Savepoint",
+]

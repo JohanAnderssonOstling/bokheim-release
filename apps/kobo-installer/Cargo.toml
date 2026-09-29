@@ -1,0 +1,28 @@
+[package]
+name = "bokheim-kobo-installer"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# Keep this utility independent from Bokheim's main workspace and application
+# crates. The UI uses GPUI directly from the same pinned remote fork as the
+# release builds.
+[workspace]
+
+[dependencies]
+flate2 = "1"
+gpui = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "68b0a5ba82860ac222c18acd9036b3838a43a08b" }
+gpui_platform = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "68b0a5ba82860ac222c18acd9036b3838a43a08b", features = ["wayland", "x11"] }
+hex = "0.4"
+semver = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+tar = "0.4"
+ureq = { version = "2.12", default-features = false, features = ["tls"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_Storage_FileSystem"] }
+
+[dev-dependencies]
+tempfile = "3"

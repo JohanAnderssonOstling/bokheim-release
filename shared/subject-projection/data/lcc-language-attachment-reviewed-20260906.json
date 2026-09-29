@@ -1,0 +1,157 @@
+{
+  "anchors": [
+    {
+      "scope": "PS",
+      "path": [
+        "Individual authors"
+      ],
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American"
+    },
+    {
+      "scope": "PS",
+      "path": [
+        "American literature",
+        "Individual authors"
+      ],
+      "concept_id": "unified:ceb2d443-22cd-5b2e-af87-9f759bf6fbaa",
+      "subject": "American"
+    },
+    {
+      "scope": "PS",
+      "path": [
+        "History of American literature"
+      ],
+      "concept_id": "unified:11e637ca-b753-50aa-8d1c-bfccf82ceb6e",
+      "subject": "American"
+    },
+    {
+      "scope": "PR",
+      "path": [
+        "1900-1960"
+      ],
+      "concept_id": "unified:dbdd98f4-fb2c-592d-b8f9-4bd8c1dba05f",
+      "subject": "1900-1960"
+    },
+    {
+      "scope": "PR",
+      "path": [
+        "1961-2000"
+      ],
+      "concept_id": "unified:c1fa47bd-b73b-5133-9a7d-153d7f0f49f7",
+      "subject": "1961-2000"
+    },
+    {
+      "scope": "PR",
+      "path": [
+        "2001-"
+      ],
+      "concept_id": "unified:848e41f5-0e1e-5721-8a62-a5a603c452fb",
+      "subject": "2001-"
+    },
+    {
+      "scope": "PR",
+      "path": [
+        "19th century, 1770/1800-1890/1900"
+      ],
+      "concept_id": "unified:59fcf326-0fde-5228-9c84-b9f45059f4cc",
+      "subject": "19th century, 1770/1800-1890/1900"
+    },
+    {
+      "scope": "PQ",
+      "path": [
+        "Spanish literature"
+      ],
+      "concept_id": "unified:d43f1490-5dbd-5bd8-8bb4-e9ba924c59b2",
+      "subject": "Spanish"
+    },
+    {
+      "scope": "PN",
+      "path": [
+        "Collections of general literature"
+      ],
+      "concept_id": "unified:aeec07de-7d62-59b5-90c5-f775cf9f888c",
+      "subject": "Literary Collections"
+    },
+    {
+      "scope": "PN",
+      "path": [
+        "Collections of general literature",
+        "Poetry"
+      ],
+      "concept_id": "unified:373583c3-8d1b-5a8f-b52c-c6414ea34808",
+      "subject": "Poetry"
+    },
+    {
+      "scope": "PN",
+      "path": [
+        "Collections of general literature",
+        "Wit and humor"
+      ],
+      "concept_id": "unified:c20fed72-8f7c-5b34-b370-39f778be1b4f",
+      "subject": "Humor & Satire"
+    },
+    {
+      "scope": "PN",
+      "path": [
+        "Wit and humor",
+        "Collections on special topics, A-Z"
+      ],
+      "concept_id": "unified:c20fed72-8f7c-5b34-b370-39f778be1b4f",
+      "subject": "Humor & Satire"
+    },
+    {
+      "scope": "PN",
+      "path": [
+        "Collections of general literature",
+        "Drama"
+      ],
+      "concept_id": "unified:84143bb3-fe56-5ec4-a2b3-5e4b6a3fe45d",
+      "subject": "Drama"
+    },
+    {
+      "scope": "PN",
+      "path": [
+        "Literature (General)",
+        "Literary history"
+      ],
+      "concept_id": "unified:70b3087b-1a72-5fae-b1e6-97b9b7f739c2",
+      "subject": "History"
+    },
+    {
+      "scope": "PN",
+      "path": [
+        "Motion pictures"
+      ],
+      "concept_id": "unified:3a5d2554-58b3-548b-8c98-54f02e7a0e87",
+      "subject": "Film"
+    },
+    {
+      "scope": "PN",
+      "path": [
+        "Broadcasting",
+        "Television broadcasts"
+      ],
+      "concept_id": "unified:4bc8ddaf-719e-53d7-88de-35175860f07f",
+      "subject": "Television"
+    },
+    {
+      "scope": "PN",
+      "path": [
+        "Social media"
+      ],
+      "concept_id": "unified:e89acacf-8e21-5845-a6a7-9495a8790b3f",
+      "subject": "Social Media"
+    },
+    {
+      "scope": "P",
+      "path": [
+        "Language. Linguistic theory. Comparative grammar",
+        "Vocabulary. Terminology (General)"
+      ],
+      "concept_id": "bokheim:lcc-detail:70aa480f-c6b0-5ce4-88b3-f46b61ab3257",
+      "subject": "Vocabulary. Terminology (General)"
+    }
+  ],
+  "codes": []
+}

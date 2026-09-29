@@ -1,0 +1,667 @@
+{
+  "scope": "Proposed only. Narrow leaf-to-parent coarsening, not duplicate claims or usage-based ranking. Preserve codes and do not introduce aliases if approved.",
+  "groups": [
+    {
+      "number": 1,
+      "sources": [
+        {
+          "id": 53195,
+          "label": "Flash Photography",
+          "parents": [
+            9501
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                53195,
+                "TR605"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 53196,
+          "label": "Electronic Flash",
+          "parents": [
+            9501
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                53196,
+                "TR606"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 9501,
+      "target_label": "Photographic Exposure & Flash"
+    },
+    {
+      "number": 2,
+      "sources": [
+        {
+          "id": 7193,
+          "label": "Miniature cameras",
+          "parents": [
+            919
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7193,
+                "TR262"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 10003,
+          "label": "Automatic Cameras",
+          "parents": [
+            919
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                10003,
+                "TR260.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 919,
+      "target_label": "Cameras"
+    },
+    {
+      "number": 3,
+      "sources": [
+        {
+          "id": 6841,
+          "label": "Camera accessories",
+          "parents": [
+            919
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6841,
+                "TR265"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 919,
+      "target_label": "Cameras"
+    },
+    {
+      "number": 4,
+      "sources": [
+        {
+          "id": 9079,
+          "label": "Enlargement & reduction",
+          "parents": [
+            932
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9079,
+                "TR475"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9116,
+          "label": "Photographic Print Finishing",
+          "parents": [
+            932
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9116,
+                "TR340"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 932,
+      "target_label": "Photo Processing"
+    },
+    {
+      "number": 5,
+      "sources": [
+        {
+          "id": 9053,
+          "label": "Photo Coloring & Airbrushing",
+          "parents": [
+            932
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9053,
+                "TR485"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 932,
+      "target_label": "Photo Processing"
+    },
+    {
+      "number": 6,
+      "sources": [
+        {
+          "id": 8852,
+          "label": "Lantern slides",
+          "parents": [
+            962
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8852,
+                "TR505"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 962,
+      "target_label": "Transparencies"
+    },
+    {
+      "number": 7,
+      "sources": [
+        {
+          "id": 9126,
+          "label": "Dance photography",
+          "parents": [
+            917
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9126,
+                "TR817.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9847,
+          "label": "Theater Photography",
+          "parents": [
+            917
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9847,
+                "TR817"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 917,
+      "target_label": "Applied photography"
+    },
+    {
+      "number": 8,
+      "sources": [
+        {
+          "id": 7243,
+          "label": "Unbuilt projects",
+          "parents": [
+            571
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7243,
+                "NA2705.5"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 571,
+      "target_label": "Architectural Design & Drawing"
+    },
+    {
+      "number": 9,
+      "sources": [
+        {
+          "id": 6904,
+          "label": "Architectural Rendering",
+          "parents": [
+            571
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6904,
+                "NA2780"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9227,
+          "label": "Modeling",
+          "parents": [
+            571
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9227,
+                "NA2790"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 571,
+      "target_label": "Architectural Design & Drawing"
+    },
+    {
+      "number": 10,
+      "sources": [
+        {
+          "id": 53162,
+          "label": "Architectural Composition",
+          "parents": [
+            571
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                53162,
+                "NA2760"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 53163,
+          "label": "Architectural Space",
+          "parents": [
+            571
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                53163,
+                "NA2765"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 571,
+      "target_label": "Architectural Design & Drawing"
+    },
+    {
+      "number": 11,
+      "sources": [
+        {
+          "id": 560,
+          "label": "Architecture as a profession",
+          "parents": [
+            5698
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                560,
+                "NA1995"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 5698,
+      "target_label": "Architecture Theory & Practice"
+    },
+    {
+      "number": 12,
+      "sources": [
+        {
+          "id": 53127,
+          "label": "Inertia",
+          "parents": [
+            8766
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                53127,
+                "QC137"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 8766,
+      "target_label": "Dynamics. Motion"
+    },
+    {
+      "number": 13,
+      "sources": [
+        {
+          "id": 8701,
+          "label": "Instruments & apparatus",
+          "parents": [
+            5041
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8701,
+                "QC475.8"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 5041,
+      "target_label": "Radiation Physics"
+    },
+    {
+      "number": 14,
+      "sources": [
+        {
+          "id": 8925,
+          "label": "Mathematical theory",
+          "parents": [
+            5031
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8925,
+                "QC223"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 5031,
+      "target_label": "Acoustics"
+    },
+    {
+      "number": 15,
+      "sources": [
+        {
+          "id": 6100,
+          "label": "Magnetism Topics",
+          "parents": [
+            6074
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6100,
+                "QC754"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 6074,
+      "target_label": "Magnetism"
+    },
+    {
+      "number": 16,
+      "sources": [
+        {
+          "id": 6824,
+          "label": "Plant Anatomy Methods",
+          "parents": [
+            4799
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6824,
+                "QK673"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 8373,
+          "label": "Plant Anatomy Atlases",
+          "parents": [
+            4799
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8373,
+                "QK642"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4799,
+      "target_label": "Plant anatomy"
+    },
+    {
+      "number": 17,
+      "sources": [
+        {
+          "id": 9704,
+          "label": "Animal Weaponry",
+          "parents": [
+            5049
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9704,
+                "QL940"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 5049,
+      "target_label": "Animal Anatomy"
+    },
+    {
+      "number": 18,
+      "sources": [
+        {
+          "id": 7973,
+          "label": "Laboratory manuals",
+          "parents": [
+            5052
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                7973,
+                "QL957"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 10027,
+          "label": "Embryology Atlases",
+          "parents": [
+            5052
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                10027,
+                "QL956"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 5052,
+      "target_label": "Embryology"
+    },
+    {
+      "number": 19,
+      "sources": [
+        {
+          "id": 8096,
+          "label": "Rotating Fluid Equilibrium",
+          "parents": [
+            4788
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                8096,
+                "QB410"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4788,
+      "target_label": "Celestial Mechanics"
+    },
+    {
+      "number": 20,
+      "sources": [
+        {
+          "id": 6234,
+          "label": "Earth Shape Mathematics",
+          "parents": [
+            4785
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                6234,
+                "QB283"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        },
+        {
+          "id": 9176,
+          "label": "Earth Density & Gravity Constant",
+          "parents": [
+            4785
+          ],
+          "codes": {
+            "lcc_selector": [
+              [
+                9176,
+                "QB341"
+              ]
+            ],
+            "lcc_range": [],
+            "bisac_selector": [],
+            "ddc_selector": []
+          }
+        }
+      ],
+      "target": 4785,
+      "target_label": "Geodesy"
+    }
+  ]
+}

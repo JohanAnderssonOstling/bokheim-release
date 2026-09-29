@@ -1,0 +1,484 @@
+{
+  "new_subjects": [
+    {
+      "label": "Rust",
+      "parent_id": "unified:a1f43498-7169-52bb-aa41-697293885e9e",
+      "parent_label": "Programming Languages",
+      "concept_id": "bokheim:computing-2025:rust",
+      "codes": [
+        "QA76.73.R87"
+      ],
+      "previous_owners": {
+        "QA76.73.R87": []
+      }
+    },
+    {
+      "label": "Kotlin",
+      "parent_id": "unified:a1f43498-7169-52bb-aa41-697293885e9e",
+      "parent_label": "Programming Languages",
+      "concept_id": "bokheim:computing-2025:kotlin",
+      "codes": [
+        "QA76.73.K68"
+      ],
+      "previous_owners": {
+        "QA76.73.K68": []
+      }
+    },
+    {
+      "label": "Julia",
+      "parent_id": "unified:a1f43498-7169-52bb-aa41-697293885e9e",
+      "parent_label": "Programming Languages",
+      "concept_id": "bokheim:computing-2025:julia",
+      "codes": [
+        "QA76.73.J85"
+      ],
+      "previous_owners": {
+        "QA76.73.J85": []
+      }
+    },
+    {
+      "label": "Bash",
+      "parent_id": "unified:a1f43498-7169-52bb-aa41-697293885e9e",
+      "parent_label": "Programming Languages",
+      "concept_id": "bokheim:computing-2025:bash",
+      "codes": [
+        "QA76.73.B29"
+      ],
+      "previous_owners": {
+        "QA76.73.B29": []
+      }
+    },
+    {
+      "label": "Windows PowerShell",
+      "parent_id": "unified:a1f43498-7169-52bb-aa41-697293885e9e",
+      "parent_label": "Programming Languages",
+      "concept_id": "bokheim:computing-2025:windows-powershell",
+      "codes": [
+        "QA76.73.W56"
+      ],
+      "previous_owners": {
+        "QA76.73.W56": [
+          "unified:a1f43498-7169-52bb-aa41-697293885e9e"
+        ]
+      }
+    },
+    {
+      "label": "GraphQL",
+      "parent_id": "unified:a1f43498-7169-52bb-aa41-697293885e9e",
+      "parent_label": "Programming Languages",
+      "concept_id": "bokheim:computing-2025:graphql",
+      "codes": [
+        "QA76.73.G73"
+      ],
+      "previous_owners": {
+        "QA76.73.G73": []
+      }
+    },
+    {
+      "label": "XQuery",
+      "parent_id": "unified:a1f43498-7169-52bb-aa41-697293885e9e",
+      "parent_label": "Programming Languages",
+      "concept_id": "bokheim:computing-2025:xquery",
+      "codes": [
+        "QA76.73.X575"
+      ],
+      "previous_owners": {
+        "QA76.73.X575": []
+      }
+    },
+    {
+      "label": "Pseudocode",
+      "parent_id": "unified:a1f43498-7169-52bb-aa41-697293885e9e",
+      "parent_label": "Programming Languages",
+      "concept_id": "bokheim:computing-2025:pseudocode",
+      "codes": [
+        "QA76.73.P79"
+      ],
+      "previous_owners": {
+        "QA76.73.P79": []
+      }
+    },
+    {
+      "label": "Hopscotch",
+      "parent_id": "unified:a1f43498-7169-52bb-aa41-697293885e9e",
+      "parent_label": "Programming Languages",
+      "concept_id": "bokheim:computing-2025:hopscotch",
+      "codes": [
+        "QA76.73.H57"
+      ],
+      "previous_owners": {
+        "QA76.73.H57": []
+      }
+    },
+    {
+      "label": "Deep Learning",
+      "parent_id": "unified:07512f53-a144-5d88-a47b-2eea6a438ff7",
+      "parent_label": "Machine Learning",
+      "concept_id": "bokheim:computing-2025:deep-learning",
+      "codes": [
+        "Q325.73"
+      ],
+      "previous_owners": {
+        "Q325.73": []
+      }
+    },
+    {
+      "label": "Federated Learning",
+      "parent_id": "unified:07512f53-a144-5d88-a47b-2eea6a438ff7",
+      "parent_label": "Machine Learning",
+      "concept_id": "bokheim:computing-2025:federated-learning",
+      "codes": [
+        "Q325.65"
+      ],
+      "previous_owners": {
+        "Q325.65": []
+      }
+    },
+    {
+      "label": "Transfer Learning",
+      "parent_id": "unified:07512f53-a144-5d88-a47b-2eea6a438ff7",
+      "parent_label": "Machine Learning",
+      "concept_id": "bokheim:computing-2025:transfer-learning",
+      "codes": [
+        "Q325.787"
+      ],
+      "previous_owners": {
+        "Q325.787": []
+      }
+    },
+    {
+      "label": "Support Vector Machines",
+      "parent_id": "unified:07512f53-a144-5d88-a47b-2eea6a438ff7",
+      "parent_label": "Machine Learning",
+      "concept_id": "bokheim:computing-2025:support-vector-machines",
+      "codes": [
+        "Q325.785"
+      ],
+      "previous_owners": {
+        "Q325.785": []
+      }
+    },
+    {
+      "label": "Chatbots",
+      "parent_id": "unified:60797396-c27e-58ca-8f54-bf034abb25e4",
+      "parent_label": "Artificial Intelligence",
+      "concept_id": "bokheim:computing-2025:chatbots",
+      "codes": [
+        "QA76.76.C52"
+      ],
+      "previous_owners": {
+        "QA76.76.C52": []
+      }
+    },
+    {
+      "label": "Virtual Humans",
+      "parent_id": "unified:60797396-c27e-58ca-8f54-bf034abb25e4",
+      "parent_label": "Artificial Intelligence",
+      "concept_id": "bokheim:computing-2025:virtual-humans",
+      "codes": [
+        "Q343"
+      ],
+      "previous_owners": {
+        "Q343": []
+      }
+    },
+    {
+      "label": "Sentiment Analysis",
+      "parent_id": "unified:058ef76a-c0cd-5d43-9ea1-3b536c3d7f1a",
+      "parent_label": "Natural Language Processing",
+      "concept_id": "bokheim:computing-2025:sentiment-analysis",
+      "codes": [
+        "QA76.9.S57"
+      ],
+      "previous_owners": {
+        "QA76.9.S57": []
+      }
+    },
+    {
+      "label": "Modular Programming",
+      "parent_id": "unified:817d1954-5200-5be0-b71a-f3b4c7ad27e7",
+      "parent_label": "Programming",
+      "concept_id": "bokheim:computing-2025:modular-programming",
+      "codes": [
+        "QA76.637"
+      ],
+      "previous_owners": {
+        "QA76.637": []
+      }
+    },
+    {
+      "label": "Choreographic Programming",
+      "parent_id": "unified:817d1954-5200-5be0-b71a-f3b4c7ad27e7",
+      "parent_label": "Programming",
+      "concept_id": "bokheim:computing-2025:choreographic-programming",
+      "codes": [
+        "QA76.6117"
+      ],
+      "previous_owners": {
+        "QA76.6117": []
+      }
+    },
+    {
+      "label": "Software Prototyping",
+      "parent_id": "unified:be47d643-7f82-5542-9e51-072fcf5cba15",
+      "parent_label": "Software Development & Engineering",
+      "concept_id": "bokheim:computing-2025:software-prototyping",
+      "codes": [
+        "QA76.76.P77"
+      ],
+      "previous_owners": {
+        "QA76.76.P77": []
+      }
+    },
+    {
+      "label": "NativeScript",
+      "parent_id": "unified:be47d643-7f82-5542-9e51-072fcf5cba15",
+      "parent_label": "Software Development & Engineering",
+      "concept_id": "bokheim:computing-2025:nativescript",
+      "codes": [
+        "QA76.76.N38"
+      ],
+      "previous_owners": {
+        "QA76.76.N38": []
+      }
+    },
+    {
+      "label": "Ethereum",
+      "parent_id": "unified:757f1bfd-806b-59d6-b6ef-20218565056f",
+      "parent_label": "Blockchain",
+      "concept_id": "bokheim:computing-2025:ethereum",
+      "codes": [
+        "QA76.546.E84"
+      ],
+      "previous_owners": {
+        "QA76.546.E84": []
+      }
+    },
+    {
+      "label": "Edge Computing",
+      "parent_id": "unified:138f3df6-83cc-507c-aea9-481ab05eb166",
+      "parent_label": "Distributed Systems",
+      "concept_id": "bokheim:computing-2025:edge-computing",
+      "codes": [
+        "QA76.583"
+      ],
+      "previous_owners": {
+        "QA76.583": []
+      }
+    },
+    {
+      "label": "Markdown",
+      "parent_id": "bokheim:computing-specific:72369ef58a443443a4b3",
+      "parent_label": "Text Processing",
+      "concept_id": "bokheim:computing-2025:markdown",
+      "codes": [
+        "TK5105.8885.M39"
+      ],
+      "previous_owners": {
+        "TK5105.8885.M39": []
+      }
+    },
+    {
+      "label": "Svelte",
+      "parent_id": "unified:53747382-2133-506e-af22-074eba246525",
+      "parent_label": "Web Programming",
+      "concept_id": "bokheim:computing-2025:svelte",
+      "codes": [
+        "TK5105.8885.S94"
+      ],
+      "previous_owners": {
+        "TK5105.8885.S94": []
+      }
+    },
+    {
+      "label": "NGINX",
+      "parent_id": "unified:b1a32e84-a681-5210-8957-b880aefc6ddb",
+      "parent_label": "System Administration",
+      "concept_id": "bokheim:computing-2025:nginx",
+      "codes": [
+        "TK5105.8885.N54"
+      ],
+      "previous_owners": {
+        "TK5105.8885.N54": []
+      }
+    },
+    {
+      "label": "Tor",
+      "parent_id": "unified:f169c75d-54cf-5180-826d-eaa738f6626b",
+      "parent_label": "Online Safety & Privacy",
+      "concept_id": "bokheim:computing-2025:tor",
+      "codes": [
+        "TK5105.883.T67"
+      ],
+      "previous_owners": {
+        "TK5105.883.T67": []
+      }
+    },
+    {
+      "label": "Privacy-Preserving Computing",
+      "parent_id": "unified:da206a7f-0a3e-5aad-93fa-bc83e3681be7",
+      "parent_label": "Security",
+      "concept_id": "bokheim:computing-2025:privacy-preserving-computing",
+      "codes": [
+        "QA76.9.P735"
+      ],
+      "previous_owners": {
+        "QA76.9.P735": []
+      }
+    },
+    {
+      "label": "Network Slicing",
+      "parent_id": "unified:99b5f6cd-a58c-5f8f-8421-f874aa0b4b93",
+      "parent_label": "Networking",
+      "concept_id": "bokheim:computing-2025:network-slicing",
+      "codes": [
+        "TK5105.5744"
+      ],
+      "previous_owners": {
+        "TK5105.5744": []
+      }
+    },
+    {
+      "label": "Diameter",
+      "parent_id": "unified:a5128b21-af2d-5f12-8f94-f012d5ea2ab9",
+      "parent_label": "Network Protocols",
+      "concept_id": "bokheim:computing-2025:diameter",
+      "codes": [
+        "TK5105.5663"
+      ],
+      "previous_owners": {
+        "TK5105.5663": []
+      }
+    },
+    {
+      "label": "Micro:bit",
+      "parent_id": "unified:34ac2ecb-cbfa-5117-8db3-ed0600585919",
+      "parent_label": "Hardware",
+      "concept_id": "bokheim:computing-2025:micro-bit",
+      "codes": [
+        "QA76.8.M47"
+      ],
+      "previous_owners": {
+        "QA76.8.M47": []
+      }
+    },
+    {
+      "label": "Apple II",
+      "parent_id": "unified:34ac2ecb-cbfa-5117-8db3-ed0600585919",
+      "parent_label": "Hardware",
+      "concept_id": "bokheim:computing-2025:apple-ii",
+      "codes": [
+        "QA76.8.A662",
+        "QA76.8.A66225",
+        "QA76.8.A6623",
+        "QA76.8.A66235"
+      ],
+      "previous_owners": {
+        "QA76.8.A662": [
+          "unified:34ac2ecb-cbfa-5117-8db3-ed0600585919"
+        ],
+        "QA76.8.A66225": [],
+        "QA76.8.A6623": [
+          "unified:34ac2ecb-cbfa-5117-8db3-ed0600585919"
+        ],
+        "QA76.8.A66235": []
+      }
+    },
+    {
+      "label": "Apple III",
+      "parent_id": "unified:34ac2ecb-cbfa-5117-8db3-ed0600585919",
+      "parent_label": "Hardware",
+      "concept_id": "bokheim:computing-2025:apple-iii",
+      "codes": [
+        "QA76.8.A663"
+      ],
+      "previous_owners": {
+        "QA76.8.A663": []
+      }
+    },
+    {
+      "label": "BBC Microcomputer",
+      "parent_id": "unified:34ac2ecb-cbfa-5117-8db3-ed0600585919",
+      "parent_label": "Hardware",
+      "concept_id": "bokheim:computing-2025:bbc-microcomputer",
+      "codes": [
+        "QA76.8.B35"
+      ],
+      "previous_owners": {
+        "QA76.8.B35": [
+          "unified:34ac2ecb-cbfa-5117-8db3-ed0600585919"
+        ]
+      }
+    },
+    {
+      "label": "PLATO",
+      "parent_id": "unified:34ac2ecb-cbfa-5117-8db3-ed0600585919",
+      "parent_label": "Hardware",
+      "concept_id": "bokheim:computing-2025:plato",
+      "codes": [
+        "QA76.8.P53"
+      ],
+      "previous_owners": {
+        "QA76.8.P53": []
+      }
+    },
+    {
+      "label": "Metaverse",
+      "parent_id": "unified:78d56269-92dd-5210-862a-8a3b6e067404",
+      "parent_label": "Virtual & Augmented Reality",
+      "concept_id": "bokheim:computing-2025:metaverse",
+      "codes": [
+        "TK5105.8864"
+      ],
+      "previous_owners": {
+        "TK5105.8864": []
+      }
+    },
+    {
+      "label": "Telepresence",
+      "parent_id": "unified:78d56269-92dd-5210-862a-8a3b6e067404",
+      "parent_label": "Virtual & Augmented Reality",
+      "concept_id": "bokheim:computing-2025:telepresence",
+      "codes": [
+        "TK5105.88645"
+      ],
+      "previous_owners": {
+        "TK5105.88645": []
+      }
+    }
+  ],
+  "existing_subjects": [
+    {
+      "label": "Blockchain",
+      "concept_id": "unified:757f1bfd-806b-59d6-b6ef-20218565056f",
+      "codes": [
+        "QA76.9.B56"
+      ],
+      "previous_owners": {
+        "QA76.9.B56": [
+          "unified:6f873123-bbb7-5144-beeb-18c8044fcefb"
+        ]
+      }
+    },
+    {
+      "label": "Cryptography & Encryption",
+      "concept_id": "unified:794990b7-2121-5d9f-ba26-a96aa00f27f0",
+      "codes": [
+        "QA76.9.D335"
+      ],
+      "previous_owners": {
+        "QA76.9.D335": []
+      }
+    },
+    {
+      "label": "Virtualization & Containerization",
+      "concept_id": "unified:daa71ad4-1eea-5702-9148-a196fa1cc0f8",
+      "codes": [
+        "QA76.76.S58"
+      ],
+      "previous_owners": {
+        "QA76.76.S58": []
+      }
+    }
+  ]
+}

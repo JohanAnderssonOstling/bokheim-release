@@ -1,0 +1,30 @@
+[package]
+name = "server-account"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+axum = "0.7"
+argon2 = "0.5"
+async-trait = "0.1"
+base64 = "0.22"
+account-contract = { path = "../../../../shared/account-contract" }
+wire = { path = "../../../../shared/wire" }
+chrono = { version = "0.4", features = ["serde"] }
+rand = "0.8"
+ring = "0.17"
+server-postgres = { path = "../server-postgres" }
+server-wire-http = { path = "../server-wire-http" }
+sha2 = "0.10"
+sqlx = { version = "0.7", default-features = false, features = ["runtime-tokio", "postgres", "chrono"] }
+thiserror = "1"
+tokio = { version = "1", features = ["rt", "sync", "time"] }
+tracing = "0.1"
+uuid = { version = "1", features = ["v4"] }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

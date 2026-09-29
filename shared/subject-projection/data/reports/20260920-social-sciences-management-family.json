@@ -1,0 +1,117 @@
+{
+  "merges": {
+    "5236": {
+      "into": 5596,
+      "old_label": "Management",
+      "surviving_label": "Business Management"
+    },
+    "12272": {
+      "into": 5596,
+      "old_label": "Business Administration",
+      "surviving_label": "Business Management"
+    },
+    "52399": {
+      "into": 5207,
+      "old_label": "Operations Management",
+      "surviving_label": "Production & Operations Management"
+    },
+    "11589": {
+      "into": 5596,
+      "old_label": "Strategic Management",
+      "surviving_label": "Business Management"
+    },
+    "12556": {
+      "into": 5219,
+      "old_label": "Strategic & Business Planning",
+      "surviving_label": "Strategic Planning"
+    },
+    "11801": {
+      "into": 5252,
+      "old_label": "Studies",
+      "surviving_label": "Family & Relationships"
+    },
+    "52732": {
+      "into": 12403,
+      "old_label": "Gay & Lesbian Studies",
+      "surviving_label": "Sexual Orientation & LGBTQ+ Studies"
+    },
+    "52799": {
+      "into": 52736,
+      "old_label": "Gay & Lesbian Press",
+      "surviving_label": "LGBTQ+ Culture & Press"
+    }
+  },
+  "renamed": {
+    "5219": {
+      "before": "Strategic Planning",
+      "after": "Strategic & Business Planning"
+    },
+    "5600": {
+      "before": "Work",
+      "after": "Workplace & Careers"
+    },
+    "12287": {
+      "before": "Marriage Issues & Services",
+      "after": "Marriage & Long-Term Relationships"
+    },
+    "5803": {
+      "before": "Dating, Marriage & Separation",
+      "after": "Love & Romance"
+    }
+  },
+  "moved": [
+    {
+      "id": 5219,
+      "before": [
+        5596
+      ],
+      "after": [
+        5596
+      ]
+    },
+    {
+      "id": 12420,
+      "before": [
+        5255
+      ],
+      "after": [
+        5848
+      ]
+    }
+  ],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [
+    {
+      "system": "bisac",
+      "selector": "FAM051000",
+      "from": 5803,
+      "to": 12286
+    },
+    {
+      "system": "bisac",
+      "selector": "FAM015000",
+      "from": 5803,
+      "to": 12288
+    },
+    {
+      "system": "bisac",
+      "selector": "FAM030000",
+      "from": 5803,
+      "to": 12287
+    },
+    {
+      "system": "lcc",
+      "selector": "HQ745",
+      "from": 5803,
+      "to": 4774,
+      "reason": "LCC caption: Wedding ceremonies, planning, forms, etc."
+    }
+  ],
+  "source_notes": [
+    "HD30.19 onward is general management theory/methods; HD30.28–HD30.285 is planning and mission statements. Broad Strategic Management absorbed into Business Management, specific planning retained.",
+    "HQ76.9–HQ76.95 covers gay/lesbian publications; combined HQ76.9–HQ76.965 additionally includes culture. Merged narrower press child into Culture & Press.",
+    "BISAC FAM015000 Divorce & Separation; FAM029000 Love & Romance; FAM030000 Marriage & Long-Term Relationships; FAM051000 Dating."
+  ],
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

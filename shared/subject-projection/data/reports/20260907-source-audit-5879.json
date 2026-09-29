@@ -1,0 +1,5410 @@
+[
+  {
+    "type": "exact",
+    "start": "KI510",
+    "end": null,
+    "source": [
+      [
+        658392,
+        null,
+        "General (Comparative)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KI511",
+    "end": null,
+    "source": [
+      [
+        658394,
+        null,
+        "General"
+      ],
+      [
+        658393,
+        "KI565",
+        "Circumpolar region"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KI515.I58",
+    "end": null,
+    "source": [
+      [
+        658401,
+        null,
+        "Inuit Circumpolar Council"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KI515.N67",
+    "end": null,
+    "source": [
+      [
+        658402,
+        null,
+        "Northern Forum"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KI520",
+    "end": null,
+    "source": [
+      [
+        658404,
+        null,
+        "Collections. Compilations. Selections"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KI522 2009",
+    "end": null,
+    "source": [
+      [
+        658405,
+        null,
+        "Circumpolar Inuit Declaration on Sovereignty in the Arctic"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA1",
+    "end": null,
+    "source": [
+      [
+        60178,
+        null,
+        "General"
+      ],
+      [
+        55280,
+        "KIA1.2",
+        "Bibliography"
+      ],
+      [
+        42189,
+        "KIX1000",
+        "Law of indigenous peoples in the Americas"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA1.15.A39",
+    "end": null,
+    "source": [
+      [
+        658413,
+        null,
+        "Abya Yala Archive. Archivo Abya Yala"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA1.2.M47",
+    "end": null,
+    "source": [
+      [
+        658414,
+        null,
+        "Métis Nation Self-Determination Gateway"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA18.2",
+    "end": null,
+    "source": [
+      [
+        60301,
+        null,
+        "Colonialism and territorial evolution"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA19",
+    "end": null,
+    "source": [
+      [
+        658418,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA2.3.C65",
+    "end": null,
+    "source": [
+      [
+        60805,
+        null,
+        "Comisión Continental Abya Yala"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA2.3.I53",
+    "end": null,
+    "source": [
+      [
+        60183,
+        null,
+        "Indian Law Resource Center"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA2.5",
+    "end": null,
+    "source": [
+      [
+        60807,
+        null,
+        "General. Collective"
+      ],
+      [
+        60806,
+        "KIA2.6",
+        "Inter-regional indigenous organizations"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA2.6.P37",
+    "end": null,
+    "source": [
+      [
+        60809,
+        null,
+        "Parlamento Indígena de América"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA2.7.C66",
+    "end": null,
+    "source": [
+      [
+        658415,
+        null,
+        "Consejo Americano de Pueblos Indigenas"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA3",
+    "end": null,
+    "source": [
+      [
+        60811,
+        null,
+        "Collections. Compilations. Selections (Comprehensive)"
+      ],
+      [
+        60218,
+        "KIA3.3",
+        "Indigenous laws and treaties"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA3.2",
+    "end": null,
+    "source": [
+      [
+        60813,
+        null,
+        "Collections. Compilations. Selections"
+      ],
+      [
+        60812,
+        "KIA3.3",
+        "Treaties and other international agreements. Declarations"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA3.3 2016",
+    "end": null,
+    "source": [
+      [
+        60815,
+        null,
+        "American Declaration on the Rights of Indigenous Peoples(2016) (OAS)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA3.4",
+    "end": null,
+    "source": [
+      [
+        60816,
+        null,
+        "General (Comparative)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA3.5",
+    "end": null,
+    "source": [
+      [
+        60817,
+        null,
+        "Conflict of laws. Plurality of laws conflict. Multiculturalism. Plurinationalism"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIA4",
+    "end": null,
+    "source": [
+      [
+        60819,
+        null,
+        "General works"
+      ],
+      [
+        60818,
+        "KIA4.2",
+        "Indigenous jurisprudence"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIF1920",
+    "end": null,
+    "source": [
+      [
+        658431,
+        null,
+        "Arosaguntacook Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIF1925",
+    "end": null,
+    "source": [
+      [
+        658432,
+        null,
+        "Mohawk Nation of Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIF1940",
+    "end": null,
+    "source": [
+      [
+        658433,
+        null,
+        "Norridgewock Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIF1950",
+    "end": null,
+    "source": [
+      [
+        658434,
+        null,
+        "Pequawket Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIF1965",
+    "end": null,
+    "source": [
+      [
+        658435,
+        null,
+        "Saconnet Band"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIF1980",
+    "end": null,
+    "source": [
+      [
+        658436,
+        null,
+        "Wappinger Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIG5701",
+    "end": null,
+    "source": [
+      [
+        658442,
+        null,
+        "Alabama Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIG5702",
+    "end": null,
+    "source": [
+      [
+        658443,
+        null,
+        "Appalachicola Band"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIG5703",
+    "end": null,
+    "source": [
+      [
+        658444,
+        null,
+        "Aub-ba-nauba's Band of Potawatomi Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIG5708",
+    "end": null,
+    "source": [
+      [
+        658445,
+        null,
+        "Coushatta Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIG5710",
+    "end": null,
+    "source": [
+      [
+        658446,
+        null,
+        "Creek Nation"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIG5715",
+    "end": null,
+    "source": [
+      [
+        658447,
+        null,
+        "Eel River Band of Miami Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIG5722",
+    "end": null,
+    "source": [
+      [
+        658448,
+        null,
+        "Mes-quaw-buck's Band of Potawatomi Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIG5740",
+    "end": null,
+    "source": [
+      [
+        658449,
+        null,
+        "Overhill Cherokee"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIG5780",
+    "end": null,
+    "source": [
+      [
+        658450,
+        null,
+        "Waw-ke-wa's Band of Potawatomi Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIG5790",
+    "end": null,
+    "source": [
+      [
+        658451,
+        null,
+        "Wyandot Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5704",
+    "end": null,
+    "source": [
+      [
+        658453,
+        null,
+        "Arikara Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5705",
+    "end": null,
+    "source": [
+      [
+        658454,
+        null,
+        "Aub-ba-nauba's Band of Potawatomi Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5715",
+    "end": null,
+    "source": [
+      [
+        658455,
+        null,
+        "Eel River Band of Miami Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5719",
+    "end": null,
+    "source": [
+      [
+        658456,
+        null,
+        "Four Confederated Bands of Pawnees"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5720",
+    "end": null,
+    "source": [
+      [
+        658457,
+        null,
+        "Fox Nation"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5725",
+    "end": null,
+    "source": [
+      [
+        658458,
+        null,
+        "Iowa Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5730",
+    "end": null,
+    "source": [
+      [
+        658459,
+        null,
+        "Kaskaskia Tribe of Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5740",
+    "end": null,
+    "source": [
+      [
+        658460,
+        null,
+        "Mandan Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5745",
+    "end": null,
+    "source": [
+      [
+        658461,
+        null,
+        "Mes-quaw-buck's Band of Potawatomi Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5747",
+    "end": null,
+    "source": [
+      [
+        658462,
+        null,
+        "Munsee or Christian Band of Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5750",
+    "end": null,
+    "source": [
+      [
+        658463,
+        null,
+        "Ottawa Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5755",
+    "end": null,
+    "source": [
+      [
+        658464,
+        null,
+        "Piankishaw Tribe of Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5756",
+    "end": null,
+    "source": [
+      [
+        658465,
+        null,
+        "Pillager Band of Chippewa Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5760",
+    "end": null,
+    "source": [
+      [
+        658466,
+        null,
+        "Senecas of Sandusky and Stony Creek"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5763",
+    "end": null,
+    "source": [
+      [
+        658467,
+        null,
+        "Swan Creek and Black River Bands of Chippewa Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5765",
+    "end": null,
+    "source": [
+      [
+        658468,
+        null,
+        "Teton Band of the Sioux Tribe of Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5775",
+    "end": null,
+    "source": [
+      [
+        658469,
+        null,
+        "Waw-ke-wa's Band of Potawatomi Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5780",
+    "end": null,
+    "source": [
+      [
+        658470,
+        null,
+        "Wea Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5790",
+    "end": null,
+    "source": [
+      [
+        658471,
+        null,
+        "Wyandot Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIH5795",
+    "end": null,
+    "source": [
+      [
+        658472,
+        null,
+        "Yancton Tribe"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIJ7580",
+    "end": null,
+    "source": [
+      [
+        658474,
+        null,
+        "Walpapi Tribe of Snake Indians"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM1",
+    "end": null,
+    "source": [
+      [
+        61050,
+        null,
+        "General"
+      ],
+      [
+        61049,
+        "KIM1.2",
+        "Bibliography"
+      ],
+      [
+        61048,
+        "KIM30",
+        "General"
+      ],
+      [
+        658483,
+        "KIMKIX1000",
+        "Indigenous law: Central & South America"
+      ],
+      [
+        61047,
+        "KIX1000",
+        "Indigenous law: Central & South America"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM1.2.T47",
+    "end": null,
+    "source": [
+      [
+        61593,
+        null,
+        "Territorio Indígena y Gobernanza"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM2.T47",
+    "end": null,
+    "source": [
+      [
+        658485,
+        null,
+        "Territorio Indígena y Gobernanza"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM26.R43",
+    "end": null,
+    "source": [
+      [
+        658489,
+        null,
+        "Red Latinoamericana para la Prevención del Genocidio y Atrocidades Masivas"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM29.C86",
+    "end": null,
+    "source": [
+      [
+        658491,
+        null,
+        "Cumbre Continental de Pueblos y Nacionalidades Indígenas de Abya Yala"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM35",
+    "end": null,
+    "source": [
+      [
+        61058,
+        null,
+        "General"
+      ],
+      [
+        61057,
+        "KIM37",
+        "History"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM36",
+    "end": null,
+    "source": [
+      [
+        61060,
+        null,
+        "General works"
+      ],
+      [
+        61059,
+        "KIM37",
+        "Legal anthropology"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM37",
+    "end": null,
+    "source": [
+      [
+        61061,
+        null,
+        "Legal archaeology. Legal symbolism"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM40",
+    "end": null,
+    "source": [
+      [
+        61063,
+        null,
+        "General works"
+      ],
+      [
+        61062,
+        "KIM47",
+        "Indigenous jurisprudence"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM42",
+    "end": null,
+    "source": [
+      [
+        61065,
+        null,
+        "Sources of law. Custom. Traditions"
+      ],
+      [
+        61064,
+        "KIM47",
+        "Principles and concepts of the law (not A-Z)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM43",
+    "end": null,
+    "source": [
+      [
+        61066,
+        null,
+        "Indigenous law and public policy"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM45",
+    "end": null,
+    "source": [
+      [
+        61068,
+        null,
+        "General works"
+      ],
+      [
+        61067,
+        "KIM47",
+        "Sovereignty"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM47",
+    "end": null,
+    "source": [
+      [
+        61069,
+        null,
+        "Colonization and de-colonization"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM48",
+    "end": null,
+    "source": [
+      [
+        61070,
+        null,
+        "Conflict of laws. Plurality of laws conflict. Multiculturalism. Plurinationalism"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM50",
+    "end": null,
+    "source": [
+      [
+        61072,
+        null,
+        "Natural persons. Capacity and disability"
+      ],
+      [
+        61071,
+        "KIM97",
+        "Particular branches and subjects of the law (not A-Z)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM52",
+    "end": null,
+    "source": [
+      [
+        61074,
+        null,
+        "General works"
+      ],
+      [
+        61073,
+        "KIM53",
+        "Domestic relations. Family law"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM53",
+    "end": null,
+    "source": [
+      [
+        61075,
+        null,
+        "Marriage. Parent and child"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM55",
+    "end": null,
+    "source": [
+      [
+        61077,
+        null,
+        "General works"
+      ],
+      [
+        61076,
+        "KIM56",
+        "Land law. Land tenure. Natural resources"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM56",
+    "end": null,
+    "source": [
+      [
+        61078,
+        null,
+        "Water and fishing rights"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM57",
+    "end": null,
+    "source": [
+      [
+        61079,
+        null,
+        "Inheritance and succession"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM59",
+    "end": null,
+    "source": [
+      [
+        61080,
+        null,
+        "Associations. Corporations"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM6",
+    "end": null,
+    "source": [
+      [
+        61052,
+        null,
+        "General (Collective)"
+      ],
+      [
+        61051,
+        "KIM6.2",
+        "Regional indigenous organizations"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM6.5",
+    "end": null,
+    "source": [
+      [
+        61595,
+        null,
+        "General (Collective)"
+      ],
+      [
+        61594,
+        "KIM7",
+        "Regional councils"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM62",
+    "end": null,
+    "source": [
+      [
+        61082,
+        null,
+        "General works"
+      ],
+      [
+        61081,
+        "KIM68",
+        "Economic law"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM63",
+    "end": null,
+    "source": [
+      [
+        61083,
+        null,
+        "Agriculture. Horticulture"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM65",
+    "end": null,
+    "source": [
+      [
+        61084,
+        null,
+        "Mining"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM66",
+    "end": null,
+    "source": [
+      [
+        61085,
+        null,
+        "Trade and commerce"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM68",
+    "end": null,
+    "source": [
+      [
+        61086,
+        null,
+        "Public utilities. Energy policy"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM7.C66",
+    "end": null,
+    "source": [
+      [
+        61597,
+        null,
+        "Consejo Indígena de Centro America"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM70",
+    "end": null,
+    "source": [
+      [
+        61087,
+        null,
+        "Intellectual and cultural property. Copyright"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM72",
+    "end": null,
+    "source": [
+      [
+        61088,
+        null,
+        "Social legislation. Social services. Public welfare"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM76",
+    "end": null,
+    "source": [
+      [
+        61095,
+        null,
+        "General works"
+      ],
+      [
+        61094,
+        "KIM77.5",
+        "Environmental law"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM76.2",
+    "end": null,
+    "source": [
+      [
+        61096,
+        null,
+        "Global warming. Climatic changes"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM77",
+    "end": null,
+    "source": [
+      [
+        61097,
+        null,
+        "Environmental pollution"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM77.5",
+    "end": null,
+    "source": [
+      [
+        61098,
+        null,
+        "Wilderness preservation. Wildlife conservation"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM78",
+    "end": null,
+    "source": [
+      [
+        61099,
+        null,
+        "Medical laws. Traditional medicine and healing practices"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM79",
+    "end": null,
+    "source": [
+      [
+        61100,
+        null,
+        "Police and public safety"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM80",
+    "end": null,
+    "source": [
+      [
+        61102,
+        null,
+        "General works"
+      ],
+      [
+        61101,
+        "KIM87",
+        "Constitutional law"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM82.S45",
+    "end": null,
+    "source": [
+      [
+        61104,
+        null,
+        "Self-determination. Autonomy"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM84",
+    "end": null,
+    "source": [
+      [
+        61105,
+        null,
+        "Indigenous territory"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM85.W65",
+    "end": null,
+    "source": [
+      [
+        61107,
+        null,
+        "Women's rights. Women's access to justice"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM87",
+    "end": null,
+    "source": [
+      [
+        61108,
+        null,
+        "Nationality and citizenship"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM89",
+    "end": null,
+    "source": [
+      [
+        61109,
+        null,
+        "Administration and administrative process. Indigenous government"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM90",
+    "end": null,
+    "source": [
+      [
+        61111,
+        null,
+        "General works"
+      ],
+      [
+        61110,
+        "KIM 91",
+        "Public property"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM91",
+    "end": null,
+    "source": [
+      [
+        61112,
+        null,
+        "Land policy. Public restraints on indigenous land"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM93",
+    "end": null,
+    "source": [
+      [
+        61113,
+        null,
+        "Public finance. Taxation. Customs"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM95",
+    "end": null,
+    "source": [
+      [
+        61114,
+        null,
+        "Courts and procedure. Civil procedure"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIM97",
+    "end": null,
+    "source": [
+      [
+        61115,
+        null,
+        "Criminal law and procedure"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6038",
+    "end": null,
+    "source": [
+      [
+        659009,
+        null,
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6040",
+    "end": null,
+    "source": [
+      [
+        659010,
+        null,
+        "Linguistics. Semantics"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6042",
+    "end": null,
+    "source": [
+      [
+        659011,
+        null,
+        "Legal anthropology"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6043",
+    "end": null,
+    "source": [
+      [
+        659012,
+        null,
+        "Legal archaeology. Legal symbolism"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6044",
+    "end": null,
+    "source": [
+      [
+        659013,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6046",
+    "end": null,
+    "source": [
+      [
+        659020,
+        null,
+        "Plurality of laws conflicts. Multiculturalism. Plurinationalism"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6049",
+    "end": null,
+    "source": [
+      [
+        659053,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6049.2",
+    "end": null,
+    "source": [
+      [
+        659054,
+        null,
+        "Personality (Law). Personal identity"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6049.3",
+    "end": null,
+    "source": [
+      [
+        659055,
+        null,
+        "Personality rights (General)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6050",
+    "end": null,
+    "source": [
+      [
+        659056,
+        null,
+        "Privacy. Personal data privacy"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6052",
+    "end": null,
+    "source": [
+      [
+        659057,
+        null,
+        "Juristic persons. Personalidades jurídicas"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6053",
+    "end": null,
+    "source": [
+      [
+        659058,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6054",
+    "end": null,
+    "source": [
+      [
+        659059,
+        null,
+        "Marriage. Parent and child"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6060",
+    "end": null,
+    "source": [
+      [
+        659060,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6063",
+    "end": null,
+    "source": [
+      [
+        659061,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6065",
+    "end": null,
+    "source": [
+      [
+        659062,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6066",
+    "end": null,
+    "source": [
+      [
+        659063,
+        null,
+        "Land occupancy. Occupacion territorial"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6072.W37",
+    "end": null,
+    "source": [
+      [
+        659065,
+        null,
+        "Water and access to water rights. Fishing rights"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6075",
+    "end": null,
+    "source": [
+      [
+        659066,
+        null,
+        "Inheritance and succession"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6076",
+    "end": null,
+    "source": [
+      [
+        659067,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6076.2",
+    "end": null,
+    "source": [
+      [
+        659068,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6076.3",
+    "end": null,
+    "source": [
+      [
+        659069,
+        null,
+        "Violation of personality rights (General)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6076.4",
+    "end": null,
+    "source": [
+      [
+        659070,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6076.5",
+    "end": null,
+    "source": [
+      [
+        659071,
+        null,
+        "Personal data in information retrieval systems and online (Data protection)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6078",
+    "end": null,
+    "source": [
+      [
+        659072,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6079",
+    "end": null,
+    "source": [
+      [
+        659073,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6080",
+    "end": null,
+    "source": [
+      [
+        659074,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6082",
+    "end": null,
+    "source": [
+      [
+        659075,
+        null,
+        "Agricultural syndicate system"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6082.2",
+    "end": null,
+    "source": [
+      [
+        659076,
+        null,
+        "Cooperative agricultural work. Trabajo comunitario. Mink'a. Ayni"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6083",
+    "end": null,
+    "source": [
+      [
+        659077,
+        null,
+        "Food production. Food security. Seguridad alimentaria"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6083.3",
+    "end": null,
+    "source": [
+      [
+        659078,
+        null,
+        "Bio-security (Life stock). Bioseguridad"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6084",
+    "end": null,
+    "source": [
+      [
+        659079,
+        null,
+        "Conservation of agricultural and forest land. Control of soil erosion and degradation (contamination)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6085",
+    "end": null,
+    "source": [
+      [
+        659080,
+        null,
+        "Mining"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6086",
+    "end": null,
+    "source": [
+      [
+        659081,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6088",
+    "end": null,
+    "source": [
+      [
+        659082,
+        null,
+        "Tourism. Ecotourism"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6090",
+    "end": null,
+    "source": [
+      [
+        659083,
+        null,
+        "Hotels. Motels. Resorts"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6092",
+    "end": null,
+    "source": [
+      [
+        659084,
+        null,
+        "Public utilities. Energy policy"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6096.C63",
+    "end": null,
+    "source": [
+      [
+        659086,
+        null,
+        "Coca leaves"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6096.L85",
+    "end": null,
+    "source": [
+      [
+        659087,
+        null,
+        "Lumber"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6100",
+    "end": null,
+    "source": [
+      [
+        659088,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6100.5",
+    "end": null,
+    "source": [
+      [
+        659089,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6101",
+    "end": null,
+    "source": [
+      [
+        659090,
+        null,
+        "Rights and interests in Indigenous data. Indigenous data sovereignty"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6102",
+    "end": null,
+    "source": [
+      [
+        659091,
+        null,
+        "Ceremonial and funerary artefacts"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6103",
+    "end": null,
+    "source": [
+      [
+        659092,
+        null,
+        "Archaeological/historic sites, burial grounds, etc."
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6104",
+    "end": null,
+    "source": [
+      [
+        659093,
+        null,
+        "Traditional cultural expressions and customs"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6115",
+    "end": null,
+    "source": [
+      [
+        659094,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6120",
+    "end": null,
+    "source": [
+      [
+        659100,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6122",
+    "end": null,
+    "source": [
+      [
+        659101,
+        null,
+        "Environmental justice"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6122.5",
+    "end": null,
+    "source": [
+      [
+        659102,
+        null,
+        "Sustainability/preservation and regeneration of the earth and vegetation. Ethno- environmental protection"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6123",
+    "end": null,
+    "source": [
+      [
+        659103,
+        null,
+        "Preservation of biodiversity"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6124",
+    "end": null,
+    "source": [
+      [
+        659104,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6125",
+    "end": null,
+    "source": [
+      [
+        659105,
+        null,
+        "Impact of climate change on indigenous populations and food production/food security. Climate justice"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6126",
+    "end": null,
+    "source": [
+      [
+        659106,
+        null,
+        "Environmental pollution"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6128",
+    "end": null,
+    "source": [
+      [
+        659107,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6130.D44",
+    "end": null,
+    "source": [
+      [
+        659109,
+        null,
+        "Deforestation"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6130.D47",
+    "end": null,
+    "source": [
+      [
+        659110,
+        null,
+        "Desertification"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6135",
+    "end": null,
+    "source": [
+      [
+        659111,
+        null,
+        "Medical laws. Ancestral medicine and healing practices"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6142",
+    "end": null,
+    "source": [
+      [
+        659112,
+        null,
+        "Police and public safety"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6150",
+    "end": null,
+    "source": [
+      [
+        659113,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6152",
+    "end": null,
+    "source": [
+      [
+        659114,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6153",
+    "end": null,
+    "source": [
+      [
+        659115,
+        null,
+        "Ethnoeducación. Transmission of heritage"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6155",
+    "end": null,
+    "source": [
+      [
+        659116,
+        null,
+        "Interculturalization. Bilinguality. Biliteracy"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6162",
+    "end": null,
+    "source": [
+      [
+        659117,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6166",
+    "end": null,
+    "source": [
+      [
+        659122,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6167",
+    "end": null,
+    "source": [
+      [
+        659123,
+        null,
+        "Tierras Comunitarias de Origen (TOC). Inalienable, indivisible, collectively owned land (propiedad comunitaria)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6170",
+    "end": null,
+    "source": [
+      [
+        659124,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6173",
+    "end": null,
+    "source": [
+      [
+        659138,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6174.I58",
+    "end": null,
+    "source": [
+      [
+        659140,
+        null,
+        "Internally forced displacement of indigenous peoples. Desplazamiento interno de la población indígena"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6178",
+    "end": null,
+    "source": [
+      [
+        659141,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6179",
+    "end": null,
+    "source": [
+      [
+        659142,
+        null,
+        "Pre-colonial (Andean) government structure"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6179.3",
+    "end": null,
+    "source": [
+      [
+        659143,
+        null,
+        "Colonial institutions (Hacienda/feudal system)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6180",
+    "end": null,
+    "source": [
+      [
+        659144,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6181",
+    "end": null,
+    "source": [
+      [
+        659145,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6182",
+    "end": null,
+    "source": [
+      [
+        659146,
+        null,
+        "Administrative/territorial divisions. Markas, Zonas and capitanías"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6182.5",
+    "end": null,
+    "source": [
+      [
+        659147,
+        null,
+        "Sub-regional and territorial councils. Consejo and gran consejo (deliberative)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6183",
+    "end": null,
+    "source": [
+      [
+        659148,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6183.3",
+    "end": null,
+    "source": [
+      [
+        659149,
+        null,
+        "Ayllu (Altiplano)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6184",
+    "end": null,
+    "source": [
+      [
+        659150,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6185",
+    "end": null,
+    "source": [
+      [
+        659151,
+        null,
+        "Planes de vida, planes de organizativos and de salvaguarda patrimonio cultural. Cooperative strategies for socio-economic and cultural community redevelopment"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6186",
+    "end": null,
+    "source": [
+      [
+        659152,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6187",
+    "end": null,
+    "source": [
+      [
+        659153,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6187.2",
+    "end": null,
+    "source": [
+      [
+        659154,
+        null,
+        "Regional/sub-regional centrales indígenas (electoral peasant union centers) and territorial sub-centrales"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6188",
+    "end": null,
+    "source": [
+      [
+        659155,
+        null,
+        "Local/municipal farmers' sindicatos"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6190",
+    "end": null,
+    "source": [
+      [
+        659156,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6191",
+    "end": null,
+    "source": [
+      [
+        659157,
+        null,
+        "Development, conservation, and management of land and natural resources"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6191.5",
+    "end": null,
+    "source": [
+      [
+        659158,
+        null,
+        "Jurisdiction and ownership of land and water"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6192",
+    "end": null,
+    "source": [
+      [
+        659159,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6194",
+    "end": null,
+    "source": [
+      [
+        659160,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6196",
+    "end": null,
+    "source": [
+      [
+        659161,
+        null,
+        "Saneamiento de tierras. Conversion of Tierras Comunitarias de Origen (TOCs) to Territorios Indigena Originario Campesinos titulados (TIOCs)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6197",
+    "end": null,
+    "source": [
+      [
+        659162,
+        null,
+        "Protected areas. Tierras protegidas"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6198",
+    "end": null,
+    "source": [
+      [
+        659163,
+        null,
+        "State-indigenous cooperative management of indigenous lands and resources"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6200",
+    "end": null,
+    "source": [
+      [
+        659164,
+        null,
+        "Land use planning. Planes de uso del suelo"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6220",
+    "end": null,
+    "source": [
+      [
+        659165,
+        null,
+        "Public finance. Taxation. Customs"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6230",
+    "end": null,
+    "source": [
+      [
+        659166,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6232",
+    "end": null,
+    "source": [
+      [
+        659167,
+        null,
+        "Oral legal tradition. Justicia según los códigos no escritos"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6250",
+    "end": null,
+    "source": [
+      [
+        659168,
+        null,
+        "General works"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6265",
+    "end": null,
+    "source": [
+      [
+        659175,
+        null,
+        "Criminal procedure"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6435",
+    "end": null,
+    "source": [
+      [
+        659210,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6471",
+    "end": null,
+    "source": [
+      [
+        659217,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6477",
+    "end": null,
+    "source": [
+      [
+        659219,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6478.C65",
+    "end": null,
+    "source": [
+      [
+        659221,
+        null,
+        "Comunidad de Puerto Yaminahua"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6478.C66",
+    "end": null,
+    "source": [
+      [
+        659222,
+        null,
+        "Comunidad de San Miguel de Machineri"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6511",
+    "end": null,
+    "source": [
+      [
+        659232,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6512.C36",
+    "end": null,
+    "source": [
+      [
+        659234,
+        null,
+        "Capitanía Indígena del Pueblo Esse-Ejja de la Amazonía"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6586",
+    "end": null,
+    "source": [
+      [
+        659243,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6617",
+    "end": null,
+    "source": [
+      [
+        659246,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6618.C65",
+    "end": null,
+    "source": [
+      [
+        659248,
+        null,
+        "Comunidad Indígena Puesto Araona"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6651",
+    "end": null,
+    "source": [
+      [
+        659254,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6666",
+    "end": null,
+    "source": [
+      [
+        659257,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6706",
+    "end": null,
+    "source": [
+      [
+        659261,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6731",
+    "end": null,
+    "source": [
+      [
+        659264,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6732.C36",
+    "end": null,
+    "source": [
+      [
+        659266,
+        null,
+        "Capitanía Indigena Chacobo-Pacahuara"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6780",
+    "end": null,
+    "source": [
+      [
+        659274,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ6855",
+    "end": null,
+    "source": [
+      [
+        659286,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ7120",
+    "end": null,
+    "source": [
+      [
+        659325,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ7480",
+    "end": null,
+    "source": [
+      [
+        659385,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ7697",
+    "end": null,
+    "source": [
+      [
+        659425,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ7737",
+    "end": null,
+    "source": [
+      [
+        659434,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ7738.C65",
+    "end": null,
+    "source": [
+      [
+        659436,
+        null,
+        "Comunidad Indígena Yuracaré y Trinitaria El Pallar"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ7817",
+    "end": null,
+    "source": [
+      [
+        659457,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ7857",
+    "end": null,
+    "source": [
+      [
+        659467,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ7866",
+    "end": null,
+    "source": [
+      [
+        659470,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ7977",
+    "end": null,
+    "source": [
+      [
+        659485,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ7978.C65",
+    "end": null,
+    "source": [
+      [
+        659487,
+        null,
+        "Comunidad Ayoreo Zapocó"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8017",
+    "end": null,
+    "source": [
+      [
+        659493,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8057",
+    "end": null,
+    "source": [
+      [
+        659500,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8058.C65",
+    "end": null,
+    "source": [
+      [
+        659502,
+        null,
+        "Comunidad Ayoreo Santa Teresita"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8137",
+    "end": null,
+    "source": [
+      [
+        659513,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8138.C65",
+    "end": null,
+    "source": [
+      [
+        659515,
+        null,
+        "Comunidad Ayoreo \"Tobité II\""
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8146",
+    "end": null,
+    "source": [
+      [
+        659517,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8217",
+    "end": null,
+    "source": [
+      [
+        659525,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8218.C65",
+    "end": null,
+    "source": [
+      [
+        659527,
+        null,
+        "Comunidad Ayoreo Guaye - Rincón del Tigre"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8260",
+    "end": null,
+    "source": [
+      [
+        659542,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8291",
+    "end": null,
+    "source": [
+      [
+        659549,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8292.C36",
+    "end": null,
+    "source": [
+      [
+        659551,
+        null,
+        "Capitanía del Alto Parapetí"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8306",
+    "end": null,
+    "source": [
+      [
+        659553,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8331",
+    "end": null,
+    "source": [
+      [
+        659557,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8332.C36",
+    "end": null,
+    "source": [
+      [
+        659559,
+        null,
+        "Capitanía del Alto y Bajo Izozog (Bolivia)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8337",
+    "end": null,
+    "source": [
+      [
+        659560,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8371",
+    "end": null,
+    "source": [
+      [
+        659568,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8372.Z66",
+    "end": null,
+    "source": [
+      [
+        659570,
+        null,
+        "Zona Kaaguasu"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8377",
+    "end": null,
+    "source": [
+      [
+        659572,
+        null,
+        "General (Collective)"
+      ],
+      [
+        659571,
+        "KIQ8378",
+        "Comunidades indígenas y interculturales. Indigenous communities"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8411",
+    "end": null,
+    "source": [
+      [
+        659579,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8412.Z66",
+    "end": null,
+    "source": [
+      [
+        659581,
+        null,
+        "Zona Charagua Norte"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8451",
+    "end": null,
+    "source": [
+      [
+        659588,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8452.Z66",
+    "end": null,
+    "source": [
+      [
+        659590,
+        null,
+        "Zona Iupaguasu"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8491",
+    "end": null,
+    "source": [
+      [
+        659597,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8492.C36",
+    "end": null,
+    "source": [
+      [
+        659599,
+        null,
+        "Capitanía del Alto Parapetí"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8551",
+    "end": null,
+    "source": [
+      [
+        659606,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8557",
+    "end": null,
+    "source": [
+      [
+        659608,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8591",
+    "end": null,
+    "source": [
+      [
+        659618,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8592.Z66",
+    "end": null,
+    "source": [
+      [
+        659620,
+        null,
+        "Zona Kaami"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8631",
+    "end": null,
+    "source": [
+      [
+        659627,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8632.Z66",
+    "end": null,
+    "source": [
+      [
+        659629,
+        null,
+        "Zona Charagua Sur"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8677",
+    "end": null,
+    "source": [
+      [
+        659636,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8711",
+    "end": null,
+    "source": [
+      [
+        659644,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8712.Z66",
+    "end": null,
+    "source": [
+      [
+        659646,
+        null,
+        "Zona Huacareta"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8757",
+    "end": null,
+    "source": [
+      [
+        659653,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8791",
+    "end": null,
+    "source": [
+      [
+        659661,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8792.Z66",
+    "end": null,
+    "source": [
+      [
+        659663,
+        null,
+        "Zona Macharetí"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8837",
+    "end": null,
+    "source": [
+      [
+        659670,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8871",
+    "end": null,
+    "source": [
+      [
+        659678,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8872.C36",
+    "end": null,
+    "source": [
+      [
+        659680,
+        null,
+        "Capitanía Weenhayek"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8877",
+    "end": null,
+    "source": [
+      [
+        659681,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8886",
+    "end": null,
+    "source": [
+      [
+        659684,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8911",
+    "end": null,
+    "source": [
+      [
+        659688,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8912.A64",
+    "end": null,
+    "source": [
+      [
+        659690,
+        null,
+        "APG Capitanía Yaku-Igüa"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ8951",
+    "end": null,
+    "source": [
+      [
+        659697,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9091",
+    "end": null,
+    "source": [
+      [
+        659718,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9106",
+    "end": null,
+    "source": [
+      [
+        659721,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9137",
+    "end": null,
+    "source": [
+      [
+        659724,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9138.C65",
+    "end": null,
+    "source": [
+      [
+        659726,
+        null,
+        "Comunidad de Huancalle"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9171",
+    "end": null,
+    "source": [
+      [
+        659732,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9177",
+    "end": null,
+    "source": [
+      [
+        659734,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9211",
+    "end": null,
+    "source": [
+      [
+        659741,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9251",
+    "end": null,
+    "source": [
+      [
+        659748,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9266",
+    "end": null,
+    "source": [
+      [
+        659752,
+        null,
+        "General (Collective)"
+      ],
+      [
+        659751,
+        "KIQ9266.3",
+        "Territorial indigenous organizations"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9297",
+    "end": null,
+    "source": [
+      [
+        659755,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9298.C65",
+    "end": null,
+    "source": [
+      [
+        659757,
+        null,
+        "Comunidad Cantón Lucumpaya"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9306",
+    "end": null,
+    "source": [
+      [
+        659759,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9337",
+    "end": null,
+    "source": [
+      [
+        659762,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9338.C65",
+    "end": null,
+    "source": [
+      [
+        659764,
+        null,
+        "Comunidad Picotani"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9377",
+    "end": null,
+    "source": [
+      [
+        659770,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9378.A95",
+    "end": null,
+    "source": [
+      [
+        659772,
+        null,
+        "Ayllu Aransaya y Urinsaya"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9417",
+    "end": null,
+    "source": [
+      [
+        659778,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9466",
+    "end": null,
+    "source": [
+      [
+        659793,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9506",
+    "end": null,
+    "source": [
+      [
+        659797,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9586",
+    "end": null,
+    "source": [
+      [
+        659807,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9611",
+    "end": null,
+    "source": [
+      [
+        659810,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9612.M37",
+    "end": null,
+    "source": [
+      [
+        659812,
+        null,
+        "Marka Cololo Copacabana Antaquilla"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9651",
+    "end": null,
+    "source": [
+      [
+        659818,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9691",
+    "end": null,
+    "source": [
+      [
+        659824,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9737",
+    "end": null,
+    "source": [
+      [
+        659831,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9777",
+    "end": null,
+    "source": [
+      [
+        659838,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9817",
+    "end": null,
+    "source": [
+      [
+        659845,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9857",
+    "end": null,
+    "source": [
+      [
+        659851,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9897",
+    "end": null,
+    "source": [
+      [
+        659858,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9937",
+    "end": null,
+    "source": [
+      [
+        659865,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "exact",
+    "start": "KIQ9976",
+    "end": null,
+    "source": [
+      [
+        659872,
+        null,
+        "General (Collective)"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "K190",
+    "end": "K197",
+    "source": [
+      [
+        349448,
+        null,
+        "General"
+      ],
+      [
+        349447,
+        "K197",
+        "Ethnological jurisprudence"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "K196",
+    "end": "K197",
+    "source": [
+      [
+        8549,
+        "K197",
+        "Particular peoples, ethnic groups, etc."
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KI1",
+    "end": "KI500",
+    "source": [
+      [
+        60831,
+        null,
+        "General bibliography"
+      ],
+      [
+        60830,
+        "KI2",
+        "Bibliography"
+      ],
+      [
+        60829,
+        "KI500",
+        "Law of indigenous peoples"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KI513.A",
+    "end": "KI513.Z",
+    "source": [
+      [
+        658396,
+        "KI513.Z",
+        "International intergovernmental congresses and standing conferences. By name, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KI565.A",
+    "end": "KI565.Z",
+    "source": [
+      [
+        658407,
+        "KI565.Z",
+        "Special topics, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIA20.2",
+    "end": "KIA8900.2",
+    "source": [
+      [
+        60304,
+        null,
+        "General"
+      ],
+      [
+        55282,
+        "KIA20.3",
+        "Bibliography"
+      ],
+      [
+        42601,
+        "KIA8900.2",
+        "Indigenous law: Arctic and sub-Arctic regions"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIA20.A",
+    "end": "KIA20.Z",
+    "source": [
+      [
+        60302,
+        "KIA20.Z",
+        "Particular branches and subjects of the law, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIA2001",
+    "end": "KIA8580.2",
+    "source": [
+      [
+        42197,
+        "KIA2030",
+        "General"
+      ],
+      [
+        42196,
+        "KIA8580.2",
+        "Indigenous law: Arctic and sub-Arctic regions: Alaska"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIA201",
+    "end": "KIA1999",
+    "source": [
+      [
+        42193,
+        "KIA1999",
+        "Indigenous law: Arctic and sub-Arctic regions: Northern Canada"
+      ],
+      [
+        42194,
+        "KIA230",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIA4.2.A",
+    "end": "KIA4.2.Z",
+    "source": [
+      [
+        60820,
+        "KIA4.2.Z",
+        "Principles and concepts of the law, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIA4.5.A",
+    "end": "KIA4.5.Z",
+    "source": [
+      [
+        60824,
+        "KIA4.5.Z",
+        "Particular branches and subjects of the law, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIA5",
+    "end": "KIA18",
+    "source": [
+      [
+        60181,
+        null,
+        "General"
+      ],
+      [
+        42255,
+        "KIA18",
+        "Indigenous law: North America"
+      ],
+      [
+        56149,
+        "KIA6",
+        "Bibliography"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIB1",
+    "end": "KIB9999",
+    "source": [
+      [
+        59917,
+        null,
+        "General"
+      ],
+      [
+        42554,
+        "KIB2",
+        "Bibliography"
+      ],
+      [
+        42553,
+        "KIB9999",
+        "Indigenous law: Canada: General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIC1",
+    "end": "KIC9881",
+    "source": [
+      [
+        42603,
+        "KIC30",
+        "General"
+      ],
+      [
+        42602,
+        "KIC9881",
+        "Indigenous law: Canada: Eastern"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KID1",
+    "end": "KID8860",
+    "source": [
+      [
+        55278,
+        "KID30",
+        "General"
+      ],
+      [
+        45122,
+        "KID8860",
+        "Indigenous law: Canada: Western"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIE1",
+    "end": "KIE3900",
+    "source": [
+      [
+        42423,
+        null,
+        "General bibliography"
+      ],
+      [
+        59643,
+        "KIE2",
+        "Bibliography"
+      ],
+      [
+        42422,
+        "KIE3900",
+        "Indigenous law: United States: General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIF1",
+    "end": "KIF1820",
+    "source": [
+      [
+        42462,
+        "KIF1820",
+        "Indigenous law: United States: Northeast Atlantic"
+      ],
+      [
+        42463,
+        "KIF30",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIG1",
+    "end": "KIG5350",
+    "source": [
+      [
+        42487,
+        "KIG30",
+        "General"
+      ],
+      [
+        42486,
+        "KIG5350",
+        "Indigenous law: United States: South"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIH1",
+    "end": "KIH5650",
+    "source": [
+      [
+        45126,
+        "KIH30",
+        "General"
+      ],
+      [
+        45123,
+        "KIH5650",
+        "Indigenous law: United States: North Central"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIJ1",
+    "end": "KIJ7050",
+    "source": [
+      [
+        59878,
+        null,
+        "General"
+      ],
+      [
+        59877,
+        "KIJ1.2",
+        "Bibliography"
+      ],
+      [
+        45131,
+        "KIJ30",
+        "General"
+      ],
+      [
+        45124,
+        "KIJ7050",
+        "Indigenous law: United States: Pacific Northwest"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIK1",
+    "end": "KIK6950",
+    "source": [
+      [
+        45133,
+        "KIK30",
+        "General"
+      ],
+      [
+        45125,
+        "KIK6950",
+        "Indigenous law: United States: New Southwest"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIL1",
+    "end": "KIL2020",
+    "source": [
+      [
+        60674,
+        null,
+        "General"
+      ],
+      [
+        60673,
+        "KIL1.2",
+        "Bibliography"
+      ],
+      [
+        60671,
+        "KIL2020",
+        "Indigenous law: Mexico"
+      ],
+      [
+        60672,
+        "KIL30",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIM101",
+    "end": "KIM199",
+    "source": [
+      [
+        61119,
+        null,
+        "General"
+      ],
+      [
+        61117,
+        "KIM101.2",
+        "Bibliography"
+      ],
+      [
+        61116,
+        "KIM130",
+        "General"
+      ],
+      [
+        61364,
+        "KIM199",
+        "Indigenous law: Central America"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIM201",
+    "end": "KIM3000",
+    "source": [
+      [
+        61172,
+        "KIM230",
+        "General"
+      ],
+      [
+        61171,
+        "KIM3000",
+        "Indigenous law: Belize. British Honduras"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIM3101",
+    "end": "KIM6000",
+    "source": [
+      [
+        658494,
+        null,
+        "Bibliography"
+      ],
+      [
+        658493,
+        "KIM3130",
+        "General"
+      ],
+      [
+        658492,
+        "KIM6000",
+        "Indigenous law: Costa Rica"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIM6.2.A",
+    "end": "KIM6.2.Z",
+    "source": [
+      [
+        61053,
+        "KIM6.2.Z",
+        "Individual. By name, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIM7101",
+    "end": "KIM9000",
+    "source": [
+      [
+        61273,
+        "KIM7130",
+        "General"
+      ],
+      [
+        61272,
+        "KIM9000",
+        "Indigenous law: El Salvador"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIM75.A",
+    "end": "KIM75.Z",
+    "source": [
+      [
+        61089,
+        "KIM75.Z",
+        "Public health and health measures, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIN1",
+    "end": "KIN5000",
+    "source": [
+      [
+        658624,
+        null,
+        "Bibliography"
+      ],
+      [
+        658623,
+        "KIN30",
+        "General"
+      ],
+      [
+        658622,
+        "KIN5000",
+        "Indigenous law: Guatemala"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIN5101",
+    "end": "KIN7000",
+    "source": [
+      [
+        61347,
+        "KIN5130",
+        "General"
+      ],
+      [
+        61346,
+        "KIN7000",
+        "Indigenous law: Honduras"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIP1",
+    "end": "KIP3000",
+    "source": [
+      [
+        61415,
+        null,
+        "General"
+      ],
+      [
+        61414,
+        "KIP1.2",
+        "Bibliography"
+      ],
+      [
+        61413,
+        "KIP30",
+        "General"
+      ],
+      [
+        61412,
+        "KIP3000",
+        "Indigenous law: Nicaragua"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6001",
+    "end": "KIQ6030",
+    "source": [
+      [
+        658989,
+        null,
+        "General"
+      ],
+      [
+        658988,
+        "KIQ6030",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6045.A",
+    "end": "KIQ6045.Z",
+    "source": [
+      [
+        659014,
+        "KIQ6045.Z",
+        "Principles and concepts of law, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6047.A",
+    "end": "KIQ6047.Z",
+    "source": [
+      [
+        659021,
+        "KIQ6047.Z",
+        "Particular ethnic or language groups, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6076.A",
+    "end": "KIQ6076.Z",
+    "source": []
+  },
+  {
+    "type": "range",
+    "start": "KIQ6118.A",
+    "end": "KIQ6118.Z",
+    "source": [
+      [
+        659095,
+        "KIQ6118.Z",
+        "Special topics, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6164.A",
+    "end": "KIQ6164.Z",
+    "source": [
+      [
+        659118,
+        "KIQ6164.Z",
+        "Constitutional principles, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6172.A",
+    "end": "KIQ6172.Z",
+    "source": [
+      [
+        659125,
+        "KIQ6172.Z",
+        "Individual rights, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6255.A",
+    "end": "KIQ6255.Z",
+    "source": [
+      [
+        659169,
+        "KIQ6255.Z",
+        "Individual crimes, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6301",
+    "end": "KIQ6330",
+    "source": [
+      [
+        659177,
+        null,
+        "General"
+      ],
+      [
+        659176,
+        "KIQ6330",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6341",
+    "end": "KIQ6370",
+    "source": [
+      [
+        659188,
+        null,
+        "General"
+      ],
+      [
+        659187,
+        "KIQ6370",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6381",
+    "end": "KIQ6410",
+    "source": [
+      [
+        659200,
+        "KIQ6410",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6441",
+    "end": "KIQ6470",
+    "source": [
+      [
+        659211,
+        "KIQ6470",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6481",
+    "end": "KIQ6510",
+    "source": [
+      [
+        659223,
+        "KIQ6510",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6531",
+    "end": "KIQ6570",
+    "source": [
+      [
+        659235,
+        "KIQ6570",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6621",
+    "end": "KIQ6650",
+    "source": [
+      [
+        659249,
+        "KIQ6650",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6741",
+    "end": "KIQ6770",
+    "source": [
+      [
+        659268,
+        "KIQ6770",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6781",
+    "end": "KIQ6810",
+    "source": [
+      [
+        659275,
+        "KIQ6810",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6821",
+    "end": "KIQ6850",
+    "source": [
+      [
+        659281,
+        "KIQ6850",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6861",
+    "end": "KIQ6890",
+    "source": [
+      [
+        659288,
+        "KIQ6890",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6901",
+    "end": "KIQ6930",
+    "source": [
+      [
+        659293,
+        "KIQ6930",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6941",
+    "end": "KIQ6970",
+    "source": [
+      [
+        659298,
+        "KIQ6970",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ6981",
+    "end": "KIQ7010",
+    "source": [
+      [
+        659305,
+        "KIQ7010",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7021",
+    "end": "KIQ7050",
+    "source": [
+      [
+        659310,
+        "KIQ7050",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7061",
+    "end": "KIQ7090",
+    "source": [
+      [
+        659319,
+        "KIQ7090",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7121",
+    "end": "KIQ7150",
+    "source": [
+      [
+        659326,
+        "KIQ7150",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7161",
+    "end": "KIQ7190",
+    "source": [
+      [
+        659333,
+        "KIQ7190",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7201",
+    "end": "KIQ7230",
+    "source": [
+      [
+        659339,
+        "KIQ7230",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7241",
+    "end": "KIQ7270",
+    "source": [
+      [
+        659347,
+        "KIQ7270",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7281",
+    "end": "KIQ7310",
+    "source": [
+      [
+        659354,
+        "KIQ7310",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7321",
+    "end": "KIQ7350",
+    "source": [
+      [
+        659362,
+        "KIQ7350",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7361",
+    "end": "KIQ7390",
+    "source": [
+      [
+        659367,
+        "KIQ7390",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7401",
+    "end": "KIQ7430",
+    "source": [
+      [
+        659372,
+        "KIQ7430",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7441",
+    "end": "KIQ7470",
+    "source": [
+      [
+        659380,
+        "KIQ7470",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7491",
+    "end": "KIQ7520",
+    "source": [
+      [
+        659386,
+        "KIQ7520",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7531",
+    "end": "KIQ7570",
+    "source": [
+      [
+        659392,
+        "KIQ7570",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7581",
+    "end": "KIQ7610",
+    "source": [
+      [
+        659400,
+        "KIQ7610",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7621",
+    "end": "KIQ7650",
+    "source": [
+      [
+        659408,
+        "KIQ7650",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7661",
+    "end": "KIQ7690",
+    "source": [
+      [
+        659416,
+        "KIQ7690",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7701",
+    "end": "KIQ7730",
+    "source": [
+      [
+        659427,
+        "KIQ7730",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7741",
+    "end": "KIQ7770",
+    "source": [
+      [
+        659438,
+        "KIQ7770",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7781",
+    "end": "KIQ7810",
+    "source": [
+      [
+        659450,
+        "KIQ7810",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7821",
+    "end": "KIQ7850",
+    "source": [
+      [
+        659459,
+        "KIQ7850",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7901",
+    "end": "KIQ7930",
+    "source": [
+      [
+        659474,
+        "KIQ7930",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7941",
+    "end": "KIQ7970",
+    "source": [
+      [
+        659480,
+        "KIQ7970",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ7981",
+    "end": "KIQ8010",
+    "source": [
+      [
+        659488,
+        "KIQ8010",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8021",
+    "end": "KIQ8050",
+    "source": [
+      [
+        659495,
+        "KIQ8050",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8061",
+    "end": "KIQ8090",
+    "source": [
+      [
+        659503,
+        "KIQ8090",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8101",
+    "end": "KIQ8130",
+    "source": [
+      [
+        659508,
+        "KIQ8130",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8181",
+    "end": "KIQ8210",
+    "source": [
+      [
+        659520,
+        "KIQ8210",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8221",
+    "end": "KIQ8250",
+    "source": [
+      [
+        659529,
+        "KIQ8250",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8261",
+    "end": "KIQ8290",
+    "source": [
+      [
+        659543,
+        "KIQ8290",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8341",
+    "end": "KIQ8370",
+    "source": [
+      [
+        659562,
+        "KIQ8370",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8381",
+    "end": "KIQ8410",
+    "source": [
+      [
+        659574,
+        "KIQ8410",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8421",
+    "end": "KIQ8450",
+    "source": [
+      [
+        659582,
+        "KIQ8450",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8461",
+    "end": "KIQ8490",
+    "source": [
+      [
+        659591,
+        "KIQ8490",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8521",
+    "end": "KIQ8550",
+    "source": [
+      [
+        659600,
+        "KIQ8550",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8561",
+    "end": "KIQ8590",
+    "source": [
+      [
+        659610,
+        "KIQ8590",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8601",
+    "end": "KIQ8630",
+    "source": [
+      [
+        659621,
+        "KIQ8630",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8641",
+    "end": "KIQ8670",
+    "source": [
+      [
+        659630,
+        "KIQ8670",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8681",
+    "end": "KIQ8710",
+    "source": [
+      [
+        659638,
+        "KIQ8710",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8721",
+    "end": "KIQ8750",
+    "source": [
+      [
+        659647,
+        "KIQ8750",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8761",
+    "end": "KIQ8790",
+    "source": [
+      [
+        659655,
+        "KIQ8790",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8801",
+    "end": "KIQ8830",
+    "source": [
+      [
+        659664,
+        "KIQ8830",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8841",
+    "end": "KIQ8870",
+    "source": [
+      [
+        659672,
+        "KIQ8870",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ8921",
+    "end": "KIQ8950",
+    "source": [
+      [
+        659691,
+        "KIQ8950",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9021",
+    "end": "KIQ9050",
+    "source": [
+      [
+        659702,
+        null,
+        "General"
+      ],
+      [
+        659701,
+        "KIQ9050",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9061",
+    "end": "KIQ9090",
+    "source": [
+      [
+        659712,
+        "KIQ9090",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9141",
+    "end": "KIQ9170",
+    "source": [
+      [
+        659727,
+        "KIQ9170",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9181",
+    "end": "KIQ9210",
+    "source": [
+      [
+        659736,
+        "KIQ9210",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9221",
+    "end": "KIQ9250",
+    "source": [
+      [
+        659743,
+        "KIQ9250",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9341",
+    "end": "KIQ9370",
+    "source": [
+      [
+        659765,
+        "KIQ9370",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9381",
+    "end": "KIQ9410",
+    "source": [
+      [
+        659773,
+        "KIQ9410",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9421",
+    "end": "KIQ9450",
+    "source": [
+      [
+        659781,
+        "KIQ9450",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9541",
+    "end": "KIQ9570",
+    "source": [
+      [
+        659800,
+        "KIQ9570",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9621",
+    "end": "KIQ9650",
+    "source": [
+      [
+        659813,
+        "KIQ9650",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9661",
+    "end": "KIQ9690",
+    "source": [
+      [
+        659820,
+        "KIQ9690",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9701",
+    "end": "KIQ9730",
+    "source": [
+      [
+        659826,
+        "KIQ9730",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9741",
+    "end": "KIQ9770",
+    "source": [
+      [
+        659833,
+        "KIQ9770",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9781",
+    "end": "KIQ9810",
+    "source": [
+      [
+        659840,
+        "KIQ9810",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9821",
+    "end": "KIQ9850",
+    "source": [
+      [
+        659847,
+        "KIQ9850",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9861",
+    "end": "KIQ9890",
+    "source": [
+      [
+        659853,
+        "KIQ9890",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9901",
+    "end": "KIQ9930",
+    "source": [
+      [
+        659860,
+        "KIQ9930",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9941",
+    "end": "KIQ9970",
+    "source": [
+      [
+        659867,
+        "KIQ9970",
+        "General"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIQ9983.A",
+    "end": "KIQ9983.Z",
+    "source": [
+      [
+        659874,
+        "KIQ9983.Z",
+        "Other Territorios Indígena Originario Campesinos, A-Z"
+      ]
+    ]
+  },
+  {
+    "type": "range",
+    "start": "KIR1",
+    "end": "KIR6000",
+    "source": [
+      [
+        659881,
+        "KIR30",
+        "General"
+      ],
+      [
+        659880,
+        "KIR6000",
+        "Indigenous law: Brazil"
+      ]
+    ]
+  }
+]

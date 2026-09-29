@@ -1,0 +1,384 @@
+{
+  "merges": {
+    "53253": {
+      "into": 2925,
+      "old_label": "Bread Making",
+      "surviving_label": "Bread"
+    },
+    "53254": {
+      "into": 2928,
+      "old_label": "Cakes & Cake Decorating",
+      "surviving_label": "Cakes"
+    },
+    "9382": {
+      "into": 2938,
+      "old_label": "Sandwiches",
+      "surviving_label": "Sandwiches"
+    },
+    "9814": {
+      "into": 2942,
+      "old_label": "Cooking Equipment",
+      "surviving_label": "Equipment & Utensils"
+    },
+    "12591": {
+      "into": 3000,
+      "old_label": "French Cooking",
+      "surviving_label": "French Cooking"
+    },
+    "12593": {
+      "into": 3008,
+      "old_label": "Italian Cooking",
+      "surviving_label": "Italian Cooking"
+    },
+    "12589": {
+      "into": 2982,
+      "old_label": "American Cooking",
+      "surviving_label": "American Cooking"
+    },
+    "12677": {
+      "into": 2991,
+      "old_label": "Asian Cooking",
+      "surviving_label": "Asian Cooking"
+    },
+    "6325": {
+      "into": 2975,
+      "old_label": "Raw foods",
+      "surviving_label": "Raw Food"
+    },
+    "9064": {
+      "into": 3033,
+      "old_label": "Natural foods",
+      "surviving_label": "Natural Foods"
+    },
+    "9883": {
+      "into": 2966,
+      "old_label": "Food Presentation",
+      "surviving_label": "Food Presentation"
+    },
+    "3117": {
+      "into": 2909,
+      "old_label": "Cooking",
+      "surviving_label": "Cooking"
+    },
+    "12689": {
+      "into": 13021,
+      "old_label": "The Holy Spirit",
+      "surviving_label": "Holy Spirit"
+    },
+    "11477": {
+      "into": 5800,
+      "old_label": "Systematic",
+      "surviving_label": "Systematic Theology"
+    },
+    "13016": {
+      "into": 5751,
+      "old_label": "Buddhist Doctrine",
+      "surviving_label": "Teachings & Doctrine"
+    },
+    "13059": {
+      "into": 5754,
+      "old_label": "Buddhist Practice & Worship",
+      "surviving_label": "Buddhist Practice & Ritual"
+    },
+    "13048": {
+      "into": 13051,
+      "old_label": "General Christian Apologetics",
+      "surviving_label": "Christian Apologetics"
+    },
+    "8514": {
+      "into": 3219,
+      "old_label": "World Biographies by Language",
+      "surviving_label": "General collective biography"
+    },
+    "13727": {
+      "into": 5604,
+      "old_label": "General Reference Works",
+      "surviving_label": "Reference Books"
+    }
+  },
+  "renamed": {
+    "2925": {
+      "before": "Bread",
+      "after": "Bread & Bread Making"
+    },
+    "2928": {
+      "before": "Cakes",
+      "after": "Cakes & Cake Decorating"
+    },
+    "2942": {
+      "before": "Equipment & Utensils",
+      "after": "Cooking Equipment & Utensils"
+    },
+    "9966": {
+      "before": "Baking. Confectionery",
+      "after": "Baking & Confectionery"
+    }
+  },
+  "moved": [
+    {
+      "id": 2925,
+      "before": [
+        2923
+      ],
+      "after": [
+        9966,
+        2923
+      ]
+    },
+    {
+      "id": 2928,
+      "before": [
+        2923
+      ],
+      "after": [
+        9966,
+        2923
+      ]
+    },
+    {
+      "id": 2909,
+      "before": [
+        2908
+      ],
+      "after": [
+        2908
+      ]
+    },
+    {
+      "id": 6233,
+      "before": [
+        2909
+      ],
+      "after": [
+        2923
+      ]
+    },
+    {
+      "id": 6260,
+      "before": [
+        2909
+      ],
+      "after": [
+        2960
+      ]
+    },
+    {
+      "id": 6547,
+      "before": [
+        2909
+      ],
+      "after": [
+        3026
+      ]
+    },
+    {
+      "id": 6880,
+      "before": [
+        2909
+      ],
+      "after": [
+        5901
+      ]
+    },
+    {
+      "id": 6912,
+      "before": [
+        2909
+      ],
+      "after": [
+        5900
+      ]
+    },
+    {
+      "id": 7079,
+      "before": [
+        2909
+      ],
+      "after": [
+        3026
+      ]
+    },
+    {
+      "id": 7516,
+      "before": [
+        2909
+      ],
+      "after": [
+        2960
+      ]
+    },
+    {
+      "id": 7937,
+      "before": [
+        2909
+      ],
+      "after": [
+        5901
+      ]
+    },
+    {
+      "id": 8843,
+      "before": [
+        2909
+      ],
+      "after": [
+        5901
+      ]
+    },
+    {
+      "id": 9101,
+      "before": [
+        2909
+      ],
+      "after": [
+        2960
+      ]
+    },
+    {
+      "id": 9569,
+      "before": [
+        2909
+      ],
+      "after": [
+        3026
+      ]
+    },
+    {
+      "id": 9849,
+      "before": [
+        2909
+      ],
+      "after": [
+        2923
+      ]
+    },
+    {
+      "id": 9966,
+      "before": [
+        2909
+      ],
+      "after": [
+        2960
+      ]
+    },
+    {
+      "id": 10037,
+      "before": [
+        2909
+      ],
+      "after": [
+        3026
+      ]
+    },
+    {
+      "id": 10076,
+      "before": [
+        2909
+      ],
+      "after": [
+        3026
+      ]
+    },
+    {
+      "id": 10078,
+      "before": [
+        2909
+      ],
+      "after": [
+        3026
+      ]
+    },
+    {
+      "id": 12590,
+      "before": [
+        2909
+      ],
+      "after": [
+        2999
+      ]
+    },
+    {
+      "id": 12592,
+      "before": [
+        2909
+      ],
+      "after": [
+        2999
+      ]
+    },
+    {
+      "id": 12594,
+      "before": [
+        2909
+      ],
+      "after": [
+        2980
+      ]
+    },
+    {
+      "id": 12595,
+      "before": [
+        2909
+      ],
+      "after": [
+        5901
+      ]
+    },
+    {
+      "id": 12596,
+      "before": [
+        2909
+      ],
+      "after": [
+        3026
+      ]
+    },
+    {
+      "id": 12676,
+      "before": [
+        2909
+      ],
+      "after": [
+        2980
+      ]
+    },
+    {
+      "id": 12678,
+      "before": [
+        2909
+      ],
+      "after": [
+        2999
+      ]
+    },
+    {
+      "id": 12679,
+      "before": [
+        2909
+      ],
+      "after": [
+        2980
+      ]
+    },
+    {
+      "id": 13021,
+      "before": [
+        5798
+      ],
+      "after": [
+        5798
+      ]
+    }
+  ],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "scope": "All 14 approved groups, plus five matching cooking pairs discovered while reconciling the two cooking branches. Earlier 72 pending proposals remain unapplied.",
+  "retained_distinctions": [
+    "British & Irish versus narrower national cooking",
+    "Jewish & Israeli versus Jewish & Kosher cooking",
+    "Baking versus broader Baking & Confectionery coverage",
+    "Religious traditions and specialist doctrines"
+  ],
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

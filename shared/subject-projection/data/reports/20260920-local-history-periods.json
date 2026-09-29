@@ -1,0 +1,258 @@
+{
+  "merges": {
+    "50939": {
+      "into": 50921,
+      "old_label": "1775–1865",
+      "surviving_label": "City"
+    },
+    "50940": {
+      "into": 50921,
+      "old_label": "1865–1900",
+      "surviving_label": "City"
+    },
+    "50941": {
+      "into": 50921,
+      "old_label": "1901–1950",
+      "surviving_label": "City"
+    },
+    "50942": {
+      "into": 50921,
+      "old_label": "1951–1980",
+      "surviving_label": "City"
+    },
+    "50943": {
+      "into": 50921,
+      "old_label": "1981–",
+      "surviving_label": "City"
+    },
+    "50947": {
+      "into": 50929,
+      "old_label": "1775–1865",
+      "surviving_label": "Philadelphia"
+    },
+    "50948": {
+      "into": 50929,
+      "old_label": "1865–1950",
+      "surviving_label": "Philadelphia"
+    },
+    "50949": {
+      "into": 50929,
+      "old_label": "1951–",
+      "surviving_label": "Philadelphia"
+    },
+    "50983": {
+      "into": 3467,
+      "old_label": "Colonial Pennsylvania to 1775",
+      "surviving_label": "Pennsylvania"
+    },
+    "50984": {
+      "into": 3467,
+      "old_label": "1775–1865",
+      "surviving_label": "Pennsylvania"
+    },
+    "50985": {
+      "into": 3467,
+      "old_label": "1865–",
+      "surviving_label": "Pennsylvania"
+    },
+    "50913": {
+      "into": 50907,
+      "old_label": "Early to 1848",
+      "surviving_label": "Great Plains"
+    },
+    "50914": {
+      "into": 50907,
+      "old_label": "1848–1860",
+      "surviving_label": "Great Plains"
+    },
+    "50915": {
+      "into": 50907,
+      "old_label": "1860–1880",
+      "surviving_label": "Great Plains"
+    },
+    "50916": {
+      "into": 50907,
+      "old_label": "1880–1950",
+      "surviving_label": "Great Plains"
+    },
+    "50917": {
+      "into": 50907,
+      "old_label": "1951–1980",
+      "surviving_label": "Great Plains"
+    },
+    "50918": {
+      "into": 50907,
+      "old_label": "1981–",
+      "surviving_label": "Great Plains"
+    },
+    "50944": {
+      "into": 50928,
+      "old_label": "1775–1865",
+      "surviving_label": "Boston"
+    },
+    "50945": {
+      "into": 50928,
+      "old_label": "1865–1950",
+      "surviving_label": "Boston"
+    },
+    "50946": {
+      "into": 50928,
+      "old_label": "1951–",
+      "surviving_label": "Boston"
+    },
+    "50979": {
+      "into": 3450,
+      "old_label": "Early Massachusetts to 1775",
+      "surviving_label": "Massachusetts"
+    },
+    "50980": {
+      "into": 3450,
+      "old_label": "1775–1865",
+      "surviving_label": "Massachusetts"
+    },
+    "50981": {
+      "into": 3450,
+      "old_label": "1865–1950",
+      "surviving_label": "Massachusetts"
+    },
+    "50982": {
+      "into": 3450,
+      "old_label": "1951–",
+      "surviving_label": "Massachusetts"
+    },
+    "51300": {
+      "into": 3431,
+      "old_label": "Since 1951",
+      "surviving_label": "Alabama"
+    },
+    "50976": {
+      "into": 3439,
+      "old_label": "1821–1865",
+      "surviving_label": "Florida"
+    },
+    "50977": {
+      "into": 3439,
+      "old_label": "1865–1950",
+      "surviving_label": "Florida"
+    },
+    "50978": {
+      "into": 3439,
+      "old_label": "1951–",
+      "surviving_label": "Florida"
+    },
+    "50818": {
+      "into": 3439,
+      "old_label": "Colonial Florida to 1821",
+      "surviving_label": "Florida"
+    },
+    "50817": {
+      "into": 3447,
+      "old_label": "Colonial Louisiana to 1803",
+      "surviving_label": "Louisiana"
+    },
+    "50936": {
+      "into": 3472,
+      "old_label": "Early Texas to 1846",
+      "surviving_label": "Texas"
+    },
+    "50937": {
+      "into": 3472,
+      "old_label": "1846–1950",
+      "surviving_label": "Texas"
+    },
+    "50938": {
+      "into": 3472,
+      "old_label": "1951–",
+      "surviving_label": "Texas"
+    },
+    "50986": {
+      "into": 3475,
+      "old_label": "Early Virginia to 1775",
+      "surviving_label": "Virginia"
+    },
+    "50987": {
+      "into": 3475,
+      "old_label": "1775–1865",
+      "surviving_label": "Virginia"
+    },
+    "50988": {
+      "into": 3475,
+      "old_label": "1865–1950",
+      "surviving_label": "Virginia"
+    },
+    "50989": {
+      "into": 3475,
+      "old_label": "1951–",
+      "surviving_label": "Virginia"
+    },
+    "51283": {
+      "into": 50911,
+      "old_label": "To 1815",
+      "surviving_label": "Washington, D.C."
+    },
+    "51284": {
+      "into": 50911,
+      "old_label": "1815–1878",
+      "surviving_label": "Washington, D.C."
+    },
+    "51285": {
+      "into": 50911,
+      "old_label": "1878–1950",
+      "surviving_label": "Washington, D.C."
+    },
+    "51286": {
+      "into": 50911,
+      "old_label": "1951–1980",
+      "surviving_label": "Washington, D.C."
+    },
+    "51287": {
+      "into": 50911,
+      "old_label": "1981–",
+      "surviving_label": "Washington, D.C."
+    },
+    "51181": {
+      "into": 3422,
+      "old_label": "Southern, 1775–1865",
+      "surviving_label": "South"
+    },
+    "51182": {
+      "into": 3422,
+      "old_label": "Southern, 1865–1950",
+      "surviving_label": "South"
+    },
+    "51183": {
+      "into": 3422,
+      "old_label": "Southern Since 1951",
+      "surviving_label": "South"
+    },
+    "50933": {
+      "into": 3435,
+      "old_label": "1848–1856",
+      "surviving_label": "California"
+    },
+    "50934": {
+      "into": 3435,
+      "old_label": "1856–1950",
+      "surviving_label": "California"
+    },
+    "50935": {
+      "into": 3435,
+      "old_label": "1951–",
+      "surviving_label": "California"
+    },
+    "51483": {
+      "into": 11448,
+      "old_label": "Berlin, 1945–1990",
+      "surviving_label": "Berlin"
+    }
+  },
+  "renamed": {},
+  "moved": [],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [],
+  "retained_historical_territory": {
+    "id": 50816,
+    "label": "New Netherland 1610–1664"
+  }
+}

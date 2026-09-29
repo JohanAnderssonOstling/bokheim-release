@@ -1,0 +1,149 @@
+{
+  "merges": {
+    "13322": {
+      "into": 5135,
+      "old_label": "Econometrics",
+      "surviving_label": "Econometrics"
+    },
+    "53489": {
+      "into": 5107,
+      "old_label": "Auditing",
+      "surviving_label": "Auditing"
+    },
+    "5180": {
+      "into": 5230,
+      "old_label": "Insurance",
+      "surviving_label": "Insurance"
+    },
+    "13006": {
+      "into": 5127,
+      "old_label": "General Corporate Finance",
+      "surviving_label": "Corporate Finance"
+    },
+    "12758": {
+      "into": 5183,
+      "old_label": "General Investing",
+      "surviving_label": "Investments & Securities"
+    },
+    "52434": {
+      "into": 12253,
+      "old_label": "Women in Other Countries",
+      "surviving_label": "Women by Region or Country"
+    }
+  },
+  "renamed": {
+    "5067": {
+      "before": "Human Evolution",
+      "after": "Human Paleontology"
+    }
+  },
+  "moved": [
+    {
+      "id": 5135,
+      "before": [
+        5593
+      ],
+      "after": [
+        5100
+      ]
+    },
+    {
+      "id": 5067,
+      "before": [
+        5057
+      ],
+      "after": [
+        13004
+      ]
+    },
+    {
+      "id": 5107,
+      "before": [
+        5595
+      ],
+      "after": [
+        5105
+      ]
+    },
+    {
+      "id": 5230,
+      "before": [
+        5142
+      ],
+      "after": [
+        5142
+      ]
+    },
+    {
+      "id": 5142,
+      "before": [
+        5086,
+        5104
+      ],
+      "after": [
+        5104
+      ]
+    },
+    {
+      "id": 52470,
+      "before": [
+        5147
+      ],
+      "after": [
+        5142
+      ]
+    },
+    {
+      "id": 52471,
+      "before": [
+        5147,
+        52470
+      ],
+      "after": [
+        52470
+      ]
+    },
+    {
+      "id": 52472,
+      "before": [
+        5147,
+        52470
+      ],
+      "after": [
+        52470
+      ]
+    },
+    {
+      "id": 52473,
+      "before": [
+        5147
+      ],
+      "after": [
+        52470
+      ]
+    }
+  ],
+  "flattened": [],
+  "created": {},
+  "selector_repairs": [
+    {
+      "from": {
+        "id": 5147,
+        "selector": "HG3810-4000"
+      },
+      "to": [
+        {
+          "id": 5147,
+          "selector": "HG3810-3878.99"
+        },
+        {
+          "id": 52470,
+          "selector": "HG3879-4000"
+        }
+      ],
+      "reason": "LCC distinguishes Foreign Exchange and International Finance at HG3879."
+    }
+  ],
+  "scope_correction": "5067 GN282–GN286.7 is Human Paleontology, not a duplicate of the broader Human Evolution 13004. Renamed and moved under Human Evolution; code scope unchanged.",
+  "validation": "Deferred at user request; usage refresh also deferred."
+}

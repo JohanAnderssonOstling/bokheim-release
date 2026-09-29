@@ -1,0 +1,53 @@
+[package]
+name = "asset-transfer"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+book-access = { path = "../book-access" }
+audiobook-folder = { path = "../../../../shared/audiobook-folder" }
+book-model = { path = "../../../../shared/book-model" }
+client-runtime = { path = "../../../client-runtime" }
+cpu-host = { path = "../cpu-host" }
+thumbnail = { path = "../thumbnail" }
+library-files = { path = "../library-files" }
+library-database = { path = "../library-database" }
+library-runtime = { path = "../library-runtime" }
+client-platform-runtime = { path = "../../../platforms/runtime" }
+rusqlite = { version = "0.40", features = ["bundled"] }
+futures-util = "0.3"
+
+library-model = { path = "../../../library-model" }
+library-replica = { path = "../library-replica" }
+log = "0.4"
+rmp-serde = "1.3"
+serde = { version = "1", features = ["derive"] }
+sync-common = { path = "../../../../shared/sync-common" }
+sync-transport = { path = "../sync-transport" }
+tokio = { version = "1", features = ["macros", "sync", "time"] }
+uuid = { version = "1", features = ["v4"] }
+web-time = "1"
+
+[dev-dependencies]
+library-database = { path = "../library-database", features = ["fixture-sql"] }
+account-client = { path = "../../../account-client" }
+async-channel = "2"
+blake3 = "1"
+book-identity = { path = "../../../../shared/book-identity", features = ["native-write"] }
+client-platform-native = { path = "../../../platforms/native" }
+image = { version = "0.24.9", default-features = false, features = ["jpeg", "png", "webp"] }
+book-metadata = { path = "../book-metadata" }
+test-support = { path = "../../../test-support" }
+axum = "0.7"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "test-util"] }
+
+tempfile = "3"
+
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+reqwest = { version = "0.11", default-features = false, features = ["stream", "rustls-tls"] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+client-platform-web = { path = "../../../platforms/web" }
+reqwest = { version = "0.11", default-features = false, features = ["stream"] }

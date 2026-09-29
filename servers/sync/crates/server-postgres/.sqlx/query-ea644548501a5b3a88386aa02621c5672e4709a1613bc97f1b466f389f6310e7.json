@@ -1,0 +1,14 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO user_storage_account(user_id)\nSELECT id FROM users WHERE id=$1\nON CONFLICT (user_id) DO NOTHING\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "ea644548501a5b3a88386aa02621c5672e4709a1613bc97f1b466f389f6310e7"
+}

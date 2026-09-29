@@ -1,0 +1,89 @@
+{
+  "merges": {
+    "51441": {
+      "into": 3531,
+      "old_label": "Early Stuarts, 1603–1642",
+      "surviving_label": "Stuart Era, 1603–1714"
+    },
+    "51443": {
+      "into": 3531,
+      "old_label": "Later Stuarts, 1660–1702",
+      "surviving_label": "Stuart Era, 1603–1714"
+    },
+    "51444": {
+      "into": 3527,
+      "old_label": "Anne to George II, 1702–1760",
+      "surviving_label": "Georgian Era, 1714–1837"
+    },
+    "51445": {
+      "into": 3527,
+      "old_label": "George III, 1760–1820",
+      "surviving_label": "Georgian Era, 1714–1837"
+    },
+    "51446": {
+      "into": 3527,
+      "old_label": "Regency & Early 19th C., 1801–1837",
+      "surviving_label": "Georgian Era, 1714–1837"
+    },
+    "51434": {
+      "into": 10229,
+      "old_label": "Norman England, 1066–1154",
+      "surviving_label": "Medieval Era, 1066–1485"
+    },
+    "51435": {
+      "into": 10229,
+      "old_label": "Plantagenet England, 1154–1399",
+      "surviving_label": "Medieval Era, 1066–1485"
+    },
+    "51436": {
+      "into": 10229,
+      "old_label": "Lancastrian & Yorkist, 1399–1485",
+      "surviving_label": "Medieval Era, 1066–1485"
+    },
+    "10099": {
+      "into": 3531,
+      "old_label": "17th century",
+      "surviving_label": "Stuart Era, 1603–1714"
+    }
+  },
+  "renamed": {},
+  "moved": [
+    {
+      "id": 3533,
+      "before": [
+        10213
+      ],
+      "after": [
+        54692
+      ]
+    },
+    {
+      "id": 51431,
+      "before": [
+        10213,
+        13353
+      ],
+      "after": [
+        3533,
+        13353
+      ]
+    }
+  ],
+  "flattened": [
+    {
+      "id": 10155,
+      "parent": 54692,
+      "children": []
+    },
+    {
+      "id": 10213,
+      "parent": 54692,
+      "children": []
+    }
+  ],
+  "created": {},
+  "selector_repairs": [],
+  "validation": "Deferred at user request; no tests or classification audit run.",
+  "date_policy": "Approximate era boundaries accepted; exact source selectors and ranges retained.",
+  "usage_refresh": "Deferred with batch validation."
+}

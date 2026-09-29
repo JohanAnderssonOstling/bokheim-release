@@ -1,0 +1,683 @@
+{
+  "merges": {
+    "8448": {
+      "into": 731,
+      "old_label": "Ethnomusicology",
+      "surviving_label": "Ethnomusicology"
+    },
+    "764": {
+      "into": 726,
+      "old_label": "Composition",
+      "surviving_label": "Music Composition"
+    },
+    "7778": {
+      "into": 726,
+      "old_label": "Composition",
+      "surviving_label": "Music Composition"
+    },
+    "8643": {
+      "into": 811,
+      "old_label": "Guitar",
+      "surviving_label": "Guitar"
+    },
+    "775": {
+      "into": 813,
+      "old_label": "Keyboard Techniques",
+      "surviving_label": "Piano & Keyboard"
+    },
+    "778": {
+      "into": 814,
+      "old_label": "String Instrument Techniques",
+      "surviving_label": "Strings"
+    },
+    "9024": {
+      "into": 810,
+      "old_label": "Brass instruments",
+      "surviving_label": "Brass"
+    },
+    "6674": {
+      "into": 815,
+      "old_label": "Woodwind instruments",
+      "surviving_label": "Woodwinds"
+    },
+    "6942": {
+      "into": 812,
+      "old_label": "Percussion instruments",
+      "surviving_label": "Percussion"
+    },
+    "772": {
+      "into": 809,
+      "old_label": "Instrumental techniques",
+      "surviving_label": "Musical Instruments"
+    },
+    "765": {
+      "into": 727,
+      "old_label": "Conducting",
+      "surviving_label": "Conducting & Score Reading"
+    },
+    "770": {
+      "into": 851,
+      "old_label": "Voice",
+      "surviving_label": "Singing & vocal technique"
+    },
+    "819": {
+      "into": 797,
+      "old_label": "Philosophy & Social Aspects",
+      "surviving_label": "Music: Philosophy, Society & Physics"
+    },
+    "8873": {
+      "into": 729,
+      "old_label": "Music Essay Collections",
+      "surviving_label": "Music Essays"
+    },
+    "259": {
+      "into": 264,
+      "old_label": "Electronics",
+      "surviving_label": "Electronics"
+    },
+    "8527": {
+      "into": 270,
+      "old_label": "Microelectronics",
+      "surviving_label": "Microelectronics"
+    },
+    "6326": {
+      "into": 271,
+      "old_label": "Optoelectronics",
+      "surviving_label": "Optoelectronics"
+    },
+    "6321": {
+      "into": 265,
+      "old_label": "Electronic circuits",
+      "surviving_label": "Circuits"
+    },
+    "13194": {
+      "into": 188,
+      "old_label": "Beekeeping",
+      "surviving_label": "Beekeeping"
+    },
+    "2320": {
+      "into": 2199,
+      "old_label": "Educational psychology",
+      "surviving_label": "Educational Psychology"
+    },
+    "218": {
+      "into": 311,
+      "old_label": "Explosives & pyrotechnics",
+      "surviving_label": "Explosives & Pyrotechnics"
+    },
+    "438": {
+      "into": 293,
+      "old_label": "Surveying",
+      "surviving_label": "Surveying"
+    },
+    "8181": {
+      "into": 456,
+      "old_label": "Tribology",
+      "surviving_label": "Tribology"
+    },
+    "682": {
+      "into": 669,
+      "old_label": "Illustration",
+      "surviving_label": "Illustration"
+    },
+    "1089": {
+      "into": 1039,
+      "old_label": "Watercolor Painting",
+      "surviving_label": "Watercolor painting"
+    },
+    "2280": {
+      "into": 2175,
+      "old_label": "Adult & Continuing Education",
+      "surviving_label": "Adult & Continuing Education"
+    },
+    "2287": {
+      "into": 2210,
+      "old_label": "Inclusive education",
+      "surviving_label": "Inclusive Education"
+    },
+    "2283": {
+      "into": 2268,
+      "old_label": "Special Education",
+      "surviving_label": "Special Education"
+    },
+    "12650": {
+      "into": 2180,
+      "old_label": "Classroom Management",
+      "surviving_label": "Classroom Management"
+    },
+    "8751": {
+      "into": 2209,
+      "old_label": "Home schooling",
+      "surviving_label": "Home Schooling"
+    },
+    "13561": {
+      "into": 64,
+      "old_label": "Cybernetics",
+      "surviving_label": "Cybernetics"
+    },
+    "9756": {
+      "into": 101,
+      "old_label": "Information theory",
+      "surviving_label": "Information Theory"
+    },
+    "7238": {
+      "into": 150,
+      "old_label": "Optical data processing",
+      "surviving_label": "Optical Data Processing"
+    },
+    "12574": {
+      "into": 953,
+      "old_label": "Street Photography",
+      "surviving_label": "Street Photography"
+    },
+    "956": {
+      "into": 600,
+      "old_label": "Cinematography & Videography",
+      "surviving_label": "Cinematography & videography"
+    },
+    "7592": {
+      "into": 2607,
+      "old_label": "Evidence-based medicine",
+      "surviving_label": "Evidence-Based Medicine"
+    },
+    "7350": {
+      "into": 2567,
+      "old_label": "Endodontics",
+      "surviving_label": "Endodontics"
+    },
+    "5702": {
+      "into": 574,
+      "old_label": "Architectural History",
+      "surviving_label": "Architectural History Overview"
+    }
+  },
+  "renamed": {
+    "787": {
+      "before": "Music Historical Studies",
+      "after": "Music History & Criticism"
+    },
+    "8945": {
+      "before": "American Music Before 1860",
+      "after": "American Scores Before 1860"
+    },
+    "806": {
+      "before": "Music study abroad",
+      "after": "Music Study Abroad"
+    },
+    "758": {
+      "before": "Music History",
+      "after": "Music Education History"
+    },
+    "8327": {
+      "before": "Individual institutions",
+      "after": "Music School Histories"
+    },
+    "852": {
+      "before": "Systems & methods",
+      "after": "Music Teaching Methods"
+    },
+    "771": {
+      "before": "Instrumental music",
+      "after": "Instrumental Scores"
+    },
+    "774": {
+      "before": "Kids’ Instrumental Music",
+      "after": "Children’s Instrumental Techniques"
+    },
+    "9392": {
+      "before": "Kids’ Instrumental Music",
+      "after": "Children’s Instrumental Scores"
+    },
+    "6278": {
+      "before": "Keyboard instruments",
+      "after": "Children’s Keyboard Techniques"
+    },
+    "9932": {
+      "before": "Ensembles",
+      "after": "Children’s Ensemble Techniques"
+    },
+    "8035": {
+      "before": "Stringed instruments",
+      "after": "Children’s String Techniques"
+    },
+    "8105": {
+      "before": "Other instruments",
+      "after": "Other Children’s Instrument Techniques"
+    },
+    "7191": {
+      "before": "Manuscripts",
+      "after": "Music Manuscript Bibliographies"
+    },
+    "9832": {
+      "before": "Manuscripts",
+      "after": "Music Manuscript Collections"
+    },
+    "7477": {
+      "before": "Manuscript studies",
+      "after": "Music Manuscript Studies"
+    },
+    "9149": {
+      "before": "Orchestra",
+      "after": "Orchestral Scores"
+    },
+    "7698": {
+      "before": "Orchestra",
+      "after": "Orchestral Performance"
+    },
+    "6734": {
+      "before": "Orchestra",
+      "after": "Orchestral Instrumentation"
+    },
+    "9427": {
+      "before": "Percussion",
+      "after": "Percussion Ensemble Techniques"
+    },
+    "775": {
+      "before": "Keyboard instruments",
+      "after": "Keyboard Techniques"
+    },
+    "8862": {
+      "before": "Systems & methods",
+      "after": "Singing Methods"
+    },
+    "10068": {
+      "before": "Vocal music",
+      "after": "Vocal Music History & Criticism"
+    },
+    "9561": {
+      "before": "Popular music",
+      "after": "Popular Music History & Criticism"
+    },
+    "7907": {
+      "before": "Popular music",
+      "after": "Popular Music Analysis"
+    },
+    "738": {
+      "before": "Choral",
+      "after": "Choral Music"
+    },
+    "823": {
+      "before": "Brass",
+      "after": "Brass Scores"
+    },
+    "824": {
+      "before": "Choral",
+      "after": "Choral Scores"
+    },
+    "829": {
+      "before": "Percussion",
+      "after": "Percussion Scores"
+    },
+    "832": {
+      "before": "Strings",
+      "after": "String Scores"
+    },
+    "834": {
+      "before": "Woodwinds",
+      "after": "Woodwind Scores"
+    },
+    "833": {
+      "before": "Vocal",
+      "after": "Vocal Scores"
+    },
+    "822": {
+      "before": "Band & Orchestra",
+      "after": "Band & Orchestra Scores"
+    },
+    "825": {
+      "before": "Guitar & Fretted Instruments",
+      "after": "Guitar & Fretted Instrument Scores"
+    },
+    "831": {
+      "before": "Piano-Vocal-Guitar",
+      "after": "Piano-Vocal-Guitar Scores"
+    },
+    "821": {
+      "before": "Artist Specific",
+      "after": "Artist-Specific Scores"
+    },
+    "826": {
+      "before": "Mixed Collections",
+      "after": "Mixed Score Collections"
+    },
+    "827": {
+      "before": "Musicals, Film & TV",
+      "after": "Musical, Film & TV Scores"
+    },
+    "8332": {
+      "before": "Choral music",
+      "after": "Choral Music Analysis"
+    },
+    "810": {
+      "before": "Brass",
+      "after": "Brass Instruments"
+    },
+    "814": {
+      "before": "Strings",
+      "after": "String Instruments"
+    },
+    "815": {
+      "before": "Woodwinds",
+      "after": "Woodwind Instruments"
+    },
+    "839": {
+      "before": "Religion & Music",
+      "after": "Religious Music"
+    },
+    "8564": {
+      "before": "Religious aspects of music",
+      "after": "Music & Religion Studies"
+    },
+    "6330": {
+      "before": "Folk, National & Ethnic Music",
+      "after": "Folk, National & Ethnic Music History"
+    },
+    "265": {
+      "before": "Circuits",
+      "after": "Electronic Circuits"
+    },
+    "1039": {
+      "before": "Watercolor painting",
+      "after": "Watercolor Painting"
+    },
+    "600": {
+      "before": "Cinematography & videography",
+      "after": "Cinematography & Videography"
+    },
+    "574": {
+      "before": "Architectural History Overview",
+      "after": "Architectural History"
+    },
+    "13605": {
+      "before": "Chemotherapy",
+      "after": "Psychiatric Drug Therapy"
+    }
+  },
+  "moved": [
+    {
+      "id": 731,
+      "before": [
+        720
+      ],
+      "after": [
+        782
+      ]
+    },
+    {
+      "id": 854,
+      "before": [
+        806,
+        5655
+      ],
+      "after": [
+        5655
+      ]
+    },
+    {
+      "id": 8945,
+      "before": [
+        806
+      ],
+      "after": [
+        820
+      ]
+    },
+    {
+      "id": 758,
+      "before": [
+        782
+      ],
+      "after": [
+        762
+      ]
+    },
+    {
+      "id": 852,
+      "before": [
+        807
+      ],
+      "after": [
+        762
+      ]
+    },
+    {
+      "id": 771,
+      "before": [
+        809
+      ],
+      "after": [
+        820
+      ]
+    },
+    {
+      "id": 810,
+      "before": [
+        809
+      ],
+      "after": [
+        779
+      ]
+    },
+    {
+      "id": 815,
+      "before": [
+        809
+      ],
+      "after": [
+        779
+      ]
+    },
+    {
+      "id": 729,
+      "before": [
+        5657
+      ],
+      "after": [
+        782
+      ]
+    },
+    {
+      "id": 811,
+      "before": [
+        809
+      ],
+      "after": [
+        777
+      ]
+    },
+    {
+      "id": 264,
+      "before": [
+        5566
+      ],
+      "after": [
+        250
+      ]
+    },
+    {
+      "id": 2199,
+      "before": [
+        5673
+      ],
+      "after": [
+        2315
+      ]
+    },
+    {
+      "id": 669,
+      "before": [
+        662
+      ],
+      "after": [
+        662,
+        678
+      ]
+    },
+    {
+      "id": 1039,
+      "before": [
+        1032
+      ],
+      "after": [
+        1032
+      ]
+    },
+    {
+      "id": 2180,
+      "before": [
+        5673
+      ],
+      "after": [
+        2323
+      ]
+    },
+    {
+      "id": 64,
+      "before": [
+        5571
+      ],
+      "after": [
+        5571,
+        4779
+      ]
+    },
+    {
+      "id": 101,
+      "before": [
+        5571
+      ],
+      "after": [
+        64
+      ]
+    },
+    {
+      "id": 150,
+      "before": [
+        5571
+      ],
+      "after": [
+        5571,
+        277
+      ]
+    },
+    {
+      "id": 953,
+      "before": [
+        936
+      ],
+      "after": [
+        936,
+        9294
+      ]
+    },
+    {
+      "id": 600,
+      "before": [
+        510,
+        915
+      ],
+      "after": [
+        915
+      ]
+    },
+    {
+      "id": 574,
+      "before": [],
+      "after": [
+        193
+      ]
+    },
+    {
+      "id": 51864,
+      "before": [],
+      "after": [
+        5586
+      ]
+    },
+    {
+      "id": 4652,
+      "before": [],
+      "after": [
+        4665
+      ]
+    },
+    {
+      "id": 4655,
+      "before": [],
+      "after": [
+        4664
+      ]
+    },
+    {
+      "id": 13605,
+      "before": [
+        5448
+      ],
+      "after": [
+        2837
+      ]
+    }
+  ],
+  "flattened": [
+    {
+      "id": 791,
+      "parent": 5944,
+      "children": [
+        7477,
+        9832
+      ]
+    },
+    {
+      "id": 5946,
+      "parent": 782,
+      "children": [
+        786,
+        788,
+        792,
+        793,
+        795,
+        799
+      ]
+    },
+    {
+      "id": 5660,
+      "parent": 720,
+      "children": [
+        762,
+        807,
+        808
+      ]
+    }
+  ],
+  "created": {
+    "54943": "Music Scores Before 1700"
+  },
+  "selector_repairs": [
+    {
+      "system": "lcc",
+      "selector": "M2.5",
+      "action": "remove erroneous prefix from study-abroad subject; MT2.5 is the source-supported code"
+    },
+    {
+      "system": "lcc",
+      "selector": "MT2.5",
+      "from": 762,
+      "to": 806
+    },
+    {
+      "system": "lcc",
+      "range": [
+        "M4",
+        "M1480"
+      ],
+      "from": 806,
+      "to": 771
+    },
+    {
+      "system": "lcc",
+      "selector": "M1490",
+      "from": 806,
+      "to": 54943
+    }
+  ]
+}

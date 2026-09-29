@@ -1,0 +1,558 @@
+label_group,concept_id,preferred_label,selectors_json,paths
+16th century,3553,16th Century,"{""lcc_range"": [[""DC111"", ""DC120""]]}",History > By Region > European > West > French > By Period > 16th Century
+16th century,4348,16th Century,"{""bisac_selector"": [[""LIT024010""]]}",Literature > Literary Criticism > Periods & Movements > Modern Literary Criticism > 16th Century
+16th century,7378,16th century,"{""lcc_range"": [[""PQ1600"", ""PQ1713""]]}",Literature > Romance > France > Modern > 16th century
+16th century,10412,16th century,"{""lcc_selector"": [[""DT202""], [""DT262""]]}","History > By Region > African > North > Maghrib. Barbary States > Piracy, 1516–1830 > 16th century"
+abstract machines & automata,13329,Abstract Machines & Automata,"{""bisac_selector"": [[""MAT008000""]]}",Science & Nature > Mathematics > Mathematical Foundations > Discrete Mathematics > Abstract Machines & Automata
+abstract machines & automata,13826,Abstract Machines & Automata,"{""lcc_range"": [[""QA267"", ""QA268.5""]]}",Science & Nature > Mathematics > Algebra & Number Theory > Algebra > Abstract Machines & Automata
+aerodynamics,4872,Aerodynamics,"{""bisac_selector"": [[""SCI084000""]]}",Science & Nature > Physics > Mechanics & Fluids > Aerodynamics
+aerodynamics,7722,Aerodynamics,"{""lcc_range"": [[""TL570"", ""TL574""]]}",Applied Sciences & Technology > Transportation > Vehicle & Aerospace Engineering > Aeronautical Engineering > Aerodynamics
+aging,3164,Aging,"{""bisac_selector"": [[""SEL005000""]]}","Personal Growth > Grief, Safety & Life Changes > Aging"
+aging,6976,Aging,"{""lcc_selector"": [[""QH529""]]}",Science & Nature > Biology > Life > Aging
+american cooking,2982,American Cooking,"{""bisac_selector"": [[""CKB002000""]]}",Home & Hobbies > Cooking > Regional & Ethnic > American Cooking
+american cooking,12589,American Cooking,"{""lcc_range"": [[""TX715"", ""TX715.2""]]}",Home & Hobbies > Home economics > Cooking > American Cooking
+archaeology,3484,Archaeology,"{""lcc_range"": [[""CC1"", ""CC960""]]}",History > Auxiliary Sciences > Archaeology
+archaeology,5492,Archaeology,"{""bisac_selector"": [[""SOC003000""]]}",Social Sciences > Archaeology || Social Sciences > Anthropology > Archaeology
+archaeology,10528,Archaeology,"{""lcc_range"": [[""E77.8"", ""E77.94""]]}",History > By Region > The Americas > Indians of North America > Archaeology
+argentine,4157,Argentine,"{""bisac_selector"": [[""FIC085000""]]}",Literature > American & Caribbean > South American > Argentine
+argentine,10499,Argentine,"{""lcc_selector"": [[""F2831""]], ""lcc_range"": [[""F2801"", ""F3031.52""]], ""ddc_selector"": [[""982""]]}",History > By Region > Latin American > Argentine
+asian american,3947,Asian American,"{""bisac_selector"": [[""FIC054000""]]}",Literature > Genres > Cultural Heritage Fiction > Asian American
+asian american,50882,Asian American,"{""lcc_selector"": [[""E184.A75""], [""E184.E15""], [""E184.K3""], [""E184.M65""], [""E184.O6""], [""E184.T53""]]}",History > By Region > North American > U.S. > Other Population Groups > Asian American
+asian cooking,2991,Asian Cooking,"{""bisac_selector"": [[""CKB090000""]]}",Home & Hobbies > Cooking > Regional & Ethnic > Asian Cooking
+asian cooking,12677,Asian Cooking,"{""lcc_range"": [[""TX724.5"", ""TX724.5""]]}",Home & Hobbies > Home economics > Cooking > Asian Cooking
+astrology,3265,Astrology,"{""bisac_selector"": [[""OCC002000""]]}","Body, Mind & Spirit > Divination & Symbolic Systems > Astrology"
+astrology,3295,Astrology,"{""lcc_range"": [[""BF1651"", ""BF1729""]]}","Body, Mind & Spirit > Occult & Esoteric Traditions > Occult sciences > Astrology"
+astrophysics,4782,Astrophysics,"{""lcc_range"": [[""QB460"", ""QB466""]]}",Science & Nature > Astronomy & Space Science > Astrophysics
+astrophysics,4881,Astrophysics,"{""bisac_selector"": [[""SCI005000""]]}",Science & Nature > Physics > Astrophysics
+atlases,2369,Atlases,"{""lcc_range"": [[""G1000"", ""G3122""], [""G1054"", ""G1055""], [""G1059"", ""G1061""]], ""ddc_selector"": [[""912""]]}","Geography, Places & Travel > Atlases"
+atlases,2550,Atlases,"{""bisac_selector"": [[""MED101000""]]}","Health & Medicine > Education, Ethics & Reference > Atlases"
+australia & new zealand,3678,Australia & New Zealand,"{""bisac_selector"": [[""HIS004000""]]}",History > By Region > Oceanian > Australia & New Zealand
+australia & new zealand,12229,Australia & New Zealand,"{""lcc_range"": [[""PE3600"", ""PE3602.2""]]}",Language > Languages & Language Families > Indo-European Languages > Germanic Languages > English Language > Dialects & Regional English > Australia & New Zealand
+australian,3677,Australian,"{""lcc_selector"": [[""DU110""], [""DU112""]], ""ddc_selector"": [[""994""]]}",History > By Region > Oceanian > Australia & New Zealand > Australian
+australian,4158,Australian,"{""bisac_selector"": [[""FIC087000""]]}",Literature > East Asian & Pacific > Australian
+austria,4159,Austria,"{""bisac_selector"": [[""FIC088000""]]}",Literature > Germanic & Nordic > Austria
+austria,11600,Austria,"{""lcc_selector"": [[""JN1601""], [""JN1604""], [""JN1607""], [""JN1611""], [""JN1621-JN1635.2""], [""JN1651""], [""JN1713-JN1721""], [""JN1751-JN1871.2""], [""JN1941""], [""JN1951-JN1975""], [""JN1993-JN1998""], [""JN1998.8-JN1999""]], ""lcc_range"": [[""JN1601"", ""JN2049""]]}",Social Sciences > Politics & Government > By Region > Europe > Austria
+austria,13480,Austria,"{""lcc_range"": [[""JS4501"", ""JS4655""]]}",Social Sciences > Politics & Government > Government & Administration > Local & Municipal Government > Europe > Austria
+austria,52888,Austria,"{""lcc_range"": [[""JV7800"", ""JV7895""]]}",Social Sciences > Politics & Government > International Relations > Colonization & Migration > Europe > Austria
+authorship,3839,Authorship,"{""bisac_selector"": [[""LAN002000""]]}",Language > Writing > Authorship
+authorship,4370,Authorship,"{""lcc_selector"": [[""PN111""], [""PN137""], [""PN141""], [""PN165""], [""PN245""]], ""lcc_range"": [[""PN101"", ""PN109""], [""PN131"", ""PN133""]]}",Literature > General Literary Studies > Authorship
+authorship,10834,Authorship,"{""lcc_selector"": [[""B52.7""]]}",Philosophy > Philosophy Reference > Authorship
+baltic states,3519,Baltic States,"{""bisac_selector"": [[""HIS005000""]]}",History > By Region > European > North > Baltic States
+baltic states,13474,Baltic States,"{""lcc_range"": [[""GR204"", ""GR204.8""]]}",Social Sciences > Anthropology > Folklore > Regional Folklore > European Folklore > Baltic States
+baltic states,52895,Baltic States,"{""lcc_range"": [[""JV8192.5"", ""JV8193""]]}",Social Sciences > Politics & Government > International Relations > Colonization & Migration > Europe > Baltic States
+beverages,2911,Beverages,"{""bisac_selector"": [[""CKB100000""]]}",Home & Hobbies > Cooking > Beverages || Home & Hobbies > Home economics > Cooking > Beverages
+beverages,6302,Beverages,"{""lcc_range"": [[""TX412"", ""TX415""]]}",Home & Hobbies > Home economics > Nutrition & Food Supply > Beverages
+biochemistry,2553,Biochemistry,"{""bisac_selector"": [[""MED008000""]]}",Health & Medicine > Biomedical Foundations & Research > Biochemistry
+biochemistry,4845,Biochemistry,"{""bisac_selector"": [[""SCI007000""]], ""ddc_selector"": [[""572""]]}",Science & Nature > Biology > Life Sciences > Molecular & Cellular Biology > Biochemistry
+biochemistry,9226,Biochemistry,"{""lcc_range"": [[""QD415"", ""QD436""], [""QD431"", ""QD431.7""]]}",Science & Nature > Chemistry > Organic chemistry > Biochemistry
+biophysics,4847,Biophysics,"{""bisac_selector"": [[""SCI009000""]]}",Science & Nature > Biology > Life Sciences > Molecular & Cellular Biology > Biophysics
+biophysics,8984,Biophysics,"{""lcc_selector"": [[""QH505""]]}",Science & Nature > Biology > Life > Biophysics
+biotechnology,213,Biotechnology,"{""lcc_range"": [[""TP248.13"", ""TP248.65""], [""TP248.185"", ""TP248.195""]]}",Applied Sciences & Technology > Chemical & Process Engineering > Chemical technology > Biotechnology
+biotechnology,2555,Biotechnology,"{""bisac_selector"": [[""MED009000""]]}",Health & Medicine > Biomedical Foundations & Research > Biotechnology
+biotechnology,4813,Biotechnology,"{""bisac_selector"": [[""SCI010000""]]}",Science & Nature > Biology > Biotechnology
+bipolar disorder,3186,Bipolar Disorder,"{""bisac_selector"": [[""SEL020010""]]}",Personal Growth > Emotions > Mood Disorders > Bipolar Disorder
+bipolar disorder,5439,Bipolar Disorder,"{""bisac_selector"": [[""PSY022030""]]}",Health & Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Bipolar Disorder || Health & Medicine > Internal Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Bipolar Disorder || Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Bipolar Disorder || Social Sciences > Psychology > Applied > Clinical Psychology > Mental Health > Psychopathology > Bipolar Disorder
+bipolar disorder,12662,Bipolar Disorder,"{""lcc_range"": [[""RC516"", ""RC516""]]}",Health & Medicine > Internal Medicine > Psychopathology > Bipolar Disorder
+birds,3149,Birds,"{""bisac_selector"": [[""PET002000""]]}",Home & Hobbies > Pets > Birds
+birds,4987,Birds,"{""bisac_selector"": [[""NAT043000""]]}",Science & Nature > Nature & Natural History > Animals > Birds
+birds,7957,Birds,"{""lcc_range"": [[""QL671"", ""QL699""]]}",Science & Nature > Zoology > Chordates. Vertebrates > Birds
+botany,4797,Botany,"{""lcc_selector"": [[""QK""], [""QK1-989""]], ""lcc_range"": [[""QK1"", ""QK989""]], ""ddc_selector"": [[""580""]]}",Science & Nature > Botany
+botany,4848,Botany,"{""bisac_selector"": [[""SCI011000""]], ""ddc_selector"": [[""575""]]}",Science & Nature > Biology > Life Sciences > Botany
+bridges,231,Bridges,"{""bisac_selector"": [[""TEC009100""]]}","Applied Sciences & Technology > Civil, Structural & Construction > Civil > Bridges"
+bridges,6452,Bridges,"{""lcc_range"": [[""HE374"", ""HE377""]]}",Applied Sciences & Technology > Transportation > Transport & Communications > Land & Urban Transportation > Traffic Engineering > Bridges
+buildings,561,Buildings,"{""bisac_selector"": [[""ARC024000""]]}","Arts & Media > Architecture > Buildings by Type & Use > Buildings || Applied Sciences & Technology > Civil, Structural & Construction > Architecture > Buildings by Type & Use > Buildings"
+buildings,51290,Buildings,"{""lcc_range"": [[""F204.A"", ""F204.Z""]]}","History > By Region > North American > U.S. > Local > South > Washington, D.C. > Buildings"
+business,2505,Business,"{""bisac_selector"": [[""TRV026010""]]}","Geography, Places & Travel > Travel > Special Interest > Business"
+business,5086,Business,"{""lcc_selector"": [[""HF4999.2-6182""], [""HF5001-6182""]], ""lcc_range"": [[""HF4999.2"", ""HF6182""], [""HF5511.22"", ""HF5511.232""], [""HF5548.125"", ""HF5548.6""]], ""ddc_selector"": [[""650""]]}",Social Sciences > Economics & Business > Commerce > Business
+business management,5596,Business Management,"{""bisac_selector"": [[""BUS041000""]]}",Social Sciences > Economics & Business > Business Management
+business management,8928,Business management,"{""lcc_range"": [[""LB2341.92"", ""LB2341.95""]]}",Education > Teaching & Learning > Education Theory & Practice > Higher education > Business management
+cancer,2642,Cancer,"{""bisac_selector"": [[""HEA039030""]]}",Health & Medicine > Health & Fitness > Diseases & Conditions > Cancer
+cancer,2946,Cancer,"{""bisac_selector"": [[""CKB103000""]]}",Home & Hobbies > Cooking > Healthy Cooking & Nutrition > Cancer
+cancer,6749,Cancer,"{""lcc_selector"": [[""RC261-RC271""]], ""lcc_range"": [[""RC261"", ""RC271""]]}",Health & Medicine > Internal Medicine > Tumors & Oncology > Cancer
+career development,2186,Career Development,"{""bisac_selector"": [[""EDU031000""]]}","Education > Students, Inclusion & Support > Counseling > Career Development"
+career development,5959,Career Development,"{""lcc_range"": [[""HF5381"", ""HF5382.5""]]}",Social Sciences > Economics & Business > Careers > Career Development
+career development,12266,Career Development,"{""lcc_selector"": [[""HF5385""], [""HF5386.5""]], ""lcc_range"": [[""HF5381"", ""HF5386.9""]]}",Social Sciences > Economics & Business > Commerce > Business > Career Development
+cats,3150,Cats,"{""bisac_selector"": [[""PET003000""], [""PET003010""]]}",Home & Hobbies > Pets > Cats
+cats,12461,Cats,"{""lcc_range"": [[""SF441"", ""SF450.Z""]]}",Applied Sciences & Technology > Agriculture > Animal Husbandry > Specialty Animal Care > Cats
+central,2428,Central,"{""lcc_selector"": [[""DT620.27""]], ""bisac_selector"": [[""TRV002010""]]}","Geography, Places & Travel > Travel > African Travel > Central"
+central,2434,Central,"{""bisac_selector"": [[""TRV003010""]]}","Geography, Places & Travel > Travel > Asian Travel > Central"
+central,3329,Central,"{""lcc_range"": [[""DT348"", ""DT363.3""], [""DT349.72"", ""DT349.74""], [""DT352.42"", ""DT352.43""]], ""bisac_selector"": [[""HIS001010""]], ""ddc_selector"": [[""967""]]}",History > By Region > African > Central
+central,3552,Central,"{""lcc_selector"": [[""DAW""], [""DB""], [""DB1091""], [""DB2700""], [""DB2701""], [""DB2702""], [""DB2702.A""], [""DB2702.Z""], [""DB2703""], [""DB2704""], [""DB2705""], [""DB2706""], [""DB2709""], [""DB2711""], [""DB2712""], [""DB2713""], [""DB2718""], [""DB2719""], [""DB2720""], [""DB2721""], [""DB2722""], [""DB2850""], [""DB2850.A""], [""DB2850.Z""], [""DB879""], [""DB9992""]], ""lcc_range"": [[""DAW1001"", ""DAW1051""], [""DAW1026"", ""DAW1028""], [""DAW1030.2"", ""DAW1051""], [""DAW1032"", ""DAW1034""], [""DAW1044"", ""DAW1045""], [""DB101"", ""DB785""], [""DB881"", ""DB898""], [""DB891"", ""DB894""]], ""ddc_selector"": [[""943""]]}",History > By Region > European > Central
+central,11573,Central,"{""lcc_range"": [[""DK845"", ""DK860""], [""DK855.4"", ""DK855.5""], [""DK855.8"", ""DK855.83""], [""DK857.7"", ""DK857.75""], [""DK859.5"", ""DK859.57""], [""DS327"", ""DS329.4""], [""DS328.3"", ""DS328.4""], [""DS329.6"", ""DS329.8""]], ""bisac_selector"": [[""HIS050000""]], ""ddc_selector"": [[""958""]]}",History > By Region > Asian > Central
+central american,4166,Central American,"{""bisac_selector"": [[""FIC092000""]]}",Literature > American & Caribbean > Central American
+central american,52180,Central American,"{""lcc_selector"": [[""E184.C34""], [""E184.G82""], [""E184.H66""], [""E184.N53""], [""E184.P35""]]}",History > By Region > North American > U.S. > Other Population Groups > Central American
+child abuse,13275,Child Abuse,"{""lcc_selector"": [[""HV6626.23.C2""]], ""lcc_range"": [[""HV6626.5"", ""HV6626.54""]]}",Social Sciences > Criminology > Child Abuse
+child abuse,51343,Child Abuse,"{""bisac_selector"": [[""FAM001010""]]}",Family & Relationships > Family Abuse > Child Abuse
+children,941,Children,"{""bisac_selector"": [[""PHO023020""]]}","Arts & Media > Photography & Imaging > Collections, Subjects & Reference > Subjects & Themes > Children"
+children,4571,Children,"{""bisac_selector"": [[""REL109020""]]}",Religion > Christianity > Christian Ministry > Children
+children,5471,Children,"{""lcc_selector"": [[""HV835-941""]]}",Social Sciences > Social Welfare & Services > Social Welfare > Children
+children,10739,Children,"{""lcc_selector"": [[""D804.48""]]}",History > Eras > Modern > 20th Century > World War II > Holocaust > Special groups of Jewish victims > Children || History > Military > World Wars > World War II > Holocaust > Special groups of Jewish victims > Children
+children,12795,Children,"{""lcc_range"": [[""HV701"", ""HV1420.5""]]}",Social Sciences > Social Welfare & Services > Social Welfare > Special classes > Children
+chilean,3428,Chilean,"{""lcc_selector"": [[""F3081""]], ""lcc_range"": [[""F3051"", ""F3285""], [""F3069"", ""F3072""], [""F3074"", ""F3076""]], ""ddc_selector"": [[""983""]]}",History > By Region > Latin American > Chilean
+chilean,4167,Chilean,"{""bisac_selector"": [[""FIC093000""]]}",Literature > American & Caribbean > South American > Chilean
+chinese,3493,Chinese,"{""lcc_selector"": [[""DS735.A2""], [""DS736""]], ""lcc_range"": [[""DS701"", ""DS713.99""], [""DS733"", ""DS779.32""], [""DS734.7"", ""DS734.97""], [""DS735.A2"", ""DS735.Z""], [""DS735.A3"", ""DS735.Z""], [""DS740.4"", ""DS740.5""], [""DS740.6"", ""DS740.65""]], ""bisac_selector"": [[""HIS008000""]], ""ddc_selector"": [[""931""], [""951""]]}",History > By Region > Asian > East > Chinese
+chinese,4168,Chinese,"{""bisac_selector"": [[""FIC094000""]]}",Literature > East Asian & Pacific > Chinese
+chinese,4265,Chinese,{},"Literature > East Asian & Pacific > Asian, African & Oceanian > Chinese"
+chinese,7964,Chinese,"{""lcc_range"": [[""PL2250"", ""PL3208""]]}","Literature > East Asian & Pacific > Asian, African & Oceanian > Chinese Language > Chinese"
+chinese language,3715,Chinese Language,"{""bisac_selector"": [[""FOR003000""]]}",Language > Languages & Language Families > East & Southeast Asian Languages > Chinese Language
+chinese language,4264,Chinese Language,"{""lcc_range"": [[""PL1001"", ""PL3208""]]}","Literature > East Asian & Pacific > Asian, African & Oceanian > Chinese Language"
+christian education,2276,Christian Education,"{""lcc_range"": [[""LC446"", ""LC454""], [""LC461"", ""LC510""], [""LC531"", ""LC629""]]}","Education > Students, Inclusion & Support > Education Support Topics > Christian Education"
+christian education,4567,Christian Education,"{""bisac_selector"": [[""REL011000""], [""REL091000""], [""REL095000""]], ""ddc_selector"": [[""268""]]}",Religion > Christianity > Christian Ministry > Christian Education
+christian living,4568,Christian Living,"{""bisac_selector"": [[""REL012000""]]}",Religion > Christianity > Christian Living
+christian living,12913,Christian Living,"{""lcc_range"": [[""BX2347"", ""BX2348""], [""BX2349"", ""BX2377""], [""BX2380"", ""BX2387.2""]]}",Religion > Christianity > Christian Denominations > Catholic > Catholic Worship & Devotion > Christian Living
+christian science,4585,Christian Science,"{""bisac_selector"": [[""REL083000""]]}",Religion > Christianity > Christian Denominations > Christian Science
+christian science,13792,Christian Science,"{""lcc_range"": [[""BX6901"", ""BX6997""]]}",Religion > Christianity > Christian Denominations > Protestantism > Christian Science
+civil service,2344,Civil Service,"{""bisac_selector"": [[""STU007000""]]}",Study Aids > Professional Exam Guides > Civil Service
+civil service,52665,Civil Service,"{""lcc_range"": [[""JN425"", ""JN453""]]}",Social Sciences > Politics & Government > By Region > Europe > Britain > Civil Service
+classical,739,Classical,"{""bisac_selector"": [[""MUS006000""]]}",Arts & Media > Music > Genres & Styles > Classical
+classical,5588,Classical,"{""lcc_selector"": [[""PA""]]}",Literature > Classical
+colombian,4172,Colombian,"{""bisac_selector"": [[""FIC095000""]]}",Literature > American & Caribbean > South American > Colombian
+colombian,5542,Colombian,"{""lcc_selector"": [[""F2271""]], ""lcc_range"": [[""F2251"", ""F2299""], [""F2269"", ""F2270.2""], [""F2270.4"", ""F2270.6""]]}",History > By Region > Latin American > Colombian
+color,957,Color,"{""bisac_selector"": [[""PHO020000""]]}","Arts & Media > Photography & Imaging > Photo Methods, Gear & Materials > Photography Techniques > Color"
+color,1079,Color,"{""bisac_selector"": [[""ART051000""]]}","Arts & Media > Visual Arts > Media, Techniques & Practices > Visual Art Techniques > Color"
+color,8981,Color,"{""lcc_range"": [[""ND1486"", ""ND1495""]], ""ddc_selector"": [[""752""]]}","Arts & Media > Visual Arts > Media, Techniques & Practices > Painting > Technique & materials > Color"
+color,9762,Color,"{""lcc_range"": [[""QC494"", ""QC496.9""]]}",Science & Nature > Physics > Radiation Physics > Color
+comedy,861,Comedy,"{""bisac_selector"": [[""PER015000""]]}",Arts & Media > Performing Arts > Comedy
+comedy,878,Comedy,"{""bisac_selector"": [[""PER004090""]]}",Arts & Media > Performing Arts > Film > Genres > Comedy || Literature > General Literary Studies > Film > Genres > Comedy
+comedy,900,Comedy,"{""bisac_selector"": [[""PER010080""]]}",Arts & Media > Performing Arts > Television > Genres > Comedy
+comedy,9839,Comedy,"{""lcc_range"": [[""PA3552.92"", ""PA3553.Z8""]]}",Literature > Classical > Greek > Greek Literary Criticism > Comedy
+communication,6376,Communication,"{""lcc_selector"": [[""HM258""]]}",Social Sciences > Psychology > Social > Communication
+communication,11769,Communication,"{""bisac_selector"": [[""POL050000""]]}",Social Sciences > Politics & Government > Public Policy & Civil Society > Public Policy > Communication
+composition,3842,Composition,"{""bisac_selector"": [[""LAN005040""]]}",Language > Writing > Composition
+composition,9796,Composition,"{""lcc_selector"": [[""NC740""]]}",Arts & Media > Design & Decorative Arts > Drawing & Illustration > Drawing Techniques > Composition
+construction,238,Construction,"{""bisac_selector"": [[""TEC005000""]]}","Applied Sciences & Technology > Civil, Structural & Construction > Construction"
+construction,5161,Construction,"{""bisac_selector"": [[""BUS070160""]]}",Social Sciences > Economics & Business > Industries > Construction
+construction,8050,Construction,"{""lcc_range"": [[""TF863"", ""TF952""]]}","Applied Sciences & Technology > Transportation > Railway Engineering & Operation > Electric railways > Construction || Applied Sciences & Technology > Civil, Structural & Construction > Railway Engineering & Operation > Electric railways > Construction"
+cooking,2909,Cooking,"{""bisac_selector"": [[""CKB000000""]]}",Home & Hobbies > Cooking
+cooking,3117,Cooking,"{""lcc_selector"": [[""TX648""], [""TX650""], [""TX726.4""], [""TX814.5.A75""], [""TX814.5.C35""], [""TX814.5.C63""], [""TX814.5.F5""], [""TX814.5.G4""], [""TX814.5.H45""], [""TX814.5.H66""], [""TX814.5.J35""], [""TX814.5.K83""], [""TX814.5.L68""], [""TX814.5.M63""], [""TX814.5.P38""], [""TX814.5.P66""], [""TX814.5.P76""], [""TX814.5.R53""], [""TX814.5.R58""], [""TX814.5.R6""], [""TX814.5.S34""], [""TX814.5.S44""], [""TX814.5.S47""], [""TX814.5.T45""], [""TX814.5.T48""], [""TX814.5.T63""], [""TX814.5.T64""], [""TX814.5.T65""]], ""lcc_range"": [[""TX651"", ""TX652.95""], [""TX661"", ""TX669""], [""TX703"", ""TX726.3""], [""TX815"", ""TX817""]]}",Home & Hobbies > Home economics > Cooking
+cosmology,4783,Cosmology,"{""lcc_range"": [[""QB980"", ""QB991""]]}",Science & Nature > Astronomy & Space Science > Cosmology
+cosmology,4894,Cosmology,"{""bisac_selector"": [[""SCI015000""]]}",Science & Nature > Astronomy & Space Science > Space Science > Cosmology
+crusades,3687,Crusades,"{""bisac_selector"": [[""HIS027350""]]}",History > Military > Eras & Early Wars > Crusades
+crusades,10347,Crusades,"{""lcc_range"": [[""D151"", ""D173""]]}",History > By Region > European > By Period > Medieval > Crusades
+crystallography,4805,Crystallography,"{""lcc_selector"": [[""QD901-999""], [""QD999""]], ""ddc_selector"": [[""548""]]}",Science & Nature > Chemistry > Crystallography
+crystallography,4883,Crystallography,"{""bisac_selector"": [[""SCI016000""]]}",Science & Nature > Physics > Crystallography
+data transmission systems,247,Data Transmission Systems,"{""bisac_selector"": [[""TEC071000""], [""TEC071010""]]}",Applied Sciences & Technology > Electrical & Electronic Engineering > Data Transmission Systems
+data transmission systems,9162,Data transmission systems,"{""lcc_range"": [[""TK5105"", ""TK5105.45""]]}",Applied Sciences & Technology > Electrical & Electronic Engineering > Electrical Engineering > Telecommunication > Data transmission systems
+decorative crafts,3050,Decorative Crafts,"{""bisac_selector"": [[""CRA005000""]]}",Home & Hobbies > Crafts & Hobbies > Decorative Crafts
+decorative crafts,9269,Decorative crafts,"{""lcc_selector"": [[""TT927""]], ""lcc_range"": [[""TT855"", ""TT926""]]}",Home & Hobbies > Crafts & Hobbies > Mixed Media Crafts & Reference > Arts & Crafts > Home Crafts > Decorative crafts
+diseases,2597,Diseases,"{""bisac_selector"": [[""MED022000""]], ""ddc_selector"": [[""616""]]}",Health & Medicine > Diseases
+diseases,10034,Diseases,"{""lcc_range"": [[""LB3416"", ""LB3418""]]}",Education > Teaching & Learning > Education Theory & Practice > School & College Healthcare > Diseases
+dogs,3151,Dogs,"{""bisac_selector"": [[""PET004000""]]}",Home & Hobbies > Pets > Dogs
+dogs,12460,Dogs,"{""lcc_range"": [[""SF421"", ""SF440.2.Z""]]}",Applied Sciences & Technology > Agriculture > Animal Husbandry > Specialty Animal Care > Dogs
+dolls,524,Dolls,"{""bisac_selector"": [[""ANT015000""]]}","Arts & Media > Antiques & Collectibles > Toys, Dolls & Miniatures > Dolls || Arts & Media > Design & Decorative Arts > Decorative Arts > Toys, Dolls & Miniatures > Dolls"
+dolls,7064,Dolls,"{""lcc_range"": [[""TT175"", ""TT175.7""]]}",Home & Hobbies > Crafts & Hobbies > Mixed Media Crafts & Reference > Arts & Crafts > Articles for children > Dolls
+east,2429,East,"{""bisac_selector"": [[""TRV002020""], [""TRV002030""]]}","Geography, Places & Travel > Travel > African Travel > East"
+east,2435,East,"{""bisac_selector"": [[""TRV003030""]]}","Geography, Places & Travel > Travel > Asian Travel > East"
+east,3332,East,"{""lcc_selector"": [[""DT365.196""], [""DT365.3""], [""DT365.4""], [""DT365.58""], [""DT365.59""]], ""lcc_range"": [[""DT365.42"", ""DT365.45""], [""DT365.62"", ""DT365.63""]], ""bisac_selector"": [[""HIS001020""]], ""ddc_selector"": [[""963""]]}",History > By Region > African > East
+east,3494,East,"{""lcc_selector"": [[""DS520-689""], [""DS701-799.9""]], ""lcc_range"": [[""DS501"", ""DS518.9""]]}",History > By Region > Asian > East
+east,3522,East,"{""lcc_selector"": [[""DJK""], [""DK""]], ""bisac_selector"": [[""HIS010010""], [""HIS032000""], [""TRV009040""]], ""ddc_selector"": [[""947""]]}",History > By Region > European > East
+eastern,3266,Eastern,"{""bisac_selector"": [[""OCC030000""]]}","Body, Mind & Spirit > Divination & Symbolic Systems > Astrology > Eastern"
+eastern,4293,Eastern,"{""bisac_selector"": [[""LCO008010""]]}",Literature > Genres > Literary Collections > European Literary Collections > Eastern
+eastern,4330,Eastern,"{""bisac_selector"": [[""LIT004110""]]}",Literature > Literary Criticism > Regions & Literary Traditions > European Literary Criticism > Eastern
+eastern,10652,Eastern,"{""lcc_range"": [[""D550"", ""D569.5""]]}",History > Eras > Modern > 20th Century > World War I > Military operations > Eastern || History > Military > World Wars > World War I > Military operations > Eastern
+eating disorders,5443,Eating Disorders,"{""bisac_selector"": [[""PSY011000""]]}",Health & Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Eating Disorders || Health & Medicine > Internal Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Eating Disorders || Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Eating Disorders || Social Sciences > Psychology > Applied > Clinical Psychology > Mental Health > Psychopathology > Eating Disorders
+eating disorders,12668,Eating Disorders,"{""lcc_range"": [[""RC552.A"", ""RC552.Z""]]}",Health & Medicine > Internal Medicine > Psychopathology > Eating Disorders
+ecology,4790,Ecology,"{""lcc_range"": [[""QH540"", ""QH549.5""], [""QH541.2"", ""QH541.264""], [""QH541.27"", ""QH541.273""]], ""ddc_selector"": [[""577""]]}",Science & Nature > Biology > Ecology
+ecology,4851,Ecology,"{""bisac_selector"": [[""SCI020000""]]}",Science & Nature > Biology > Life Sciences > Ecology
+ecology,5001,Ecology,"{""bisac_selector"": [[""NAT010000""]]}",Science & Nature > Nature & Natural History > Ecosystems & Habitats > Ecology
+econometrics,5135,Econometrics,"{""bisac_selector"": [[""BUS021000""]]}",Social Sciences > Economics & Business > Economic Theory > Econometrics
+econometrics,13322,Econometrics,"{""lcc_range"": [[""HB139"", ""HB147""]]}",Social Sciences > Economics & Business > Economic Theory > Economic Research Methods > Econometrics
+education,2169,Education,"{""lcc_selector"": [[""(L)""], [""L""], [""L995""], [""LH""]], ""lcc_range"": [[""L"", ""L""], [""L1"", ""L6.99""], [""L792"", ""L796.99""], [""L899"", ""L899.99""], [""L98"", ""L110.99""], [""LC"", ""LC""]], ""bisac_selector"": [[""EDU000000""]], ""ddc_selector"": [[""370""]]}",Education
+education,3684,Education,"{""bisac_selector"": [[""HIS035000""]], ""ddc_selector"": [[""907""]]}",History > Education
+education,5138,Education,"{""bisac_selector"": [[""BUS024000""]]}",Social Sciences > Economics & Business > Work > Education
+education,10561,Education,"{""lcc_range"": [[""E96"", ""E97.65""]]}",History > By Region > The Americas > Indians of North America > Education
+electrochemistry,4818,Electrochemistry,"{""bisac_selector"": [[""SCI013100""]]}",Science & Nature > Chemistry > Electrochemistry
+electrochemistry,7828,Electrochemistry,"{""lcc_range"": [[""QD551"", ""QD578""]]}",Science & Nature > Chemistry > Physical & Theoretical Chem. > Electrochemistry
+embryology,2600,Embryology,"{""bisac_selector"": [[""MED025000""]]}",Health & Medicine > Biomedical Foundations & Research > Embryology
+embryology,5052,Embryology,"{""lcc_range"": [[""QL951"", ""QL991""]]}",Science & Nature > Zoology > Embryology
+embryology,9214,Embryology,"{""lcc_selector"": [[""QK665""]]}",Science & Nature > Botany > Plant anatomy > Embryology
+emergency management,275,Emergency Management,"{""bisac_selector"": [[""TEC065000""]]}","Applied Sciences & Technology > Environmental, Energy & Safety > Emergency Management"
+emergency management,5475,Emergency management,"{""lcc_range"": [[""HV551.2"", ""HV639""]]}",Social Sciences > Social Welfare & Services > Disasters & Disaster Relief > Emergency management
+emotions,3178,Emotions,"{""bisac_selector"": [[""SEL042000""]]}",Personal Growth > Emotions
+emotions,5398,Emotions,"{""lcc_selector"": [[""BF511""], [""BF575""], [""BF578""]], ""lcc_range"": [[""BF531"", ""BF593""]], ""bisac_selector"": [[""PSY013000""]]}",Social Sciences > Psychology > Emotions
+emotions,6200,Emotions,"{""lcc_selector"": [[""NX650.E46""]]}","Arts & Media > Visual Arts > History, Theory & Education > Arts in general > Art Subjects > Emotions"
+erotica,607,Erotica,"{""bisac_selector"": [[""CGN004020""]]}",Arts & Media > Comics & Graphic Novels > Erotica
+erotica,942,Erotica,"{""bisac_selector"": [[""PHO023030""]]}","Arts & Media > Photography & Imaging > Collections, Subjects & Reference > Subjects & Themes > Erotica"
+erotica,1067,Erotica,"{""bisac_selector"": [[""ART050050""]]}",Arts & Media > Visual Arts > Art Themes & Movements > Subjects & Themes > Erotica
+erotica,3938,Erotica,"{""bisac_selector"": [[""FIC049030""]]}",Literature > Genres > Cultural Heritage Fiction > African American & Black > Erotica
+erotica,3972,Erotica,"{""bisac_selector"": [[""FIC005000""]]}",Literature > Genres > Erotica
+erotica,5245,Erotica,"{""lcc_range"": [[""HQ450"", ""HQ472""], [""HQ461"", ""HQ470""]]}","Social Sciences > Family, Population & Migration > Family, Gender & Life Course > Gender & Sexuality > Erotica"
+espionage,4132,Espionage,"{""bisac_selector"": [[""FIC006000""]]}",Literature > Genres > Thrillers > Espionage
+espionage,5266,Espionage,"{""bisac_selector"": [[""TRU001000""]]}",Social Sciences > Criminology > True Crime > Espionage
+espionage,51129,Espionage,"{""lcc_range"": [[""E279"", ""E280.999""]]}","History > By Region > North American > U.S. > By Period > Revolutionary Period, 1775–1800 > Espionage"
+essays,3516,Essays,"{""bisac_selector"": [[""HIS049000""]], ""ddc_selector"": [[""902""]]}",History > Essays
+essays,5399,Essays,"{""bisac_selector"": [[""PSY055000""]]}",Social Sciences > Psychology > Research & Assessment > Essays
+essays,5498,Essays,"{""bisac_selector"": [[""SOC041000""]]}",Social Sciences > Methods & Reference > Essays
+essays,6665,Essays,"{""lcc_selector"": [[""D725""]]}","History > Eras > Modern > 20th Century > Interwar Period, 1919–1939 > Essays"
+ethics,2606,Ethics,"{""bisac_selector"": [[""MED050000""]]}","Health & Medicine > Education, Ethics & Reference > Ethics"
+ethics,4494,Ethics,"{""lcc_selector"": [[""BJ""]], ""lcc_range"": [[""BJ"", ""BJ""], [""BJ1"", ""BJ1725""]], ""bisac_selector"": [[""PHI005000""]], ""ddc_selector"": [[""170""], [""179""]]}",Philosophy > Ethics
+ethics,4837,Ethics,"{""bisac_selector"": [[""SCI101000""]]}","Science & Nature > History, Philosophy & Society > Ethics"
+ethics,10895,Ethics,"{""lcc_selector"": [[""BF76.4""]]}",Social Sciences > Psychology > Professional Practice > Ethics
+ethics,11474,Ethics,"{""bisac_selector"": [[""REL067070""]]}","Religion > Christianity > Christian Theology > Church, Ethics & Society > Ethics"
+etymology,3779,Etymology,"{""bisac_selector"": [[""LAN024000""]], ""ddc_selector"": [[""412""]]}","Language > Linguistics > Words, Sound & Writing Systems > Etymology"
+etymology,7330,Etymology,"{""lcc_range"": [[""P321"", ""P324.5""]]}",Language > Linguistics > Language Structure & Meaning > Comparative Grammar & Linguistics > Etymology
+etymology,12194,Etymology,"{""lcc_range"": [[""PE1571"", ""PE1599""]]}",Language > Languages & Language Families > Indo-European Languages > Germanic Languages > English Language > Etymology
+evolution,4793,Evolution,"{""lcc_range"": [[""QH359"", ""QH425""], [""QH366"", ""QH366.2""]]}",Science & Nature > Biology > Evolution
+evolution,4852,Evolution,"{""bisac_selector"": [[""SCI027000""]]}",Science & Nature > Biology > Life Sciences > Evolution
+evolution,6840,Evolution,"{""lcc_selector"": [[""QL607.5""]]}",Science & Nature > Zoology > Chordates. Vertebrates > Evolution
+exercises,766,Exercises,"{""bisac_selector"": [[""MUS016000""]]}",Arts & Media > Music > Instruction & Study > Exercises
+exercises,7906,Exercises,"{""lcc_selector"": [[""PN4197""]]}",Literature > General Literary Studies > Oratory & Elocution > Exercises
+eye,2862,Eye,"{""bisac_selector"": [[""MED085100""]]}",Health & Medicine > Surgery > Surgical Specialties by System > Eye
+eye,8597,Eye,"{""lcc_selector"": [[""RC73.5""], [""RC73.55""]]}",Health & Medicine > Internal Medicine > Internal Medicine Diagnosis > Eye
+family,2509,Family,"{""bisac_selector"": [[""TRV011000""]]}","Geography, Places & Travel > Travel > Special Interest > Family"
+family,4446,Family,"{""bisac_selector"": [[""POE023050""]]}",Literature > Genres > Poetry > Subjects & Themes > Family
+family,10386,Family,"{""lcc_selector"": [[""E113""]]}",History > By Region > The Americas > Exploration of the Americas > Columbus Cristoforo Colombo > Family
+family & relationships,5241,Family & Relationships,"{""bisac_selector"": [[""FAM000000""]]}",Family & Relationships
+family & relationships,5252,Family & Relationships,"{""lcc_selector"": [[""HQ503-1064""]], ""lcc_range"": [[""HQ503"", ""HQ1064""]]}","Social Sciences > Family, Population & Migration > Family, Gender & Life Course > Family & Relationships"
+feminist,4338,Feminist,"{""bisac_selector"": [[""LIT003000""]]}",Literature > Literary Criticism > Identity & Critical Perspectives > Feminist
+feminist,10982,Feminist,"{""lcc_selector"": [[""BF201.4""]]}","Social Sciences > Psychology > History, Theory & Schools > Movements > Feminist"
+finance,2202,Finance,"{""bisac_selector"": [[""EDU013000""]]}",Education > Finance
+finance,5142,Finance,"{""lcc_selector"": [[""HD39-40.7""], [""HG""], [""HG1-199""], [""HG1-9999""]], ""lcc_range"": [[""HF5551"", ""HF5585""], [""HG"", ""HG""]], ""bisac_selector"": [[""BUS027000""]], ""ddc_selector"": [[""332""]]}",Social Sciences > Economics & Business > Commerce > Business > Finance || Social Sciences > Economics & Business > Finance
+finance,9117,Finance,"{""lcc_selector"": [[""HE5618""]]}",Applied Sciences & Technology > Transportation > Transport & Communications > Land & Urban Transportation > Automotive transportation > Finance
+flowers,5021,Flowers,"{""bisac_selector"": [[""NAT013000""]]}",Science & Nature > Nature & Natural History > Plants > Flowers
+flowers,6868,Flowers,"{""lcc_selector"": [[""NX650.F57""]]}","Arts & Media > Visual Arts > History, Theory & Education > Arts in general > Art Subjects > Flowers"
+fluid mechanics,5035,Fluid Mechanics,"{""bisac_selector"": [[""SCI085000""]], ""ddc_selector"": [[""532""], [""533""]]}",Science & Nature > Physics > Mechanics & Fluids > Fluid Mechanics
+fluid mechanics,8328,Fluid Mechanics,"{""lcc_range"": [[""QC138"", ""QC168.86""]]}",Science & Nature > Physics > Mechanics & Fluids > Experimental & Descriptive Mechanics > Fluid Mechanics
+food,944,Food,"{""bisac_selector"": [[""PHO023110""]]}","Arts & Media > Photography & Imaging > Collections, Subjects & Reference > Subjects & Themes > Food"
+food,6743,Food,"{""lcc_selector"": [[""NX650.F64""]]}","Arts & Media > Visual Arts > History, Theory & Education > Arts in general > Art Subjects > Food"
+food presentation,2966,Food Presentation,"{""bisac_selector"": [[""CKB033000""]]}",Home & Hobbies > Cooking > Methods & Equipment > Food Presentation
+food presentation,9883,Food Presentation,"{""lcc_selector"": [[""TX740.5""]]}",Home & Hobbies > Home economics > Cooking > Food Presentation
+french cooking,3000,French Cooking,"{""bisac_selector"": [[""CKB034000""]]}",Home & Hobbies > Cooking > Regional & Ethnic > European Cooking > French Cooking
+french cooking,12591,French Cooking,"{""lcc_range"": [[""TX719"", ""TX719.2""]]}",Home & Hobbies > Home economics > Cooking > French Cooking
+french literary criticism,4332,French Literary Criticism,"{""bisac_selector"": [[""LIT004150""]]}",Literature > Literary Criticism > Regions & Literary Traditions > European Literary Criticism > French Literary Criticism
+french literary criticism,9551,French Literary Criticism,"{""lcc_range"": [[""PQ69"", ""PQ96""]]}",Literature > Romance > France > French Literary Studies > French Literary Criticism
+furniture,527,Furniture,"{""bisac_selector"": [[""ANT017000""]]}",Arts & Media > Antiques & Collectibles > Art & Furniture Collectibles > Furniture
+furniture,653,Furniture,"{""lcc_range"": [[""NK2200"", ""NK2750""], [""NK2267"", ""NK2268""]], ""ddc_selector"": [[""749""]]}",Arts & Media > Design & Decorative Arts > Decorative Arts > Furniture
+furniture,677,Furniture,"{""bisac_selector"": [[""DES006000""]]}",Arts & Media > Design & Decorative Arts > Furniture
+furniture,7769,Furniture,"{""lcc_range"": [[""TT194"", ""TT199.4""]]}",Home & Hobbies > Crafts & Hobbies > Mixed Media Crafts & Reference > Arts & Crafts > Woodworking & Upholstery > Furniture
+genetics,2611,Genetics,"{""bisac_selector"": [[""MED107000""]]}",Health & Medicine > Biomedical Foundations & Research > Genetics
+genetics,4794,Genetics,"{""lcc_range"": [[""QH426"", ""QH470""], [""QH430"", ""QH434""], [""QH440"", ""QH440.5""], [""QH440.7"", ""QH440.8""]], ""ddc_selector"": [[""576""]]}",Science & Nature > Biology > Genetics
+geology,4827,Geology,"{""bisac_selector"": [[""SCI031000""]], ""ddc_selector"": [[""551""], [""553""]]}",Science & Nature > Earth & Environmental Sciences > Earth sciences > Geology
+geology,4904,Geology,"{""lcc_selector"": [[""QE""], [""QE1-996.5""]], ""lcc_range"": [[""QE1"", ""QE996.5""]]}",Science & Nature > Geology
+german literary criticism,4333,German Literary Criticism,"{""bisac_selector"": [[""LIT004170""]]}",Literature > Literary Criticism > Regions & Literary Traditions > European Literary Criticism > German Literary Criticism
+german literary criticism,8065,German Literary Criticism,"{""lcc_selector"": [[""PT81""]], ""lcc_range"": [[""PT69"", ""PT80""]]}",Literature > Germanic & Nordic > German > Studies > German Literary Criticism
+glass,690,Glass,"{""lcc_range"": [[""NK5100"", ""NK5440""]], ""ddc_selector"": [[""748""]]}",Arts & Media > Design & Decorative Arts > Decorative Arts > Glass
+glass,1013,Glass,"{""bisac_selector"": [[""ART061000""]]}","Arts & Media > Visual Arts > Media, Techniques & Practices > Sculpture & Applied Arts > Glass"
+greece,3482,Greece,"{""bisac_selector"": [[""HIS002010""]], ""ddc_selector"": [[""938""]]}",History > By Region > European > South > Greek > By Period > Greece
+greece,4192,Greece,"{""bisac_selector"": [[""FIC103000""]], ""ddc_selector"": [[""880""], [""881""], [""882""], [""883""], [""884""], [""885""], [""886""], [""887""], [""888""], [""889""]]}",Literature > Classical > Greece
+greece,11605,Greece,"{""lcc_selector"": [[""JN5001""], [""JN5004""], [""JN5016""], [""JN5031-JN5061.2""], [""JN5063.99-JN5143""], [""JN5147-JN5181""], [""JN5183""], [""JN5190-JN5191""]], ""lcc_range"": [[""JN5001"", ""JN5191""]]}",Social Sciences > Politics & Government > By Region > Europe > Greece
+greece,13485,Greece,"{""lcc_range"": [[""JS5601"", ""JS5638""]]}",Social Sciences > Politics & Government > Government & Administration > Local & Municipal Government > Europe > Greece
+greece,52891,Greece,"{""lcc_range"": [[""JV8110"", ""JV8119""]]}",Social Sciences > Politics & Government > International Relations > Colonization & Migration > Europe > Greece
+growth,4556,Growth,"{""bisac_selector"": [[""REL108010""]]}",Religion > Christianity > Church & Organization > Growth
+growth,6647,Growth,"{""lcc_selector"": [[""QH511""]]}",Science & Nature > Biology > Life > Growth
+hardware,88,Hardware,"{""lcc_selector"": [[""QA76.5""], [""QA76.52""], [""QA76.8""]], ""bisac_selector"": [[""COM067000""]]}",Applied Sciences & Technology > Computing & IT > Computer Systems & Hardware > Hardware
+hardware,137,Hardware,"{""bisac_selector"": [[""COM075000""]]}",Applied Sciences & Technology > Computing & IT > Networks & Internet > Networking > Hardware
+hardware,9648,Hardware,"{""lcc_range"": [[""TS399.2"", ""TS405""]]}",Applied Sciences & Technology > Industrial Production > Metalworking > Hardware
+histology,2696,Histology,"{""bisac_selector"": [[""MED110000""]]}",Health & Medicine > Biomedical Foundations & Research > Histology
+histology,7051,Histology,"{""lcc_selector"": [[""QK671""]]}",Science & Nature > Botany > Plant anatomy > Histology
+historical geography,52174,Historical Geography,"{""lcc_selector"": [[""DS706.5""], [""DS706.7""]]}",History > By Region > Asian > East > Chinese > Historical Geography
+historical geography,54919,Historical Geography,"{""bisac_selector"": [[""HIS052000""]]}",History > Historical Geography
+homeopathy,2673,Homeopathy,"{""bisac_selector"": [[""HEA030000""]]}",Health & Medicine > Health & Fitness > Homeopathy
+homeopathy,2700,Homeopathy,"{""lcc_selector"": [[""RX""]], ""lcc_range"": [[""RX1"", ""RX681""], [""RX211"", ""RX581""], [""RX221"", ""RX226""], [""RX241"", ""RX261""], [""RX281"", ""RX301""], [""RX305"", ""RX309""], [""RX311"", ""RX316""], [""RX321"", ""RX326""], [""RX331"", ""RX336""], [""RX341"", ""RX346""], [""RX351"", ""RX356""], [""RX366"", ""RX376""], [""RX390"", ""RX395""], [""RX401"", ""RX431""], [""RX441"", ""RX456""], [""RX460"", ""RX476""], [""RX501"", ""RX531""], [""RX561"", ""RX581""], [""RX601"", ""RX675""], [""RX631"", ""RX637""], [""RX671"", ""RX675""]]}",Health & Medicine > Traditional & Complementary Med. > Homeopathy
+horses,3157,Horses,"{""bisac_selector"": [[""PET006000""]]}",Home & Hobbies > Pets > Horses
+horses,4991,Horses,"{""bisac_selector"": [[""NAT016000""]]}",Science & Nature > Nature & Natural History > Animals > Horses
+horses,12926,Horses,"{""lcc_range"": [[""SF277"", ""SF360.4""]]}",Applied Sciences & Technology > Agriculture > Animal Husbandry > Livestock & Working Animals > Horses
+humanism,4526,Humanism,"{""bisac_selector"": [[""PHI010000""]], ""ddc_selector"": [[""144""]]}",Philosophy > Movements & Schools > Modern Movements > Humanism
+humanism,9597,Humanism,"{""lcc_selector"": [[""NX650.H8""]]}","Arts & Media > Visual Arts > History, Theory & Education > Arts in general > Art Subjects > Humanism"
+humor,4341,Humor,"{""bisac_selector"": [[""LIT016000""]]}",Literature > Literary Criticism > Genres & Forms > Humor
+humor,4387,Humor,"{""lcc_range"": [[""PN6157"", ""PN6222""]]}",Literature > General Literary Studies > Humor
+humor,6958,Humor,"{""lcc_selector"": [[""NX650.W58""]]}","Arts & Media > Visual Arts > History, Theory & Education > Arts in general > Art Subjects > Humor"
+humor,7527,Humor,"{""lcc_range"": [[""PR931"", ""PR937""]]}",Literature > English > English essays > Humor || Literature > English > English letters > Humor || Literature > English > Oratory & Speeches > Humor
+hvac,205,HVAC,"{""lcc_range"": [[""TH7005"", ""TH7699""], [""TH7010"", ""TH7015""]], ""ddc_selector"": [[""697""]]}","Applied Sciences & Technology > Civil, Structural & Construction > Building construction > HVAC"
+hvac,243,HVAC,"{""bisac_selector"": [[""TEC005050""]]}","Applied Sciences & Technology > Civil, Structural & Construction > Construction > HVAC"
+hydrodynamics,4874,Hydrodynamics,"{""bisac_selector"": [[""SCI095000""]]}",Science & Nature > Physics > Mechanics & Fluids > Hydrodynamics
+hydrodynamics,9995,Hydrodynamics,"{""lcc_range"": [[""TC171"", ""TC181""]]}","Applied Sciences & Technology > Civil, Structural & Construction > Hydraulics > Technical hydraulics > Hydrodynamics"
+hydrology,2424,Hydrology,"{""lcc_range"": [[""GB651"", ""GB2998""], [""GB657"", ""GB657.2""], [""GB980"", ""GB2998""]]}","Geography, Places & Travel > Physical geography > Hydrology || Science & Nature > Earth & Environmental Sciences > Physical geography > Hydrology"
+hydrology,4828,Hydrology,"{""bisac_selector"": [[""SCI081000""]]}",Science & Nature > Earth & Environmental Sciences > Earth sciences > Hydrology
+idealism,4527,Idealism,"{""bisac_selector"": [[""PHI042000""]], ""ddc_selector"": [[""141""]]}",Philosophy > Movements & Schools > Modern Movements > Idealism
+idealism,10946,Idealism,"{""lcc_selector"": [[""B3185""]]}","Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Germany. Austria German > Later 19th & 20th centuries > Idealism"
+immigration,11774,Immigration,"{""bisac_selector"": [[""POL070000""]]}",Social Sciences > Politics & Government > Public Policy & Civil Society > Public Policy > Immigration
+immigration,12443,Immigration,"{""lcc_selector"": [[""JV6198.2-JV6348""]], ""lcc_range"": [[""JV6198"", ""JV6349.9""]]}",Social Sciences > Politics & Government > International Relations > Colonization & Migration > Immigration
+immunology,2702,Immunology,"{""bisac_selector"": [[""MED044000""]]}",Health & Medicine > Biomedical Foundations & Research > Immunology
+immunology,4978,Immunology,"{""lcc_selector"": [[""QR184.6""]], ""lcc_range"": [[""QR180"", ""QR189.5""], [""QR182.5"", ""QR182.6""], [""QR188.45"", ""QR188.46""]]}",Science & Nature > Microbiology > Immunology
+industrial engineering,344,Industrial Engineering,"{""bisac_selector"": [[""TEC009060""]]}",Applied Sciences & Technology > Mechanical & Industrial Engineering > Industrial Engineering
+industrial engineering,446,Industrial Engineering,"{""lcc_selector"": [[""T55.4-60.8""], [""T58""], [""T58.4""], [""T59.6""]], ""lcc_range"": [[""T55.4"", ""T55.69""], [""T55.86"", ""T56.29""], [""T56.4"", ""T56.79""]]}",Applied Sciences & Technology > Technology & Engineering > Industrial Engineering
+insurance,5180,Insurance,"{""bisac_selector"": [[""BUS033000""], [""BUS033010""], [""BUS033020""], [""BUS033040""], [""BUS033050""], [""BUS033060""], [""BUS033070""], [""BUS033080""]]}",Social Sciences > Economics & Business > Accounting & Tax > Insurance
+insurance,5230,Insurance,"{""lcc_range"": [[""HG8011"", ""HG9999""]], ""ddc_selector"": [[""368""]]}",Social Sciences > Economics & Business > Commerce > Business > Finance > Insurance || Social Sciences > Economics & Business > Finance > Insurance
+invertebrates,4867,Invertebrates,"{""bisac_selector"": [[""SCI070020""]], ""ddc_selector"": [[""592""], [""594""]]}",Science & Nature > Biology > Life Sciences > Zoology > Invertebrates
+invertebrates,5053,Invertebrates,"{""lcc_selector"": [[""QL461-QL599.82""]], ""lcc_range"": [[""QL360"", ""QL599.82""]]}",Science & Nature > Zoology > Invertebrates
+invertebrates,9190,Invertebrates,"{""lcc_range"": [[""QE770"", ""QE832""]], ""ddc_selector"": [[""562""], [""564""], [""565""]]}",Science & Nature > Geology > Paleozoology > Invertebrates
+ireland,4198,Ireland,"{""bisac_selector"": [[""FIC106000""]]}",Literature > Germanic & Nordic > Ireland
+ireland,11599,Ireland,"{""lcc_selector"": [[""JN1395""], [""JN1395-JN1571.5""], [""JN1405""], [""JN1424.992-JN1485""], [""JN1490-JN1561""], [""JN1571-JN1571.5""]], ""lcc_range"": [[""JN1395"", ""JN1599""]]}",Social Sciences > Politics & Government > By Region > Europe > Ireland
+ireland,13479,Ireland,"{""lcc_range"": [[""JS4301"", ""JS4490""]]}",Social Sciences > Politics & Government > Government & Administration > Local & Municipal Government > Europe > Ireland
+ireland,52886,Ireland,"{""lcc_range"": [[""JV7710"", ""JV7719""]]}",Social Sciences > Politics & Government > International Relations > Colonization & Migration > Europe > Ireland
+irrigation,189,Irrigation,"{""bisac_selector"": [[""TEC003050""]]}",Applied Sciences & Technology > Agriculture > Agricultural Engineering > Irrigation
+irrigation,12431,Irrigation,"{""lcc_range"": [[""HD1710"", ""HD1747.9""]]}",Social Sciences > Economics & Business > Industries > Agricultural Economics > Irrigation
+islamic,3629,Islamic,"{""bisac_selector"": [[""HIS065000""]]}",History > Islamic
+islamic,5295,Islamic,"{""bisac_selector"": [[""LAW119000""]]}",Social Sciences > Law > Religious Law > Islamic
+islamic,9838,Islamic,"{""lcc_range"": [[""PJ701"", ""PJ989""]]}",Language > Languages & Language Families > Afro-Asiatic languages > Oriental philology & literature > Special groups > Islamic
+italian cooking,3008,Italian Cooking,"{""bisac_selector"": [[""CKB047000""]]}",Home & Hobbies > Cooking > Regional & Ethnic > European Cooking > Italian Cooking
+italian cooking,12593,Italian Cooking,"{""lcc_range"": [[""TX723"", ""TX723.2""]]}",Home & Hobbies > Home economics > Cooking > Italian Cooking
+italian literary collections,4297,Italian Literary Collections,"{""bisac_selector"": [[""LCO008040""]]}",Literature > Genres > Literary Collections > European Literary Collections > Italian Literary Collections
+italian literary collections,12706,Italian Literary Collections,"{""lcc_range"": [[""PQ4201"", ""PQ4263""]]}",Literature > Romance > Italy > Italian Literary Collections
+italian literary criticism,4334,Italian Literary Criticism,"{""bisac_selector"": [[""LIT004200""]]}",Literature > Literary Criticism > Regions & Literary Traditions > European Literary Criticism > Italian Literary Criticism
+italian literary criticism,8956,Italian Literary Criticism,"{""lcc_selector"": [[""PQ4034.2""]], ""lcc_range"": [[""PQ4024"", ""PQ4034""]]}",Literature > Romance > Italy > Italian Literary Studies > Italian Literary Criticism
+japanese,3498,Japanese,"{""lcc_selector"": [[""DS835""], [""DS881.2-DS881.84""]], ""lcc_range"": [[""DS801"", ""DS897""], [""DS833"", ""DS891.5""]], ""bisac_selector"": [[""HIS021000""]], ""ddc_selector"": [[""952""]]}",History > By Region > Asian > East > Japanese
+japanese,4203,Japanese,"{""bisac_selector"": [[""FIC108000""]]}",Literature > East Asian & Pacific > Japanese
+japanese,4268,Japanese,{},"Literature > East Asian & Pacific > Asian, African & Oceanian > Japanese"
+japanese,9955,Japanese,"{""lcc_range"": [[""PL700"", ""PL889""]]}","Literature > East Asian & Pacific > Asian, African & Oceanian > Japanese Language > Japanese"
+japanese language,3730,Japanese Language,"{""bisac_selector"": [[""FOR014000""]]}",Language > Languages & Language Families > East & Southeast Asian Languages > Japanese Language
+japanese language,4267,Japanese Language,"{""lcc_range"": [[""PL501"", ""PL889""]]}","Literature > East Asian & Pacific > Asian, African & Oceanian > Japanese Language"
+judiciary,11985,Judiciary,"{""bisac_selector"": [[""POL040030""]]}",Social Sciences > Politics & Government > By Region > Americas > North America > United States > Judiciary
+judiciary,52669,Judiciary,"{""lcc_range"": [[""JN750"", ""JN841""]]}",Social Sciences > Politics & Government > By Region > Europe > Britain > Judiciary
+korean,3500,Korean,"{""lcc_selector"": [[""DS907.14""], [""DS907.16""], [""DS907.18""], [""DS912.19""], [""DS912.27""], [""DS913.39312-DS913.39319""], [""DS913.39314""], [""DS913.39316""]], ""lcc_range"": [[""DS901"", ""DS937""], [""DS902.15"", ""DS902.16""], [""DS904.79"", ""DS922.4642""], [""DS907.14"", ""DS907.18""]], ""bisac_selector"": [[""HIS023000""]]}",History > By Region > Asian > East > Korean
+korean,4204,Korean,"{""bisac_selector"": [[""FIC109000""]]}",Literature > East Asian & Pacific > Korean
+korean,4271,Korean,"{""lcc_range"": [[""PL986"", ""PL994.98""]]}","Literature > East Asian & Pacific > Asian, African & Oceanian > Korean"
+korean language,3731,Korean Language,"{""bisac_selector"": [[""FOR015000""]]}",Language > Languages & Language Families > East & Southeast Asian Languages > Korean Language
+korean language,4270,Korean language,"{""lcc_range"": [[""PL901"", ""PL998""], [""PL950"", ""PL998""]]}","Literature > East Asian & Pacific > Asian, African & Oceanian > Korean language"
+landscapes,946,Landscapes,"{""bisac_selector"": [[""PHO023040""]]}","Arts & Media > Photography & Imaging > Collections, Subjects & Reference > Subjects & Themes > Landscapes"
+landscapes,6746,Landscapes,"{""lcc_range"": [[""NC790"", ""NC800""]]}",Arts & Media > Design & Decorative Arts > Drawing & Illustration > Drawing Subjects > Landscapes
+lexicography,3770,Lexicography,"{""bisac_selector"": [[""LAN029000""]], ""ddc_selector"": [[""413""]]}","Language > Linguistics > Words, Sound & Writing Systems > Lexicography"
+lexicography,7015,Lexicography,"{""lcc_range"": [[""P327"", ""P327.5""]]}",Language > Linguistics > Language Structure & Meaning > Comparative Grammar & Linguistics > Lexicography
+lexicography,8832,Lexicography,"{""lcc_selector"": [[""PK1226""]], ""lcc_range"": [[""PK1223"", ""PK1225.2""], [""PK1535"", ""PK1541""]]}",Language > Languages & Language Families > Indo-European Languages > Indo-Iranian Languages > Indo-Aryan languages > Lexicography
+lexicography,9082,Lexicography,"{""lcc_range"": [[""PJ3071"", ""PJ3075""]]}",Language > Languages & Language Families > Afro-Asiatic languages > Semitic Philology & Literature > Lexicography
+limnology,4829,Limnology,"{""bisac_selector"": [[""SCI083000""]]}",Science & Nature > Earth & Environmental Sciences > Earth sciences > Limnology
+limnology,7758,Limnology,"{""lcc_range"": [[""GB1601"", ""GB1798.9""]]}","Geography, Places & Travel > Physical geography > Hydrology > Limnology || Science & Nature > Earth & Environmental Sciences > Physical geography > Hydrology > Limnology"
+longevity,2675,Longevity,"{""bisac_selector"": [[""HEA049000""]]}",Health & Medicine > Health & Fitness > Longevity
+longevity,9857,Longevity,"{""lcc_selector"": [[""QH528.5""]]}",Science & Nature > Biology > Life > Longevity
+maintenance & repair,207,Maintenance & repair,"{""lcc_range"": [[""TH3301"", ""TH3411""]]}","Applied Sciences & Technology > Civil, Structural & Construction > Building construction > Maintenance & repair"
+maintenance & repair,3139,Maintenance & Repair,"{""bisac_selector"": [[""HOM010000""]]}","Home & Hobbies > House & Home > Maintenance, Repair & DIY > Maintenance & Repair"
+mammals,4868,Mammals,"{""bisac_selector"": [[""SCI070030""]], ""ddc_selector"": [[""599""]]}",Science & Nature > Biology > Life Sciences > Zoology > Mammals
+mammals,4993,Mammals,"{""bisac_selector"": [[""NAT019000""]]}",Science & Nature > Nature & Natural History > Animals > Mammals
+mammals,8709,Mammals,"{""lcc_range"": [[""QL700"", ""QL739.8""]]}",Science & Nature > Zoology > Chordates. Vertebrates > Mammals
+medical technology,2546,Medical Technology,"{""bisac_selector"": [[""MED003040""]]}",Health & Medicine > Allied Health Services > Medical Technology
+medical technology,2734,Medical technology,"{""lcc_range"": [[""R855"", ""R855.5""]]}",Health & Medicine > Biomedical Foundations & Research > Medicine > Medical technology
+microbiology,2741,Microbiology,"{""bisac_selector"": [[""MED052000""]]}",Health & Medicine > Biomedical Foundations & Research > Microbiology
+microbiology,4857,Microbiology,"{""bisac_selector"": [[""SCI045000""]], ""ddc_selector"": [[""579""]]}",Science & Nature > Biology > Life Sciences > Microbiology
+microbiology,4975,Microbiology,"{""lcc_selector"": [[""QR""]], ""lcc_range"": [[""QR1"", ""QR74.79""], [""QR130.1"", ""QR179.99""], [""QR189.6"", ""QR354.99""], [""QR99.81"", ""QR99.99""]]}",Science & Nature > Microbiology
+mineralogy,4830,Mineralogy,"{""bisac_selector"": [[""SCI048000""]], ""ddc_selector"": [[""549""]]}",Science & Nature > Earth & Environmental Sciences > Earth sciences > Mineralogy
+mineralogy,4906,Mineralogy,"{""lcc_range"": [[""QE351"", ""QE399.2""]]}",Science & Nature > Geology > Mineralogy
+missions,4575,Missions,"{""bisac_selector"": [[""REL045000""]]}",Religion > Christianity > Christian Ministry > Missions
+missions,11585,Missions,"{""lcc_range"": [[""BV2000"", ""BV3705""]], ""ddc_selector"": [[""266""]]}",Religion > Christianity > Christian Ministry > Practical Theology > Missions
+models,3083,Models,"{""bisac_selector"": [[""CRA020000""]]}","Home & Hobbies > Crafts & Hobbies > Models, Dolls & Toymaking > Models"
+models,7665,Models,"{""lcc_range"": [[""TL770"", ""TL778""]]}",Applied Sciences & Technology > Transportation > Vehicle & Aerospace Engineering > Aeronautical Engineering > Models
+models,9921,Models,"{""lcc_range"": [[""TL237"", ""TL237.2""]]}",Applied Sciences & Technology > Transportation > Vehicle & Aerospace Engineering > Motor vehicles. Cycles > Models
+modern,3568,Modern,"{""lcc_selector"": [[""DF757""], [""DF758""], [""DF759""], [""DF760""], [""DF802""]]}",History > By Region > European > South > Greek > Modern
+modern,3666,Modern,"{""lcc_selector"": [[""D203.2-D475""]], ""lcc_range"": [[""D203.2"", ""D475""]], ""bisac_selector"": [[""HIS037030""]]}",History > Eras > Modern
+modern,4241,Modern,"{""lcc_range"": [[""PQ1600"", ""PQ2726""]]}",Literature > Romance > France > Modern
+modern,8502,Modern,"{""lcc_range"": [[""CB357"", ""CB430""]]}",History > Civilization > Modern
+modern,54929,Modern,"{""bisac_selector"": [[""HIS028060""]]}",History > Groups of people > Indigenous Peoples > Modern
+molecular biology,4858,Molecular Biology,"{""bisac_selector"": [[""SCI049000""]]}",Science & Nature > Biology > Life Sciences > Molecular & Cellular Biology > Molecular Biology
+molecular biology,6239,Molecular biology,"{""lcc_selector"": [[""QH506""]]}",Science & Nature > Biology > Life > Molecular biology
+morphology,3781,Morphology,"{""bisac_selector"": [[""LAN009020""]]}",Language > Linguistics > Language Structure & Meaning > Morphology
+morphology,5054,Morphology,"{""lcc_range"": [[""QL799"", ""QL799.5""]]}",Science & Nature > Zoology > Morphology
+morphology,9898,Morphology,"{""lcc_range"": [[""QR75"", ""QR79.5""]]}",Science & Nature > Microbiology > Bacteria > Morphology
+motorcycles,474,Motorcycles,"{""bisac_selector"": [[""TRA003000""]]}",Applied Sciences & Technology > Transportation > Motorcycles
+motorcycles,6911,Motorcycles,"{""lcc_selector"": [[""HE5616.5""]]}",Applied Sciences & Technology > Transportation > Transport & Communications > Land & Urban Transportation > Automotive transportation > Motorcycles
+mysticism,3290,Mysticism,"{""bisac_selector"": [[""OCC012000""]]}","Body, Mind & Spirit > Spiritual Practices & Growth > Mysticism"
+mysticism,12507,Mysticism,"{""lcc_selector"": [[""BV5099""]], ""lcc_range"": [[""BV5070"", ""BV5095""]]}",Religion > Christianity > Christian Ministry > Practical Theology > Christian Life & Devotion > Mysticism
+natural disasters,2425,Natural disasters,"{""lcc_range"": [[""GB5000"", ""GB5030""]]}","Geography, Places & Travel > Physical geography > Natural disasters || Science & Nature > Earth & Environmental Sciences > Physical geography > Natural disasters"
+natural disasters,5016,Natural Disasters,"{""bisac_selector"": [[""NAT023000""]]}",Science & Nature > Nature & Natural History > Natural Disasters
+natural foods,3033,Natural Foods,"{""bisac_selector"": [[""CKB059000""]]}",Home & Hobbies > Cooking > Specific Ingredients > Natural Foods
+natural foods,7359,Natural foods,"{""lcc_selector"": [[""TX369""]]}",Home & Hobbies > Home economics > Nutrition & Food Supply > Natural foods
+natural foods,9064,Natural foods,"{""lcc_selector"": [[""TX741""]]}",Home & Hobbies > Home economics > Cooking > Natural foods
+nature,4364,Nature,"{""bisac_selector"": [[""LIT025020""]]}","Literature > Literary Criticism > Theory, Comparison & Reading > Subjects & Themes > Nature"
+nature,4449,Nature,"{""bisac_selector"": [[""POE023030""]]}",Literature > Genres > Poetry > Subjects & Themes > Nature
+nature,6883,Nature,"{""lcc_range"": [[""N7650"", ""N7680""]]}",Arts & Media > Visual Arts > Art Themes & Movements > Special subjects of art > Nature
+nature,9075,Nature,"{""lcc_selector"": [[""NX650.N38""]]}","Arts & Media > Visual Arts > History, Theory & Education > Arts in general > Art Subjects > Nature"
+nature,9691,Nature,"{""lcc_selector"": [[""PS163""]]}","Literature > English > Regional English > American > Authors, Audiences & Subjects > U.S. Literary Themes & Groups > Nature"
+nervous system,2654,Nervous System,"{""bisac_selector"": [[""HEA039110""]]}",Health & Medicine > Health & Fitness > Diseases & Conditions > Nervous System
+nervous system,6837,Nervous system,"{""lcc_range"": [[""QP361"", ""QP430""]]}",Science & Nature > Human Physiology > Neurophysiology & Neuropsychology > Nervous system || Health & Medicine > Biomedical Foundations & Research > Human Physiology > Neurophysiology & Neuropsychology > Nervous system
+nervous system,7528,Nervous system,"{""lcc_selector"": [[""LB1057""]]}",Education > Teaching & Learning > Education Theory & Practice > Educational Psychology > Nervous system
+nervous system,8088,Nervous system,"{""lcc_range"": [[""QL921"", ""QL939""]]}",Science & Nature > Zoology > Animal Anatomy > Nervous system
+neurology,2744,Neurology,"{""bisac_selector"": [[""MED056000""]]}",Health & Medicine > Neurology
+neurology,7901,Neurology,"{""lcc_selector"": [[""RC346-RC429.2""]]}",Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Neurology
+neurosurgery,2867,Neurosurgery,"{""bisac_selector"": [[""MED085010""]]}",Health & Medicine > Surgery > Surgical Specialties by System > Neurosurgery
+neurosurgery,7645,Neurosurgery,"{""lcc_range"": [[""RD592.5"", ""RD596""]]}",Health & Medicine > Surgery > Surgical Specialties by System > Surgery by Body Part > Neurosurgery
+new england,2527,New England,"{""lcc_range"": [[""F19.3"", ""F19.399999""], [""F34.3"", ""F34.399999""], [""F49.3"", ""F49.399999""], [""F64.3"", ""F64.399999""], [""F79.3"", ""F79.399999""], [""F94.3"", ""F94.399999""]], ""bisac_selector"": [[""TRV025060""]]}","Geography, Places & Travel > Travel > U.S. Travel > Northeast > New England"
+new england,2986,New England,"{""bisac_selector"": [[""CKB002040""]]}",Home & Hobbies > Cooking > Regional & Ethnic > American Cooking > New England
+new england,3421,New England,"{""lcc_range"": [[""F1"", ""F15""]], ""bisac_selector"": [[""HIS036100""]]}",History > By Region > North American > U.S. > Local > New England
+new england,11054,New England,"{""lcc_selector"": [[""BF1575""], [""BF1576""]]}","Body, Mind & Spirit > Occult & Esoteric Traditions > Occult sciences > Witchcraft > Regional Witchcraft > U.S. Witchcraft > New England"
+new zealand,3681,New Zealand,"{""lcc_selector"": [[""DU420""]], ""lcc_range"": [[""DU400"", ""DU430""], [""DU409"", ""DU413""], [""DU419"", ""DU419.3""], [""DU419"", ""DU422""], [""DU422.5"", ""DU424.5""]], ""ddc_selector"": [[""993""]]}",History > By Region > Oceanian > Australia & New Zealand > New Zealand
+new zealand,4210,New Zealand,"{""bisac_selector"": [[""FIC113000""]]}",Literature > East Asian & Pacific > New Zealand
+north,2430,North,"{""bisac_selector"": [[""TRV002040""], [""TRV002050""]]}","Geography, Places & Travel > Travel > African Travel > North"
+north,3357,North,"{""bisac_selector"": [[""HIS001030""]], ""ddc_selector"": [[""961""], [""964""]]}",History > By Region > African > North
+north,3609,North,"{""lcc_selector"": [[""DL""]], ""bisac_selector"": [[""HIS044000""]], ""ddc_selector"": [[""948""]]}",History > By Region > European > North
+north,7729,North,"{""lcc_range"": [[""PS241"", ""PS255""]]}",Literature > English > Regional English > American > American Regional > North
+north,50844,North,"{""lcc_range"": [[""DS930"", ""DS937""], [""DS932.3"", ""DS932.35""], [""DS933"", ""DS933.5""], [""DS933.6"", ""DS935.7773""], [""DS935.4"", ""DS935.55""], [""DS935.6"", ""DS935.7""], [""DS935.75"", ""DS935.7553""], [""DS935.773"", ""DS935.7773""], [""DS935.7775"", ""DS935.7782""], [""DS936"", ""DS937""]]}",History > By Region > Asian > East > Korean > North
+nutrition,2771,Nutrition,"{""bisac_selector"": [[""HEA017000""], [""MED058150""], [""MED060000""]]}",Health & Medicine > Nutrition || Health & Medicine > Health & Fitness > Diet & Nutrition > Nutrition || Health & Medicine > Nursing > Foundations & Clinical Skills > Nutrition
+nutrition,7252,Nutrition,"{""lcc_selector"": [[""QH519""]]}",Science & Nature > Biology > Life > Nutrition
+occultism,3304,Occultism,"{""bisac_selector"": [[""OCC016000""]]}","Body, Mind & Spirit > Occult & Esoteric Traditions > Occultism"
+occultism,7228,Occultism,"{""lcc_selector"": [[""NX650.O33""]]}","Arts & Media > Visual Arts > History, Theory & Education > Arts in general > Art Subjects > Occultism"
+occupational therapy,2547,Occupational Therapy,"{""bisac_selector"": [[""MED003050""]]}",Health & Medicine > Allied Health Services > Occupational Therapy
+occupational therapy,13607,Occupational therapy,"{""lcc_selector"": [[""RC487""]]}",Health & Medicine > Psychiatry > Psychotherapy > Occupational therapy || Health & Medicine > Internal Medicine > Psychiatry > Psychotherapy > Occupational therapy || Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Psychotherapy > Occupational therapy || Health & Medicine > Psychiatry > Clinical Psychology > Psychotherapy > Occupational therapy || Health & Medicine > Internal Medicine > Psychiatry > Clinical Psychology > Psychotherapy > Occupational therapy || Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Psychotherapy > Occupational therapy || Social Sciences > Psychology > Applied > Clinical Psychology > Psychotherapy > Occupational therapy
+oceania,11788,Oceania,"{""bisac_selector"": [[""POL055000""]]}",Social Sciences > Politics & Government > By Region > Oceania
+oceania,11817,Oceania,"{""lcc_range"": [[""HX471"", ""HX517.99""]]}",Social Sciences > Politics & Government > Political Theory > Ideologies > Socialism & Communism > Oceania
+oceania,51067,Oceania,{},History > By Region > North American > U.S. > Political & Foreign Relations > Oceania
+operations research,411,Operations Research,"{""bisac_selector"": [[""TEC029000""]]}",Applied Sciences & Technology > Mechanical & Industrial Engineering > Operations Research
+operations research,5201,Operations Research,"{""bisac_selector"": [[""BUS049000""]]}",Social Sciences > Economics & Business > Operations & Logistics > Operations Research
+operations research,13516,Operations research,"{""lcc_range"": [[""Q500"", ""Q510""]]}",Science & Nature > Operations research
+packaging,342,Packaging,"{""bisac_selector"": [[""TEC016010""]]}",Applied Sciences & Technology > Mechanical & Industrial Engineering > Industrial Design > Packaging
+packaging,354,Packaging,"{""lcc_selector"": [[""TS195.4""]], ""lcc_range"": [[""TS195"", ""TS198.8""]], ""ddc_selector"": [[""688""]]}",Applied Sciences & Technology > Industrial Production > Packaging
+packaging,9541,Packaging,"{""lcc_range"": [[""TP374"", ""TP374.5""]]}",Applied Sciences & Technology > Chemical & Process Engineering > Chemical technology > Food Processing > Packaging
+painting,1032,Painting,"{""lcc_selector"": [[""ND""]], ""lcc_range"": [[""ND1130"", ""ND1156""], [""ND1142"", ""ND1148.2""], [""ND25"", ""ND3416""]], ""ddc_selector"": [[""750""]]}","Arts & Media > Visual Arts > Media, Techniques & Practices > Painting"
+painting,1083,Painting,"{""bisac_selector"": [[""ART020000""]]}","Arts & Media > Visual Arts > Media, Techniques & Practices > Visual Art Techniques > Painting"
+painting,3093,Painting,"{""bisac_selector"": [[""CRA024000""]]}","Home & Hobbies > Crafts & Hobbies > Home, Nature & Seasonal Crafts > Painting"
+pakistani,3505,Pakistani,"{""lcc_selector"": [[""DS383""]], ""lcc_range"": [[""DS376"", ""DS392.2""], [""DS381"", ""DS389.22""]]}",History > By Region > Asian > South > Pakistani
+pakistani,4212,Pakistani,"{""bisac_selector"": [[""FIC116000""]]}",Literature > East Asian & Pacific > Pakistani
+paleontology,4811,Paleontology,"{""bisac_selector"": [[""SCI054000""]], ""ddc_selector"": [[""560""]]}",Science & Nature > Earth & Environmental Sciences > Paleontology
+paleontology,4908,Paleontology,"{""lcc_range"": [[""QE701"", ""QE760""]]}",Science & Nature > Geology > Paleontology
+people with disabilities,12234,People with Disabilities,"{""bisac_selector"": [[""SOC029000""]]}",Social Sciences > Sociology > Inequality & Social Problems > People with Disabilities
+people with disabilities,12800,People with Disabilities,"{""lcc_selector"": [[""HV1551-3024""]]}",Social Sciences > Social Welfare & Services > Social Welfare > Special classes > People with Disabilities
+performance,1040,Performance,"{""bisac_selector"": [[""ART060000""]]}",Arts & Media > Visual Arts > Art Themes & Movements > Performance
+performance,8708,Performance,"{""lcc_selector"": [[""TE251.5""]]}","Applied Sciences & Technology > Civil, Structural & Construction > Highway Engineering > Pavements > Performance"
+personal health & hygiene,2669,Personal Health & Hygiene,"{""bisac_selector"": [[""HEA010000""]]}",Health & Medicine > Health & Fitness > Personal Health & Hygiene
+personal health & hygiene,6194,Personal Health & Hygiene,"{""lcc_selector"": [[""RA773-RA788""]]}",Health & Medicine > Public Health > Personal Health & Hygiene || Health & Medicine > Public aspects of medicine > Public Health > Personal Health & Hygiene
+personality disorders,5445,Personality Disorders,"{""bisac_selector"": [[""PSY022080""]]}",Health & Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Personality Disorders || Health & Medicine > Internal Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Personality Disorders || Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Personality Disorders || Social Sciences > Psychology > Applied > Clinical Psychology > Mental Health > Psychopathology > Personality Disorders
+personality disorders,12670,Personality Disorders,"{""lcc_range"": [[""RC554"", ""RC555""]]}",Health & Medicine > Internal Medicine > Psychopathology > Personality Disorders
+peruvian,3429,Peruvian,"{""lcc_selector"": [[""F3431""]], ""lcc_range"": [[""F3401"", ""F3619""], [""F3429"", ""F3430.1""], [""F3430.4"", ""F3430.6""]], ""ddc_selector"": [[""985""]]}",History > By Region > Latin American > Peruvian
+peruvian,4213,Peruvian,"{""bisac_selector"": [[""FIC117000""]]}",Literature > American & Caribbean > South American > Peruvian
+physical education,2309,Physical Education,"{""bisac_selector"": [[""EDU033000""]]}",Education > Teaching & Learning > Teaching > Subjects > Physical Education
+physical education,4668,Physical Education,"{""lcc_range"": [[""GV201"", ""GV555""], [""GV206"", ""GV206.5""], [""GV207.3"", ""GV207.4""], [""GV361"", ""GV368""]]}",Recreation > Physical Education
+physical therapy,2548,Physical Therapy,"{""bisac_selector"": [[""MED003060""]]}",Health & Medicine > Allied Health Services > Physical Therapy
+physical therapy,13604,Physical therapy,"{""lcc_selector"": [[""RC482""]]}",Health & Medicine > Psychiatry > Psychotherapy > Physical therapy || Health & Medicine > Internal Medicine > Psychiatry > Psychotherapy > Physical therapy || Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Psychotherapy > Physical therapy || Health & Medicine > Psychiatry > Clinical Psychology > Psychotherapy > Physical therapy || Health & Medicine > Internal Medicine > Psychiatry > Clinical Psychology > Psychotherapy > Physical therapy || Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Psychotherapy > Physical therapy || Social Sciences > Psychology > Applied > Clinical Psychology > Psychotherapy > Physical therapy
+plants,5018,Plants,"{""bisac_selector"": [[""NAT026000""]]}",Science & Nature > Nature & Natural History > Plants
+plants,8588,Plants,"{""lcc_selector"": [[""NC805""], [""NC810""], [""NC815""]]}",Arts & Media > Design & Decorative Arts > Drawing & Illustration > Drawing Subjects > Plants
+poland,4214,Poland,"{""bisac_selector"": [[""FIC118000""]]}",Literature > Slavic & Eurasian > Poland
+poland,11615,Poland,"{""lcc_range"": [[""JN6750"", ""JN6769""]]}",Social Sciences > Politics & Government > By Region > Europe > Poland
+poland,13500,Poland,"{""lcc_range"": [[""JS6131"", ""JS6139""]]}",Social Sciences > Politics & Government > Government & Administration > Local & Municipal Government > Europe > Poland
+political,535,Political,"{""bisac_selector"": [[""ANT031000""]]}",Arts & Media > Antiques & Collectibles > Regional & Thematic Collecting > Political
+political,4137,Political,"{""bisac_selector"": [[""FIC031060""]]}",Literature > Genres > Thrillers > Political
+political,6483,Political,"{""lcc_range"": [[""DT1098"", ""DT1099""]]}",History > By Region > African > Southern > Political
+post-traumatic stress disorder,3195,Post-Traumatic Stress Disorder,"{""bisac_selector"": [[""SEL043000""]]}",Personal Growth > Emotions > Post-Traumatic Stress Disorder
+post-traumatic stress disorder,5446,Post-Traumatic Stress Disorder,"{""bisac_selector"": [[""PSY022040""]]}",Health & Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Post-Traumatic Stress Disorder || Health & Medicine > Internal Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Post-Traumatic Stress Disorder || Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Post-Traumatic Stress Disorder || Social Sciences > Psychology > Applied > Clinical Psychology > Mental Health > Psychopathology > Post-Traumatic Stress Disorder
+post-traumatic stress disorder,12669,Post-Traumatic Stress Disorder,"{""lcc_selector"": [[""RC552.P67""]]}",Health & Medicine > Internal Medicine > Psychopathology > Post-Traumatic Stress Disorder
+posters,539,Posters,"{""bisac_selector"": [[""ANT034000""]]}","Arts & Media > Antiques & Collectibles > Books, Print & Paper Ephemera > Posters"
+posters,671,Posters,"{""lcc_range"": [[""NC1800"", ""NC1850""]]}",Arts & Media > Design & Decorative Arts > Drawing & Illustration > Posters
+posters,7929,Posters,"{""lcc_selector"": [[""D522.25""]]}",History > Eras > Modern > 20th Century > World War I > Posters || History > Military > World Wars > World War I > Posters
+poultry,3035,Poultry,"{""bisac_selector"": [[""CKB067000""]]}",Home & Hobbies > Cooking > Specific Ingredients > Poultry
+poultry,13191,Poultry,"{""lcc_range"": [[""SF481"", ""SF507""]]}","Applied Sciences & Technology > Agriculture > Animal Husbandry > Poultry, Birds & Insects > Poultry"
+power resources,386,Power resources,"{""lcc_range"": [[""TJ163.13"", ""TJ163.25""]]}","Applied Sciences & Technology > Mechanical & Industrial Engineering > Mechanical > Engines, Turbines & Power > Power resources"
+power resources,415,Power Resources,"{""bisac_selector"": [[""TEC031000""]]}","Applied Sciences & Technology > Environmental, Energy & Safety > Power Resources"
+primates,4995,Primates,"{""bisac_selector"": [[""NAT002000""]]}",Science & Nature > Nature & Natural History > Animals > Primates
+primates,53410,Primates,"{""lcc_range"": [[""QL737.P9"", ""QL737.P968""]]}",Science & Nature > Zoology > Chordates. Vertebrates > Mammals > Primates
+production & operations management,356,Production & Operations Management,"{""lcc_selector"": [[""TS155-194""]], ""lcc_range"": [[""TS155"", ""TS155.39""], [""TS155.51"", ""TS155.59""], [""TS155.68"", ""TS155.69""], [""TS169.1"", ""TS169.99""], [""TS175.51"", ""TS175.99""]]}",Applied Sciences & Technology > Industrial Production > Production & Operations Management
+production & operations management,5207,Production & Operations Management,"{""bisac_selector"": [[""BUS087000""]]}",Social Sciences > Economics & Business > Business Management > Production & Operations Management
+project management,170,Project Management,"{""lcc_selector"": [[""HD69.P75""]], ""bisac_selector"": [[""COM051430""]]}",Applied Sciences & Technology > Computing & IT > Software Engineering > Project Management
+project management,590,Project Management,"{""bisac_selector"": [[""ARC017000""]]}","Arts & Media > Architecture > Architecture Theory & Practice > Project Management || Applied Sciences & Technology > Civil, Structural & Construction > Architecture > Architecture Theory & Practice > Project Management"
+project management,5208,Project Management,"{""bisac_selector"": [[""BUS101000""]]}",Social Sciences > Economics & Business > Business Management > Project Management
+project management,7480,Project management,"{""lcc_selector"": [[""T56.8""]]}",Applied Sciences & Technology > Technology & Engineering > Industrial Engineering > Project management
+psychopathology,2715,Psychopathology,"{""lcc_range"": [[""RC512"", ""RC528""], [""RC512"", ""RC569.5""], [""RC530"", ""RC552""], [""RC554"", ""RC569.5""]]}",Health & Medicine > Internal Medicine > Psychopathology
+psychopathology,5434,Psychopathology,"{""bisac_selector"": [[""PSY022000""]]}",Health & Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology || Health & Medicine > Internal Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology || Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology || Social Sciences > Psychology > Applied > Clinical Psychology > Mental Health > Psychopathology
+quality control,421,Quality Control,"{""bisac_selector"": [[""TEC032000""]]}",Applied Sciences & Technology > Mechanical & Industrial Engineering > Quality Control
+quality control,8636,Quality control,"{""lcc_selector"": [[""TK5102.84""]]}",Applied Sciences & Technology > Electrical & Electronic Engineering > Electrical Engineering > Telecommunication > Quality control
+radicalism,11767,Radicalism,"{""bisac_selector"": [[""POL042040""]]}",Social Sciences > Politics & Government > Political Theory > Ideologies > Radicalism
+radicalism,12435,Radicalism,"{""lcc_selector"": [[""HN90.R3""]]}",Social Sciences > Sociology > Inequality & Social Problems > Social History & Conditions > U.S. Social History > Radicalism
+radiography,2593,Radiography,"{""bisac_selector"": [[""MED019010""]]}",Health & Medicine > Diagnostic Imaging > Radiography
+radiography,4889,Radiography,"{""bisac_selector"": [[""SCI059000""]]}",Science & Nature > Scientific Methods & Tools > Radiography
+radiography,8241,Radiography,"{""lcc_range"": [[""RC78"", ""RC78.5""]]}",Health & Medicine > Internal Medicine > Internal Medicine Diagnosis > Radiography
+rationalism,4531,Rationalism,"{""bisac_selector"": [[""PHI032000""]]}",Philosophy > Movements & Schools > Modern Movements > Rationalism
+rationalism,13035,Rationalism,"{""lcc_range"": [[""BL2700"", ""BL2746.9""]]}",Religion > Religious Studies > Rationalism
+relativity physics,4888,Relativity Physics,"{""bisac_selector"": [[""SCI061000""]]}",Science & Nature > Physics > Relativity Physics
+relativity physics,7526,Relativity physics,"{""lcc_range"": [[""QC173.5"", ""QC173.65""]]}",Science & Nature > Physics > Atomic & Molecular Physics > Relativity physics
+religion,715,Religion,"{""bisac_selector"": [[""HUM014000""]]}",Arts & Media > Humor & Satire > Topic > Religion || Literature > Genres > Humor & Satire > Topic > Religion
+religion,4366,Religion,"{""bisac_selector"": [[""LIT025040""]]}","Literature > Literary Criticism > Theory, Comparison & Reading > Subjects & Themes > Religion"
+religion,4549,Religion,"{""lcc_selector"": [[""BL""], [""BL2685.2""], [""BP""]], ""lcc_range"": [[""BL1"", ""BL549.99""], [""BL1295.1"", ""BL2790""], [""BL660"", ""BL1099.99""]], ""bisac_selector"": [[""REL000000""]], ""ddc_selector"": [[""200""]]}",Religion
+religion,8073,Religion,"{""lcc_selector"": [[""PS166""]]}","Literature > English > Regional English > American > Authors, Audiences & Subjects > U.S. Literary Themes & Groups > Religion"
+religious art,657,Religious art,"{""lcc_range"": [[""NK1648"", ""NK1678""]]}",Arts & Media > Design & Decorative Arts > Decorative Arts > Religious art
+religious art,1072,Religious Art,"{""bisac_selector"": [[""ART035000""]]}",Arts & Media > Visual Arts > Art Themes & Movements > Subjects & Themes > Religious Art
+religious art,6510,Religious art,"{""lcc_range"": [[""N7790"", ""N8199""]]}",Arts & Media > Visual Arts > Art Themes & Movements > Special subjects of art > Religious art
+reptiles & amphibians,4996,Reptiles & Amphibians,"{""bisac_selector"": [[""NAT028000""]]}",Science & Nature > Nature & Natural History > Animals > Reptiles & Amphibians
+reptiles & amphibians,7326,Reptiles & amphibians,"{""lcc_selector"": [[""QL669.5""], [""QL669.8""]], ""lcc_range"": [[""QL640"", ""QL669.3""]]}",Science & Nature > Zoology > Chordates. Vertebrates > Reptiles & amphibians
+sandwiches,2938,Sandwiches,"{""bisac_selector"": [[""CKB121000""]]}","Home & Hobbies > Cooking > Courses, Meals & Dishes > Sandwiches"
+sandwiches,9382,Sandwiches,"{""lcc_selector"": [[""TX818""]]}",Home & Hobbies > Home economics > Cooking > Sandwiches
+schizophrenia,5447,Schizophrenia,"{""bisac_selector"": [[""PSY022050""]]}",Health & Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Schizophrenia || Health & Medicine > Internal Medicine > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Schizophrenia || Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Psychopathology > Schizophrenia || Social Sciences > Psychology > Applied > Clinical Psychology > Mental Health > Psychopathology > Schizophrenia
+schizophrenia,12661,Schizophrenia,"{""lcc_range"": [[""RC514"", ""RC514""]]}",Health & Medicine > Internal Medicine > Psychopathology > Schizophrenia
+school safety,2198,School Safety,"{""bisac_selector"": [[""EDU034010""]]}","Education > Policy, Philosophy & History > Educational Policy & Reform > School Safety"
+school safety,12648,School Safety,"{""lcc_range"": [[""LB2864.5"", ""LB2866.5""]]}",Education > Teaching & Learning > Education Theory & Practice > School Administration > School Safety
+scotland,4220,Scotland,"{""bisac_selector"": [[""FIC121000""]]}",Literature > Germanic & Nordic > Scotland
+scotland,52885,Scotland,"{""lcc_range"": [[""JV7700"", ""JV7709""]]}",Social Sciences > Politics & Government > International Relations > Colonization & Migration > Europe > Scotland
+semantics,3785,Semantics,"{""bisac_selector"": [[""LAN016000""]]}",Language > Linguistics > Language Structure & Meaning > Semantics
+semantics,7323,Semantics,"{""lcc_range"": [[""P325"", ""P325.5""]]}",Language > Linguistics > Language Structure & Meaning > Comparative Grammar & Linguistics > Semantics
+sexuality,2683,Sexuality,"{""bisac_selector"": [[""HEA042000""]]}",Health & Medicine > Health & Fitness > Sexuality
+sexuality,5250,Sexuality,"{""lcc_selector"": [[""HQ12-HQ449""]]}","Social Sciences > Family, Population & Migration > Family, Gender & Life Course > Gender & Sexuality > Sexuality"
+sikhism,4623,Sikhism,"{""bisac_selector"": [[""REL061000""]]}",Religion > Religions of Indic origin > Sikhism
+sikhism,11093,Sikhism,"{""lcc_selector"": [[""B162.65""]]}","Philosophy > History, Traditions & Regions > Historical Periods > Ancient & Classical Philosophy > Orient > Ancient Eastern Religious Thought > Sikhism"
+skin,2656,Skin,"{""bisac_selector"": [[""HEA039130""]]}",Health & Medicine > Health & Fitness > Diseases & Conditions > Skin
+skin,7349,Skin,"{""lcc_range"": [[""RD121"", ""RD121.5""]]}",Health & Medicine > Surgery > Transplant Surgery > Skin
+skin,8761,Skin,"{""lcc_selector"": [[""RD655""]]}",Health & Medicine > Surgery > Surgical Oncology > Skin
+skin,9081,Skin,"{""lcc_selector"": [[""RC73.7""]]}",Health & Medicine > Internal Medicine > Internal Medicine Diagnosis > Skin
+south,2431,South,"{""bisac_selector"": [[""TRV002060""], [""TRV002070""]]}","Geography, Places & Travel > Travel > African Travel > South"
+south,2528,South,"{""bisac_selector"": [[""TRV025070""]]}","Geography, Places & Travel > Travel > U.S. Travel > South"
+south,3422,South,"{""lcc_selector"": [[""F220.A1""]], ""lcc_range"": [[""F206"", ""F209.6""], [""F217.A"", ""F217.Z""]], ""bisac_selector"": [[""HIS036120""]], ""ddc_selector"": [[""975""], [""976""]]}",History > By Region > North American > U.S. > Local > South
+south,3508,South,"{""lcc_range"": [[""DS331"", ""DS349.9""], [""DS339.2"", ""DS339.4""]], ""bisac_selector"": [[""HIS017000""]], ""ddc_selector"": [[""954""]]}",History > By Region > Asian > South
+south,5541,South,{},History > By Region > European > South
+south,7931,South,"{""lcc_range"": [[""PS261"", ""PS267""]]}",Literature > English > Regional English > American > American Regional > South
+southern,3366,Southern,"{""lcc_range"": [[""DT1001"", ""DT1190""], [""DT1025"", ""DT1026""], [""DT1054"", ""DT1058""], [""DT1066"", ""DT1068""], [""DT2831"", ""DT2864""]], ""bisac_selector"": [[""HIS001040""]], ""ddc_selector"": [[""968""]]}",History > By Region > African > Southern
+southern,4126,Southern,"{""bisac_selector"": [[""FIC074000""]]}",Literature > Genres > Southern
+southern,50950,Southern,"{""lcc_range"": [[""F867"", ""F867.499999""]]}",History > By Region > North American > U.S. > Local > West > California > Southern
+space science,4892,Space Science,"{""bisac_selector"": [[""SCI098000""]], ""ddc_selector"": [[""999""]]}",Science & Nature > Astronomy & Space Science > Space Science
+space science,9393,Space Science,"{""lcc_range"": [[""QB495"", ""QB500.269""]]}",Science & Nature > Astronomy & Space Science > Descriptive astronomy > Space Science
+spain & portugal,2471,Spain & Portugal,"{""bisac_selector"": [[""TRV009130""]]}","Geography, Places & Travel > Travel > European Travel > Spain & Portugal"
+spain & portugal,10993,Spain & Portugal,"{""lcc_range"": [[""B4511"", ""B4598""]], ""ddc_selector"": [[""196""]]}","Philosophy > History, Traditions & Regions > Historical Periods > Modern Philosophy > Regional Modern Philosophy > Spain & Portugal"
+spectroscopy,4898,Spectroscopy,"{""bisac_selector"": [[""SCI078000""]]}",Science & Nature > Physics > Spectroscopy
+spectroscopy,8389,Spectroscopy,"{""lcc_range"": [[""QC450"", ""QC467""]]}",Science & Nature > Physics > Optics > Spectroscopy
+statistics,5218,Statistics,"{""bisac_selector"": [[""BUS061000""]]}",Social Sciences > Economics & Business > Economic Theory > Statistics
+statistics,5457,Statistics,"{""bisac_selector"": [[""PSY032000""]]}","Social Sciences > Psychology > Research & Assessment > Assessment, Testing & Measurement > Statistics"
+statistics,5520,Statistics,"{""lcc_selector"": [[""HA1-HA4737""], [""HA154-HA4737""]]}",Social Sciences > Statistics
+suicide,5458,Suicide,"{""bisac_selector"": [[""PSY037000""]]}",Health & Medicine > Psychiatry > Clinical Psychology > Mental Health > Suicide || Health & Medicine > Internal Medicine > Psychiatry > Clinical Psychology > Mental Health > Suicide || Health & Medicine > Internal Medicine > Neuroscience & Neuropsychiatry > Psychiatry > Clinical Psychology > Mental Health > Suicide || Social Sciences > Psychology > Applied > Clinical Psychology > Mental Health > Suicide
+suicide,9332,Suicide,"{""lcc_range"": [[""RA1136"", ""RA1137""]]}",Health & Medicine > Public aspects of medicine > Forensic & Legal Medicine > Suicide
+suicide,11060,Suicide,"{""lcc_selector"": [[""BD445""]]}",Philosophy > Metaphysics & Ontology > Ontology > Death > Suicide
+table,4643,Table,"{""bisac_selector"": [[""GAM004030""]]}",Recreation > Gambling > Table || Social Sciences > Criminology > Crimes & Offenses > Gambling > Table
+table,6443,Table,"{""lcc_range"": [[""TX871"", ""TX885""]]}",Home & Hobbies > Home economics > Dining-room service > Table
+taoism,4624,Taoism,"{""bisac_selector"": [[""REL065000""]]}",Religion > East Asian Religions > Taoism
+taoism,10861,Taoism,"{""lcc_selector"": [[""B162.7""]]}","Philosophy > History, Traditions & Regions > Historical Periods > Ancient & Classical Philosophy > Orient > Ancient Eastern Religious Thought > Taoism"
+teacher certification,2364,Teacher Certification,"{""bisac_selector"": [[""STU019000""]]}",Study Aids > Professional Exam Guides > Teacher Certification
+teacher certification,13090,Teacher Certification,"{""lcc_range"": [[""LB1771"", ""LB1774.9""]]}",Education > Teaching & Learning > Education Theory & Practice > Teacher Education > Teacher Certification
+teaching methods,2302,Teaching Methods,"{""bisac_selector"": [[""EDU029100""]]}",Education > Teaching & Learning > Teaching > Teaching Methods
+teaching methods,8865,Teaching methods,"{""lcc_range"": [[""TT168"", ""TT169""]]}",Home & Hobbies > Crafts & Hobbies > Mixed Media Crafts & Reference > Arts & Crafts > School Workshops > Teaching methods
+thai,3022,Thai,"{""bisac_selector"": [[""CKB083000""]]}",Home & Hobbies > Cooking > Regional & Ethnic > Asian Cooking > Thai
+thai,3511,Thai,"{""lcc_selector"": [[""DS571""], [""DS572""]], ""lcc_range"": [[""DS561"", ""DS589""], [""DS564"", ""DS566.2""], [""DS569"", ""DS570""], [""DS570.95"", ""DS570.97""], [""DS570.95"", ""DS586""]]}",History > By Region > Asian > Southeast > Thai
+time,4901,Time,"{""bisac_selector"": [[""SCI066000""]]}",Science & Nature > Physics > Time
+time,7057,Time,"{""lcc_range"": [[""QB209"", ""QB224""]]}",Science & Nature > Astronomy & Space Science > Practical & Spherical Astronomy > Time
+time management,3203,Time Management,"{""bisac_selector"": [[""SEL035000""]]}",Personal Growth > Motivation & Self-Management > Self-Management > Time Management
+time management,5222,Time Management,"{""bisac_selector"": [[""BUS088000""]]}",Social Sciences > Economics & Business > Business Management > Time Management
+time management,9191,Time management,"{""lcc_selector"": [[""LB3607.8""]]}",Education > Teaching & Learning > Education Theory & Practice > Student Life & Customs > Time management
+toxicology,2846,Toxicology,"{""lcc_range"": [[""RA1190"", ""RA1270""], [""RA1197.5"", ""RA1197.52""], [""RA1198"", ""RA1198.3""], [""RA1201"", ""RA1211""], [""RA1215.5"", ""RA1215.52""]]}",Health & Medicine > Public aspects of medicine > Toxicology
+toxicology,2904,Toxicology,"{""bisac_selector"": [[""MED096000""]]}",Health & Medicine > Toxicology
+toxicology,4824,Toxicology,"{""bisac_selector"": [[""SCI013090""]]}",Science & Nature > Chemistry > Toxicology
+training,3153,Training,"{""bisac_selector"": [[""PET004020""]]}",Home & Hobbies > Pets > Dogs > Training
+training,5224,Training,"{""bisac_selector"": [[""BUS066000""]]}",Social Sciences > Economics & Business > Work > Training
+training,8080,Training,"{""lcc_selector"": [[""LB1027.47""]]}",Education > Teaching & Learning > Education Theory & Practice > Teaching Principles & Practice > Training
+travel,718,Travel,"{""bisac_selector"": [[""HUM026000""]]}",Arts & Media > Humor & Satire > Topic > Travel || Literature > Genres > Humor & Satire > Topic > Travel
+travel,2395,Travel,"{""lcc_range"": [[""G149"", ""G180""]]}","Geography, Places & Travel > Geography > Travel"
+travel,2426,Travel,"{""bisac_selector"": [[""TRV000000""], [""TRV021000""]], ""ddc_selector"": [[""917""]]}","Geography, Places & Travel > Travel"
+travel,52312,Travel,"{""lcc_selector"": [[""PN56.T7""]]}",Literature > Literary Theory > Special Elements & Subjects > Travel
+trucks,467,Trucks,"{""bisac_selector"": [[""TRA001150""]]}",Applied Sciences & Technology > Transportation > Automotive > Trucks
+trucks,9715,Trucks,"{""lcc_range"": [[""TL230"", ""TL230.5""]]}",Applied Sciences & Technology > Transportation > Vehicle & Aerospace Engineering > Motor vehicles. Cycles > Trucks
+twelve-step programs,3210,Twelve-Step Programs,"{""bisac_selector"": [[""SEL029000""]]}",Personal Growth > Addiction & Recovery > Substance Abuse & Addictions > Twelve-Step Programs
+twelve-step programs,10882,Twelve-step programs,"{""lcc_selector"": [[""BJ1596""]]}",Philosophy > Ethics > Character & Virtue Ethics > Applied Ethics > Twelve-step programs
+uruguayan,4232,Uruguayan,"{""bisac_selector"": [[""FIC127000""]]}",Literature > American & Caribbean > South American > Uruguayan
+uruguayan,5545,Uruguayan,"{""lcc_selector"": [[""F2721""], [""F2857.U7""]], ""lcc_range"": [[""F2701"", ""F2799""], [""F2719"", ""F2719.3""], [""F2720.3"", ""F2720.6""]]}",History > By Region > Latin American > Uruguayan
+vietnamese,3024,Vietnamese,"{""bisac_selector"": [[""CKB094000""]]}",Home & Hobbies > Cooking > Regional & Ethnic > Asian Cooking > Vietnamese
+vietnamese,3513,Vietnamese,"{""lcc_selector"": [[""DS556.5""]], ""lcc_range"": [[""DS556"", ""DS559.93""], [""DS557"", ""DS559.9""]]}",History > By Region > Asian > Southeast > Vietnamese
+vietnamese,3747,Vietnamese,"{""bisac_selector"": [[""FOR044000""]]}",Language > Languages & Language Families > East & Southeast Asian Languages > Vietnamese
+virology,4862,Virology,"{""bisac_selector"": [[""SCI099000""]]}",Science & Nature > Biology > Life Sciences > Microbiology > Virology
+virology,4980,Virology,"{""lcc_range"": [[""QR355"", ""QR502""], [""QR359.7"", ""QR359.72""], [""QR375"", ""QR376""], [""QR380"", ""QR383""]]}",Science & Nature > Microbiology > Virology
+wales,4233,Wales,"{""bisac_selector"": [[""FIC128000""]]}",Literature > Germanic & Nordic > Wales
+wales,52887,Wales,"{""lcc_range"": [[""JV7720"", ""JV7729""]]}",Social Sciences > Politics & Government > International Relations > Colonization & Migration > Europe > Wales
+water supply,298,Water Supply,"{""bisac_selector"": [[""TEC010030""]]}","Applied Sciences & Technology > Civil, Structural & Construction > Environmental > Water Supply || Applied Sciences & Technology > Environmental, Energy & Safety > Environmental > Water Supply"
+water supply,8098,Water supply,"{""lcc_selector"": [[""TD927""]]}","Applied Sciences & Technology > Civil, Structural & Construction > Environmental > Rural Sanitary Engineering > Water supply || Applied Sciences & Technology > Environmental, Energy & Safety > Environmental > Rural Sanitary Engineering > Water supply"
+weights & measures,4903,Weights & Measures,"{""bisac_selector"": [[""SCI068000""]]}",Science & Nature > Scientific Methods & Tools > Weights & Measures
+weights & measures,5042,Weights & measures,"{""lcc_range"": [[""QC81"", ""QC114""]]}",Science & Nature > Physics > Weights & measures
+western,2473,Western,"{""bisac_selector"": [[""TRV009150""]]}","Geography, Places & Travel > Travel > European Travel > Western"
+western,3962,Western,"{""bisac_selector"": [[""FIC042070""]]}",Literature > Genres > Religious Fiction > Christian > Western
+western,10620,Western,"{""lcc_range"": [[""D530"", ""D549.5""]]}",History > Eras > Modern > 20th Century > World War I > Military operations > Western || History > Military > World Wars > World War I > Military operations > Western
+witchcraft,3303,Witchcraft,"{""lcc_range"": [[""BF1562.5"", ""BF1584""]]}","Body, Mind & Spirit > Occult & Esoteric Traditions > Occult sciences > Witchcraft"
+witchcraft,3318,Witchcraft,"{""bisac_selector"": [[""OCC026000""]]}","Body, Mind & Spirit > Occult & Esoteric Traditions > Witchcraft"
+women,3700,Women,"{""bisac_selector"": [[""HIS058000""]]}",History > Groups of people > Women
+women,10685,Women,"{""lcc_selector"": [[""D804.47""]]}",History > Eras > Modern > 20th Century > World War II > Holocaust > Special groups of Jewish victims > Women || History > Military > World Wars > World War II > Holocaust > Special groups of Jewish victims > Women
+women,51127,Women,"{""lcc_range"": [[""E276"", ""E276.999""]]}","History > By Region > North American > U.S. > By Period > Revolutionary Period, 1775–1800 > Women"
+women authors,3863,Women authors,"{""lcc_range"": [[""PS147"", ""PS152""]]}","Literature > English > Regional English > American > Authors, Audiences & Subjects > Women authors"
+women authors,3898,Women Authors,"{""bisac_selector"": [[""DRA019000""]]}",Literature > Genres > Drama > Women Authors
+women authors,3929,Women authors,"{""lcc_range"": [[""PR111"", ""PR120""]]}",Literature > English > Women authors
+women authors,4308,Women Authors,"{""bisac_selector"": [[""LCO019000""]]}",Literature > Genres > Literary Collections > Women Authors
+women authors,4368,Women Authors,"{""bisac_selector"": [[""LIT004290""]]}",Literature > Literary Criticism > Identity & Critical Perspectives > Women Authors
+women authors,4451,Women Authors,"{""bisac_selector"": [[""POE024000""]]}",Literature > Genres > Poetry > Women Authors
+zoology,4863,Zoology,"{""bisac_selector"": [[""SCI070000""]], ""ddc_selector"": [[""590""], [""591""], [""596""]]}",Science & Nature > Biology > Life Sciences > Zoology
+zoology,5048,Zoology,"{""lcc_selector"": [[""QL""], [""QL1-991""]], ""lcc_range"": [[""QL1"", ""QL991""]]}",Science & Nature > Zoology

@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "source_duplicate_groups": 0,
+  "parent_child_label_groups": 19,
+  "sibling_merge_rounds": 0,
+  "components": [
+    {
+      "winner_id": "bokheim:lcc-detail:0773338d-e4bb-5c05-841e-0a97e768fd00",
+      "loser_ids": [
+        "bokheim:history-lcc:f6a4eb66-918a-5494-ac59-2fbf7fe31e21"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:4db93489-af3b-54c2-8b0c-81ac52ff301c",
+      "loser_ids": [
+        "bokheim:history-lcc:c6ce1275-8cd3-5250-8236-e7fd9f2fc4a7"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:882a0d25-74e2-5d67-8098-917a0434b88e",
+      "loser_ids": [
+        "bokheim:history-lcc:111cf256-8a8b-5d64-9fa8-dd7b4bcef896"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:cfdd83a5-e51f-5abe-b099-cf4c8d0f4652",
+      "loser_ids": [
+        "bokheim:history-lcc:34f890c3-6c94-5270-92b7-c6de24073434"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:e2f9bfb7-11be-538e-97be-023b86e01647",
+      "loser_ids": [
+        "bokheim:history-lcc:86ec52b7-bbd5-5ab8-a56b-d2d5436ac942"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:e99d463b-da88-50f6-bc70-ee2a47df938a",
+      "loser_ids": [
+        "bokheim:history-lcc:04836f47-e5d7-5621-8767-100c6661370e"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:ee8e2e03-2d34-51dc-a17f-8e3d9452659b",
+      "loser_ids": [
+        "bokheim:history-lcc:cb080d7f-4411-5b59-ace6-ed9824f28f5a"
+      ]
+    },
+    {
+      "winner_id": "bokheim:lcc-detail:fe1ae2f0-0e1e-56f2-9870-9bf2571ca385",
+      "loser_ids": [
+        "bokheim:history-lcc:0e957fa1-b14a-53db-9700-00d2b5883654"
+      ]
+    },
+    {
+      "winner_id": "unified:20a04a96-7384-57af-aadf-bc514073d77c",
+      "loser_ids": [
+        "bokheim:lcc-detail:a1eae5f3-6fe2-53c5-96d4-91dfa06364e4"
+      ]
+    },
+    {
+      "winner_id": "unified:39f138b5-05f1-5670-a50c-f9772ff21bd2",
+      "loser_ids": [
+        "bokheim:lcc-detail:55da57e6-1a9d-543b-b9a9-fb22f23eb2c1"
+      ]
+    },
+    {
+      "winner_id": "unified:4dde0914-c658-5618-8196-c6bb5f159e75",
+      "loser_ids": [
+        "bokheim:history-lcc:9effc1c4-0300-5e51-8169-5ddba4e438b4"
+      ]
+    },
+    {
+      "winner_id": "unified:89b64e04-7869-53c6-9004-061a41c38948",
+      "loser_ids": [
+        "bokheim:lcc-detail:224a9bbf-a4f1-5070-b40e-09779498b9e0"
+      ]
+    },
+    {
+      "winner_id": "unified:9f947214-284f-513d-a106-30bbf03dd9c8",
+      "loser_ids": [
+        "bokheim:history-lcc:5f8f6b11-3401-53fc-859b-c568d2fab358"
+      ]
+    },
+    {
+      "winner_id": "unified:a9b40fd5-19b3-5adc-8354-44d08510a2f0",
+      "loser_ids": [
+        "bokheim:history-lcc-full:7e265c44-e03b-5a25-9135-f08dfdc5c2ae"
+      ]
+    },
+    {
+      "winner_id": "unified:b8bc95f0-f6d0-5663-bf2a-850111c65b57",
+      "loser_ids": [
+        "bokheim:lcc-detail:112c8130-6e75-514c-b4ba-852c8b2677d7"
+      ]
+    },
+    {
+      "winner_id": "unified:e8c923b0-68e0-5fc3-a366-b35cb6f684c9",
+      "loser_ids": [
+        "bokheim:history-lcc:1f7d0b63-fcf2-5eef-a20e-324a913e6d89"
+      ]
+    },
+    {
+      "winner_id": "unified:f04fe226-e7f6-5b9b-a15a-3a54214491c9",
+      "loser_ids": [
+        "bokheim:history-lcc:ffc682e2-2b25-5c39-b9d5-470a9d7f30a6"
+      ]
+    },
+    {
+      "winner_id": "unified:f889b064-11c3-5778-b753-20954919876a",
+      "loser_ids": [
+        "bokheim:history-lcc:62b058fe-555d-5404-bd8c-5d934c74b15a"
+      ]
+    },
+    {
+      "winner_id": "unified:fa5c1e14-43d5-5798-aea8-a676a5a3f41c",
+      "loser_ids": [
+        "bokheim:history-lcc:65a16a74-c913-5a91-bee0-a7f4953190ce"
+      ]
+    }
+  ],
+  "removed_concepts": 19,
+  "added_edges": 7,
+  "transferred_selectors": 20,
+  "transferred_labels": 4,
+  "renamed_concepts": 1
+}

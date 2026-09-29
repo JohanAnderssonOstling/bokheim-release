@@ -1,0 +1,1 @@
+SELECT physical_name FROM asset_file WHERE name='assets/a/book/existing'

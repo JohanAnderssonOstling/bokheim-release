@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE account_preferences\nSET value = $2,\n    updated_at = now()\nWHERE user_id = $1;\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Bytea"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "09eb688e03c33a52d4ea5001fa249673b8853719e97bf46685462746fc8bd6f5"
+}

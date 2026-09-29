@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO user_blob_charge(user_id, content_hash) VALUES ($1, $2)\nON CONFLICT (user_id, content_hash) DO NOTHING\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "71216b619ae94087232a14b0b849dd41a8c9b067b9db816f16cb30b6ccc3c584"
+}
