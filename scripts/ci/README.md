@@ -29,9 +29,12 @@ toolchain. All builds/tests use optimized release profiles.
 - Android: Java 21, Gradle 8.14.3, Android SDK 36/build-tools 36.0.0, NDK
   29.0.13599879 and Rust target `aarch64-linux-android`. Configure production
   signing in private Gradle user properties or `BOKHEIM_ANDROID_*` environment
-  variables; password `_FILE` settings are supported. Set `ANDROID_SERIAL` to a
-  dedicated ARM64 test device and `ANDROID_CERT_SHA256` to the production signer.
-  Verification installs the release and instrumentation APKs on that device.
+  variables; password `_FILE` settings are supported. Set `ANDROID_CERT_SHA256` to the production signer. Signature, package/version,
+  release mode and ARM64 native-library checks run without a device. Compatibility
+  metadata comes from the same build source and configuration. Optionally set
+  `ANDROID_SERIAL` to a dedicated ARM64 test device to additionally build/install
+  instrumentation and check the running native code. The receipt distinguishes
+  package verification from a device runtime test.
 - Web: Node, Rust `wasm32-unknown-unknown` and `rust-src`, Binaryen `wasm-opt`,
   wasm-bindgen-cli matching Cargo.lock, and Playwright 1.61.1 with Firefox and
   Chromium installed. Set `PLAYWRIGHT_MODULE` to its absolute `index.mjs` path.

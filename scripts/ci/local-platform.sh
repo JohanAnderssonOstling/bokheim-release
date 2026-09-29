@@ -30,18 +30,26 @@ case "$platform" in
     bash apps/desktop-gpui/linux/appimage/verify-glibc-compatibility.sh "$scratch/squashfs-root" 2.35
     ;;
   android)
-    : "${ANDROID_SERIAL:?Select a dedicated ARM64 test device for release verification}"
     : "${ANDROID_CERT_SHA256:?Production certificate SHA-256 is required}"
     # Gradle stages Rust from the workspace target directory.
     unset CARGO_TARGET_DIR
     cargo check --release -p client-platform-android --target aarch64-linux-android
-    gradle -p apps/desktop-gpui/android --no-daemon assembleRelease assembleReleaseAndroidTest testReleaseUnitTest
+    gradle -p apps/desktop-gpui/android --no-daemon assembleRelease testReleaseUnitTest
     cp apps/desktop-gpui/android/build/outputs/apk/release/*-release.apk "$output/Bokheim-Android-arm64.apk"
-    python3 apps/desktop-gpui/android/verify-release.py \
-      --serial "$ANDROID_SERIAL" --cert-sha256 "$ANDROID_CERT_SHA256" \
-      --apk "$output/Bokheim-Android-arm64.apk" \
-      --test-apk apps/desktop-gpui/android/build/outputs/apk/androidTest/release/*.apk \
+    version=$(python3 -c 'import tomllib; print(tomllib.load(open("apps/desktop-gpui/Cargo.toml", "rb"))["package"]["version"])')
+    cargo run --release -p linux-update-host --example release_metadata -- "$version" > "$output/build-compatibility.json"
+    python3 apps/desktop-gpui/android/verify-package.py \
+      --cert-sha256 "$ANDROID_CERT_SHA256" --version "$version" \
+      --apk "$output/Bokheim-Android-arm64.apk" --metadata "$output/build-compatibility.json" \
       --output "$output/update-info-android-aarch64-apk.json"
+    if [[ -n "${ANDROID_SERIAL:-}" ]]; then
+      gradle -p apps/desktop-gpui/android --no-daemon assembleReleaseAndroidTest
+      python3 apps/desktop-gpui/android/verify-release.py \
+        --serial "$ANDROID_SERIAL" --cert-sha256 "$ANDROID_CERT_SHA256" \
+        --apk "$output/Bokheim-Android-arm64.apk" \
+        --test-apk apps/desktop-gpui/android/build/outputs/apk/androidTest/release/*.apk \
+        --output "$output/android-device-verification.json"
+    fi
     ;;
   web)
     : "${PLAYWRIGHT_MODULE:?Set PLAYWRIGHT_MODULE to the installed playwright/index.mjs}"

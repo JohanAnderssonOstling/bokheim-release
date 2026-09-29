@@ -107,13 +107,16 @@ private Gradle user properties or environment; key password defaults to the stor
 password and supports a separate `BOKHEIM_ANDROID_KEY_PASSWORD_FILE`.
 Keep the existing GitHub signing secrets available for already-running jobs.
 
-Set `ANDROID_SERIAL` to a dedicated ARM64 test device and
-`ANDROID_CERT_SHA256` to the production certificate fingerprint, independently
-checked with `apksigner verify --print-certs EXISTING.apk`. The local verification
-script installs the signed release and instrumentation APK, reads native
-compatibility/trust, checks the signer and binds metadata to the APK hash. It
-never uninstalls an existing app to bypass a signature mismatch. Only verified
-release APKs enter the draft; instrumentation APKs are not distributed.
+Set `ANDROID_CERT_SHA256` to the production certificate fingerprint, independently
+checked with `apksigner verify --print-certs EXISTING.apk`. Mandatory package
+verification checks the APK signature, identity/version, release mode and ARM64
+libraries without installing anything. Compatibility/trust comes from the same
+build source/configuration and is bound to the verified APK hash.
+
+Optionally set `ANDROID_SERIAL` to a dedicated ARM64 test device for an additional
+runtime probe. That probe installs the release and instrumentation APKs and never
+uninstalls an existing app to bypass a signature mismatch. Instrumentation APKs
+are not distributed. A missing device does not block normal release publication.
 
 ### Prepare a release from verified packages
 
