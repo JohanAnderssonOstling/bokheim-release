@@ -18,5 +18,5 @@ class ProtocolProbeTests(unittest.TestCase):
                 else:
                     with self.assertRaises(RuntimeError):
                         probe.check('a' * 40)
-                self.assertEqual(request.call_args.args[0].data, b'')
+                self.assertEqual(request.call_args.args[0].data, bytes([8, 42]))
                 self.assertEqual(request.call_args.args[0].get_header('Content-type'), 'application/vnd.example; version=42')

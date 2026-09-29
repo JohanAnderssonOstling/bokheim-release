@@ -84,6 +84,23 @@ pub async fn migrate(database: &PostgresDatabase) -> Result<(), sqlx::Error> {
     Ok(())
 }
 
+/// Adopt the deployed pre-release baseline in one transaction, preserving data.
+/// Startup remains read-only; only the explicit deployment command upgrades it.
+pub async fn upgrade_existing(database: &PostgresDatabase) -> Result<(), sqlx::Error> {
+    let mut transaction = database.pool().begin().await?;
+    sqlx::query("SELECT pg_advisory_xact_lock(hashtext('bokheim-schema-upgrade'))").execute(&mut *transaction).await?;
+    let versioned: bool = sqlx::query_scalar("SELECT to_regclass('public.bokheim_schema_version') IS NOT NULL").fetch_one(&mut *transaction).await?;
+    if !versioned {
+        sqlx::raw_sql(include_str!("../schema/migrations/adopt_release_baseline.sql")).execute(&mut *transaction).await?;
+    }
+    let version: i32 = sqlx::query_scalar("SELECT version FROM bokheim_schema_version").fetch_one(&mut *transaction).await?;
+    if version != 1 {
+        return Err(sqlx::Error::Protocol(format!("unsupported sync schema version {version}; expected 1")));
+    }
+    transaction.commit().await?;
+    Ok(())
+}
+
 /// Reject databases created with earlier development schemas before activating a release.
 pub async fn verify_schema(database: &PostgresDatabase) -> Result<(), sqlx::Error> {
     let version: i32 = sqlx::query_scalar("SELECT version FROM bokheim_schema_version").fetch_one(database.pool()).await?;

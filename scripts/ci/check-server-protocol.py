@@ -15,9 +15,15 @@ def check(source_commit, server='https://api.bokheim.se'):
     if not match:
         raise ValueError('Cannot determine the built protocol media type')
     media_type = match.group(1)
-    # Empty login data cannot authenticate or mutate account state. With a supported
-    # protocol it fails decoding (400); an unsupported protocol is rejected (426).
-    request = urllib.request.Request(server.rstrip('/') + '/api/auth/login', data=b'',
+    # An envelope with a version but no value cannot authenticate or mutate state.
+    # An empty byte string would decode as version zero, incorrectly returning 426.
+    version = int(re.search(r'version=(\d+)', media_type).group(1))
+    payload = bytearray([8])  # Envelope.version, protobuf field 1 (varint).
+    while version >= 128:
+        payload.append((version & 127) | 128)
+        version >>= 7
+    payload.append(version)
+    request = urllib.request.Request(server.rstrip('/') + '/api/auth/login', data=bytes(payload),
                                      headers={'Content-Type': media_type, 'Accept': media_type})
     try:
         with urllib.request.urlopen(request, timeout=20) as response:

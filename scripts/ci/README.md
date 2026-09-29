@@ -111,4 +111,4 @@ the source gate and platform receipts. Signing keys stay on the trusted local
 machine. Permission to upload releases/report commit statuses is the trust
 boundary for local build attestations.
 
-Before publishing native packages or deploying a verified web bundle, the pipeline probes the live login endpoint with the built protocol and empty input. A protocol mismatch blocks publication until the matching server is deployed.
+Before publishing native packages or deploying a verified web bundle, the pipeline probes the live login endpoint with a version-only protobuf envelope and no login fields. A protocol mismatch blocks publication until the matching server is deployed.

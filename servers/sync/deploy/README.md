@@ -352,3 +352,12 @@ drops and recreates the `bokheim` database on every deploy, so there is no
 schema upgrade history and nothing to back up -- redeploying is the recovery
 procedure. Do not point this at a deployment expected to hold data that must
 survive a redeploy without a design change to persist it first.
+
+### Existing production baseline
+
+`sync-server upgrade` transactionally adopts the deployed v14 baseline with
+cloud-storage support. It retains user/library/blob/sync data, updates the two
+LWW triggers to permit revision-only repair, and records schema version 1.
+The old migration history is retained. Repeated upgrades are no-ops; older
+unsupported baselines fail without partial changes. Server startup still only
+verifies the schema. Never run `migrate` against an existing production database.
