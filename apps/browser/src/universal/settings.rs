@@ -104,7 +104,6 @@ impl SettingsPage {
     /// decides which state needs attention; recoverable errors are never dialogs.
     fn update_row(&self, cx: &Context<Self>) -> Option<gpui::Div> {
         use crate::services::{UpdateAction, UpdateView};
-        use gpui_component::Disableable;
         let controls = self.updates.as_ref()?.read(cx);
         let (message, button) = match &controls.view {
             UpdateView::Hidden => return None,
@@ -119,9 +118,16 @@ impl SettingsPage {
         let message = if controls.worker_failed && button.is_some() { "Could not continue update. Try again.".to_owned() } else { message };
         let theme = components::browser_theme(cx);
         let mut row = gpui::div().w_full().px(px(components::SPACE_MD)).py(px(components::SPACE_SM)).min_h(px(56.0)).flex().flex_wrap().items_center().justify_between().gap(px(components::SPACE_SM)).child(message);
-        if let Some((label, action, disabled)) = button {
+        if let Some((label, action, preparing)) = button {
             let handler = controls.action.clone();
-            row = row.child(components::browser_settings_header_button("apply-update", label, true, theme).disabled(disabled && !controls.worker_failed).on_click(move |_, _, cx| handler(action.clone(), cx)));
+            let loading = preparing && !controls.worker_failed;
+            let label = if loading { "Updating…" } else if controls.worker_failed { "Retry" } else { label };
+            row = row.child(
+                components::browser_settings_header_button("apply-update", label, true, theme)
+                    .when(loading, |button| button.icon(gpui_component::IconName::LoaderCircle))
+                    .loading(loading)
+                    .on_click(move |_, _, cx| handler(action.clone(), cx)),
+            );
         }
         Some(self.section(UPDATES_SECTION, components::browser_settings_group(theme).child(row)))
     }
