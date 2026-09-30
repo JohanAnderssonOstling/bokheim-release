@@ -97,7 +97,6 @@ pub struct RestorePlacement {
 fn dir_path_components(connection: &rusqlite::Connection, dir_id: &str) -> Result<Vec<DirPathComponent>, DatabaseError> {
     // Reuse an existing transaction, or hold a read snapshot for the whole walk.
     let snapshot = connection.is_autocommit().then(|| connection.unchecked_transaction()).transpose()?;
-    let mut statement = connection.prepare_cached(include_str!("sql/directory_parent.sql"))?;
     let mut current = dir_id.to_owned();
     let mut seen = HashSet::new();
     let mut components = Vec::new();
@@ -106,7 +105,11 @@ fn dir_path_components(connection: &rusqlite::Connection, dir_id: &str) -> Resul
         if !seen.insert(current.clone()) {
             return Err(DatabaseError::message("cycle in directory ancestry"));
         }
-        let row = statement.query_row([&current], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?))).optional()?;
+        let mut row: Option<(String, String)> = None;
+        connection.live_directory_location(&current, |found| {
+            row = Some((found.get(0)?, found.get(1)?));
+            Ok(())
+        })?;
         let Some((parent, name)) = row else {
             components.clear();
             break;
@@ -557,7 +560,7 @@ impl Database {
             return Err(DatabaseError::message("the library root cannot be renamed or moved"));
         }
         let mut existing: Option<(String, String)> = None;
-        transaction.move_directory_record_select(&directory_id.to_string(), |row| {
+        transaction.live_directory_location(&directory_id.to_string(), |row| {
             existing = Some((row.get(0)?, row.get(1)?));
             Ok(())
         })?;
@@ -706,7 +709,7 @@ impl Database {
             Ok(())
         })?;
         let chosen = library_replica::unique_file_name(&requested, occupied.iter().map(String::as_str));
-        transaction.restore_book_placement_record_update(content_hash.as_str())?;
+        transaction.restore_book_record_update(content_hash.as_str())?;
         transaction.restore_book_placement_record_insert(&directory_id.to_string(), content_hash.as_str(), &chosen)?;
         #[cfg(not(target_arch = "wasm32"))]
         queue_file_work(&transaction, "restore", content_hash, &placement_path(&transaction, directory_id, &chosen)?)?;
@@ -891,7 +894,7 @@ impl Database {
                 transaction.remove_book_placement_record_update(&original.to_string(), content_hash.as_str(), unix_millis()?)?;
             }
         }
-        transaction.restore_book_record_with_parent_update(content_hash.as_str())?;
+        transaction.restore_book_record_update(content_hash.as_str())?;
         for (original, target) in choices {
             if *target != sync_common::ROOT_DIR_ID && !directory_is_live(&transaction, target)? {
                 return Err(DatabaseError::message("restore target changed; retry the restore"));

@@ -147,7 +147,7 @@ SELECT content_hash,COALESCE(NULLIF(title,''),content_hash),format,deleted_at
 SELECT id,name,deleted_at FROM dir WHERE deleted_at IS NOT NULL AND purged_at IS NULL AND intent_lifecycle=1
 AND EXISTS(SELECT 1 FROM sync_state_version v WHERE v.state_kind='directory_lifecycle' AND v.state_key=dir.id AND v.state_subkey='' AND v.body IS NOT NULL) ORDER BY deleted_at DESC,name_key,id;
 
--- name: move_directory_record_select?
+-- name: live_directory_location?
 -- param: dir_id: &str
 SELECT parent_id,name FROM dir WHERE id=:dir_id AND deleted_at IS NULL;
 
@@ -206,7 +206,7 @@ SELECT COALESCE(NULLIF(title,''),content_hash) FROM book WHERE content_hash=:con
 -- param: content_hash: &str
 SELECT file_name FROM book_dir WHERE dir_id=:dir_id AND deleted_at IS NULL AND book_row_id!=(SELECT row_id FROM book WHERE content_hash=:content_hash);
 
--- name: restore_book_placement_record_update!
+-- name: restore_book_record_update!
 -- param: content_hash: &str
 UPDATE book SET deleted_at=NULL,trash_origin_dir_id=NULL WHERE content_hash=:content_hash;
 
@@ -227,10 +227,6 @@ WHERE b.content_hash=:content_hash AND bd.deleted_at IS NULL ORDER BY bd.dir_id;
 -- Suppressed directories have a repaired display parent. Restore follows the
 -- retained parent intent while visibility still comes from the projection.
 SELECT COALESCE(intent_parent_id,parent_id),deleted_at IS NULL AND purged_at IS NULL FROM dir WHERE id=:dir_id;
-
--- name: restore_book_record_with_parent_update!
--- param: content_hash: &str
-UPDATE book SET deleted_at=NULL,trash_origin_dir_id=NULL WHERE content_hash=:content_hash;
 
 -- name: restore_directory_record_select_3?
 -- param: trash_origin_dir_id: &str
