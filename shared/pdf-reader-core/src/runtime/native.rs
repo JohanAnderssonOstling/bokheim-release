@@ -20,7 +20,11 @@ fn library_path() -> Result<PathBuf, String> {
     }
     let executable = std::env::current_exe().map_err(|error| error.to_string())?;
     let directory = executable.parent().ok_or("executable has no parent directory")?;
-    let path = directory.join("pdfium").join(env!("PDFIUM_LIBRARY_NAME"));
+    let path = if cfg!(target_os = "macos") {
+        directory.join("../Frameworks").join(env!("PDFIUM_LIBRARY_NAME"))
+    } else {
+        directory.join("pdfium").join(env!("PDFIUM_LIBRARY_NAME"))
+    };
     if !path.is_file() {
         return Err(format!("Packaged PDFium is missing: {}. Build/package the application with its PDFium artifacts.", path.display()));
     }

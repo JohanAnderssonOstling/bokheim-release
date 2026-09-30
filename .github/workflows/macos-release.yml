@@ -1,0 +1,170 @@
+name: macOS release
+run-name: Release macOS — ${{ github.ref_name }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Add the universal macOS download to this version's existing release
+        type: boolean
+        required: true
+        default: false
+  push:
+    branches:
+      - ci/macos-trial
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+permissions:
+  contents: read
+  statuses: read
+
+concurrency:
+  group: macos-release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_BUILD_JOBS: "2"
+  RUSTUP_TOOLCHAIN: 1.95.0
+  RUSTC_BOOTSTRAP: "1"
+  MACOSX_DEPLOYMENT_TARGET: "13.0"
+  RELEASE_REPOSITORY: JohanAnderssonOstling/bokheim-release
+  GPUI_FORK_REF: cb2f5b981889d421153d5804526929e32c0788fd
+  HTML_ENGINE_REF: 91766fb2db8d56b38dc0336ddf74972da9872520
+  HTML_VIEW_CORE_REF: 0d407738fd6ecfd6d6ea84f1a9ce0a488e3dfaf7
+
+jobs:
+  build:
+    name: Build ${{ matrix.arch }} macOS
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            arch: arm64
+            target: aarch64-apple-darwin
+          - runner: macos-15-intel
+            arch: x86_64
+            target: x86_64-apple-darwin
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 90
+    defaults:
+      run:
+        shell: bash
+        working-directory: bokheim
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: bokheim
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/GPUI-Fork
+          ref: ${{ env.GPUI_FORK_REF }}
+          path: GPUI-Fork
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/HtmlEngine
+          ref: ${{ env.HTML_ENGINE_REF }}
+          path: HtmlEngine
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/HtmlViewCore
+          ref: ${{ env.HTML_VIEW_CORE_REF }}
+          path: HtmlViewCore
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Set up Rust and Metal
+        run: |
+          rustup toolchain install "$RUSTUP_TOOLCHAIN" --profile minimal --target "${{ matrix.target }}"
+          if ! xcrun --sdk macosx --find metal; then
+            xcodebuild -downloadComponent MetalToolchain
+          fi
+          xcrun --sdk macosx --find metal
+          xcrun --sdk macosx --find metallib
+      - uses: Swatinem/rust-cache@v2
+        with:
+          prefix-key: bokheim-macos-v1
+          shared-key: desktop-macos-${{ matrix.arch }}
+          key: gpui-${{ env.GPUI_FORK_REF }}-engine-${{ env.HTML_ENGINE_REF }}-view-${{ env.HTML_VIEW_CORE_REF }}
+          workspaces: bokheim -> target
+          cache-on-failure: true
+          cache-workspace-crates: true
+      - name: Verify version tag
+        env:
+          PUBLISH_REQUESTED: ${{ inputs.publish || false }}
+        run: |
+          python3 - <<'PY'
+          import os, tomllib
+          version = tomllib.load(open('apps/desktop-gpui/Cargo.toml', 'rb'))['package']['version']
+          if os.environ['PUBLISH_REQUESTED'] == 'true':
+              assert os.environ['GITHUB_REF'].startswith('refs/tags/'), 'Select an existing version tag to publish'
+              assert os.environ['GITHUB_REPOSITORY'] == os.environ['RELEASE_REPOSITORY'], 'Publish from the bokheim-release repository'
+          if os.environ['GITHUB_REF'].startswith('refs/tags/'):
+              assert os.environ['GITHUB_REF_NAME'] == 'v' + version, 'Tag differs from app version'
+          PY
+      - name: Build optimized desktop app
+        run: python3 apps/desktop-gpui/scripts/build.py --target "${{ matrix.target }}"
+      - name: Verify relocated PDF runtime
+        run: |
+          PDFIUM_PREPARED_DIR="$PWD/.pdfium/${{ matrix.target }}" \
+            cargo test --release -p pdf-reader-core --test packaged_runtime --target "${{ matrix.target }}"
+      - name: Package and verify architecture bundle
+        run: |
+          python3 apps/desktop-gpui/macos/package.py architecture \
+            --arch "${{ matrix.arch }}" --output "$RUNNER_TEMP/macos-package"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bokheim-macos-${{ matrix.arch }}
+          path: ${{ runner.temp }}/macos-package/*
+          if-no-files-found: error
+
+  universal:
+    name: Package universal macOS download
+    needs: build
+    runs-on: macos-15
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      statuses: read
+    defaults:
+      run:
+        shell: bash
+        working-directory: bokheim
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: bokheim
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: bokheim-macos-*
+          path: packages
+      - name: Combine, sign and verify universal app
+        run: |
+          python3 apps/desktop-gpui/macos/package.py universal \
+            --arm64 "$GITHUB_WORKSPACE/packages/bokheim-macos-arm64/Bokheim-macOS-arm64.zip" \
+            --x86-64 "$GITHUB_WORKSPACE/packages/bokheim-macos-x86_64/Bokheim-macOS-x86_64.zip" \
+            --output "$RUNNER_TEMP/macos-release"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bokheim-macos-universal
+          path: ${{ runner.temp }}/macos-release/*
+          if-no-files-found: error
+      - name: Upload macOS download to existing release
+        if: github.repository == 'JohanAnderssonOstling/bokheim-release' && startsWith(github.ref, 'refs/tags/') && (github.event_name == 'push' || inputs.publish)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/ci/require-shared-tests.py "$GITHUB_REPOSITORY" "$GITHUB_SHA"
+          python3 scripts/ci/check-server-protocol.py "$GITHUB_SHA"
+          # Existing tags/releases only; never overwrite a published download.
+          gh api "repos/$RELEASE_REPOSITORY/git/ref/tags/$GITHUB_REF_NAME" >/dev/null
+          gh release view "$GITHUB_REF_NAME" --repo "$RELEASE_REPOSITORY" >/dev/null
+          gh release upload "$GITHUB_REF_NAME" --repo "$RELEASE_REPOSITORY" \
+            "$RUNNER_TEMP/macos-release/Bokheim-macOS-universal.dmg" \
+            "$RUNNER_TEMP/macos-release/Bokheim-macOS-universal.dmg.sha256" \
+            "$RUNNER_TEMP/macos-release/build-macos.json"
