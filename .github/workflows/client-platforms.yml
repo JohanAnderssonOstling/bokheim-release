@@ -57,12 +57,12 @@ jobs:
       - uses: actions/checkout@v6
         with:
           repository: JohanAnderssonOstling/HtmlEngine
-          ref: 91766fb2db8d56b38dc0336ddf74972da9872520
+          ref: 24d905d2d2c14c84499438399a31725692bb9a28
           path: HtmlEngine
       - uses: actions/checkout@v6
         with:
           repository: JohanAnderssonOstling/HtmlViewCore
-          ref: 0d407738fd6ecfd6d6ea84f1a9ce0a488e3dfaf7
+          ref: 2fab96c2de2b1c7899838fa6d26ec292d0273abf
           path: HtmlViewCore
       - name: Install Rust and build dependencies
         run: |
