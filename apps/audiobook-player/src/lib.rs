@@ -34,6 +34,9 @@ impl Drop for OpeningTiming {
 mod audio_engine;
 
 #[cfg(target_os = "android")]
+#[path = "android_audio.rs"]
+pub mod android;
+#[cfg(target_os = "android")]
 use android::AudioEngine;
 #[cfg(all(not(target_os = "android"), not(target_arch = "wasm32")))]
 use audio_engine::AudioEngine;
