@@ -27,8 +27,25 @@ pub fn rename_noclobber(source: &Path, destination: &Path) -> std::io::Result<()
     }
     #[cfg(windows)]
     {
-        // Windows rename already refuses an existing destination.
-        std::fs::rename(source, destination)
+        use std::io::{Error, ErrorKind};
+        use std::os::windows::ffi::OsStrExt as _;
+        #[link(name = "kernel32")]
+        unsafe extern "system" {
+            fn MoveFileExW(source: *const u16, destination: *const u16, flags: u32) -> i32;
+        }
+        let wide = |path: &Path| -> std::io::Result<Vec<u16>> {
+            let mut path: Vec<_> = path.as_os_str().encode_wide().collect();
+            if path.contains(&0) {
+                return Err(Error::new(ErrorKind::InvalidInput, "path contains a NUL character"));
+            }
+            path.push(0);
+            Ok(path)
+        };
+        let source = wide(source)?;
+        let destination = wide(destination)?;
+        // With no replacement flag, Windows rejects an existing destination
+        // atomically. Both terminated strings remain alive for the call.
+        if unsafe { MoveFileExW(source.as_ptr(), destination.as_ptr(), 0) } != 0 { Ok(()) } else { Err(Error::last_os_error()) }
     }
     #[cfg(not(any(target_os = "linux", target_os = "android", target_os = "macos", windows)))]
     {
@@ -40,6 +57,25 @@ pub fn rename_noclobber(source: &Path, destination: &Path) -> std::io::Result<()
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::fs;
+    #[test]
+    fn rename_noclobber_moves_files_and_directories_to_absent_destinations() {
+        let root = tempfile::tempdir().unwrap();
+        let file = root.path().join("source-file");
+        let moved_file = root.path().join("moved-file");
+        fs::write(&file, b"book").unwrap();
+        rename_noclobber(&file, &moved_file).unwrap();
+        assert!(!file.exists());
+        assert_eq!(fs::read(moved_file).unwrap(), b"book");
+        let directory = root.path().join("source-directory");
+        let moved_directory = root.path().join("moved-directory");
+        fs::create_dir(&directory).unwrap();
+        fs::write(directory.join("book"), b"nested book").unwrap();
+        rename_noclobber(&directory, &moved_directory).unwrap();
+        assert!(!directory.exists());
+        assert_eq!(fs::read(moved_directory.join("book")).unwrap(), b"nested book");
+    }
+
     #[test]
     fn rename_noclobber_keeps_both_existing_files() {
         let directory = tempfile::tempdir().unwrap();
