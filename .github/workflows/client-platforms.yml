@@ -86,6 +86,8 @@ jobs:
         run: cargo test --release -p pdf-reader-core --test packaged_runtime
       - name: Native platform tests
         run: cargo test --release -p client-platform-native -p client-platform-desktop --features client-platform-native/websocket
+      - name: Native application startup regression tests
+        run: cargo test --release -p app --lib api::launch::tests
       - name: Windows update storage and recovery
         run: |
           for module in native_files activation supervisor windows_package; do
