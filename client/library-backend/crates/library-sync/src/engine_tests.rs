@@ -27,6 +27,60 @@ struct MemoryStore(RefCell<MemoryState>);
 
 struct DatabaseStore(library_database::Database);
 
+#[tokio::test]
+#[ignore = "requires the isolated server from client/app/tests/run_sync_e2e.sh"]
+async fn production_http_postgres_directory_roundtrip_survives_restart() {
+    use library_database::Database;
+    use reqwest::Client;
+    use std::env;
+    use std::time::Duration;
+    use sync_common::{DirId, ROOT_DIR_ID};
+
+    let server: Url = env::var("SYNC_E2E_SERVER_URL").expect("run client/app/tests/run_sync_e2e.sh").parse().unwrap();
+    let password = env::var("SYNC_E2E_ADMIN_PASSWORD").unwrap();
+    let session = account_client::login(&server, "admin@bokheim.local", &password).await.unwrap();
+    let library = LibraryId::new_v4();
+    account_client::create_library(&session, library, format!("Release regression {library}")).await.unwrap();
+    let credentials = SyncCredentials::new(server, session.token());
+    let client = Client::new();
+    let disk = tempfile::tempdir().unwrap();
+    let first_path = disk.path().join("first.sqlite3");
+    let first = DatabaseStore(Database::open(&first_path).unwrap());
+    let first_replica = first.0.initialize_library().unwrap();
+    let second = DatabaseStore(Database::open(disk.path().join("second.sqlite3")).unwrap());
+    let second_replica = second.0.initialize_library().unwrap();
+    let folder = DirId::new_v4();
+    first.0.create_directory_with_id(&folder, &ROOT_DIR_ID, &"Initial".into()).unwrap();
+
+    async fn sync(store: &DatabaseStore, replica_id: ReplicaId, client: &Client, library_id: LibraryId, credentials: &SyncCredentials) {
+        let engine = SyncEngine::new(SyncEngineConfig { store, http_client: client, library_id, replica_id, credentials: Some(credentials.clone()) });
+        let result = tokio::time::timeout(Duration::from_secs(30), engine.synchronize()).await.expect("real-server synchronization timed out").unwrap();
+        assert!(result.mutation_issues.is_empty(), "{:?}", result.mutation_issues);
+    }
+
+    sync(&first, first_replica, &client, library, &credentials).await;
+    sync(&second, second_replica, &client, library, &credentials).await;
+    assert_eq!(second.0.child_directory(&ROOT_DIR_ID, "Initial").unwrap(), Some(folder));
+    second.0.move_directory(&folder, None, Some("Renamed")).unwrap();
+    sync(&second, second_replica, &client, library, &credentials).await;
+    sync(&first, first_replica, &client, library, &credentials).await;
+    assert_eq!(first.0.child_directory(&ROOT_DIR_ID, "Renamed").unwrap(), Some(folder));
+    assert_eq!(first.0.child_directory(&ROOT_DIR_ID, "Initial").unwrap(), None);
+
+    drop(first);
+    let reopened = DatabaseStore(Database::open(&first_path).unwrap());
+    assert_eq!(reopened.0.initialize_library().unwrap(), first_replica);
+    sync(&reopened, first_replica, &client, library, &credentials).await;
+    let cursor = reopened.0.sync_pull_cursor().unwrap();
+    sync(&reopened, first_replica, &client, library, &credentials).await;
+    assert_eq!(reopened.0.sync_pull_cursor().unwrap(), cursor);
+    assert_eq!(reopened.0.child_directory(&ROOT_DIR_ID, "Renamed").unwrap(), Some(folder));
+    assert!(reopened.0.sync_publishable_mutations().unwrap().is_empty());
+    assert!(second.0.sync_publishable_mutations().unwrap().is_empty());
+    account_client::delete_library(&session, &library).await.unwrap();
+    account_client::logout(&session).await.unwrap();
+}
+
 fn database_result<T: 'static>(result: Result<T, library_database::DatabaseError>) -> StoreFuture<'static, T> {
     Box::pin(async move { result.map_err(|error| Box::new(error) as StoreError) })
 }

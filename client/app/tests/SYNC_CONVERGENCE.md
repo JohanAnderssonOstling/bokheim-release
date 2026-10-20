@@ -14,14 +14,20 @@ processes and data are cleaned up on exit. `TMPDIR` selects the temporary data
 location. `SYNC_E2E_DATABASE_URL`, if supplied, must name a disposable test
 database; the server tests apply schemas there.
 
-The client tests live in
-`client/library-backend/src/sync/library_sync/tests/convergence.rs` and use the
-production `LibrarySync`, sync engine, HTTP transport, SQLite database and
-PostgreSQL service. Client restarts close and reopen the same database; delayed
-responses and lost acknowledgements are scheduled explicitly without replacing
-server responses with fixtures. Every scenario creates an isolated library.
-Cloud asset storage is disabled for these state tests; upload admission and
-filesystem byte handling are covered separately.
+The current real-server client regression lives in
+`client/library-backend/crates/library-sync/src/engine_tests.rs`. It uses the
+production sync engine, HTTP transport, SQLite databases and PostgreSQL service
+to verify directory creation, a rename sent back from a second device, database
+restart, empty outboxes and a stable extra synchronization. Each run creates an
+isolated library. Server account, database and registration integration tests
+also run against the temporary PostgreSQL instance.
+
+## Historical pre-refactor scenarios
+
+The scenarios below document the former client convergence suite, which was
+removed during the storage refactor. They are not claims about the current
+real-server test's coverage. Current database merge and sync-engine regressions
+also run in the shared suite.
 
 Coverage:
 
