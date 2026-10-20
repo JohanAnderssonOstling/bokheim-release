@@ -1,6 +1,11 @@
 name: Windows platform release checks
 on:
   workflow_dispatch:
+    inputs:
+      fixture_only:
+        description: Rerun the Windows executable update integration fixture after other checks have passed
+        type: boolean
+        default: false
   workflow_call:
   pull_request:
     paths:
@@ -83,15 +88,22 @@ jobs:
           target=$(rustc -vV | sed -n 's/^host: //p')
           python shared/pdfium/prepare.py --target "$target"
       - name: Windows standalone PDF runtime
+        if: inputs.fixture_only != true
         run: cargo test --release -p pdf-reader-core --test packaged_runtime
       - name: Native platform tests
+        if: inputs.fixture_only != true
         run: cargo test --release -p client-platform-native -p client-platform-desktop --features client-platform-native/websocket
       - name: Native application startup regression tests
+        if: inputs.fixture_only != true
         run: cargo test --release -p app --lib api::launch::tests
       - name: Windows update storage and recovery
+        env:
+          FIXTURE_ONLY: ${{ inputs.fixture_only || false }}
         run: |
-          for module in native_files activation supervisor windows_package; do
-            cargo test --release -p update-client --features native-state "${module}::"
-          done
-          cargo test --release -p linux-update-host windows
+          if [[ "$FIXTURE_ONLY" != true ]]; then
+            for module in native_files activation supervisor windows_package; do
+              cargo test --release -p update-client --features native-state "${module}::"
+            done
+            cargo test --release -p linux-update-host windows
+          fi
           cargo run --release -p linux-update-host --example windows_update_trial

@@ -79,6 +79,8 @@ mod fixture {
         let data = temp.path().join("data"); fs::create_dir(&data)?;
         fs::write(data.join("scenario"), scenario)?;
         let executable = installation.join("Bokheim.exe");
+        let taxonomy = fs::read(subject_projection::bundled::path()?)?;
+        fs::write(installation.join("taxonomy.sqlite3"), &taxonomy)?;
         let original = fs::read(std::env::current_exe()?)?;
         let mut old = original.clone(); old.extend_from_slice(b"\nBOKHEIM_FIXTURE_VERSION=1.0.0\n");
         fs::write(&executable, &old)?;
@@ -86,6 +88,8 @@ mod fixture {
         let mut zip = zip::ZipWriter::new(Cursor::new(Vec::new()));
         zip.start_file("Bokheim.exe", zip::write::SimpleFileOptions::default().compression_method(zip::CompressionMethod::Deflated))?;
         zip.write_all(&next)?;
+        zip.start_file("taxonomy.sqlite3", zip::write::SimpleFileOptions::default().compression_method(zip::CompressionMethod::Deflated))?;
+        zip.write_all(&taxonomy)?;
         let bytes = zip.finish()?.into_inner();
         rusqlite::Connection::open(data.join("app-state-v1.sqlite3"))?.execute_batch("CREATE TABLE setting(v); INSERT INTO setting VALUES('old')")?;
         let artifact = Artifact { url: "https://example.org/releases/2/app.zip".into(), bytes: bytes.len() as u64, sha256: hex(digest(&SHA256, &bytes).as_ref()) };
