@@ -116,6 +116,7 @@ venv/
 
 # Local books, large test assets, and external reference checkouts
 *.epub
+!/client/library-backend/crates/book-inspection/tests/fixtures/*.epub
 /TestData/
 /client/app/tests/test_folder/
 /reference/plato/
