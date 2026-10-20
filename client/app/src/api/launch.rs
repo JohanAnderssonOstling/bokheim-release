@@ -103,7 +103,7 @@ mod tests {
         let expected = client_platform_desktop::default_library_root().unwrap();
         let context = launch.clone().into_context().unwrap();
         assert_eq!(context.registry.default_library_save_location().unwrap(), Some(expected.to_string_lossy().into_owned()));
-        let chosen = root.path().join("Chosen");
+        let chosen = fs::canonicalize(root.path()).unwrap().join("Chosen");
         context.registry.set_default_library_save_location(chosen.to_str().unwrap()).unwrap();
         let restarted = launch.into_context().unwrap();
         let created = restarted.registry.create("Created", None).unwrap();
@@ -119,7 +119,7 @@ mod tests {
         let original = BackendContext::initialize(location.clone()).unwrap();
         let existing = original.registry.create("Existing", None).unwrap();
         drop(original);
-        let visible = root.path().join("Bokheim/Libraries");
+        let visible = fs::canonicalize(root.path()).unwrap().join("Bokheim/Libraries");
         let launch = BackendLaunch::initialize(location).unwrap().with_library_discovery(visible.clone(), "Kobo".into(), visible.join("default"));
         let context = launch.clone().into_context().unwrap();
         let created = context.registry.create("Created", None).unwrap();
@@ -131,7 +131,7 @@ mod tests {
         assert_eq!(entries.iter().find(|entry| entry.library_id() == existing.library_id()).unwrap().storage_locator(), existing.storage_locator());
         assert_eq!(restarted.registry.attach_remote(remote.library_id(), "Remote").unwrap().storage_locator(), remote.storage_locator());
 
-        let chosen = root.path().join("User chosen");
+        let chosen = fs::canonicalize(root.path()).unwrap().join("User chosen");
         context.registry.set_default_library_save_location(chosen.to_str().unwrap()).unwrap();
         let restarted = launch.into_context().unwrap();
         let next = restarted.registry.create("Next", None).unwrap();
