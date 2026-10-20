@@ -11,9 +11,9 @@ CONTEXT = 'bokheim/shared-tests-v1'
 
 
 def commands():
-    packages = ['account-client', 'book-access', 'book-enrichment', 'book-model',
+    packages = ['account-client', 'book-access', 'library-enrichment', 'book-model',
                 'library-files', 'asset-transfer', 'client-platform-runtime',
-                'client-runtime', 'client-platform-android', 'client-platform-kobo', 'sync-engine', 'library-database',
+                'client-runtime', 'client-platform-android', 'client-platform-kobo', 'library-sync', 'library-database',
                 'library-replica', 'library-backend', 'subject-projection']
     return [
         ['python3', '-m', 'unittest', 'discover', '-s', 'scripts/ci/tests'],
