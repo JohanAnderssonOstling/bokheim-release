@@ -48,14 +48,16 @@ fn heading_components_keep_their_evidence_and_specificity_rules() {
 }
 
 #[test]
-fn explicit_codes_bypass_heading_depth_but_lcc_disables_heading_inference() {
+fn explicit_codes_bypass_heading_depth_and_manual_codes_survive_lcc_precedence() {
     let explicit = subject("SCI057000", Some("bisac"), Some("SCI057000"));
     assert_eq!(match_bisac_subjects_with_minimum_adjacent(&[explicit.clone()], 10)[0].node_path(), "Science / Physics / Quantum Theory");
-    let subjects = [subject("QA76.76", Some("lcc"), Some("QA76.76")), subject("Science / Physics / Relativity", None, None), explicit];
+    let mut subjects = vec![subject("QA76.76", Some("lcc"), Some("QA76.76")), subject("Science / Physics / Relativity", None, None), explicit];
+    assert!(match_bisac_subjects(&subjects).is_empty());
+    subjects.push(BookSubject::new(None, "SCI057000", "manual:test", Some("bisac".into()), Some("SCI057000".into())).unwrap());
     let assignments = match_bisac_subjects(&subjects);
     assert_eq!(assignments.len(), 1);
     assert_eq!(assignments[0].node_path(), "Science / Physics / Quantum Theory");
-    assert_eq!(assignments[0].evidence_positions(), &[2]);
+    assert_eq!(assignments[0].evidence_positions(), &[3]);
 }
 
 #[test]
