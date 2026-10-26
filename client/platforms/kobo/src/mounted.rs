@@ -15,6 +15,11 @@ pub struct KoboDevice {
 }
 
 impl KoboDevice {
+    pub fn profile(&self) -> Result<&'static kobo_profile::Profile, io::Error> {
+        kobo_profile::Profile::detect("", &fs::read_to_string(self.root.join(".kobo/version"))?)
+            .map_err(|error| io::Error::new(io::ErrorKind::Unsupported, error))
+    }
+
     /// Inspect an explicitly selected mounted device.
     pub fn from_mount(root: &Path) -> io::Result<Self> {
         if !root.join(KOBO_MARKER_DIRECTORY).is_dir() {

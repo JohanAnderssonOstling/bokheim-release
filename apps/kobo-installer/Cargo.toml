@@ -24,12 +24,16 @@ flate2 = "1"
 gpui = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "68b0a5ba82860ac222c18acd9036b3838a43a08b", optional = true }
 gpui_platform = { git = "https://github.com/JohanAnderssonOstling/GPUI-Fork", rev = "68b0a5ba82860ac222c18acd9036b3838a43a08b", features = ["wayland", "x11"], optional = true }
 hex = "0.4"
+kobo-package = { path = "../../shared/kobo-package" }
+kobo-profile = { path = "../../shared/kobo-profile" }
 semver = { version = "1", optional = true }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 sha2 = "0.10"
 tar = "0.4"
 ureq = { version = "2.12", default-features = false, features = ["tls"], optional = true }
+update-protocol = { path = "../../shared/update-protocol" }
+update-files = { path = "../../shared/update-files" }
 
 [target.'cfg(windows)'.dependencies]
 windows-sys = { version = "0.59", features = ["Win32_Storage_FileSystem"] }

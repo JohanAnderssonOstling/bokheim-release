@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "target": "x86_64-unknown-linux-gnu",
+  "glibc": "2.17",
+  "zig": {
+    "name": "zig-x86_64-linux-0.15.2.tar.xz",
+    "url": "https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz",
+    "sha256": "02aa270f183da276e5b5920b1dac44a63f1a49e55050ebde3aecc9eb82f93239"
+  },
+  "artifacts": [
+    {
+      "name": "libxcb-1.13-1.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/libxcb-1.13-1.el7.x86_64.rpm",
+      "sha256": "125d6cdbea06799872b77b6322bf5cb107d7c0c70218827bf6b649f08ca527c5"
+    },
+    {
+      "name": "libxkbcommon-0.7.1-3.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/libxkbcommon-0.7.1-3.el7.x86_64.rpm",
+      "sha256": "a9b062f6eb21386a67dfea0fd3f3bca884fa25a938f6edf36b4a4fcc30578fc9"
+    },
+    {
+      "name": "libxkbcommon-x11-0.7.1-3.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/libxkbcommon-x11-0.7.1-3.el7.x86_64.rpm",
+      "sha256": "e9d47c8a38c763ac207a72bfc5030985fed89ada1c216228b4e33ceec994b5fc"
+    },
+    {
+      "name": "libXau-1.0.8-2.1.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/libXau-1.0.8-2.1.el7.x86_64.rpm",
+      "sha256": "c6441b423c19c5ca543d72fe6ed3679f039538ad345cb4284a36781869f8609c"
+    },
+    {
+      "name": "alsa-lib-1.1.8-1.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/alsa-lib-1.1.8-1.el7.x86_64.rpm",
+      "sha256": "01990da86e8971970800575c029714a2fc6c8245c20085a68c89cec3955b1618"
+    },
+    {
+      "name": "fontconfig-2.13.0-4.3.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/fontconfig-2.13.0-4.3.el7.x86_64.rpm",
+      "sha256": "adf21042079dd4754a2d77f5ddf83b8537407081e95edeb553b1b0e8130aa558"
+    },
+    {
+      "name": "freetype-2.8-14.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/freetype-2.8-14.el7.x86_64.rpm",
+      "sha256": "13f22ec33abf14d99dbdd456f1b2ac3b0ea84c1ceb756073a0df41de0de42b7a"
+    },
+    {
+      "name": "expat-2.1.0-12.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/expat-2.1.0-12.el7.x86_64.rpm",
+      "sha256": "c73d74dee6c977bda30983111a290f054a8301797f32a20b550b4242679f057e"
+    },
+    {
+      "name": "libuuid-2.23.2-65.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/libuuid-2.23.2-65.el7.x86_64.rpm",
+      "sha256": "45490dce25d50ba66fc07e77f3b0f1dbd8dcf584438792413af0c4b7b5fbf583"
+    },
+    {
+      "name": "libpng-1.5.13-8.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/libpng-1.5.13-8.el7.x86_64.rpm",
+      "sha256": "e38e68875557c79dab8eea9aedaeea75787a2d1a88de118ecb0315c1833a1def"
+    },
+    {
+      "name": "zlib-1.2.7-18.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/zlib-1.2.7-18.el7.x86_64.rpm",
+      "sha256": "35c675532754fb15dce330b8f56f3627efa453382d7888b2b9a55cfffb39be0e"
+    },
+    {
+      "name": "bzip2-libs-1.0.6-13.el7.x86_64.rpm",
+      "url": "https://vault.centos.org/7.9.2009/os/x86_64/Packages/bzip2-libs-1.0.6-13.el7.x86_64.rpm",
+      "sha256": "1fd32866a2a82f5abc19142b59dce8fd961bc1d32e3bedfa0de7a950066fdaa5"
+    },
+    {
+      "name": "libstdcxx-ng-12.3.0-hc0a3c3a_13.conda",
+      "url": "https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-12.3.0-hc0a3c3a_13.conda",
+      "sha256": "123d97faccdd39aa65a7beaf0dd031dad61e3ed45149c8ed91b07ae3aea6d86b"
+    },
+    {
+      "name": "libgcc-ng-12.3.0-h77fa898_13.conda",
+      "url": "https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-12.3.0-h77fa898_13.conda",
+      "sha256": "cad9fc19ea75b6be4a4a47ac742136aa63410c86584b580ee549639ad8817d79"
+    },
+    {
+      "name": "libstdcxx-devel_linux-64-12.3.0-h8bca6fd_2.conda",
+      "url": "https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-devel_linux-64-12.3.0-h8bca6fd_2.conda",
+      "sha256": "e8483069599561ef24b884c898442eadc510190f978fa388db3281b10c3c084e"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "version": "0.1.10",
+  "archive": {
+    "name": "Bokheim-Kobo-armv7.tar.gz",
+    "bytes": 67710877,
+    "sha256": "338b51a3a5d2397b053aafa4d3d19fc52d5058521c7c22f3a1fdaa7234589b8d"
+  },
+  "built_at": "2026-10-24T13:20:52Z",
+  "cpu_profile": "generic"
+}

@@ -7,7 +7,7 @@ use std::collections::BTreeMap;
 use url::Url;
 
 mod artifact;
-pub use artifact::copy_verified;
+pub use artifact::{copy_verified, copy_verified_with_progress, stage_verified, verify_file};
 
 pub const MAX_MANIFEST_BYTES: usize = 1024 * 1024;
 pub const SIGNATURE_CONTEXT: &[u8] = b"bokheim-update-manifest-v1\0";

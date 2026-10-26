@@ -1,9 +1,16 @@
 # Bokheim Kobo Installer
 
-This small desktop application installs the release Kobo package onto a Kobo
-Libra 2 connected as USB storage. The verified `tar.gz` package is embedded in
+This small desktop application installs the release Kobo package onto a supported
+Kobo connected as USB storage. The verified `tar.gz` package is embedded in
 the Windows executable and Linux AppImage at build time; users do not select or
 download a second payload.
+
+The Linux AppImage uses the same glibc 2.17 release SDK and ELF checks as the
+desktop app. Build it with `python3 scripts/linux/toolchain.py -- cargo build
+--release --manifest-path apps/kobo-installer/Cargo.toml`, then run
+`apps/kobo-installer/linux/build-appimage.sh`. See
+[`../desktop-gpui/linux/README.md`](../desktop-gpui/linux/README.md) for SDK and
+AppImage tool requirements.
 
 The installer:
 
@@ -12,11 +19,27 @@ The installer:
 - displays the exact mount path and requires an explicit **Install Bokheim**
   click;
 - accepts package entries only below `.adds` and `Bokheim`;
+- identifies the model from `.kobo/version` and checks the package's supported
+  model IDs before writing files;
 - replaces individual files through temporary and backup files; and
 - verifies that the launcher, FBInk, executable, PDFium runtime, and NickelMenu entry exist
   after extraction;
 - queues the pinned NickelMenu v0.6.0 build with Bokheim direct-launch support; and
 - attempts to safely eject the Kobo when installation finishes.
+
+With a package supporting on-device updates, open **Settings → Kobo → Check
+for updates** on the reader. Bokheim downloads the latest Kobo release over
+Wi-Fi, verifies its published size and SHA-256 digest, and stages its files.
+**Restart and install** closes the application before the launcher replaces
+the program and starts it again. The packaged version must match the release
+tag. Books, settings, databases, and optional SSH tools are excluded. This
+flow keeps the existing NickelMenu installation and Kobo firmware.
+
+A complete program-file backup is saved before replacement. If installation
+is interrupted, the firmware shell restores it before the next launch. This
+recovers installation failures; it does not roll back database migrations
+after a successfully installed release. Older launchers need one USB install
+of a package with on-device update support.
 
 Tapping **Bokheim** in Kobo's bottom navigation opens Bokheim immediately.
 The button uses Bokheim's logo, with gray and black versions for its normal
@@ -36,6 +59,71 @@ NickelMenu installs when the Kobo disconnects and restarts. Firmware must be
 4.6 or later in the 4.x series. An existing unrelated firmware update is
 preserved and blocks installation until that update finishes.
 
+## Device profiles and verification
+
+The shared `kobo-profile` catalogue expands Plato's advertised supported-device
+list into 26 hardware profiles: Touch B/C, Glo, Aura, Aura H2O, Glo HD, Aura ONE and Limited
+Edition, Aura Edition 2 and v2, Aura H2O Edition 2 and v2, Clara HD, Forma and
+32GB, Nia, Libra H2O, Elipsa, Sage, Libra 2, Clara 2E, Elipsa 2E, Libra Colour,
+Clara BW, Clara Colour, and Clara BW TPV. The numeric version-marker ID takes
+precedence over product names, which several hardware revisions share. Unknown
+models and contradictory identities are rejected.
+
+Page buttons are optional: touch navigation remains available on buttonless
+models. The profile selects screen-density scaling, the touch protocol and rotation mapping, frontlight
+driver, and available brightness, warmth, auto-rotation and Bluetooth controls.
+FBInk handles framebuffer identification and display refresh.
+Bluetooth availability follows Kobo's [compatible eReader list](https://help.kobo.com/hc/en-us/articles/4406284800023-Troubleshoot-Bluetooth-pairing-on-your-Kobo-eReader).
+
+The universal package uses ARMv7 with NEON, a private glibc 2.23 runtime built
+for Linux 2.6.32, and pinned FBInk sources covering the listed models. Firmware
+libraries remain untouched. Legacy packages without a model declaration are
+accepted only on Libra 2. Releases retain the old Libra 2 asset name as an
+identical copy of the universal package so existing updaters can migrate.
+
+Profiles describe implemented support; they are not evidence that every model
+has passed physical-device testing. In particular, an old-kernel libc ABI note
+does not establish that all Rust and application syscalls work on an old kernel.
+Old devices still need kernel and performance testing. Colour displays currently
+use the application's grayscale rendering path.
+
+Build and capture the real application on the host:
+
+```sh
+cargo build --release -p desktop-gpui --no-default-features --features kobo --bin desktop-gpui-kobo
+python3 apps/desktop-gpui/scripts/test-kobo-profiles.py
+```
+
+The runner uses separate application data for each model and writes PGM frames,
+logs and a JSON report under `target/kobo-profile-verification`. Add
+`--models 310 376 388 390` for a smaller sample. Touch protocol, lighting and
+package compatibility tests run in the shared suite. Headless captures test
+layout and capability selection. QEMU user mode can additionally exercise the
+ARM binary and bundled loader; it uses the host kernel and does not emulate
+Kobo hardware. Neither method validates e-ink waveforms, real touch coordinates,
+sensor orientation, suspend, battery use or performance on a physical reader.
+
+On a Linux host with QEMU user emulation, extract the package and supply the
+private interpreter at its compiled path inside a QEMU prefix:
+
+```sh
+arm_root="$PWD/target/kobo-arm-verification"
+mkdir -p "$arm_root"
+tar -xzf apps/kobo-installer/package/Bokheim-Kobo-armv7.tar.gz -C "$arm_root"
+mkdir -p "$arm_root/sysroot/mnt/onboard/.adds/bokheim"
+ln -sfn "$arm_root/.adds/bokheim/runtime" "$arm_root/sysroot/mnt/onboard/.adds/bokheim/runtime"
+python3 apps/desktop-gpui/scripts/test-kobo-profiles.py \
+  --binary "$arm_root/.adds/bokheim/desktop-gpui-kobo" \
+  --qemu "$(command -v qemu-arm-static)" --qemu-root "$arm_root/sysroot" \
+  --output target/kobo-arm-profiles
+```
+
+This runs all declared profiles and restricts CPU instructions to Cortex-A8
+while retaining the host's kernel. Add `--models 310 388` for a smaller sample.
+Each run requires newly generated, nonblank frames at the model's exact screen
+resolution. A successful JSON report is written only after every selected
+profile passes; a failed run removes any previous success report.
+
 Automatic eject uses `udisksctl` on Linux, `diskutil` on macOS, and volume
 control calls on Windows. If host permissions or open files prevent eject,
 the installer reports success and asks for manual safe eject. It does not
@@ -49,6 +137,10 @@ the Kobo after eject. Windows and macOS use the operating system's normal
 automatic mounting.
 
 ## Local development
+
+The sibling `GPUI-Fork` checkout must include the Kobo input-profile, density
+scaling and capture-settling changes in `crates/gpui_kobo`. Include those fork
+changes and update the pinned fork revision when preparing a source release.
 
 Set `BOKHEIM_KOBO_ARCHIVE` to a package produced by
 `apps/desktop-gpui/scripts/package-kobo.sh` and `BOKHEIM_VERSION` to the desktop
@@ -132,7 +224,7 @@ The Kobo package itself is built on a maintainer machine, not in CI. It uses
 the pinned Bootlin ARMv7 glibc toolchain and bundles its runtime alongside
 PDFium so the reader can load PDFium without replacing firmware libraries.
 The built package is committed to the repository at
-`package/Bokheim-Kobo-Libra2-armv7.tar.gz`, and the `Kobo release` workflow
+`package/Bokheim-Kobo-armv7.tar.gz`, and the `Kobo release` workflow
 embeds whatever is committed there.
 
 Whenever the Kobo application changes, rebuild and commit the package before
@@ -140,7 +232,7 @@ running the workflow:
 
 ```sh
 apps/desktop-gpui/scripts/refresh-kobo-package.sh
-git add apps/kobo-installer/package/Bokheim-Kobo-Libra2-armv7.tar.gz
+git add apps/kobo-installer/package/Bokheim-Kobo-armv7.tar.gz
 git commit -m "Refresh the committed Kobo package"
 ```
 

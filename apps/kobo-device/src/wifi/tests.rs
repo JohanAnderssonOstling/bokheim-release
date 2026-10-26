@@ -33,7 +33,7 @@ fn control_uses_a_private_socket_and_does_not_expose_secrets_in_errors() {
     });
     let client = Control::open(&path).unwrap();
     let error = client.command("SET_NETWORK 4 psk secret-test-value").unwrap_err();
-    assert!(!error.contains("secret-test-value"));
+    assert!(!error.message.contains("secret-test-value"));
     worker.join().unwrap();
 }
 
@@ -193,7 +193,7 @@ fn subprocess_timeout_stops_descendants_and_reports_failures() {
     let directory = tempfile::tempdir().unwrap();
     let marker = directory.path().join("late-write");
     let error = run_bounded(Command::new("/bin/sh").args(["-c", "(sleep 0.2; echo late > \"$1\") & wait", "test"]).arg(&marker), Duration::from_millis(20), "Test helper").unwrap_err();
-    assert!(error.contains("timed out"));
+    assert!(error.message.contains("timed out"));
     std::thread::sleep(Duration::from_millis(300));
     assert!(!marker.exists(), "helper descendants must not run after cancellation");
     assert!(run_bounded(Command::new("/bin/sh").args(["-c", "exit 2"]), Duration::from_secs(1), "Test helper").is_err());

@@ -1,28 +1,22 @@
-use flate2::read::GzDecoder;
+use kobo_package::{MENU_CONFIGURATION as NICKEL_MENU_CONFIGURATION_PATH, REQUIRED_FILES as REQUIRED_INSTALLED_FILES};
+use kobo_package::{Policy, destination, inspect, visit};
 use sha2::{Digest, Sha256};
 use std::collections::BTreeSet;
 use std::ffi::OsStr;
-use std::fs::{self, OpenOptions};
-use std::io::{self, Read, Write};
-use std::path::{Component, Path, PathBuf};
+use std::fs;
+use std::io::{self, Read};
+use update_files::existing_regular_file;
+use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicU64, Ordering};
+#[cfg(test)]
 use tar::EntryType;
 
 mod device_monitor;
 pub use device_monitor::{DeviceDetection, DeviceMonitor};
 
 const KOBO_MARKER_DIRECTORY: &str = ".kobo";
-const REQUIRED_INSTALLED_FILES: &[&str] = &[
-    ".adds/bokheim/desktop-gpui-kobo", ".adds/bokheim/fbink", ".adds/bokheim/run.sh", ".adds/bokheim/run-monitored.sh", ".adds/nm/desktop-gpui-kobo",
-    ".adds/bokheim/pdfium/libpdfium.so", ".adds/bokheim/runtime/ld-linux-armhf.so.3", ".adds/bokheim/runtime/libc.so.6", ".adds/bokheim/taxonomy.sqlite3",
-];
-const PROTECTED_APP_DATA_DIRECTORIES: &[&str] = &[".adds/bokheim/data", ".adds/bokheim/libraries", ".adds/bokheim/remote-book-cache", ".adds/bokheim/taxonomy"];
-const PROTECTED_APP_DATA_FILES: &[&str] =
-    &[".adds/bokheim/app-state-v1.sqlite3", ".adds/bokheim/app-state-v1.sqlite3-wal", ".adds/bokheim/app-state-v1.sqlite3-shm", ".adds/bokheim/browsing_preferences.json", ".adds/bokheim/detached-libraries.json", ".adds/bokheim/libraries.csv", ".adds/bokheim/reader_preferences.json", ".adds/bokheim/session.json", ".adds/bokheim/transfer_preferences.json"];
-const MAX_UNPACKED_PACKAGE_BYTES: u64 = 512 * 1024 * 1024;
 static TEMPORARY_FILE_SEQUENCE: AtomicU64 = AtomicU64::new(0);
 const NICKEL_MENU_ARCHIVE: &[u8] = include_bytes!("../../desktop-gpui/kobo/nickelmenu-install/KoboRoot.tgz");
-const NICKEL_MENU_CONFIGURATION_PATH: &str = ".adds/nm/desktop-gpui-kobo";
 const NICKEL_MENU_CONFIGURATION: &[u8] = include_bytes!("../../desktop-gpui/kobo/nickelmenu");
 const NICKEL_MENU_ICONS: &[(&str, &[u8])] = &[
     (".adds/bokheim/nickelmenu-icons/bokheim.png", include_bytes!("../../ui/design-tokens/assets/icon/bokheim-kobo.png")),
@@ -38,6 +32,10 @@ pub struct KoboDevice {
 }
 
 impl KoboDevice {
+    pub fn profile(&self) -> io::Result<&'static kobo_profile::Profile> {
+        kobo_package::installed_profile(&fs::read_to_string(self.root.join(".kobo/version"))?)
+    }
+
     pub fn root(&self) -> &Path {
         &self.root
     }
@@ -122,9 +120,10 @@ fn decode_linux_mount_field(value: &str) -> String {
     value.replace("\\040", " ").replace("\\011", "\t").replace("\\012", "\n").replace("\\134", "\\")
 }
 
-
 pub fn install_archive_with_progress(device_root: &Path, archive: &[u8], mut on_progress: impl FnMut(InstallProgress)) -> io::Result<InstallSummary> {
     let device_root = validate_device_root(device_root)?;
+    let profile = kobo_package::installed_profile(&fs::read_to_string(device_root.join(".kobo/version"))?)?;
+    kobo_package::validate_device(archive, Policy::Usb, profile)?;
     let total_bytes = validate_archive_size(archive, Some(&device_root))? + NICKEL_MENU_ARCHIVE.len() as u64 + NICKEL_MENU_ICONS.iter().map(|(_, bytes)| bytes.len() as u64).sum::<u64>();
     validate_nickel_menu_install(&device_root)?;
     for (path, _) in NICKEL_MENU_ICONS {
@@ -133,17 +132,9 @@ pub fn install_archive_with_progress(device_root: &Path, archive: &[u8], mut on_
     let mut summary = InstallSummary::default();
     let mut copied_bytes = 0_u64;
     on_progress(InstallProgress { copied_bytes, total_bytes });
-    let decoder = GzDecoder::new(archive);
-    let mut package = tar::Archive::new(decoder);
-
-    for entry in package.entries()? {
-        let mut entry = entry?;
+    visit(archive, Policy::Usb, |entry, relative| {
         let entry_type = entry.header().entry_type();
-        let relative = sanitize_package_path(&entry.path()?, entry_type)?;
-        if relative.as_os_str().is_empty() {
-            continue;
-        }
-        let destination = device_root.join(&relative);
+        let destination = destination(&device_root, &relative, entry_type.is_dir())?;
         if entry_type.is_dir() {
             fs::create_dir_all(&destination)?;
             summary.directories += 1;
@@ -157,13 +148,12 @@ pub fn install_archive_with_progress(device_root: &Path, archive: &[u8], mut on_
                 // Always install the current Bokheim launch configuration.
                 install_file_atomically(&mut &NICKEL_MENU_CONFIGURATION[..], &destination, &mut report_progress)?
             } else {
-                install_file_atomically(&mut entry, &destination, &mut report_progress)?
+                install_file_atomically(entry, &destination, &mut report_progress)?
             };
             summary.files += 1;
-        } else {
-            return Err(io::Error::new(io::ErrorKind::InvalidData, format!("the Kobo package contains an unsupported entry: {}", relative.display())));
         }
-    }
+        Ok(())
+    })?;
 
     for (path, bytes) in NICKEL_MENU_ICONS {
         summary.bytes += install_file_atomically(&mut &bytes[..], &device_root.join(path), &mut |bytes| {
@@ -191,11 +181,7 @@ fn validate_nickel_menu_install(root: &Path) -> io::Result<()> {
         return Err(io::Error::other("Embedded NickelMenu checksum mismatch"));
     }
     let version = fs::read_to_string(root.join(".kobo/version"))?;
-    let firmware = version.split(',').nth(2).unwrap_or_default();
-    let mut parts = firmware.split('.');
-    if parts.next() != Some("4") || parts.next().and_then(|minor| minor.parse::<u32>().ok()).is_none_or(|minor| minor < 6) {
-        return Err(io::Error::other("NickelMenu requires Kobo firmware 4.6 or later in the 4.x series"));
-    }
+    kobo_package::installed_profile(&version)?;
     let pending = root.join(".kobo/KoboRoot.tgz");
     if pending.exists() && fs::read(&pending)? != NICKEL_MENU_ARCHIVE {
         return Err(io::Error::other("A different Kobo firmware/update package is pending. Finish that update before installing Bokheim; it will not be overwritten."));
@@ -212,34 +198,12 @@ pub fn validate_archive(archive: &[u8]) -> io::Result<()> {
 }
 
 fn validate_archive_size(archive: &[u8], device_root: Option<&Path>) -> io::Result<u64> {
-    let decoder = GzDecoder::new(archive);
-    let mut package = tar::Archive::new(decoder);
-    let mut required = REQUIRED_INSTALLED_FILES.iter().copied().collect::<BTreeSet<_>>();
-    let mut unpacked_bytes = 0_u64;
-    let mut archive_bytes = 0_u64;
-
-    for entry in package.entries()? {
-        let entry = entry?;
-        let entry_type = entry.header().entry_type();
-        let relative = sanitize_package_path(&entry.path()?, entry_type)?;
-        if !entry_type.is_dir() && !entry_type.is_file() {
-            return Err(io::Error::new(io::ErrorKind::InvalidData, format!("the Kobo package contains an unsupported entry: {}", relative.display())));
-        }
-        if entry_type.is_file() {
-            if let Some(root) = device_root {
-                existing_regular_file(&root.join(&relative))?;
-            }
-            archive_bytes = archive_bytes.checked_add(entry.header().size()?).filter(|bytes| *bytes <= MAX_UNPACKED_PACKAGE_BYTES).ok_or_else(|| io::Error::new(io::ErrorKind::InvalidData, "the Kobo package is unexpectedly large"))?;
-            let installed_size = if relative == Path::new(NICKEL_MENU_CONFIGURATION_PATH) { NICKEL_MENU_CONFIGURATION.len() as u64 } else { entry.header().size()? };
-            unpacked_bytes = unpacked_bytes.checked_add(installed_size).filter(|bytes| *bytes <= MAX_UNPACKED_PACKAGE_BYTES).ok_or_else(|| io::Error::new(io::ErrorKind::InvalidData, "the Kobo package is unexpectedly large"))?;
-            required.remove(package_entry_name(&relative).as_str());
-        }
-    }
-
-    if let Some(path) = required.first() {
-        return Err(io::Error::new(io::ErrorKind::InvalidData, format!("the Kobo package is incomplete: {path} is missing")));
-    }
-    Ok(unpacked_bytes)
+    let package = inspect(archive, Policy::Usb, device_root)?;
+    // This installer replaces older menu configurations with its embedded one.
+    package.files.iter().try_fold(0_u64, |total, file| {
+        let bytes = if file.path == Path::new(NICKEL_MENU_CONFIGURATION_PATH) { NICKEL_MENU_CONFIGURATION.len() as u64 } else { file.bytes };
+        total.checked_add(bytes).filter(|total| *total <= kobo_package::MAX_UNPACKED_BYTES).ok_or_else(|| io::Error::new(io::ErrorKind::InvalidData, "the Kobo package is unexpectedly large"))
+    })
 }
 
 fn validate_device_root(device_root: &Path) -> io::Result<PathBuf> {
@@ -249,99 +213,18 @@ fn validate_device_root(device_root: &Path) -> io::Result<PathBuf> {
     device_root.canonicalize()
 }
 
-/// Renders a sanitised package path the way the archive spells it. The
-/// sanitised path is rebuilt component by component, so on Windows it comes
-/// back separated by backslashes and never matches the slash-separated names
-/// the package is required to contain.
-fn package_entry_name(relative: &Path) -> String {
-    relative.components().filter_map(|component| component.as_os_str().to_str()).collect::<Vec<_>>().join("/")
-}
-
+#[cfg(test)]
 fn sanitize_package_path(path: &Path, entry_type: EntryType) -> io::Result<PathBuf> {
-    let mut clean = PathBuf::new();
-    for component in path.components() {
-        match component {
-            Component::CurDir => {}
-            Component::Normal(part) => clean.push(part),
-            Component::ParentDir | Component::RootDir | Component::Prefix(_) => {
-                return Err(io::Error::new(io::ErrorKind::InvalidData, format!("unsafe path in Kobo package: {}", path.display())));
-            }
-        }
-    }
-    let allowed = clean.starts_with(".adds") || clean.starts_with("Bokheim");
-    if !clean.as_os_str().is_empty() && !allowed {
-        return Err(io::Error::new(io::ErrorKind::InvalidData, format!("unexpected path in Kobo package: {}", path.display())));
-    }
-    // Kobo storage is case-insensitive. Compare the archive's portable spelling
-    // even when validating it on a host with a case-sensitive filesystem.
-    let key = package_entry_name(&clean).to_ascii_lowercase();
-    let within = |directory: &str| key == directory || key.strip_prefix(directory).is_some_and(|suffix| suffix.starts_with('/'));
-    let overwrites_library = within("bokheim/libraries") && (key != "bokheim/libraries" || !entry_type.is_dir());
-    let overwrites_app_data = PROTECTED_APP_DATA_FILES.contains(&key.as_str()) || PROTECTED_APP_DATA_DIRECTORIES.iter().any(|protected| within(protected));
-    if overwrites_library || overwrites_app_data {
-        return Err(io::Error::new(io::ErrorKind::InvalidData, format!("Kobo package attempts to overwrite user data: {}", path.display())));
-    }
-    Ok(clean)
+    kobo_package::sanitize_path(path, entry_type, Policy::Usb)
 }
 
-fn existing_regular_file(path: &Path) -> io::Result<bool> {
-    match fs::symlink_metadata(path) {
-        Ok(metadata) if metadata.is_file() => Ok(true),
-        Ok(_) => Err(io::Error::new(io::ErrorKind::InvalidData, format!("installation file would replace a directory or special file: {}", path.display()))),
-        Err(error) if error.kind() == io::ErrorKind::NotFound => Ok(false),
-        Err(error) => Err(error),
-    }
-}
 
 fn install_file_atomically<R: Read>(source: &mut R, destination: &Path, on_bytes: &mut impl FnMut(u64)) -> io::Result<u64> {
-    existing_regular_file(destination)?;
-    let parent = destination.parent().ok_or_else(|| io::Error::new(io::ErrorKind::InvalidInput, "package file has no parent"))?;
-    fs::create_dir_all(parent)?;
+    let parent = update_files::parent_directory(destination)?;
     let sequence = TEMPORARY_FILE_SEQUENCE.fetch_add(1, Ordering::Relaxed);
     let name = destination.file_name().and_then(OsStr::to_str).unwrap_or("asset");
     let temporary = parent.join(format!(".{name}.bokheim-install-{}-{sequence}.tmp", std::process::id()));
-    let backup = parent.join(format!(".{name}.bokheim-install-{}-{sequence}.bak", std::process::id()));
-
-    let result = (|| {
-        let mut output = OpenOptions::new().create_new(true).write(true).open(&temporary)?;
-        let mut bytes = 0_u64;
-        let mut buffer = [0_u8; 64 * 1024];
-        loop {
-            let count = source.read(&mut buffer)?;
-            if count == 0 {
-                break;
-            }
-            output.write_all(&buffer[..count])?;
-            bytes += count as u64;
-            on_bytes(count as u64);
-        }
-        output.flush()?;
-        output.sync_all()?;
-        drop(output);
-
-        let had_destination = existing_regular_file(destination)?;
-        if had_destination {
-            fs::rename(destination, &backup)?;
-        }
-        if let Err(error) = fs::rename(&temporary, destination) {
-            if had_destination {
-                let _ = fs::rename(&backup, destination);
-            }
-            return Err(error);
-        }
-        if had_destination {
-            fs::remove_file(&backup)?;
-        }
-        Ok(bytes)
-    })();
-
-    if result.is_err() {
-        let _ = fs::remove_file(&temporary);
-        if backup.exists() && !destination.exists() {
-            let _ = fs::rename(&backup, destination);
-        }
-    }
-    result
+    update_files::write_atomic(destination, &temporary, source, None, on_bytes)
 }
 
 #[cfg(test)]
@@ -356,6 +239,10 @@ mod tests {
     }
 
     fn test_archive_with_entry(extra: Option<(&str, EntryType)>) -> Vec<u8> {
+        test_archive_for_models(extra, None)
+    }
+
+    fn test_archive_for_models(extra: Option<(&str, EntryType)>, info: Option<&str>) -> Vec<u8> {
         let mut compressed = Vec::new();
         {
             let encoder = GzEncoder::new(&mut compressed, Compression::fast());
@@ -377,6 +264,13 @@ mod tests {
                 header.set_cksum();
                 archive.append_data(&mut header, path, Cursor::new(bytes)).unwrap();
             }
+            if let Some(info) = info {
+                let mut header = tar::Header::new_gnu();
+                header.set_size(info.len() as u64);
+                header.set_mode(0o644);
+                header.set_cksum();
+                archive.append_data(&mut header, ".adds/bokheim/BUILD-INFO.txt", Cursor::new(info.as_bytes())).unwrap();
+            }
             archive.into_inner().unwrap().finish().unwrap();
         }
         compressed
@@ -387,7 +281,7 @@ mod tests {
     fn reinstall_preserves_books_databases_and_preferences() {
         let directory = tempfile::tempdir().unwrap();
         fs::create_dir_all(directory.path().join(".kobo")).unwrap();
-        fs::write(directory.path().join(".kobo/version"), "serial,4.1.15,4.38.23828").unwrap();
+        fs::write(directory.path().join(".kobo/version"), "serial,4.1.15,4.38.23828,unused,unused,0000000000388").unwrap();
         fs::create_dir_all(directory.path().join("Bokheim/Libraries/default/.bokheim")).unwrap();
         fs::create_dir_all(directory.path().join(".adds/bokheim/data")).unwrap();
         fs::write(directory.path().join("Bokheim/Libraries/default/book.epub"), b"book data").unwrap();
@@ -416,10 +310,33 @@ mod tests {
     }
 
     #[test]
+    fn installs_declared_profiles_and_rejects_wrong_packages_before_writing() {
+        let ids = kobo_profile::PROFILES.iter().map(|profile| profile.id.to_string()).collect::<Vec<_>>().join(",");
+        let info = format!("CPU profile: generic\nSupported model IDs: {ids}\n");
+        let archive = test_archive_for_models(None, Some(&info));
+        for profile in kobo_profile::PROFILES {
+            let root = tempfile::tempdir().unwrap();
+            fs::create_dir(root.path().join(".kobo")).unwrap();
+            fs::write(root.path().join(".kobo/version"), format!("serial,kernel,4.38.1,x,x,{}", profile.id)).unwrap();
+            if profile.id != 388 {
+                assert!(install_archive_with_progress(root.path(), &test_archive(None), |_| panic!("incompatible package started copying")).is_err());
+                assert!(!root.path().join(".adds").exists());
+            }
+            install_archive_with_progress(root.path(), &archive, |_| {}).unwrap();
+            assert!(root.path().join(".adds/bokheim/desktop-gpui-kobo").is_file());
+        }
+        let root = tempfile::tempdir().unwrap();
+        fs::create_dir(root.path().join(".kobo")).unwrap();
+        fs::write(root.path().join(".kobo/version"), "serial,kernel,4.38.1,x,x,999").unwrap();
+        assert!(install_archive_with_progress(root.path(), &archive, |_| panic!("unknown model started copying")).is_err());
+        assert!(!root.path().join(".adds").exists());
+    }
+
+    #[test]
     fn a_pending_firmware_update_is_preserved_before_any_installation_writes() {
         let directory = tempfile::tempdir().unwrap();
         fs::create_dir(directory.path().join(".kobo")).unwrap();
-        fs::write(directory.path().join(".kobo/version"), "serial,4.1.15,4.38.23828").unwrap();
+        fs::write(directory.path().join(".kobo/version"), "serial,4.1.15,4.38.23828,unused,unused,0000000000388").unwrap();
         fs::write(directory.path().join(".kobo/KoboRoot.tgz"), b"firmware update").unwrap();
         assert!(install_archive_with_progress(directory.path(), &test_archive(None), |_| {}).is_err());
         assert_eq!(fs::read(directory.path().join(".kobo/KoboRoot.tgz")).unwrap(), b"firmware update");
@@ -456,7 +373,7 @@ mod tests {
     fn a_case_alias_fails_before_any_installation_writes() {
         let directory = tempfile::tempdir().unwrap();
         fs::create_dir_all(directory.path().join(".kobo")).unwrap();
-        fs::write(directory.path().join(".kobo/version"), "serial,4.1.15,4.38.23828").unwrap();
+        fs::write(directory.path().join(".kobo/version"), "serial,4.1.15,4.38.23828,unused,unused,0000000000388").unwrap();
         fs::create_dir_all(directory.path().join(".adds/bokheim/data")).unwrap();
         let protected = directory.path().join(".adds/bokheim/data/user.db");
         fs::write(&protected, b"user data").unwrap();
@@ -481,7 +398,7 @@ mod tests {
         for path in ["Bokheim/Libraries", "Bokheim/LIBRARIES", ".adds/bokheim/existing-directory"] {
             let directory = tempfile::tempdir().unwrap();
             fs::create_dir_all(directory.path().join(".kobo")).unwrap();
-            fs::write(directory.path().join(".kobo/version"), "serial,4.1.15,4.38.23828").unwrap();
+            fs::write(directory.path().join(".kobo/version"), "serial,4.1.15,4.38.23828,unused,unused,0000000000388").unwrap();
             fs::create_dir_all(directory.path().join("Bokheim/Libraries/default")).unwrap();
             let book = directory.path().join("Bokheim/Libraries/default/book.epub");
             fs::write(&book, b"book data").unwrap();
@@ -503,7 +420,7 @@ mod tests {
     fn a_library_root_directory_entry_preserves_existing_books() {
         let directory = tempfile::tempdir().unwrap();
         fs::create_dir_all(directory.path().join(".kobo")).unwrap();
-        fs::write(directory.path().join(".kobo/version"), "serial,4.1.15,4.38.23828").unwrap();
+        fs::write(directory.path().join(".kobo/version"), "serial,4.1.15,4.38.23828,unused,unused,0000000000388").unwrap();
         fs::create_dir_all(directory.path().join("Bokheim/Libraries/default")).unwrap();
         let book = directory.path().join("Bokheim/Libraries/default/book.epub");
         fs::write(&book, b"book data").unwrap();

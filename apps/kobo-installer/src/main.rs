@@ -2,21 +2,18 @@
 
 use bokheim_kobo_installer::{DeviceDetection, DeviceMonitor, EjectOutcome, KoboDevice, detect_kobo_devices, eject_device, install_archive_with_progress, validate_archive};
 use gpui::{App, Bounds, Context, FontWeight, SharedString, Task, Window, WindowBounds, WindowOptions, div, prelude::*, px, relative, rgb, size};
+use kobo_package::{RELEASE_API, newer_release};
 use semver::Version;
-use serde::Deserialize;
-use sha2::{Digest, Sha256};
 use std::borrow::Cow;
-use std::io::{ErrorKind, Read};
+use std::io::ErrorKind;
 use std::sync::Arc;
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::time::Duration;
+use update_protocol::copy_verified;
 
 const KOBO_ARCHIVE: &[u8] = include_bytes!(env!("BOKHEIM_KOBO_ARCHIVE"));
 const VERSION: &str = env!("BOKHEIM_VERSION");
 const PREVIEW_ONLY: bool = option_env!("BOKHEIM_INSTALLER_PREVIEW").is_some();
-const LATEST_RELEASE_API: &str = "https://api.github.com/repos/JohanAnderssonOstling/bokheim-release/releases/latest";
-const KOBO_ASSET_NAME: &str = "Bokheim-Kobo-Libra2-armv7.tar.gz";
-const MAX_DOWNLOAD_BYTES: u64 = 256 * 1024 * 1024;
 const SURFACE: u32 = 0xf5f1e8;
 const RAISED: u32 = 0xfffcf6;
 const TEXT: u32 = 0x1f2220;
@@ -31,6 +28,7 @@ enum InstallerStatus {
     MountFailed(String),
     Ready,
     NickelMenuMissing,
+    Unsupported(String),
     Installing,
     Installed(String),
     Failed(String),
@@ -69,41 +67,16 @@ impl KoboPackage {
     }
 }
 
-#[derive(Deserialize)]
-struct GithubRelease {
-    tag_name: String,
-    assets: Vec<GithubAsset>,
-}
-
-#[derive(Deserialize)]
-struct GithubAsset {
-    name: String,
-    browser_download_url: String,
-    digest: Option<String>,
-}
-
 fn fetch_newer_package() -> Result<Option<Vec<u8>>, String> {
     let agent = ureq::AgentBuilder::new().timeout_connect(Duration::from_secs(5)).timeout_read(Duration::from_secs(30)).timeout_write(Duration::from_secs(30)).build();
-    let response = agent.get(LATEST_RELEASE_API).set("Accept", "application/vnd.github+json").set("User-Agent", "Bokheim-Kobo-Installer").call().map_err(|error| error.to_string())?;
-    let release: GithubRelease = serde_json::from_reader(response.into_reader()).map_err(|error| error.to_string())?;
-    let available = Version::parse(release.tag_name.trim_start_matches('v')).map_err(|error| error.to_string())?;
-    let embedded = Version::parse(VERSION).map_err(|error| error.to_string())?;
-    if available <= embedded {
+    let response = agent.get(RELEASE_API).set("Accept", "application/vnd.github+json").set("User-Agent", "Bokheim-Kobo-Installer").call().map_err(|error| error.to_string())?;
+    let installed = Version::parse(VERSION).map_err(|error| error.to_string())?;
+    let Some(release) = newer_release(response.into_reader(), &installed)? else {
         return Ok(None);
-    }
-
-    let asset = release.assets.into_iter().find(|asset| asset.name == KOBO_ASSET_NAME).ok_or_else(|| format!("{KOBO_ASSET_NAME} is missing from the latest release"))?;
-    let expected_digest = asset.digest.as_deref().and_then(|digest| digest.strip_prefix("sha256:")).ok_or_else(|| format!("{KOBO_ASSET_NAME} has no SHA-256 digest"))?;
-    let response = agent.get(&asset.browser_download_url).set("Accept", "application/octet-stream").set("User-Agent", "Bokheim-Kobo-Installer").call().map_err(|error| error.to_string())?;
+    };
+    let response = agent.get(&release.url).set("Accept", "application/octet-stream").set("User-Agent", "Bokheim-Kobo-Installer").call().map_err(|error| error.to_string())?;
     let mut bytes = Vec::new();
-    response.into_reader().take(MAX_DOWNLOAD_BYTES + 1).read_to_end(&mut bytes).map_err(|error| error.to_string())?;
-    if bytes.len() as u64 > MAX_DOWNLOAD_BYTES {
-        return Err("the downloaded Kobo package is unexpectedly large".to_owned());
-    }
-    let actual_digest = hex::encode(Sha256::digest(&bytes));
-    if actual_digest != expected_digest {
-        return Err("the downloaded Kobo package failed its SHA-256 check".to_owned());
-    }
+    copy_verified(response.into_reader(), &mut bytes, &release.artifact())?;
     validate_archive(&bytes).map_err(|error| error.to_string())?;
     Ok(Some(bytes))
 }
@@ -159,6 +132,9 @@ impl Installer {
                     this.package = KoboPackage::Downloaded(package.into());
                 }
                 this.checking_for_update = false;
+                if !matches!(this.status, InstallerStatus::Installing | InstallerStatus::Installed(_)) {
+                    this.status = this.detected_status();
+                }
                 cx.notify();
             });
         });
@@ -167,6 +143,10 @@ impl Installer {
     }
 
     fn detected_status(&self) -> InstallerStatus {
+        if let Some(device) = self.devices.first() {
+            let compatible = device.profile().and_then(|profile| kobo_package::validate_device(self.package.bytes(), kobo_package::Policy::Usb, profile));
+            if let Err(error) = compatible { return InstallerStatus::Unsupported(error.to_string()); }
+        }
         match self.devices.first() {
             Some(device) if device.nickel_menu_detected() => InstallerStatus::Ready,
             Some(_) => InstallerStatus::NickelMenuMissing,
@@ -184,6 +164,11 @@ impl Installer {
         let Some(device) = self.devices.first().cloned() else {
             return;
         };
+        if matches!(self.detected_status(), InstallerStatus::Unsupported(_)) {
+            self.status = self.detected_status();
+            cx.notify();
+            return;
+        }
 
         self.status = InstallerStatus::Installing;
         self.progress.copied_bytes.store(0, Ordering::Relaxed);
@@ -242,13 +227,14 @@ impl Installer {
             }
             InstallerStatus::Installed(_) => "✓  Installed".into(),
             InstallerStatus::Failed(_) => "Installation failed".into(),
+            InstallerStatus::Unsupported(_) => "Kobo or package is incompatible".into(),
         }
     }
 
     fn status_detail(&self) -> Option<SharedString> {
         match &self.status {
             InstallerStatus::MountFailed(_) => Some("Your computer couldn't open the Kobo automatically. Open it in your file manager, then return here to install Bokheim.".into()),
-            InstallerStatus::Installed(message) | InstallerStatus::Failed(message) => Some(message.clone().into()),
+            InstallerStatus::Installed(message) | InstallerStatus::Failed(message) | InstallerStatus::Unsupported(message) => Some(message.clone().into()),
             _ => None,
         }
     }
@@ -256,9 +242,9 @@ impl Installer {
 
 impl gpui::Render for Installer {
     fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
-        let can_install = !PREVIEW_ONLY && !self.devices.is_empty() && !self.checking_for_update && !matches!(self.status, InstallerStatus::Installing);
+        let can_install = !PREVIEW_ONLY && !self.devices.is_empty() && !self.checking_for_update && !matches!(self.status, InstallerStatus::Installing | InstallerStatus::Unsupported(_));
         let status_color = match self.status {
-            InstallerStatus::Failed(_) | InstallerStatus::MountFailed(_) => rgb(DANGER),
+            InstallerStatus::Failed(_) | InstallerStatus::MountFailed(_) | InstallerStatus::Unsupported(_) => rgb(DANGER),
             InstallerStatus::Ready | InstallerStatus::NickelMenuMissing | InstallerStatus::Installed(_) => rgb(ACCENT),
             InstallerStatus::Monitoring | InstallerStatus::Installing => rgb(MUTED),
         };

@@ -6,6 +6,9 @@ edition = "2021"
 [features]
 device = ["dep:kobo-device"]
 
+[dependencies]
+kobo-profile = { path = "../../../shared/kobo-profile" }
+
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 uuid = { version = "1", features = ["v4"] }
 kobo-device = { path = "../../../apps/kobo-device", optional = true }

@@ -7,7 +7,9 @@ edition = "2024"
 path = "src/lib.rs"
 
 [dependencies]
+kobo-profile = { path = "../../shared/kobo-profile" }
 libc = "0.2"
+operation-failure = { path = "../../client/operation-failure" }
 async-channel = "2"
 pbkdf2 = "0.12"
 sha1 = "0.10"

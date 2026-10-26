@@ -11,6 +11,42 @@ use std::process::{Child, Command, Stdio};
 use std::sync::{OnceLock, mpsc};
 use std::time::{Duration, Instant};
 
+pub use operation_failure::WifiFailure;
+
+/// A failed Wi-Fi operation: what the user can do about it, when known, and
+/// a diagnostic for logs. Diagnostics never contain credentials.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct WifiError {
+    pub failure: Option<WifiFailure>,
+    pub message: String,
+}
+impl WifiError {
+    fn new(failure: WifiFailure, message: &str) -> Self {
+        Self { failure: Some(failure), message: message.to_owned() }
+    }
+}
+impl From<String> for WifiError {
+    fn from(message: String) -> Self {
+        Self { failure: None, message }
+    }
+}
+impl From<&str> for WifiError {
+    fn from(message: &str) -> Self {
+        Self { failure: None, message: message.to_owned() }
+    }
+}
+impl std::fmt::Display for WifiError {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        formatter.write_str(&self.message)
+    }
+}
+impl std::error::Error for WifiError {}
+impl operation_failure::Classified for WifiError {
+    fn failure(&self) -> Option<operation_failure::Failure> {
+        self.failure.map(operation_failure::Failure::Wifi)
+    }
+}
+
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Security {
     Open,
@@ -50,7 +86,7 @@ pub struct Snapshot {
     pub saved: Vec<SavedNetwork>,
     pub scanning: bool,
     pub power_available: bool,
-    pub error: Option<String>,
+    pub error: Option<WifiError>,
 }
 // Deliberately no Debug: requests may contain credentials.
 pub enum Request {
@@ -115,7 +151,7 @@ fn worker() -> Result<&'static mpsc::Sender<Job>> {
             Ok(send)
         })
         .as_ref()
-        .map_err(Clone::clone)
+        .map_err(|error| WifiError::from(error.as_str()))
 }
 
 pub async fn request(request: Request) -> Result<Snapshot> {
@@ -166,9 +202,9 @@ fn run_bounded(command: &mut Command, timeout: Duration, operation: &str) -> Res
                 return if status.success() {
                     Ok(())
                 } else if diagnostic.is_empty() {
-                    Err(format!("{operation} failed ({status})"))
+                    Err(format!("{operation} failed ({status})").into())
                 } else {
-                    Err(format!("{operation} failed ({status}): {diagnostic}"))
+                    Err(format!("{operation} failed ({status}): {diagnostic}").into())
                 };
             }
             Ok(None) if started.elapsed() < timeout => std::thread::sleep(Duration::from_millis(20)),
@@ -188,7 +224,8 @@ fn run_bounded(command: &mut Command, timeout: Duration, operation: &str) -> Res
                     format!("{operation} timed out")
                 } else {
                     format!("{operation} timed out: {diagnostic}")
-                });
+                }
+                .into());
             }
         }
     }
@@ -277,7 +314,7 @@ impl Controller {
     }
     fn execute(&mut self, request: Request) -> Result<Snapshot> {
         if self.sleeping {
-            return if matches!(request, Request::Status) { Ok(self.snapshot.clone()) } else { Err("Wi-Fi is unavailable while the device is going to sleep".into()) };
+            return if matches!(request, Request::Status) { Ok(self.snapshot.clone()) } else { Err(WifiError::new(WifiFailure::Sleeping, "Wi-Fi is unavailable while the device is going to sleep")) };
         }
         if !matches!(request, Request::Status) {
             self.snapshot.error = None;
@@ -350,7 +387,7 @@ impl Controller {
         };
         if self.attempt.is_some() && events.iter().any(|event| event.contains("reason=WRONG_KEY") || event.contains("CTRL-EVENT-AUTH-REJECT")) {
             self.cancel_attempt(&control)?;
-            return Err("Authentication failed. Check the network password.".into());
+            return Err(WifiError::new(WifiFailure::AuthenticationFailed, "supplicant reported a wrong key or rejected authentication"));
         }
         if let Some(started) = self.scan_started {
             if events.iter().any(|event| event.contains("CTRL-EVENT-SCAN-RESULTS")) {
@@ -360,7 +397,7 @@ impl Controller {
             } else if started.elapsed() > Duration::from_secs(20) {
                 self.scan_started = None;
                 self.snapshot.scanning = false;
-                return Err("Network scan timed out. Try Refresh again.".into());
+                return Err(WifiError::new(WifiFailure::ScanTimedOut, "network scan timed out"));
             }
         }
         if self.address_requested && self.snapshot.phase == Phase::ObtainingAddress && self.address_started.is_none() {
@@ -373,16 +410,15 @@ impl Controller {
         if self.address_started.is_some_and(|started| started.elapsed() > Duration::from_secs(25)) && self.address_requested {
             self.cancel_attempt(&control)?;
             self.address_requested = false;
-            return Err("Obtaining a network address timed out".into());
+            return Err(WifiError::new(WifiFailure::NoAddress, "obtaining a network address timed out"));
         }
-        if self.attempt.is_some() {
-            let requested = self.attempt.as_ref().unwrap();
+        if let Some(requested) = &self.attempt {
             let current_id = data.get("id").and_then(|id| id.parse::<u32>().ok());
             if self.snapshot.phase == Phase::Connected && current_id == Some(requested.id) {
                 self.attempt = None;
             } else if requested.started.elapsed() > Duration::from_secs(45) {
                 self.cancel_attempt(&control)?;
-                return Err("Connection timed out. Check the password and network availability.".into());
+                return Err(WifiError::new(WifiFailure::ConnectTimedOut, "connection attempt timed out"));
             }
         }
         if let Some(child) = self.dhcp.as_mut()
@@ -391,7 +427,7 @@ impl Controller {
             self.dhcp = None;
             if !status.success() && self.address_requested {
                 self.cancel_attempt(&control)?;
-                return Err("Could not obtain a network address. Try connecting again.".into());
+                return Err(WifiError::new(WifiFailure::NoAddress, "address acquisition failed"));
             }
         }
         Ok(())
@@ -413,7 +449,7 @@ impl Controller {
     }
     fn power_with_helper_timeout(&mut self, enabled: bool, helper: &OsStr, timeout: Duration) -> Result<()> {
         if !self.snapshot.power_available {
-            return Err("Wi-Fi power control is unavailable on this device".into());
+            return Err(WifiError::new(WifiFailure::PowerControlUnavailable, "Wi-Fi power control is unavailable on this device"));
         }
         if !enabled {
             // Radio shutdown must still run when supplicant is unresponsive.
@@ -441,7 +477,7 @@ impl Controller {
         let saved = control.command("LIST_NETWORKS")?;
         let previous = enabled_networks(&saved);
         if !parse_saved(&saved).iter().any(|network| network.id == id) {
-            return Err("The selected network is no longer available".into());
+            return Err(WifiError::new(WifiFailure::NetworkGone, "the selected saved network is gone"));
         }
         self.ensure_monitor()?;
         if cfg!(target_arch = "arm") {
@@ -459,16 +495,16 @@ impl Controller {
     }
     fn join(&mut self, network: Network, password: String) -> Result<()> {
         if network.ssid.is_empty() || network.ssid.len() > 32 {
-            return Err("Network name must contain 1 to 32 bytes".into());
+            return Err(WifiError::new(WifiFailure::InvalidNetworkName, "network name must contain 1 to 32 bytes"));
         }
         if network.security == Security::Unsupported {
-            return Err("This network's security mode is not supported yet".into());
+            return Err(WifiError::new(WifiFailure::UnsupportedSecurity, "unsupported network security mode"));
         }
         let psk = match network.security {
             Security::Open => None,
             Security::WpaPersonal => {
                 if !(8..=63).contains(&password.len()) || !password.is_ascii() || password.bytes().any(|b| b.is_ascii_control()) {
-                    return Err("Enter a WPA password containing 8 to 63 printable ASCII characters".into());
+                    return Err(WifiError::new(WifiFailure::InvalidPassword, "WPA password is not 8 to 63 printable ASCII characters"));
                 }
                 let mut derived = [0_u8; 32];
                 pbkdf2::pbkdf2_hmac::<sha1::Sha1>(password.as_bytes(), &network.ssid, 4096, &mut derived);
@@ -529,7 +565,7 @@ impl Controller {
                 .stdout(Stdio::null())
                 .stderr(Stdio::null())
                 .spawn()
-                .map_err(|_| "Could not start network address acquisition")?,
+                .map_err(|_| WifiError::new(WifiFailure::NoAddress, "could not start address acquisition"))?,
         );
         Ok(())
     }

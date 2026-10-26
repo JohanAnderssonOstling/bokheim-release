@@ -5,7 +5,7 @@ use std::sync::atomic::{AtomicU64, Ordering};
 use std::time::Duration;
 use wpa_ctrl::{WpaControlReq, WpaController};
 
-pub(super) type Result<T> = std::result::Result<T, String>;
+pub(super) type Result<T> = std::result::Result<T, super::WifiError>;
 static NEXT_SOCKET: AtomicU64 = AtomicU64::new(0);
 
 pub(super) struct Control {
