@@ -206,6 +206,7 @@ jobs:
           rustup default "$RUST_VERSION"
 
       - name: Restore installer dependencies and build cache
+        id: installer-cache
         uses: actions/cache@v4
         with:
           path: |
@@ -213,6 +214,7 @@ jobs:
             ~/.cargo/registry/cache
             ~/.cargo/git/db
             bokheim/apps/kobo-installer/target
+            bokheim/.linux-toolchain
           key: kobo-installer-linux-glibc217-v1-${{ runner.os }}-rust-${{ env.RUST_VERSION }}-${{ hashFiles('bokheim/apps/kobo-installer/Cargo.lock', 'bokheim/scripts/linux/toolchain.json', 'bokheim/scripts/linux/toolchain.py', 'bokheim/scripts/linux/compiler.py') }}
 
       - name: Download pinned AppImage tools
@@ -239,6 +241,18 @@ jobs:
           BOKHEIM_KOBO_ARCHIVE: ${{ github.workspace }}/bokheim/apps/kobo-installer/package/Bokheim-Kobo-armv7.tar.gz
           BOKHEIM_VERSION: ${{ needs.version.outputs.version }}
         run: python3 scripts/linux/toolchain.py -- cargo build --locked --release --manifest-path apps/kobo-installer/Cargo.toml
+
+      - name: Retain the verified compiler outputs before packaging
+        if: steps.installer-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            bokheim/apps/kobo-installer/target
+            bokheim/.linux-toolchain
+          key: kobo-installer-linux-glibc217-v1-${{ runner.os }}-rust-${{ env.RUST_VERSION }}-${{ hashFiles('bokheim/apps/kobo-installer/Cargo.lock', 'bokheim/scripts/linux/toolchain.json', 'bokheim/scripts/linux/toolchain.py', 'bokheim/scripts/linux/compiler.py') }}
 
       - name: Build installer AppImage
         working-directory: bokheim
