@@ -58,7 +58,9 @@ def extract_rpm(archive, destination):
         offset += 16 + count * 16 + size
         if signature:
             offset = (offset + 7) & ~7
-    subprocess.run(['cpio', '-idm', '--quiet', '--no-absolute-filenames'],
+    # libarchive creates missing parent directories for leading symlink entries.
+    # Ubuntu 22.04's cpio fails on the first libxcb entry before usr/lib64 exists.
+    subprocess.run(['bsdtar', '-xf', '-', '-C', str(destination)],
                    input=lzma.decompress(data[offset:]), cwd=destination, check=True)
 
 
@@ -83,7 +85,7 @@ def prepare(offline=False):
     marker = sdk / 'ready'
     if marker.exists() and marker.read_text() == fingerprint:
         return sdk
-    for tool in ('cpio', 'zstd', 'pkg-config', 'readelf'):
+    for tool in ('bsdtar', 'zstd', 'pkg-config', 'readelf'):
         if not shutil.which(tool):
             raise RuntimeError(f'Linux release toolchain needs {tool} on PATH')
     cache = sdk / 'downloads'
