@@ -1,10 +1,15 @@
 name: Diagnose Windows provider imports
 on:
   workflow_dispatch:
+    inputs:
+      standalone_only:
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   checks:
+    if: inputs.standalone_only != true
     name: Windows platform checks
     runs-on: windows-2025
     timeout-minutes: 120
@@ -60,3 +65,15 @@ jobs:
         run: cargo test --release --locked -p account-client -p account-contract -p protobuf-wire --lib
       - name: Verify retained provider imports
         run: cargo test --release --locked -p library-files --lib asset_store::provider_uploads::tests
+
+  standalone:
+    if: inputs.standalone_only == true
+    runs-on: windows-2025
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - name: Test standalone extraction and recovery
+        shell: pwsh
+        run: |
+          cargo +stable test --release --locked --manifest-path apps/desktop-gpui/windows/standalone/Cargo.toml --target-dir target/windows-standalone
+          exit $LASTEXITCODE
