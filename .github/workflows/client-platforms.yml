@@ -1,46 +1,80 @@
-name: Diagnose cold Linux SDK extraction
+name: Native Windows Kobo installer startup
 on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 jobs:
-  extract:
-    strategy:
-      fail-fast: false
-      matrix:
-        runner: [ubuntu-22.04, ubuntu-24.04]
-    runs-on: ${{ matrix.runner }}
+  kobo-gui:
+    name: Launch the verified Kobo installer on Windows
+    runs-on: windows-2025
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: 0ad90e96f75242255d06ef58cd9041aeded58fa6
-      - uses: actions/setup-python@v6
-        with:
-          python-version: '3.12'
-      - name: Check cpio and extract the checksum-pinned RPM
-        shell: bash
+      - name: Verify artifact source and Windows build result
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          if ! command -v cpio; then
-            sudo apt-get -o Acquire::Retries=3 update
-            sudo apt-get -o Acquire::Retries=3 install -y cpio
-          fi
-          cpio --version | head -n 1
-          python3 - <<'PY_PROBE'
-          import hashlib, importlib.util, json, tempfile, urllib.request
-          from pathlib import Path
-          spec = importlib.util.spec_from_file_location('sdk', 'scripts/linux/toolchain.py')
-          sdk = importlib.util.module_from_spec(spec)
-          spec.loader.exec_module(sdk)
-          item = next(x for x in json.loads(Path('scripts/linux/toolchain.json').read_text())['artifacts'] if x['name'].startswith('libxcb-'))
-          with tempfile.TemporaryDirectory() as directory:
-              root = Path(directory)
-              archive = root / item['name']
-              urllib.request.urlretrieve(item['url'], archive)
-              assert hashlib.sha256(archive.read_bytes()).hexdigest() == item['sha256']
-              native = root / 'native'
-              native.mkdir()
-              sdk.extract_rpm(archive, native)
-              assert (native / 'usr/lib64/libxcb-composite.so.0').is_file()
-              print('Cold extraction with committed tooling succeeded')
-          PY_PROBE
+          $run = gh api "repos/${{ github.repository }}/actions/runs/40917865825" | ConvertFrom-Json
+          if ($LASTEXITCODE -ne 0) { throw "Unable to inspect source workflow" }
+          if ($run.head_sha -ne "0ad90e96f75242255d06ef58cd9041aeded58fa6") { throw "Unexpected application source" }
+          $jobs = gh api "repos/${{ github.repository }}/actions/runs/40917865825/jobs" | ConvertFrom-Json
+          if ($LASTEXITCODE -ne 0) { throw "Unable to inspect build jobs" }
+          $build = @($jobs.jobs | Where-Object { $_.name -eq "Windows USB installer" })
+          if ($build.Count -ne 1 -or $build[0].conclusion -ne "success") { throw "Windows installer build did not pass" }
+      - name: Download the exact executable tried under Wine
+        uses: actions/download-artifact@v5
+        with:
+          name: bokheim-kobo-installer-windows-x86-64
+          run-id: 40917865825
+          github-token: ${{ github.token }}
+          path: installer
+      - name: Verify checksum and native GUI startup
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $executable = (Resolve-Path "installer/Bokheim-Kobo-Installer-Windows-x86_64.exe").Path
+          $expected = ((Get-Content "$executable.sha256" -Raw).Trim() -split '\s+')[0].ToLowerInvariant()
+          $actual = (Get-FileHash $executable -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($expected -ne $actual) { throw "Installer checksum mismatch" }
+          if ($actual -ne "b0c4b2b8136886e02ef1b95c21450d0a013e31f7aacf040a23fee5cdb719acec") { throw "Executable differs from local Wine trial" }
+          $output = New-Item -ItemType Directory -Force "results"
+          $stdout = Join-Path $output.FullName "kobo-stdout.log"
+          $stderr = Join-Path $output.FullName "kobo-stderr.log"
+          $process = Start-Process -FilePath $executable -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
+          try {
+            $deadline = (Get-Date).AddSeconds(45)
+            do {
+              Start-Sleep -Milliseconds 500
+              $process.Refresh()
+              if ($process.HasExited) {
+                Get-Content $stderr -ErrorAction SilentlyContinue
+                throw "Installer exited during startup with code $($process.ExitCode)"
+              }
+            } while ($process.MainWindowHandle -eq 0 -and (Get-Date) -lt $deadline)
+            if ($process.MainWindowHandle -eq 0) { throw "Installer did not create a native window" }
+            Start-Sleep -Seconds 3
+            $process.Refresh()
+            if ($process.HasExited) { throw "Installer exited after creating its window" }
+            $windowTitle = $process.MainWindowTitle
+            $null = $process.CloseMainWindow()
+            if (-not $process.WaitForExit(15000)) { throw "Installer did not exit after closing the window" }
+            if ($process.ExitCode -ne 0) { throw "Installer exited with code $($process.ExitCode)" }
+            @{
+              source_commit = "0ad90e96f75242255d06ef58cd9041aeded58fa6"
+              artifact_run = 40917865825
+              sha256 = $actual
+              native_window_created = $true
+              window_title = $windowTitle
+              exit_code = $process.ExitCode
+            } | ConvertTo-Json | Set-Content (Join-Path $output.FullName "kobo-gui-verification.json")
+          } finally {
+            if (-not $process.HasExited) { Stop-Process -Id $process.Id -Force }
+          }
+      - name: Retain native startup evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: kobo-native-windows-startup
+          path: results/
+          if-no-files-found: warn
