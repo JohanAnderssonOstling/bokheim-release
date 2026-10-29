@@ -325,8 +325,8 @@ impl SyncPage {
         };
 
         let signed_in = self.state.read(cx).account_status.signed_in();
-        if signed_in && self.deletion.is_some() {
-            return components::browser_settings_fieldset("Account", theme).child(components::browser_settings_block().child(self.account_deletion_form(&entity, feedback, theme)));
+        if signed_in && let Some(form) = self.deletion.as_ref() {
+            return components::browser_settings_fieldset("Account", theme).child(components::browser_settings_block().child(self.account_deletion_form(form, &entity, feedback, theme)));
         }
         let account = if signed_in {
             components::browser_settings_fieldset("Account", theme).child(components::browser_settings_block().child(self.identity.clone()).child(self.storage_body(theme, cx)))

@@ -151,10 +151,16 @@ impl LibrarySession {
         .detach();
     }
 
-    pub(super) fn focus_handle(&self, cx: &App) -> FocusHandle {
+    fn focus_handle(&self, cx: &App) -> Option<FocusHandle> {
         match self.route.browse_kind() {
-            Some(kind) => self.browse_pages[&kind].0.read(cx).focus_handle(cx),
-            None => self.trash.as_ref().expect("the selected Trash page is cached").read(cx).focus_handle(cx),
+            Some(kind) => self.browse_pages.get(&kind).map(|(page, _)| page.read(cx).focus_handle(cx)),
+            None => self.trash.as_ref().map(|page| page.read(cx).focus_handle(cx)),
+        }
+    }
+
+    pub(super) fn focus_page(&self, window: &mut Window, cx: &App) {
+        if let Some(handle) = self.focus_handle(cx) {
+            handle.focus(window, cx);
         }
     }
 
@@ -178,7 +184,7 @@ impl LibrarySession {
             }
         }
         self.route = route;
-        self.focus_handle(cx).focus(window, cx);
+        self.focus_page(window, cx);
         cx.notify();
     }
 
@@ -261,11 +267,11 @@ mod tests {
                 .update(cx, |_, window, cx| {
                     session.update(cx, |session, cx| {
                         session.navigate(route, window, cx);
-                        let previous = session.focus_handle(cx);
+                        let previous = session.focus_handle(cx).expect("the selected page has a focus handle");
                         assert!(previous.is_focused(window), "navigation to {route:?} must focus its page");
                         session.open_root(window, cx);
                         assert!(!previous.is_focused(window), "resetting {route:?} must release the old page's focus");
-                        assert!(session.focus_handle(cx).is_focused(window));
+                        assert!(session.focus_handle(cx).is_some_and(|handle| handle.is_focused(window)));
                         assert_eq!(session.route(), route);
                         assert_eq!(session.saved_pages(cx).len(), usize::from(route != LibraryRoute::Trash));
                     })

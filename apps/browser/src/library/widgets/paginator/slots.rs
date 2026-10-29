@@ -43,15 +43,7 @@ impl<T> Slots<T> {
     }
 
     pub(crate) fn get(&self, index: usize) -> Option<&T> {
-        if index >= self.len {
-            return None;
-        }
-        let run = &self.runs[self.runs.partition_point(|run| run.start <= index) - 1];
-        let offset = index - run.start;
-        match &run.values {
-            Values::Dense(values) => values.get(offset),
-            Values::Sparse { placeholder, loaded, .. } => Some(loaded.get(&offset).unwrap_or(placeholder)),
-        }
+        (index < self.len).then(|| &self[index])
     }
 
     pub(crate) fn append(&mut self, mut other: Self) {
@@ -119,7 +111,13 @@ impl<T> Index<usize> for Slots<T> {
     type Output = T;
 
     fn index(&self, index: usize) -> &T {
-        self.get(index).expect("paginator slot out of bounds")
+        assert!(index < self.len, "paginator slot out of bounds");
+        let run = &self.runs[self.runs.partition_point(|run| run.start <= index) - 1];
+        let offset = index - run.start;
+        match &run.values {
+            Values::Dense(values) => &values[offset],
+            Values::Sparse { placeholder, loaded, .. } => loaded.get(&offset).unwrap_or(placeholder),
+        }
     }
 }
 

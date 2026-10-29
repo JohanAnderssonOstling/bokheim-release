@@ -68,12 +68,19 @@ impl TrashList {
             .filter(|boundary| *boundary > now)
             .min()
             .unwrap_or(i64::MAX);
-        let mut items: Vec<_> = (0..contents.folders.len()).map(TrashRow::Folder).chain((0..contents.books.len()).map(TrashRow::Book)).filter(|row| query.is_empty() || row.item(contents).is_some_and(|item| item.matches(&query))).collect();
-        items.sort_by_key(|row| Reverse(row.item(contents).unwrap().deleted_at()));
+        let mut items: Vec<_> = (0..contents.folders.len())
+            .map(TrashRow::Folder)
+            .chain((0..contents.books.len()).map(TrashRow::Book))
+            .filter_map(|row| {
+                let item = row.item(contents)?;
+                (query.is_empty() || item.matches(&query)).then_some((row, item.deleted_at()))
+            })
+            .collect();
+        items.sort_by_key(|(_, deleted_at)| Reverse(*deleted_at));
         let mut rows = Vec::with_capacity(items.len() + 3);
         let mut previous_group = None;
-        for row in items {
-            let group = group_of(row.item(contents).unwrap().deleted_at(), now);
+        for (row, deleted_at) in items {
+            let group = group_of(deleted_at, now);
             if previous_group != Some(group) {
                 rows.push(TrashRow::Group(group));
                 previous_group = Some(group);

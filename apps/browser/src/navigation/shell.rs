@@ -132,7 +132,7 @@ impl BrowserShell {
         let route = if matches!(saved.route, Route::Global(_)) {
             saved.route
         } else if let Some(session) = session {
-            session.read(cx).focus_handle(cx).focus(window, cx);
+            session.read(cx).focus_page(window, cx);
             Route::Library(session.read(cx).route())
         } else {
             Route::Library(super::LibraryRoute::Home)
@@ -163,7 +163,7 @@ impl BrowserShell {
                 // Background list refreshes must not take focus from an open
                 // dialog, menu, or search field in the same library.
                 if selection_changed {
-                    session.read(cx).focus_handle(cx).focus(window, cx);
+                    session.read(cx).focus_page(window, cx);
                 }
             }
             cx.notify();
@@ -330,7 +330,7 @@ impl BrowserShell {
         if matches!(self.route, Route::Library(_))
             && let Some(session) = self.libraries.read(cx).selected_session()
         {
-            session.read(cx).focus_handle(cx).focus(window, cx);
+            session.read(cx).focus_page(window, cx);
         }
     }
 
@@ -379,7 +379,7 @@ impl BrowserShell {
     fn return_to_library_page(&mut self, window: &mut Window, cx: &mut Context<Self>) {
         let session = self.libraries.read(cx).selected_session();
         self.route = if let Some(session) = session {
-            session.read(cx).focus_handle(cx).focus(window, cx);
+            session.read(cx).focus_page(window, cx);
             Route::Library(session.read(cx).route())
         } else {
             Route::Library(super::LibraryRoute::Home)

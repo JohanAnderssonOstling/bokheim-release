@@ -25,8 +25,7 @@ impl SyncPage {
         cx.notify();
     }
 
-    pub(super) fn account_deletion_form(&self, entity: &Entity<Self>, feedback: Option<AnyElement>, theme: components::BrowserTheme) -> Div {
-        let form = self.deletion.as_ref().expect("account deletion form is open");
+    pub(super) fn account_deletion_form(&self, form: &DeleteAccountForm, entity: &Entity<Self>, feedback: Option<AnyElement>, theme: components::BrowserTheme) -> Div {
         let cancel = entity.clone();
         let submit = entity.clone();
         components::access_form()
