@@ -159,6 +159,8 @@ fn prepare(executable: &Path, cache: &Path) -> Result<PathBuf> {
         let mut marker = File::create(staging.join(".ready"))?;
         marker.write_all(key.as_bytes())?;
         marker.sync_all()?;
+        // Close the file before renaming its containing directory on Windows.
+        drop(marker);
         fs::rename(&staging, &directory)?;
         Ok(())
     })();

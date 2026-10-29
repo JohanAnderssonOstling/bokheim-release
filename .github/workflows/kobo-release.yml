@@ -165,7 +165,7 @@ jobs:
     name: Linux USB installer AppImage
     needs: [version, shared-tests]
     runs-on: ubuntu-22.04
-    timeout-minutes: 30
+    timeout-minutes: 60
 
     steps:
       - name: Check out Bokheim
