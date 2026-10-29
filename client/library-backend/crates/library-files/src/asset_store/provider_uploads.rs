@@ -50,7 +50,12 @@ impl StagedBook {
             file.sync_all()?;
             let imp::StagedBook { temporary_path, .. } = self.inner;
             temporary_path.persist(staging.path().join("book")).map_err(|error| AssetStoreError::operation(error.error))?;
-            File::open(staging.path().join("book"))?.sync_all()?;
+            // Windows requires a writable handle to flush the retained book.
+            #[cfg(windows)]
+            let book = OpenOptions::new().write(true).open(staging.path().join("book"))?;
+            #[cfg(not(windows))]
+            let book = File::open(staging.path().join("book"))?;
+            book.sync_all()?;
             imp::sync_parent(&staging.path().join("draft.json"))?;
             fs::rename(staging.path(), &destination)?;
             imp::sync_parent(&destination)
