@@ -14,7 +14,7 @@ SHA256 = "fcd45962906933eec4431d3688f7d74aaac8713c87c6717f91fd3b23463aa1a1"
 # Identify the prepared contents separately from the unchanged upstream archive.
 ASSET_SHA256 = hashlib.sha256(f"{SHA256}:english-only-v1".encode("ascii")).hexdigest()
 GEORGE_URL = "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/kokoro-multi-lang-v1_0.tar.bz2"
-GEORGE_SHA256 = "c5f7e2d2caf082bc1d20fb70334a61d99d20b484500aad32e7cf84c128ea3298"
+GEORGE_SHA256 = "60703707bc05ccd48d60e1eb723f38b07d6e474795a0b6a588d7220400e0f7a4"
 GEORGE_ASSET_SHA256 = hashlib.sha256(f"{GEORGE_SHA256}:george-english-fp32-v1".encode("ascii")).hexdigest()
 GEORGE_REQUIRED = ("model.onnx", "voices.bin", "tokens.txt", "lexicon-gb-en.txt",
                    "espeak-ng-data/en_dict", "espeak-ng-data/lang/gmw/en", "LICENSE", "VOICE-LICENSE.txt")
@@ -117,7 +117,7 @@ def prepare_george(destination=None, offline=False, archive=None):
         shutil.copytree(installed, destination, dirs_exist_ok=True)
         return destination
     cache = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "bokheim/tts"
-    archive = Path(archive) if archive else cache / "kokoro-multi-lang-v1_0.tar.bz2"
+    archive = Path(archive) if archive else cache / f"kokoro-multi-lang-v1_0-{GEORGE_SHA256}.tar.bz2"
     if not archive.is_file():
         if offline:
             raise RuntimeError(f"George archive is not cached: {archive}")

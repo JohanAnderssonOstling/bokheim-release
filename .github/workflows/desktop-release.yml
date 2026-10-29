@@ -264,6 +264,37 @@ jobs:
             throw "The Windows installer is not a PE executable"
           }
 
+      - name: Verify packaged Windows GUI startup
+        working-directory: bokheim
+        shell: pwsh
+        run: |
+          $probe = Join-Path $env:RUNNER_TEMP "windows-update-probe"
+          $stdout = Join-Path $env:RUNNER_TEMP "windows-gui.stdout"
+          $stderr = Join-Path $env:RUNNER_TEMP "windows-gui.stderr"
+          $process = Start-Process -FilePath (Join-Path $probe "Bokheim.exe") -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
+          try {
+            $deadline = (Get-Date).AddSeconds(40)
+            do {
+              Start-Sleep -Milliseconds 250
+              $process.Refresh()
+              if ($process.HasExited) {
+                Get-Content $stderr -ErrorAction SilentlyContinue
+                throw "The packaged GUI exited during startup with code $($process.ExitCode)"
+              }
+            } while ($process.MainWindowHandle -eq 0 -and (Get-Date) -lt $deadline)
+            if ($process.MainWindowHandle -eq 0) { throw "The packaged application did not create a native window" }
+            Start-Sleep -Seconds 3
+            $process.Refresh()
+            if ($process.HasExited) { throw "The packaged GUI exited after creating its window" }
+            @{ application = $env:BOKHEIM_VERSION; source_commit = $env:GITHUB_SHA; window_title = $process.MainWindowTitle; native_window_created = $true } |
+              ConvertTo-Json | Set-Content -Encoding utf8 "release/windows-gui-verification.json"
+          } finally {
+            if (!$process.HasExited) {
+              $null = $process.CloseMainWindow()
+              if (!$process.WaitForExit(10000)) { Stop-Process -Id $process.Id -Force }
+            }
+          }
+
       - name: Record verified Windows artifacts
         working-directory: bokheim
         shell: pwsh

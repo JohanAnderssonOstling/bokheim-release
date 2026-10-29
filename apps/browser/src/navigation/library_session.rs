@@ -158,7 +158,7 @@ impl LibrarySession {
         }
     }
 
-    pub(super) fn focus_page(&self, window: &mut Window, cx: &App) {
+    pub(super) fn focus_page(&self, window: &mut Window, cx: &mut App) {
         if let Some(handle) = self.focus_handle(cx) {
             handle.focus(window, cx);
         }
