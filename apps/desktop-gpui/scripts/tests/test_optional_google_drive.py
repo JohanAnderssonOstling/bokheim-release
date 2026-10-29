@@ -16,6 +16,7 @@ class OptionalGoogleDriveTests(unittest.TestCase):
         prepare_speech = Mock()
 
         def load_script(path):
+            path = path.replace("\\", "/")
             if path.endswith("toolchain.py"):
                 return {"build_environment": Mock(return_value={})}
             if path.endswith("reader-speech/prepare.py"):
