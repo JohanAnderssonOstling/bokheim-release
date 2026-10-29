@@ -8,29 +8,6 @@ fn text(message: &JsValue, name: &str) -> Result<String, String> {
 fn boolean(message: &JsValue, name: &str) -> Result<bool, String> {
     field(message, name).as_bool().ok_or_else(|| format!("Missing {name}"))
 }
-pub fn milliseconds(value: JsValue) -> Result<u32, String> {
-    let value = value.as_f64().ok_or("Missing duration")?;
-    client_platform_runtime::protocol::milliseconds(value)
-}
-pub enum BackgroundEvent {
-    Stop,
-    Wake,
-    WakeAfter(u32),
-    Refresh,
-    Result { id: u32, success: bool },
-}
-impl BackgroundEvent {
-    pub fn decode(message: &JsValue) -> Result<Self, String> {
-        match text(message, "kind")?.as_str() {
-            "stop" => Ok(Self::Stop),
-            "wake" => Ok(Self::Wake),
-            "refresh" => Ok(Self::Refresh),
-            "wake_after" => Ok(Self::WakeAfter(milliseconds(field(message, "delay"))?)),
-            "cycle_result" => Ok(Self::Result { id: request_id(message)?, success: boolean(message, "success")? }),
-            _ => Err("Invalid background message".into()),
-        }
-    }
-}
 pub enum HostEvent {
     Closed,
     Register { lock: String, port: web_sys::MessagePort },
@@ -127,19 +104,6 @@ impl NetworkRequest {
     }
 }
 
-pub enum BackgroundReply {
-    Stopped,
-    Cycle { id: u32, refresh: bool },
-}
-impl BackgroundReply {
-    pub fn decode(message: &JsValue) -> Result<Self, String> {
-        match text(message, "kind")?.as_str() {
-            "stopped" => Ok(Self::Stopped),
-            "cycle" => Ok(Self::Cycle { id: request_id(message)?, refresh: boolean(message, "refresh_remote")? }),
-            _ => Err("Invalid background reply".into()),
-        }
-    }
-}
 pub enum TabEvent {
     Failed,
     Stop(u32),

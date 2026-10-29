@@ -756,19 +756,19 @@ impl Render for Browser {
                     .px(px(SPACE_SM))
                     .h(px(controls_height(window)))
                     .child(
-                        outlined_icon_button("back", "Back", IconName::ArrowLeft, theme)
+                        outlined_icon_button("back", "Back", IconName::ArrowLeft)
                             .disabled(!self.navigation.0)
                             .when(!self.navigation.0, |button| button.text_color(theme.text_muted.opacity(0.5)).cursor_default())
                             .on_click(cx.listener(|browser, _, _, _| browser.navigate_history(false))),
                     )
                     .child(
-                        outlined_icon_button("forward", "Forward", IconName::ArrowRight, theme)
+                        outlined_icon_button("forward", "Forward", IconName::ArrowRight)
                             .disabled(!self.navigation.1)
                             .when(!self.navigation.1, |button| button.text_color(theme.text_muted.opacity(0.5)).cursor_default())
                             .on_click(cx.listener(|browser, _, _, _| browser.navigate_history(true))),
                     )
                     .child(
-                        outlined_icon_button("reload", "Reload", Icon::empty().path("icons/arrow-clockwise.svg"), theme)
+                        outlined_icon_button("reload", "Reload", Icon::empty().path("icons/arrow-clockwise.svg"))
                             .disabled(self.webview.is_none() || self.current_url == "about:blank")
                             .when(self.webview.is_none() || self.current_url == "about:blank", |button| button.text_color(theme.text_muted.opacity(0.5)).cursor_default())
                             .on_click(cx.listener(|browser, _, _, _| browser.reload())),

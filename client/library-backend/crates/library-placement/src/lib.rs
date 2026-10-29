@@ -13,6 +13,8 @@ mod asset_workflow;
 #[cfg(not(target_arch = "wasm32"))]
 mod directory_replay;
 mod management;
+#[cfg(not(target_arch = "wasm32"))]
+mod native_edit;
 
 #[cfg(not(target_arch = "wasm32"))]
 pub use asset_workflow::prepare_directory;

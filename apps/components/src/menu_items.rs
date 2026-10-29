@@ -43,9 +43,8 @@ fn menu_item_impl<F>(label: SharedString, icon: Option<Icon>, on_click: F) -> Po
 where
     F: Fn(&ClickEvent, &mut Window, &mut App) + 'static,
 {
-    let item = PopupMenuItem::element(move |_, cx| {
-        let theme = browser_theme(cx);
-        let row = div().flex().flex_1().items_center().gap(px(6.0)).text_size(gpui::rems(TEXT_SM)).text_color(theme.text);
+    let item = PopupMenuItem::element(move |_, _| {
+        let row = div().flex().flex_1().items_center().gap(px(6.0)).text_size(gpui::rems(TEXT_SM));
 
         row.child(div().min_w_0().text_ellipsis().child(label.clone()))
     });
@@ -131,4 +130,41 @@ where
 /// Build a non-interactive popup menu section heading.
 pub fn menu_section(label: impl Into<SharedString>) -> PopupMenuItem {
     PopupMenuItem::label(label)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use gpui::{Context, Entity, Focusable, Render, TestAppContext};
+    use gpui_component::menu::PopupMenu;
+
+    struct MenuHost(Entity<PopupMenu>);
+
+    impl Render for MenuHost {
+        fn render(&mut self, _: &mut Window, _: &mut Context<Self>) -> impl IntoElement {
+            self.0.clone()
+        }
+    }
+
+    #[gpui::test]
+    fn choice_menu_navigation_skips_disabled_rows_and_waits_for_confirmation(cx: &mut TestAppContext) {
+        cx.update(gpui_component::init);
+        let chosen = Rc::new(Cell::new("Current"));
+        let selected = chosen.clone();
+        let (_, cx) = cx.add_window_view(move |window, cx| {
+            let menu = PopupMenu::build(window, cx, move |menu, _, _| {
+                menu.item(menu_item("Disabled", |_, _, _| panic!("disabled choice must not activate")).disabled(true))
+                    .item(menu_item_with_icon("Current", IconName::ArrowLeft, |_, _, _| {}).checked(true))
+                    .item(menu_item("Other", move |_, _, _| selected.set("Other")))
+            });
+            menu.read(cx).focus_handle(cx).focus(window, cx);
+            MenuHost(menu)
+        });
+        cx.run_until_parked();
+        cx.simulate_keystrokes("down down");
+        assert_eq!(chosen.get(), "Current", "moving focus must not apply another choice");
+        cx.simulate_keystrokes("enter");
+        cx.run_until_parked();
+        assert_eq!(chosen.get(), "Other");
+    }
 }

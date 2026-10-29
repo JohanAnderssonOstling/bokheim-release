@@ -1,0 +1,30 @@
+{
+  "pdfium_branch": "7961",
+  "pdfium_commit": "dd3583292697a0356cca1f64892892a92f0a2770",
+  "depot_tools_commit": "13febbee9ece9e03df923f69d540afc63c6db93e",
+  "patch_provider_commit": "c6529b58791d142002f819beb46e370e668797d7",
+  "patches": [
+    {
+      "name": "shared_library.patch",
+      "directory": ".",
+      "sha256": "0fbc6207a5c9da8528914418598a494a3ed358ccb8ee91c8b3f8c1f95ab84057"
+    },
+    {
+      "name": "public_headers.patch",
+      "directory": ".",
+      "sha256": "b21cedea243ced82977251000e356240de038712b8cf8721b3dda3d595c6affd"
+    },
+    {
+      "name": "clang_rt.patch",
+      "directory": "build",
+      "sha256": "1578813042845291b39eea48e0969531f0262d5f33797850b30a015cdfd7f3e3"
+    },
+    {
+      "name": "android/build.patch",
+      "directory": "build",
+      "sha256": "1da025a029897b8b36af687463ad93bf75c4d93e9dcade79f65d8ec10cf8c224"
+    }
+  ],
+  "target": "aarch64-linux-android",
+  "chromium_build_commit": "73c0fa98c5cf963c60ea685c57826fa7ba6253d8"
+}

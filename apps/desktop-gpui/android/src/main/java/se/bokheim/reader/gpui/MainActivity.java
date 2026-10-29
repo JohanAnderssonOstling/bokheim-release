@@ -45,6 +45,10 @@ public final class MainActivity extends GameActivity {
         return BuildConfig.PLAY_STORE;
     }
 
+    public static boolean isSelfUpdateEnabled() {
+        return !BuildConfig.PLAY_STORE && !BuildConfig.FDROID;
+    }
+
     public static String taxonomyFile(android.content.Context context) throws IOException {
         return TaxonomyAssets.prepare(context).getAbsolutePath();
     }
@@ -151,13 +155,33 @@ public final class MainActivity extends GameActivity {
 
     private final ExecutorService fileExecutor = Executors.newSingleThreadExecutor();
     private ActivityResultLauncher<Intent> pathPromptLauncher;
+    private GoogleDriveAuthorization googleDriveAuthorization;
+    private static volatile android.content.Context googleDriveApplication;
+    private ActivityResultLauncher<androidx.activity.result.IntentSenderRequest> googleDriveAuthorizationLauncher;
+    private static native void nativeGoogleDriveAuthorization(long id, String token, int error);
+    public static void googleDriveAuthorize(long id, String email, boolean interactive, String rejectedToken) {
+        MainActivity activity = accountActivity.get();
+        if (!interactive && (activity == null || activity.isFinishing() || activity.isDestroyed())) {
+            android.content.Context context = googleDriveApplication;
+            if (context == null) throw new IllegalStateException("Google authorization is unavailable");
+            new android.os.Handler(android.os.Looper.getMainLooper()).post(() ->
+                    new GoogleDriveAuthorization(context, pending -> { }, MainActivity::nativeGoogleDriveAuthorization)
+                            .authorize(id, email, false, rejectedToken, googleDriveAvailable(context)));
+            return;
+        }
+        if (activity == null || activity.isFinishing() || activity.isDestroyed()) throw new IllegalStateException("No active Google authorization window");
+        activity.runOnUiThread(() -> {
+            if (activity.googleDriveAuthorization == null) { nativeGoogleDriveAuthorization(id, null, GoogleDriveAuthorization.UNAVAILABLE); return; }
+            activity.googleDriveAuthorization.authorize(id, email, interactive, rejectedToken, googleDriveAvailable(activity));
+        });
+    }
     private ActivityResultLauncher<Intent> updateInstallerLauncher;
 
     /** Called on the native update worker. Every UI command originates from an
      * explicit Settings action; installer return codes never prove activation.
      */
     public static String updateCommand(android.content.Context context, String encoded) throws Exception {
-        if (isPlayStoreBuild()) throw new UnsupportedOperationException("Application updates are managed by Google Play");
+        if (!isSelfUpdateEnabled()) throw new UnsupportedOperationException("Application updates are managed by the distribution channel");
         org.json.JSONObject request = new org.json.JSONObject(encoded);
         String action = request.getString("action");
         if (action.equals("prepare")) {
@@ -245,6 +269,10 @@ public final class MainActivity extends GameActivity {
     private native void nativeStorageAccessChanged(boolean granted, String documentsLibraryRoot);
     private native void nativeOpenBook(String name, int fileDescriptor);
     static native void nativeNetworkCostChanged(int cost);
+    static native void nativeGooglePlayServicesAvailable(boolean available);
+    public static boolean googleDriveAvailable(android.content.Context context) {
+        return GoogleDriveAvailability.isAvailable(context);
+    }
     static void startNetworkCostMonitor(android.content.Context context) { NetworkCostMonitor.start(context); }
     private native void nativeVolumeButton(boolean next);
     private native void nativeWindowInsets(
@@ -264,6 +292,13 @@ public final class MainActivity extends GameActivity {
         super.onCreate(savedInstanceState);
         SpeechAssets.prepareInBackground(getApplicationContext());
         accountActivity = new java.lang.ref.WeakReference<>(this);
+        googleDriveApplication = getApplicationContext();
+        googleDriveAuthorizationLauncher = registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(), result -> {
+            if (googleDriveAuthorization != null) googleDriveAuthorization.result(result.getResultCode(), result.getData());
+        });
+        googleDriveAuthorization = new GoogleDriveAuthorization(this,
+                pending -> googleDriveAuthorizationLauncher.launch(new androidx.activity.result.IntentSenderRequest.Builder(pending.getIntentSender()).build()),
+                MainActivity::nativeGoogleDriveAuthorization);
         getOnBackPressedDispatcher().addCallback(this, new androidx.activity.OnBackPressedCallback(true) {
             @Override public void handleOnBackPressed() { backButtons.onBackPressed(); }
         });
@@ -306,6 +341,7 @@ public final class MainActivity extends GameActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        nativeGooglePlayServicesAvailable(googleDriveAvailable(this));
         resumed = true;
         applyKeepScreenAwake();
         boolean granted = AllFilesAccess.isGranted();
@@ -498,6 +534,7 @@ public final class MainActivity extends GameActivity {
 
     @Override
     protected void onDestroy() {
+        if (googleDriveAuthorization != null) googleDriveAuthorization.destroy();
         if (batteryPermissionPrompt != null) batteryPermissionPrompt.dismiss();
         if (accountDialog != null) accountDialog.dismiss();
         for (BookBrowserSurface browser : new ArrayList<>(bookBrowsers.values())) browser.close();

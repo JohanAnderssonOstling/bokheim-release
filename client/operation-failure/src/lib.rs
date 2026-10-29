@@ -64,7 +64,16 @@ pub enum Failure {
     /// A book file is corrupt, empty, unsupported, or not what was expected.
     UnreadableBook,
     Wifi(WifiFailure),
+    /// The cloud storage account has no room for more files.
+    CloudStorageFull,
 }
+
+// Origins can expose a classified cause without depending on the backend.
+// Diagnostics use the variant name; user-facing wording belongs to the UI.
+impl fmt::Display for Failure {
+    fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result { write!(formatter, "{self:?}") }
+}
+impl std::error::Error for Failure {}
 
 impl Failure {
     /// The classification a service's HTTP status implies, if any.

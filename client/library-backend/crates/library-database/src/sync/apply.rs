@@ -82,6 +82,27 @@ pub(crate) mod registers;
 
 /// Replace a book's complete local subject projection inside the caller's transaction.
 pub(crate) fn write_subject_projection(tx: &rusqlite::Transaction<'_>, book_id: i64, projected: &PreparedBook) -> Result<(), DatabaseError> {
+    let concepts = retained_subject_concepts(tx, book_id, projected)?;
+
+    tx.subject_projection_clear_subjects(book_id)?;
+    // Deleting assignments also deletes their evidence through the foreign key.
+    tx.subject_projection_clear_concepts(book_id)?;
+    for (position, subject) in projected.metadata.subjects.iter().enumerate() {
+        tx.subject_projection_insert_subject(book_id, position as i64, subject.name(), subject.source(), subject.authority(), subject.code())?;
+    }
+    for (index, concept) in concepts {
+        tx.subject_projection_insert_concept(book_id, concept, subject_projection::UNIFIED_MATCHER_VERSION)?;
+        let code = &projected.subject_codes[index];
+        for position in code.evidence_positions() {
+            tx.subject_projection_insert_evidence(book_id, concept, *position as i64, code.system_id(), code.code())?;
+        }
+    }
+    Ok(())
+}
+
+/// Resolve manual identities while their old evidence is still present. Both
+/// single-book edits and batched projections use the same retention rules.
+pub(crate) fn retained_subject_concepts(tx: &rusqlite::Transaction<'_>, book_id: i64, projected: &PreparedBook) -> Result<Vec<(usize, i64)>, DatabaseError> {
     let mut concepts = projected.concepts.clone();
     // Read retained manual identities before deleting their old evidence.
     // Their source paths may have changed after a taxonomy rename/reparenting.
@@ -105,20 +126,7 @@ pub(crate) fn write_subject_projection(tx: &rusqlite::Transaction<'_>, book_id: 
     let retained = most_specific_concept_ids(concepts.iter().map(|(_, concept)| *concept));
     concepts.retain(|(_, concept)| retained.contains(concept));
 
-    tx.subject_projection_clear_subjects(book_id)?;
-    // Deleting assignments also deletes their evidence through the foreign key.
-    tx.subject_projection_clear_concepts(book_id)?;
-    for (position, subject) in projected.metadata.subjects.iter().enumerate() {
-        tx.subject_projection_insert_subject(book_id, position as i64, subject.name(), subject.source(), subject.authority(), subject.code())?;
-    }
-    for (index, concept) in concepts {
-        tx.subject_projection_insert_concept(book_id, concept, subject_projection::UNIFIED_MATCHER_VERSION)?;
-        let code = &projected.subject_codes[index];
-        for position in code.evidence_positions() {
-            tx.subject_projection_insert_evidence(book_id, concept, *position as i64, code.system_id(), code.code())?;
-        }
-    }
-    Ok(())
+    Ok(concepts)
 }
 
 include_sqlite_sql::include_sql!("src/sql/subject_projection.sql");

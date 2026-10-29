@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-palette="warm">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bokheim · Interface consistency before and after</title>
+  <style>
+    @font-face { font-family: Garamond; src: url('../../desktop-gpui/assets/fonts/NV_Garamond-Regular.ttf'); }
+    @font-face { font-family: Raleway; src: url('../../desktop-gpui/assets/fonts/Raleway-Regular.ttf'); }
+    @font-face { font-family: Bodoni; src: url('../../desktop-gpui/assets/fonts/BodoniModa-Regular.ttf'); }
+    :root { color-scheme: light; --canvas: #eae5dc; --paper: #f6f2eb; --ink: #22201d; --muted: #6b675f; --rule: #c5bdac; --border: #8c7f64; --accent: #466853; --accent-ink: #fffdfa; --wash: #d9e8de; --hover: #4668530d; --danger: #a13029; }
+    [data-theme="dark"] { color-scheme: dark; --canvas: #1c1a16; --paper: #11100d; --ink: #efe6d0; --muted: #a69c86; --rule: #4e4334; --border: #786644; --accent: #d3b271; --accent-ink: #11100d; --wash: #3c3423; --hover: #d3b27114; --danger: #df8a83; }
+    [data-palette="cool"][data-theme="light"] { --canvas: #e5e7e9; --paper: #fafafa; --ink: #262627; --muted: #65686a; --rule: #bcbfc3; --border: #858a91; --accent: #42566d; --accent-ink: #fff; --wash: #e1e5e9; --hover: #42566d14; }
+    [data-palette="cool"][data-theme="dark"] { --canvas: #232527; --paper: #121212; --ink: #e7e8ea; --muted: #999da2; --rule: #41454a; --border: #62666c; --accent: #a7b3c2; --accent-ink: #121212; --wash: #33363b; --hover: #a7b3c214; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--canvas); font: 13px/1.5 Raleway, sans-serif; }
+    button, select, input { font: inherit; color: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    main { max-width: 1220px; margin: auto; padding: 26px 32px; }
+    .board-header, .board-title, .controls { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; }
+    .board-header { justify-content: space-between; border-bottom: 1px solid var(--rule); padding-bottom: 20px; }
+    .brand { font: 32px Bodoni, serif; }
+    h1 { font-size: 13px; font-weight: 400; border-left: 1px solid var(--rule); padding-left: 18px; margin: 0; }
+    .controls { font-size: 11px; gap: 12px; }
+    .controls label { display: flex; align-items: center; gap: 6px; }
+    .controls button, select { background: var(--paper); border: 1px solid var(--border); padding: 7px 10px; }
+    input { accent-color: var(--accent); }
+    .intro { display: flex; align-items: baseline; justify-content: space-between; gap: 28px; margin: 24px 0 28px; }
+    .intro h2 { font: 34px/1.15 Bodoni, serif; margin: 0; }
+    .intro p { font-size: 12px; color: var(--muted); max-width: 380px; margin: 0; }
+    .example { margin-top: 26px; }
+    .example-title { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 10px; }
+    .example-title h2 { font-size: 13px; font-weight: 400; margin: 0; }
+    .example-title p { color: var(--muted); font-size: 11px; margin: 0; }
+    .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .version { min-width: 0; border: 1px solid var(--rule); }
+    .version > h3 { font-size: 11px; font-weight: 400; margin: 0; padding: 9px 16px; border-bottom: 1px solid var(--rule); }
+    .stage { padding: 20px; }
+    .surface { background: var(--paper); border: 1px solid var(--border); padding: 6px; font: 18px/1.4 Garamond, Georgia, serif; }
+    .icon { width: 15px; height: 15px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .font-choice { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; background: transparent; border: 0; padding: 8px 16px; text-align: left; }
+    .font-choice .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .font-choice .check { visibility: hidden; }
+    .font-choice[aria-pressed="true"] .check { visibility: visible; }
+    .font-choice:hover { background: var(--wash); }
+    .before .font-choice[aria-pressed="true"] { background: var(--wash); }
+    .before .font-choice .check { display: none; }
+    .before .font-choice[aria-pressed="true"]:hover, [data-hover="true"] .before .font-choice[aria-pressed="true"] { background: var(--hover); }
+    .after .font-choice[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+    .after .font-choice[aria-pressed="true"]:focus-visible { outline-color: var(--accent-ink); outline-offset: -3px; }
+    .garamond { font-family: Garamond, serif; }.raleway { font-family: Raleway, sans-serif; }.bodoni { font-family: Bodoni, serif; }
+    .setting { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 14px 16px; font: 18px/1.4 Garamond, serif; }
+    .segmented { display: flex; border: 1px solid var(--rule); }
+    .segment { min-width: 92px; min-height: 38px; border: 0; border-right: 1px solid var(--rule); background: var(--paper); padding: 7px 12px; }
+    .segment:last-child { border-right: 0; }
+    .segment:hover { background: var(--hover); }
+    .before .segment[aria-pressed="true"] { background: var(--wash); box-shadow: inset 0 -2px var(--accent); }
+    .after .segment[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+    .stepper { display: flex; align-items: center; border: 1px solid var(--border); padding: 0 2px; }
+    .stepper output { width: 48px; text-align: center; color: var(--muted); font-size: 16px; }
+    .nudge, .delete { display: inline-grid; place-items: center; min-width: 38px; min-height: 38px; padding: 0; border: 0; background: var(--paper); }
+    .nudge { font-size: 22px; }
+    .nudge:not(:disabled):hover { background: var(--hover); }
+    .delete { color: var(--danger); }
+    .delete .icon { width: 18px; height: 18px; }
+    .before button:disabled { cursor: pointer; }
+    .after .nudge:disabled, .after .delete:disabled { cursor: default; color: var(--muted); opacity: .5; background: transparent; }
+    .swatches { display: flex; justify-content: space-between; align-items: start; gap: 12px; padding: 16px; }
+    .swatch-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .swatch { position: relative; display: grid; place-items: center; height: 48px; width: 48px; border: 1px solid var(--sample-rule); background: var(--sample-paper); color: var(--sample-ink); font: 24px Garamond, serif; }
+    .swatch[aria-pressed="true"] { border-color: var(--sample-accent); }
+    .swatch::after { content: ''; position: absolute; bottom: 6px; left: 14px; width: 18px; height: 3px; background: var(--sample-accent); }
+    .badge { position: absolute; display: grid; place-items: center; top: 2px; right: 2px; width: 14px; height: 14px; background: var(--sample-accent); color: var(--sample-accent-ink); }
+    .badge .icon { width: 10px; height: 10px; }
+    .literal-check { font: 10px Raleway, sans-serif; }
+    .swatch-label { font: 10px/1.3 Raleway, sans-serif; color: var(--muted); text-align: center; }
+    .board-footer { margin-top: 28px; border-top: 1px solid var(--rule); padding-top: 16px; display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; color: var(--muted); font-size: 11px; }
+    .board-footer a { color: inherit; }
+    @media (max-width: 760px) { main { padding: 20px 16px; } .intro { flex-direction: column; align-items: start; gap: 10px; } .example-title { align-items: start; flex-direction: column; gap: 4px; } .stage { padding: 12px; } .setting { padding: 8px; align-items: start; flex-direction: column; } .segment { min-width: 0; padding-inline: 10px; } .swatches { gap: 8px; padding: 10px 4px; } }
+    @media (max-width: 540px) { .comparison { grid-template-columns: 1fr; gap: 12px; } .intro h2 { font-size: 29px; } }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="shared-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></symbol></defs></svg>
+  <main>
+    <header class="board-header"><div class="board-title"><span class="brand">Bokheim</span><h1>Interface consistency</h1></div><div class="controls"><label><input id="hover" type="checkbox">Hover selected font</label><label>Palette <select id="palette"><option value="warm">Warm</option><option value="cool">Cool</option></select></label><button id="theme" aria-pressed="false">Dark appearance</button></div></header>
+    <div class="intro"><h2>Consistent choices. Clear states.</h2><p>Before and after the shared-component fixes. Change a font or setting, compare disabled controls, and try all four palettes.</p></div>
+    <div id="examples"></div>
+    <footer class="board-footer"><span>Interactive UI comparison · Application and reader use the same updated controls</span><a href="choice-row-before-after.html">Menu and sheet comparisons →</a></footer>
+  </main>
+  <script>
+    const root = document.documentElement;
+    const icon = (name, extra = '') => `<svg class="icon ${extra}" aria-hidden="true"><use href="#${name}"></use></svg>`;
+    const fonts = [{ name: 'Garamond', family: 'garamond' }, { name: 'Raleway', family: 'raleway' }, { name: 'Bodoni Moda', family: 'bodoni' }];
+    const palettes = [
+      { id: 'warm-light', name: 'Warm light', palette: 'warm', theme: 'light', paper: '#f6f2eb', ink: '#22201d', rule: '#c5bdac', accent: '#466853', accentInk: '#fffdfa' },
+      { id: 'cool-light', name: 'Cool light', palette: 'cool', theme: 'light', paper: '#fafafa', ink: '#262627', rule: '#bcbfc3', accent: '#42566d', accentInk: '#ffffff' },
+      { id: 'warm-dark', name: 'Warm dark', palette: 'warm', theme: 'dark', paper: '#11100d', ink: '#efe6d0', rule: '#4e4334', accent: '#d3b271', accentInk: '#11100d' },
+      { id: 'cool-dark', name: 'Cool dark', palette: 'cool', theme: 'dark', paper: '#121212', ink: '#e7e8ea', rule: '#41454a', accent: '#a7b3c2', accentInk: '#121212' }
+    ];
+    const state = { font: 0, alignment: 'Justified', size: 8 };
+    function fontSample(version) {
+      return `<div class="surface" role="group" aria-label="${version} font choices">${fonts.map((font, index) => `<button class="font-choice" data-key="${version}-font-${index}" data-font="${index}" aria-pressed="${state.font === index}"><span class="name ${font.family}">${font.name}</span>${icon('shared-check', 'check')}</button>`).join('')}</div>`;
+    }
+    function alignmentSample(version) {
+      return `<div class="surface"><div class="setting"><span>Alignment</span><div class="segmented" role="group" aria-label="${version} alignment">${['Left', 'Justified'].map(value => `<button class="segment" data-key="${version}-alignment-${value}" data-alignment="${value}" aria-pressed="${state.alignment === value}">${value}</button>`).join('')}</div></div></div>`;
+    }
+    function disabledSample(version) {
+      return `<div class="surface"><div class="setting"><span>Font size</span><div class="stepper"><button class="nudge" data-key="${version}-minus" data-step="-1" aria-label="Decrease font size" ${state.size <= 8 ? 'disabled' : ''}>−</button><output aria-live="polite">${state.size}</output><button class="nudge" data-key="${version}-plus" data-step="1" aria-label="Increase font size" ${state.size >= 12 ? 'disabled' : ''}>+</button></div></div><div class="setting"><span>Delete selection</span><button class="delete" aria-label="Delete selection" disabled>${icon('trash')}</button></div></div>`;
+    }
+    function swatchSample(version) {
+      return `<div class="surface swatches" role="group" aria-label="${version} theme choices">${palettes.map(palette => {
+        const selected = root.dataset.palette === palette.palette && root.dataset.theme === palette.theme;
+        return `<div class="swatch-wrap"><button class="swatch" data-key="${version}-${palette.id}" data-palette-choice="${palette.id}" aria-label="${palette.name}" aria-pressed="${selected}" style="--sample-paper:${palette.paper};--sample-ink:${palette.ink};--sample-rule:${palette.rule};--sample-accent:${palette.accent};--sample-accent-ink:${palette.accentInk}">Aa${selected ? `<span class="badge">${version === 'before' ? '<span class="literal-check">✓</span>' : icon('shared-check')}</span>` : ''}</button><span class="swatch-label">${palette.name}</span></div>`;
+      }).join('')}</div>`;
+    }
+    const examples = [
+      { id: 'fonts', title: '01 / Font selection', note: 'One row for application and reader font pickers; selection stays visible on hover.', render: fontSample },
+      { id: 'settings', title: '02 / Settings choices', note: 'The same solid accent as menu choices, with contrasting text.', render: alignmentSample },
+      { id: 'disabled', title: '03 / Disabled controls', note: 'Unavailable controls keep their disabled colors and cursor despite custom styling.', render: disabledSample },
+      { id: 'swatches', title: '04 / Theme checkmarks', note: 'The shared vector checkmark replaces a font-dependent text glyph.', render: swatchSample }
+    ];
+    function render() {
+      const focusKey = document.activeElement.dataset?.key;
+      document.getElementById('examples').innerHTML = examples.map(example => `<section class="example" id="${example.id}"><header class="example-title"><h2>${example.title}</h2><p>${example.note}</p></header><div class="comparison">${['before', 'after'].map(version => `<article class="version ${version}" aria-label="${version} ${example.id}"><h3>${version === 'before' ? 'Before' : 'After'}</h3><div class="stage">${example.render(version)}</div></article>`).join('')}</div></section>`).join('');
+      document.getElementById('palette').value = root.dataset.palette;
+      document.getElementById('theme').setAttribute('aria-pressed', root.dataset.theme === 'dark');
+      if (focusKey) document.querySelector(`[data-key="${focusKey}"]`)?.focus({ preventScroll: true });
+    }
+    document.getElementById('examples').addEventListener('click', event => {
+      const button = event.target.closest('button');
+      if (!button || button.disabled) return;
+      if (button.dataset.font !== undefined) state.font = Number(button.dataset.font);
+      if (button.dataset.alignment) state.alignment = button.dataset.alignment;
+      if (button.dataset.step) state.size = Math.max(8, Math.min(12, state.size + Number(button.dataset.step)));
+      if (button.dataset.paletteChoice) { const choice = palettes.find(palette => palette.id === button.dataset.paletteChoice); root.dataset.palette = choice.palette; root.dataset.theme = choice.theme; }
+      render();
+    });
+    document.getElementById('hover').addEventListener('change', event => { root.dataset.hover = event.target.checked; });
+    document.getElementById('palette').addEventListener('change', event => { root.dataset.palette = event.target.value; render(); });
+    document.getElementById('theme').addEventListener('click', () => { root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark'; render(); });
+    const parameters = new URLSearchParams(location.search);
+    if (parameters.get('theme') === 'dark') root.dataset.theme = 'dark';
+    if (parameters.get('palette') === 'cool') root.dataset.palette = 'cool';
+    if (parameters.get('hover') === 'true') { root.dataset.hover = 'true'; document.getElementById('hover').checked = true; }
+    render();
+  </script>
+</body>
+</html>

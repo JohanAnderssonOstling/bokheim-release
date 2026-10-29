@@ -201,7 +201,7 @@ impl RenderOnce for Switch {
                         ),
                 )
                 .when_some(self.label, |this, label| {
-                    this.child(div().line_height(bg_height).child(label).map(
+                    this.child(div().line_height_auto().child(label).map(
                         |this| match self.size {
                             Size::XSmall | Size::Small => this.text_sm(),
                             _ => this.text_base(),

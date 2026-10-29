@@ -132,16 +132,7 @@ impl<'de> serde::Deserialize<'de> for ContentHash {
 
 /// Hashes bytes from the reader's current position to EOF using BLAKE3.
 pub fn hash_reader(reader: &mut impl Read) -> io::Result<ContentHash> {
-    let mut hash = blake3::Hasher::new();
-    let mut bytes = vec![0; 1024 * 1024];
-    loop {
-        let count = reader.read(&mut bytes)?;
-        if count == 0 {
-            break;
-        }
-        hash.update(&bytes[..count]);
-    }
-    Ok(ContentHash::from(hash.finalize()))
+    Ok(blake3::Hasher::new().update_reader(reader)?.finalize().into())
 }
 
 /// Hash the complete file, regardless of the reader's current position.

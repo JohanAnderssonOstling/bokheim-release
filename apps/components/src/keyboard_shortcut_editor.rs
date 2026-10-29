@@ -20,7 +20,7 @@ struct ShortcutRow {
 pub struct KeyboardShortcutEditor {
     page: ShortcutPage,
     capturing: Option<&'static str>,
-    saving: bool,
+    saving: Option<KeyboardShortcuts>,
     warning: Option<SharedString>,
     focus: FocusHandle,
     rows: Vec<ShortcutRow>,
@@ -40,7 +40,7 @@ impl KeyboardShortcutEditor {
             window.prevent_default();
             cx.stop_propagation();
         });
-        Self { page, capturing: None, saving: false, warning: None, focus: cx.focus_handle(), rows: Vec::new(), _capture: capture }
+        Self { page, capturing: None, saving: None, warning: None, focus: cx.focus_handle(), rows: Vec::new(), _capture: capture }
     }
 
     pub fn cancel_capture(&mut self, cx: &mut Context<Self>) {
@@ -54,21 +54,22 @@ impl KeyboardShortcutEditor {
     }
 
     fn save(&mut self, shortcuts: KeyboardShortcuts, cx: &mut Context<Self>) {
-        if self.saving {
+        if self.saving.is_some() {
             return;
         }
         self.capturing = None;
         self.warning = None;
-        self.saving = true;
+        self.saving = Some(shortcuts.clone());
         let saved = save_keyboard_shortcuts(shortcuts, cx);
         cx.spawn(async move |editor, cx| {
             let result = saved.await;
             let _ = editor.update(cx, |editor, cx| {
-                editor.saving = false;
+                editor.saving = None;
                 editor.warning = result.err().map(|error| format!("Keyboard shortcuts were not saved. {}", components::user_facing_error(&*error, "Please try again.")).into());
                 cx.notify();
             });
-        }).detach();
+        })
+        .detach();
         cx.notify();
     }
 
@@ -107,53 +108,68 @@ impl Render for KeyboardShortcutEditor {
     fn render(&mut self, _: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
         let theme = components::browser_theme(cx);
         let settings: Vec<_> = shortcut_settings(cx).into_iter().filter(|setting| setting.page == self.page).collect();
-        let overrides = keyboard_shortcut_overrides(cx);
+        // Preview the submitted keys while saving, without dimming or moving
+        // the whole form. A failed save falls back to the persisted bindings.
+        let overrides = self.saving.clone().unwrap_or_else(|| keyboard_shortcut_overrides(cx));
         while self.rows.len() < settings.len() {
             self.rows.push(ShortcutRow { focus: cx.focus_handle(), bounds: Rc::new(Cell::new(Bounds::default())) });
         }
-        let disabled = self.saving;
         let restore = components::browser_settings_header_button(format!("restore-{}-shortcuts", self.page.label()), "Restore defaults", false, theme)
-            .w(rems(SHORTCUT_BUTTON_WIDTH_REM)).max_w_full()
-            .disabled(disabled || !settings.iter().any(|setting| overrides.contains_key(setting.id)))
+            .w(rems(SHORTCUT_BUTTON_WIDTH_REM))
+            .max_w_full()
+            .disabled(!settings.iter().any(|setting| overrides.contains_key(setting.id)))
             .on_click(cx.listener(|editor, _, _, cx| {
+                if editor.saving.is_some() {
+                    return;
+                }
                 let mut overrides = keyboard_shortcut_overrides(cx);
                 for setting in shortcut_settings(cx).iter().filter(|setting| setting.page == editor.page) {
                     overrides.remove(setting.id);
                 }
                 editor.save(overrides, cx);
             }));
-        let mut group = components::browser_settings_fieldset_with_actions(format!("{} keyboard shortcuts", self.page.label()), restore, theme);
+        let mut group = components::browser_settings_group();
         for (row, setting) in settings.iter().enumerate() {
             let id = setting.id;
             let keys = configured_shortcuts(setting, &overrides);
             let recording = self.capturing == Some(id);
-            let label = if recording {
-                "Press shortcut…".to_owned()
-            } else {
-                keys.first().map(|key| Keystroke::parse(key).map(|key| Kbd::format(&key)).unwrap_or_else(|_| key.clone())).unwrap_or_else(|| "Not assigned".into())
-            };
+            let label = if recording { "Press shortcut…".to_owned() } else { keys.first().map(|key| Keystroke::parse(key).map(|key| Kbd::format(&key)).unwrap_or_else(|_| key.clone())).unwrap_or_else(|| "Not assigned".into()) };
             let capture_focus = self.rows[row].focus.clone();
             let control = components::browser_settings_header_button(format!("{id}-shortcut"), label, recording, theme)
-                .w(rems(SHORTCUT_BUTTON_WIDTH_REM)).max_w_full()
-                .tooltip(if recording { "Press a shortcut, or click to cancel" } else { "Click to change shortcut" })
-                .disabled(disabled)
+                .w(rems(SHORTCUT_BUTTON_WIDTH_REM))
+                .max_w_full()
+                .tooltip(if self.saving.is_some() {
+                    "Saving keyboard shortcuts…"
+                } else if recording {
+                    "Press a shortcut, or click to cancel"
+                } else {
+                    "Click to change shortcut"
+                })
                 .on_click(cx.listener(move |editor, _, window, cx| {
+                    if editor.saving.is_some() {
+                        return;
+                    }
                     editor.capturing = if editor.capturing == Some(id) { None } else { Some(id) };
                     editor.warning = None;
                     capture_focus.focus(window, cx);
                     cx.notify();
                 }));
-            let mut content = components::browser_settings_compact_row(setting.label, control, theme);
+            let mut content = components::browser_settings_compact_row(setting.label, control, theme).when(row == 0, |content| content.border_t_0());
             if recording {
                 content = content.children(self.warning.clone().map(|warning| components::browser_settings_group_error(warning, theme)));
             }
             group = group.child(components::browser_settings_section(&self.rows[row].focus, self.rows[row].bounds.clone(), content));
         }
-        gpui::div().w_full().min_w_0().flex().flex_col().gap(px(components::SPACE_MD))
+        gpui::div()
+            .w_full()
+            .min_w_0()
+            .flex()
+            .flex_col()
+            .gap(px(components::SPACE_MD))
             .key_context("ShortcutSettings")
             .track_focus(&self.focus)
-            .when(disabled, |content| content.child("Saving keyboard shortcuts…"))
             .when(self.capturing.is_none(), |content| content.children(self.warning.clone().map(|warning| components::browser_settings_group_error(warning, theme))))
             .child(group)
+            .child(gpui::div().w_full().flex().justify_end().child(restore))
     }
 }

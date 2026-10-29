@@ -2,7 +2,7 @@
 
 use gpui::{App, Context, FocusHandle, Window};
 use gpui_component::tree::TreeItem;
-use html_view_core::{RendererCommand, TocEntry};
+use skrift_column_paginator::{RendererCommand, TocEntry};
 use html_view_gpui::HtmlView;
 
 use crate::epub::{LoadState, ReaderView};
@@ -101,7 +101,7 @@ impl ReaderView {
         self.page_turn = None;
         self.swipe_preview.clear();
         self.with_renderer(cx, |renderer, cx| renderer.apply(RendererCommand::NavigateToHref(href), cx));
-        #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+        #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
         self.tts_navigation_changed(cx);
     }
 

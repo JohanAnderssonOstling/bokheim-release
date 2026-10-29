@@ -37,24 +37,6 @@ impl<T> Pending<T> {
     }
 }
 
-/// Removing a request on future drop prevents cancelled calls retaining replies.
-pub struct Registration<'a, T> {
-    pending: &'a Pending<T>,
-    id: u64,
-}
-impl<T> Pending<T> {
-    pub fn track(&self, id: u64, value: T) -> Registration<'_, T> {
-        self.insert(id, value);
-        Registration { pending: self, id }
-    }
-}
-impl<T> Drop for Registration<'_, T> {
-    fn drop(&mut self) {
-        self.pending.take(self.id);
-    }
-}
-
-
 /// Capture before constructing an async block so even an unpolled future cleans up.
 pub struct OnDrop<F: FnOnce()>(Option<F>);
 impl<F: FnOnce()> OnDrop<F> {

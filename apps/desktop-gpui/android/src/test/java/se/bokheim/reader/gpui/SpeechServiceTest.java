@@ -67,7 +67,24 @@ public class SpeechServiceTest {
         Notification notification = shadowOf(service).getLastForegroundNotification();
         assertEquals("An English book", notification.extras.getString(Notification.EXTRA_TITLE));
         assertNotNull(notification.extras.getParcelable(Notification.EXTRA_MEDIA_SESSION));
-        assertEquals(4, notification.actions.length);
+        assertEquals(3, notification.actions.length);
+    }
+
+    @Test public void titleAuthorChapterAndArtworkArePublishedWithoutAStopButton() throws Exception {
+        android.graphics.Bitmap image = android.graphics.Bitmap.createBitmap(2, 2, android.graphics.Bitmap.Config.ARGB_8888);
+        java.io.ByteArrayOutputStream output = new java.io.ByteArrayOutputStream();
+        image.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, output);
+        org.json.JSONArray cover = new org.json.JSONArray();
+        for (byte value : output.toByteArray()) cover.put(value & 255);
+        String state = new org.json.JSONObject().put("title", "Book").put("author", "Author").put("chapter", "Chapter 4 · Martha")
+            .put("cover", cover).put("paused", false).toString();
+        SpeechService.stateProvider = id -> state;
+        service.begin(12);
+        Notification notification = shadowOf(service.getSystemService(NotificationManager.class)).getNotification(SpeechService.NOTIFICATION_ID);
+        assertEquals("Author", notification.extras.getString(Notification.EXTRA_TEXT));
+        assertEquals("Chapter 4 · Martha", notification.extras.getString(Notification.EXTRA_SUB_TEXT));
+        assertEquals(3, notification.actions.length);
+        assertNotNull(notification.getLargeIcon());
     }
 
     @Test public void systemMediaButtonsPauseResumeAndChangeReadingItems() {

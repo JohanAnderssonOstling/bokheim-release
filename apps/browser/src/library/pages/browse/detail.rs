@@ -1,8 +1,8 @@
 //! One book's page.
 //!
 //! Its owner keeps the browse view mounted in memory and caches this entity
-//! when returning to it, preserving its contents. Reader entry drops the
-//! page's cover reference; the shared image budget controls pixel retention.
+//! when returning to it, preserving its contents. Reader entry drops hidden
+//! pages' cover references; displayed pages in other panes keep their artwork.
 //!
 //! Details, cover art and torrent information load concurrently. The page
 //! uses its current pane bounds to reveal the complete book in its final
@@ -10,23 +10,23 @@
 
 use ui_components::user_facing_error;
 
-use crate::services::{book_transfer_error_message, notify_error, notify_info, track_catalog_import};
+use crate::services::{book_transfer_error_message, import_catalog_book_with_progress, notify_error, notify_info};
 use library_backend::{DownloadState, ThumbnailResolution};
 use std::collections::{HashMap, HashSet};
 use std::time::Duration;
 
 use gpui::prelude::*;
-use gpui::{AnyElement, App, AppContext, AvailableSpace, Context, Entity, FocusHandle, Focusable, IntoElement, MouseButton, Render, SharedString, Task, Window, canvas, div};
-use gpui_component::{IconName, WindowExt as _};
+use gpui::{AnyElement, App, AppContext, AvailableSpace, Context, Entity, FocusHandle, Focusable, IntoElement, MouseButton, Render, SharedString, Task, Window, canvas, div, px};
+use gpui_component::{IconName, Placement, WindowExt as _};
 use gpui_image_eviction::track_image;
 use library_model::{BookCardRow, BookDetail, BookLocator, BookSource, BookTocEntry, CardKey, LibraryFileTypeFilter};
-use sync_common::BookId;
+use sync_common::{BookId, ROOT_DIR_ID};
+use ui_components as components;
 use ui_components::ScrollableElement as _;
-use ui_components::{self as components, BrowserDownloadPhase, BrowserDownloadUpdate, BrowserDownloads};
 
 use crate::library::pages::with_retry_banner;
 use crate::library::services::{DownloadSubscription, LibraryContext};
-use crate::library::widgets::{CoversEvicted, LoadedCover, cover_aspect_ratio, cover_generation, generated_cover_variant, loaded_cover_from_jpeg, mark_feed_book_added};
+use crate::library::widgets::{CoverVisibility, CoversEvicted, LoadedCover, cover_aspect_ratio, generated_cover_variant, loaded_cover_from_jpeg};
 
 /// Leaves the book's page for the location it was opened from on Back.
 /// Owned by the browse page, which is what knows how to leave the detail location.
@@ -55,6 +55,24 @@ enum DetailLayout {
     Stacked,
 }
 
+enum DetailCover {
+    /// Retain the visible image while a higher-resolution replacement loads.
+    Loading(Option<LoadedCover>),
+    Loaded(LoadedCover),
+    Missing,
+    NeedsReload,
+}
+
+impl DetailCover {
+    fn loaded(&self) -> Option<&LoadedCover> {
+        match self {
+            Self::Loading(cover) => cover.as_ref(),
+            Self::Loaded(cover) => Some(cover),
+            Self::Missing | Self::NeedsReload => None,
+        }
+    }
+}
+
 pub(crate) struct BookDetailPage {
     ui: LibraryContext,
     /// What the grid knew, replaced by the request's own copy when it lands.
@@ -64,10 +82,9 @@ pub(crate) struct BookDetailPage {
     ready: bool,
     detail: Option<BookDetail>,
     error: Option<SharedString>,
-    cover: Option<LoadedCover>,
-    cover_missing: bool,
-    cover_needs_reload: bool,
-    cover_loading: bool,
+    cover: DetailCover,
+    cover_visibility: CoverVisibility,
+    cover_generation: u64,
     _cover_evictions: gpui::Subscription,
     _contents_updates: gpui::Subscription,
     /// Contents open collapsed, so a book with two hundred entries does not bury
@@ -95,30 +112,10 @@ pub(crate) struct BookDetailPage {
 
 impl gpui::EventEmitter<CloseBookDetail> for BookDetailPage {}
 
-/// A feed book's page: what the feed says of it. A feed knows no contents,
-/// credits or reading position.
-fn feed_detail(book: BookCardRow, description: String) -> BookDetail {
-    BookDetail {
-        book,
-        external_url: None,
-        audiobook_chapter_count: None,
-        description,
-        year: None,
-        source_directory_id: None,
-        path: Vec::new(),
-        authors: Vec::new(),
-        credits: Vec::new(),
-        current_entry: None,
-        current_target: None,
-        chapter_read_status: Default::default(),
-        toc: Vec::new(),
-    }
-}
-
 impl BookDetailPage {
     fn reset_contents_read_status(&mut self, target: Option<String>, cx: &mut Context<Self>) {
         let locator = self.locator();
-        let playing_reset = cx.try_global::<crate::NowPlaying>().and_then(|playing| playing.book.as_ref()).filter(|playing| Some(&playing.locator) == locator.as_ref()).map(|playing| playing.reset_chapter_read_status.clone());
+        let playing_reset = self.ui.now_playing().read(cx).book.as_ref().filter(|playing| Some(&playing.locator) == locator.as_ref()).map(|playing| playing.reset_chapter_read_status.clone());
         if let Some(reset) = playing_reset {
             reset(target.clone(), cx);
             if let Some(detail) = &mut self.detail {
@@ -156,8 +153,9 @@ impl BookDetailPage {
     /// The page of a library, catalog or feed book.
     pub(crate) fn create(book: BookCardRow, cover: Option<LoadedCover>, ui: LibraryContext, cx: &mut impl AppContext) -> Entity<Self> {
         cx.new(|cx| {
+            cx.observe(ui.now_playing(), |_, _, cx| cx.notify()).detach();
             if let Some(cover) = &cover {
-                track_image(&cover.image, cx);
+                track_image(cover, cx);
             }
             let download_updates = Self::download_subscription(&book, &ui, cx);
             let contents_updates = cx.subscribe(&ui.updates(), |page: &mut Self, _, _: &crate::library::services::LibraryContentsChanged, cx| {
@@ -166,10 +164,12 @@ impl BookDetailPage {
                 page.finish_load(async move { library.book_detail(hash).await }, cx);
             });
             let cover_evictions = cx.observe_global::<CoversEvicted>(|page: &mut Self, cx| {
+                if page.cover_visibility.is_visible() {
+                    return;
+                }
+                page.cover_generation = page.cover_generation.wrapping_add(1);
                 page._cover_task.take();
-                page.cover.take();
-                page.cover_needs_reload = true;
-                page.cover_missing = false;
+                page.cover = DetailCover::NeedsReload;
                 cx.notify();
             });
             let mut page = Self {
@@ -178,10 +178,9 @@ impl BookDetailPage {
                 ready: false,
                 detail: None,
                 error: None,
-                cover,
-                cover_missing: false,
-                cover_needs_reload: false,
-                cover_loading: false,
+                cover: DetailCover::Loading(cover),
+                cover_visibility: CoverVisibility::default(),
+                cover_generation: 0,
                 _cover_evictions: cover_evictions,
                 _contents_updates: contents_updates,
                 expanded: HashSet::new(),
@@ -220,21 +219,11 @@ impl BookDetailPage {
 
     fn load(&mut self, cx: &mut Context<Self>) {
         self.error = None;
-        match self.book.source {
-            BookSource::ExternalCatalog { entry, .. } => {
-                let library = self.ui.backend().clone();
-                self.finish_load(async move { library.external_catalog_detail(entry).await }, cx);
-            }
-            BookSource::Opds { entry, .. } => {
-                let app = self.ui.app().clone();
-                let book = self.book.clone();
-                self.finish_load(async move { app.opds_description(entry).await.map(|description| feed_detail(book, description)) }, cx);
-            }
-            _ => {
-                let Some(content_hash) = self.book.content_hash() else { return };
-                self.load_library(content_hash, cx);
-            }
+        #[cfg(not(target_arch = "wasm32"))]
+        if let Some(content_hash) = self.book.content_hash() {
+            self.load_torrents(content_hash, cx);
         }
+        self.finish_load(self.ui.clone().book_detail(self.book.clone()), cx);
         cx.notify();
     }
 
@@ -325,44 +314,12 @@ impl BookDetailPage {
         if self.adding || matches!(self.book.source, BookSource::ExternalCatalog { downloadable: false, .. }) {
             return;
         }
-        let (source, title) = (self.book.source, self.book.title.clone());
-        let key = self.book.key();
+        let book = self.book.clone();
         let library = self.ui.backend().clone();
         let app = self.ui.app().clone();
-        let download = uuid::Uuid::new_v4().to_string();
-        let mut downloads = BrowserDownloads::default();
-        downloads.apply(BrowserDownloadUpdate { download: download.clone(), replaces: None, name: title.to_string(), phase: BrowserDownloadPhase::Downloading, percent: None, message: None }, window, cx);
         self.adding = true;
         cx.spawn_in(window, async move |page, cx| {
-            let operation = async {
-                match source {
-                    BookSource::Catalog { content_hash, .. } => library.add_catalog_book(sync_common::ROOT_DIR_ID, content_hash).await,
-                    // The app fetches from the feed; the library imports the file.
-                    BookSource::Opds { source, entry, .. } => match app.download_opds_book(source, entry).await {
-                        Ok((file_name, bytes)) => library.import_downloaded_book(sync_common::ROOT_DIR_ID, file_name, bytes).await,
-                        Err(error) => Err(error),
-                    },
-                    BookSource::Library { content_hash } => Ok(content_hash),
-                    BookSource::ExternalCatalog { entry, downloadable: true } => library.add_external_catalog_audiobook(sync_common::ROOT_DIR_ID, entry).await,
-                    BookSource::ExternalCatalog { downloadable: false, .. } => Err("this book is read on its source website".into()),
-                }
-            };
-            let result = if matches!(source, BookSource::Catalog { .. } | BookSource::ExternalCatalog { .. }) { track_catalog_import(&library, key, &download, &mut downloads, cx, operation).await } else { operation.await };
-            let _ = cx.update(|window, cx| {
-                let (phase, message) = match &result {
-                    Ok(_) => {
-                        if matches!(source, BookSource::Opds { .. } | BookSource::ExternalCatalog { .. }) {
-                            mark_feed_book_added(key, cx);
-                        }
-                        (BrowserDownloadPhase::Completed, Some("Added to library".to_owned()))
-                    }
-                    Err(error) => {
-                        log::warn!("Could not add catalog/feed book {key:?} to library: {error}");
-                        (BrowserDownloadPhase::Failed(error.failure()), None)
-                    }
-                };
-                downloads.apply(BrowserDownloadUpdate { download, replaces: None, name: title.to_string(), phase, percent: None, message }, window, cx);
-            });
+            let result = import_catalog_book_with_progress(&app, &library, book, ROOT_DIR_ID, Some("Added to library"), cx).await;
             let _ = page.update_in(cx, |page, _, cx| {
                 page.adding = false;
                 if let Ok(content_hash) = result {
@@ -393,26 +350,13 @@ impl BookDetailPage {
         // With "generated covers only", no art is read or decoded at all.
         if crate::stores::generated_covers_only(cx) {
             self._cover_task = None;
-            self.cover = None;
-            self.cover_loading = false;
-            self.cover_missing = true;
+            self.cover = DetailCover::Missing;
             return;
         }
-        self.cover_missing = false;
-        self.cover_loading = true;
-        let generation = cover_generation(cx);
+        self.cover = DetailCover::Loading(self.cover.loaded().cloned());
+        let generation = self.cover_generation;
         let title = self.book.title.clone();
-        let library = self.ui.backend().clone();
-        let app = self.ui.app().clone();
-        let (source, content_hash) = (self.book.source, self.book.content_hash());
-        let load = async move {
-            match (source, content_hash) {
-                (BookSource::Opds { source, entry, .. }, _) => app.opds_cover(source, entry, ThumbnailResolution::HighDensity.width()).await,
-                (BookSource::ExternalCatalog { entry, .. }, _) => library.external_catalog_cover(entry, ThumbnailResolution::HighDensity).await,
-                (_, Some(content_hash)) => library.thumbnail(content_hash, ThumbnailResolution::HighDensity).await,
-                (_, None) => Ok(None),
-            }
-        };
+        let load = self.ui.clone().book_cover(self.book.source, ThumbnailResolution::HighDensity);
         let decoder = cx.background_executor().clone();
         self._cover_task = Some(cx.spawn(async move |page, cx| {
             let cover = match load.await {
@@ -421,22 +365,20 @@ impl BookDetailPage {
                 Err(error) => Err(error),
             };
             let _ = page.update(cx, |page, cx| {
-                if generation != cover_generation(cx) {
+                if generation != page.cover_generation {
                     return;
                 }
-                page.cover_loading = false;
-                match cover {
-                    Ok(Some(cover)) => {
-                        track_image(&cover.image, cx);
-                        page.cover_missing = false;
-                        page.cover = Some(cover);
-                    }
-                    Ok(None) => page.cover_missing = page.cover.is_none(),
+                let cover = match cover {
+                    Ok(cover) => cover,
                     Err(error) => {
-                        page.cover_missing = page.cover.is_none();
                         log::error!("failed to load the cover for book {title:?}: {error}");
+                        None
                     }
+                };
+                if let Some(cover) = &cover {
+                    track_image(cover, cx);
                 }
+                page.cover = cover.or_else(|| page.cover.loaded().cloned()).map_or(DetailCover::Missing, DetailCover::Loaded);
                 cx.notify();
             });
         }));
@@ -505,7 +447,7 @@ fn drawn_entries<'a>(entries: &'a [BookTocEntry], expanded: &HashSet<String>, de
 
 /// "12 h 41 min", for a fact read at a glance rather than a clock read against a
 /// playhead — the player's `0:41:05` answers a different question.
-fn spoken_duration(duration_ms: u64) -> String {
+pub(crate) fn spoken_duration(duration_ms: u64) -> String {
     let minutes = duration_ms / 60_000;
     let hours = minutes / 60;
     let minutes = minutes % 60;
@@ -543,9 +485,9 @@ fn chapter_durations(entries: &[BookTocEntry], total_ms: Option<u64>) -> HashMap
 }
 
 impl Render for BookDetailPage {
-    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
-        if self.cover_needs_reload {
-            self.cover_needs_reload = false;
+    fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+        self.cover_visibility.track(window);
+        if matches!(self.cover, DetailCover::NeedsReload) {
             self.load_cover(cx);
         }
         let page = cx.entity();
@@ -553,7 +495,8 @@ impl Render for BookDetailPage {
         // or extra invalidation is needed when a split or window changes size.
         canvas(
             move |bounds, window, cx| {
-                let mut body = page.update(cx, |page, cx| page.render_pane(f32::from(bounds.size.width), cx));
+                let compact = components::WindowWidthClass::for_window(window).is_compact();
+                let mut body = page.update(cx, |page, cx| page.render_pane(f32::from(bounds.size.width), f32::from(bounds.size.height), f32::from(window.rem_size()), compact, cx));
                 body.prepaint_as_root(bounds.origin, bounds.size.map(AvailableSpace::Definite), window, cx);
                 body
             },
@@ -566,11 +509,53 @@ impl Render for BookDetailPage {
 }
 
 impl BookDetailPage {
-    fn render_pane(&mut self, width: f32, cx: &mut Context<Self>) -> AnyElement {
+    fn show_description(&mut self, _: &components::ShowBookDescription, window: &mut Window, cx: &mut Context<Self>) {
+        self.open_information_sheet(false, window, cx);
+    }
+
+    fn show_contents(&mut self, _: &components::ShowBookContents, window: &mut Window, cx: &mut Context<Self>) {
+        self.open_information_sheet(true, window, cx);
+    }
+
+    fn open_information_sheet(&mut self, contents: bool, window: &mut Window, cx: &mut Context<Self>) {
+        let page = cx.entity();
+        window.open_sheet_at(Placement::Bottom, cx, move |sheet, window, cx| {
+            let theme = components::browser_theme(cx);
+            let safe_area = window.insets().effective();
+            let (title, content) = page.update(cx, |page, cx| {
+                let audiobook = page.book.format_category == LibraryFileTypeFilter::Audiobook;
+                let title = if contents { if audiobook { "Chapters" } else { "Contents" } } else { "Description" };
+                let content = if contents {
+                    page.detail.clone().filter(|detail| !detail.toc.is_empty()).map(|detail| {
+                        let locator = page.locator();
+                        let position = page.ui.now_playing().read(cx).book.as_ref().filter(|playing| Some(&playing.locator) == locator.as_ref()).and_then(|playing| (playing.position)(cx)).map(|(position, _)| position);
+                        page.render_contents(&detail, audiobook, position, false, theme, cx)
+                    })
+                } else {
+                    page.detail.as_ref().and_then(|detail| components::book_detail_description(&detail.description, theme, cx)).map(IntoElement::into_any_element)
+                };
+                let empty = if contents { "No contents available." } else { "No description available." };
+                (title, content.unwrap_or_else(|| components::muted_line(empty, theme).into_any_element()))
+            });
+            sheet.title(title).size((window.viewport_size().height - safe_area.top) * 0.75).resizable(false).bg(theme.page_bg).p_0().child(
+                div()
+                    .debug_selector(move || if contents { "book-contents-sheet".into() } else { "book-description-sheet".into() })
+                    .flex_none()
+                    .w_full()
+                    .pt(px(components::SPACE_MD))
+                    .pb(safe_area.bottom + px(components::SPACE_MD))
+                    .pl(safe_area.left + px(components::SPACE_MD))
+                    .pr(safe_area.right + px(components::SPACE_MD))
+                    .child(content),
+            )
+        });
+    }
+
+    fn render_pane(&mut self, width: f32, height: f32, rem_size: f32, compact: bool, cx: &mut Context<Self>) -> AnyElement {
         let theme = components::browser_theme(cx);
         let back = (cfg!(feature = "kobo") || !components::has_native_back_button()).then(|| components::book_detail_back("book-detail-back", theme).on_click(cx.listener(|_, _, _, cx| cx.emit(CloseBookDetail))));
         let page = cx.entity();
-        let loaded = self.detail.is_some() && !self.cover_loading;
+        let loaded = self.detail.is_some() && !matches!(self.cover, DetailCover::Loading(_));
         #[cfg(not(target_arch = "wasm32"))]
         let loaded = loaded && !self.torrents_loading;
         self.ready |= loaded && width > 0.0;
@@ -601,21 +586,31 @@ impl BookDetailPage {
         let large_title = !beside_cover || width >= BOOK_DETAIL_LARGE_TITLE_WIDTH;
 
         let audiobook = book.format_category == LibraryFileTypeFilter::Audiobook;
+        let mobile = compact && layout == DetailLayout::Stacked && !cfg!(feature = "kobo");
+        let page_padding = if mobile && width < 360.0 { components::SPACE_MD } else { components::SPACE_LG };
+        let back_size = components::topbar_action_height_rem() * rem_size;
         // The book that is playing: its controls, and where playback is now.
         // The library's saved position lags behind, so its cover bar and
         // chapter mark follow the player instead.
         let locator = self.locator();
-        let playing = cx.try_global::<crate::NowPlaying>().and_then(|now_playing| now_playing.book.as_ref()).filter(|playing| Some(&playing.locator) == locator.as_ref()).map(|playing| (playing.controls.clone(), playing.position.clone()));
+        let playing = self.ui.now_playing().read(cx).book.as_ref().filter(|playing| Some(&playing.locator) == locator.as_ref()).map(|playing| (playing.controls.clone(), playing.position.clone()));
         let listening = playing.as_ref().and_then(|(_, position)| position(cx));
         let progress = listening.map(|(_, progress)| progress).unwrap_or(book.progress);
+        let cover_gutter = if back.is_some() || (mobile && playing.is_some()) { back_size + components::SPACE_SM } else { 0.0 };
 
         let cover = (if beside_cover { components::book_detail_cover_slot() } else { components::book_detail_sidebar_cover_slot() })
+            .debug_selector(|| "book-detail-cover".into())
+            .when(layout == DetailLayout::Stacked, |cover| cover.max_w(px((width - page_padding * 2.0 - cover_gutter * 2.0).max(0.0))))
+            .when(mobile, |cover| {
+                let aspect = if audiobook { 1.0 } else { self.cover.loaded().map(|cover| cover_aspect_ratio(cover)).unwrap_or(components::BOOK_COVER_ASPECT_RATIO) };
+                cover.w(px((width - components::SPACE_LG * 2.0).min(height * 0.36 * aspect).max(0.0)))
+            })
             .id("book-detail-open-cover")
             .when(book.library_file().is_some(), |cover| cover.cursor_pointer().on_click(cx.listener(|page, _, window, cx| page.open(None, window, cx))))
-            .child(match self.cover.clone() {
-                Some(cover) => components::book_cover(theme, cover_aspect_ratio(&cover.image)).child(components::book_cover_image(format!("book-detail-cover-{}", book.key()), cover.image, 1.0, false, theme)),
-                None if self.cover_missing => components::book_cover_generated(book.title.clone(), book.subtitle.as_deref(), &book.author, generated_cover_variant(book.key()), theme),
-                None => components::book_cover(theme, if audiobook { 1.0 } else { components::BOOK_COVER_ASPECT_RATIO }),
+            .child(match self.cover.loaded().cloned() {
+                Some(cover) => components::book_cover( cover_aspect_ratio(&cover)).child(components::book_cover_image(format!("book-detail-cover-{}", book.key()), cover, 1.0, false, theme)),
+                None if matches!(self.cover, DetailCover::Missing) => components::book_cover_generated(book.title.clone(), book.subtitle.as_deref(), &book.author, generated_cover_variant(book.key())),
+                None => components::book_cover( if audiobook { 1.0 } else { components::BOOK_COVER_ASPECT_RATIO }),
             })
             // Show the cover's progress bar only after the book has been started.
             .children(components::book_cover_progress(progress, theme))
@@ -701,12 +696,14 @@ impl BookDetailPage {
         let downloading = matches!(download_state, DownloadState::Queued | DownloadState::Downloading(_));
         let open_icon: gpui_component::Icon = if audiobook { components::Headphones.into() } else { IconName::BookOpen.into() };
         let action_padding = if width >= BOOK_DETAIL_LARGE_TITLE_WIDTH { components::SPACE_SM } else { components::SPACE_MD };
-        let mut actions = components::book_detail_actions().child(components::primary_action_button("book-detail-open", if audiobook { "Listen" } else { "Read" }, open_icon, false).px(gpui::px(action_padding)).on_click({
-            let page = page.clone();
-            move |_, window, cx| page.update(cx, |page, cx| page.open(None, window, cx))
-        }));
-        // The browser streams books it does not hold instead of downloading them.
-        if !downloaded && cfg!(not(target_arch = "wasm32")) {
+        let mut actions = components::book_detail_actions().child(
+            components::primary_action_button("book-detail-open", if audiobook { "Listen" } else { "Read" }, open_icon, false).debug_selector(|| "book-detail-open".into()).px(gpui::px(action_padding)).on_click({
+                let page = page.clone();
+                move |_, window, cx| page.update(cx, |page, cx| page.open(None, window, cx))
+            }),
+        );
+        let offline_download = cfg!(not(target_arch = "wasm32")) || book.library_file().is_some_and(|id| id.is_external());
+        if !downloaded && offline_download {
             let label = download_action_label(&download_state);
             actions = actions.child(components::secondary_action_button("book-detail-download", label, IconName::ArrowDown, downloading).px(gpui::px(action_padding)).on_click({
                 let page = page.clone();
@@ -749,19 +746,20 @@ impl BookDetailPage {
         }
         #[cfg(not(target_arch = "wasm32"))]
         for (index, torrent) in self.torrents.iter().enumerate() {
-            let hash = torrent.info_hash.clone();
-            let keep = !torrent.keep_seeding;
-            let target = page.clone();
-            actions = actions.child(
-                components::secondary_action_button(("book-torrent-seeding", index), if keep { "Keep seeding torrent" } else { "Stop seeding torrent" }, IconName::ArrowUp, false)
-                    .on_click(move |_, _, cx| target.update(cx, |page, cx| page.change_torrent(hash.clone(), Some(keep), cx))),
-            );
+            if !cfg!(feature = "kobo") {
+                let hash = torrent.info_hash.clone();
+                let keep = !torrent.keep_seeding;
+                let target = page.clone();
+                actions = actions.child(
+                    components::secondary_action_button(("book-torrent-seeding", index), if keep { "Keep seeding torrent" } else { "Stop seeding torrent" }, IconName::ArrowUp, false)
+                        .on_click(move |_, _, cx| target.update(cx, |page, cx| page.change_torrent(hash.clone(), Some(keep), cx))),
+                );
+            }
             let hash = torrent.info_hash.clone();
             let target = page.clone();
             actions = actions
                 .child(components::secondary_action_button(("book-torrent-forget", index), "Remove torrent", IconName::Close, false).on_click(move |_, _, cx| target.update(cx, |page, cx| page.change_torrent(hash.clone(), None, cx))));
         }
-        let actions = actions.when(layout != DetailLayout::Columns, |actions| actions.justify_start());
         // The book that is playing is controlled here rather than offered: its
         // controls stand where Listen and the reading position would. Beside
         // the cover they would get half the row, so there they go under both.
@@ -769,7 +767,8 @@ impl BookDetailPage {
         if player.is_none() {
             headline = headline.children(position).child(actions);
         }
-        let player_under_hero = if beside_cover {
+        let has_player = player.is_some();
+        let player_under_hero = if beside_cover || mobile {
             player
         } else {
             headline = headline.children(player);
@@ -786,9 +785,9 @@ impl BookDetailPage {
         let three_columns = layout == DetailLayout::Columns && width >= BOOK_DETAIL_THREE_COLUMN_BREAKPOINT && detail.as_ref().is_some_and(|detail| !detail.toc.is_empty() && !detail.description.trim().is_empty());
         let collapsible = !three_columns;
         // Empty contents and descriptions do not occupy a section.
-        let contents = detail.as_ref().filter(|detail| !detail.toc.is_empty()).map(|detail| self.render_contents(detail, audiobook, listening.map(|(position, _)| position), collapsible, theme, cx));
+        let contents = detail.as_ref().filter(|detail| !mobile && !detail.toc.is_empty()).map(|detail| self.render_contents(detail, audiobook, listening.map(|(position, _)| position), collapsible, theme, cx));
         // A description containing only markup is empty.
-        let description = detail.as_ref().and_then(|detail| components::book_detail_description(&detail.description, theme)).map(|description| {
+        let description = detail.as_ref().filter(|_| !mobile).and_then(|detail| components::book_detail_description(&detail.description, theme, cx)).map(|description| {
             let open = !collapsible || self.description_open;
             let heading = components::book_detail_section_heading("Description", None::<SharedString>, collapsible.then_some(open), theme).id("book-detail-description-heading").when(collapsible, |heading| {
                 heading.on_click(cx.listener(|page, _, window, cx| {
@@ -805,26 +804,61 @@ impl BookDetailPage {
 
         // On desktop each column scrolls on its own and the page does not; the
         // narrower pages scroll as one.
-        let body = if layout == DetailLayout::Columns {
-            let sidebar = components::book_detail_sidebar_column().child(components::book_detail_sidebar().child(components::book_detail_introduction().children(back).child(cover)).child(headline.flex_none()).overflow_y_scrollbar());
-            let mut columns = components::book_detail_columns_page().debug_selector(|| "book-detail-columns".into()).track_focus(&self.focus).child(components::book_detail_page_margin()).child(sidebar);
+        let body = if mobile {
+            let introduction = components::column(components::SPACE_MD)
+                .w_full()
+                .items_center()
+                .debug_selector(|| "book-detail-stacked".into())
+                .child(components::book_detail_cover_row(back, cover).when(has_player, |row| row.child(div().absolute().top_0().right_0().child(components::book_detail_close_player_button()))))
+                .child(headline);
+            components::now_playing_page(theme)
+                .debug_selector(|| "book-detail-mobile".into())
+                .min_w_0()
+                .min_h_0()
+                .track_focus(&self.focus)
+                .on_mouse_down(
+                    MouseButton::Left,
+                    cx.listener(|page, _, window, cx| {
+                        if !page.focus.contains_focused(window, cx) {
+                            page.focus.focus(window, cx);
+                        }
+                    }),
+                )
+                .on_action(cx.listener(Self::show_description))
+                .on_action(cx.listener(Self::show_contents))
+                .child(
+                    components::now_playing_body()
+                        .pt(px(components::SPACE_SM))
+                        .when(width < 360.0, |body| body.px(px(components::SPACE_MD)))
+                        .child(div().flex_1().min_h_0().w_full().child(introduction).overflow_y_scrollbar())
+                        .children(player_under_hero)
+                        .when(!has_player, |body| body.child(components::book_detail_mobile_tools(theme))),
+                )
+                .into_any_element()
+        } else if layout == DetailLayout::Columns {
+            let leading_margin = components::book_detail_page_margin()
+                .relative()
+                .when(back.is_some(), |margin| margin.min_w(px(components::BOOK_DETAIL_PAGE_MARGIN + cover_gutter)))
+                .children(back.map(|back| div().absolute().top(px(components::SPACE_LG)).right(px(components::SPACE_SM)).child(back)));
+            let sidebar = components::book_detail_sidebar_column().child(components::book_detail_sidebar().child(cover).child(headline.flex_none()).overflow_y_scrollbar());
+            let mut columns = components::book_detail_columns_page().debug_selector(|| "book-detail-columns".into()).track_focus(&self.focus).child(leading_margin).child(sidebar);
             if three_columns {
                 let contents = components::book_detail_column_body().children(contents).overflow_y_scrollbar();
                 let description = components::book_detail_column_body().children(description).overflow_y_scrollbar();
                 columns = columns
                     .child(components::book_detail_column_gap(theme))
-                    .child(components::book_detail_contents_column().child(contents))
+                    .child(components::book_detail_column().child(contents))
                     .child(components::book_detail_column_gap(theme))
-                    .child(components::book_detail_description_column().child(description));
+                    .child(components::book_detail_column().child(description));
             } else {
                 let reading = components::book_detail_column_body().children(contents).children(description).overflow_y_scrollbar();
-                columns = columns.child(components::book_detail_column_gap(theme)).child(components::book_detail_description_column().child(reading));
+                columns = columns.child(components::book_detail_column_gap(theme)).child(components::book_detail_column().child(reading));
             }
             columns.child(components::book_detail_page_margin()).into_any_element()
         } else {
             let introduction = match layout {
-                DetailLayout::Stacked => components::book_detail_stacked_introduction().debug_selector(|| "book-detail-stacked".into()).children(back).child(cover).child(headline),
-                _ => components::book_detail_introduction().children(back).child(components::book_detail_hero().debug_selector(|| "book-detail-hero".into()).child(cover).child(headline)).children(player_under_hero),
+                DetailLayout::Stacked => components::book_detail_stacked_introduction().debug_selector(|| "book-detail-stacked".into()).child(components::book_detail_cover_row(back, cover)).child(headline),
+                _ => components::book_detail_introduction().child(components::book_detail_hero().debug_selector(|| "book-detail-hero".into()).children(back).child(cover).child(headline)).children(player_under_hero),
             };
             let content = components::book_detail_measure().child(introduction).child(components::book_detail_sections().children(contents).children(description));
             components::book_detail_page().track_focus(&self.focus).child(content).overflow_y_scrollbar().into_any_element()
@@ -870,12 +904,7 @@ impl BookDetailPage {
         });
         let marked = playing_target.or(detail.current_target.as_deref());
         let locator = self.locator();
-        let read_status = cx
-            .try_global::<crate::NowPlaying>()
-            .and_then(|playing| playing.book.as_ref())
-            .filter(|playing| Some(&playing.locator) == locator.as_ref())
-            .map(|playing| (playing.chapter_read_status)(cx))
-            .unwrap_or_else(|| detail.chapter_read_status.clone());
+        let read_status = self.ui.now_playing().read(cx).book.as_ref().filter(|playing| Some(&playing.locator) == locator.as_ref()).map(|playing| (playing.chapter_read_status)(cx)).unwrap_or_else(|| detail.chapter_read_status.clone());
         // A closed part holding the current entry carries the mark itself, so
         // where the reader is never disappears into it.
         fn holds(entry: &BookTocEntry, target: &str) -> bool {
@@ -924,6 +953,9 @@ impl BookDetailPage {
                             let target = entry.target.clone();
                             move |_, window, cx| {
                                 if !window.has_text_selection(cx) {
+                                    if window.has_active_sheet(cx) {
+                                        window.close_sheet(cx);
+                                    }
                                     page.update(cx, |page, cx| page.open(Some(target.clone()), window, cx));
                                 }
                             }
@@ -966,9 +998,11 @@ impl Focusable for BookDetailPage {
 #[cfg(all(test, not(target_arch = "wasm32"), not(feature = "kobo")))]
 mod tests {
     use super::*;
+    use crate::library::services::feed_detail;
     use crate::navigation::LibrarySession;
-    use gpui::{Pixels, StyleRefinement, TestAppContext, VisualTestContext, px, size};
-    use std::{cell::Cell, rc::Rc};
+    use gpui::{Pixels, RenderImage, StyleRefinement, TestAppContext, VisualTestContext, px, size};
+    use gpui_component::Root;
+    use std::{cell::Cell, rc::Rc, sync::Arc};
 
     struct Neighbor(Rc<Cell<usize>>);
 
@@ -988,6 +1022,170 @@ mod tests {
     impl Render for DetailFixture {
         fn render(&mut self, _: &mut Window, _: &mut Context<Self>) -> impl IntoElement {
             div().size_full().flex().child(div().w(self.width).h_full().flex_none().child(self.page.clone())).child(div().w(px(50.0)).h_full().child(self.neighbor.clone().cached(StyleRefinement::default().size_full())))
+        }
+    }
+
+    struct DetailSheetFixture(Entity<BookDetailPage>);
+
+    impl Render for DetailSheetFixture {
+        fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+            div().size_full().child(self.0.clone()).children(Root::render_sheet_layer(window, cx).map(|sheet| gpui::deferred(sheet).with_priority(2)))
+        }
+    }
+
+    #[gpui::test]
+    async fn reader_entry_preserves_displayed_details_and_releases_hidden_details(cx: &mut TestAppContext) {
+        let _backend = crate::test_support::BACKEND.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
+        let (_directory, _session, library) = LibrarySession::test_context(cx).await;
+        let book = BookCardRow {
+            source: BookSource::Opds { source: uuid::Uuid::new_v4(), entry: CardKey([9; 32]), downloadable: true, buyable: false },
+            title: "A feed book".into(),
+            subtitle: None,
+            author: "Writer".into(),
+            progress: 0.0,
+            downloaded: false,
+            download_requested: false,
+            format_category: LibraryFileTypeFilter::Book,
+            audiobook_duration_ms: None,
+            added_at: 0,
+            source_directory: None,
+        };
+        let image = Arc::new(RenderImage::new(vec![image::Frame::new(image::RgbaImage::new(2, 3))]));
+        let displayed = BookDetailPage::create(book.clone(), Some(image.clone()), library.clone(), cx);
+        let hidden = BookDetailPage::create(book, Some(image.clone()), library, cx);
+        for page in [&displayed, &hidden] {
+            cx.condition(page, |page, _| matches!(page.cover, DetailCover::Loaded(_))).await;
+        }
+        let window = cx.open_window(size(px(700.0), px(600.0)), |_, _| DetailSheetFixture(displayed.clone()));
+        let mut visual = VisualTestContext::from_window(window.into(), cx);
+        visual.update(|window, cx| { let _ = window.draw(cx); });
+        cx.update(crate::library::evict_covers);
+        displayed.read_with(cx, |page, _| {
+            assert!(Arc::ptr_eq(page.cover.loaded().expect("displayed detail must keep its cover"), &image));
+            assert_eq!(page.cover_generation, 0);
+        });
+        hidden.read_with(cx, |page, _| {
+            assert!(matches!(page.cover, DetailCover::NeedsReload));
+            assert!(page._cover_task.is_none());
+        });
+        visual.update(|window, cx| { window.replace_root(cx, |_, _| gpui::Empty); });
+        visual.update(|window, cx| { let _ = window.draw(cx); });
+        cx.update(crate::library::evict_covers);
+        displayed.read_with(cx, |page, _| assert!(matches!(page.cover, DetailCover::NeedsReload), "a detail hidden after being displayed must also release its artwork"));
+    }
+
+    #[gpui::test]
+    async fn failed_cover_refresh_retains_the_image_until_eviction(cx: &mut TestAppContext) {
+        let _backend = crate::test_support::BACKEND.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
+        let (_directory, _session, library) = LibrarySession::test_context(cx).await;
+        let book = BookCardRow {
+            // An unknown feed fails locally, without making a network request.
+            source: BookSource::Opds { source: uuid::Uuid::new_v4(), entry: CardKey([9; 32]), downloadable: true, buyable: false },
+            title: "A feed book".into(),
+            subtitle: None,
+            author: "Writer".into(),
+            progress: 0.0,
+            downloaded: false,
+            download_requested: false,
+            format_category: LibraryFileTypeFilter::Book,
+            audiobook_duration_ms: None,
+            added_at: 0,
+            source_directory: None,
+        };
+        let image = Arc::new(RenderImage::new(vec![image::Frame::new(image::RgbaImage::new(2, 3))]));
+        let page = BookDetailPage::create(book, Some(image.clone()), library, cx);
+        page.read_with(cx, |page, _| {
+            assert!(matches!(page.cover, DetailCover::Loading(_)));
+            assert!(Arc::ptr_eq(page.cover.loaded().unwrap(), &image));
+        });
+        cx.condition(&page, |page, _| matches!(page.cover, DetailCover::Loaded(_))).await;
+        page.read_with(cx, |page, _| assert!(Arc::ptr_eq(page.cover.loaded().unwrap(), &image)));
+        cx.update(crate::library::evict_covers);
+        page.update(cx, |page, cx| {
+            assert!(matches!(page.cover, DetailCover::NeedsReload));
+            assert!(page.cover.loaded().is_none());
+            assert!(page._cover_task.is_none());
+            page.load_cover(cx);
+        });
+        cx.condition(&page, |page, _| matches!(page.cover, DetailCover::Missing)).await;
+        page.update(cx, |page, cx| {
+            cx.set_global(crate::stores::GeneratedCoversOnly(true));
+            page.load_cover(cx);
+            assert!(matches!(page.cover, DetailCover::Missing));
+            assert!(page._cover_task.is_none());
+        });
+    }
+
+    #[gpui::test]
+    async fn mobile_book_details_keep_information_in_sheets_without_ebook_player_controls(cx: &mut TestAppContext) {
+        let _backend = crate::test_support::BACKEND.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
+        let (_directory, _session, library) = LibrarySession::test_context(cx).await;
+        let book = BookCardRow {
+            source: BookSource::Library { content_hash: BookId::from_bytes([18; 32]) },
+            title: "A mobile EPUB".into(),
+            subtitle: None,
+            author: "Author".into(),
+            progress: 25.0,
+            downloaded: true,
+            download_requested: false,
+            format_category: LibraryFileTypeFilter::Book,
+            audiobook_duration_ms: None,
+            added_at: 0,
+            source_directory: None,
+        };
+        let page = BookDetailPage::create(book.clone(), None, library, cx);
+        page.update(cx, |page, _| {
+            page.request.take();
+            page._cover_task.take();
+            page.torrent_task.take();
+            let mut detail = feed_detail(book, "<p>A long description.</p>".repeat(60));
+            detail.current_entry = Some("Chapter one".into());
+            detail.toc.push(BookTocEntry { title: "Chapter one".into(), target: "chapter-one.xhtml".into(), children: Vec::new() });
+            page.detail = Some(detail);
+            page.cover = DetailCover::Missing;
+            page.torrents_loading = false;
+        });
+        cx.update(|cx| {
+            gpui_component::init(cx);
+            cx.set_reduce_motion(true);
+        });
+        let (_, visual) = cx.add_window_view(|window, cx| {
+            let fixture = cx.new(|_| DetailSheetFixture(page.clone()));
+            Root::new(fixture, window, cx).bordered(false)
+        });
+        visual.simulate_resize(size(px(390.0), px(640.0)));
+        visual.run_until_parked();
+        assert!(visual.debug_bounds("book-detail-mobile").is_some());
+        let cover = visual.debug_bounds("book-detail-cover").expect("the cover remains visible");
+        if let Some(back) = visual.debug_bounds("book-detail-back") {
+            assert!((back.top() - cover.top()).abs() < px(1.0), "Back must align with the cover's top");
+            assert!(back.right() <= cover.left(), "Back must sit beside the cover");
+        }
+        let read = visual.debug_bounds("book-detail-open").expect("EPUBs retain their Read action");
+        assert!((read.center().x - px(195.0)).abs() < px(1.0), "Read must be centred on mobile");
+        let progress = visual.debug_bounds("book-detail-position-entry-box").expect("the current chapter must be visible");
+        assert!((progress.center().x - px(195.0)).abs() < px(1.0), "the progress percentage must not displace the chapter name");
+        assert!(visual.debug_bounds("audiobook-play").is_none(), "EPUBs have no audio transport");
+        assert!(visual.debug_bounds("book-detail-description-heading").is_none(), "long descriptions must not extend the mobile page");
+        for (button, sheet) in [("book-description", "book-description-sheet"), ("book-contents", "book-contents-sheet")] {
+            let bounds = visual.debug_bounds(button).expect("information buttons remain visible without scrolling");
+            assert!(bounds.top() >= px(0.0) && bounds.bottom() <= px(640.0));
+            visual.simulate_click(bounds.center(), Default::default());
+            visual.run_until_parked();
+            visual.update(|window, cx| {
+                assert!(window.has_active_sheet(cx), "{button} must open its sheet from a pointer click");
+                let _ = window.draw(cx);
+            });
+            assert!(visual.debug_bounds(sheet).is_some(), "{button} must open its sheet from a pointer click");
+            visual.update(|window, cx| {
+                assert!(window.has_active_sheet(cx));
+                assert!(Root::dismiss_active_overlay(window, cx));
+            });
+            visual.run_until_parked();
+            visual.update(|window, cx| {
+                let _ = window.draw(cx);
+            });
+            assert!(visual.debug_bounds(sheet).is_none());
         }
     }
 
@@ -1014,8 +1212,7 @@ mod tests {
             page._cover_task.take();
             page.torrent_task.take();
             page.detail = Some(feed_detail(book, "A description".into()));
-            page.cover_loading = false;
-            page.cover_missing = true;
+            page.cover = DetailCover::Missing;
             page.torrents_loading = false;
         });
         let notifications = Rc::new(Cell::new(0));
@@ -1036,6 +1233,15 @@ mod tests {
             // Opening the window and each notified width change draw a frame
             // immediately. Check it before explicitly drawing another one.
             assert!(visual.debug_bounds(selector).is_some(), "the first frame at {width}px must use the right layout");
+            let cover = visual.debug_bounds("book-detail-cover").expect("the cover remains visible");
+            if let Some(back) = visual.debug_bounds("book-detail-back") {
+                assert!((back.top() - cover.top()).abs() < px(1.0), "Back must align with the cover's top at {width}px");
+                assert!(back.right() <= cover.left(), "Back must sit beside the cover at {width}px");
+            }
+            if selector == "book-detail-stacked" {
+                let read = visual.debug_bounds("book-detail-open").expect("the Read action remains visible");
+                assert!((read.center().x - cover.center().x).abs() < px(1.0), "single-column actions must be centred beneath the cover");
+            }
             assert_eq!(notifications.get(), 0, "layout must not invalidate the page again");
             let rendered = neighbor_renders.get();
             visual.update(|window, cx| {

@@ -3,7 +3,6 @@
 
 use super::*;
 use cloud_storage::{google_drive::UploadProgress, CloudError};
-use cpu_host::ThumbnailBytes;
 use library_model::BlobKind;
 use sync_common::storage::ProviderThumbnails;
 
@@ -97,40 +96,11 @@ impl LibrarySession {
         }
         Ok(())
     }
-
-    async fn generate_cloud_thumbnail(&self, connection: ConnectedDrive, file: ProviderFile) -> Result<Option<ThumbnailBytes>, BackendError> {
-        let id = file.identity.book_id();
-        let Some(format) = self.db.thumbnail_book_format(id)? else { return Ok(None) };
-        let length = file.size_bytes;
-        let fetch = move |offset, length| {
-            let connection = connection.clone();
-            let file = file.clone();
-            Box::pin(async move { connection.read_range(&file, offset, length).await.map_err(|error| RemoteFileError::Failed(error.to_string())) }) as FetchFuture<'static, Result<Vec<u8>, RemoteFileError>>
-        };
-        let reader = book_access::remote_file::native_reader(length, Vec::new(), fetch).map_err(BackendError::operation)?;
-        self.cpu.generate_thumbnail(format.canonical_extension().into(), cpu_host::as_cpu_reader(reader)).await
-    }
 }
 
 async fn ensure_folder(connection: &ConnectedDrive, parent: &ProviderId, name: &str) -> Result<ProviderId, CloudError> {
-    let mut page = None;
-    let mut found: Option<ProviderId> = None;
-    loop {
-        let listing = connection.list_folder(parent, page.as_deref(), true).await?;
-        for entry in listing.entries {
-            if let CloudEntry::Folder(folder) = entry {
-                if folder.name == name && folder.parent_ids.contains(parent) && found.as_ref().is_none_or(|id| folder.id.as_str() < id.as_str()) {
-                    found = Some(folder.id);
-                }
-            }
-        }
-        page = listing.next_page;
-        if page.is_none() {
-            break;
-        }
-    }
-    match found {
-        Some(id) => Ok(id),
+    match connection.find_folder(parent, |folder| folder.name == name).await? {
+        Some(folder) => Ok(folder.id),
         None => Ok(connection.create_folder(parent, name).await?.id),
     }
 }

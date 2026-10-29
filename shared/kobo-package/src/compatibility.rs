@@ -57,6 +57,12 @@ pub fn validate_build_info(info: &str, profile: &Profile) -> io::Result<()> {
 mod tests {
     use super::*;
     #[test]
+    fn installed_libra2_profile_accepts_firmware_uuid_marker() {
+        let marker = "serial,4.1.15,4.38.23828,4.1.15,4.1.15,00000000-0000-0000-0000-000000000388";
+        assert_eq!(installed_profile(marker).unwrap(), Profile::from_id(388).unwrap());
+    }
+
+    #[test]
     fn libra_legacy_packages_cannot_be_installed_on_other_models() {
         assert!(validate_build_info("CPU profile: libra2\n", Profile::from_id(388).unwrap()).is_ok());
         assert!(validate_build_info("CPU profile: libra2\n", Profile::from_id(376).unwrap()).is_err());

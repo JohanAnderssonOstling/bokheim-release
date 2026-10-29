@@ -66,7 +66,6 @@ impl Database {
         Ok(())
     }
 
-    #[cfg(not(target_arch = "wasm32"))]
     pub fn sync_request_book_downloads(&self, hashes: &[BookId], origin: library_model::TransferOrigin) -> Result<(), DatabaseError> {
         let requested_at = crate::sync::unix_millis()?;
         self.write(|transaction| {

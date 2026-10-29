@@ -31,8 +31,11 @@ resvg = { version = "0.46", default-features = false, features = ["raster-images
 
 [dev-dependencies]
 gpui = { workspace = true, features = ["test-support"] }
+gpui_wgpu.workspace = true
 
 [target.'cfg(target_family = "wasm")'.dependencies]
+js-sys = "0.3"
+wasm-bindgen = "0.2"
 web-sys = { version = "0.3", features = ["Window", "MediaQueryList"] }
 
 [target.'cfg(target_os = "windows")'.dependencies]

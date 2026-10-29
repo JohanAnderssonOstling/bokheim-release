@@ -880,10 +880,15 @@ impl InputState {
         self
     }
 
+    /// Whether password characters are hidden.
+    pub fn is_masked(&self) -> bool {
+        self.masked
+    }
+
     /// Set the password masked state of the input field.
     ///
     /// Only for [`InputMode::SingleLine`] mode.
-    pub fn set_masked(&mut self, masked: bool, _: &mut Window, cx: &mut Context<Self>) {
+    pub fn set_masked(&mut self, masked: bool, cx: &mut Context<Self>) {
         debug_assert!(self.mode.is_single_line());
         self.masked = masked;
         cx.notify();
@@ -1744,7 +1749,7 @@ impl InputState {
             .as_ref()
             .map(|layout| layout.line_height)
             .unwrap_or(window.line_height());
-        let delta = event.delta.pixel_delta_for_viewport(line_height, self.input_bounds.size);
+        let mut delta = event.delta.pixel_delta_for_viewport(line_height, self.input_bounds.size);
 
         let old_offset = self.scroll_handle.offset();
         let swipe = window.is_page_scroll_swipe();
@@ -1756,6 +1761,9 @@ impl InputState {
         } else {
             None
         };
+        if origin.is_some() {
+            delta *= 0.9;
+        }
         self.update_scroll_offset(Some(origin.unwrap_or(old_offset) + delta), cx);
 
         let changed = self.scroll_handle.offset() != old_offset;

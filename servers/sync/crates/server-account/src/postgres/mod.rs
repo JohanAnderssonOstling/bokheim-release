@@ -12,6 +12,7 @@ use account_contract::{EMAIL_MAX_BYTES, EMAIL_VERIFICATION_PIN_DIGITS, PASSWORD_
 use chrono::{DateTime, Duration, Utc};
 use server_postgres::PostgresDatabase;
 use sqlx::{PgPool, Postgres, Transaction};
+use tokio::sync::Notify;
 use std::collections::HashMap;
 use std::sync::{Arc, RwLock};
 use std::time::{Duration as StdDuration, Instant};
@@ -31,6 +32,7 @@ fn internal(error: impl std::fmt::Display) -> AuthError {
 
 pub struct PostgresAccountService {
     pool: PgPool,
+    cleanup: Arc<Notify>,
     token_protector: crypto::TokenProtector,
     password_permits: Arc<tokio::sync::Semaphore>,
     identity_cache: IdentityCache,
@@ -125,6 +127,7 @@ impl PostgresAccountService {
         let pool = database.pool().clone();
         Self {
             pool,
+            cleanup: database.asset_cleanup_signal(),
             token_protector: crypto::TokenProtector::new(token_key),
             password_permits: Arc::new(tokio::sync::Semaphore::new(MAX_CONCURRENT_PASSWORD_OPERATIONS)),
             identity_cache: IdentityCache::new(max_entries, ttl),

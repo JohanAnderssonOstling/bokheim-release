@@ -4,7 +4,7 @@ use crate::web_storage::FileReader;
 use std::{
     cell::RefCell,
     collections::HashMap,
-    io::{Read, Seek, SeekFrom},
+    io::{Seek, SeekFrom},
 };
 
 thread_local! {
@@ -47,21 +47,6 @@ pub fn read_range(capability: &str, offset: u64, length: usize) -> Result<Vec<u8
     READERS.with(|readers| {
         let mut readers = readers.borrow_mut();
         let reader = readers.get_mut(capability).ok_or("book source closed; reopen the book")?;
-        read_range_from(reader, offset, length)
+        crate::reader::read_range(reader, offset, length).map_err(|error| error.to_string())
     })
-}
-
-fn read_range_from<R: Read + Seek>(reader: &mut R, offset: u64, length: usize) -> Result<Vec<u8>, String> {
-    reader.seek(SeekFrom::Start(offset)).map_err(|error| error.to_string())?;
-    let mut bytes = vec![0; length];
-    let mut count = 0;
-    while count < length {
-        let n = reader.read(&mut bytes[count..]).map_err(|error| error.to_string())?;
-        if n == 0 {
-            break;
-        }
-        count += n;
-    }
-    bytes.truncate(count);
-    Ok(bytes)
 }

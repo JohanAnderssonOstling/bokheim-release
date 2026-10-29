@@ -4,11 +4,59 @@ This is the browser build of the same GPUI application used by the native
 targets. It renders GPUI into a browser canvas and keeps browser-specific
 storage behind the SQLite OPFS VFS used by the shared Rust backend.
 
+EPUB and PDF read aloud uses the browser's Web Speech synthesis service. The
+TTS button appears only when the speech API and at least one voice are available;
+the reader also watches for voices loaded asynchronously. Narration selects an
+available voice matching the book's language, or the default voice when no
+language is declared. No application TTS server or bundled speech model is used.
+Available voices, offline operation, and background playback depend on the
+browser and operating system. Browser voices control their own natural pauses;
+the longer pause settings add delays between chunks and paragraphs.
+
 Build the release bundle with:
 
 ```sh
 ./apps/web-gpui/scripts/build.sh
 ```
+
+Google Drive is optional and disabled by default, including GitHub release
+bundles. To include it in a custom build, enable it for the UI and workers:
+
+```sh
+BOKHEIM_GOOGLE_DRIVE=1 ./apps/web-gpui/scripts/build.sh
+```
+
+With this feature enabled, Google Drive sign-in defaults to Bokheim's public Web OAuth client ID in
+[`.cargo/config.toml`](../../.cargo/config.toml). Set
+`BOKHEIM_GOOGLE_DRIVE_WEB_CLIENT_ID` at build time to use a different Google
+OAuth **Web application** client. Register the deployed app origin as an
+authorized JavaScript origin for that client. The browser uses Google's
+[token model](https://developers.google.com/identity/oauth2/web/guides/use-token-model)
+with short-lived access grants; after expiry, the user connects again. Tokens remain
+in this device's account storage and are never sent through Bokheim file storage.
+
+Only feature-enabled bundles include `google_cloud_login.html` and `google_cloud_login.js` beside
+the app shell. Serve that HTML with
+`Cross-Origin-Opener-Policy: same-origin-allow-popups` and
+`Cross-Origin-Embedder-Policy: unsafe-none`; keep the
+reader shell's isolation headers. The local server and deployment Caddyfile
+include this exception. Deploying this feature also requires installing and
+reloading that Caddy configuration. The sign-in window returns its grant through
+a random same-origin BroadcastChannel, without putting credentials in URLs.
+
+Drive libraries scan the selected provider folder and can keep offline book
+copies in the browser's OPFS storage. Removing a local copy preserves the Drive
+original. Generated covers are cached locally and uploaded as a complete pair
+under the selected folder's `.bokheim/thumbnails/<book-id>/` directory. Read-only
+Drive access keeps generated covers in the local cache. Book and cover bytes
+use the provider directly, independently of a Bokheim account.
+
+Books added to a Drive library are inspected and retained in OPFS with a durable
+upload manifest before uploading. Drive must confirm the reserved file identity
+before book metadata is published. Quota errors, permissions failures, and lost
+responses preserve the source for retry; restarting the app resumes the same
+upload. The retained generation becomes the offline copy after confirmation,
+without allocating a second book-sized OPFS file.
 
 The build requires the `brotli` command and generates verified `.br` and `.gz`
 sidecars for WebAssembly, JavaScript, and other text assets, including PDFium.
@@ -20,6 +68,20 @@ continue to serve the original assets. Production Brotli delivery requires
 installing and reloading the updated Caddy configuration as well as deploying
 the assets; the web-only deployment script does not reload Caddy.
 
+The bundle includes a prepared `taxonomy.sqlite3`, compressed with the same
+HTTP Brotli/gzip sidecars. First startup imports that asset into OPFS in bulk;
+it performs no route construction or extra integrity scan. A durable import
+marker lets the next startup discard an interrupted reference import and retry.
+Returning visits reuse the stored database. Published taxonomy updates are
+checked in the background and take effect on the next startup.
+Native and web share the same immutable, read-only SQLite attachment and
+512 KiB page-cache target. Activation records the selected path without opening
+SQLite. Bundled metadata comes from the build, so startup with no open libraries
+reads no taxonomy database pages. Browser selections of published updates read
+their metadata once. The prepared matcher loads on the first classification
+request. Browser updates publish a new versioned file; open libraries retain their original reference until the
+backend restarts, when obsolete reference files can be removed.
+
 All release WebAssembly modules use `panic=unwind`. The build rebuilds
 `std,panic_unwind` with standardized exception handling, using the existing
 `RUSTC_BOOTSTRAP=1` setup and the `rust-src` component. This lets the Rust
@@ -29,9 +91,14 @@ boundaries; arbitrary UI and storage state is not assumed safe to resume.
 Traps, stack overflow, and out-of-memory failures remain unrecoverable.
 
 The web callback migration includes the local `../GPUI-Fork` checkout and
-documented patches in `vendor/wgpu`, `vendor/indexed_db_futures`, and
-`vendor/wasm_thread`. Use the
+documented patches in `vendor/wgpu`, `vendor/indexed_db_futures`,
+`vendor/wasm_thread`, and `vendor/wasm-streams`. The stream adapters and browser
+transport use `shared/wasm-callback` to guard state access, future polling, and
+destruction; an escaping panic aborts before an outer catch can resume that
+state. Use the
 wasm-bindgen CLI version recorded in `Cargo.lock` when packaging the modules.
+The build explicitly enables its reference-type transform because release
+stripping removes the feature metadata used for automatic detection.
 
 Then serve `apps/web-gpui/dist` with cross-origin isolation headers enabled.
 For an isolated test bundle, set `BOKHEIM_WEB_OUTPUT_DIR` to an absolute
@@ -42,6 +109,47 @@ For local development, the included server configures the required headers:
 ```sh
 python3 apps/web-gpui/scripts/serve.py
 ```
+
+Measure fresh and returning visits through the first application frame with
+Python Playwright and Chromium installed:
+
+```sh
+TMPDIR=/tmp/bokheim-startup python3 apps/web-gpui/scripts/benchmark-startup.py \
+  --directory target/web-startup-current --runs 5 --profile-backend \
+  --output artifacts/benchmarks/startup.json
+```
+
+Each pair starts a browser with a new, disposable persistent profile and a
+512 MiB disk-cache budget, then reuses its cache and storage for the returning
+visit. The run checks that returning UI WASM uses either the decoded response
+cache or the HTTP cache; it fails if neither cache is reused. Local immutable assets use the
+production cache policy and Brotli sidecars. `--url https://app.bokheim.se` measures the deployed release.
+For a local diagnostic comparison, `--block-background` suppresses public
+catalog and update downloads. Backend timestamp instrumentation requires a
+local directory too. These probes do not change deployed files or measure
+memory. Headless runs use software graphics; compare the same conditions.
+Use `--profile-ui` to enable the shared Rust application and GPUI graphics
+startup timers; their stage logs are included in the JSON report.
+
+The shared WASM loader activates the existing audiobook service worker, which
+saves decoded fetch responses in `bokheim-wasm-v1` CacheStorage without waiting
+for the write before returning the streaming response. Returning visits fetch
+the saved responses through that worker, preserving the browser's compiled-WASM
+cache as well as avoiding repeated HTTP decompression. Direct CacheStorage reads
+from the loader do not preserve Chrome's compiled-code caching. Each module
+retains one version; older copies are removed after a replacement has been saved.
+If worker registration or storage is unavailable, startup uses the HTTP cache.
+
+Run the loader and startup checks with:
+
+```sh
+node --test apps/web-gpui/compressed_wasm.test.mjs apps/web-gpui/startup.test.mjs apps/web-gpui/backend-startup.test.mjs
+```
+
+The CJK fallback font is a separate compressed asset inside the immutable
+bundle. Opening a text book loads it through the existing publication-font
+cache before creating its shaper. Native uses the same registration path with
+its embedded font. Opening the application alone does not fetch the CJK face.
 
 Before downloading the application module, the page checks browser version,
 secure context, cross-origin isolation, shared WASM memory, workers, private
@@ -61,13 +169,28 @@ exclusive database-worker lock prevents overlapping ownership. Interrupted
 requests fail without automatically replaying writes; subscriptions reconnect.
 Network requests execute asynchronously in the shared coordinator.
 
-The release bundle includes a content-addressed, gzip-compressed BISAC reference
-SQLite asset. Workers verify the compressed digest and decode directly into
-SQLite's fixed-size installation buffer, then cache the smaller database in
-their separate OPFS storage pools. The schema derives parent labels and path
-components instead of storing duplicate strings. Queries use a 128 KiB SQLite
-page-cache setting. Cached files track the full database artifact digest so
-schema and normalization changes are picked up on the next worker start.
+After compatibility checks pass, the shell loads the smaller coordinator WASM
+on the page and starts the Rust-owned backend connection while the UI WASM
+downloads. The UI takes ownership of that same connection and consumes its
+queued startup response. Worker election, the storage-owner lock, tab lifetime,
+and handover continue to use the regular transport. If the UI fails to load,
+the shell releases an unclaimed connection before retrying. Shells without
+early startup retain the normal connection path.
+
+The release bundle includes a prepared, versioned BISAC SQLite asset, served
+with the same HTTP Brotli/gzip compression. Native publishes the complete image
+with an atomic file rename; both browser worker pools use the shared OPFS bulk
+importer and pending-import recovery. There is no runtime SQLite backup or
+post-install metadata write. Native and web share the same immutable, read-only
+connection and revision policy, with a 128 KiB page-cache target. The schema
+derives parent labels and path components instead of storing duplicate strings.
+Cached files track the full database artifact identity so schema and
+normalization changes are picked up on the next worker start.
+
+[`scripts/test-reference-storage.py`](scripts/test-reference-storage.py) checks
+fresh and returning visits, shared library attachments, and interrupted imports
+in both worker pools using real WASM and Chromium. Its header lists the required
+fixture builds; pass the exported taxonomy with `--taxonomy`.
 
 Browser Back dispatches the same `DismissSettings` action as native Android:
 the focused page dismisses its modal/search or climbs one breadcrumb level,

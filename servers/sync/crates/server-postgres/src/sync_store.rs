@@ -6,7 +6,7 @@ use std::collections::HashMap;
 use std::time::{SystemTime, UNIX_EPOCH};
 use sync_common::StateAddress;
 use sync_common::api::libraries::{LibraryNameRequest, LibrarySummary};
-use sync_common::{ConflictRank, BookId, LibraryId, LibraryRevision, MAX_PULL_BATCH_BYTES, MAX_PULL_CHANGES, MutationRejection, MutationRejectionReason, ReplicaId, ReplicaSeq, StateDelivery, SyncCursor, SyncGeneration, UnixMillis, VersionKey, OpaquePublication};
+use sync_common::{ConflictRank, BookId, LibraryId, LibraryRevision, MAX_PULL_BATCH_BYTES, STATE_DELIVERY_OVERHEAD_BYTES, MutationRejection, MutationRejectionReason, ReplicaId, ReplicaSeq, StateDelivery, SyncCursor, SyncGeneration, UnixMillis, VersionKey, OpaquePublication};
 
 const FETCH_LIFECYCLE_PAGE_SQL: &str = include_str!("sql/sync/fetch_lifecycle_page.sql");
 const FETCH_FIELD_PAGE_SQL: &str = include_str!("sql/sync/fetch_field_page.sql");
@@ -312,14 +312,21 @@ fn decode_change(row: &PgRow) -> Result<StateDelivery, FetchChangesError> {
 fn append_page_row(changes: &mut Vec<StateDelivery>, bytes_left: &mut usize, row: &PgRow) -> Result<bool, FetchChangesError> {
     let bytes: i64 = row.try_get("row_bytes")?;
     let bytes = usize::try_from(bytes).map_err(|_| FetchChangesError::CorruptStoredEvent { revision: row.get("server_seq"), reason: "invalid state byte length" })?;
-    if changes.len() == MAX_PULL_CHANGES || (!changes.is_empty() && bytes > *bytes_left) { return Ok(false); }
+    if !changes.is_empty() && bytes > *bytes_left { return Ok(false); }
     // Leave space for up to 1,000 push rejections and the outer envelope.
-    if bytes > sync_common::transport::MAX_DECODED_RESPONSE_BYTES - 512 * 1024 {
+    if bytes > MAX_PULL_BATCH_BYTES {
         return Err(FetchChangesError::CorruptStoredEvent { revision: row.get("server_seq"), reason: "stored cell exceeds the hard response limit" });
     }
     changes.push(decode_change(row)?);
     *bytes_left = bytes_left.saturating_sub(bytes);
     Ok(true)
+}
+
+// Every candidate charges at least the shared per-delivery allowance. This
+// bounds SQL work by the byte budget, with lookahead to detect another page;
+// it never cuts off rows that could fit in that budget.
+fn pull_candidate_row_limit(bytes_left: usize) -> i64 {
+    (bytes_left / STATE_DELIVERY_OVERHEAD_BYTES + 2) as i64
 }
 
 async fn fetch_page(connection: &mut PgConnection, library: &LibraryId, since: SyncCursor, head: i64, generation: SyncGeneration) -> Result<FetchChangesPage, FetchChangesError> {
@@ -329,7 +336,7 @@ async fn fetch_page(connection: &mut PgConnection, library: &LibraryId, since: S
     next_cursor.generation = Some(generation);
     let lifecycle_since = revision(since.lifecycle_revision);
     if lifecycle_since < head {
-        let rows = sqlx::query(FETCH_LIFECYCLE_PAGE_SQL).bind(library.to_string()).bind(lifecycle_since).bind(head).bind(MAX_PULL_CHANGES as i64 + 1).bind(bytes_left as i64).bind(true).fetch_all(&mut *connection).await?;
+        let rows = sqlx::query(FETCH_LIFECYCLE_PAGE_SQL).bind(library.to_string()).bind(lifecycle_since).bind(head).bind(pull_candidate_row_limit(bytes_left)).bind(bytes_left as i64).bind(true).bind(STATE_DELIVERY_OVERHEAD_BYTES as i64).fetch_all(&mut *connection).await?;
         for row in &rows {
             if !append_page_row(&mut changes, &mut bytes_left, row)? {
                 next_cursor.lifecycle_revision = changes.last().map(|change| change.revision);
@@ -341,9 +348,7 @@ async fn fetch_page(connection: &mut PgConnection, library: &LibraryId, since: S
     next_cursor.lifecycle_revision = protocol_revision(head)?;
     let field_since = revision(since.field_revision);
     if field_since < head {
-        let remaining = MAX_PULL_CHANGES - changes.len();
-        let query_bytes = if remaining == 0 { 0 } else { bytes_left };
-        let rows = sqlx::query(FETCH_FIELD_PAGE_SQL).bind(library.to_string()).bind(field_since).bind(head).bind(remaining as i64 + 1).bind(query_bytes as i64).bind(changes.is_empty()).fetch_all(&mut *connection).await?;
+        let rows = sqlx::query(FETCH_FIELD_PAGE_SQL).bind(library.to_string()).bind(field_since).bind(head).bind(pull_candidate_row_limit(bytes_left)).bind(bytes_left as i64).bind(changes.is_empty()).bind(STATE_DELIVERY_OVERHEAD_BYTES as i64).fetch_all(&mut *connection).await?;
         for row in &rows {
             if !append_page_row(&mut changes, &mut bytes_left, row)? {
                 // A lifecycle-only non-final page ends at its actual last

@@ -4,8 +4,10 @@ import {readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const {chromium} = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const scripts = new Map(await Promise.all(['audiobook_source.js', 'audiobook_service_worker.js'].map(async name => [('/' + name), await readFile(new URL(name, import.meta.url))])));
+scripts.set('/platforms/web/audio_source.js', await readFile(new URL('../../platforms/web/audio_source.js', import.meta.url)));
 scripts.set('/player.js', await readFile(new URL('../../../apps/audiobook-player/src/web_audio.js', import.meta.url)));
 const fixture = process.argv[2] ? await readFile(process.argv[2]) : null;
+const trackFixture = process.argv[3] ? await readFile(process.argv[3]) : null;
 const pauseMs = Number(process.env.AUDIO_PAUSE_TEST_MS || 800);
 assert.ok(Number.isFinite(pauseMs) && pauseMs >= 800);
 let httpAborts = 0;
@@ -20,6 +22,11 @@ const server = createServer((req, res) => {
     if (req.url === '/fixture.m4b' && fixture) {
         res.setHeader('Content-Type', 'audio/mp4');
         res.end(fixture);
+        return;
+    }
+    if (req.url === '/fixture.mp3' && trackFixture) {
+        res.setHeader('Content-Type', 'audio/mpeg');
+        res.end(trackFixture);
         return;
     }
     res.setHeader('Content-Type', scripts.has(req.url) ? 'text/javascript' : 'text/html');
@@ -109,7 +116,7 @@ try {
                 return bytes.slice(offset, offset + length);
             });
             window.player = new BrowserAudio(mediaSource.url, new Uint8Array(), {title: 'Recovery fixture'}, 40,
-                (...args) => mediaSaves.push(args), paused => audioSources.setRemoteAudioPaused(mediaSource, paused));
+                (...args) => mediaSaves.push(args), null, null, paused => audioSources.setRemoteAudioPaused(mediaSource, paused));
             const button = document.createElement('button');
             button.id = 'play'; button.textContent = 'Play'; button.onclick = () => player.play();
             document.body.append(button);
@@ -143,7 +150,7 @@ try {
                     return bytes.slice(offset, offset + length);
                 });
                 window.player = new BrowserAudio(mediaSource.url, new Uint8Array(), {}, 40, () => {},
-                    paused => audioSources.setRemoteAudioPaused(mediaSource, paused));
+                    null, null, paused => audioSources.setRemoteAudioPaused(mediaSource, paused));
                 player.setRate(4);
                 player.audio.addEventListener('playing', () => {
                     if (cutPosition === null) { cutPosition = player.position(); networkOffline = true; }
@@ -175,6 +182,34 @@ try {
             await page.evaluate(() => { player.dispose(); audioSources.closeRemoteAudio(mediaSource); });
             console.log('PASS: mid-playback loss drains buffered M4B audio, holds position, respects pause across reconnect, and recovers automatically only with active intent');
         }
+    }
+    if (trackFixture) {
+        await page.evaluate(async () => {
+            const bytes = new Uint8Array(await (await fetch('/fixture.mp3')).arrayBuffer());
+            const {BrowserAudio} = await import('/player.js');
+            window.trackReads = [];
+            window.trackSources = [0, 1].map(index => audioSources.openRemoteAudio(bytes.length, async (offset, length) => {
+                trackReads.push([index, offset, length]);
+                return bytes.slice(offset, offset + length);
+            }, 'audio/mpeg'));
+            for (const source of trackSources) audioSources.setRemoteAudioPaused(source, true);
+            const head = await fetch(trackSources[0].url, {method: 'HEAD', headers: {Range: 'bytes=0-31'}});
+            if (head.status !== 206 || head.headers.get('Content-Type') !== 'audio/mpeg' || head.headers.get('Content-Length') !== '32') throw Error('invalid MP3 range headers');
+            const tracks = [{start_ms: 0, end_ms: 75000}, {start_ms: 75000, end_ms: 150000}];
+            window.player = new BrowserAudio('', new Uint8Array(), {tracks, localTrackUrls: trackSources.map(source => source.url), bookDuration: 150}, 74.7, () => {}, null, null,
+                paused => { for (const source of trackSources) audioSources.setRemoteAudioPaused(source, paused); });
+            document.querySelector('#play').onclick = () => player.play();
+        });
+        await page.click('#play');
+        await page.waitForFunction(() => player.trackIndex === 1 && player.ready && player.playing() && player.position() > 75.1);
+        await page.evaluate(() => { player.pause(); player.seek(10); });
+        await page.waitForFunction(() => player.trackIndex === 0 && player.ready && !player.audio.seeking);
+        assert.ok(Math.abs(await page.evaluate(() => player.position()) - 10) < 0.2);
+        assert.equal(await page.evaluate(() => player.playing()), false);
+        assert.ok(await page.evaluate(() => trackReads.some(([index]) => index === 0) && trackReads.some(([index]) => index === 1)));
+        assert.equal(await page.evaluate(() => player.takeError()), null);
+        await page.evaluate(() => { player.dispose(); for (const source of trackSources) audioSources.closeRemoteAudio(source); });
+        console.log('PASS: MP3 range sources expose MPEG headers, advance between tracks and seek across tracks while paused');
     }
     assert.deepEqual(errors, []);
     console.log('PASS: production audio service worker retries identical range, gates pause, resumes, and returns exact bytes');

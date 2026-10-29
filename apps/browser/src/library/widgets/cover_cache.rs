@@ -26,6 +26,7 @@ impl<K: Eq + Hash> CoverCache<K> {
         None
     }
 
+    #[cfg(test)]
     pub(super) fn clear(&mut self) {
         self.entries.clear();
     }

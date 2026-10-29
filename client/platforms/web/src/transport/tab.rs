@@ -56,6 +56,7 @@ struct State {
     workers: RefCell<HashMap<u32, OwnedWorker>>,
     release: LifetimeLock,
     closed: Cell<bool>,
+    failure: RefCell<Option<JsValue>>,
     application_message: Box<dyn Fn(JsValue)>,
 }
 impl State {
@@ -80,6 +81,7 @@ impl State {
             }
         };
         if matches!(event, TabEvent::Failed) {
+            *self.failure.borrow_mut() = Some(data.clone());
             let init = web_sys::MessageEventInit::new();
             init.set_data(&data);
             if let Ok(event) = MessageEvent::new_with_event_init_dict("message", &init) {
@@ -160,6 +162,7 @@ impl TabConnection {
             workers: RefCell::new(HashMap::new()),
             release,
             closed: Cell::new(false),
+            failure: RefCell::new(None),
             application_message: Box::new(application_message),
         });
         let weak = Rc::downgrade(&state);
@@ -173,6 +176,7 @@ impl TabConnection {
             },
             move |_| {
                 if let Some(state) = error.upgrade() {
+                    *state.failure.borrow_mut() = Some(super::failure("Backend control port failed"));
                     state.shutdown();
                 }
             },
@@ -208,6 +212,11 @@ impl TabConnection {
     }
     pub fn port(&self) -> MessagePort {
         self.state.client_port.clone()
+    }
+    /// A bootstrap connection can fail before its client Session attaches.
+    /// Preserve that failure even after shutdown closes the queued port.
+    pub fn failure(&self) -> JsValue {
+        self.state.failure.borrow().clone().unwrap_or(JsValue::UNDEFINED)
     }
 }
 

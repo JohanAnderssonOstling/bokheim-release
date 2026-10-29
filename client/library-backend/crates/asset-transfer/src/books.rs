@@ -148,7 +148,7 @@ impl BookTransfers {
         let destination = destination.finish_book().await?;
         let published = destination.publish_snapshot_with_track_titles(&self.assets, &book.relative_path, &book.occupied_names, book.format == book_model::BookFormat::Mp3Folder, &book.audiobook_track_titles)?;
         // The write revalidates the placement and name conflicts before applying the result.
-        let completion = NativeBookCompletion { snapshot: book, publication: published, size_bytes: completed_bytes };
+        let completion = NativeBookCompletion { snapshot: book, publication: published, size_bytes: completed_bytes, provider_file: None };
         self.database.complete_downloaded_book(completion, self.assets.thumbnail_set_exists(content_hash)?)?;
         Ok(())
     }

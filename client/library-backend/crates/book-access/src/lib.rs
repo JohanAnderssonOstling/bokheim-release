@@ -3,6 +3,12 @@
 use std::io::{Read, Seek};
 pub use sync_common::BookId;
 mod async_source;
+mod batch_fetch;
+mod bundle_fetch;
+mod fetch_dispatch;
+pub use bundle_fetch::{BundleFetch, BundleFetcher};
+mod sparse_source;
+pub use sparse_source::SparseBookSource;
 #[cfg(feature = "pdf")]
 pub mod pdf_bundle;
 pub use async_source::{AsyncBookReader, AsyncBookSource, BoxedAsyncBookReader};
@@ -15,7 +21,6 @@ pub use remote_file::{RemoteFile, RemoteFileError};
 pub trait BookReader: Read + Seek + Send + Sync {}
 impl<T: Read + Seek + Send + Sync> BookReader for T {}
 pub type BoxedBookReader = Box<dyn BookReader>;
-pub type BundleFetch = Box<dyn FnMut(Vec<(u64, usize)>) -> std::io::Result<Vec<u8>> + Send + Sync>;
 #[cfg(not(target_arch = "wasm32"))]
 pub use futures_util::future::BoxFuture as FetchFuture;
 #[cfg(target_arch = "wasm32")]

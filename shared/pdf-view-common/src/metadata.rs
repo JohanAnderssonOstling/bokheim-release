@@ -1,8 +1,12 @@
 //! Ingestion output tied to the exact PDF bytes, independent of a renderer.
+#[path = "metadata/transport.rs"]
+mod transport;
+
 #[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct PdfReaderMetadata {
     pub version: u32,
     pub content_hash: String,
+    #[serde(with = "transport::pages")]
     pub pages: Vec<PdfStoredPage>,
     /// Zero-based pages containing no content or only a blank-page notice.
     /// None denotes metadata written before page classification was available.
@@ -11,6 +15,7 @@ pub struct PdfReaderMetadata {
     #[serde(default)]
     pub annotations: Vec<PdfStoredAnnotation>,
     #[serde(default)]
+    #[serde(with = "transport::dependencies")]
     pub dependencies: Option<PdfDependencyIndex>,
 }
 
@@ -101,6 +106,20 @@ impl PdfDependencyIndex {
 pub trait PdfPageSource: Send + Sync {
     fn prepare_startup(&self) -> Result<(), String>;
     fn prepare_page(&self, page: usize) -> Result<(), String>;
+    /// Warm startup and the requested first page together when supported.
+    fn prepare_opening(&self, page: usize) -> Result<(), String> {
+        self.prepare_startup()?;
+        self.prepare_page(page)
+    }
+    /// Optional pages in priority order. Implementations may warm fewer pages
+    /// to respect their byte budget; normal page reads remain authoritative.
+    fn prefetch_pages(&self, _pages: &[usize]) -> Result<(), String> {
+        Ok(())
+    }
+    /// Stop obsolete optional work, including in-flight I/O when supported.
+    fn prefetch_pages_cancellable(&self, pages: &[usize], cancellation: &crate::PdfPrefetchCancellation) -> Result<(), String> {
+        if cancellation.is_cancelled() { Ok(()) } else { self.prefetch_pages(pages) }
+    }
 }
 
 impl PdfReaderMetadata {

@@ -1,4 +1,5 @@
 use super::*;
+use crate::state_sync::{next_outbox_page, prepare_outbox, prepare_sync, PublicationOutbox};
 use axum::{
     body::Bytes,
     extract::State,
@@ -86,23 +87,14 @@ fn database_result<T: 'static>(result: Result<T, library_database::DatabaseError
 }
 
 impl SyncStore for &DatabaseStore {
-    type Outbox = library_database::OutboxScan;
-    fn prepare_outbox(&self) -> StoreFuture<'_, Self::Outbox> { database_result(self.0.sync_prepare_outbox()) }
-    fn cursor_recovery_pending(&self) -> StoreFuture<'_, bool> { database_result(self.0.sync_cursor_recovery_pending()) }
+    type Outbox = PublicationOutbox;
+    fn prepare_sync(&self) -> StoreFuture<'_, PreparedSync<Self::Outbox>> { database_result(prepare_sync(&self.0, None)) }
+    fn prepare_outbox(&self) -> StoreFuture<'_, Self::Outbox> { database_result(prepare_outbox(&self.0, None)) }
     fn begin_cursor_recovery(&self) -> StoreFuture<'_, ()> { database_result(self.0.sync_begin_cursor_recovery()) }
     fn complete_cursor_recovery(&self) -> StoreFuture<'_, usize> {
-        Box::pin(async {
-            let (mut after, mut inserted) = (None, 0);
-            loop {
-                let (next, count) = self.0.sync_recover_state_page(after.as_ref())?;
-                inserted += count;
-                if next.is_none() { return Ok(inserted); }
-                after = next;
-            }
-        })
+        Box::pin(async { crate::recovery::complete(&self.0).await.map_err(Into::into) })
     }
-    fn pull_cursor(&self) -> StoreFuture<'_, SyncCursor> { database_result(self.0.sync_pull_cursor()) }
-    fn pending_mutations<'a>(&'a self, scan: &'a mut Self::Outbox) -> StoreFuture<'a, Vec<StatePublication>> { database_result(self.0.sync_next_outbox_page(scan)) }
+    fn pending_mutations<'a>(&'a self, scan: &'a mut Self::Outbox) -> StoreFuture<'a, Vec<StatePublication>> { database_result(next_outbox_page(&self.0, None, scan)) }
     fn record_mutation_issues(&self, issues: &[MutationIssue]) -> StoreFuture<'_, ()> { database_result(self.0.sync_record_mutation_issues(issues)) }
     fn acknowledge_mutations(&self, ids: &[ReplicaSeq]) -> StoreFuture<'_, ()> { database_result(self.0.sync_acknowledge_mutations(ids)) }
     fn apply_exchange_response(&self, ids: &[ReplicaSeq], page: &PullStateResponse) -> StoreFuture<'_, ()> { database_result(self.0.sync_commit_pull_response(ids, page).map(|_| ())) }
@@ -148,6 +140,17 @@ async fn outbox_pipeline_performance() {
 
 impl SyncStore for &MemoryStore {
     type Outbox = std::vec::IntoIter<StatePublication>;
+    fn prepare_sync(&self) -> StoreFuture<'_, PreparedSync<Self::Outbox>> {
+        Box::pin(async {
+            if self.0.borrow().recovering {
+                return Ok(PreparedSync::RecoveryPending);
+            }
+            let cursor = self.0.borrow().cursor;
+            let mut outbox = self.prepare_outbox().await?;
+            let mutations = self.pending_mutations(&mut outbox).await?;
+            Ok(PreparedSync::Ready { cursor, outbox, mutations })
+        })
+    }
     fn prepare_outbox(&self) -> StoreFuture<'_, Self::Outbox> {
         Box::pin(async {
             let mut values = library_replica::coalesce_mutations_for_push(self.0.borrow().outbox.clone());
@@ -160,9 +163,6 @@ impl SyncStore for &MemoryStore {
         state.events.push("issues");
         state.issues.extend_from_slice(issues);
         Box::pin(async { Ok(()) })
-    }
-    fn cursor_recovery_pending(&self) -> StoreFuture<'_, bool> {
-        Box::pin(async { Ok(self.0.borrow().recovering) })
     }
     fn begin_cursor_recovery(&self) -> StoreFuture<'_, ()> {
         Box::pin(async {
@@ -181,9 +181,6 @@ impl SyncStore for &MemoryStore {
             state.recovering = false;
             Ok(count)
         })
-    }
-    fn pull_cursor(&self) -> StoreFuture<'_, SyncCursor> {
-        Box::pin(async { Ok(self.0.borrow().cursor) })
     }
     fn pending_mutations<'a>(&'a self, scan: &'a mut Self::Outbox) -> StoreFuture<'a, Vec<StatePublication>> {
         Box::pin(async { Ok(scan.by_ref().take(2).collect()) })
@@ -241,6 +238,11 @@ async fn exchange(State(server): State<Arc<Server>>, bytes: Bytes) -> Response {
 
 #[tokio::test]
 async fn history_mismatch_recovers_and_republishes_original_versions() {
+    check_history_recovery(false).await;
+    check_history_recovery(true).await;
+}
+
+async fn check_history_recovery(recovering: bool) {
     let old_history = SyncGeneration::from_u128(1);
     let new_history = SyncGeneration::from_u128(2);
     let retained = LibraryStateEntry::DirectoryName { dir_id: sync_common::DirId::from_u128(7), name: "Retained offline".into() }.publication(ReplicaId::from_u128(8), 50, ReplicaSeq::new(40).unwrap());
@@ -249,8 +251,8 @@ async fn history_mismatch_recovers_and_republishes_original_versions() {
     let store = MemoryStore(RefCell::new(MemoryState {
         events: Vec::new(),
         issues: Vec::new(),
-        cursor: SyncCursor { generation: Some(old_history), lifecycle_revision: Some(old_head), field_revision: Some(old_head) },
-        recovering: false,
+        cursor: if recovering { SyncCursor::default() } else { SyncCursor { generation: Some(old_history), lifecycle_revision: Some(old_head), field_revision: Some(old_head) } },
+        recovering,
         canonical: vec![retained.state.clone()],
         outbox: Vec::new(),
     }));
@@ -268,14 +270,15 @@ async fn history_mismatch_recovers_and_republishes_original_versions() {
     engine.synchronize().await.unwrap();
     task.abort();
     let requests = server.requests.lock().unwrap();
-    assert_eq!(requests.len(), 3);
-    assert_eq!(requests[0].cursor.generation, Some(old_history));
-    assert_eq!(requests[1].cursor, SyncCursor::default());
-    assert!(requests[1].mutations.is_empty(), "recover server state before republishing");
-    assert_eq!(requests[2].cursor.generation, Some(new_history));
-    assert_eq!(requests[2].mutations.len(), 2);
+    let offset = usize::from(!recovering);
+    assert_eq!(requests.len(), offset + 2);
+    if !recovering { assert_eq!(requests[0].cursor.generation, Some(old_history)); }
+    assert_eq!(requests[offset].cursor, SyncCursor::default());
+    assert!(requests[offset].mutations.is_empty(), "recover server state before republishing");
+    assert_eq!(requests[offset + 1].cursor.generation, Some(new_history));
+    assert_eq!(requests[offset + 1].mutations.len(), 2);
     for expected in [&retained, &recovered] {
-        let publication = requests[2].mutations.iter().find(|row| row.state.value.address == expected.state.value.address()).unwrap();
+        let publication = requests[offset + 1].mutations.iter().find(|row| row.state.value.address == expected.state.value.address()).unwrap();
         assert_eq!(publication.state.version, expected.state.version, "recovery must not author a newer edit");
         assert_ne!(publication.publisher_seq, expected.publisher_seq);
     }
@@ -316,7 +319,7 @@ async fn both_sync_modes_preserve_rejections_and_acknowledgements_when_pull_is_i
         let store = MemoryStore(RefCell::new(MemoryState { events: Vec::new(), issues: Vec::new(), cursor: SyncCursor::default(), recovering: false, canonical: Vec::new(), outbox }));
         let engine = SyncEngine::new(SyncEngineConfig { store: &store, http_client: &client, library_id: LibraryId::from_u128(11), replica_id: ReplicaId::from_u128(12), credentials: Some(SyncCredentials::new(url.clone(), "test-token")) });
         if active {
-            assert!(engine.exchange_events_with_server(SyncCursor::default()).await.is_err());
+            assert!(engine.synchronize().await.is_err());
         } else {
             assert_eq!(engine.drain_outbox().await.unwrap().mutation_issues.len(), 2);
         }
@@ -367,7 +370,7 @@ async fn lifecycle_rejections_defer_fields_on_later_storage_pages_in_both_modes(
         outbox.push(LibraryStateEntry::Placement { dir_id: sync_common::ROOT_DIR_ID, content_hash: book, present: true, origin_folder_id: None }.publication(replica, 1, field_id));
         let store = MemoryStore(RefCell::new(MemoryState { events: Vec::new(), issues: Vec::new(), cursor: SyncCursor::default(), recovering: false, canonical: Vec::new(), outbox }));
         let engine = SyncEngine::new(SyncEngineConfig { store: &store, http_client: &client, library_id: LibraryId::from_u128(11), replica_id: ReplicaId::from_u128(12), credentials: Some(SyncCredentials::new(url.clone(), "test-token")) });
-        let outcome = if active { engine.exchange_events_with_server(SyncCursor::default()).await } else { engine.drain_outbox().await }.unwrap();
+        let outcome = if active { engine.synchronize().await } else { engine.drain_outbox().await }.unwrap();
         assert_eq!(outcome.mutation_issues.len(), 1);
         let requests = requests.lock().unwrap();
         assert_eq!(requests.len(), 2);

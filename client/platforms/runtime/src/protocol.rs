@@ -15,12 +15,3 @@ pub fn reply<T>(payload: Option<T>, error: Option<String>) -> Result<Result<T, S
         (Some(_), Some(_)) => Err("Reply contains both bytes and error".into()),
     }
 }
-
-
-/// Millisecond timers must fit the wire format and cannot wrap or panic.
-pub fn milliseconds(value: f64) -> Result<u32, String> {
-    if !value.is_finite() || !(0.0..=u32::MAX as f64).contains(&value) {
-        return Err("Invalid duration".into());
-    }
-    Ok(value as u32)
-}

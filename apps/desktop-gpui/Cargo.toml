@@ -1,13 +1,16 @@
 [package]
 name = "desktop-gpui"
-version = "0.1.10"
+version = "0.1.11"
 edition = "2024"
+license.workspace = true
 
 [lib]
 crate-type = ["rlib", "cdylib"]
 path = "src/lib.rs"
 
 [features]
+# Experimental provider integration; excluded from default and release builds.
+google-drive = ["app/google-drive", "browser-ui/google-drive"]
 default = ["desktop"]
 desktop = [
     "reader-ui/native-audio",

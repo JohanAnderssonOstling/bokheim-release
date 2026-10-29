@@ -14,7 +14,7 @@ fn database() -> Database {
 }
 
 fn query(location: BrowseLocation) -> LibraryBrowseQuery {
-    LibraryBrowseQuery { location, search: String::new(), file_types: vec![], languages: vec![], chip_sort: BrowseChipSort::Popularity, book_sort: BrowseBookSort::Popularity, hide_finished: false, include_direct_child_books: false }
+    LibraryBrowseQuery { location, search: String::new(), file_types: vec![], languages: vec![], chip_sort: BrowseChipSort::Popularity, book_sort: BrowseBookSort::Popularity, hide_finished: false }
 }
 
 fn add(db: &Database, parent: DirId, number: u8, title: &str, count: Option<u64>, authors: &[&str], language: &str) -> BookId {

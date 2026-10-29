@@ -6,8 +6,11 @@ use axum::body::{to_bytes, Body};
 use axum::http::{header, Request, StatusCode};
 use axum::Router;
 use server_account::{AccountEmailKind, AccountTokenKey, ClientAddressSource, PostgresAccountService};
+use server_postgres::PostgresDatabase;
+use sqlx::{postgres::PgPoolOptions, PgPool};
 use std::sync::Arc;
 use tower::ServiceExt;
+use uuid::Uuid;
 
 async fn post<T: serde::Serialize + ?Sized>(app: &Router, path: &str, body: &T, bearer: Option<&str>) -> axum::response::Response {
     post_from(app, path, body, bearer, "203.0.113.20").await
@@ -40,7 +43,20 @@ fn accepted(request: axum::http::request::Builder) -> axum::http::request::Build
 #[ignore = "requires SYNC_E2E_DATABASE_URL"]
 async fn public_registration_verification_and_reset_are_end_to_end_safe() {
     let database_url = std::env::var("SYNC_E2E_DATABASE_URL").expect("run through Backend/tests/run_sync_e2e.sh");
-    let database = server_postgres::connect(&database_url).await.unwrap();
+    let admin = PgPool::connect(&database_url).await.unwrap();
+    let schema = format!("public_registration_{}", Uuid::new_v4().simple());
+    sqlx::query(&format!("CREATE SCHEMA {schema}")).execute(&admin).await.unwrap();
+    let search_path = format!("SET search_path TO {schema}");
+    let pool = PgPoolOptions::new()
+        .max_connections(4)
+        .after_connect(move |connection, _| {
+            let statement = search_path.clone();
+            Box::pin(async move { sqlx::query(&statement).execute(connection).await.map(|_| ()) })
+        })
+        .connect(&database_url)
+        .await
+        .unwrap();
+    let database = PostgresDatabase::from_pool(pool);
     server_postgres::migrate(&database).await.unwrap();
     let accounts = Arc::new(PostgresAccountService::new(database.clone(), AccountTokenKey::from_base64("WlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlo=").unwrap()));
     let disk = tempfile::tempdir().unwrap();
@@ -51,7 +67,7 @@ async fn public_registration_verification_and_reset_are_end_to_end_safe() {
     )
     .await
     .unwrap();
-    let unique = uuid::Uuid::new_v4().simple().to_string();
+    let unique = Uuid::new_v4().simple().to_string();
     let email = format!("public-{unique}@example.com");
     let original_password = "correct-horse-public-password";
 
@@ -155,7 +171,6 @@ async fn public_registration_verification_and_reset_are_end_to_end_safe() {
     assert_eq!(same.user_id, configured.user_id);
     assert_eq!(accounts.resolve_token(&configured_session.token).await.unwrap().user_id, configured.user_id);
 
-    let database = server_postgres::connect(&database_url).await.unwrap();
     let quota = 1_000_i64 * 1_000 * 1_000 * 1_000;
     assert_eq!(server_postgres::configure_user_storage_quota(&database, &configured.user_id, quota).await.unwrap(), quota);
     let snapshot: AccountSnapshotResponse =
@@ -188,4 +203,7 @@ async fn public_registration_verification_and_reset_are_end_to_end_safe() {
     assert!(accounts.resolve_token(&configured_session.token).await.is_err());
     assert!(accounts.login(&configured_email, original_password).await.is_err());
     assert_eq!(accounts.login(&configured_email, rotated_password).await.unwrap().user.user_id, configured.user_id);
+    database.pool().close().await;
+    sqlx::query(&format!("DROP SCHEMA {schema} CASCADE")).execute(&admin).await.unwrap();
+    admin.close().await;
 }

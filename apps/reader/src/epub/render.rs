@@ -1,4 +1,3 @@
-use crate::invalidation::notify;
 use crate::settings::{ReaderSettings, SidebarTab};
 use std::time::Duration;
 mod document;
@@ -45,14 +44,20 @@ impl Render for ReaderView {
         let theme = components::browser_theme(cx);
         if let LoadState::Ready(renderer) = &self.load_state {
             let selected = cx.try_global::<components::theme::SelectedPalette>().copied();
-            if self.applied_palette != selected {
+            let renderer_changed = self.last_column_viewport_plan.is_none_or(|plan| plan.0 != renderer.entity_id());
+            if renderer_changed {
+                // Preferences can change while the book is still preparing.
+                let font_size = ReaderSettings::preferences(cx).font_size;
+                renderer.update(cx, |view, cx| view.queue_appearance(skrift_column_paginator::RendererCommand::SetFontSize(font_size), cx));
+            }
+            if renderer_changed || self.applied_palette != selected {
                 self.applied_palette = selected;
                 let appearance = crate::settings::library_theme_adaptation(cx);
-                let overrides = ReaderSettings::preferences(cx).style_overrides(Some(appearance), crate::settings::library_link_foreground(cx));
+                let overrides = ReaderSettings::preferences(cx).style_overrides_for_book(self.cjk_font, Some(appearance), crate::settings::library_link_foreground(cx));
                 let paint = crate::settings::library_paint_palette(cx);
                 renderer.update(cx, |renderer, cx| {
-                    renderer.apply(html_view_core::RendererCommand::SetReaderStyleOverrides(overrides), cx);
-                    renderer.apply(html_view_core::RendererCommand::SetReaderPaintPalette(paint), cx);
+                    renderer.queue_appearance(skrift_column_paginator::RendererCommand::SetReaderStyleOverrides(overrides), cx);
+                    renderer.queue_appearance(skrift_column_paginator::RendererCommand::SetReaderPaintPalette(paint), cx);
                 });
             }
         }
@@ -63,9 +68,6 @@ impl Render for ReaderView {
         }
         let touch_input = cx.supports_touch_input() || mobile;
         let chrome_visible = self.chrome.is_visible();
-        // A persistent desktop split always shows a tab — there is no closed
-        // state once the toolbar's toggle button is gone. The mobile/compact
-        // overlay keeps the open-or-closed sheet behaviour instead.
         let active_tab = self.active_sidebar_tab(window);
         let sidebar_visible = chrome_visible && active_tab.is_some();
         // A saved Search panel starts searching when first opened; hiding
@@ -73,6 +75,7 @@ impl Render for ReaderView {
         if sidebar_visible && active_tab == Some(SidebarTab::Search) {
             self.open_search(cx);
         }
+
         let preferences = ReaderSettings::preferences(cx);
         let ruler_style = preferences.reading_ruler;
         let ruler_lines = preferences.reading_ruler_lines;
@@ -82,11 +85,14 @@ impl Render for ReaderView {
         let fitted_column_width = self.fitted_column_width(f64::from(available_width), cx);
         let column_gap = f64::from(preferences.min_column_gap_px) / preferences.scale.max(0.1);
         if let LoadState::Ready(renderer) = &self.load_state {
-            renderer.update(cx, |view, cx| view.set_reading_ruler(ruler_style, ruler_lines, cx));
+            renderer.update(cx, |view, cx| {
+                view.set_reading_ruler_accent(theme.accent, cx);
+                view.set_reading_ruler(ruler_style, ruler_lines, cx);
+            });
             let plan = (renderer.entity_id(), f64::from(available_width), fitted_column_width, max_columns, column_gap);
-            if self.touch_swipe.is_none() || self.last_column_viewport_plan != Some(plan) {
+            if self.last_column_viewport_plan != Some(plan) {
                 renderer.update(cx, |renderer, cx| {
-                    renderer.apply(html_view_core::RendererCommand::SetColumnViewportPlan { available_width: plan.1, column_width: plan.2, column_count: plan.3, column_gap: plan.4 }, cx);
+                    renderer.queue_appearance(skrift_column_paginator::RendererCommand::SetColumnViewportPlan { available_width: plan.1, column_width: plan.2, column_count: plan.3, column_gap: plan.4 }, cx);
                 });
                 self.last_column_viewport_plan = Some(plan);
             }
@@ -129,7 +135,7 @@ impl Render for ReaderView {
                 .size_full(),
             )
             .on_scroll_wheel(cx.listener(Self::handle_mouse_wheel));
-        document_body = document_body.children(self.render_touch_selection(window, cx));
+        document_body = document_body.children(self.render_selection_actions(window, cx));
         if let Some(annotation) = self.render_annotation_popup(&entity, sidebar_visible, window, cx) {
             document_body = document_body.child(annotation);
         }
@@ -140,14 +146,13 @@ impl Render for ReaderView {
             document_body = document_body.child(image);
         }
 
-        #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+        #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
         let dock = self.tts.dock_open.then(|| crate::shell::tts::dock(&self.tts, mobile, theme, cx));
-        #[cfg(not(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32"))))]
+        #[cfg(not(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo"))))]
         let dock: Option<gpui::AnyElement> = None;
         let sidebar = active_tab.filter(|_| sidebar_visible).map(|active| {
             let body = self.render_sidebar(active, entity.clone(), theme, window, cx);
-            let progress = self.progress.summary();
-            let sidebar_content = SidebarContent::new(f32::from(progress.percent) / 100.0, progress.label(), progress.tooltip(), self.document_focus(cx), body);
+            let sidebar_content = SidebarContent::new(body);
             sidebar_chrome::reader_sidebar(self, &entity, sidebar_content, theme, window, cx)
         });
 
@@ -172,6 +177,8 @@ impl Render for ReaderView {
             title: self.book_title.clone(),
             chapter: self.spine_title(),
             progress_label: self.progress.summary().label(),
+            progress_fraction: f32::from(self.progress.summary().percent) / 100.0,
+            progress_detail: self.progress.summary().tooltip(),
             bottom_bar_id: "epub-reader-bottom-bar",
         };
         let page = crate::shell::page::reader_surface(self, surface, theme, window, cx)
@@ -189,7 +196,7 @@ impl Render for ReaderView {
             .on_action(cx.listener(shell_input::dispatch::<Self, IncreaseColumnWidth>))
             .on_action(cx.listener(shell_input::dispatch::<Self, DecreaseColumnWidth>))
             .on_action(cx.listener(shell_input::dispatch::<Self, ToggleFullscreen>));
-        let interactions = chrome::surface_interactions("epub", chrome_visible, sidebar_visible, touch_input, cx, |reader: &mut Self, action, window, cx| match action {
+        let interactions = chrome::surface_interactions("epub", sidebar_visible, touch_input, cx, |reader: &mut Self, action, window, cx| match action {
             chrome::SurfaceAction::PreviousPage => {
                 reader.execute(&PreviousPage, window, cx);
             }
@@ -197,13 +204,6 @@ impl Render for ReaderView {
                 reader.execute(&NextPage, window, cx);
             }
             chrome::SurfaceAction::ToggleChrome => reader.chrome.toggle(cx),
-            chrome::SurfaceAction::ShowChrome => {
-                if !reader.chrome.show_from_pointer(cx) {
-                    return;
-                }
-                reader.sidebar.reopen(cx);
-                notify(cx, Component::ReaderShell, "sidebar_shown");
-            }
         });
         let mut page = page.children(interactions);
         if let Some(actions) = &self.context_sheet {
@@ -220,8 +220,7 @@ fn swipe_document(document: impl IntoElement, offset: Point<Pixels>) -> Div {
     gpui::div().size_full().flex().flex_col().transform(gpui::ElementTransform::default().translate(offset)).child(document)
 }
 
-/// Quiet period that ends a wheel gesture, matching the browse paginator so the
-/// two surfaces respond to the same flick in the same way.
+/// Quiet period that ends a physical wheel burst.
 const WHEEL_SCROLL_END_DELAY: Duration = Duration::from_millis(150);
 
 impl ReaderView {
@@ -288,10 +287,11 @@ impl ReaderView {
         self.focus_document(window, cx);
     }
 
-    /// Advances the ruler, or turns the page when the ruler is disabled.
+    /// Vertical scrolling advances the ruler when enabled. Horizontal gestures
+    /// and scrolling with the ruler disabled turn whole pages.
     ///
-    /// Android touch swipes commit on their end event. Physical wheel and
-    /// trackpad bursts use a quiet period so one flick advances one line/page.
+    /// Android touch swipes commit on their end event. Physical wheel bursts
+    /// use a quiet period; touchpads advance once per gesture after sufficient movement.
     /// Scrolling down goes forward, the same direction as vertical touch swipes.
     fn handle_mouse_wheel(&mut self, event: &gpui::ScrollWheelEvent, window: &mut Window, cx: &mut Context<Self>) {
         if self.touch_selection.active {
@@ -386,6 +386,17 @@ impl ReaderView {
             }
         }
 
+        if matches!(event.delta, ScrollDelta::Pixels(_)) || self.touchpad.is_active() || matches!(event.delta, ScrollDelta::Lines(delta) if delta.x.abs() > delta.y.abs()) {
+            self.wheel_delta = 0.0;
+            self.wheel_debounce.take();
+            if let Some(travel) = self.touchpad.update(event) {
+                let forward = if travel.y != 0.0 { travel.y < 0.0 } else { travel.x < 0.0 };
+                self.advance_from_gesture(forward, travel.y != 0.0, window, cx);
+            }
+            cx.stop_propagation();
+            return;
+        }
+
         if !delta.is_finite() || delta == 0.0 {
             return;
         }
@@ -429,7 +440,7 @@ pub(crate) fn bind_keys(cx: &mut App) {
 mod layout_tests {
     use super::*;
     use gpui::{TestAppContext, point, px};
-    use html_view_core::{RendererInitialConfig, ResourceProvider};
+    use skrift_column_paginator::{RendererInitialConfig, ResourceProvider};
     use html_view_gpui::HtmlView;
     use std::{io, sync::Arc};
 

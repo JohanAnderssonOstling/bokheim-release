@@ -1,6 +1,7 @@
 //! One native worker owns PDFium and every live document. Requests carry Rust
 //! values; document handles never cross the worker boundary.
 use super::*;
+use crate::prefetch::CancelPrefetchOnDrop;
 use std::cell::Cell;
 use std::sync::mpsc::{self, Sender};
 
@@ -117,6 +118,14 @@ impl PdfDocumentSession {
         Self::load(move || LocalDocumentSession::from_reader_with_page_source(source_name, reader, &content_hash, metadata, page_source))
     }
 
+    pub fn from_reader_with_opening_page<R: Read + Seek + Send + 'static>(
+        source_name: impl Into<String>, reader: R, content_hash: &str, metadata: Option<PdfReaderMetadata>, page_source: Option<Arc<dyn PdfPageSource>>, opening_page: Option<usize>,
+    ) -> PdfResult<Self> {
+        let source_name = source_name.into();
+        let content_hash = content_hash.to_owned();
+        Self::load(move || LocalDocumentSession::from_reader_with_opening_page(source_name, reader, &content_hash, metadata, page_source, opening_page))
+    }
+
     pub fn info(&self) -> &PdfDocumentInfo {
         &self.info
     }
@@ -149,6 +158,12 @@ impl PdfDocumentSession {
 
     pub fn render_page_for_display(&self, key: PageRenderKey) -> PdfResult<RenderedPdfBgraPage> {
         run(self.work(move |document| document.render_page_for_display(key)))
+    }
+
+    pub async fn prefetch_pages(&self, pages: Vec<usize>) -> PdfResult<()> {
+        let cancellation = CancelPrefetchOnDrop::default();
+        let cancelled = cancellation.token();
+        request(self.work(move |document| document.prefetch_pages_cancellable(&pages, &cancelled))).await
     }
 
     pub async fn page_geometry(&self, page_index: usize, trim_margins: bool) -> PdfResult<PdfPageGeometry> {

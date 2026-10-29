@@ -20,15 +20,6 @@ SELECT EXISTS(SELECT 1 FROM sync_book_record WHERE state_kind=:state_kind AND co
 -- name: records_replica_id ->
 SELECT replica_id FROM sync_metadata WHERE singleton=1;
 
--- name: records_book_exists ->
--- param: content_hash: &SqlParam<'_>
-SELECT EXISTS(SELECT 1 FROM book WHERE content_hash=:content_hash);
-
--- name: records_queued ->
--- param: state_kind: &SqlParam<'_>
--- param: state_key: &SqlParam<'_>
-SELECT EXISTS(SELECT 1 FROM sync_outbox WHERE state_kind=:state_kind AND state_key=:state_key AND state_subkey='');
-
 -- name: records_store !
 -- param: state_kind: &SqlParam<'_>
 -- param: content_hash: &SqlParam<'_>

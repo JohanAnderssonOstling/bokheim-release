@@ -19,3 +19,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "BokheimGpui"
+if (providers.gradleProperty("bokheim.fdroid").orNull == "true") {
+    include(":rustls-verifier")
+}

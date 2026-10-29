@@ -4,8 +4,8 @@ use crate::invalidation::notify;
 use std::sync::Arc;
 
 use gpui::{App, Context, Window};
-use html_view_core::RendererEvent;
-use html_view_core::cfi::source_position_cfi;
+use skrift_column_paginator::RendererEvent;
+use skrift_column_paginator::cfi::source_position_cfi;
 
 use crate::epub::marks;
 use crate::epub::{LoadState, ReaderView, Selection};
@@ -32,7 +32,7 @@ impl ReaderView {
                     self.sync_toc_position(cx);
                 }
                 self.record_current_reading_position(cx);
-                #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+                #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
                 self.tts_navigation_changed(cx);
                 notify(cx, Component::ReaderShell, "reading_position_changed");
             }
@@ -46,7 +46,7 @@ impl ReaderView {
                     notify(cx, Component::ReaderShell, "title_changed");
                 }
             }
-            RendererEvent::TocChanged(_) | RendererEvent::HistoryAvailability { .. } => {}
+            RendererEvent::HistoryAvailability { .. } => {}
             RendererEvent::SearchActiveChanged(active) => {
                 if self.search.query.is_some() != *active {
                     if *active {
@@ -57,11 +57,9 @@ impl ReaderView {
                     notify(cx, Component::ReaderShell, "search_visibility_changed");
                 }
             }
-            RendererEvent::FontSizeChanged(font_size) => {
-                if ReaderSettings::update(cx, |preferences| preferences.font_size = *font_size) {
-                    notify(cx, Component::ReaderShell, "font_size_changed");
-                }
-            }
+            // Font controls persist their requested value before reflow. An
+            // initial snapshot or delayed acknowledgement must not revert it.
+            RendererEvent::FontSizeChanged(_) => {}
             RendererEvent::ColumnWidthChanged(column_width) => {
                 if ReaderSettings::update(cx, |preferences| preferences.column_width = *column_width) {
                     notify(cx, Component::ReaderShell, "column_width_changed");
@@ -127,13 +125,13 @@ impl ReaderView {
             }
             RendererEvent::OperationFailed { operation, message } => {
                 log::warn!("renderer failed to {operation}: {message}");
-                if *operation == html_view_core::RendererOperation::UpdateDocument {
+                if *operation == skrift_column_paginator::RendererOperation::UpdateDocument {
                     self.page_turn = None;
                     self.swipe_preview.clear();
                     cx.notify();
                 }
-                #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
-                if *operation == html_view_core::RendererOperation::UpdateDocument {
+                #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
+                if *operation == skrift_column_paginator::RendererOperation::UpdateDocument {
                     self.tts_document_failed(message, cx);
                 }
             }

@@ -1,11 +1,11 @@
-use std::cell::{Cell, RefCell};
+use std::cell::Cell;
 use std::rc::Rc;
 
 use js_sys::Array;
 use wasm_bindgen::prelude::*;
 use web_sys::{MessageEvent, MessagePort};
 
-use super::{BackgroundService, ClientRelay, CpuService, SyncService, byte_reply, error_message, field, object};
+use super::{ClientRelay, CpuService, SyncService, byte_reply, error_message, field, object};
 use client_platform_web::transport::endpoint::WorkerEndpoint;
 use client_platform_web::transport::host::WorkerHost;
 use lifecycle::{Action, CoordinatorLifecycle};
@@ -17,15 +17,11 @@ struct State {
     sync: SyncService,
     cpu: CpuService,
     clients: ClientRelay,
-    background: RefCell<Vec<BackgroundService>>,
 }
 impl State {
     fn execute(&self, actions: Vec<Action>) {
         for action in actions {
             match action {
-                Action::StopBackground => {
-                    self.background.borrow_mut().clear();
-                }
                 Action::FailNetwork { error } => {
                     super::network_client::fail_all(js_sys::Error::new(&error).into());
                 }
@@ -84,25 +80,6 @@ impl State {
         }
         match field(&message, "transport").as_string().as_deref() {
             Some("endpoint_failed") => self.fail(error_message(&field(&message, "error"))),
-            Some("background_start") => {
-                self.background.borrow_mut().retain(|service| !service.stopped());
-                let parsed = (|| {
-                    let options = field(&message, "options");
-                    let retry = client_platform_web::transport::control::milliseconds(field(&options, "retry"))?;
-                    let debounce = client_platform_web::transport::control::milliseconds(field(&options, "debounce"))?;
-                    let port = field(&message, "port").dyn_into::<MessagePort>().map_err(|_| "Missing background port".to_owned())?;
-                    Ok::<_, String>((port, retry, debounce))
-                })();
-                match parsed {
-                    Ok((port, retry, debounce)) => self.background.borrow_mut().push(BackgroundService::new(port, retry, debounce)),
-                    Err(_) => {
-                        if let Ok(port) = field(&message, "port").dyn_into::<MessagePort>() {
-                            let _ = port.post_message(&object(&[("kind", "stopped".into())]));
-                            port.close();
-                        }
-                    }
-                }
-            }
             Some("network_request") => self.route_network(message),
             Some("sync_request" | "cpu_request") => {
                 use client_platform_web::transport::protocol::WorkerRequest;
@@ -173,7 +150,6 @@ impl Coordinator {
             sync: SyncService::with_options(options.sync),
             cpu: CpuService::with_options(create_cpu, options.cpu),
             clients,
-            background: RefCell::new(Vec::new()),
         });
         let weak = Rc::downgrade(&state);
         let message = Closure::<dyn FnMut(MessageEvent)>::own_aborting(move |event: MessageEvent| {
@@ -209,7 +185,6 @@ impl Coordinator {
 mod lifecycle {
     #[derive(Debug, PartialEq, Eq)]
     pub enum Action {
-        StopBackground,
         FailNetwork { error: String },
         FailSync { error: String },
         FailCpu { error: String },
@@ -253,7 +228,6 @@ mod lifecycle {
             }
             self.state = State::Failed;
             let mut result = vec![
-                Action::StopBackground,
                 Action::FailNetwork { error: error.clone() },
                 Action::FailSync { error: error.clone() },
                 Action::NotifySyncFailure { error: error.clone() },

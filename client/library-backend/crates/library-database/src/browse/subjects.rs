@@ -30,6 +30,20 @@ impl Books {
     }
 }
 
+/// The crumbs from the root down to `route`, root first. Empty when `route`
+/// is not in the displayed tree, which is where compaction left it.
+pub(in crate::browse) fn subject_path(books: Books, route: i64, nodes: &BTreeMap<i64, SubjectNode>) -> Vec<library_model::BrowsePathSegment> {
+    let mut path = Vec::new();
+    let mut current = route;
+    while current != library_model::ROOT_SUBJECT_ROUTE_ID {
+        let Some(node) = nodes.get(&current) else { return Vec::new() };
+        path.push(library_model::BrowsePathSegment { id: books.location(current), name: node.label.clone() });
+        current = node.parent;
+    }
+    path.reverse();
+    path
+}
+
 fn route_of(location: BrowseLocation) -> Option<i64> {
     match location {
         BrowseLocation::Subject(route) | BrowseLocation::Catalog(route) => Some(route),
@@ -47,6 +61,16 @@ pub(super) struct SubjectNode {
 }
 
 impl Database {
+    /// The subjects a book is listed under, as Browse shows them: one path
+    /// per displayed node that holds the book directly. Compaction can have
+    /// lifted the book to an ancestor of its assigned concept, and a concept
+    /// reached by several routes appears at each; both are what Browse lists.
+    /// A book compacted all the way to the root has no subject.
+    pub(crate) fn book_subjects(&self, books: Books, book: i64) -> Result<Vec<Vec<library_model::BrowsePathSegment>>, DatabaseError> {
+        let nodes = self.subject_tree_for(books)?;
+        Ok(nodes.iter().filter(|(route, node)| **route != library_model::ROOT_SUBJECT_ROUTE_ID && node.direct.contains(&book)).map(|(&route, _)| subject_path(books, route, &nodes)).filter(|path| !path.is_empty()).collect())
+    }
+
     #[cfg(test)]
     pub(super) fn browse_subject(
         &self, books: Books, route: i64, query: &library_model::LibraryBrowseQuery, downloaded_only: bool, section_limit: Option<usize>, page: Option<BrowsePageRequest>,
@@ -72,20 +96,7 @@ impl Database {
                 Books::Library => self.library_facets(options)?,
                 Books::Catalog => super::catalog::facets(options)?,
             };
-            let path = {
-                let mut route: i64 = route;
-                let mut path = Vec::new();
-                while route != library_model::ROOT_SUBJECT_ROUTE_ID {
-                    let Some(node) = nodes.get(&route) else {
-                        path.clear();
-                        break;
-                    };
-                    path.push(library_model::BrowsePathSegment { id: books.location(route), name: node.label.clone() });
-                    route = node.parent;
-                }
-                path.reverse();
-                path
-            };
+            let path = subject_path(books, route, nodes);
             let ancestors = self.subject_ancestors(books, &path, nodes, options)?;
             Ok(super::LibraryBrowseData { contents, sections, path, ancestors, language_counts, format_counts, feed: None, page })
         })
@@ -143,11 +154,6 @@ impl Database {
         let Some(root) = nodes.get(&location) else { return BTreeSet::new() };
         let searched = !options.search.is_empty();
         let mut selected_books = if searched { root.members.intersection(&matching.text_matches).copied().collect() } else { root.direct.clone() };
-        if !searched && options.include_direct_child_books {
-            for child in &root.children {
-                selected_books.extend(&nodes[child].direct);
-            }
-        }
         selected_books.retain(|book| matching.books.contains(book));
 
         selected_books
@@ -257,7 +263,6 @@ mod tests {
             chip_sort: BrowseChipSort::Popularity,
             book_sort: BrowseBookSort::Popularity,
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let options = BrowseOptions::from_query(&query, false);
         let rows = Database::subject_children(Books::Catalog, 0, &nodes, &matching, &options);
@@ -298,7 +303,6 @@ mod tests {
             chip_sort: BrowseChipSort::DefaultOrder,
             book_sort: BrowseBookSort::DefaultOrder,
             hide_finished: false,
-            include_direct_child_books: false,
         };
         for sort in [BrowseChipSort::DefaultOrder, BrowseChipSort::Alphabetical, BrowseChipSort::Popularity, BrowseChipSort::BookCount] {
             query.chip_sort = sort;
@@ -339,7 +343,6 @@ mod tests {
             chip_sort: Default::default(),
             book_sort: Default::default(),
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let root = db.browse(&query, false).unwrap();
         assert!(root.path.is_empty());

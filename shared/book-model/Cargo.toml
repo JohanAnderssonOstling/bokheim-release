@@ -12,6 +12,8 @@ random-ids = ["uuid/v4"]
 workspace = true
 
 [dependencies]
+prost = "0.14.4"
+protobuf-wire = { path = "../protobuf-wire" }
 wire = { path = "../wire" }
 content-address = { path = "../content-address" }
 language-tags = "0.3.2"

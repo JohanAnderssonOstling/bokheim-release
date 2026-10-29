@@ -42,6 +42,6 @@ ON CONFLICT(book_row_id,concept_id,subject_position,source_system_id,source_code
 -- param: source_code: &str
 SELECT DISTINCT e.concept_id
 FROM book_unified_concept_evidence e
-JOIN curated.unified_concept_paths p ON p.concept_id=e.concept_id
 WHERE e.book_row_id=:book_id AND e.subject_position=:subject_position
-  AND e.source_system_id='unified' AND e.source_code=:source_code;
+  AND e.source_system_id='unified' AND e.source_code=:source_code
+  AND EXISTS(SELECT 1 FROM curated.unified_concept_route r WHERE r.concept_id=e.concept_id);

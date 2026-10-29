@@ -136,6 +136,10 @@ def main(outdir):
         subprocess.run(["rsvg-convert", "-w", str(size), "-h", str(size),
                         str(out / f"{src}.svg"), "-o", str(dst)], check=True)
         png.append((size, src, dst))
+    transparent = out / "bokheim-128-transparent.png"
+    subprocess.run(["rsvg-convert", "-w", "128", "-h", "128",
+                    str(out / "bokheim.svg"), "-o", str(transparent)], check=True)
+    png.append((128, "bokheim", transparent))
     subprocess.run(["rsvg-convert", "-w", "432", "-h", "432",
                     str(out / "bokheim-android-foreground.svg"),
                     "-o", str(out / "bokheim-android-foreground-432.png")], check=True)

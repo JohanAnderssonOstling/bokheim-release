@@ -11,7 +11,6 @@ pub(crate) struct BrowseOptions {
     pub book_sort: BrowseBookSort,
     pub downloaded_only: bool,
     pub hide_finished: bool,
-    pub include_direct_child_books: bool,
 }
 
 impl BrowseOptions {
@@ -32,7 +31,6 @@ impl BrowseOptions {
             book_sort: query.book_sort,
             downloaded_only,
             hide_finished: query.hide_finished,
-            include_direct_child_books: query.include_direct_child_books,
         }
     }
 }

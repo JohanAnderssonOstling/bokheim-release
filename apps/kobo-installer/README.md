@@ -59,6 +59,50 @@ NickelMenu installs when the Kobo disconnects and restarts. Firmware must be
 4.6 or later in the 4.x series. An existing unrelated firmware update is
 preserved and blocks installation until that update finishes.
 
+## Sleep and battery diagnostics
+
+Pressing the hardware power button sleeps Bokheim. The on-screen power menu
+still offers shutdown, restart, and return to Kobo. Automatic sleep follows
+Kobo's **Settings → Energy saving and privacy → Automatically go to sleep after**
+choice, including **Never**. Change it in Kobo and reopen Bokheim to apply it.
+Bokheim reads `[PowerOptions] AutoSleepMinutes` from
+`/mnt/onboard/.kobo/Kobo/Kobo eReader.conf` at launch. It uses five minutes if
+the file or setting is missing or invalid and does not rewrite Kobo's settings.
+Automatic sleep waits while an audiobook is playing or buffering.
+Pausing playback starts a fresh idle period using the configured time. The power
+button and sleep cover still request sleep during listening. A failed sleep attempt retries
+after one minute; interacting with the reader cancels that retry.
+
+Pausing an audiobook closes its Bluetooth audio output. Press Play to reconnect
+and continue from the confirmed position. Device sleep releases audio decoders
+and pending source loads before switching Bluetooth and Wi-Fi off. Bluetooth's
+previous power state is restored after a confirmed wake; audio stays paused.
+Automatic Wi-Fi reconnect stops after 45 seconds if it cannot connect.
+Wi-Fi status follows supplicant events, kernel link/address notifications, and
+control-socket replacement events. A stable connected or disconnected radio has
+no periodic status timer. Connection setup, scans and DHCP keep their bounded
+checks; firmware without the required event support falls back to a 30-second
+recovery check while Wi-Fi is enabled. Radio-off and sleep have no status timer.
+Automatic library network
+work waits for a connection, and repeated failed passes back off from 30 seconds
+to a maximum of 15 minutes. Reconnecting or requesting a remote refresh wakes
+the network workers immediately.
+Account maintenance and notification connections also wait while Wi-Fi is
+offline. Pending torrents release their network engine while offline, and failed
+downloads back off instead of polling progress every two seconds. A stuck audio
+helper is killed after its two-second drain deadline. The battery indicator
+shares the power manager's samples instead of running a separate polling timer.
+Completed torrents do not seed in the background on Kobo; explicit downloads
+remain available.
+
+Resource sampling and the text-shaping benchmark are disabled during normal
+reading. To collect resource samples for a development session, launch with
+`BOKHEIM_KOBO_RESOURCE_MONITOR=1 /bin/sh /mnt/onboard/.adds/bokheim/run-monitored.sh`.
+This enables both the shell resource log and `KOBO_RUNTIME_RESOURCE` entries
+in the application log. Set `BOKHEIM_WESTERN_SHAPING_BENCHMARK=1` separately
+when comparing text-shaping paths. Both diagnostics add work and should stay
+disabled when measuring normal battery use.
+
 ## Device profiles and verification
 
 The shared `kobo-profile` catalogue expands Plato's advertised supported-device
@@ -86,6 +130,11 @@ has passed physical-device testing. In particular, an old-kernel libc ABI note
 does not establish that all Rust and application syscalls work on an old kernel.
 Old devices still need kernel and performance testing. Colour displays currently
 use the application's grayscale rendering path.
+
+For startup diagnostics, run `desktop-gpui-kobo --check-device` on the reader.
+It reads the firmware and model marker, prints the detected profile, and exits
+before opening the display or application databases. This also checks the real
+marker parser under ARM QEMU; `--no-display --device-model` bypasses that parser.
 
 Build and capture the real application on the host:
 

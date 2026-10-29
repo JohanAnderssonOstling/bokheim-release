@@ -1,6 +1,6 @@
 use gpui::{
     AnyElement, App, InteractiveElement as _, IntoElement, ParentElement, RenderOnce,
-    StyleRefinement, Styled, Window, div, relative,
+    StyleRefinement, Styled, Window, div,
 };
 
 use crate::StyledExt as _;
@@ -39,7 +39,7 @@ impl RenderOnce for DialogTitle {
             .id("dialog-title")
             .text_base()
             .font_semibold()
-            .line_height(relative(1.))
+            .line_height_auto()
             .refine_style(&self.style)
             .children(self.children)
     }

@@ -8,7 +8,7 @@ pub(crate) mod search;
 pub(crate) mod state;
 pub(crate) mod toc;
 pub(crate) mod toolbar;
-#[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+#[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
 mod tts;
 
 use std::rc::Rc;
@@ -18,7 +18,7 @@ use std::sync::atomic::AtomicU64;
 use gpui::{Entity, FocusHandle, ListState, Pixels, Point, Size, Subscription};
 use gpui_component::input::InputState;
 use gpui_component::tree::TreeState;
-use html_view_core::{ReadingPosition, SearchOptions};
+use skrift_column_paginator::{ReadingPosition, SearchOptions};
 use html_view_gpui::{HtmlPageSnapshot, HtmlView};
 use library_backend::LibraryClient;
 use library_model::BookLocator;
@@ -83,14 +83,14 @@ struct SearchState {
     options: SearchOptions,
     match_position: Option<(usize, usize)>,
     /// The matches the Search panel lists, each with its excerpt.
-    results: Vec<html_view_core::BookSearchMatch>,
+    results: Vec<skrift_column_paginator::BookSearchMatch>,
     rows: Vec<search::SearchRow>,
     list: ListState,
 }
 
 pub(crate) struct ReaderView {
     #[cfg(feature = "kobo")]
-    brightness: Entity<crate::shell::brightness::BrightnessControls>,
+    device_controls: Option<gpui::AnyView>,
     locator: BookLocator,
     library: Rc<LibraryClient>,
     book_title: String,
@@ -104,11 +104,11 @@ pub(crate) struct ReaderView {
     annotation_tree: crate::shell::annotation_tree::AnnotationTreeState,
     sidebar: SidebarState,
     chrome: crate::shell::chrome::ChromeState,
-    /// A wheel or trackpad burst is one gesture: every event postpones the turn,
+    /// A wheel burst is one gesture: every event postpones the turn,
     /// and once input goes quiet the net direction advances exactly one page.
-    /// Same shape as the browse paginator, so both surfaces feel alike.
     wheel_delta: f32,
     wheel_debounce: Option<gpui::Task<()>>,
+    touchpad: ui_components::TouchpadNavigation,
     /// How far the finger has travelled on both axes, while a touch swipe is
     /// in progress.
     touch_swipe: Option<gpui::Point<f32>>,
@@ -120,16 +120,18 @@ pub(crate) struct ReaderView {
     touch_swipe_from_edge: bool,
     search_input: Entity<InputState>,
     font_picker: Entity<font_picker::FontPicker>,
+    cjk_font_picker: Entity<font_picker::FontPicker>,
     search: SearchState,
     book: Arc<crate::book::NativeBook>,
+    cjk_font: Option<crate::cjk::CjkFont>,
     reading_position: Option<ReadingPosition>,
-    #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+    #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
     tts: crate::shell::tts::Narration,
-    #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+    #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
     tts_fragments: Vec<html::layout::ReadingTarget>,
-    #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+    #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
     tts_doc: usize,
-    #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+    #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
     tts_navigation_revision: u64,
     progress: ProgressState,
     marks: MarkSession,
@@ -139,7 +141,7 @@ pub(crate) struct ReaderView {
     annotation_note_input: Entity<InputState>,
     annotation_filter_input: Entity<InputState>,
     annotation_popup_anchor: Option<Point<Pixels>>,
-    footnote: Option<(html_view_core::FootnotePreview, html_view_gpui::PreparedNote)>,
+    footnote: Option<(skrift_column_paginator::FootnotePreview, html_view_gpui::PreparedNote)>,
     image_preview: Option<(String, Arc<gpui::Image>)>,
     context_sheet: Option<ContextActions<EpubContextCommand>>,
     focus: FocusHandle,

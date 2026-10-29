@@ -8,7 +8,6 @@ use client_platform_runtime::executor::sleep;
 use client_runtime::BackendError;
 use sync_common::DirId;
 
-use crate::import_workflow::Destinations;
 use crate::{DirectoryImport, ImportFailure, LibraryImport};
 
 impl LibraryImport {
@@ -18,55 +17,35 @@ impl LibraryImport {
         }
         let DirectoryImport { name, directories, mut files } = directory;
         let prepared = self.prepare_directory_import(&parent_id, create_root.then_some(name), directories).await?;
-        let parents = Destinations::new(prepared.directories);
+        let parents = prepared.directories;
         let mut failures = prepared.failures;
-        files.retain(|file| crate::import_workflow::supported(&file.path));
+        files.retain(|file| file.path.last().is_some_and(|name| book_model::BookFormat::from_file_name(name).is_some()));
         files.sort_by(|left, right| left.path.cmp(&right.path));
-        let mut batch = DirectBatch { cancelled, library: self, files: files.into_iter().map(Some).collect(), parents, failures: &mut failures };
-        crate::import_workflow::run(&mut batch).await?;
+        for file in files {
+            if cancelled() {
+                return Err(BackendError::message("directory import cancelled"));
+            }
+            let result = async {
+                let (name, parent) = file.path.split_last().ok_or("import file path is empty")?;
+                let parent_id = parents.get(parent).ok_or("Parent folder could not be imported")?;
+                // A book already at this name was imported before: continuing an
+                // import skips it without reading the file.
+                if self.database.has_book_named(parent_id, name).map_err(BackendError::operation)? {
+                    return Ok(());
+                }
+                let import = self.validate_import(parent_id, name)?;
+                // Browser storage is keyed by content, so the name needs no collision check.
+                let staged = self.assets.stage_browser_file(&file.source.into_file()?).await.map_err(BackendError::operation)?;
+                self.finish_import(import, staged).await.map(drop)
+            }
+            .await;
+            if let Err(error) = result {
+                failures.push(ImportFailure::file(&file.path, &error));
+            }
+        }
         Ok(failures)
     }
-}
 
-struct DirectBatch<'a> {
-    cancelled: &'a dyn Fn() -> bool,
-    library: &'a LibraryImport,
-    files: Vec<Option<crate::DirectoryImportFile>>,
-    parents: Destinations,
-    failures: &'a mut Vec<ImportFailure>,
-}
-impl crate::import_workflow::Batch for DirectBatch<'_> {
-    type Error = BackendError;
-    fn len(&self) -> usize {
-        self.files.len()
-    }
-    async fn process(&mut self, index: usize) -> Result<(), BackendError> {
-        if (self.cancelled)() {
-            return Err(BackendError::message("directory import cancelled"));
-        }
-        let file = self.files.get_mut(index).and_then(Option::take).ok_or_else(|| BackendError::message("import item is unavailable or already processed"))?;
-        let result = async {
-            let (parent_id, name) = self.parents.resolve(&file.path)?;
-            // A book already at this name was imported before: continuing an
-            // import skips it without reading the file.
-            if self.library.database.has_book_named(&parent_id, name).map_err(BackendError::operation)? {
-                return Ok(());
-            }
-            let import = self.library.validate_import(&parent_id, name)?;
-            // Browser storage is keyed by content, so the name needs no collision check.
-            let staged = self.library.assets.stage_browser_file(&file.source.into_file()?).await.map_err(BackendError::operation)?;
-            self.library.finish_import(import, staged).await.map(drop)
-        }
-        .await;
-        if let Err(error) = result {
-            let summary = crate::import_workflow::file_failure(&file.path, &error.to_string());
-            self.failures.push(summary);
-        }
-        Ok(())
-    }
-}
-
-impl LibraryImport {
     pub(crate) async fn prepare_directory_import(&self, parent_id: &DirId, name: Option<String>, mut directories: Vec<Vec<String>>) -> Result<crate::PreparedDirectoryImport, BackendError> {
         crate::import::validate_import_destination(&self.database, parent_id)?;
         // A folder of the same name in the same place is reused, so importing a
@@ -98,17 +77,17 @@ impl LibraryImport {
             }
             let Some((name, parent_path)) = path.split_last() else { continue };
             let Some(parent_id) = imported_directories.get(parent_path) else {
-                failures.push(crate::import_workflow::folder_failure(&path, "parent folder could not be imported"));
+                failures.push(ImportFailure::folder(&path, "parent folder could not be imported"));
                 continue;
             };
             match create(parent_id, name) {
                 Ok(directory) => {
                     imported_directories.insert(path, directory);
                 }
-                Err(error) => failures.push(crate::import_workflow::folder_failure(&path, &error.to_string())),
+                Err(error) => failures.push(ImportFailure::folder(&path, &error)),
             }
         }
 
-        Ok(crate::PreparedDirectoryImport { directories: imported_directories.into_iter().collect(), failures })
+        Ok(crate::PreparedDirectoryImport { directories: imported_directories, failures })
     }
 }

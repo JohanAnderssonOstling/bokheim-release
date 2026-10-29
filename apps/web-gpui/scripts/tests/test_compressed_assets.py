@@ -42,7 +42,13 @@ class CompressedAssetsTests(unittest.TestCase):
         index.write_bytes(b"<!doctype html><title>Compressed index</title>")
         compressor.compress_asset(index)
         (root / "plain.wasm").write_bytes(cls.payload)
+        (root / "google_cloud_login.html").write_text("<!doctype html><title>Google Drive</title>")
         (root / "reference.sqlite3.gz").write_bytes(gzip.compress(b"SQLite reference", mtime=0))
+        (root / "taxonomy.sqlite3").write_bytes(b"SQLite format 3\0" + b"prepared taxonomy" * 50)
+        compressor.compress_asset(root / "taxonomy.sqlite3")
+        cls.font_payload = b"\x00\x01\x00\x00" + b"font asset" * 50
+        (root / "fallback.ttf").write_bytes(cls.font_payload)
+        compressor.compress_asset(root / "fallback.ttf")
         cls.server = ThreadingHTTPServer(("127.0.0.1", 0), partial(QuietHandler, directory=root))
         cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True)
         cls.thread.start()
@@ -72,10 +78,39 @@ class CompressedAssetsTests(unittest.TestCase):
         self.assertEqual(headers["Vary"], "Accept-Encoding")
         self.assertEqual(headers["Cross-Origin-Embedder-Policy"], "require-corp")
 
+    def test_prepared_database_is_included_in_http_compression(self):
+        self.assertIn('.sqlite3', compressor.SUFFIXES)
+        status, headers, body = self.request('gzip', '/taxonomy.sqlite3')
+        self.assertEqual(status, 200)
+        self.assertEqual(headers['Content-Encoding'], 'gzip')
+        self.assertEqual(gzip.decompress(body), (Path(self.directory.name) / 'taxonomy.sqlite3').read_bytes())
+
+    def test_font_asset_keeps_its_mime_type_and_decoded_contents(self):
+        for encoding in ("br", "gzip"):
+            with self.subTest(encoding=encoding):
+                status, headers, body = self.request(encoding, "/fallback.ttf")
+                self.assertEqual(status, 200)
+                self.assertEqual(headers["Content-Type"], "font/ttf")
+                self.assertEqual(headers["Content-Encoding"], encoding)
+                if encoding == "br":
+                    decoded = subprocess.run(["brotli", "-d", "-c"], input=body, capture_output=True, check=True).stdout
+                else:
+                    decoded = gzip.decompress(body)
+                self.assertEqual(decoded, self.font_payload)
+
     def test_gzip_fallback(self):
         _, headers, body = self.request("gzip")
         self.assertEqual(headers["Content-Encoding"], "gzip")
         self.assertEqual(gzip.decompress(body), self.payload)
+
+    def test_google_login_relaxes_only_its_popup_headers(self):
+        status, headers, _ = self.request("identity", "/google_cloud_login.html")
+        self.assertEqual(status, 200)
+        self.assertEqual(headers["Cross-Origin-Opener-Policy"], "same-origin-allow-popups")
+        self.assertEqual(headers["Cross-Origin-Embedder-Policy"], "unsafe-none")
+        _, reader, _ = self.request("identity", "/")
+        self.assertEqual(reader["Cross-Origin-Opener-Policy"], "same-origin")
+        self.assertEqual(reader["Cross-Origin-Embedder-Policy"], "require-corp")
 
     def test_directory_index_uses_brotli(self):
         status, headers, body = self.request("br", "/")

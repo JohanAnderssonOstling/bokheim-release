@@ -1,10 +1,10 @@
 use ui_components::user_facing_error;
 
 use crate::BOOK_IMPORT_EXTENSIONS;
-use crate::services::import_failure_message;
+use crate::services::{ImportProgressToast, import_failure_message, notify_error, notify_warning};
 use gpui::{App, Context, Entity, FileDialogFilter, PathPromptOptions, WeakEntity, Window};
-use library_backend::{DownloadState, LibraryClient};
-use library_model::BookLocator;
+use library_backend::{BackendError, DownloadState, LibraryClient, ThumbnailResolution};
+use library_model::{BookCardRow, BookDetail, BookLocator, BookSource};
 use std::rc::Rc;
 use sync_common::{BookId, DirId};
 
@@ -25,11 +25,56 @@ pub(crate) struct LibraryContext {
     open_book: OpenBook,
     updates: Entity<LibraryUpdateBridge>,
     session: WeakEntity<LibrarySession>,
+    now_playing: Entity<crate::NowPlaying>,
+}
+
+/// A feed book's page: what the feed says of it. A feed knows no contents,
+/// credits, subjects or reading position.
+pub(crate) fn feed_detail(book: BookCardRow, description: String) -> BookDetail {
+    BookDetail {
+        book,
+        external_url: None,
+        audiobook_chapter_count: None,
+        description,
+        subjects: Vec::new(),
+        year: None,
+        source_directory_id: None,
+        path: Vec::new(),
+        authors: Vec::new(),
+        credits: Vec::new(),
+        current_entry: None,
+        current_target: None,
+        chapter_read_status: Default::default(),
+        toc: Vec::new(),
+    }
 }
 
 impl LibraryContext {
-    pub(crate) fn new(app: Rc<app::AppClient>, backend: Rc<LibraryClient>, open_book: OpenBook, updates: Entity<LibraryUpdateBridge>, session: WeakEntity<LibrarySession>) -> Self {
-        Self { app, backend, open_book, updates, session }
+    /// Resolves details identically for book pages and card overlays.
+    pub(crate) async fn book_detail(self, book: BookCardRow) -> Result<BookDetail, BackendError> {
+        match book.source {
+            BookSource::Library { content_hash } | BookSource::Catalog { content_hash } => self.backend.book_detail(content_hash).await,
+            BookSource::ExternalCatalog { entry, .. } => self.backend.external_catalog_detail(entry).await,
+            BookSource::Opds { entry, .. } => self.app.opds_description(entry).await.map(|description| feed_detail(book, description)),
+        }
+    }
+
+    /// Resolution selects cropped card art or the unmodified detail cover.
+    pub(crate) async fn book_cover(self, source: BookSource, resolution: ThumbnailResolution) -> Result<Option<Vec<u8>>, BackendError> {
+        match source {
+            BookSource::Opds { source, entry, .. } if resolution == ThumbnailResolution::HighDensity => self.app.opds_cover(source, entry, resolution.width()).await,
+            BookSource::Opds { source, entry, .. } => self.app.opds_card_cover(source, entry, resolution.width()).await,
+            BookSource::ExternalCatalog { entry, .. } => self.backend.external_catalog_cover(entry, resolution).await,
+            BookSource::Library { content_hash } | BookSource::Catalog { content_hash } => self.backend.thumbnail(content_hash, resolution).await,
+        }
+    }
+
+    pub(crate) fn new(app: Rc<app::AppClient>, backend: Rc<LibraryClient>, open_book: OpenBook, updates: Entity<LibraryUpdateBridge>, session: WeakEntity<LibrarySession>, now_playing: Entity<crate::NowPlaying>) -> Self {
+        Self { app, backend, open_book, updates, session, now_playing }
+    }
+
+    pub(crate) fn now_playing(&self) -> &Entity<crate::NowPlaying> {
+        &self.now_playing
     }
 
     pub(crate) fn app(&self) -> &app::AppClient {
@@ -67,29 +112,23 @@ impl LibraryContext {
         let selection = cx.prompt_for_files_with_filters(PathPromptOptions { files: true, directories: false, multiple: false, prompt: Some("Add book".into()) }, vec![FileDialogFilter { name: "Books".to_owned(), extensions }]);
         let library = self.backend.clone();
         cx.spawn(async move |view, cx| {
-            let result = match selection.await {
-                Ok(Ok(Some(files))) => match files.into_iter().next() {
-                    Some(file) => {
-                        let _progress = view.update_in(cx, |_, window, cx| crate::services::ImportProgressToast::start(window, cx)).ok();
-                        let result = {
-                            let mut source = file.source;
-                            source.path = vec![file.name.clone()];
-                            let directory = crate::directory_import(gpui::SelectedDirectory { local_path: None, name: file.name, directories: Vec::new(), files: vec![source] });
-                            library.import_directory(parent_id, directory, false).await.map(|failures| failures.iter().map(import_failure_message).collect::<Vec<_>>().join("\n"))
-                        };
-                        result
-                    }
-                    None => return,
-                },
-                Ok(Ok(None)) => return,
-                Ok(Err(error)) => Err(library_backend::BackendError::message(error.to_string())),
-                Err(error) => Err(library_backend::BackendError::message(error.to_string())),
+            let selected = selection.await.unwrap_or_else(|error| Err(error.into())).map(|files| files.and_then(|files| files.into_iter().next()));
+            let result = match selected {
+                Ok(Some(file)) => {
+                    let _progress = view.update_in(cx, |_, window, cx| ImportProgressToast::start(window, cx)).ok();
+                    let mut source = file.source;
+                    source.path = vec![file.name.clone()];
+                    let directory = crate::directory_import(gpui::SelectedDirectory { local_path: None, name: file.name, directories: Vec::new(), files: vec![source] });
+                    library.import_directory(parent_id, directory, false).await.map(|failures| failures.iter().map(import_failure_message).collect::<Vec<_>>().join("\n"))
+                }
+                Ok(None) => return,
+                Err(error) => Err(BackendError::message(error.to_string())),
             };
             let _ = view.update_in(cx, |_, window, cx| match result {
                 // Import failures already carry their own wording.
-                Ok(failures) if !failures.is_empty() => crate::services::notify_error("add-book-error", failures, window, cx),
+                Ok(failures) if !failures.is_empty() => notify_error("add-book-error", failures, window, cx),
                 Ok(_) => {}
-                Err(error) => crate::services::notify_error("add-book-error", format!("Could not add book. {}", user_facing_error(&error, "Please try again.")), window, cx),
+                Err(error) => notify_error("add-book-error", format!("Could not add book. {}", user_facing_error(&error, "Please try again.")), window, cx),
             });
         })
         .detach();
@@ -106,28 +145,25 @@ impl LibraryContext {
         let selection = cx.prompt_for_directories_with_filters(PathPromptOptions { files: false, directories: true, multiple: false, prompt: Some("Add folder".into()) }, vec![FileDialogFilter { name: "Books".to_owned(), extensions }]);
         let library = self.backend.clone();
         cx.spawn(async move |view, cx| {
-            let result = match selection.await {
-                Ok(Ok(Some(directories))) => match directories.into_iter().next() {
-                    Some(directory) => {
-                        let _progress = view.update_in(cx, |_, window, cx| crate::services::ImportProgressToast::start(window, cx)).ok();
-                        #[cfg(not(target_arch = "wasm32"))]
-                        let result = match directory.local_path.as_ref() {
-                            Some(path) => library.import_paths(parent_id, vec![path.clone()], false).await,
-                            None => library.import_directory(parent_id, crate::directory_import(directory), true).await,
-                        };
-                        #[cfg(target_arch = "wasm32")]
-                        let result = library.import_directory(parent_id, crate::directory_import(directory), true).await;
-                        result
-                    }
-                    None => return,
-                },
-                Ok(Ok(None)) => return,
-                Ok(Err(error)) => Err(library_backend::BackendError::message(error.to_string())),
-                Err(error) => Err(library_backend::BackendError::message(error.to_string())),
+            let selected = selection.await.unwrap_or_else(|error| Err(error.into())).map(|directories| directories.and_then(|directories| directories.into_iter().next()));
+            let result = match selected {
+                Ok(Some(directory)) => {
+                    let _progress = view.update_in(cx, |_, window, cx| ImportProgressToast::start(window, cx)).ok();
+                    #[cfg(not(target_arch = "wasm32"))]
+                    let result = match directory.local_path.as_ref() {
+                        Some(path) => library.import_paths(parent_id, vec![path.clone()], false).await,
+                        None => library.import_directory(parent_id, crate::directory_import(directory), true).await,
+                    };
+                    #[cfg(target_arch = "wasm32")]
+                    let result = library.import_directory(parent_id, crate::directory_import(directory), true).await;
+                    result
+                }
+                Ok(None) => return,
+                Err(error) => Err(BackendError::message(error.to_string())),
             };
             let _ = view.update_in(cx, |_, window, cx| match result {
-                Ok(failures) if !failures.is_empty() => crate::services::notify_warning("add-folder-warning", failures.iter().map(import_failure_message).collect::<Vec<_>>().join("\n"), window, cx),
-                Err(error) => crate::services::notify_error("add-folder-error", format!("Could not add folder. {}", user_facing_error(&error, "Please try again.")), window, cx),
+                Ok(failures) if !failures.is_empty() => notify_warning("add-folder-warning", failures.iter().map(import_failure_message).collect::<Vec<_>>().join("\n"), window, cx),
+                Err(error) => notify_error("add-folder-error", format!("Could not add folder. {}", user_facing_error(&error, "Please try again.")), window, cx),
                 _ => {}
             });
         })
@@ -139,14 +175,14 @@ impl LibraryContext {
     pub(crate) fn import_dropped_paths<C: 'static>(&self, parent_id: DirId, paths: Vec<std::path::PathBuf>, moving: bool, cx: &mut Context<C>) {
         let library = self.backend.clone();
         cx.spawn(async move |view, cx| {
-            let _progress = view.update_in(cx, |_, window, cx| crate::services::ImportProgressToast::start(window, cx)).ok();
+            let _progress = view.update_in(cx, |_, window, cx| ImportProgressToast::start(window, cx)).ok();
             let message = match library.import_paths(parent_id, paths, moving).await {
                 Ok(failures) if failures.is_empty() => None,
                 Ok(failures) => Some(failures.iter().map(import_failure_message).collect::<Vec<_>>().join("\n")),
                 Err(error) => Some(user_facing_error(&error, "Could not import the dropped files. Check that they are available and try again.").to_owned()),
             };
             if let Some(message) = message {
-                let _ = view.update_in(cx, |_, window, cx| crate::services::notify_warning("drop-import-warning", message, window, cx));
+                let _ = view.update_in(cx, |_, window, cx| notify_warning("drop-import-warning", message, window, cx));
             }
         })
         .detach();

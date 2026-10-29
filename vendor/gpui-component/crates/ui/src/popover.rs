@@ -1,14 +1,34 @@
 use gpui::{
-    Anchor, AnyElement, App, Bounds, Context, Deferred, DismissEvent, Div, ElementId,
+    Anchor, Anchored, AnyElement, App, Bounds, Context, Deferred, DismissEvent, Div, ElementId,
     EventEmitter, FocusHandle, Focusable, InteractiveElement as _, IntoElement, KeyBinding,
-    MouseButton, ParentElement, Pixels, Point, Render, RenderOnce, Stateful, StyleRefinement,
+    MouseButton, ParentElement, Pixels, Point, Render, RenderOnce, Stateful, StatefulInteractiveElement as _, StyleRefinement,
     Styled, Subscription, Window, anchored, deferred, div, prelude::FluentBuilder as _, px,
 };
 use std::{cell::Cell, rc::Rc};
 
 use crate::{
-    ElementExt, Selectable, StyledExt as _, actions::Cancel, global_state::GlobalState, v_flex,
+    ActiveTheme as _, ElementExt, Selectable, StyledExt as _, actions::Cancel, global_state::GlobalState, v_flex,
 };
+
+/// A viewport-centered touch overlay shared by popovers and manually placed menus.
+/// Content keeps its natural size until it reaches the safe viewport edges.
+pub fn centered_overlay(content: impl IntoElement, window: &Window, cx: &App) -> Anchored {
+    let viewport = window.viewport_size();
+    let safe = window.insets().effective();
+    anchored().position(gpui::point(safe.left, safe.top)).child(
+        div()
+            .w((viewport.width - safe.left - safe.right).max(px(1.)))
+            .h((viewport.height - safe.top - safe.bottom).max(px(1.)))
+            .flex()
+            .items_center()
+            .justify_center()
+            .p(px(8.))
+            .occlude()
+            .bg(cx.theme().overlay)
+            .on_mouse_down(MouseButton::Left, |_, _, cx| cx.stop_propagation())
+            .child(div().id("centered-popover-content").min_h_0().max_h_full().max_w_full().overflow_y_scroll().child(content)),
+    )
+}
 
 const CONTEXT: &str = "Popover";
 pub(crate) fn init(cx: &mut App) {
@@ -326,12 +346,15 @@ impl Popover {
         anchor: Anchor,
         position: Rc<Cell<Point<Pixels>>>,
         content: E,
-        _: &mut Window,
-        _: &mut App,
+        window: &mut Window,
+        cx: &mut App,
     ) -> Deferred
     where
         E: IntoElement + 'static,
     {
+        if cx.supports_touch_input() {
+            return deferred(centered_overlay(content, window, cx)).with_priority(1);
+        }
         deferred(
             anchored()
                 .snap_to_window_with_margin(px(8.))
@@ -461,7 +484,10 @@ impl RenderOnce for Popover {
                         }
                     })
                 })
-                .refine_style(&self.style);
+                .refine_style(&self.style)
+                .when(cx.supports_touch_input(), |this| {
+                    this.top_0().bottom_auto().left_0().right_auto()
+                });
 
         el.child(Self::render_popover(
             self.anchor,

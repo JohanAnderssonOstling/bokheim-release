@@ -30,15 +30,17 @@ pub(in crate::library) fn fixture(root: &std::path::Path, url: account_client::U
             database_locator: root.join("library.sqlite").to_string_lossy().into_owned(),
             default_sync_server_url: url,
             metadata_server_url: "http://127.0.0.1:1".into(),
-            google_books_api_key: None,
             storage: sync_common::storage::LibraryStorage::Bokheim,
             reset_cloud_presence: false,
         },
         account: account.library_account(),
         cloud: Default::default(),
         notification_interest: Default::default(),
+        root_failures: None,
     })
     .unwrap();
+    // Network fixtures use local peers/HTTP independently of device Wi-Fi.
+    session.torrents.set_connectivity(tokio::sync::watch::channel(true).1);
     let (commands, inbox) = async_channel::unbounded();
     let handle = LibraryHandle { id: session.id, commands };
     let actor = LibraryActor::new(session);
@@ -111,7 +113,6 @@ async fn saving_a_reading_position_refreshes_the_library_before_delayed_sync() {
         book_sort: BrowseBookSort::DefaultOrder,
         languages: Vec::new(),
         hide_finished: false,
-        include_direct_child_books: false,
     };
     assert!(actor.session.db.browse_contents(&query, false).unwrap().books.is_empty());
     actor.coordination.drain(&actor.session.events);
@@ -144,6 +145,15 @@ async fn saving_a_reading_position_refreshes_the_library_before_delayed_sync() {
     prepare_library_request(&mut actor, LibraryCommand::Ready(ReadyCommand::UpdateReadingPosition { content_hash: hash, position: "epubcfi(/6/4)".into(), progress: Some(20.0), entry: None })).unwrap();
     actor.coordination.drain(&actor.session.events);
     assert!(updates.is_empty(), "an unchanged position should not reload the library");
+}
+
+#[tokio::test]
+async fn signing_in_does_not_make_missing_local_only_books_browsable() {
+    let root = tempfile::tempdir().unwrap();
+    let (actor, _, _) = fixture(root.path(), "http://127.0.0.1:1".parse().unwrap());
+    assert!(!actor.session.downloaded_books_only().unwrap(), "a connected cloud-backed library includes remote books");
+    actor.session.db.set_asset_storage_policy(false, false).unwrap();
+    assert!(actor.session.downloaded_books_only().unwrap(), "local-only libraries require local bytes even when signed in");
 }
 
 #[tokio::test]
@@ -378,7 +388,7 @@ async fn mutations_publish_queued_events_before_acknowledgement() {
 async fn folder_replay_follows_renames_while_the_actor_serves() {
     let root = tempfile::tempdir().unwrap();
     let (actor, handle, inbox) = fixture(root.path(), "http://127.0.0.1:1".parse().unwrap());
-    actor.session.filesystem_scanning.set(false);
+    actor.session.scanning.set(false);
     let folder = actor.session.placement.create_directory(&sync_common::ROOT_DIR_ID, "Before").unwrap();
     library_placement::prepare_directory(&actor.session.assets, &actor.session.db, folder.id).await.unwrap();
     assert!(root.path().join("Before").is_dir());
@@ -431,7 +441,6 @@ async fn browser_download_import_appears_on_home_before_enrichment() {
         chip_sort: Default::default(),
         book_sort: Default::default(),
         hide_finished: false,
-        include_direct_child_books: false,
     };
     for downloaded_only in [false, true] {
         let page = actor.session.db.browse(&query, downloaded_only).unwrap();

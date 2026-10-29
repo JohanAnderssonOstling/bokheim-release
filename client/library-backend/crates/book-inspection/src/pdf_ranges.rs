@@ -62,6 +62,44 @@ mod tests {
             self.inner.seek(position)
         }
     }
+
+    #[test]
+    fn provider_pdf_inspection_keeps_metadata_without_reading_an_unrelated_large_stream_for_hashing() {
+        use book_model::BookFormat;
+        use content_address::BookId;
+        let mut document = Document::with_version("1.7");
+        let pages = document.new_object_id();
+        // A large unreferenced stream represents data that metadata extraction
+        // has no reason to request from a range-backed provider reader.
+        document.add_object(Stream::new(dictionary! { "Type" => "EmbeddedFile" }, vec![b'x'; 16 * 1024 * 1024]));
+        let text = document.add_object(Stream::new(Dictionary::new(), b"BT /F1 12 Tf (ISBN 978-0-8213-3827-8) Tj ET".to_vec()));
+        let font = document.add_object(dictionary! { "Type" => "Font", "Subtype" => "Type1", "BaseFont" => "Helvetica" });
+        let page = document.add_object(dictionary! {
+            "Type" => "Page", "Parent" => pages, "Contents" => text,
+            "Resources" => dictionary! { "Font" => dictionary! { "F1" => font } },
+            "MediaBox" => vec![0.into(),0.into(),600.into(),800.into()]
+        });
+        document.objects.insert(pages, dictionary! { "Type" => "Pages", "Count" => 1, "Kids" => vec![page.into()] }.into());
+        let root = document.add_object(dictionary! { "Type" => "Catalog", "Pages" => pages });
+        let info = document.add_object(dictionary! { "Title" => Object::string_literal("Provider PDF") });
+        document.trailer.set("Root", root);
+        document.trailer.set("Info", info);
+        let mut bytes = Vec::new();
+        document.save_to(&mut bytes).unwrap();
+        let byte_hash = BookId::from(blake3::hash(&bytes));
+        let identity = BookId::for_provider("google-drive", "account", "drive", "file");
+        let read = Arc::new(AtomicUsize::new(0));
+        let reader = Counted { inner: Cursor::new(bytes), read: read.clone() };
+        let inspected = crate::inspect_book_reader_with_hash(Path::new("Book.pdf"), BookFormat::Pdf, reader, Some(identity)).unwrap();
+        let pdf = inspected.pdf.unwrap();
+        assert!(pdf.valid_for(&identity.to_hex()));
+        assert!(!pdf.valid_for(&byte_hash.to_hex()));
+        assert_eq!(pdf.pages.len(), 1);
+        assert_eq!(inspected.metadata.title, "Provider PDF");
+        assert!(inspected.metadata.book.identifiers.iter().any(|id| id.canonical_value().as_deref() == Some("9780821338278")));
+        assert!(read.load(Ordering::Relaxed) < 1024 * 1024, "provider inspection requested {} bytes", read.load(Ordering::Relaxed));
+    }
+
     #[test]
     fn indirect_page_children_and_invalid_optional_info_remain_readable() {
         for invalid_info in [false, true] {

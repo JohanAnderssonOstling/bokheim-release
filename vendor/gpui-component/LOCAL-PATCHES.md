@@ -10,9 +10,12 @@ Only the UI, assets, and macros crates are included; workspace members are narro
 - Switches skip the animation and its completion timer under reduced motion.
 - Scrollbars bypass timer-driven fading under reduced motion, including per-widget auto-hide overrides.
 - `Button`'s `Ghost` variant reads the themed `button_hover`/`button_active` tokens for its hover and pressed fills, the same tokens `Default` already reads, instead of deriving an untheme-able tint from `secondary`. Every other variant already honored a theme's hover colors; `Ghost` silently didn't.
+- Disabled button colors and the default cursor apply after caller styling, so custom foregrounds, fills, and pointer cursors cannot make unavailable controls look enabled. Disabled selected controls retain their selection at half opacity. Caller geometry and enabled styling remain intact.
 - Context menus share an `OpenContextMenu` action bound to Ctrl+Enter, Shift+F10, and the Menu key. Generic menus and input clipboard menus reuse their right-click implementations and restore focus after dismissal; keyboard input menus keep the text selection.
 - Popup menus can keep multi-select filter choices open after selection; Escape and outside clicks still dismiss them. Ordinary action menus retain their default dismissal behavior.
+- Popup menus and application bottom sheets share `menu::choice_row` and its selection indicator: a solid accent fill with contrasting text and a trailing checkmark. Hover and keyboard focus use a soft highlight; disabled rows are dimmed, and checked rows retain their solid fill when hovered. Popup checks default to the right so leading action icons remain visible; explicit check-side overrides remain available.
 - Dialog backdrops retain their window dimensions when rendered from a narrow pane. Centered surfaces participate in flex layout; explicit top offsets use absolute positioning. The shared dialog layer paints at deferred priority 4, above the library switcher and its menus, so confirmations and update prompts remain visible and receive clicks.
+- Root text and compact widget labels use the local GPUI fork's `line_height_auto()` to measure font metrics and glyph ink, including descenders and fallback fonts. Checkbox labels keep intrinsic height instead of filling their wrapper. Text buttons retain their normal minimum height and use spare vertical space before growing; explicit paragraph line heights still override intrinsic sizing.
 
 Kobo forces reduced motion through its GPUI platform capability. Other platforms retain the existing policy.
 
@@ -45,6 +48,10 @@ The rich-text HTML parser uses `html5ever` 0.39 and the matching `markup5ever_rc
 
 - Text inputs preview mobile page swipes live and settle from the gesture’s original offset, so release does not add the drag distance a second time. Cancelled swipes restore that offset and stay within the input.
 - Window text selection stops when pointer movement reports that the left mouse button is released, including after a consumed release or a release outside the window.
-- Browser popup menus default to touch-sized rows when GPUI reports a coarse primary pointer. Explicit menu overrides remain available; native and Kobo defaults are unchanged.
+- Popup menus use touch-sized rows when GPUI reports a touch primary input, including native mobile and Kobo.
 - Inputs report their full control bounds to platform text handlers, including padding, while retaining text bounds for caret and IME candidate positioning.
 - `ListItem` draws no hover of its own, and trees no longer mark their items selected or secondary-selected. The tree's only caller, the reader's contents sidebar, draws hover and the keyboard cursor in its row from the `selected` flag `render_item` receives; the item's own fills laid a second hover under the row and left a washed, outlined selection behind every click.
+
+- Popovers, dropdowns, and context menus use centered overlays on touch platforms, including Kobo; native touch menus also use larger rows. Scrollable menus keep their intrinsic height up to the safe viewport edges instead of the previous half-window/450 px limit.
+
+- Password reveal controls are persistent toggles with keyboard focus and Show/Hide tooltips. The input state owns visibility; setting its mask does not require a window.

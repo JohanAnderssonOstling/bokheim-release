@@ -6,6 +6,11 @@
 
 extern crate core;
 
+#[cfg(all(target_arch = "wasm32", feature = "browser-cloud-checks"))]
+pub use library::cloud::browser_checks::run as check_browser_cloud;
+#[cfg(all(target_arch = "wasm32", feature = "browser-cloud-checks"))]
+pub use library::cloud::browser_checks::install_taxonomy as prepare_browser_cloud_checks;
+
 pub use client_platform_runtime::executor;
 
 pub mod asset_store;

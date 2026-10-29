@@ -1,34 +1,14 @@
 //! Painted covers survive between frames even after the browse cache evicts
 //! them. GPUI releases this state when the cover leaves the rendered tree.
 
-use std::sync::Arc;
-
-use gpui::prelude::*;
-use gpui::{RenderImage, canvas};
-
-pub(super) fn retain_visible_cover(image: Arc<RenderImage>) -> impl IntoElement {
-    canvas(
-        |_, _, _| (),
-        move |bounds, _, window, _| {
-            if bounds.intersects(&window.content_mask().bounds) {
-                window.with_global_id("visible-cover-pixels".into(), |id, window| {
-                    window.with_element_state(id, |_: Option<Arc<RenderImage>>, _| ((), image));
-                });
-            }
-        },
-    )
-    .absolute()
-    .size_full()
-}
-
 #[cfg(test)]
 mod tests {
     use super::super::cover_cache::CoverCache;
-    use super::*;
-    use gpui::{Context, Render, TestAppContext, Window, div, px, size};
+    use gpui::{Context, Render, RenderImage, TestAppContext, Window, div, prelude::*, px, size};
     use image::{Frame, RgbaImage};
     use library_backend::ThumbnailResolution;
-    use std::sync::Weak;
+    use std::sync::{Arc, Weak};
+    use ui_components::{BrowserTheme, book_cover_with_image};
 
     struct CoverFixture {
         image: Weak<RenderImage>,
@@ -42,7 +22,7 @@ mod tests {
                 .relative()
                 .size_full()
                 .overflow_hidden()
-                .when_some(self.image.upgrade(), |root, image| root.child(div().id("cover").absolute().left(px(if self.clipped { 200.0 } else { 0.0 })).size(px(100.0)).child(retain_visible_cover(image))))
+                .when_some(self.image.upgrade(), |root, image| root.child(book_cover_with_image(image, 1.0, 1.0, None, BrowserTheme::default()).id("cover").absolute().left(px(if self.clipped { 200.0 } else { 0.0 })).size(px(100.0))))
         }
     }
 
@@ -84,5 +64,34 @@ mod tests {
         window.update(cx, |_, _, cx| cx.notify()).unwrap();
         drop(image);
         assert!(weak.upgrade().is_none());
+    }
+
+    #[gpui::test]
+    fn leaving_browse_trims_cached_pixels_after_the_outgoing_frame_releases_them(cx: &mut TestAppContext) {
+        use crate::library::widgets::evict_covers;
+        use gpui::VisualTestContext;
+        use gpui_image_eviction::track_image;
+
+        let image = Arc::new(RenderImage::new(vec![Frame::new(RgbaImage::new(2, 2))]));
+        let weak = Arc::downgrade(&image);
+        cx.update(|cx| track_image(&image, cx));
+        let window = cx.open_window(size(px(100.0), px(100.0)), |_, _| CoverFixture { image: weak.clone(), clipped: false });
+        drop(image);
+        let mut visual = VisualTestContext::from_window(window.into(), cx);
+        visual.update(|_, cx| evict_covers(cx));
+        assert!(visual.update(|window, cx| window.simulate_next_frame(cx)) > 0);
+        assert!(visual.update(|window, cx| window.simulate_next_frame(cx)) > 0);
+        assert!(weak.upgrade().is_some(), "a still-visible frame protects its cover");
+        window
+            .update(cx, |view, _, cx| {
+                view.image = Weak::new();
+                cx.notify();
+            })
+            .unwrap();
+        visual.update(|_, cx| evict_covers(cx));
+        assert!(visual.update(|window, cx| window.simulate_next_frame(cx)) > 0);
+        assert!(visual.update(|window, cx| window.simulate_next_frame(cx)) > 0);
+        cx.run_until_parked();
+        assert!(weak.upgrade().is_none(), "transition trimming must not wait for new image pressure");
     }
 }

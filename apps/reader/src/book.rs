@@ -8,6 +8,7 @@ mod tests {
     use base64::{Engine, engine::general_purpose::STANDARD};
     use book_content::BookFormat;
     use futures_lite::future::block_on;
+    use html::pipeline::{DocumentFactory, ResourceContext};
     use html::resources::{ImagePipeline, ImageService, InlineJobSpawner};
     use image::{DynamicImage, ImageFormat, Rgb, RgbImage};
     use std::{
@@ -28,16 +29,15 @@ mod tests {
         let book = NativeBook::from_reader(BookFormat::Fb2, Cursor::new(xml.into_bytes())).unwrap();
         let uri = &book.document_uris()[0];
         let source = String::from_utf8(book.provider.read_bytes(uri).unwrap()).unwrap();
-        let mut factory = html::pipeline::DocumentFactory::new();
-        factory.set_resource_context(book.provider.clone(), uri);
-        let document = factory.parse_to_dom(&source);
+        let mut factory = DocumentFactory::new();
+        let document = factory.with_resources(ResourceContext::new(book.provider.as_ref(), uri)).parse_to_dom(&source);
         assert_eq!(document.images().len(), 1);
         let loader = book.image_loader(|task| {
             std::thread::spawn(move || block_on(task));
         });
         let service = ImageService::with_loader(loader, Arc::new(InlineJobSpawner), ImageService::DEFAULT_BYTE_BUDGET);
-        let mut pipeline = ImagePipeline::with_service(Arc::new(document.images().to_vec()), service);
-        pipeline.ensure_window(&HashSet::from([0]));
+        let mut pipeline = ImagePipeline::with_service(service);
+        pipeline.ensure_window(document.images(), &HashSet::from([0]));
         let deadline = Instant::now() + Duration::from_secs(2);
         while pipeline.get_decoded(0).is_none() && Instant::now() < deadline {
             pipeline.poll();

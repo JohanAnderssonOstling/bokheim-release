@@ -16,6 +16,7 @@ impl Drop for BlobUrl {
     }
 }
 
+use wasm_callback::future_to_promise_aborting;
 /// Keeps a local media URL and the storage generation it references alive
 /// until playback is released.
 pub struct LocalMediaLease {
@@ -38,8 +39,7 @@ pub async fn local_track_media_lease(file: FileReader, tracks: &[book_model::Aud
         if !track.valid() || track.offset.checked_add(track.length).is_none_or(|end| end > archive.size() as u64) {
             return Err("Downloaded audiobook has an invalid track index".into());
         }
-        let audio = archive.slice_with_f64_and_f64_and_content_type(track.offset as f64, (track.offset + track.length) as f64, "audio/mpeg")
-            .map_err(|error| format!("Could not open downloaded track: {error:?}"))?;
+        let audio = archive.slice_with_f64_and_f64_and_content_type(track.offset as f64, (track.offset + track.length) as f64, "audio/mpeg").map_err(|error| format!("Could not open downloaded track: {error:?}"))?;
         urls.push(BlobUrl::new(&audio).map_err(|error| format!("Could not create track URL: {error:?}"))?);
     }
     let values = urls.iter().map(|url| url.url().to_owned()).collect();
@@ -53,7 +53,7 @@ impl AsyncCallback {
         F: FnMut() -> Fut + 'static,
         Fut: std::future::Future<Output = Result<JsValue, JsValue>> + 'static,
     {
-        Self(Closure::own_aborting(move || wasm_bindgen_futures::future_to_promise(callback())))
+        Self(Closure::own_aborting(move || future_to_promise_aborting(callback())))
     }
     pub fn value(&self) -> JsValue {
         self.0.as_ref().clone()

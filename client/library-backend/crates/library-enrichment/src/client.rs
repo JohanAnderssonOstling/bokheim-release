@@ -1,23 +1,8 @@
+use http_response::BodyReadError;
+use library_runtime::executor;
 use std::fmt;
-#[cfg(not(target_arch = "wasm32"))]
 use std::time::Duration;
 use url::Url;
-
-#[cfg(target_arch = "wasm32")]
-pub(crate) async fn browser_delay(milliseconds: u32) {
-    use wasm_bindgen::prelude::*;
-    #[wasm_bindgen]
-    extern "C" {
-        #[wasm_bindgen(catch, js_namespace = globalThis, js_name = setTimeout)]
-        fn set_timeout(callback: &js_sys::Function, milliseconds: u32) -> Result<i32, JsValue>;
-    }
-    let delay = js_sys::Promise::new(&mut |resolve, reject| {
-        if let Err(error) = set_timeout(&resolve, milliseconds) {
-            let _ = reject.call1(&JsValue::UNDEFINED, &error);
-        }
-    });
-    let _ = wasm_bindgen_futures::JsFuture::from(delay).await;
-}
 
 #[derive(Clone)]
 pub struct MetadataClient {
@@ -75,34 +60,14 @@ impl MetadataClient {
     }
 
     pub(crate) async fn with_deadline<T>(milliseconds: u32, operation: impl std::future::Future<Output = Result<T, MetadataClientError>>) -> Result<T, MetadataClientError> {
-        #[cfg(not(target_arch = "wasm32"))]
-        {
-            tokio::time::timeout(Duration::from_millis(u64::from(milliseconds)), operation).await.map_err(|_| MetadataClientError::new("metadata request timed out"))?
-        }
-        #[cfg(target_arch = "wasm32")]
-        {
-            use futures_util::future::{select, Either};
-            match select(Box::pin(operation), Box::pin(browser_delay(milliseconds))).await {
-                Either::Left((result, _)) => result,
-                Either::Right(_) => Err(MetadataClientError::new("metadata request timed out")),
-            }
-        }
+        executor::timeout(Duration::from_millis(u64::from(milliseconds)), operation).await.map_err(|_| MetadataClientError::new("metadata request timed out"))?
     }
 
     pub(crate) async fn response_bytes(response: reqwest::Response, max_bytes: usize) -> Result<Vec<u8>, MetadataClientError> {
-        if response.content_length().is_some_and(|length| length > max_bytes as u64) {
-            return Err(MetadataClientError::new("metadata response is too large"));
-        }
-        let mut stream = response.bytes_stream();
-        let mut bytes = Vec::new();
-        while let Some(chunk) = stream.next().await {
-            let chunk = chunk.map_err(|error| MetadataClientError::new(error.without_url()))?;
-            if bytes.len().saturating_add(chunk.len()) > max_bytes {
-                return Err(MetadataClientError::new("metadata response is too large"));
-            }
-            bytes.extend_from_slice(&chunk);
-        }
-        Ok(bytes)
+        http_response::read(response, max_bytes).await.map_err(|error| match error {
+            BodyReadError::Http(error) => MetadataClientError::new(error.without_url()),
+            BodyReadError::TooLarge { .. } => MetadataClientError::new("metadata response is too large"),
+        })
     }
 
     fn endpoint(&self, path: &str) -> Result<Url, MetadataClientError> {
@@ -110,4 +75,40 @@ impl MetadataClient {
     }
 }
 
-use futures_util::StreamExt;
+#[cfg(all(test, not(target_arch = "wasm32")))]
+mod tests {
+    use super::*;
+    use std::{cell::Cell, future::pending};
+
+    struct ResponseBody<'a>(&'a Cell<bool>);
+    impl Drop for ResponseBody<'_> {
+        fn drop(&mut self) {
+            self.0.set(true);
+        }
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn a_deadline_releases_the_pending_response_body() {
+        let released = Cell::new(false);
+        let error = MetadataClient::with_deadline(10, async {
+            let _body = ResponseBody(&released);
+            pending::<Result<(), MetadataClientError>>().await
+        })
+        .await
+        .unwrap_err();
+        assert_eq!(error.to_string(), "metadata request timed out");
+        assert!(released.get());
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn cancelling_a_lookup_releases_its_pending_response_body() {
+        let released = Cell::new(false);
+        let mut lookup = Box::pin(MetadataClient::with_deadline(120_000, async {
+            let _body = ResponseBody(&released);
+            pending::<Result<(), MetadataClientError>>().await
+        }));
+        assert!(futures_util::poll!(&mut lookup).is_pending());
+        drop(lookup);
+        assert!(released.get());
+    }
+}

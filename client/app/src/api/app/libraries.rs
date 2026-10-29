@@ -5,7 +5,13 @@ use sync_common::LibraryId;
 use tokio::sync::watch;
 
 impl AppClient {
+    pub async fn copy_library_storage(&self, library_id: LibraryId, bokheim: bool) -> Result<LibraryEntry, BackendError> {
+        self.request(AppCommand::CopyLibraryStorage { library_id, bokheim }).await
+    }
+
     pub async fn google_cloud_accounts(&self) -> Result<Vec<crate::GoogleAccount>, BackendError> { self.request(AppCommand::GoogleCloudAccounts).await }
+    pub async fn google_cloud_web_client_id(&self) -> Result<String, BackendError> { self.request(AppCommand::GoogleCloudWebClientId).await }
+    pub async fn connect_google_cloud_access_grant(&self, grant: crate::GoogleAccessGrant) -> Result<crate::GoogleAccount, BackendError> { self.request(AppCommand::ConnectGoogleCloudAccessGrant { grant }).await }
     pub async fn begin_google_cloud_login(&self) -> Result<crate::CloudLoginRequest, BackendError> { self.request(AppCommand::BeginGoogleCloudLogin).await }
     pub async fn wait_google_cloud_login(&self, attempt_id: uuid::Uuid) -> Result<crate::GoogleAccount, BackendError> { self.request(AppCommand::WaitGoogleCloudLogin { attempt_id }).await }
     pub async fn disconnect_google_cloud_account(&self, account: crate::ProviderId) -> Result<(), BackendError> { self.request(AppCommand::DisconnectGoogleCloudAccount { account }).await }

@@ -1,6 +1,6 @@
 use gpui::{
     AnyElement, App, InteractiveElement as _, IntoElement, ParentElement, RenderOnce,
-    StatefulInteractiveElement, StyleRefinement, Styled, Window, div, relative,
+    StatefulInteractiveElement, StyleRefinement, Styled, Window, div,
 };
 
 use crate::{
@@ -47,7 +47,7 @@ impl RenderOnce for DialogFooter {
         h_flex()
             .gap_2()
             .justify_end()
-            .line_height(relative(1.))
+            .line_height_auto()
             .rounded_b(cx.theme().radius_lg)
             .refine_style(&self.style)
             .children(self.children)

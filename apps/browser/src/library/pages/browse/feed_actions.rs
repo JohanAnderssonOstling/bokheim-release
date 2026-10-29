@@ -7,19 +7,25 @@
 use ui_components::user_facing_error;
 
 use gpui::prelude::*;
-use gpui::{AnyElement, App, Context, Entity, EventEmitter, Focusable, MouseButton, SharedString, Subscription, Window, div, px, rems};
-use gpui_component::button::ButtonVariants;
+use gpui::{AnyElement, App, Context, Entity, EventEmitter, Focusable, SharedString, Subscription, Window, div, px, rems};
 use gpui_component::input::{Input, InputEvent, InputState};
 use gpui_component::{Disableable, IconName};
-use library_model::{AddOpdsFeedResult, OpdsCredentials, OpdsSourceId, StoreId};
+use library_model::{AddOpdsFeedResult, BrowseLocation, OpdsCredentials, OpdsSourceId, StoreId};
 use ui_components as components;
 
 use crate::library::services::LibraryContext;
+use crate::library::widgets::SelectionAction;
 use crate::services::{notify_error, notify_info};
 
 /// A feed or store was added or removed, or credentials saved for a feed:
 /// what the page lists from them is stale.
 pub(crate) struct FeedsChanged;
+
+#[derive(Clone, Copy)]
+enum CatalogSource {
+    Feed(OpdsSourceId),
+    Store(StoreId),
+}
 
 struct FeedDialog {
     /// The feed being signed in to, or `None` when adding one.
@@ -178,16 +184,29 @@ impl FeedActions {
         .detach();
     }
 
-    pub(crate) fn remove(&mut self, id: OpdsSourceId, name: String, window: &mut Window, cx: &mut Context<Self>) {
+    /// Only a feed's root chip or a saved store can remove its source.
+    pub(super) fn removal_action(actions: Entity<Self>, location: BrowseLocation, name: String) -> Option<SelectionAction> {
+        let (source, label) = match location {
+            BrowseLocation::Opds { source, page: None } => (CatalogSource::Feed(source), "Remove feed"),
+            BrowseLocation::Store(id) => (CatalogSource::Store(id), "Remove store"),
+            _ => return None,
+        };
+        Some(SelectionAction::new("remove-source", label, components::navigation_icon(components::NavigationIcon::Trash2), move |window, cx| actions.update(cx, |actions, cx| actions.remove(source, name.clone(), window, cx))))
+    }
+
+    fn remove(&mut self, source: CatalogSource, name: String, window: &mut Window, cx: &mut Context<Self>) {
         let app = self.ui.app().clone();
         cx.spawn_in(window, async move |actions, cx| {
-            let result = app.remove_opds_feed(id).await;
+            let (result, success_id, error_id) = match source {
+                CatalogSource::Feed(id) => (app.remove_opds_feed(id).await, "feed-removed", "feed-remove-error"),
+                CatalogSource::Store(id) => (app.remove_store(id).await, "store-removed", "store-remove-error"),
+            };
             let _ = actions.update_in(cx, |_, window, cx| match result {
                 Ok(()) => {
-                    notify_info("feed-removed", format!("Removed “{name}”"), window, cx);
+                    notify_info(success_id, format!("Removed “{name}”"), window, cx);
                     cx.emit(FeedsChanged);
                 }
-                Err(error) => notify_error("feed-remove-error", format!("Could not remove “{name}”. {}", user_facing_error(&error, "Please try again.")), window, cx),
+                Err(error) => notify_error(error_id, format!("Could not remove “{name}”. {}", user_facing_error(&error, "Please try again.")), window, cx),
             });
         })
         .detach();
@@ -215,32 +234,17 @@ impl FeedActions {
         .detach();
     }
 
-    pub(crate) fn remove_store(&mut self, id: StoreId, name: String, window: &mut Window, cx: &mut Context<Self>) {
-        let app = self.ui.app().clone();
-        cx.spawn_in(window, async move |actions, cx| {
-            let result = app.remove_store(id).await;
-            let _ = actions.update_in(cx, |_, window, cx| match result {
-                Ok(()) => {
-                    notify_info("store-removed", format!("Removed “{name}”"), window, cx);
-                    cx.emit(FeedsChanged);
-                }
-                Err(error) => notify_error("store-remove-error", format!("Could not remove “{name}”. {}", user_facing_error(&error, "Please try again.")), window, cx),
-            });
-        })
-        .detach();
-    }
-
-    pub(crate) fn render_trigger(actions: Entity<Self>, cx: &App) -> AnyElement {
-        components::outlined_icon_button("catalog-add-feed", "Add OPDS feed", IconName::Plus, components::browser_theme(cx)).on_click(move |_, window, cx| actions.update(cx, |actions, cx| actions.open_add(window, cx))).into_any_element()
+    pub(crate) fn render_trigger(actions: Entity<Self>) -> AnyElement {
+        components::outlined_icon_button("catalog-add-feed", "Add OPDS feed", IconName::Plus).on_click(move |_, window, cx| actions.update(cx, |actions, cx| actions.open_add(window, cx))).into_any_element()
     }
 
     /// Opens the browser directly where a browser window is available.
     pub(crate) fn render_store_trigger(actions: Entity<Self>, cx: &App) -> Option<AnyElement> {
-        actions.read(cx).stores_available.then(|| {
-            components::outlined_icon_button("catalog-open-browser", "Open browser", IconName::Globe, components::browser_theme(cx))
+        actions.read(cx).stores_available.then(||
+            components::outlined_icon_button("catalog-open-browser", "Open browser", IconName::Globe)
                 .on_click(move |_, window, cx| actions.update(cx, |actions, cx| actions.open_browser(window, cx)))
                 .into_any_element()
-        })
+        )
     }
 
     /// What a feed page that refused this device shows in place of its
@@ -281,14 +285,8 @@ impl FeedActions {
             .disabled(busy || !ready)
             .on_click(move |_, window, cx| submit_actions.update(cx, |actions, cx| actions.submit(window, cx)));
         let input_height = rems(components::topbar_action_height_rem());
-        let panel = components::modal_surface(theme)
+        let panel = components::modal_form_surface(theme)
             .w(px(420.0))
-            .max_w_full()
-            .p(px(components::SPACE_MD))
-            .flex()
-            .flex_col()
-            .gap(px(components::SPACE_MD))
-            .on_mouse_down(MouseButton::Left, |_, _, cx| cx.stop_propagation())
             .child(div().text_size(rems(1.125)).text_color(theme.text).child(title))
             .when(adding, |panel| panel.child(Input::new(&url).h(input_height)).child(Input::new(&name).h(input_height)))
             .when(authenticating, |panel| {
@@ -300,13 +298,48 @@ impl FeedActions {
             })
             .children(error.map(|error| components::error_text(theme).child(error)))
             .child(div().flex().items_center().justify_end().gap(px(components::SPACE_SM)).child(cancel).child(submit));
-        Some(
-            gpui::deferred(components::anchor_to_window(
-                components::modal_overlay().occlude().child(components::modal_scrim("feed-dialog-scrim", theme).on_click(move |_, _, cx| dismiss_actions.update(cx, |actions, cx| actions.dismiss_modal(cx)))).child(panel),
-                window,
-            ))
-            .with_priority(2)
-            .into_any_element(),
-        )
+        let scrim = components::modal_scrim("feed-dialog-scrim", theme).on_click(move |_, _, cx| dismiss_actions.update(cx, |actions, cx| actions.dismiss_modal(cx)));
+        Some(gpui::deferred(components::centered_modal(scrim, panel, window)).with_priority(2).into_any_element())
+    }
+}
+
+#[cfg(all(test, not(target_arch = "wasm32"), not(feature = "kobo")))]
+mod tests {
+    use super::*;
+    use crate::navigation::LibrarySession;
+    use gpui::{Render, TestAppContext};
+    use gpui_component::Root;
+    use uuid::Uuid;
+
+    struct FeedFixture(Entity<FeedActions>);
+
+    impl Render for FeedFixture {
+        fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+            div().size_full().children(FeedActions::render_overlay(self.0.clone(), window, cx))
+        }
+    }
+
+    #[gpui::test]
+    async fn removal_actions_refresh_the_catalog_and_keep_source_feedback_separate(cx: &mut TestAppContext) {
+        let _backend = crate::test_support::BACKEND.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
+        let (_directory, _session, library) = LibrarySession::test_context(cx).await;
+        let actions = cx.new(|cx| FeedActions::new(library, cx));
+        let (sent, received) = async_channel::unbounded();
+        let _subscription = cx.update(|cx| cx.subscribe(&actions, move |_, _: &FeedsChanged, _| sent.try_send(()).unwrap()));
+        let (root, visual) = cx.add_window_view(|window, cx| {
+            let content = cx.new(|_| FeedFixture(actions.clone()));
+            Root::new(content, window, cx)
+        });
+        let id = Uuid::new_v4();
+        // Deletion is idempotent for already-removed sources. Use one ID in
+        // both namespaces and repeat the feed command to check toast replacement.
+        let feed = BrowseLocation::Opds { source: id, page: None };
+        for (location, notifications) in [(feed, 1), (BrowseLocation::Store(id), 2), (feed, 2)] {
+            let action = FeedActions::removal_action(actions.clone(), location, "Source".into()).unwrap();
+            visual.update(|window, cx| action.run(window, cx));
+            received.recv().await.unwrap();
+            root.read_with(visual, |root, cx| assert_eq!(root.notification.read(cx).notifications().len(), notifications));
+            assert!(received.is_empty(), "one completed removal must request one catalog refresh");
+        }
     }
 }

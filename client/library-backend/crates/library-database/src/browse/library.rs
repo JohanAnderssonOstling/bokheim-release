@@ -5,7 +5,7 @@ use crate::browse::{DetailSql, invalid_integer_column, invalid_text_column};
 use crate::{AudiobookSql, Database, DatabaseError, chapters_from_navigation};
 use book_model::{AUTHOR_MARC_RELATOR_CODE, AuthorId, NARRATOR_MARC_RELATOR_CODE};
 use library_model::{BookDetail, BookDetailAuthor, BookTocEntry};
-use library_replica::{EnrichmentResult, LibraryStateEntry};
+use library_replica::LibraryStateEntry;
 use sync_common::{BookId, wire};
 
 impl Database {
@@ -24,10 +24,12 @@ impl Database {
             })?;
             // A book the library does not hold may be in the catalog.
             let Some((id, audiobook_chapter_count, record)) = found else {
-                return super::catalog::detail(content_hash)?.ok_or_else(|| rusqlite::Error::QueryReturnedNoRows.into());
+                let detail: Result<BookDetail, DatabaseError> = super::catalog::detail(content_hash)?.ok_or_else(|| rusqlite::Error::QueryReturnedNoRows.into());
+                return self.with_catalog_subjects(detail?);
             };
             let year = year_from_record(record)?;
             let book = self.load_cards(&[id])?.pop().ok_or(rusqlite::Error::QueryReturnedNoRows)?;
+            let subjects = self.book_subjects(super::subjects::Books::Library, id)?;
 
             // Empty when the book has no stored blurb.
             let mut description = String::new();
@@ -68,12 +70,12 @@ impl Database {
                 Ok(())
             })?;
 
-            let mut stored_toc: Option<String> = None;
+            let mut stored_toc: Option<Vec<u8>> = None;
             self.connection.book_toc_select(hash, |row| {
                 stored_toc = row.get(0)?;
                 Ok(())
             })?;
-            let mut toc = stored_toc.map(|json| serde_json::from_str::<Vec<BookTocEntry>>(&json).map_err(|error| DatabaseError::message(format!("stored table of contents is not readable: {error}")))).transpose()?.unwrap_or_default();
+            let mut toc = stored_toc.map(|bytes| crate::stored_document::decode::<Vec<BookTocEntry>>(&bytes)).transpose()?.unwrap_or_default();
             for (index, entry) in toc.iter_mut().enumerate() {
                 if book_model::audiobook_toc_position(&entry.target).is_some() {
                     entry.title = book_model::audiobook_chapter_display_title(&entry.title, index + 1);
@@ -83,14 +85,14 @@ impl Database {
             // An audiobook's position is a time; the current entry is the chapter
             // that contains it. Other formats store the entry the reader resolved.
             let (current_entry, current_target) = if book.format_category == library_model::LibraryFileTypeFilter::Audiobook {
-                let mut chapters: Option<(String, i64)> = None;
+                let mut chapters: Option<(Vec<u8>, i64)> = None;
                 self.connection.audiobook_chapters_select(hash, |row| {
                     chapters = Some((row.get(0)?, row.get(1)?));
                     Ok(())
                 })?;
                 let chapter = match (self.audiobook_reading_position(content_hash)?, chapters) {
-                    (Some(position), Some((toc_json, duration_ms))) => {
-                        let entries: Vec<BookTocEntry> = serde_json::from_str(&toc_json).map_err(|error| DatabaseError::message(format!("stored table of contents is not readable: {error}")))?;
+                    (Some(position), Some((toc, duration_ms))) => {
+                        let entries: Vec<BookTocEntry> = crate::stored_document::decode(&toc)?;
                         chapters_from_navigation(&entries, duration_ms.max(0) as u64).into_iter().find(|chapter| position >= chapter.start_ms && position < chapter.end_ms)
                     }
                     _ => None,
@@ -113,7 +115,7 @@ impl Database {
 
             let mut chapter_read_status = self.chapter_read_status(content_hash)?;
             chapter_read_status.update_parents(&toc);
-            Ok(BookDetail { book, external_url: None, audiobook_chapter_count, description, year, source_directory_id, path, authors, credits, current_entry, current_target, toc, chapter_read_status })
+            Ok(BookDetail { book, external_url: None, audiobook_chapter_count, description, subjects, year, source_directory_id, path, authors, credits, current_entry, current_target, toc, chapter_read_status })
         })
     }
 }
@@ -124,10 +126,7 @@ impl Database {
 fn year_from_record(record: Option<Vec<u8>>) -> Result<Option<i32>, DatabaseError> {
     let Some(record) = record else { return Ok(None) };
     match wire::decode::<LibraryStateEntry>(&record, wire::MAX_DECODED_REQUEST_BYTES).map_err(DatabaseError::operation)? {
-        LibraryStateEntry::BookAdd { value, .. } => Ok(value.record.book.year.or(match &value.enrichment {
-            Some(EnrichmentResult::Found { record, .. }) => record.book.year,
-            _ => None,
-        })),
+        LibraryStateEntry::BookAdd { value, .. } => Ok(value.record.book.year),
         _ => Err(DatabaseError::message("a book's year requires an immutable book addition")),
     }
 }

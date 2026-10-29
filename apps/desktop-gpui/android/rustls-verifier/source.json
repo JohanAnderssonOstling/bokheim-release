@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/rustls/rustls-platform-verifier",
+  "commit": "252e25161a91af476cbea620e29d277592d27ec7",
+  "android_version": "0.2.0",
+  "file": "src/main/java/org/rustls/platformverifier/CertificateVerifier.kt",
+  "sha256": "251031aec27214398328c4755744cd3274c54e9d51e10952712bcd5ba64bc4ed"
+}

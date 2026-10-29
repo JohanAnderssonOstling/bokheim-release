@@ -6,19 +6,20 @@ use crate::SqlParam;
 use crate::annotations::AnnotationsSql;
 use crate::books::audiobook::AudiobookSql;
 use crate::books::toc::TocSql;
-use crate::browse::text::search_title;
 use crate::import::ImportCommitSql;
 use crate::purge::remove_book;
-use crate::query_methods::{first_column, query_rows};
+use crate::query_methods::query_rows;
 use crate::shared_sql::SharedSql;
+use crate::stored_document;
 use crate::sync::SyncApplySql;
-use crate::sync::apply::{project_book as prepare_book, write_subject_projection};
 use crate::sync::{nonnegative_u64, normalized_description, storage_i64, toc_entry_count};
 use content_address::BookId;
-use library_replica::{BookAddition, BookDetails, BookLifecycleState, DirectoryIntent, DirectoryLifecycleState, EnrichmentResult, LibraryStateEntry};
+use library_replica::{BookAddition, BookLifecycleState, DirectoryIntent, DirectoryLifecycleState, EnrichmentResult, LibraryStateEntry};
 use rusqlite::Transaction;
 use std::collections::{BTreeMap, HashMap, HashSet};
 use sync_common::{DirId, ROOT_DIR_ID, StateKey, wire};
+
+mod metadata;
 
 /// Project canonical winners inside the same transaction as their admission.
 pub(crate) fn project_dirty(tx: &Transaction<'_>) -> Result<(), DatabaseError> {
@@ -26,6 +27,15 @@ pub(crate) fn project_dirty(tx: &Transaction<'_>) -> Result<(), DatabaseError> {
     if dirty.is_empty() {
         return Ok(());
     }
+    // Determine queue membership once, rather than scanning every dirty
+    // address again for every projected book in a large sync response.
+    let queued_books = dirty
+        .iter()
+        .filter_map(|(kind, key, _)| match key {
+            StateKey::Book(hash) if matches!(kind.as_str(), "book_add" | "book_lifecycle" | "placement") => Some(*hash),
+            _ => None,
+        })
+        .collect::<HashSet<_>>();
     let directories = dirty.iter().any(|(kind, _, _)| kind.starts_with("directory_"));
     let mut books = BTreeMap::<BookId, HashSet<String>>::new();
     for row in query_rows(|callback| tx.projection_dirty_books(callback), |row| Ok((row.get::<_, BookId>(0)?, row.get::<_, String>(1)?)))? {
@@ -65,6 +75,7 @@ pub(crate) fn project_dirty(tx: &Transaction<'_>) -> Result<(), DatabaseError> {
             books.entry(hash?).or_default().insert("placement".into());
         }
     }
+    let mut pending = Vec::with_capacity(books.len());
     for (hash, changed) in books {
         let full = changed.contains("book_projection");
         let kinds = serde_json::to_string(&changed).map_err(DatabaseError::operation)?;
@@ -73,8 +84,17 @@ pub(crate) fn project_dirty(tx: &Transaction<'_>) -> Result<(), DatabaseError> {
             .into_iter()
             .map(|(bytes, time)| Ok((wire::decode::<LibraryStateEntry>(&bytes, wire::MAX_DECODED_REQUEST_BYTES).map_err(DatabaseError::operation)?, nonnegative_u64(time, 1, "register timestamp")?)))
             .collect::<Result<Vec<_>, DatabaseError>>()?;
+        pending.push((hash, changed, values));
+    }
+    // Canonical winners have already been admitted under this writer. Build
+    // complete metadata sets, then write them together before reader documents.
+    metadata::project(tx, pending.iter().filter_map(|(hash, changed, values)| {
+        let needs_metadata = changed.contains("book_projection") || changed.contains("book_add") || changed.contains("external_book");
+        (needs_metadata && !book_is_purged(values)).then(|| (hash, book_addition(values)))
+    }))?;
+    for (hash, changed, values) in pending {
         project_book(tx, &hash, &values, &changed, &purged)?;
-        if dirty.iter().any(|(kind, key, _)| key == &StateKey::Book(hash) && matches!(kind.as_str(), "book_add" | "book_lifecycle" | "placement")) {
+        if queued_books.contains(&hash) {
             tx.queue_book_work_insert(&hash)?;
         }
     }
@@ -175,8 +195,20 @@ fn project_directory_tree(tx: &Transaction<'_>, purged: &HashSet<DirId>) -> Resu
 }
 
 /// Project only changed state kinds. Synthetic book dirtiness requests a full rebuild.
+fn book_is_purged(values: &[(LibraryStateEntry, u64)]) -> bool {
+    values.iter().any(|(body, _)| matches!(body, LibraryStateEntry::BookLifecycle { value: BookLifecycleState::Purged, .. }))
+}
+
+fn book_addition(values: &[(LibraryStateEntry, u64)]) -> Option<&BookAddition> {
+    values.iter().find_map(|(body, _)| match body {
+        LibraryStateEntry::BookAdd { value, .. } => Some(value),
+        LibraryStateEntry::ExternalBook { value, .. } => Some(&value.addition),
+        _ => None,
+    })
+}
+
 fn project_book(tx: &Transaction<'_>, hash: &BookId, values: &[(LibraryStateEntry, u64)], changed: &HashSet<String>, purged: &HashSet<DirId>) -> Result<(), DatabaseError> {
-    if values.iter().any(|(body, _)| matches!(body, LibraryStateEntry::BookLifecycle { value: BookLifecycleState::Purged, .. })) {
+    if book_is_purged(values) {
         return remove_book(tx, hash);
     }
     if !tx.projection_book_exists(&hash, |row| row.get::<_, bool>(0))? {
@@ -215,18 +247,10 @@ fn project_book(tx: &Transaction<'_>, hash: &BookId, values: &[(LibraryStateEntr
         tx.projection_set_book_reading(hash, reading.as_deref(), progress, read_at)?;
     }
     if needs("book_add") || needs("external_book") {
-        let addition = values.iter().find_map(|(body, _)| match body {
-            LibraryStateEntry::BookAdd { value, .. } => Some(value),
-            LibraryStateEntry::ExternalBook { value, .. } => Some(&value.addition),
-            _ => None,
-        });
+        let addition = book_addition(values);
         if let Some(addition) = addition {
             project_addition(tx, hash, addition)?;
         } else {
-            tx.projection_set_book_facts(hash, None, None)?;
-            tx.projection_set_book_popularity(hash, None)?;
-            project_metadata(tx, hash, &BookDetails::default(), None)?;
-            tx.projection_clear_title(&hash, &(search_title(None, None)))?;
             tx.projection_clear_description(&hash)?;
             tx.projection_clear_navigation(&hash)?;
             tx.projection_clear_pdf_metadata(&hash)?;
@@ -287,9 +311,9 @@ fn project_value(tx: &Transaction<'_>, body: &LibraryStateEntry, purged: &HashSe
                 // Filenames are a local projection. A tombstoned placement's
                 // old name may have been reused since it was removed.
                 let directory = dir_id.to_string();
-                let requested: String = tx.projection_placement_name(&directory, &(&content_hash), |row| row.get(0))?;
-                let key = library_replica::portable_name_key(&requested);
-                let conflict: bool = tx.projection_placement_name_conflict(&directory, &(&content_hash), &key, |row| row.get(0))?;
+                let mut statement = tx.prepare_cached(include_str!("projection/placement_name.sql"))?;
+                let (requested, conflict): (String, bool) = statement.query_row(rusqlite::params![directory, content_hash], |row| Ok((row.get(0)?, row.get(1)?)))?;
+                drop(statement);
                 let chosen = if conflict {
                     let occupied = query_rows(|callback| tx.projection_other_placement_names(&directory, &(&content_hash), callback), |row| row.get::<_, String>(0))?.collect::<Result<Vec<_>, _>>()?;
                     // Use a short fallback when the old name conflicts or fills
@@ -312,18 +336,14 @@ fn project_value(tx: &Transaction<'_>, body: &LibraryStateEntry, purged: &HashSe
     Ok(())
 }
 
-/// Select the effective metadata and navigation before writing the addition.
-/// The retained sync record remains the original publication.
+/// Project the finalized record. Enrichment was already applied to it before
+/// publication, or while decoding a historical two-record addition.
 fn project_addition(tx: &Transaction<'_>, hash: &BookId, addition: &BookAddition) -> Result<(), DatabaseError> {
-    let (enriched, enriched_entries) = match &addition.enrichment {
-        Some(EnrichmentResult::Found { record, toc, .. }) => (Some(record), toc.as_deref()),
-        _ => (None, None),
+    let enriched_entries = match &addition.enrichment {
+        Some(EnrichmentResult::Found { toc, .. }) => toc.as_deref(),
+        _ => None,
     };
-    let description = if addition.record.description.trim().is_empty() { enriched.map(|record| record.description.as_str()).unwrap_or(&addition.record.description) } else { &addition.record.description };
-    tx.projection_set_book_facts(hash, Some(addition.facts.format as i64), Some(storage_i64(addition.facts.added_at, "book addition timestamp")?))?;
-    tx.projection_set_book_popularity(hash, popularity_rating_count(addition))?;
-    project_metadata(tx, hash, &addition.record.metadata, enriched.map(|record| &record.metadata))?;
-    tx.set_description(hash, &normalized_description(description)).map_err(DatabaseError::operation)?;
+    tx.set_description(hash, &normalized_description(&addition.record.description)).map_err(DatabaseError::operation)?;
 
     if let Some(recording) = &addition.recording {
         let json = serde_json::to_string(recording).map_err(DatabaseError::operation)?;
@@ -332,7 +352,7 @@ fn project_addition(tx: &Transaction<'_>, hash: &BookId, addition: &BookAddition
         tx.projection_clear_recording(&hash)?;
     }
     if let Some(pdf) = &addition.pdf {
-        let bytes = serde_json::to_vec(pdf).map_err(DatabaseError::operation)?;
+        let bytes = stored_document::encode(pdf)?;
         tx.pdf_reader_metadata_upsert(hash, &bytes).map_err(DatabaseError::operation)?;
     } else {
         tx.projection_clear_pdf_metadata(&hash)?;
@@ -341,11 +361,11 @@ fn project_addition(tx: &Transaction<'_>, hash: &BookId, addition: &BookAddition
         // Provider entries apply only to audio navigation. Duration and track
         // offsets always come from the file, including when entries are empty.
         let entries = if navigation.duration_ms.is_some() { enriched_entries.unwrap_or(&navigation.entries) } else { &navigation.entries };
-        let tracks_json = navigation.tracks.as_ref().map(serde_json::to_string).transpose().map_err(DatabaseError::operation)?;
+        let tracks = navigation.tracks.as_ref().map(stored_document::encode).transpose()?;
         let duration_ms = navigation.duration_ms.map(i64::try_from).transpose().map_err(DatabaseError::operation)?;
         let entry_count = i64::try_from(toc_entry_count(entries)).map_err(DatabaseError::operation)?;
-        let toc_json = serde_json::to_string(entries).map_err(DatabaseError::operation)?;
-        tx.navigation_upsert(hash, entry_count, &toc_json, duration_ms, tracks_json.as_deref())?;
+        let toc = stored_document::encode(entries)?;
+        tx.navigation_upsert(hash, entry_count, &toc, duration_ms, tracks.as_deref())?;
     } else {
         tx.projection_clear_navigation(&hash)?;
     }
@@ -375,29 +395,6 @@ pub(crate) fn backfill_popularity(tx: &Transaction<'_>) -> Result<(), DatabaseEr
     Ok(())
 }
 
-fn project_metadata(tx: &Transaction<'_>, hash: &BookId, metadata: &BookDetails, enriched: Option<&BookDetails>) -> Result<(), DatabaseError> {
-    let attributes = enriched.unwrap_or(metadata);
-    let projected = prepare_book(&attributes.book)?;
-    // Credits from an enrichment answer or another device carry identities of
-    // their own; matched by name, they join the author import already made.
-    let credits = crate::contributors::resolve_credits(tx, &attributes.contributors, Some(metadata_contract::matching::same_author))?;
-    let subtitle = metadata.subtitle.as_deref();
-    let search_title = search_title(Some(&metadata.title), subtitle);
-    tx.meta_update_book_metadata_state_preserving_ids_update_2(hash, &metadata.title, subtitle, &search_title)?;
-    crate::contributors::write_credits(tx, hash, &credits)?;
-
-    let book_id: i64 = first_column(|read| tx.shared_apply_remote_book_purged_select(hash, read))?.ok_or(rusqlite::Error::QueryReturnedNoRows)?;
-    // Replace complete sets so both initial writes and rebuilds are idempotent.
-    tx.projection_clear_languages(&book_id)?;
-    for language in &projected.metadata.languages {
-        let language = crate::browse::options::base_language(language.as_str());
-        if !language.is_empty() {
-            tx.insert_book_language(book_id, &language).map_err(DatabaseError::operation)?;
-        }
-    }
-    write_subject_projection(tx, book_id, &projected)
-}
-
 /// Local filenames are projection inputs, not synchronized
 /// registers. Seed local values, then admit membership
 /// through the same canonical path used by directory commands.
@@ -419,6 +416,62 @@ mod tests {
     use library_replica::BookFacts;
 
     #[test]
+    fn cached_placement_lookup_retains_names_and_checks_only_other_live_books() {
+        let conn = rusqlite::Connection::open_in_memory().unwrap();
+        conn.create_scalar_function("portable_name_key", 1, rusqlite::functions::FunctionFlags::SQLITE_UTF8 | rusqlite::functions::FunctionFlags::SQLITE_DETERMINISTIC, |context| {
+            Ok(library_replica::portable_name_key(&context.get::<String>(0)?))
+        })
+        .unwrap();
+        conn.execute_batch(include_str!("sync/sql/schema/tables.sql")).unwrap();
+        conn.execute_batch(include_str!("placements/sql/schema/tables.sql")).unwrap();
+        let directory = ROOT_DIR_ID.to_string();
+        conn.execute("INSERT INTO dir(id,parent_id,name) VALUES(?1,?1,'Root')", [&directory]).unwrap();
+        let hash = BookId::new(&"a".repeat(64));
+        let other = BookId::new(&"b".repeat(64));
+        for hash in [hash, other] {
+            conn.execute("INSERT INTO book(content_hash) VALUES(?1)", [hash]).unwrap();
+        }
+        let lookup = || {
+            conn.prepare_cached(include_str!("projection/placement_name.sql")).unwrap().query_row(rusqlite::params![directory,hash], |row| Ok((row.get::<_, String>(0)?, row.get::<_, bool>(1)?))).unwrap()
+        };
+        assert_eq!(lookup(), ("Untitled".into(), false));
+        conn.execute("INSERT INTO book_dir(dir_id,book_row_id,file_name,local_hash) SELECT ?1,row_id,'UNTITLED','' FROM book WHERE content_hash=?2", rusqlite::params![directory,other]).unwrap();
+        assert_eq!(lookup(), ("Untitled".into(), true));
+        conn.execute("UPDATE book_dir SET deleted_at=1", []).unwrap();
+        assert_eq!(lookup(), ("Untitled".into(), false));
+        conn.execute("INSERT INTO book_dir(dir_id,book_row_id,file_name,local_hash,deleted_at) SELECT ?1,row_id,'Retained','',1 FROM book WHERE content_hash=?2", rusqlite::params![directory,hash]).unwrap();
+        assert_eq!(lookup(), ("Retained".into(), false));
+        conn.execute("UPDATE book_dir SET file_name='retained',deleted_at=NULL WHERE book_row_id=(SELECT row_id FROM book WHERE content_hash=?1)", [other]).unwrap();
+        assert_eq!(lookup(), ("Retained".into(), true));
+    }
+
+    #[test]
+    fn book_record_lookup_uses_the_existing_primary_key() {
+        let connection = rusqlite::Connection::open_in_memory().unwrap();
+        connection.execute_batch(include_str!("sync/sql/schema/tables.sql")).unwrap();
+        let target = BookId::new(&format!("{:064x}", 128));
+        for number in 1..=256 {
+            let hash = BookId::new(&format!("{number:064x}"));
+            connection.execute("INSERT INTO book(content_hash) VALUES(?1)", [&hash]).unwrap();
+            connection.execute("INSERT INTO sync_book_record(state_kind,content_hash,body,publication) VALUES('book_add',?1,?2,x'00')", rusqlite::params![hash, number.to_string().as_bytes()]).unwrap();
+        }
+        for (full, kinds, expected) in [(true, "[]", 1), (false, "[\"book_add\"]", 1), (false, "[\"reading_position\"]", 0)] {
+            let mut bodies = Vec::new();
+            connection
+                .projection_book_state(&target, full, kinds, |row| {
+                    bodies.push(row.get::<_, Vec<u8>>(0)?);
+                    assert_eq!(crate::query_methods::active_query_fullscan_steps(&connection), 0);
+                    Ok(())
+                })
+                .unwrap();
+            assert_eq!(bodies.len(), expected);
+            if expected != 0 {
+                assert_eq!(bodies[0], b"128");
+            }
+        }
+    }
+
+    #[test]
     fn addition_and_enrichment_project_only_the_final_metadata() {
         let db = Database::open(":memory:").unwrap();
         db.initialize_library().unwrap();
@@ -432,19 +485,21 @@ mod tests {
         let mut enriched = BookRecord { metadata: Default::default(), description: String::new() };
         enriched.title = "Provider title".into();
         enriched.book.subjects = vec![BookSubject::new(None, "Enriched", "provider", None, None).unwrap()];
+        let mut addition = BookAddition {
+            facts: BookFacts { added_at: 1, format: BookFormat::Epub },
+            record: original,
+            navigation: None,
+            pdf: None,
+            recording: None,
+            enrichment: None,
+        };
+        addition.apply_enrichment(enriched, EnrichmentResult::Found { toc: None, cover_id: None, popularity: None });
         db.write(|tx| {
             record_local(
                 tx,
                 LibraryStateEntry::BookAdd {
                     content_hash: hash,
-                    value: BookAddition {
-                        facts: BookFacts { added_at: 1, format: BookFormat::Epub },
-                        record: original,
-                        navigation: None,
-                        pdf: None,
-                        recording: None,
-                        enrichment: Some(EnrichmentResult::Found { record: enriched, toc: None, cover_id: None, popularity: None }),
-                    },
+                    value: addition,
                 },
             )?;
             place_book(tx, &ROOT_DIR_ID, &hash, "book.epub")

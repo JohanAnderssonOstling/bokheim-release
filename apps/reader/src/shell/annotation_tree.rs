@@ -3,10 +3,11 @@
 use std::collections::HashSet;
 
 use gpui::prelude::*;
-use gpui::{AnyElement, Context, Entity, div, px};
+use gpui::{AnyElement, Context, Entity, div};
 use ui_components as components;
 
-use super::state_panel::{AnnotationSidebarTarget, reader_annotation_card};
+use super::sidebar_list::SidebarList;
+use super::state_panel::{AnnotationRow, AnnotationSidebarTarget, render_annotation_row};
 use library_backend::Annotation;
 
 #[derive(Debug, Default, PartialEq, Eq)]
@@ -58,6 +59,7 @@ pub(crate) struct AnnotationTreeState {
     filter: String,
     filtered_collapsed: HashSet<usize>,
     selected_id: Option<String>,
+    pub(crate) list: SidebarList<AnnotationTreeRow>,
 }
 
 impl AnnotationTreeState {
@@ -111,27 +113,36 @@ pub(crate) trait AnnotationTreeTarget: AnnotationSidebarTarget {
     fn set_annotation_branch_expanded(&mut self, id: usize, expanded: bool, cx: &mut Context<Self>);
 }
 
-/// Variable-height cards stay in the sidebar's scroll surface, rather than a
-/// uniform-height tree list that would clip their quotes and notes.
-pub(crate) fn annotation_tree_rows<C: AnnotationTreeTarget>(
-    target: &Entity<C>, tree: &AnnotationTree, state: &AnnotationTreeState, annotations: &[Annotation], selected_id: Option<&str>, no_annotations: &'static str, theme: components::BrowserTheme,
-) -> Vec<AnyElement> {
-    fn visit<C: AnnotationTreeTarget>(
-        target: &Entity<C>, branches: &[AnnotationBranch], state: &AnnotationTreeState, annotations: &[Annotation], selected_id: Option<&str>, depth: usize, theme: components::BrowserTheme, rows: &mut Vec<AnyElement>,
-    ) {
-        for branch in branches {
-            let expanded = state.expanded(branch.id);
-            let row = components::ContentsRow { depth, has_children: true, expanded, ..Default::default() };
-            let id = branch.id;
-            let click_target = target.clone();
-            let key_target = target.clone();
-            rows.push(
-                components::contents_row(("reader-annotation-branch", id), row, Some(components::contents_disclosure(("reader-annotation-disclosure", id), row, theme)), branch.title.clone(), None, None, theme)
+#[derive(Debug, PartialEq, Eq)]
+pub(crate) enum AnnotationTreeRow {
+    Branch { id: usize, title: String, depth: usize, expanded: bool },
+    Annotation(AnnotationRow),
+}
+
+impl AnnotationTreeState {
+    pub(crate) fn prepare_list(&mut self, tree: &AnnotationTree, annotations: &[Annotation], selected_id: Option<&str>, no_annotations: &'static str) {
+        let rows = annotation_tree_rows(tree, self, annotations, no_annotations);
+        let selected_row = selected_id.and_then(|selected| rows.iter().position(|row| matches!(row, AnnotationTreeRow::Annotation(row) if row.annotation_id() == Some(selected))));
+        self.list.set_rows(rows);
+        self.list.reveal_selected(selected_id, selected_row);
+    }
+
+    pub(crate) fn render_row<C: AnnotationTreeTarget>(&self, target: &Entity<C>, index: usize, annotations: &[Annotation], selected_id: Option<&str>, theme: components::BrowserTheme) -> AnyElement {
+        match self.list.rows.get(index) {
+            Some(AnnotationTreeRow::Annotation(row)) => render_annotation_row(target, row, annotations, selected_id, &self.filter, theme),
+            Some(AnnotationTreeRow::Branch { id, title, depth, expanded }) => {
+                let (id, expanded) = (*id, *expanded);
+                let row = components::ContentsRow { depth: *depth, has_children: true, expanded, ..Default::default() };
+                let click_target = target.downgrade();
+                let key_target = target.downgrade();
+                components::contents_row(("reader-annotation-branch", id), row, Some(components::contents_disclosure(("reader-annotation-disclosure", id), row, theme)), title.clone(), None, None, theme)
                     .flex_none()
                     .debug_selector(move || format!("reader-annotation-branch-{id}"))
                     .focusable()
                     .tab_stop(true)
-                    .on_click(move |_, _, cx| click_target.update(cx, |this, cx| this.set_annotation_branch_expanded(id, !expanded, cx)))
+                    .on_click(move |_, _, cx| {
+                        let _ = click_target.update(cx, |this, cx| this.set_annotation_branch_expanded(id, !expanded, cx));
+                    })
                     .on_key_down(move |event, _, cx| {
                         if event.keystroke.modifiers != gpui::Modifiers::default() {
                             return;
@@ -142,39 +153,39 @@ pub(crate) fn annotation_tree_rows<C: AnnotationTreeTarget>(
                             "enter" | "space" => !expanded,
                             _ => return,
                         };
-                        key_target.update(cx, |this, cx| this.set_annotation_branch_expanded(id, expanded, cx));
+                        let _ = key_target.update(cx, |this, cx| this.set_annotation_branch_expanded(id, expanded, cx));
                         cx.stop_propagation();
                     })
-                    .into_any_element(),
-            );
+                    .into_any_element()
+            }
+            None => div().into_any_element(),
+        }
+    }
+}
+
+/// Flatten only the expanded hierarchy. Cards are constructed later by the
+/// list callback, using the original annotation indices.
+fn annotation_tree_rows(tree: &AnnotationTree, state: &AnnotationTreeState, annotations: &[Annotation], no_annotations: &'static str) -> Vec<AnnotationTreeRow> {
+    fn visit(branches: &[AnnotationBranch], state: &AnnotationTreeState, annotations: &[Annotation], depth: usize, rows: &mut Vec<AnnotationTreeRow>) {
+        for branch in branches {
+            let expanded = state.expanded(branch.id);
+            rows.push(AnnotationTreeRow::Branch { id: branch.id, title: branch.title.clone(), depth, expanded });
             if expanded {
-                for &index in &branch.annotations {
-                    rows.push(card(target, annotations, selected_id, index, depth + 1, &state.filter, theme));
-                }
-                visit(target, &branch.children, state, annotations, selected_id, depth + 1, theme, rows);
+                rows.extend(branch.annotations.iter().map(|&index| AnnotationTreeRow::Annotation(AnnotationRow::card(index, depth + 1, &annotations[index]))));
+                visit(&branch.children, state, annotations, depth + 1, rows);
             }
         }
     }
-
     let mut rows = Vec::new();
     if tree.branches.is_empty() && tree.other.is_empty() {
-        rows.push(components::reader_state_note(no_annotations, theme).p(px(12.0)).into_any_element());
-        return rows;
+        return vec![AnnotationTreeRow::Annotation(AnnotationRow::Empty(no_annotations))];
     }
-    visit(target, &tree.branches, state, annotations, selected_id, 0, theme, &mut rows);
+    visit(&tree.branches, state, annotations, 0, &mut rows);
     if !tree.other.is_empty() {
-        rows.push(components::reader_annotation_group_heading("Other notes", theme).into_any_element());
-        for &index in &tree.other {
-            rows.push(card(target, annotations, selected_id, index, 0, &state.filter, theme));
-        }
+        rows.push(AnnotationTreeRow::Annotation(AnnotationRow::Heading("Other notes".into())));
+        rows.extend(tree.other.iter().map(|&index| AnnotationTreeRow::Annotation(AnnotationRow::card(index, 0, &annotations[index]))));
     }
     rows
-}
-
-fn card<C: AnnotationSidebarTarget>(target: &Entity<C>, annotations: &[Annotation], selected_id: Option<&str>, index: usize, depth: usize, query: &str, theme: components::BrowserTheme) -> AnyElement {
-    let annotation = &annotations[index];
-    let selected = selected_id == Some(annotation.id.as_str());
-    div().w_full().min_w_0().flex_none().pl(px(components::CONTENTS_ROW_INDENT * depth.min(3) as f32)).child(reader_annotation_card(target, index, annotation, selected, query, theme)).into_any_element()
 }
 
 #[cfg(test)]
@@ -182,7 +193,7 @@ mod tests {
     use super::*;
     use book_model::{AnnotationAnchor, AnnotationStyle};
     use content_address::BookId;
-    use gpui::{Render, TestAppContext, VisualTestContext, Window};
+    use gpui::{Render, TestAppContext, VisualTestContext, Window, px};
 
     struct TreeTest {
         tree: AnnotationTree,
@@ -219,8 +230,10 @@ mod tests {
 
     impl Render for TreeTest {
         fn render(&mut self, _: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
-            let rows = annotation_tree_rows(&cx.entity(), &self.tree, &self.state, &self.annotations, self.selected_id.as_deref(), "No notes yet. Select text, then choose Annotation to add a note.", components::browser_theme(cx));
-            components::reader_state_panel(components::browser_theme(cx)).w(px(320.0)).children(rows)
+            self.state.prepare_list(&self.tree, &self.annotations, self.selected_id.as_deref(), "No notes yet. Select text, then choose Annotation to add a note.");
+            div().w(px(320.0)).h_full().child(super::super::sidebar_list::panel("test-annotation-list", &cx.entity(), &self.state.list.state, components::browser_theme(cx), |this, row, target, theme, _| {
+                this.state.render_row(target, row, &this.annotations, this.selected_id.as_deref(), theme)
+            }))
         }
     }
 
@@ -299,6 +312,46 @@ mod tests {
         });
     }
 
+    #[gpui::test]
+    fn large_annotation_list_renders_nearby_cards_and_reveals_selection(cx: &mut TestAppContext) {
+        cx.update(gpui_component::init);
+        let (view, cx) = cx.add_window_view(|_, _| TreeTest {
+            tree: AnnotationTree { branches: vec![], other: (0..10_000).collect() },
+            state: AnnotationTreeState::default(),
+            annotations: (0..10_000).map(|index| annotation(&format!("note-{index}"))).collect(),
+            selected_id: None,
+            navigated_id: None,
+            deleted_id: None,
+        });
+        draw(cx);
+        assert!(cx.debug_bounds("reader-annotation-card-0").is_some());
+        assert!(cx.debug_bounds("reader-annotation-card-100").is_none());
+        assert!(cx.debug_bounds("reader-annotation-card-9999").is_none());
+        let first_height = cx.debug_bounds("reader-annotation-card-0").unwrap().size.height;
+        view.update(cx, |view, cx| {
+            view.annotations[9_999].note = "A long note that wraps over several lines. ".repeat(30);
+            view.annotations[9_999].modified_at += 1;
+            view.selected_id = Some("note-9999".into());
+            cx.notify();
+        });
+        draw(cx);
+        let card = cx.debug_bounds("reader-annotation-card-9999").unwrap();
+        assert!(card.size.height > first_height, "variable-height notes must not be clipped to the estimate");
+        assert!(cx.debug_bounds("reader-annotation-card-0").is_none());
+        // The selected card can be taller than the viewport; click its visible
+        // quote rather than its geometric center.
+        let visible_top = card.top().max(px(0.0));
+        cx.simulate_click(gpui::point(card.left() + px(30.0), visible_top + px(20.0)), Default::default());
+        view.read_with(cx, |view, _| assert_eq!(view.navigated_id.as_deref(), Some("note-9999")));
+        view.update(cx, |view, cx| {
+            view.annotations[9_999].note.clear();
+            view.annotations[9_999].modified_at += 1;
+            cx.notify();
+        });
+        draw(cx);
+        assert!(cx.debug_bounds("reader-annotation-card-9999").unwrap().size.height < card.size.height, "editing a note must invalidate its measured height");
+    }
+
     #[test]
     fn selecting_an_annotation_reveals_only_its_ancestors_and_preserves_manual_collapse() {
         let tree = AnnotationTree {
@@ -345,6 +398,19 @@ mod tests {
         let delete = cx.debug_bounds("reader-annotation-delete-1").unwrap();
         cx.simulate_click(delete.center(), Default::default());
         view.read_with(cx, |view, _| assert_eq!(view.deleted_id.as_deref(), Some("second")));
+    }
+
+    #[test]
+    fn flat_annotation_groups_preserve_original_indices_without_copying_cards() {
+        use crate::shell::state_panel::reader_state_rows;
+
+        let annotations = vec![annotation("first"), annotation("second"), annotation("third")];
+        let rows = reader_state_rows(&annotations, "No notes", |annotation| if annotation.id == "second" { ("other".into(), "Other notes".into()) } else { ("page".into(), "Page 1".into()) });
+        assert_eq!(
+            rows,
+            vec![AnnotationRow::Heading("Page 1".into()), AnnotationRow::card(0, 0, &annotations[0]), AnnotationRow::card(2, 0, &annotations[2]), AnnotationRow::Heading("Other notes".into()), AnnotationRow::card(1, 0, &annotations[1])]
+        );
+        assert_eq!(reader_state_rows(&[], "No notes", |_| unreachable!()), [AnnotationRow::Empty("No notes")]);
     }
 
     #[test]

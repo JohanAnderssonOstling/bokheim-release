@@ -34,6 +34,11 @@ if [ -f "$WORKDIR/ssh/start.sh" ]; then
 fi
 launcher_profile_mark ssh_start
 
+# Resource sampling is a developer diagnostic, not part of ordinary reading.
+if [ "${BOKHEIM_KOBO_RESOURCE_MONITOR:-0}" != 1 ]; then
+    exec /bin/sh "$WORKDIR/run.sh"
+fi
+
 if [ -f "$RESOURCE_LOG" ] && [ "$(wc -c <"$RESOURCE_LOG")" -ge "$MAX_LOG_BYTES" ]; then
     mv -f "$RESOURCE_LOG" "$PREVIOUS_LOG"
 fi

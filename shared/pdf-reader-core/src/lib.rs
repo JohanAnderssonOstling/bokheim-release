@@ -30,11 +30,12 @@ mod annotations;
 mod metadata;
 #[cfg(not(target_arch = "wasm32"))]
 mod native;
+mod prefetch;
 mod runtime;
-pub use metadata::inspect_reader_metadata;
+pub use metadata::{inspect_reader_metadata, inspect_reader_metadata_with_identity};
 #[cfg(not(target_arch = "wasm32"))]
 pub use native::PdfDocumentSession;
-pub use pdf_view_common::PdfPageSource;
+pub use pdf_view_common::{PdfPageSource, PdfPrefetchCancellation};
 pub use pdf_view_common::{PdfReaderMetadata, PdfStoredAnnotationKind};
 #[cfg(not(target_arch = "wasm32"))]
 const PDFIUM_THIRD_PARTY_NOTICES: &str = include_str!(env!("PDFIUM_NOTICES_PATH"));
@@ -399,6 +400,18 @@ impl LocalDocumentSession {
         Ok(analysis)
     }
 
+    #[cfg(target_arch = "wasm32")]
+    pub fn prefetch_pages(&self, pages: &[usize]) -> PdfResult<()> {
+        self.prefetch_pages_cancellable(pages, &PdfPrefetchCancellation::default())
+    }
+
+    pub fn prefetch_pages_cancellable(&self, pages: &[usize], cancellation: &PdfPrefetchCancellation) -> PdfResult<()> {
+        if let Some(source) = &self.page_source {
+            source.prefetch_pages_cancellable(pages, cancellation).map_err(PdfError::new)?;
+        }
+        Ok(())
+    }
+
     /// Logical page analysis is independent of raster resolution and theme.
     pub fn page_geometry(&self, page_index: usize, trim_margins: bool) -> PdfResult<PdfPageGeometry> {
         if let Some(source) = &self.page_source {
@@ -475,15 +488,16 @@ impl LocalDocumentSession {
             return Ok(Vec::new());
         }
         let page = self.document.pages().get(page_index as i32).map_err(|_| PdfError::new(format!("PDF page {} does not exist", page_index + 1)))?;
-        let page_width = page.width().value.max(1.0);
-        let page_height = page.height().value.max(1.0);
+        let coordinates = PdfPageCoordinates::new(&page);
         let text = page.text().map_err(|error| PdfError::new(format!("extracting text from page {}: {error}", page_index + 1)))?;
         let search = text.search(query, &PdfSearchOptions::new()).map_err(|error| PdfError::new(format!("searching page {}: {error}", page_index + 1)))?;
         let mut hits = Vec::new();
         search.iter(PdfSearchDirection::SearchForward).for_each(|segments| {
             segments.iter().for_each(|segment| {
                 let bounds = segment.bounds();
-                hits.push(PdfSearchHit { page_index, bounds: normalized_pdf_bounds(bounds, page_width, page_height), excerpt: search_excerpt(&text, bounds, page_width) });
+                if let Some(normalized) = coordinates.normalize(bounds) {
+                    hits.push(PdfSearchHit { page_index, bounds: normalized, excerpt: search_excerpt(&text, bounds, coordinates.bounds) });
+                }
             });
         });
         Ok(hits)
@@ -497,11 +511,9 @@ impl LocalDocumentSession {
             source.prepare_page(page_index).map_err(PdfError::new)?;
         }
         let page = self.document.pages().get(page_index as i32).map_err(|_| PdfError::new(format!("PDF page {} does not exist", page_index + 1)))?;
-        let width = page.width().value.max(1.0);
-        let height = page.height().value.max(1.0);
+        let coordinates = PdfPageCoordinates::new(&page);
         let text = page.text().map_err(|error| PdfError::new(format!("extracting text from page {}: {error}", page_index + 1)))?;
-        let x = PdfPoints::new(point.0.clamp(0.0, 1.0) * width);
-        let y = PdfPoints::new((1.0 - point.1.clamp(0.0, 1.0)) * height);
+        let (x, y) = coordinates.pdf_point(point);
         let tolerance_x = PdfPoints::new(tolerance.0.max(0.0));
         let tolerance_y = PdfPoints::new(tolerance.1.max(0.0));
         Ok(text.chars().get_char_near_point(x, tolerance_x, y, tolerance_y).map(|character| character.index()))
@@ -558,6 +570,48 @@ impl PdfDocumentInfo {
 
     pub fn skippable_pages(&self) -> &[usize] {
         &self.skippable_pages
+    }
+
+    /// Twice the configured visible-page count, including visible pages.
+    /// Prefer forward reading while retaining a previous page when space allows.
+    pub fn prefetch_window(&self, current: usize, visible: &[usize], configured_pages: usize) -> Vec<usize> {
+        if current >= self.page_count() {
+            return Vec::new();
+        }
+        let budget = configured_pages.max(1).saturating_mul(2).min(self.page_count());
+        let mut pages = Vec::new();
+        for page in std::iter::once(current).chain(visible.iter().copied()) {
+            if page < self.page_count() && !pages.contains(&page) {
+                pages.push(page);
+                if pages.len() == budget {
+                    return pages;
+                }
+            }
+        }
+        let readable = |page: &usize| self.skippable_pages.binary_search(page).is_err();
+        let mut forward = (current + 1..self.page_count()).filter(readable);
+        let mut backward = (0..current).rev().filter(readable);
+        let previous = if budget - pages.len() > 1 { backward.find(|page| !pages.contains(page)) } else { None };
+        let forward_limit = budget - usize::from(previous.is_some());
+        while pages.len() < forward_limit {
+            let Some(page) = forward.next() else { break };
+            if !pages.contains(&page) {
+                pages.push(page);
+            }
+        }
+        if let Some(page) = previous {
+            pages.push(page);
+        }
+        // At either document edge, use the other side to fill available slots.
+        for page in forward.chain(backward) {
+            if pages.len() == budget {
+                break;
+            }
+            if !pages.contains(&page) {
+                pages.push(page);
+            }
+        }
+        pages
     }
 
     /// The document's `/ViewerPreferences /Direction`, defaulting to L2R.
@@ -815,9 +869,9 @@ impl PdfPageTextLayout {
 /// The text a search result shows: the matched line with one line either side,
 /// read across the page's full width so a hit in a narrow column still gets
 /// its sentence, and folded onto one line.
-fn search_excerpt(text: &PdfPageText<'_>, bounds: PdfRect, page_width: f32) -> Arc<str> {
+fn search_excerpt(text: &PdfPageText<'_>, bounds: PdfRect, page_bounds: PdfRect) -> Arc<str> {
     let line = bounds.height().value.max(1.0);
-    let area = PdfRect::new(PdfPoints::new(bounds.bottom().value - line), PdfPoints::new(0.0), PdfPoints::new(bounds.top().value + line), PdfPoints::new(page_width));
+    let area = PdfRect::new(PdfPoints::new(bounds.bottom().value - line), page_bounds.left(), PdfPoints::new(bounds.top().value + line), page_bounds.right());
     text.inside_rect(area).split_whitespace().collect::<Vec<_>>().join(" ").into()
 }
 
@@ -1017,8 +1071,7 @@ pub fn pdfium_third_party_notices() -> &'static str {
 }
 
 fn extract_text_layout(page: &PdfPage<'_>, page_index: usize) -> PdfResult<PdfPageTextLayout> {
-    let width = page.width().value.max(1.0);
-    let height = page.height().value.max(1.0);
+    let coordinates = PdfPageCoordinates::new(page);
     let text = page.text().map_err(|error| PdfError::new(format!("extracting text from page {}: {error}", page_index + 1)))?;
     let characters = text
         .chars()
@@ -1034,34 +1087,34 @@ fn extract_text_layout(page: &PdfPage<'_>, page_index: usize) -> PdfResult<PdfPa
                 (Some(bounds), None) | (None, Some(bounds)) => bounds,
                 (None, None) => return None,
             };
-            Some(TextCharacter::new(character.index(), unicode, normalized_pdf_bounds(bounds, width, height)))
+            Some(TextCharacter::new(character.index(), unicode, coordinates.normalize(bounds)?))
         })
         .collect::<Vec<_>>();
     Ok(PdfPageTextLayout { page_index, geometry: PageTextGeometry::new(characters) })
 }
 
 fn analyze_page_elements(page: &PdfPage<'_>, text_layout: &PdfPageTextLayout) -> PageElements {
-    let page_width = page.width().value.max(1.0);
-    let page_height = page.height().value.max(1.0);
+    let coordinates = PdfPageCoordinates::new(page);
     let text_lines = text_lines(text_layout.geometry());
     let mut graphics = Vec::new();
     for object in page.objects().iter() {
-        collect_graphic_bounds(&object, page_width, page_height, &mut graphics);
+        collect_graphic_bounds(&object, PdfMatrix::IDENTITY, coordinates, &mut graphics);
     }
     PageElements { text_lines, graphics }
 }
 
-fn collect_graphic_bounds(object: &PdfPageObject<'_>, page_width: f32, page_height: f32, graphics: &mut Vec<NormalizedRect>) {
+fn collect_graphic_bounds(object: &PdfPageObject<'_>, parent: PdfMatrix, coordinates: PdfPageCoordinates, graphics: &mut Vec<NormalizedRect>) {
     if object.as_text_object().is_some() {
         return;
     }
     if let Some(form) = object.as_x_object_form_object() {
+        let transform = form.matrix().unwrap_or(PdfMatrix::IDENTITY) * parent;
         for child in form.iter() {
-            collect_graphic_bounds(&child, page_width, page_height, graphics);
+            collect_graphic_bounds(&child, transform, coordinates, graphics);
         }
         return;
     }
-    let Some(bounds) = object.bounds().ok().map(|bounds| normalized_pdf_bounds(bounds.to_rect(), page_width, page_height)) else {
+    let Some(bounds) = object.bounds().ok().and_then(|bounds| coordinates.normalize(bounds.transform(parent).to_rect())) else {
         return;
     };
     let is_page_background = bounds.width() >= 0.98 && bounds.height() >= 0.98;
@@ -1143,37 +1196,69 @@ fn pixel_crop_from_normalized(bounds: NormalizedRect, width: u32, height: u32) -
     PixelCrop::new(width, height, left, top, right.saturating_sub(left), bottom.saturating_sub(top))
 }
 
-fn normalized_pdf_bounds(bounds: PdfRect, page_width: f32, page_height: f32) -> NormalizedRect {
-    NormalizedRect::new(bounds.left().value / page_width, 1.0 - bounds.top().value / page_height, bounds.width().value / page_width, bounds.height().value / page_height)
+/// PDF objects use absolute, unrotated PDF coordinates. PDFium rasters the
+/// intersection of MediaBox and CropBox, then applies the page rotation.
+#[derive(Clone, Copy)]
+struct PdfPageCoordinates {
+    bounds: PdfRect,
+    transform: PageTransform,
+}
+
+impl PdfPageCoordinates {
+    fn new(page: &PdfPage<'_>) -> Self {
+        let rotation = match page.rotation().unwrap_or(PdfPageRenderRotation::None) {
+            PdfPageRenderRotation::None => PageRotation::None,
+            PdfPageRenderRotation::Degrees90 => PageRotation::Clockwise90,
+            PdfPageRenderRotation::Degrees180 => PageRotation::Clockwise180,
+            PdfPageRenderRotation::Degrees270 => PageRotation::Clockwise270,
+        };
+        let bounds = page.boundaries().bounding().map(|boundary| boundary.bounds).unwrap_or_else(|_| {
+            let (width, height) = if matches!(rotation, PageRotation::Clockwise90 | PageRotation::Clockwise270) { (page.height(), page.width()) } else { (page.width(), page.height()) };
+            PdfRect::new(PdfPoints::ZERO, PdfPoints::ZERO, height, width)
+        });
+        Self { bounds, transform: PageTransform::new(PixelCrop::full(1, 1), rotation) }
+    }
+
+    fn normalize(self, bounds: PdfRect) -> Option<NormalizedRect> {
+        let left = bounds.left().value.max(self.bounds.left().value);
+        let bottom = bounds.bottom().value.max(self.bounds.bottom().value);
+        let right = bounds.right().value.min(self.bounds.right().value);
+        let top = bounds.top().value.min(self.bounds.top().value);
+        if right <= left || top <= bottom {
+            return None;
+        }
+        self.transform.full_rect_to_display(NormalizedRect::new(
+            (left - self.bounds.left().value) / self.bounds.width().value.max(1.0),
+            (self.bounds.top().value - top) / self.bounds.height().value.max(1.0),
+            (right - left) / self.bounds.width().value.max(1.0),
+            (top - bottom) / self.bounds.height().value.max(1.0),
+        ))
+    }
+
+    fn pdf_point(self, point: (f32, f32)) -> (PdfPoints, PdfPoints) {
+        let (x, y) = self.transform.display_point_to_full(point);
+        (PdfPoints::new(self.bounds.left().value + x * self.bounds.width().value), PdfPoints::new(self.bounds.top().value - y * self.bounds.height().value))
+    }
 }
 
 fn extract_image_bounds(page: &PdfPage<'_>) -> Vec<NormalizedRect> {
-    let page_width = page.width().value.max(1.0);
-    let page_height = page.height().value.max(1.0);
-    let rotation = match page.rotation().unwrap_or(PdfPageRenderRotation::None) {
-        PdfPageRenderRotation::None => PageRotation::None,
-        PdfPageRenderRotation::Degrees90 => PageRotation::Clockwise90,
-        PdfPageRenderRotation::Degrees180 => PageRotation::Clockwise180,
-        PdfPageRenderRotation::Degrees270 => PageRotation::Clockwise270,
-    };
-    let (width, height) = if matches!(rotation, PageRotation::Clockwise90 | PageRotation::Clockwise270) { (page_height, page_width) } else { (page_width, page_height) };
+    let coordinates = PdfPageCoordinates::new(page);
     let mut images = Vec::new();
     for object in page.objects().iter() {
-        collect_image_bounds(&object, PdfMatrix::IDENTITY, width, height, &mut images);
+        collect_image_bounds(&object, PdfMatrix::IDENTITY, coordinates, &mut images);
     }
-    let transform = PageTransform::new(PixelCrop::full(1, 1), rotation);
-    images.into_iter().filter_map(|bounds| transform.full_rect_to_display(bounds)).collect()
+    images
 }
 
-fn collect_image_bounds(object: &PdfPageObject<'_>, parent: PdfMatrix, page_width: f32, page_height: f32, images: &mut Vec<NormalizedRect>) {
+fn collect_image_bounds(object: &PdfPageObject<'_>, parent: PdfMatrix, coordinates: PdfPageCoordinates, images: &mut Vec<NormalizedRect>) {
     if object.as_image_object().is_some() {
-        if let Ok(bounds) = object.bounds() {
-            images.push(normalized_pdf_bounds(bounds.transform(parent).to_rect(), page_width, page_height));
+        if let Some(bounds) = object.bounds().ok().and_then(|bounds| coordinates.normalize(bounds.transform(parent).to_rect())) {
+            images.push(bounds);
         }
     } else if let Some(form) = object.as_x_object_form_object() {
         let transform = form.matrix().unwrap_or(PdfMatrix::IDENTITY) * parent;
         for child in form.iter() {
-            collect_image_bounds(&child, transform, page_width, page_height, images);
+            collect_image_bounds(&child, transform, coordinates, images);
         }
     }
 }
@@ -1608,6 +1693,78 @@ mod tests {
         });
         std::fs::remove_file(path).ok();
         Ok(())
+    }
+
+    #[test]
+    fn offset_page_boxes_keep_crops_text_graphics_and_selection_aligned() -> PdfResult<()> {
+        runtime::run(|| {
+            let rect = |left, bottom, right, top| PdfRect::new(PdfPoints::new(bottom), PdfPoints::new(left), PdfPoints::new(top), PdfPoints::new(right));
+            for (media, crop) in [
+                (rect(0.0, 0.0, 612.0, 792.0), Some(rect(90.0, 72.0, 522.0, 720.0))),
+                (rect(-90.0, -72.0, 522.0, 720.0), None),
+                (rect(90.0, 72.0, 522.0, 720.0), Some(rect(60.0, 40.0, 550.0, 750.0))),
+            ] {
+                for rotation in [PdfPageRenderRotation::None, PdfPageRenderRotation::Degrees90, PdfPageRenderRotation::Degrees180, PdfPageRenderRotation::Degrees270] {
+                    let pdfium = shared_pdfium()?;
+                    let mut document = pdfium.create_new_pdf().unwrap();
+                    let font = document.fonts_mut().helvetica();
+                    let mut pixels = [20, 80, 200, 255].repeat(16);
+                    let bitmap = PdfBitmap::from_bytes(4, 4, PdfBitmapFormat::BGRA, &mut pixels).unwrap();
+                    let mut image = PdfPageImageObject::new(&document).unwrap();
+                    image.set_bitmap(&bitmap).unwrap();
+                    image.scale(70.0, 100.0).unwrap();
+                    image.translate(PdfPoints::new(180.0), PdfPoints::new(250.0)).unwrap();
+                    {
+                        let mut page = document.pages_mut().create_page_at_end(PdfPagePaperSize::a4()).unwrap();
+                        page.objects_mut().create_text_object(PdfPoints::new(150.0), PdfPoints::new(500.0), "Visible text", font, PdfPoints::new(18.0)).unwrap();
+                        page.objects_mut().add_image_object(image).unwrap();
+                        page.boundaries_mut().set_media(media).unwrap();
+                        if let Some(crop) = crop {
+                            page.boundaries_mut().set_crop(crop).unwrap();
+                        }
+                        page.set_rotation(rotation);
+                    }
+                    let session = LocalDocumentSession::from_document("offset-boxes".into(), document)?;
+                    let page = session.document.pages().get(0).unwrap();
+                    let layout = extract_text_layout(&page, 0)?;
+                    let config = PdfRenderConfig::new().set_target_size(20000, 20000);
+                    for character in layout.geometry.characters().iter().filter(|character| !character.character().is_whitespace()) {
+                        // Compare against PDFium's own page-to-device transform,
+                        // independent of our crop and rotation calculations.
+                        let raw = page.text().unwrap().chars().get(character.source_index()).unwrap().tight_bounds().unwrap();
+                        let a = page.points_to_pixels(raw.left(), raw.bottom(), &config).unwrap();
+                        let b = page.points_to_pixels(raw.right(), raw.top(), &config).unwrap();
+                        let center = ((a.0 + b.0) as f32 / 40000.0, (a.1 + b.1) as f32 / 40000.0);
+                        let bounds = character.bounds();
+                        assert!(center.0 >= bounds.left() - 0.0001 && center.0 <= bounds.right() + 0.0001, "horizontal text alignment: rotation={rotation:?}");
+                        assert!(center.1 >= bounds.top() - 0.0001 && center.1 <= bounds.bottom() + 0.0001, "vertical text alignment: rotation={rotation:?}");
+                        assert_eq!(session.character_index_near_point(0, center, (0.0, 0.0))?, Some(character.source_index()));
+                    }
+                    let hit = session.search_page(0, "Visible")?.remove(0).bounds;
+                    let first = layout.geometry.characters()[0].bounds();
+                    assert!(hit.left() <= first.right() && hit.right() >= first.left());
+                    assert!(hit.top() <= first.bottom() && hit.bottom() >= first.top());
+                    let geometry = session.page_geometry(0, true)?;
+                    let full = session.render_page_with_margin_trim(0, Some(800), false)?;
+                    let cropped = session.render_page_with_margin_trim(0, Some(800), true)?;
+                    let ink = |pixels: &[u8]| pixels.chunks_exact(4).filter(|pixel| pixel[..3].iter().any(|value| *value < 240)).count();
+                    assert!(ink(full.rgba()) > 1000);
+                    assert_eq!(ink(cropped.rgba()), ink(full.rgba()), "crop must retain all visible content: rotation={rotation:?}");
+                    let colored = |pixels: &[u8]| pixels.chunks_exact(4).filter(|pixel| pixel[0] != pixel[1] || pixel[1] != pixel[2]).count();
+                    let themed = session.render_page_for_display(PageRenderKey::with_margin_trim(0, 800, true).with_paper_color([24; 3]).with_ink_color([230; 3]))?.into_parts();
+                    assert_eq!(colored(&themed.pixels), colored(cropped.rgba()), "offset image bounds must preserve image colors");
+                    for image in extract_image_bounds(&page) {
+                        assert!(image.left() >= geometry.crop.left() && image.right() <= geometry.crop.right());
+                        assert!(image.top() >= geometry.crop.top() && image.bottom() <= geometry.crop.bottom());
+                    }
+                    let width = cropped.pixel_width() as usize;
+                    let xs = cropped.rgba().chunks_exact(4).enumerate().filter(|(_, pixel)| pixel[..3].iter().any(|value| *value < 240)).map(|(index, _)| index % width).collect::<Vec<_>>();
+                    assert!(*xs.iter().min().unwrap() < 24, "left crop margin is too wide");
+                    assert!(width - xs.iter().max().unwrap() < 24, "right crop margin is too wide");
+                }
+            }
+            Ok(())
+        })
     }
 
     #[test]

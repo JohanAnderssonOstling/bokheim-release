@@ -38,7 +38,6 @@ fn query(location: &str, search: &str) -> library_model::LibraryBrowseQuery {
         chip_sort: Default::default(),
         book_sort: Default::default(),
         hide_finished: false,
-        include_direct_child_books: false,
     }
 }
 #[test]

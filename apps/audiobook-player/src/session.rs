@@ -49,6 +49,8 @@ pub struct PlaybackSession {
     restore_cover: Vec<u8>,
     #[cfg(target_os = "android")]
     stopped_position: Option<android::PositionSnapshot>,
+    #[cfg(target_os = "android")]
+    seek_source: Option<android::PositionSnapshot>,
     position_task: Option<gpui::Task<Result<(), String>>>,
     #[cfg(target_os = "android")]
     release: Option<Pin<Box<dyn Future<Output = Result<(), String>>>>>,
@@ -216,6 +218,12 @@ impl PlaybackSession {
         let Some(cover) = Self::cover_image(&bytes) else {
             return false;
         };
+        #[cfg(target_os = "android")]
+        if let Some(audio) = &self.audio {
+            if let Err(error) = audio.set_artwork(&bytes) {
+                log::warn!("Could not update Android audiobook artwork: {error}");
+            }
+        }
         self.restore_cover = bytes;
         if let Some(book) = &mut self.book {
             Arc::make_mut(book).cover = Some(cover);
@@ -224,7 +232,7 @@ impl PlaybackSession {
     }
 
     pub fn ensure_source(&mut self, cx: &mut Context<Self>) {
-        if self.stopped || !self.playback_requested || self.audio.is_some() || self.source_pending {
+        if self.stopped || !(self.playback_requested || cfg!(target_os = "android") && self.pending_seek.is_some()) || self.audio.is_some() || self.source_pending {
             return;
         }
         let Some((locator, library)) = self.origin.clone() else {
@@ -364,14 +372,53 @@ impl PlaybackSession {
             result.map_err(|error| error.to_string())
         });
 
+        #[cfg(feature = "kobo")]
+        let (refresh_events, refresh_requests) = async_channel::bounded(1);
+        #[cfg(feature = "kobo")]
+        cx.observe_self(move |_, _| { let _ = refresh_events.try_send(()); }).detach();
         let timer = cx.background_executor().clone();
         let refresh_task = cx.spawn(async move |this, cx| {
             loop {
+                #[cfg(feature = "kobo")]
+                {
+                    while refresh_requests.try_recv().is_ok() {}
+                    let Ok(delay) = this.update(cx, |this, _| this.kobo_refresh_delay()) else { break };
+                    match delay {
+                        None => if refresh_requests.recv().await.is_err() { break; },
+                        Some(delay) if delay <= Duration::from_millis(250) => timer.timer(delay).await,
+                        Some(delay) => {
+                            futures_util::future::select(Box::pin(timer.timer(delay)), Box::pin(refresh_requests.recv())).await;
+                        }
+                    }
+                }
+                #[cfg(not(feature = "kobo"))]
                 timer.timer(Duration::from_millis(250)).await;
                 if this
                     .update(cx, |this, cx| {
                         #[cfg(not(target_arch = "wasm32"))]
                         this.advance_track_if_finished(cx);
+                        #[cfg(target_os = "android")]
+                        {
+                            let previous_target = this.seek_source.as_ref().and_then(android::PositionSnapshot::take_seek_request);
+                            let target = if let Some(audio) = &this.audio {
+                                let current_target = audio.take_seek_request();
+                                if current_target.is_some() {
+                                    this.playback_requested = audio.playback_requested();
+                                }
+                                // Retain the old state until Java has replaced its
+                                // media item, so presses during loading are not lost.
+                                if audio.confirmed_position().is_some() {
+                                    this.seek_source = None;
+                                }
+                                current_target.or(previous_target)
+                            } else {
+                                previous_target
+                            };
+                            if let Some(target) = target {
+                                this.seek_to(target);
+                                this.finish_seek(cx);
+                            }
+                        }
                         if this.refresh_playback_state() {
                             cx.notify();
                         }
@@ -476,7 +523,7 @@ impl PlaybackSession {
             let result = work.await;
             let _ = this.update(cx, |this, cx| {
                 this.finish_load(result, initial_position);
-                if this.audio.is_none() && this.playback_requested {
+                if this.audio.is_none() {
                     this.ensure_source(cx);
                 }
                 cx.notify();
@@ -587,6 +634,9 @@ impl PlaybackSession {
                 Err(error) => {
                     this.source_pending = false;
                     this.playback_requested = false;
+                    this.pending_seek = None;
+                    #[cfg(target_os = "android")]
+                    if this.seek_source.take().is_some() { android::stop_detached_service(); }
                     this.error = Some(error);
                     cx.notify();
                 }
@@ -601,12 +651,17 @@ impl PlaybackSession {
         self.source_pending = false;
         match result {
             Ok((book, mut audio)) => {
+                #[cfg(target_os = "android")]
+                if let Some(target) = self.seek_source.as_ref().and_then(android::PositionSnapshot::take_seek_request) {
+                    self.pending_seek = Some(target);
+                }
                 let pending_seek = self.pending_seek.take();
                 #[cfg(not(target_arch = "wasm32"))]
                 if let (Some(track), Some(position)) = (&self.active_track, pending_seek) {
                     let millis = position.as_millis() as u64;
                     if millis < track.start_ms || (millis >= track.end_ms && position < book.duration) {
                         self.position = position;
+                        self.pending_seek = Some(position);
                         self.book = Some(Arc::new(book));
                         return;
                     }
@@ -634,6 +689,10 @@ impl PlaybackSession {
                 if self.playback_requested {
                     audio.play();
                 }
+                #[cfg(target_os = "android")]
+                if !self.playback_requested {
+                    audio.prepare_paused();
+                }
                 #[cfg(not(target_arch = "wasm32"))]
                 let audio_position = track_start.saturating_add(audio.position());
                 #[cfg(target_arch = "wasm32")]
@@ -649,6 +708,12 @@ impl PlaybackSession {
                 self.audio = Some(audio);
                 let mut book = Arc::new(book);
                 if let Some(cover) = Self::cover_image(&self.restore_cover) {
+                    #[cfg(target_os = "android")]
+                    if let Some(audio) = &self.audio {
+                        if let Err(error) = audio.set_artwork(cover.bytes()) {
+                            log::warn!("Could not restore Android audiobook artwork: {error}");
+                        }
+                    }
                     Arc::make_mut(&mut book).cover = Some(cover);
                     self.book = Some(book);
                 } else {
@@ -661,6 +726,9 @@ impl PlaybackSession {
             }
             Err(error) => {
                 self.playback_requested = false;
+                self.pending_seek = None;
+                #[cfg(target_os = "android")]
+                if self.seek_source.take().is_some() { android::stop_detached_service(); }
                 self.error = Some(error);
             }
         }
@@ -674,6 +742,8 @@ impl PlaybackSession {
             position_task: None,
             #[cfg(target_os = "android")]
             stopped_position: None,
+            #[cfg(target_os = "android")]
+            seek_source: None,
             #[cfg(target_os = "android")]
             release: None,
             #[cfg(not(target_arch = "wasm32"))]
@@ -737,11 +807,36 @@ impl PlaybackSession {
         }
         self.audio.take();
         self.persist_position(true);
+        #[cfg(target_os = "android")]
+        if self.seek_source.take().is_some() && self.audio.is_none() { android::stop_detached_service(); }
         self.stopped = true;
         self.playback_requested = false;
         self.pending_seek = None;
         self.sleep = None;
         self.observed_playing = false;
+    }
+
+    /// Release decoder, network reads and ALSA before the Kobo powers down its radios.
+    /// Retain the book and confirmed position for an explicit Play after waking.
+    #[cfg(feature = "kobo")]
+    pub fn prepare_sleep(&mut self, cx: &mut Context<Self>) {
+        if self.stopped { return; }
+        self.stop_playback();
+        self.stream_control = None;
+        self.source_pending = false;
+        self.observed_buffering = false;
+        self.stopped = false;
+        cx.notify();
+    }
+
+    #[cfg(feature = "kobo")]
+    fn kobo_refresh_delay(&self) -> Option<Duration> {
+        if self.playback_requested || self.is_playing() || self.source_pending
+            || self.audio.as_ref().is_some_and(|audio| audio.confirmed_position().is_none())
+        {
+            return Some(Duration::from_millis(250));
+        }
+        self.sleep.and_then(SleepPlan::deadline).map(|deadline| deadline.saturating_duration_since(Instant::now()).min(Duration::from_secs(60)))
     }
 
     /// Stop all producers, close the position queue, and await its final write.
@@ -952,8 +1047,14 @@ impl PlaybackSession {
     }
 
     pub(super) fn seek_to(&mut self, position: Duration) {
+        self.seek_to_inner(position, true);
+    }
+
+    fn seek_to_inner(&mut self, position: Duration, persist: bool) {
         self.update_chapter_read_status();
-        self.persist_position(true);
+        if persist {
+            self.persist_position(true);
+        }
         if self.stopped {
             return;
         }
@@ -962,7 +1063,9 @@ impl PlaybackSession {
             self.pending_seek = Some(position);
             if self.book.is_some() {
                 self.position = position;
-                self.persist_position(true);
+                if persist {
+                    self.persist_position(true);
+                }
             }
             return;
         }
@@ -974,7 +1077,8 @@ impl PlaybackSession {
             if millis < track.start_ms || (millis >= track.end_ms && position < book.duration) {
                 #[cfg(target_os = "android")]
                 if let Some(audio) = &self.audio {
-                    audio.stop();
+                    self.seek_source = Some(audio.position_snapshot());
+                    audio.stop_for_seek();
                 }
                 self.audio.take();
                 if let Some(control) = self.stream_control.take() {
@@ -986,8 +1090,12 @@ impl PlaybackSession {
                 self.position = position;
                 self.pending_seek = Some(position);
                 #[cfg(target_os = "android")]
-                let _ = self.position_updates.try_send(PlaybackPosition::new(position, playback_progress(position, book.duration)));
-                self.persist_position(true);
+                if persist {
+                    let _ = self.position_updates.try_send(PlaybackPosition::new(position, playback_progress(position, book.duration)));
+                }
+                if persist {
+                    self.persist_position(true);
+                }
                 return;
             }
         }
@@ -1007,6 +1115,27 @@ impl PlaybackSession {
     pub(super) fn skip(&mut self, seconds: f64, cx: &mut Context<Self>) {
         self.seek_by(seconds);
         self.finish_seek(cx);
+    }
+
+    /// Uses the same short navigation steps as the transport buttons.
+    pub fn skip_backward(&mut self, cx: &mut Context<Self>) {
+        self.skip(SKIP_BACK_SECONDS, cx);
+    }
+
+    pub fn skip_forward(&mut self, cx: &mut Context<Self>) {
+        self.skip(SKIP_FORWARD_SECONDS, cx);
+    }
+
+    /// Live gesture updates reach the decoder immediately. Persisting every
+    /// scroll sample would queue a database write for every finger movement.
+    pub(super) fn scrub_to(&mut self, position: Duration, cx: &mut Context<Self>) {
+        self.seek_to_inner(position, false);
+        self.finish_seek(cx);
+    }
+
+    pub(super) fn finish_scrub(&mut self, cx: &mut Context<Self>) {
+        self.persist_position(true);
+        cx.notify();
     }
 
     pub(super) fn previous_chapter(&mut self, cx: &mut Context<Self>) {
@@ -1048,6 +1177,12 @@ impl PlaybackSession {
 
     pub fn is_playing(&self) -> bool {
         self.audio.as_ref().is_some_and(AudioEngine::is_playing)
+    }
+
+    /// Loading and buffering an explicitly started book also count as listening.
+    #[cfg(feature = "kobo")]
+    pub fn prevents_idle_sleep(&self) -> bool {
+        self.transport_playing()
     }
 
     /// Where playback is and how far through the book that is, in per cent —
@@ -1136,5 +1271,37 @@ impl Drop for PlaybackSession {
         if let Some(task) = self.position_task.take() {
             task.detach();
         }
+    }
+}
+
+#[cfg(all(test, feature = "kobo"))]
+mod kobo_power_tests {
+    use super::*;
+    use gpui::{AppContext, TestAppContext};
+
+    #[gpui::test]
+    fn sleep_releases_pending_work_but_keeps_explicit_resume_available(cx: &mut TestAppContext) {
+        let (updates, _) = async_channel::unbounded();
+        let session = cx.new(|_| PlaybackSession::new(1.0, updates));
+        session.update(cx, |session, cx| {
+            let control = AudioStreamControl::default();
+            session.stream_control = Some(control.clone());
+            session.position = Duration::from_secs(42);
+            session.source_pending = true;
+            assert!(session.prevents_idle_sleep());
+            session.prepare_sleep(cx);
+            assert!(control.is_cancelled());
+            assert!(!session.source_pending);
+            assert!(!session.stopped);
+            assert!(!session.playback_requested);
+            assert!(!session.prevents_idle_sleep());
+            assert_eq!(session.position, Duration::from_secs(42));
+            assert_eq!(session.kobo_refresh_delay(), None);
+            session.sleep = Some(SleepPlan::Until(Instant::now() + Duration::from_secs(120)));
+            assert_eq!(session.kobo_refresh_delay(), Some(Duration::from_secs(60)));
+            session.toggle_playback();
+            assert!(session.playback_requested);
+            assert_eq!(session.kobo_refresh_delay(), Some(Duration::from_millis(250)));
+        });
     }
 }

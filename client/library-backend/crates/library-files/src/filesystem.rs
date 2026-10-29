@@ -192,7 +192,7 @@ pub fn place_into_directory_with_intent(source: &Path, directory: &Path, occupie
     unreachable!("numeric name suffix space is unbounded")
 }
 
-fn rename_entry(source: &Path, destination: &Path) -> io::Result<()> {
+pub(crate) fn rename_entry(source: &Path, destination: &Path) -> io::Result<()> {
     #[cfg(target_os = "android")]
     {
         // Filename candidates and destination checks above handle conflicts.
@@ -205,7 +205,7 @@ fn rename_entry(source: &Path, destination: &Path) -> io::Result<()> {
     }
 }
 
-fn copy_entry(source: &Path, destination: &Path) -> io::Result<()> {
+pub(crate) fn copy_entry(source: &Path, destination: &Path) -> io::Result<()> {
     let metadata = fs::symlink_metadata(source)?;
     if metadata.is_dir() {
         fs::create_dir(destination)?;

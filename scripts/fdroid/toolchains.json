@@ -1,0 +1,17 @@
+{
+  "rust": "1.99.1",
+  "gradle": "8.14.3",
+  "jdk": 21,
+  "build_tools": "36.0.0",
+  "lint": "31.11.0",
+  "signing_tools": "36.0.0",
+  "ndk": "29.0.14206865",
+  "source_date_epoch": 1793023253,
+  "apk_normalizer": {
+    "commit": "dc069dc4cddf6ab5162f3ed3be1bc8a14711273f",
+    "url": "https://codeload.github.com/obfusk/reproducible-apk-tools/tar.gz/dc069dc4cddf6ab5162f3ed3be1bc8a14711273f",
+    "sha256": "c6b805b674805d97e78752798300b005179fe47da53f08aaddb3d8efa2202706",
+    "zipalign_sha256": "a47596d10395e099176c7b6624f1392c7f579e888310b0552ae25fe86c2565c9",
+    "license": "AGPL-3.0-or-later"
+  }
+}

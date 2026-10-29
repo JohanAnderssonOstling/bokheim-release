@@ -1,10 +1,72 @@
 # Linux packaging
 
+## Automatic desktop integration
+
+On each normal launch, the AppImage automatically checks its KDE/GNOME
+application-menu entry, command link and icon against the file's current
+absolute location. It updates missing or outdated registration files and
+continues running from that location. No confirmation, `sudo`, separate
+installer or copy of the AppImage is needed. The menu entry and automatic
+updater use the AppImage that was launched.
+
+If the AppImage is moved or renamed, launching it once at its new location
+repairs the application-menu entry and `~/.local/bin/bokheim` link. Until that
+launch, the old entry points to the old location. When multiple AppImages are
+kept, registration follows the one most recently launched without modifying
+the other files. Unchanged registration files and caches are left alone.
+Registration is serialized across concurrent launches. If registration fails,
+the AppImage continues running normally.
+
+Metadata checks, update preparation and update trials bypass registration.
+Development binaries and native package installations do not register
+themselves. Set `BOKHEIM_DISABLE_DESKTOP_INTEGRATION=1` to suppress registration
+when deliberately running a portable AppImage. The launcher uses Bash,
+coreutils and util-linux `flock`; registration needs no FUSE operations beyond
+those used to launch the AppImage itself.
+
+## Optional command-line installer
+
+Linux releases also include `install.sh` for command-line installation before
+the first GUI launch. It downloads the latest stable x86-64 release, verifies its SHA-256
+checksum, and installs the AppImage, application-menu entry and icon for the
+current user. Run it without `sudo`:
+
+```sh
+curl --fail --location --output install.sh \
+  https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/install.sh
+bash install.sh
+```
+
+For a specific release, use `bash install.sh --version 0.1.10`. To install a
+previously downloaded AppImage without network access, keep its published
+checksum beside it as `Bokheim-x86_64.AppImage.sha256` and run:
+
+```sh
+bash install.sh --appimage ./Bokheim-x86_64.AppImage
+```
+
+The stable application path is
+`${XDG_DATA_HOME:-$HOME/.local/share}/bokheim/application/Bokheim.AppImage`.
+The installer adds `~/.local/bin/bokheim` and a desktop entry with an absolute
+application path, so KDE/GNOME search works even when `~/.local/bin` is absent
+from the desktop session's `PATH`. Set `BOKHEIM_BIN_DIR` to change the command
+directory. Existing command and desktop entry files are retained with a
+`.before-install` suffix before replacement. Re-running the installer replaces
+the application while preserving libraries and settings. The installed file
+remains an AppImage, compatible with the existing application updater.
+
+The installer does not install distribution packages. Normal AppImage launches
+need FUSE support; on systems without it, use
+`APPIMAGE_EXTRACT_AND_RUN=1 ~/.local/bin/bokheim` to extract and run without
+mounting. The optional browser still needs the system WebKitGTK runtime
+described below. Installation extracts only the menu icon and does not open a
+GUI window or require FUSE.
+
 ## AppImage
 
 Linux desktop and Kobo installer releases target glibc 2.17. The main app,
-bundled native libraries and AppImage runtime are checked against that ceiling.
-The optional WebKitGTK browser helper retains its separate glibc 2.39 ceiling.
+optional WebKitGTK browser helper, bundled native libraries and AppImage runtime
+are checked against that ceiling.
 
 The release tooling builds an x86-64 AppImage and its SHA-256 checksum.
 GitHub can store these artifacts, while in-app update discovery uses the signed
@@ -25,11 +87,18 @@ python3 apps/desktop-gpui/scripts/build.py
 apps/desktop-gpui/linux/appimage/build-appimage.sh
 ```
 
+Google Drive is an optional Cargo feature and is disabled by default, including
+GitHub releases. To include it in a custom desktop build (Linux, macOS or Windows),
+run `python3 apps/desktop-gpui/scripts/build.py --google-drive`, or add
+`--features google-drive` when building `desktop-gpui` directly with Cargo.
+Drive connection controls and the folder picker are hidden when the feature
+is disabled. OAuth client configuration is still required for sign-in.
+
 The webview helper uses GPUI for browser controls and WebKitGTK 4.1 for
 webpages. Browser windows embed WebKitGTK using X11, including XWayland in a
 Wayland session; OPDS verification uses a GTK window with native Wayland
 support. Build hosts need
-`libgtk-3-dev` and `libwebkit2gtk-4.1-dev`. The AppImage does not bundle
+`libgtk-3-dev`, `libwebkit2gtk-4.1-dev` and `libdbus-1-dev`. The AppImage does not bundle
 WebKitGTK: the helper is copied without linuxdeploy and uses the system's
 `libwebkit2gtk-4.1` at runtime, so WebKit security updates come from the
 distribution. Without it, the rest of Bokheim works: browser verification
@@ -46,15 +115,24 @@ python3 apps/desktop-gpui/scripts/build.py --without-browser
 BOKHEIM_BROWSER=disabled apps/desktop-gpui/linux/appimage/build-appimage.sh
 ```
 
-For one AppImage with different compatibility baselines, build the main app
-with `--without-browser` on the core build host, build `opds-webview` on the
-browser build host, then set `OPDS_BROWSER=/path/to/bokheim-opds-webview` when
-packaging. Only that executable is copied; its system libraries are not bundled.
-The main app and all its bundled libraries must satisfy glibc 2.17, while the
-optional helper may require up to glibc 2.39 (Ubuntu 24.04). Its build uses the
-host toolchain and its process restores the system library path from before
-AppRun. The main app's compatibility libraries do not override WebKitGTK's
-dependencies.
+The browser helper uses the same glibc 2.17 SDK as the main app. Host
+`pkg-config` supplies GTK/WebKit headers and versions; an isolated library
+directory exposes the required GUI libraries to the linker without adding the
+host's libc search directory. Only the helper allows unresolved references
+inside system shared libraries during linking; its own glibc imports are still
+audited against 2.17. To build the helper separately, run:
+
+```sh
+python3 scripts/linux/browser-toolchain.py
+```
+
+Set `OPDS_BROWSER=/path/to/bokheim-opds-webview` when packaging a separately
+built helper. Only that executable is copied; its system libraries are not
+bundled. The helper's process restores the system library path from before
+AppRun, so the main app's compatibility libraries do not override WebKitGTK's
+dependencies. The executable's glibc 2.17 ceiling does not provide WebKitGTK on
+older distributions: a compatible system GTK 3, WebKitGTK 4.1 and libsoup 3
+runtime is still required.
 
 The SDK pins its GNU C++ headers and runtime together. Packaging includes a
 fallback C++ runtime for older hosts, but prefers a usable system runtime so
@@ -158,13 +236,13 @@ xvfb-run -a python3 apps/opds-webview/tests/ui.py --display-env --appearance dar
 xvfb-run -a python3 apps/opds-webview/tests/ui.py --display-env --appearance light
 ```
 
-The packaging script writes `Bokheim-x86_64.AppImage` and
-its `.sha256` file to `release/`. Set `RELEASE_DIRECTORY`, `DESKTOP_BINARY`,
+The packaging script writes `Bokheim-x86_64.AppImage`,
+its `.sha256` file and `install.sh` to `release/`. Set `RELEASE_DIRECTORY`, `DESKTOP_BINARY`,
 `LINUXDEPLOY`, or `APPIMAGETOOL` to override the defaults.
 Packaging and local release checks inspect the AppImage runtime and every
 packaged ELF file. The runtime, main executable and bundled libraries must
-require no newer than glibc 2.17. Only `usr/bin/bokheim-opds-webview` is checked
-separately against glibc 2.39; no other executable or library is exempted.
+require no newer than glibc 2.17. The optional
+`usr/bin/bokheim-opds-webview` is audited separately against the same ceiling.
 
 Update discovery is enabled only when the build contains a valid public signing
 key. Settings shows one row when an update is available. Explicit Update consent
@@ -183,6 +261,16 @@ The hosted platform workflows check out the companion GPUI-Fork, HtmlEngine, and
 HtmlViewCore repositories beside this repository because the Cargo workspace
 currently uses sibling paths. Their pinned revisions must be updated whenever
 Bokheim starts depending on newer companion commits.
+
+## Arch Linux (AUR)
+
+The [`aur` directory](aur/README.md) contains the `bokheim-bin` recipe for the
+public Linux AppImage. It installs an extracted copy with desktop integration,
+declares the host libraries including WebKitGTK, and leaves application updates
+to the package manager. See that guide for local builds, release updates, and
+the corresponding source availability still needed before publication. Bokheim
+uses GPL-3.0-or-later; both the AppImage and AUR package include its license text
+and copyright notice.
 
 ## Flatpak
 

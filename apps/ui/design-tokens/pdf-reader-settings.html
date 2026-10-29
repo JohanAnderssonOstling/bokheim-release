@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" data-palette="warm-light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bokheim · Current PDF settings</title>
+<style>
+@font-face{font-family:Garamond;src:url('../../desktop-gpui/assets/fonts/NV_Garamond-Regular.ttf')}
+@font-face{font-family:Garamond;src:url('../../desktop-gpui/assets/fonts/NV_Garamond-Bold.ttf');font-weight:700}
+@font-face{font-family:Jost;src:url('../../desktop-gpui/assets/fonts/NV_Jost-Regular.ttf')}
+:root{color-scheme:light;--paper:#f6f2eb;--ink:#22201d;--muted:#6b675f;--accent:#466853;--on-accent:#fffdfa;--border:#8c7f64;--rule:#c5bdac;--hover:#46685314;--canvas:#eae5dc;--control:32px}
+[data-palette="cool-light"]{--paper:#fafafa;--ink:#262627;--muted:#65686a;--accent:#42566d;--on-accent:#fdfdfe;--border:#7d8288;--rule:#bcbfc3;--hover:#42566d14;--canvas:#e5e7e9}
+[data-palette="warm-dark"]{color-scheme:dark;--paper:#11100d;--ink:#efe6d0;--muted:#a69c86;--accent:#d3b271;--on-accent:#11100d;--border:#786640;--rule:#4e4334;--hover:#d3b27114;--canvas:#2a2720}
+[data-palette="cool-dark"]{color-scheme:dark;--paper:#121212;--ink:#e7e8ea;--muted:#999da2;--accent:#a7b3c2;--on-accent:#121212;--border:#616872;--rule:#41454a;--hover:#a7b3c214;--canvas:#232527}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.4 Garamond,Georgia,serif}button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:transparent;padding:0}button:hover{background:var(--hover)}button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}button:disabled{opacity:.35;cursor:default}button:disabled:hover{background:transparent}[hidden]{display:none!important}
+.board{max-width:1450px;margin:auto;padding:28px}.board-header{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:20px}.title{display:flex;align-items:baseline;gap:18px}.brand{font-size:30px}.title h1{font:14px Jost,sans-serif;font-weight:400;border-left:1px solid var(--rule);margin:0;padding-left:18px}.view-switch{display:flex;border:1px solid var(--rule);font:13px Jost,sans-serif}.view-switch button{padding:7px 14px}.view-switch button+button{border-left:1px solid var(--rule)}[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}.view-switch button[aria-pressed="true"]:hover{background:var(--accent);color:var(--on-accent)}
+.reader{display:flex;background:var(--paper);border:1px solid var(--rule);height:min(840px,calc(100dvh - 160px));min-height:620px;overflow:hidden}.rail{width:52px;flex:none;border-right:1px solid var(--rule);display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px 0}.rail span{height:36px;width:36px;display:grid;place-items:center;color:var(--muted)}.rail .active{margin-top:auto;color:var(--on-accent);background:var(--accent)}.rail svg,.icon{height:20px;width:20px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.panel{width:352px;flex:none;border-right:1px solid var(--rule);display:flex;flex-direction:column;min-height:0}.panel-header{height:44px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 16px;border-bottom:1px solid var(--rule);font-variant-caps:all-small-caps;font-size:18px}.close{width:32px;height:32px;font:24px Jost,sans-serif}.tabs-wrap{padding:8px 16px;flex:none}.tabs{display:flex;border:1px solid var(--rule);gap:1px;background:var(--rule)}.tabs button{flex:1;min-height:32px;background:var(--paper)}.tabs [aria-selected="true"]{background:var(--accent);color:var(--on-accent)}.settings-body{overflow:auto;scrollbar-width:none;min-height:0;flex:1}.settings-body::-webkit-scrollbar{display:none}.group{padding:16px;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:4px}.row{display:flex;align-items:center;gap:8px;min-height:38px}.row>label,.row>.label{width:112px;flex:none;white-space:nowrap}.spacer{flex:1}.full-screen label{width:auto;flex:1}.full-screen input{accent-color:var(--accent);width:16px;height:16px;margin:0}.theme-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}.swatches{width:240px;max-width:100%;display:flex;justify-content:space-between}.swatch{position:relative;width:48px;height:48px;flex:none;border:1px solid var(--sw-rule);background:var(--sw-paper);color:var(--sw-ink);font-size:24px;display:grid;place-items:center}.swatch:hover{background:var(--sw-paper);border-color:var(--sw-accent)}.swatch:before{content:'';position:absolute;left:14px;bottom:6px;width:18px;height:3px;background:var(--sw-accent)}.swatch[aria-pressed="true"]{border-color:var(--sw-accent);background:var(--sw-paper);color:var(--sw-ink)}.swatch[aria-pressed="true"]:after{content:'✓';position:absolute;right:2px;top:2px;width:14px;height:14px;font:10px/14px Jost,sans-serif;background:var(--sw-accent);color:var(--sw-paper)}
+.smallcaps{font-size:14px;font-variant-caps:all-small-caps;color:var(--muted);margin-bottom:2px}.tiles{display:flex;gap:8px;width:100%;margin-bottom:0}.tile{flex:1;min-width:0;border:1px solid var(--rule);padding:4px 0;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);background:var(--paper);font-size:14px}.tile svg{width:36px;height:36px;stroke:currentColor}.tile[aria-pressed="true"]{color:var(--on-accent);background:var(--accent)}.tile span{width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.setting-block+.setting-block{margin-top:0}.stepper{height:var(--control);display:flex;align-items:center;border:1px solid var(--border);padding:0 2px;flex:none}.stepper button{height:calc(var(--control) - 2px);width:var(--control);flex:none}.stepper output{width:72px;text-align:center;color:var(--muted);font-variant-numeric:tabular-nums}.stepper button:hover{background:var(--hover)}
+.viewport{position:relative}.ruler-overlay{position:absolute;inset:0;pointer-events:none;z-index:2}.ruler-mark{position:absolute;background:color-mix(in srgb,var(--accent) 22%,transparent)}.ruler-mark.lines{background:none;border-block:2px solid var(--accent)}.ruler-mask{position:absolute;background:#0009}.ruler-styles{display:flex;border:1px solid var(--rule);gap:1px;background:var(--rule)}.ruler-styles button{flex:1;min-height:32px;background:var(--paper)}.ruler-styles [aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}.document{flex:1;min-width:0;display:flex;flex-direction:column;position:relative;overflow:hidden}.document-header{height:44px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--rule);font-size:14px;color:var(--muted);flex:none}.document-header button{padding:4px 8px}.viewport{flex:1;min-height:0;overflow:hidden;display:flex;justify-content:center;align-items:flex-start;--side:0px;--vertical:0px;--gap:0px;padding:var(--vertical) var(--side);gap:var(--gap)}.pdf-column{flex:none;min-width:0;height:100%;overflow:hidden}.paper{padding:64px 52px 48px;color:var(--ink);background:var(--paper);height:100%;overflow:hidden;font-size:19px;line-height:1.5}.cropped .paper{padding:14px 12px 20px}.paper h2{font-size:34px;font-weight:400;text-align:center;line-height:1.15;margin:12px 0 30px}.paper .chapter{font:10px Jost,sans-serif;letter-spacing:.16em;text-transform:uppercase;text-align:center;color:var(--muted);margin:0 0 12px}.paper p{margin:0 0 14px;text-align:justify}.paper p+p{text-indent:1.3em}.folio{display:block;text-align:center;color:var(--muted);font-size:13px;margin-top:24px}.document-footer{height:36px;flex:none;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:14px;color:var(--muted)}.document-footer button{padding:0 8px;font-size:22px}.board-footer{font:12px/1.5 Jost,sans-serif;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:12px}.board-footer a{color:inherit}.keyboard-row{padding:8px 0;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}.keyboard-row:last-child{border:0}.keys{display:flex;flex-wrap:wrap;gap:4px}kbd{font:12px Jost,sans-serif;padding:4px 8px;border:1px solid var(--rule);background:var(--paper)}.keyboard-note{font-size:14px;color:var(--muted);margin:0 0 8px}
+.reader.phone{width:390px;max-width:100%;margin:auto;min-height:650px;height:760px;--control:44px}.phone .rail,.phone .document,.phone .tabs-wrap,.phone .full-screen-group{display:none}.phone .panel{width:100%;border:0}.phone .row{min-height:44px}.phone .panel-header{height:56px}.phone .settings-body{font-size:18px}.phone .smallcaps,.phone .tile{font-size:15px}.phone .tile{padding:8px 0}.phone .stepper output{width:72px}
+@media(max-width:760px){.board{padding:14px}.board-header{align-items:flex-start;gap:12px}.title{display:block}.brand{font-size:26px}.title h1{border:0;padding:0;font-size:12px;margin-top:2px}.reader{min-height:650px;height:calc(100dvh - 145px)}.rail,.document{display:none}.panel{width:100%;border:0}.tabs-wrap,.full-screen-group{display:none}.board-footer{font-size:11px}}
+</style>
+</head>
+<body>
+<main class="board">
+<header class="board-header"><div class="title"><span class="brand">Bokheim</span><h1>Current PDF settings</h1></div><div class="view-switch" aria-label="Preview size"><button data-view="desktop" aria-pressed="true">Desktop</button><button data-view="phone" aria-pressed="false">Phone</button></div></header>
+<section class="reader" aria-label="PDF reader preview">
+<nav class="rail" aria-label="Reader navigation"><span title="Library"><svg viewBox="0 0 24 24"><path d="M5 4v16M10 4v16M15 4l5 15M3 20h18"/></svg></span><span title="Contents"><svg viewBox="0 0 24 24"><path d="M5 6h14M5 12h14M5 18h14"/></svg></span><span title="Notes"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></span><span title="Search"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg></span><span class="active" title="Settings"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6"/></svg></span></nav>
+<aside class="panel" aria-label="PDF settings">
+<header class="panel-header"><span>Settings</span><button class="close" aria-label="Close settings">×</button></header>
+<div class="tabs-wrap"><div class="tabs" role="tablist" aria-label="Settings tabs"><button role="tab" id="general-tab" aria-controls="general" aria-selected="true">General</button><button role="tab" id="keyboard-tab" aria-controls="keyboard" aria-selected="false">Keyboard</button></div></div>
+<div class="settings-body" id="general" role="tabpanel" aria-labelledby="general-tab">
+<div class="group"><div class="theme-row"><span>Theme</span><div class="swatches" aria-label="Theme">
+<button class="swatch" title="Warm light" aria-label="Warm light" aria-pressed="true" data-theme="warm-light" style="--sw-paper:#f6f2eb;--sw-ink:#22201d;--sw-accent:#466853;--sw-rule:#c5bdac">Aa</button>
+<button class="swatch" title="Cool light" aria-label="Cool light" aria-pressed="false" data-theme="cool-light" style="--sw-paper:#fafafa;--sw-ink:#262627;--sw-accent:#42566d;--sw-rule:#bcbfc3">Aa</button>
+<button class="swatch" title="Warm dark" aria-label="Warm dark" aria-pressed="false" data-theme="warm-dark" style="--sw-paper:#11100d;--sw-ink:#efe6d0;--sw-accent:#d3b271;--sw-rule:#4e4334">Aa</button>
+<button class="swatch" title="Cool dark" aria-label="Cool dark" aria-pressed="false" data-theme="cool-dark" style="--sw-paper:#121212;--sw-ink:#e7e8ea;--sw-accent:#a7b3c2;--sw-rule:#41454a">Aa</button>
+</div></div></div>
+<div class="group full-screen-group"><div class="row full-screen"><label for="fullscreen">Full screen</label><input type="checkbox" id="fullscreen"></div></div>
+<div class="group" id="ruler-group">
+<div class="row full-screen"><label for="ruler-enabled">Reading ruler</label><input type="checkbox" id="ruler-enabled"></div>
+<div id="ruler-options" hidden><div class="smallcaps">Ruler style</div><div class="ruler-styles" aria-label="Ruler style"><button data-ruler="Band" aria-pressed="true">Band</button><button data-ruler="Focus" aria-pressed="false">Focus</button><button data-ruler="Underline" aria-pressed="false">Lines</button></div>
+<div class="row"><label id="ruler-lines-label">Ruler lines</label><span class="spacer"></span><div class="stepper" data-setting="rulerLines" role="group" aria-labelledby="ruler-lines-label"><button data-delta="-1" aria-label="Fewer ruler lines">−</button><output>1</output><button data-delta="1" aria-label="More ruler lines">+</button></div></div></div>
+</div>
+<div class="group">
+<div class="setting-block"><div class="smallcaps">Fit</div><div class="tiles" aria-label="Fit mode">
+<button class="tile" data-fit="width" aria-pressed="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="40" height="32" stroke-dasharray="3 3"/><path d="M4 8H44M4 40H44M11 15H37M11 33H37M9 24H39M14 19L9 24L14 29M34 19L39 24L34 29"/></svg>
+<span>Fit width</span></button>
+<button class="tile" data-fit="height" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="8" width="40" height="32" stroke-dasharray="3 3"/><rect x="16" y="8" width="16" height="32"/><path d="M19 14H29M19 19H29M19 24H29M19 29H29M19 34H29"/></svg>
+<span>Fit height</span></button>
+<button class="tile" data-fit="zoom" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="8" width="40" height="32" stroke-dasharray="3 3"/><circle cx="21" cy="22" r="8"/><path d="M27 28L35 36M18 22H24M21 19V25"/></svg>
+<span>Zoom</span></button>
+</div></div>
+<div class="setting-block"><div class="smallcaps">Margins</div><div class="tiles" aria-label="PDF page margins">
+<button class="tile" data-crop="false" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="10" y="4" width="28" height="40"/><rect x="16" y="11" width="16" height="26" stroke-dasharray="3 3"/></svg>
+<span>Show margins</span></button>
+<button class="tile" data-crop="true" aria-pressed="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="8" y="4" width="32" height="40"/><path d="M12 11H36M12 17H36M12 23H36M12 29H36M12 35H36"/></svg>
+<span>Crop margins</span></button>
+</div></div>
+<div class="row" id="pages-row"><label id="pages-label">Pages</label><span class="spacer"></span><div class="stepper" data-setting="pages" role="group" aria-labelledby="pages-label"><button data-delta="-1" aria-label="Decrease pages">−</button><output>2</output><button data-delta="1" aria-label="Increase pages">+</button></div></div>
+<div class="row" id="zoom-row" hidden><label id="zoom-label">Zoom</label><span class="spacer"></span><div class="stepper" data-setting="zoom" role="group" aria-labelledby="zoom-label"><button data-delta="-1" aria-label="Zoom out">−</button><output>100%</output><button data-delta="1" aria-label="Zoom in">+</button></div></div>
+</div>
+<div class="group">
+<div class="row"><label id="side-label">Side margins</label><span class="spacer"></span><div class="stepper" data-setting="side" role="group" aria-labelledby="side-label"><button data-delta="-1" aria-label="Decrease side margins">−</button><output>0px</output><button data-delta="1" aria-label="Increase side margins">+</button></div></div>
+<div class="row"><label id="vertical-label">Vertical margins</label><span class="spacer"></span><div class="stepper" data-setting="vertical" role="group" aria-labelledby="vertical-label"><button data-delta="-1" aria-label="Decrease vertical margins">−</button><output>0px</output><button data-delta="1" aria-label="Increase vertical margins">+</button></div></div>
+<div class="row"><label id="gap-label">Page gap</label><span class="spacer"></span><div class="stepper" data-setting="gap" role="group" aria-labelledby="gap-label"><button data-delta="-1" aria-label="Decrease page gap">−</button><output>0px</output><button data-delta="1" aria-label="Increase page gap">+</button></div></div>
+</div>
+</div>
+<div class="settings-body" id="keyboard" role="tabpanel" aria-labelledby="keyboard-tab" hidden><div class="group"><p class="keyboard-note">Default page navigation shortcuts. This HTML preview displays the bindings; remapping is available in the app.</p><div class="keyboard-row">Previous line<div class="keys"><kbd>↑</kbd></div></div><div class="keyboard-row">Next line<div class="keys"><kbd>↓</kbd></div></div><div class="keyboard-row">Previous page<div class="keys"><kbd>←</kbd><kbd>Page Up</kbd></div></div><div class="keyboard-row">Next page<div class="keys"><kbd>→</kbd><kbd>Page Down</kbd><kbd>Space</kbd></div></div></div></div>
+</aside>
+<div class="document">
+<div class="document-header"><span>A study in quiet places.pdf</span><button id="reopen" hidden>Settings</button><span>PDF</span></div>
+<div class="viewport cropped" id="viewport" tabindex="0" aria-label="Sample document"></div>
+<div class="document-footer"><button aria-label="Previous sample page" id="previous">‹</button><span id="page-label">12–13 / 248</span><button aria-label="Next sample page" id="next">›</button></div>
+</div>
+</section>
+<footer class="board-footer"><span>Current controls · Click the document, then ↑ / ↓ to move the ruler · Preview changes stay in this tab</span><a href="reader-system-fonts.html">HTML reader settings preview →</a></footer>
+</main>
+<template id="sample-page"><article class="paper"><div class="chapter">Chapter three</div><h2>The shape of a<br>quiet afternoon</h2><p>There was a certain hour when the light settled on the windowsill and the town seemed to pause. Beyond the garden, the path continued between the trees, turning slowly out of sight.</p><p>She had brought a book, although she had not yet opened it. The river was close enough to hear, a steady sound beneath the movement of the leaves.</p><p>Nothing in the landscape asked to be hurried. Even the shadows seemed to take their time, crossing the stones one patient inch after another.</p><p>At the far end of the room stood a narrow table. On it were the familiar objects of an ordinary day: a cup, a folded letter, and a small bowl of apples.</p><p>When she finally turned the first page, the afternoon had become a place of its own. The words and the garden belonged to the same unbroken silence.</p><span class="folio"></span></article></template>
+<script>
+const state={fit:'width',crop:true,pages:2,zoom:100,side:0,vertical:0,gap:0,page:12,ruler:location.hash==='#ruler'?'Band':'Off',lastRuler:'Band',rulerLines:1,rulerIndex:0,rulerFromEnd:false,rulerEdge:null};
+const bounds={pages:[1,6,1],zoom:[5,500,10],side:[0,200,8],vertical:[0,200,8],gap:[0,200,8],rulerLines:[1,5,1]};
+const reader=document.querySelector('.reader'),viewport=document.querySelector('#viewport');
+function render(){
+ document.querySelector('#ruler-enabled').checked=state.ruler!=='Off';document.querySelector('#ruler-options').hidden=state.ruler==='Off';document.querySelectorAll('[data-ruler]').forEach(button=>button.setAttribute('aria-pressed',button.dataset.ruler===state.lastRuler));
+ document.querySelectorAll('[data-fit]').forEach(button=>button.setAttribute('aria-pressed',button.dataset.fit===state.fit));
+ document.querySelectorAll('[data-crop]').forEach(button=>button.setAttribute('aria-pressed',(button.dataset.crop==='true')===state.crop));
+ document.querySelector('#pages-row').hidden=state.fit!=='width';document.querySelector('#zoom-row').hidden=state.fit!=='zoom';
+ document.querySelectorAll('.stepper').forEach(control=>{const name=control.dataset.setting;control.querySelector('output').value=state[name]+((name==='pages'||name==='rulerLines')?'':name==='zoom'?'%':'px');control.querySelector('[data-delta="-1"]').disabled=state[name]<=bounds[name][0];control.querySelector('[data-delta="1"]').disabled=state[name]>=bounds[name][1]});
+ const side=Math.min(state.side,Math.max(0,(viewport.clientWidth-100)/2)),vertical=Math.min(state.vertical,Math.max(0,(viewport.clientHeight-100)/2));
+ const width=Math.max(1,viewport.clientWidth-2*side),height=Math.max(1,viewport.clientHeight-2*vertical);
+ let columns=state.fit==='width'?state.pages:Math.max(1,Math.min(6,Math.floor((width+state.gap)/((state.fit==='height'?height*.72:600*state.zoom/100)+state.gap))));
+ const gap=columns<=1?0:Math.min(state.gap,Math.max(0,(width-100)/(columns-1)));
+ let columnWidth=state.fit==='width'?(width-gap*(columns-1))/columns:Math.min(width,state.fit==='height'?height*.72:600*state.zoom/100);
+ viewport.style.setProperty('--side',side+'px');viewport.style.setProperty('--vertical',vertical+'px');viewport.style.setProperty('--gap',gap+'px');viewport.classList.toggle('cropped',state.crop);
+ viewport.replaceChildren();for(let i=0;i<columns;i++){const column=document.createElement('div');column.className='pdf-column';column.style.width=columnWidth+'px';column.append(document.querySelector('#sample-page').content.cloneNode(true));column.querySelector('.folio').textContent=state.page+i;column.querySelector('.paper').style.fontSize=Math.max(10,19*columnWidth/480)+'px';viewport.append(column)}
+ document.querySelector('#page-label').textContent=state.page+(columns>1?'–'+(state.page+columns-1):'')+' / 248';
+ paintRuler();
+}
+function visibleRulerLines(){
+ const area=viewport.getBoundingClientRect(),lines=[];
+ viewport.querySelectorAll('.pdf-column').forEach((column,columnIndex)=>{
+  const columnRect=column.getBoundingClientRect();
+  column.querySelectorAll('.chapter,h2,p').forEach(text=>{
+   const range=document.createRange();range.selectNodeContents(text);
+   for(const rect of range.getClientRects()){
+    if(rect.width<=0||rect.height<=0||rect.top<area.top||rect.bottom>area.bottom)continue;
+    lines.push({column:columnIndex,left:rect.left-area.left,top:rect.top-area.top,width:rect.width,height:rect.height,columnLeft:columnRect.left-area.left,columnWidth:columnRect.width});
+   }
+  });
+ });
+ return lines;
+}
+function rulerGroup(lines){
+ let index=Math.min(state.rulerIndex,lines.length-1);
+ if(state.rulerEdge!==null){index=state.rulerEdge?0:lines.length-1;state.rulerEdge=null}
+ state.rulerIndex=index;
+ const column=lines[index].column;
+ let start=index,end=index+1;
+ if(state.rulerFromEnd){while(start>0&&index-start+1<state.rulerLines&&lines[start-1].column===column)start--}
+ else {while(end<lines.length&&end-index<state.rulerLines&&lines[end].column===column)end++}
+ return {start,end};
+}
+function paintRuler(){
+ viewport.querySelector('.ruler-overlay')?.remove();
+ if(state.ruler==='Off')return;
+ const lines=visibleRulerLines();if(!lines.length)return;
+ const {start,end}=rulerGroup(lines),selected=lines.slice(start,end),line=lines[start];
+ const top=Math.min(...selected.map(l=>l.top)),bottom=Math.max(...selected.map(l=>l.top+l.height));
+ const left=Math.min(...selected.map(l=>l.left)),right=Math.max(...selected.map(l=>l.left+l.width));
+ const overlay=document.createElement('div');overlay.className='ruler-overlay';overlay.setAttribute('aria-hidden','true');
+ const quad=(className,x,y,w,h)=>{if(w<=0||h<=0)return;const mark=document.createElement('div');mark.className=className;Object.assign(mark.style,{left:x+'px',top:y+'px',width:w+'px',height:h+'px'});overlay.append(mark)};
+ if(state.ruler==='Focus'){
+  quad('ruler-mask',0,0,viewport.clientWidth,top);quad('ruler-mask',0,bottom,viewport.clientWidth,viewport.clientHeight-bottom);
+  quad('ruler-mask',0,top,line.columnLeft,bottom-top);quad('ruler-mask',line.columnLeft+line.columnWidth,top,viewport.clientWidth-line.columnLeft-line.columnWidth,bottom-top);
+ }else {quad('ruler-mark'+(state.ruler==='Underline'?' lines':''),left,top,right-left,bottom-top)}
+ viewport.append(overlay);
+}
+document.querySelector('#ruler-enabled').addEventListener('change',event=>{state.ruler=event.target.checked?state.lastRuler:'Off';render()});
+document.querySelectorAll('[data-ruler]').forEach(button=>button.addEventListener('click',()=>{state.ruler=state.lastRuler=button.dataset.ruler;render()}));
+viewport.addEventListener('pointerdown',()=>viewport.focus({preventScroll:true}));
+viewport.addEventListener('keydown',event=>{
+ if(state.ruler==='Off'||!['ArrowUp','ArrowDown'].includes(event.key))return;
+ event.preventDefault();const lines=visibleRulerLines();if(!lines.length)return;
+ const forward=event.key==='ArrowDown',{start,end}=rulerGroup(lines);state.rulerFromEnd=!forward;
+ const index=forward?end:start-1;
+ if(index>=0&&index<lines.length){state.rulerIndex=index;paintRuler()}
+ else {state.page=Math.max(1,Math.min(243,state.page+(forward?state.pages:-state.pages)));state.rulerEdge=forward;render()}
+});
+document.fonts.ready.then(paintRuler);
+
+document.querySelectorAll('[data-fit]').forEach(button=>button.addEventListener('click',()=>{state.fit=button.dataset.fit;render()}));
+document.querySelectorAll('[data-crop]').forEach(button=>button.addEventListener('click',()=>{state.crop=button.dataset.crop==='true';render()}));
+document.querySelectorAll('.stepper button').forEach(button=>button.addEventListener('click',()=>{const name=button.closest('.stepper').dataset.setting,[min,max,step]=bounds[name];state[name]=Math.min(max,Math.max(min,state[name]+Number(button.dataset.delta)*step));render()}));
+document.querySelectorAll('[data-theme]').forEach(button=>button.addEventListener('click',()=>{document.documentElement.dataset.palette=button.dataset.theme;document.querySelectorAll('[data-theme]').forEach(sample=>sample.setAttribute('aria-pressed',sample===button))}));
+document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>{reader.classList.toggle('phone',button.dataset.view==='phone');document.querySelectorAll('[data-view]').forEach(item=>item.setAttribute('aria-pressed',item===button));if(button.dataset.view==='phone')setTab('general');render()}));
+function setTab(tab){document.querySelectorAll('[role="tab"]').forEach(button=>button.setAttribute('aria-selected',button.id===tab+'-tab'));document.querySelector('#general').hidden=tab!=='general';document.querySelector('#keyboard').hidden=tab!=='keyboard'}
+document.querySelectorAll('[role="tab"]').forEach(button=>button.addEventListener('click',()=>setTab(button.id.replace('-tab',''))));
+document.querySelector('#fullscreen').addEventListener('change',async event=>{try{if(event.target.checked)await reader.requestFullscreen();else if(document.fullscreenElement)await document.exitFullscreen()}catch{event.target.checked=false}});
+document.addEventListener('fullscreenchange',()=>{document.querySelector('#fullscreen').checked=!!document.fullscreenElement;render()});
+document.querySelector('.close').addEventListener('click',()=>{if(reader.classList.contains('phone')||matchMedia('(max-width:760px)').matches){document.querySelector('[data-view="desktop"]').click();return}document.querySelector('.panel').hidden=true;document.querySelector('#reopen').hidden=false;render()});
+document.querySelector('#reopen').addEventListener('click',()=>{document.querySelector('.panel').hidden=false;document.querySelector('#reopen').hidden=true;render()});
+document.querySelector('#previous').addEventListener('click',()=>{state.page=Math.max(1,state.page-state.pages);render()});document.querySelector('#next').addEventListener('click',()=>{state.page=Math.min(243,state.page+state.pages);render()});
+new ResizeObserver(()=>render()).observe(viewport);render();
+</script>
+</body>
+</html>

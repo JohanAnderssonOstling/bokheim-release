@@ -56,7 +56,12 @@ impl TtsReader for PdfReaderView {
         self.toc.chapter_at(self.pdf.read(cx).current_page())
     }
 
+    fn chapter_label(&self, _cx: &App) -> String {
+        self.toc.narration_chapter_label(self.tts_page)
+    }
+
     fn skip_tts_element(&mut self, forward: bool, cx: &mut Context<Self>) {
+        self.tts_navigation_changed(cx);
         if !self.tts.playing || self.tts.needs_restart {
             return;
         }
@@ -127,6 +132,7 @@ impl TtsReader for PdfReaderView {
                             // PDF fragments are geometry-based reading blocks.
                             let (rects, passages) = fragments.into_iter().map(|fragment| (fragment.rects, SpeechPassage::new(fragment.text, true))).unzip();
                             reader.tts_fragments = rects;
+                            reader.tts.set_chapter(reader.chapter_label(cx));
                             match reader.tts.start(passages, start) {
                                 Ok(Some(events)) => reader.tts.events_task = Some(tts::listen(events, cx)),
                                 Ok(None) => {}

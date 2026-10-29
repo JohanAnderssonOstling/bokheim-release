@@ -20,6 +20,7 @@ pub(crate) async fn serve_storage(mut run: impl AsyncFnMut(Vec<u8>) -> ResultByt
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::reply::{send_once, OwnedReply};
     use async_channel::{bounded, unbounded};
     use std::cell::Cell;
     use std::future::pending;
@@ -69,6 +70,44 @@ mod tests {
         completed.try_send(Err("cancelled".into())).unwrap();
         let result = serve_storage(async |_| panic!("cancelled command ran"), incoming, completion, |_, _| panic!("cancelled command replied")).await;
         assert_eq!(result.unwrap_err(), "cancelled");
+    }
+
+    #[tokio::test]
+    async fn failed_storage_reply_cancels_the_unfinished_coordinator_request() {
+        let (commands, incoming) = unbounded();
+        commands.try_send((1, vec![10])).unwrap();
+        commands.try_send((2, vec![20])).unwrap();
+        let (_completed, completion) = bounded(1);
+        let cancelled = Cell::new(false);
+        let owner = OwnedReply::new(completion.clone(), || cancelled.set(true));
+        let started = Cell::new(0);
+        let result = serve_storage(
+            async |bytes| {
+                started.set(started.get() + 1);
+                Ok(bytes)
+            },
+            incoming,
+            completion,
+            |_, _| Err("reply port failed".into()),
+        )
+        .await;
+        assert_eq!(result.unwrap_err(), "reply port failed");
+        assert_eq!(started.get(), 1);
+        drop(owner);
+        assert!(cancelled.get());
+    }
+
+    #[tokio::test]
+    async fn consumed_coordinator_completion_does_not_cancel_the_request() {
+        let (_commands, incoming) = unbounded();
+        let (completed, completion) = bounded(1);
+        let cancelled = Cell::new(false);
+        let owner = OwnedReply::new(completion.clone(), || cancelled.set(true));
+        send_once(&completed, Ok(vec![30]));
+        let result = serve_storage(async |_| panic!("completed request ran"), incoming, completion, |_, _| panic!("completed request replied")).await;
+        assert_eq!(result.unwrap(), vec![30]);
+        drop(owner);
+        assert!(!cancelled.get());
     }
 
     #[tokio::test]

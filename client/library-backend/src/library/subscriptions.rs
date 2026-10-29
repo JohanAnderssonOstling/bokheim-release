@@ -1,7 +1,7 @@
 //! Subscription requests and live resources owned by one library.
 
-use async_channel::{Receiver, RecvError, Sender, TryRecvError};
 use super::handle::LibraryActorCommand;
+use async_channel::{Receiver, RecvError, Sender, TryRecvError};
 use library_model::LibraryUpdate;
 
 /// Receives updates from one actor generation. Retirement closes the command
@@ -55,7 +55,6 @@ pub enum LibrarySubscription {
         content_hash: BookId,
     },
 }
-impl LibrarySubscription {}
 
 pub enum LibraryEvents {
     #[cfg(target_arch = "wasm32")]

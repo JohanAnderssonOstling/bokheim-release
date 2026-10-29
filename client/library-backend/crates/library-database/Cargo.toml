@@ -23,7 +23,7 @@ subject-projection = { path = "../../../../shared/subject-projection" }
 metadata-contract = { path = "../../../../shared/metadata-contract" }
 book-inspection = { path = "../book-inspection" }
 pdf-view-common = { path = "../../../../shared/pdf-view-common" }
-rusqlite = { version = "0.40.0", features = ["backup", "bundled", "functions", "hooks"] }
+rusqlite = { version = "0.40.0", features = ["backup", "bundled", "functions", "hooks", "limits"] }
 include-sqlite-sql = "0.2.1"
 log = "0.4"
 serde_json = "1"

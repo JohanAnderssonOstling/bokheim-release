@@ -13,6 +13,7 @@ pub fn user_facing_error(error: &(impl Classified + ?Sized), fallback: &'static 
 fn recovery(failure: Failure) -> Option<&'static str> {
     Some(match failure {
         Failure::StorageFull => "There isn't enough free space. Free up space on the device or drive that holds your library, then try again.",
+        Failure::CloudStorageFull => "Your cloud storage account is full. Free up space in that account, then retry.",
         Failure::ReadOnlyStorage => "Bokheim can't save changes here. Allow changes to the library folder or choose a writable library location, then try again.",
         Failure::PermissionDenied => "Bokheim can't access the files it needs. Check that you have permission to use the folder, then try again.",
         Failure::StorageBusy => "Another Bokheim tab is using browser storage. Close your other Bokheim tabs, then reload this page.",

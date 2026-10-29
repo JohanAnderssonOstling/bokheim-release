@@ -164,7 +164,9 @@ pub fn load_voice_with_threads(voice: Voice, threads: i32) -> Result<OfflineTts,
             };
         }
     }
-    let config = OfflineTtsConfig { model: model_config, ..Default::default() };
+    // Deliver completed sentence segments through the synthesis callback,
+    // instead of waiting for all sentences in a reader chunk (notably for Alba).
+    let config = OfflineTtsConfig { model: model_config, max_num_sentences: 1, ..Default::default() };
     OfflineTts::create(&config).ok_or_else(|| "Could not load the speech model.".into())
 }
 

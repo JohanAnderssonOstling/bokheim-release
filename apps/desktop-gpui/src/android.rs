@@ -127,6 +127,29 @@ fn run_android(app: AndroidApp) -> Result<(), String> {
         gpui::profiler::startup::StartupProfile::enable();
     }
     let mut profile = StartupProfile::new("android_launch");
+    let google_drive_available = audio_vm.attach_current_thread(|env| {
+        env.call_static_method(&audio_class, jni::jni_str!("googleDriveAvailable"), jni::jni_sig!("(Landroid/content/Context;)Z"), &[jni::objects::JValue::Object(audio_context.as_ref())])?.z()
+    }).unwrap_or_else(|error| {
+        log::warn!("Google Drive availability could not be checked: {error}");
+        false
+    });
+    app::host::set_google_play_services_available(google_drive_available);
+    #[cfg(feature = "google-drive")]
+    {
+        let drive_vm = audio_vm.clone();
+        let drive_class = audio_vm.attach_current_thread(|env| env.new_global_ref(&audio_class)).map_err(|_| "could not retain Android Google authorization class")?;
+        app::host::android_authorization::configure(Arc::new(move |request| {
+            drive_vm.attach_current_thread(|env| {
+                let email = env.new_string(request.email.as_deref().unwrap_or_default())?;
+                let rejected = env.new_string(request.rejected_token.as_deref().unwrap_or_default())?;
+                env.call_static_method(&drive_class, jni::jni_str!("googleDriveAuthorize"), jni::jni_sig!("(JLjava/lang/String;ZLjava/lang/String;)V"), &[
+                    jni::objects::JValue::Long(request.id as jlong), jni::objects::JValue::Object(email.as_ref()),
+                    jni::objects::JValue::Bool(request.interactive), jni::objects::JValue::Object(rejected.as_ref()),
+                ])?;
+                Ok::<_, jni::errors::Error>(())
+            }).map_err(|_| app::host::CloudAuthorizationError::AuthenticationRequired)
+        }));
+    }
     let taxonomy = audio_vm
         .attach_current_thread(|env| {
             let path = env.call_static_method(&audio_class, jni::jni_str!("taxonomyFile"), jni::jni_sig!("(Landroid/content/Context;)Ljava/lang/String;"), &[jni::objects::JValue::Object(audio_context.as_ref())])?.l()?;
@@ -245,18 +268,19 @@ fn run_android(app: AndroidApp) -> Result<(), String> {
 
     app::host::configure_opds_browser(data_dir.join("opds-webview"));
     let update_vm = unsafe { jni::JavaVM::from_raw(app.vm_as_ptr().cast()) };
-    let (update_class, update_context, play_store) = update_vm
+    let (update_class, update_context, play_store, self_updates_enabled) = update_vm
         .attach_current_thread(|env| {
             let raw_activity = app.activity_as_ptr() as jni::sys::jobject;
             let activity = unsafe { env.as_cast_raw::<jni::refs::Global<JObject>>(&raw_activity)? };
             let class = env.get_object_class(activity.as_ref())?;
             let class = env.new_global_ref(class)?;
             let play_store = env.call_static_method(&class, jni::jni_str!("isPlayStoreBuild"), jni::jni_sig!("()Z"), &[])?.z()?;
+            let self_updates_enabled = env.call_static_method(&class, jni::jni_str!("isSelfUpdateEnabled"), jni::jni_sig!("()Z"), &[])?.z()?;
             let context = env.call_method(activity.as_ref(), jni::jni_str!("getApplicationContext"), jni::jni_sig!("()Landroid/content/Context;"), &[])?.l()?;
-            Ok::<_, jni::errors::Error>((class, env.new_global_ref(context)?, play_store))
+            Ok::<_, jni::errors::Error>((class, env.new_global_ref(context)?, play_store, self_updates_enabled))
         })
         .map_err(|error| format!("could not initialize Android update bridge: {error}"))?;
-    let update_trial = if play_store {
+    let update_trial = if !self_updates_enabled {
         // No update host means no feed requests, APK staging or update controls.
         false
     } else {
@@ -313,20 +337,21 @@ fn run_android(app: AndroidApp) -> Result<(), String> {
     log::info!("backend context initialized");
 
     log::info!("constructing GPUI application");
-    // The platform's loader includes only a small set of Roboto/symbol faces.
-    // Register the complete device catalog here before any reader is created.
+    // Start the UI with bundled fonts. Device font I/O and registration run
+    // in the background after the application window has been installed.
     let platform =
         AndroidPlatform::new_with_options(false, AndroidPlatformOptions { load_system_fonts: false, system_font_fallback: "Raleway".into(), cache_gpu_pipelines, graphics_backends: force_opengl.then_some(gpui_android::wgpu::Backends::GL) });
-    if load_system_fonts {
-        crate::android_fonts::load(platform.text_system().as_ref());
-    }
-    let font_families = platform.text_system().all_font_names();
-    profile.mark("system_fonts");
+    let font_text_system = load_system_fonts.then(|| platform.text_system());
     let application = gpui::Application::with_platform(Rc::new(platform)).with_assets(ui_components::Assets);
     profile.mark("application_construct");
     log::info!("running GPUI application");
     application.run(move |cx| {
-        cx.set_global(ui_components::SystemFontFamilies(font_families));
+        cx.set_global(ui_components::SystemFontFamilies(if load_system_fonts { Vec::new() } else { vec!["NV Garamond".into(), "Raleway".into(), "Bodoni Moda".into()] }));
+        let pending_fonts = font_text_system.map(|text_system| {
+            let (ready, receiver) = async_channel::bounded::<()>(1);
+            cx.set_global(reader_ui::SystemFontsLoading(receiver));
+            (text_system, ready)
+        });
         cx.set_global(browser_ui::AndroidStoragePolicy { all_files_access_available: !play_store });
         profile.mark("event_loop_ready");
         log::info!("opening shared Bokheim UI");
@@ -336,6 +361,22 @@ fn run_android(app: AndroidApp) -> Result<(), String> {
             finish_activity(&app);
             cx.quit();
             return;
+        }
+        if let Some((text_system, ready)) = pending_fonts {
+            let fonts = cx.background_executor().spawn(async move {
+                crate::android_fonts::load(text_system.as_ref());
+                text_system.all_font_names()
+            });
+            cx.spawn(async move |cx| {
+                let families = fonts.await;
+                let _ = cx.update(|cx| {
+                    cx.set_global(ui_components::SystemFontFamilies(families));
+                    cx.refresh_windows();
+                });
+                // No messages are sent: closing wakes every waiting reader.
+                drop(ready);
+            })
+            .detach();
         }
         if let Some(root) = opened.clone() {
             let back_app = app.clone();
@@ -420,6 +461,37 @@ extern "system" fn Java_se_bokheim_reader_gpui_MainActivity_nativeNetworkCostCha
         2 => NetworkCost::Metered,
         _ => NetworkCost::Unknown,
     });
+}
+
+#[unsafe(no_mangle)]
+extern "system" fn Java_se_bokheim_reader_gpui_MainActivity_nativeGooglePlayServicesAvailable(_env: EnvUnowned<'_>, _class: JClass<'_>, available: jboolean) {
+    app::host::set_google_play_services_available(available);
+}
+
+// Keep the Java callback ABI available in builds without provider support.
+#[cfg(not(feature = "google-drive"))]
+#[unsafe(no_mangle)]
+extern "system" fn Java_se_bokheim_reader_gpui_MainActivity_nativeGoogleDriveAuthorization(_env: EnvUnowned<'_>, _class: JClass<'_>, _id: jlong, _token: JString<'_>, _error: jint) {}
+
+#[cfg(feature = "google-drive")]
+#[unsafe(no_mangle)]
+extern "system" fn Java_se_bokheim_reader_gpui_MainActivity_nativeGoogleDriveAuthorization<'caller>(mut unowned_env: EnvUnowned<'caller>, _class: JClass<'caller>, id: jlong, token: JString<'caller>, error: jint) {
+    use app::host::{AndroidGoogleAccessGrant, CloudAuthorizationError};
+    let result = if error == 0 {
+        unowned_env.with_env(|env| token.try_to_string(env).map(Some)).resolve::<jni::errors::LogErrorAndDefault>()
+            .map(|access_token| AndroidGoogleAccessGrant { access_token, expires_in_seconds: 300 })
+            .ok_or_else(|| CloudAuthorizationError::InvalidResponse("Google returned an invalid authorization grant".into()))
+    } else {
+        Err(match error {
+            1 => CloudAuthorizationError::InvalidRequest("Google Drive connection was cancelled".into()),
+            2 | 4 => CloudAuthorizationError::AuthenticationRequired,
+            3 => CloudAuthorizationError::PermissionDenied,
+            5 => CloudAuthorizationError::Transport { failure: app::Failure::Offline, message: "Could not connect to Google".into() },
+            7 => CloudAuthorizationError::Retryable("Another Google authorization request is in progress".into()),
+            _ => CloudAuthorizationError::Retryable("Google Drive could not be connected; try again".into()),
+        })
+    };
+    if id > 0 { app::host::android_authorization::complete(id as u64, result); }
 }
 
 #[unsafe(no_mangle)]

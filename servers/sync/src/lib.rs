@@ -43,6 +43,7 @@ pub async fn app(database: PostgresDatabase, account: Arc<PostgresAccountService
 
     let sync = Arc::new(PostgresSyncRepository::new(database.clone()));
     let asset_service = Arc::new(AssetApplication::new(database.clone(), assets.clone()));
+    asset_service.spawn_cleanup_worker();
     let readiness = Arc::new(server_http::Readiness::new(database.clone(), assets.clone(), READINESS_CACHE_TTL));
     let account_routes = server_account::http::router(account.clone(), client_address_source);
     Ok(server_http::router_with_operational_limits(account_routes, account, sync, asset_service, readiness, transfer_limits, request_limits, notification_config))

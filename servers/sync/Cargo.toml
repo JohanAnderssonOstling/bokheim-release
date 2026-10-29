@@ -39,6 +39,7 @@ server-http = { path = "crates/server-http" }
 server-account = { path = "crates/server-account" }
 
 [dev-dependencies]
+sync-common = { path = "../../shared/sync-common" }
 account-contract = { path = "../../shared/account-contract" }
 wire = { package = "protobuf-wire", path = "../../shared/protobuf-wire" }
 serde = { version = "1", features = ["derive"] }

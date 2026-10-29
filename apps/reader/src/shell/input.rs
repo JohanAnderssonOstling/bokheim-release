@@ -4,11 +4,11 @@ use gpui::{App, Context, Focusable, KeyBinding, Window};
 
 use super::{
     chrome::{self, ChromeState},
-    state_panel::{SidebarState, adjacent_available_tab},
+    state_panel::{SidebarState, SidebarTab, adjacent_available_tab},
     toolbar::SidebarTarget,
 };
 
-use crate::{CloseSearch, DecreaseScale, FocusReaderSearch, IncreaseScale, NextLine, NextPage, NextSidebarTab, PreviousLine, PreviousPage, PreviousSidebarTab, ReturnToLibrary, ToggleSearch, ToggleSidebar, ToggleToc};
+use crate::{CloseSearch, DecreaseScale, FocusReaderSearch, IncreaseScale, NextLine, NextPage, NextSidebarTab, OpenReaderSettings, PreviousLine, PreviousPage, PreviousSidebarTab, ReturnToLibrary, ToggleSearch, ToggleSidebar, ToggleToc};
 
 /// A reader implements this only for commands it supports.
 pub(crate) trait CommandTarget<C>: Sized + 'static {
@@ -76,6 +76,13 @@ impl<R: ReaderSidebarCommands> CommandTarget<ToggleSidebar> for R {
     }
 }
 
+impl<R: SidebarTarget> CommandTarget<OpenReaderSettings> for R {
+    fn execute(&mut self, _: &OpenReaderSettings, window: &mut Window, cx: &mut Context<Self>) {
+        self.keyboard_visibility().set(!ui_components::uses_mobile_reader_controls(window));
+        self.select_sidebar_tab(SidebarTab::Settings, window, cx);
+    }
+}
+
 impl<R: ReaderSidebarCommands> CommandTarget<CloseSearch> for R {
     fn execute(&mut self, _: &CloseSearch, window: &mut Window, cx: &mut Context<Self>) {
         self.hide_sidebar(window, cx);
@@ -99,6 +106,7 @@ pub(crate) trait CommonReaderCommands:
     + CommandTarget<ToggleSidebar>
     + CommandTarget<ToggleToc>
     + CommandTarget<FocusReaderSearch>
+    + CommandTarget<OpenReaderSettings>
     + CommandTarget<ToggleSearch>
     + CommandTarget<CloseSearch>
     + CommandTarget<IncreaseScale>
@@ -117,6 +125,7 @@ impl<T> CommonReaderCommands for T where
         + CommandTarget<ToggleSidebar>
         + CommandTarget<ToggleToc>
         + CommandTarget<FocusReaderSearch>
+        + CommandTarget<OpenReaderSettings>
         + CommandTarget<ToggleSearch>
         + CommandTarget<CloseSearch>
         + CommandTarget<IncreaseScale>
@@ -139,7 +148,7 @@ pub(crate) fn bind_reader_keys(cx: &mut App) {
     use ui_components::{ShortcutPage::Reader, bind_shortcut};
     bind_shortcut(cx, Reader, "reader.next_tab", "Next sidebar tab", &["ctrl-tab"], NextSidebarTab, "Reader");
     bind_shortcut(cx, Reader, "reader.previous_tab", "Previous sidebar tab", &["ctrl-shift-tab"], PreviousSidebarTab, "Reader");
-    bind_shortcut(cx, Reader, "reader.sidebar", "Toggle sidebar", &["secondary-s"], ToggleSidebar, "Reader");
+    bind_shortcut(cx, Reader, "reader.settings", "Open reader settings", &["secondary-s"], OpenReaderSettings, "Reader");
     bind_shortcut(cx, Reader, "reader.contents", "Toggle contents", &["secondary-t"], ToggleToc, "Reader");
     bind_shortcut(cx, Reader, "reader.search", "Search in book", &["secondary-f"], FocusReaderSearch, "Reader");
     bind_shortcut(cx, Reader, "reader.close_search", "Close search or sidebar", &["escape"], CloseSearch, "Reader");
@@ -153,7 +162,7 @@ pub(crate) fn bind_reader_keys(cx: &mut App) {
 }
 
 /// Handle panel shortcuts before nested inputs or sidebar navigation consume them.
-pub(crate) fn install_reader_shortcuts<R: CommandTarget<FocusReaderSearch> + CommandTarget<ToggleToc>>(window: &mut Window, cx: &mut Context<R>) {
+pub(crate) fn install_reader_shortcuts<R: CommandTarget<FocusReaderSearch> + CommandTarget<ToggleToc> + CommandTarget<OpenReaderSettings>>(window: &mut Window, cx: &mut Context<R>) {
     let target = cx.entity().downgrade();
     let window_handle = window.window_handle();
     window.use_keyed_state(("reader-panel-keyboard", cx.entity_id()), cx, move |_, cx| {
@@ -164,15 +173,18 @@ pub(crate) fn install_reader_shortcuts<R: CommandTarget<FocusReaderSearch> + Com
             }
             let contents = ui_components::matches_shortcut("reader.contents", key, cx);
             let search = ui_components::matches_shortcut("reader.search", key, cx);
-            if !contents && !search {
+            let settings = ui_components::matches_shortcut("reader.settings", key, cx);
+            if !contents && !search && !settings {
                 return;
             }
             if let Some(target) = target.upgrade() {
                 target.update(cx, |reader, cx| {
                     if contents {
                         reader.execute(&ToggleToc, window, cx);
-                    } else {
+                    } else if search {
                         reader.execute(&FocusReaderSearch, window, cx);
+                    } else {
+                        reader.execute(&OpenReaderSettings, window, cx);
                     }
                 });
                 cx.stop_propagation();

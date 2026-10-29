@@ -7,19 +7,23 @@
         <title>Bokheim</title>
         <script type="module">
             globalThis.__BOKHEIM_ASSET_BASE__ = "./pkg";
+            globalThis.__BOKHEIM_CJK_FONT_URL__ = new URL(`${globalThis.__BOKHEIM_ASSET_BASE__}/fonts/DroidSansFallback.ttf`, document.baseURI).href;
             import {checkCompatibility, compatibilityMessage} from "./compatibility.mjs";
 
             import {startApplication} from "./startup.mjs";
+            import {prestartBackend} from "./backend-startup.mjs";
             const panel = document.getElementById('startup-status');
             const issues = await checkCompatibility();
             if (issues.length) {
                 console.error('Bokheim compatibility check failed', issues);
                 panel.textContent = compatibilityMessage(navigator.userAgent);
             } else {
+                const backend = prestartBackend(globalThis.__BOKHEIM_ASSET_BASE__);
+                globalThis.__BOKHEIM_BACKEND_STARTUP__ = backend;
                 await startApplication(panel, async () => {
                     const {default: initialize} = await import("./pkg/web_gpui.js");
                     await initialize();
-                });
+                }, {onFailure: () => backend.stop()});
             }
         </script>
         <style>

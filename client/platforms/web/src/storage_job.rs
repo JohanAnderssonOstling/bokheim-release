@@ -1,6 +1,7 @@
 //! One sync pass owns its storage mailbox and pending reply. Browser callbacks
 //! supply events; the application supplies the engine and wire sender.
 use async_channel::{Receiver, Sender};
+use client_platform_runtime::pending::OnDrop;
 use futures_channel::oneshot;
 use futures_util::future::LocalBoxFuture;
 use std::cell::Cell;
@@ -17,16 +18,6 @@ pub enum Event {
     Malformed,
 }
 
-struct Registration {
-    events: Sender<Event>,
-    id: u32,
-}
-impl Drop for Registration {
-    fn drop(&mut self) {
-        let _ = self.events.try_send(Event::Cancel(self.id));
-    }
-}
-
 fn operation(events: Sender<Event>) -> Operation {
     let next = Cell::new(0u32);
     Rc::new(move |bytes| {
@@ -38,7 +29,10 @@ fn operation(events: Sender<Event>) -> Operation {
         let _ = events.try_send(Event::Request { id, bytes, reply });
         // Capture cleanup before constructing the future: an unpolled call
         // can be cancelled without starting its queued storage command.
-        let registration = Registration { events: events.clone(), id };
+        let cancelled = events.clone();
+        let registration = OnDrop::new(move || {
+            let _ = cancelled.try_send(Event::Cancel(id));
+        });
         Box::pin(async move {
             let _registration = registration;
             response.await.unwrap_or_else(|_| Err("Sync storage connection closed".into()))

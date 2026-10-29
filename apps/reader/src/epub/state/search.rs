@@ -4,7 +4,7 @@ use crate::invalidation::notify;
 use std::time::Duration;
 
 use gpui::Context;
-use html_view_core::{RendererCommand, SearchScope};
+use skrift_column_paginator::{RendererCommand, SearchScope};
 
 use crate::epub::ReaderView;
 use crate::invalidation::Component;
@@ -70,7 +70,7 @@ impl ReaderView {
         });
         cx.spawn(async move |this, cx| {
             let query = renderer_query.clone();
-            let results = executor.spawn(async move { html_view_core::search_publication_streaming(provider.as_ref(), &documents, &query, options, || cancellation.load(std::sync::atomic::Ordering::Acquire) != request, |_| {}) }).await;
+            let results = executor.spawn(async move { skrift_column_paginator::search_publication_streaming(provider.as_ref(), &documents, &query, options, || cancellation.load(std::sync::atomic::Ordering::Acquire) != request, |_| {}) }).await;
             let _ = this.update(cx, |this, cx| {
                 if this.search.still_wants(request, &renderer_query) {
                     this.with_renderer(cx, |renderer, cx| renderer.apply(RendererCommand::SetSearchResults { query: renderer_query, options, results }, cx));

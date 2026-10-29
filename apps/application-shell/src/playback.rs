@@ -1,4 +1,4 @@
-//! One playback owner and one ordered restoration writer per application.
+//! Playback owners with separate ordered restoration writers.
 
 use app::AppClient;
 use browser_ui::{LibraryRemovalHook, LibraryRemovalPreparation, LibraryRemovalService};
@@ -69,6 +69,10 @@ impl RestoreStore {
     fn save(&self, expected: Option<uuid::Uuid>, record: Option<ActiveAudiobook>) -> Result<bool, String> {
         if let Some(record) = &record {
             record.validate()?;
+        }
+        #[cfg(not(target_arch = "wasm32"))]
+        if self.path.is_none() {
+            return Ok(true);
         }
         if self.load()?.as_ref().map(|record| record.session_id) != expected {
             return Ok(false);
@@ -176,21 +180,75 @@ pub(super) struct PlaybackController {
     observation: Option<Subscription>,
 }
 
+#[derive(Default)]
+struct PlaybackControllers(Vec<WeakEntity<PlaybackController>>);
+impl Global for PlaybackControllers {}
+
+#[cfg(feature = "kobo")]
+pub(super) fn kobo_idle_sleep_allowed(cx: &App) -> bool {
+    cx.try_global::<PlaybackControllers>().is_none_or(|registry| {
+        !registry.0.iter().filter_map(WeakEntity::upgrade).any(|controller| {
+            controller.read(cx).current.as_ref().is_some_and(|active| active.session.read(cx).prevents_idle_sleep())
+        })
+    })
+}
+
+#[cfg(feature = "kobo")]
+pub(super) fn prepare_kobo_sleep(cx: &mut App) {
+    let controllers = cx.try_global::<PlaybackControllers>().map(|registry| registry.0.clone()).unwrap_or_default();
+    for controller in controllers.into_iter().filter_map(|controller| controller.upgrade()) {
+        controller.update(cx, |controller, cx| {
+            controller.opens.cancel_pending();
+            controller.opening = None;
+            controller.generation = controller.generation.wrapping_add(1);
+            if let Some(active) = &controller.current {
+                active.session.update(cx, |session, cx| session.prepare_sleep(cx));
+            }
+        });
+    }
+}
+
 struct PlaybackLibraryRemoval {
-    controller: WeakEntity<PlaybackController>,
+    controllers: Vec<WeakEntity<PlaybackController>>,
 }
 
 impl LibraryRemovalService for PlaybackLibraryRemoval {
     fn prepare_removal(&self, library: LibraryId, cx: &mut App) -> LibraryRemovalPreparation {
-        self.controller.update(cx, |controller, cx| controller.prepare_removal(library, cx)).unwrap_or_else(|_| Box::pin(async { Err("Playback controller is unavailable".into()) }))
+        let preparations = self.controllers.iter().filter_map(|controller| controller.upgrade()).map(|controller| controller.update(cx, |controller, cx| controller.prepare_removal(library, cx))).collect::<Vec<_>>();
+        Box::pin(async move {
+            for preparation in preparations {
+                preparation.await?;
+            }
+            Ok(())
+        })
     }
 }
 
 impl PlaybackController {
     pub fn shared(backend: AppClient, restore_path: Option<PathBuf>, cx: &mut App) -> Entity<Self> {
         let controller = Self::shared_with(cx, |cx| Self::new(backend, RestoreStore::new(restore_path), cx));
-        cx.set_global(LibraryRemovalHook(Rc::new(PlaybackLibraryRemoval { controller: controller.downgrade() })));
+        Self::register(&controller, cx);
         controller
+    }
+
+    pub fn independent(backend: AppClient, restore_path: Option<PathBuf>, cx: &mut App) -> Entity<Self> {
+        let controller = cx.new(|cx| Self::new(backend, RestoreStore::new(restore_path), cx));
+        Self::register(&controller, cx);
+        controller
+    }
+
+    pub fn has_controllers(cx: &App) -> bool {
+        cx.try_global::<PlaybackControllers>().is_some_and(|registry| registry.0.iter().any(|controller| controller.upgrade().is_some()))
+    }
+
+    fn register(controller: &Entity<Self>, cx: &mut App) {
+        let mut controllers = cx.try_global::<PlaybackControllers>().map(|registry| registry.0.clone()).unwrap_or_default();
+        controllers.retain(|existing| existing.upgrade().is_some());
+        if !controllers.iter().any(|existing| existing.entity_id() == controller.entity_id()) {
+            controllers.push(controller.downgrade());
+        }
+        cx.set_global(PlaybackControllers(controllers.clone()));
+        cx.set_global(LibraryRemovalHook(Rc::new(PlaybackLibraryRemoval { controllers })));
     }
 
     fn shared_with(cx: &mut App, create: impl FnOnce(&mut Context<Self>) -> Self) -> Entity<Self> {
@@ -437,6 +495,18 @@ impl PlaybackController {
         }
         self.opens.cancel_pending();
         self.stop_current(cx);
+    }
+
+    pub fn close_pane(&mut self, cx: &mut Context<Self>) -> LibraryRemovalPreparation {
+        self.close(cx);
+        let positions = self.pending_positions.iter().map(|(_, flush)| flush.clone()).collect::<Vec<_>>();
+        let saves = self.flush_saves();
+        Box::pin(async move {
+            for position in positions {
+                position.await?;
+            }
+            saves.await
+        })
     }
 
     fn flush_saves(&self) -> LibraryRemovalPreparation {

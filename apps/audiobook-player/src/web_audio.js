@@ -2,12 +2,14 @@ let active = null;
 
 // Browser audio owns the clock; UI repaint timers never drive playback.
 export class BrowserAudio {
-    constructor(url, artwork, metadata, initial, save, direct = null, renew = null) {
+    constructor(url, artwork, metadata, initial, save, direct = null, renew = null, streamControl = null) {
         if (active) active.dispose();
         active = this;
         this.audio = new Audio();
         this.direct = direct;
         this.renew = renew;
+        this.streamControl = streamControl;
+        this.setStreamPaused(true);
         this.tracks = metadata.tracks || [];
         this.localTrackUrls = metadata.localTrackUrls || [];
         this.bookDuration = metadata.bookDuration || 0;
@@ -53,7 +55,7 @@ export class BrowserAudio {
         this.listen('pause', () => {
             // Reaching the end fires pause before ended. Keep the play request
             // until ended has had a chance to advance to the next track.
-            if (!this.recovery && !this.switching && !this.audio.ended) this.wantsPlay = false;
+            if (!this.recovery && !this.switching && !this.audio.ended) { this.wantsPlay = false; this.setStreamPaused(true); }
         });
         this.listen('playing', () => { this.waiting = false; this.recoveryAttempts = 0; });
         this.listen('seeked', () => {
@@ -67,7 +69,7 @@ export class BrowserAudio {
         for (const event of ['pause', 'ended']) this.listen(event, () => this.update(true));
         this.listen('ended', () => {
             if (!this.wantsPlay) return;
-            if (this.trackIndex + 1 >= this.tracks.length) { this.wantsPlay = false; return; }
+            if (this.trackIndex + 1 >= this.tracks.length) { this.wantsPlay = false; this.setStreamPaused(true); return; }
             const next = this.trackIndex + 1;
             this.switchTrack(next, this.tracks[next].start_ms / 1000);
         });
@@ -77,11 +79,13 @@ export class BrowserAudio {
                 return;
             }
             this.error = `Could not play this audiobook (media error ${this.audio.error?.code ?? 'unknown'}).`;
+            this.setStreamPaused(true);
             this.update(true);
         });
         this.visibilitychange = () => this.update(true);
         this.pagehide = () => {
             this.update(true);
+            if (this.streamControl) this.pause();
             if (this.direct) {
                 this.pause();
                 this.revokeDirect(this.url);
@@ -107,6 +111,7 @@ export class BrowserAudio {
         }
     }
     listen(event, handler) { this.audio.addEventListener(event, handler); }
+    setStreamPaused(paused) { if (this.streamControl) this.streamControl(paused); }
     trackFor(position) {
         if (!this.tracks.length) return 0;
         const millis = Math.max(0, position * 1000);
@@ -154,6 +159,7 @@ export class BrowserAudio {
     }
     startMedia() {
         const generation = ++this.playGeneration;
+        this.setStreamPaused(false);
         if (this.audio.ended) this.seek(0);
         this.error = null;
         const result = this.audio.play();
@@ -164,6 +170,7 @@ export class BrowserAudio {
                 return;
             }
             this.wantsPlay = false;
+            this.setStreamPaused(true);
             this.error = error.name === 'NotAllowedError'
                 ? 'Tap Play to allow audiobook playback in this browser.' : `Could not start playback: ${error.message}`;
         });
@@ -216,7 +223,7 @@ export class BrowserAudio {
         } finally { if (this.recovery === recovery) this.recovery = null; }
     }
     toggle() { if (this.playing()) this.pause(); else this.play(); }
-    pause() { if (!this.disposed) { ++this.playGeneration; this.wantsPlay = false; this.cancelRecovery(); this.audio.pause(); } }
+    pause() { if (!this.disposed) { ++this.playGeneration; this.wantsPlay = false; this.setStreamPaused(true); this.cancelRecovery(); this.audio.pause(); } }
     seek(position) {
         if (!Number.isFinite(position) || this.disposed) return;
         this.initial = this.clampGlobal(position);
@@ -260,6 +267,7 @@ export class BrowserAudio {
         this.update(true);
         this.disposed = true;
         this.wantsPlay = false;
+        this.setStreamPaused(true);
         this.cancelRecovery();
         this.revokeDirect(this.url);
         this.audio.pause();

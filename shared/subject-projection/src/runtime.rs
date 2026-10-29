@@ -4,6 +4,7 @@ use super::runtime_index::{compare_cutter_endpoint, compare_upper_cutters, cutte
 pub use super::runtime_index::{lcc_subject_sort_orders, UnifiedConceptDefinition, UnifiedConceptRoute};
 use super::{compact_whitespace, DDC_SYSTEM_ID, LCC_SYSTEM_ID};
 use crate::LccMatchReport;
+use rusqlite::{Connection, OptionalExtension};
 use serde::Deserialize;
 use std::collections::{BTreeMap, BTreeSet};
 use std::sync::{Arc, OnceLock, RwLock};
@@ -56,6 +57,10 @@ pub struct UnifiedTaxonomy {
 }
 
 impl UnifiedTaxonomy {
+    pub(crate) fn encode(&self) -> Result<Vec<u8>, String> {
+        bincode::serde::encode_to_vec(self.runtime.as_ref(), bincode::config::standard()).map_err(|e| e.to_string())
+    }
+
     pub fn from_concepts(concepts: Vec<UnifiedConceptDefinition>) -> Result<Self, String> {
         Ok(Self { runtime: Arc::new(build_runtime(concepts)?) })
     }
@@ -111,17 +116,43 @@ pub(super) fn current() -> Arc<UnifiedTaxonomyRuntime> {
     let runtime = RUNTIME.get_or_init(|| RwLock::new(default_runtime()));
     // The protected value is an immutable Arc snapshot. A failed replacement
     // leaves a valid snapshot available for subsequent readers.
-    runtime.read().unwrap_or_else(|error| {
-        runtime.clear_poison();
-        error.into_inner()
-    }).clone()
+    runtime
+        .read()
+        .unwrap_or_else(|error| {
+            runtime.clear_poison();
+            error.into_inner()
+        })
+        .clone()
 }
 
 pub fn install_unified_taxonomy_concepts(concepts: Vec<UnifiedConceptDefinition>) -> Result<(), String> {
     let replacement = Arc::new(build_runtime(concepts)?);
+    install_runtime(replacement)
+}
+
+fn install_runtime(replacement: Arc<UnifiedTaxonomyRuntime>) -> Result<(), String> {
     let runtime = RUNTIME.get_or_init(|| RwLock::new(replacement.clone()));
     *runtime.write().map_err(|_| "unified taxonomy runtime lock is poisoned".to_owned())? = replacement;
     Ok(())
+}
+
+pub(crate) fn install_from_connection(db: &Connection) -> Result<(), String> {
+    install_runtime(runtime_from_connection(db)?)
+}
+
+fn runtime_from_connection(db: &Connection) -> Result<Arc<UnifiedTaxonomyRuntime>, String> {
+    let prepared: bool = db.query_row("SELECT EXISTS(SELECT 1 FROM sqlite_schema WHERE name='client_matcher')", [], |row| row.get(0)).map_err(|e| e.to_string())?;
+    if prepared {
+        let image: Option<Vec<u8>> = db.query_row("SELECT image FROM client_matcher WHERE singleton=1 AND version=?1", [crate::UNIFIED_MATCHER_VERSION], |row| row.get(0)).optional().map_err(|e| e.to_string())?;
+        if let Some(image) = image {
+            if let Ok(runtime) = decode_runtime(&image) {
+                return Ok(runtime);
+            }
+        }
+    }
+    // Older prepared references remain usable. Compile their matcher only
+    // when matching is actually requested, on either native or web.
+    Ok(Arc::new(build_runtime(crate::read_unified_taxonomy_connection(db, "installed taxonomy")?)?))
 }
 
 pub fn unified_taxonomy_revision_id() -> String {
@@ -161,11 +192,7 @@ pub fn most_specific_concept_ids(concepts: impl IntoIterator<Item = i64>) -> BTr
 
 fn most_specific_concept_ids_in(runtime: &UnifiedTaxonomyRuntime, concepts: impl IntoIterator<Item = i64>) -> BTreeSet<i64> {
     let mut concepts = concepts.into_iter().collect::<BTreeSet<_>>();
-    let ancestors = concepts
-        .iter()
-        .filter_map(|id| runtime.ancestors.binary_search_by_key(id, |(id, _)| *id).ok())
-        .flat_map(|index| runtime.ancestors[index].1.iter().copied())
-        .collect::<BTreeSet<_>>();
+    let ancestors = concepts.iter().filter_map(|id| runtime.ancestors.binary_search_by_key(id, |(id, _)| *id).ok()).flat_map(|index| runtime.ancestors[index].1.iter().copied()).collect::<BTreeSet<_>>();
     concepts.retain(|id| !ancestors.contains(id));
     concepts
 }
@@ -337,13 +364,28 @@ fn lcc_range_contains(outer: &LccSelector, inner: &LccSelector) -> bool {
     start.is_le() && end.is_le() && (!start.is_eq() || compare_cutter_endpoint(&inner.start_cutters, &outer.start_cutters).is_ge()) && (!end.is_eq() || compare_upper_cutters(&inner.end_cutters, &outer.end_cutters).is_le())
 }
 
-#[cfg(not(target_arch = "wasm32"))]
 fn default_runtime() -> Arc<UnifiedTaxonomyRuntime> {
+    if let Some(path) = crate::installed::active_path() {
+        let db = crate::installed::open_read_only(path).expect("selected taxonomy must be readable");
+        return runtime_from_connection(&db).expect("selected taxonomy matcher must be readable");
+    }
+    bundled_runtime()
+}
+
+fn decode_runtime(bytes: &[u8]) -> Result<Arc<UnifiedTaxonomyRuntime>, String> {
+    let (runtime, consumed): (UnifiedTaxonomyRuntime, usize) = bincode::serde::decode_from_slice(bytes, bincode::config::standard()).map_err(|e| e.to_string())?;
+    if consumed != bytes.len() {
+        return Err("taxonomy matcher has trailing bytes".into());
+    }
+    Ok(Arc::new(runtime))
+}
+
+#[cfg(not(target_arch = "wasm32"))]
+fn bundled_runtime() -> Arc<UnifiedTaxonomyRuntime> {
     let bytes = include_bytes!(concat!(env!("OUT_DIR"), "/unified-taxonomy-matcher.bin"));
-    let (runtime, consumed): (UnifiedTaxonomyRuntime, usize) = bincode::serde::decode_from_slice(bytes, bincode::config::standard()).expect("bundled taxonomy matcher must be valid");
-    assert_eq!(consumed, bytes.len(), "bundled taxonomy matcher has trailing bytes");
+    let runtime = decode_runtime(bytes).expect("bundled taxonomy matcher must be valid");
     assert_eq!(runtime.revision_id, BUNDLED_UNIFIED_TAXONOMY_REVISION_ID, "bundled taxonomy revision constant must track the compiled matcher");
-    Arc::new(runtime)
+    runtime
 }
 
 #[cfg(all(test, not(target_arch = "wasm32")))]
@@ -352,14 +394,24 @@ fn default_concepts() -> Vec<UnifiedConceptDefinition> {
 }
 
 #[cfg(target_arch = "wasm32")]
-fn default_runtime() -> Arc<UnifiedTaxonomyRuntime> {
-    panic!("the browser host installs the taxonomy before using it")
+fn bundled_runtime() -> Arc<UnifiedTaxonomyRuntime> {
+    panic!("the browser host selects the taxonomy before using it")
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
     use crate::runtime_index::validate;
+
+    #[test]
+    fn prepared_matcher_loads_without_reading_concept_tables() {
+        let expected = UnifiedTaxonomy::from_concepts(vec![concept(1, "Prepared", &[], &["QA76"])]).unwrap();
+        let db = Connection::open_in_memory().unwrap();
+        db.execute_batch("CREATE TABLE client_matcher(singleton INTEGER PRIMARY KEY, version INTEGER NOT NULL, image BLOB NOT NULL);").unwrap();
+        db.execute("INSERT INTO client_matcher VALUES(1,?1,?2)", rusqlite::params![crate::UNIFIED_MATCHER_VERSION, expected.encode().unwrap()]).unwrap();
+        let loaded = runtime_from_connection(&db).unwrap();
+        assert_eq!(loaded.as_ref(), expected.runtime.as_ref());
+    }
 
     #[test]
     fn most_specific_assignments_keep_divergent_branches_and_shared_routes() {

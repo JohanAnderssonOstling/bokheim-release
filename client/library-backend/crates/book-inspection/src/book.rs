@@ -5,7 +5,7 @@
 use crate::{MetadataResult, inspect_epub_reader, inspect_pdf_reader};
 use book_content::{Book, BookFormat as ContainerFormat, TocEntry, comic::ComicBook};
 use book_model::{AUTHOR_MARC_RELATOR_CODE, AudiobookChapter, BookFormat, BookMetadataError, BookRecord, ChapterOrigin, Contributor};
-use content_address::BookId;
+use content_address::{hash_file, BookId};
 use std::collections::HashSet;
 #[cfg(target_arch = "wasm32")]
 use std::io::Cursor;
@@ -68,7 +68,10 @@ pub fn inspect_book_reader_with_hash(source_name: &Path, format: BookFormat, rea
     let mut pdf = None;
     let mut pdf_toc = Vec::new();
     let reader = if format == BookFormat::Pdf {
-        let (reader, extracted, outline) = pdf_reader_core::inspect_reader_metadata(reader)?;
+        let (reader, extracted, outline) = match content_hash {
+            Some(identity) if identity.is_external() => pdf_reader_core::inspect_reader_metadata_with_identity(reader, identity.to_hex())?,
+            _ => pdf_reader_core::inspect_reader_metadata(reader)?,
+        };
         pdf = extracted.valid_for(&extracted.content_hash).then_some(extracted);
         pdf_toc = outline;
         reader
@@ -193,19 +196,7 @@ pub fn inspect_book_reader_with_hash(source_name: &Path, format: BookFormat, rea
             let (audiobook, book) = {
                 let content_hash = match content_hash {
                     Some(content_hash) => content_hash,
-                    None => {
-                        reader.seek(std::io::SeekFrom::Start(0))?;
-                        let mut hasher = blake3::Hasher::new();
-                        let mut buffer = [0u8; 64 * 1024];
-                        loop {
-                            let count = reader.read(&mut buffer)?;
-                            if count == 0 {
-                                break;
-                            }
-                            hasher.update(&buffer[..count]);
-                        }
-                        BookId::from(hasher.finalize())
-                    }
+                    None => BookId::from(hash_file(&mut reader)?),
                 };
                 let tracks = audiobook_archive::archived_tracks(&mut reader)?;
                 let mut archive = zip::ZipArchive::new(reader)?;

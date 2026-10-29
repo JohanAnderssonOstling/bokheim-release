@@ -1,0 +1,2 @@
+# Unified-diff context markers are significant bytes.
+*.patch -whitespace

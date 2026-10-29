@@ -25,12 +25,6 @@ impl From<Worker> for WorkerEndpoint {
 }
 
 impl WorkerEndpoint {
-    pub fn remote_port(&self) -> Option<MessagePort> {
-        match self {
-            Self::Remote(remote) => Some(remote.port.clone()),
-            Self::Local(_) => None,
-        }
-    }
     pub fn report_failure(&self, error: &str) {
         let callback = match self {
             Self::Local(worker) => worker.onmessage(),

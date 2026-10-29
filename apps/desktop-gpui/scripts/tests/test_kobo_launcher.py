@@ -9,6 +9,20 @@ import unittest
 
 
 class KoboLauncherTests(unittest.TestCase):
+    def test_normal_launch_skips_resource_sampling_and_preserves_exit_status(self):
+        source = Path(__file__).resolve().parents[2] / "kobo" / "run-monitored.sh"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            launcher = root / "run-monitored.sh"
+            launcher.write_text(source.read_text().replace(
+                "WORKDIR=/mnt/onboard/.adds/bokheim", f"WORKDIR='{root}'"))
+            (root / "run.sh").write_text('#!/bin/sh\nprintf launched > "$0.started"\nexit 7\n')
+            env = dict(os.environ, BOKHEIM_KOBO_RESOURCE_MONITOR="0")
+            result = subprocess.run(["/bin/sh", str(launcher)], env=env, timeout=3)
+            self.assertEqual(result.returncode, 7)
+            self.assertEqual((root / "run.sh.started").read_text(), "launched")
+            self.assertFalse((root / "bokheim-resource.log").exists())
+
     def test_uninstall_removes_program_after_exit_and_preserves_user_data(self):
         launcher = Path(__file__).resolve().parents[2] / "kobo" / "run.sh"
         for action in ("uninstall", ""):

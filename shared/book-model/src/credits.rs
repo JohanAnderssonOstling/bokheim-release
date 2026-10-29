@@ -184,7 +184,8 @@ pub struct AudiobookTrack {
     pub end_ms: u64,
     pub offset: u64,
     pub length: u64,
-    /// ZIP revision whose stored byte offsets this track index describes.
+    /// Book identity whose ZIP offsets this track index describes. Provider
+    /// readers also pin the file revision so replacements cannot reuse offsets.
     #[serde(default)]
     pub archive_hash: Option<BookId>,
 }
@@ -208,6 +209,7 @@ pub fn tracks_match_archive(tracks: &[AudiobookTrack], hash: BookId) -> bool {
 /// `None` clears a prior duration or track index; empty entries clear the TOC.
 #[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BookTocDocument {
+    #[serde(with = "crate::toc_transport")]
     pub entries: Vec<BookTocEntry>,
     pub duration_ms: Option<u64>,
     #[serde(default)]

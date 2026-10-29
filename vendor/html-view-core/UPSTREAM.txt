@@ -1,0 +1,12 @@
+Source: https://github.com/JohanAnderssonOstling/HtmlViewCore
+Revision: b1e1990b939458a4d612ff7d90be066713ec1444
+
+This is the pinned html-view-core crate with a chapter-start pagination fix.
+The correction belongs in RendererCore::prepare_backward: reaching line zero
+must restart forward composition at document offset zero, independently of
+leading margins, padding, or non-text content. Other HtmlViewCore crates
+remain at the same pinned revision.
+
+The regression tests in renderer/nav/tests/chapter_start.rs and the same
+source correction are also present in the sibling HtmlViewCore checkout.
+Cargo.toml expands upstream workspace dependencies without changing versions.

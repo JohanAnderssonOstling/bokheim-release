@@ -16,9 +16,10 @@ pub fn start_shared_coordinator() -> Result<(), JsValue> {
 }
 
 
+mod bootstrap;
 mod coordinator;
 mod hosts;
-use app::host::web::{BackgroundService, SyncService};
+use app::host::web::SyncService;
 use client_platform_web::transport::{ClientRelay, byte_reply, cpu::CpuService, error_message, field, network_client, network_server, object};
 use coordinator::Coordinator;
 

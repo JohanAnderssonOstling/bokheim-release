@@ -13,17 +13,24 @@ pub type StoreError = Box<dyn Error + Send + Sync>;
 /// Local: stores borrow the library's single connection on its own thread.
 pub type StoreFuture<'a, T> = Pin<Box<dyn Future<Output = Result<T, StoreError>> + 'a>>;
 
+/// Everything needed before the first exchange, prepared by the storage owner.
+#[derive(serde::Serialize, serde::Deserialize)]
+pub enum PreparedSync<T> {
+    RecoveryPending,
+    Ready { cursor: SyncCursor, outbox: T, mutations: Vec<StatePublication> },
+}
+
 /// Persistence required by state synchronization. Implementations own their
 /// transaction semantics; the engine owns protocol and recovery policy.
 pub trait SyncStore {
     type Outbox;
+    /// Check recovery before freezing the outbox; include its first bounded page.
+    fn prepare_sync(&self) -> StoreFuture<'_, PreparedSync<Self::Outbox>>;
     /// Prepare once. Pages are unique by state identity and globally ordered
     /// with book lifecycles first; newer edits stay outside this scan.
     fn prepare_outbox(&self) -> StoreFuture<'_, Self::Outbox>;
-    fn cursor_recovery_pending(&self) -> StoreFuture<'_, bool>;
     fn begin_cursor_recovery(&self) -> StoreFuture<'_, ()>;
     fn complete_cursor_recovery(&self) -> StoreFuture<'_, usize>;
-    fn pull_cursor(&self) -> StoreFuture<'_, SyncCursor>;
     fn pending_mutations<'a>(&'a self, scan: &'a mut Self::Outbox) -> StoreFuture<'a, Vec<StatePublication>>;
     fn record_mutation_issues(&self, issues: &[MutationIssue]) -> StoreFuture<'_, ()>;
     fn acknowledge_mutations(&self, mutation_ids: &[ReplicaSeq]) -> StoreFuture<'_, ()>;
@@ -155,12 +162,18 @@ impl<'a, S: SyncStore> SyncEngine<'a, S> {
     }
 
     pub async fn synchronize(&self) -> Result<SyncOutcome, SyncError> {
-        if self.store.cursor_recovery_pending().await.map_err(SyncError::failed)? {
-            self.resume_cursor_recovery().await?;
-        }
         for attempt in 0..2 {
-            let cursor = self.store.pull_cursor().await.map_err(SyncError::failed)?;
-            match self.exchange_events_with_server(cursor).await {
+            let mut prepared = self.store.prepare_sync().await.map_err(SyncError::failed)?;
+            if matches!(prepared, PreparedSync::RecoveryPending) {
+                self.resume_cursor_recovery().await?;
+                prepared = self.store.prepare_sync().await.map_err(SyncError::failed)?;
+            }
+            let PreparedSync::Ready { cursor, outbox, mutations } = prepared else {
+                return Err(SyncError::failed("cursor recovery did not clear its pending marker"));
+            };
+            let mut remaining = Outgoing::new(if mutations.is_empty() { None } else { Some(outbox) });
+            remaining.page = mutations.into_iter();
+            match self.exchange_prepared(cursor, remaining).await {
                 Ok(result) => return Ok(result),
                 Err(SyncError::CursorRejected) if attempt == 0 => {
                     self.begin_cursor_recovery().await?;
@@ -187,10 +200,9 @@ impl<'a, S: SyncStore> SyncEngine<'a, S> {
         Ok(())
     }
 
-    pub async fn exchange_events_with_server(&self, starting_cursor: SyncCursor) -> Result<SyncOutcome, SyncError> {
-        let mut trace = sync_transport::PerformanceTrace::new("sync_exchange", "load_and_batch_outbox");
+    async fn exchange_prepared(&self, starting_cursor: SyncCursor, mut remaining: Outgoing<S::Outbox>) -> Result<SyncOutcome, SyncError> {
+        let mut trace = sync_transport::PerformanceTrace::new("sync_exchange", "prepare_request");
         log::debug!(target: "sync_performance", "trace_id={} library_id={} initial_cursor={:?} from_zero={}", trace.id(), self.library_id, starting_cursor, starting_cursor == SyncCursor::default());
-        let mut remaining = self.prepare_outbox().await?;
         let mut result = SyncOutcome::default();
         let credentials = self.current_credentials()?;
         trace.phase("pages");

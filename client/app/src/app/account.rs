@@ -1,6 +1,7 @@
 //! Account state, discovery, queued writes, and the shared notification connection.
 
 mod notifications;
+mod network;
 
 use std::sync::{Arc, Weak};
 use std::time::Duration;
@@ -9,6 +10,7 @@ use super::core::*;
 use crate::executor::{sleep, timeout, BackendExecutor, BackendFuture, BackendTask};
 use crate::notification_interest::NotificationInterest;
 use crate::AccountSnapshot;
+use client_platform_runtime::connectivity::Connectivity;
 use futures_util::{stream, StreamExt, TryStreamExt};
 use library_backend::library::handle::{LibraryActorCommand, LibraryControl};
 use library_backend::library::LibraryDirectory;
@@ -85,21 +87,46 @@ pub(super) fn start(
     })
 }
 
-async fn run_maintenance(state: Weak<AppState>, mut requests: watch::Receiver<()>, mut changes: watch::Receiver<u64>) {
-    let mut retry = false;
-    while wait_for_maintenance(&mut requests, &mut changes, retry).await {
+async fn run_maintenance(state: Weak<AppState>, requests: watch::Receiver<()>, changes: watch::Receiver<u64>) {
+    let network = match network::observe() {
+        Ok(network) => network,
+        Err(error) => { log::warn!("Could not observe account connectivity: {error}"); return; }
+    };
+    run_maintenance_with_network(state, requests, changes, network).await;
+}
+
+async fn run_maintenance_with_network(state: Weak<AppState>, mut requests: watch::Receiver<()>, mut changes: watch::Receiver<u64>, mut network: Connectivity) {
+    let mut retry = None;
+    loop {
+        let online = network.online();
+        let ready = tokio::select! {
+            _ = network.changed() => { retry = None; if !network.online() { continue; } true },
+            ready = wait_for_maintenance(&mut requests, &mut changes, if online { retry } else { None }) => ready,
+        };
+        if !ready { return; }
+        if !network.online() { continue; }
         let Some(state) = state.upgrade() else { return };
-        retry = AppBackend { state }.run_account_maintenance().await.is_err();
+        let backend = AppBackend { state };
+        let result = tokio::select! {
+            _ = network.changed() => { retry = None; continue; },
+            result = backend.run_account_maintenance() => result,
+        };
+        retry = if result.is_err() { Some(next_maintenance_retry(retry)) } else { None };
     }
+}
+
+fn next_maintenance_retry(previous: Option<Duration>) -> Duration {
+    let maximum = if cfg!(feature = "kobo") { Duration::from_secs(15 * 60) } else { MAINTENANCE_RETRY_INTERVAL };
+    previous.map_or(MAINTENANCE_RETRY_INTERVAL, |previous| previous.saturating_mul(2).min(maximum))
 }
 
 /// New events bypass a failed pass's retry wait. Changes during a running pass
 /// remain unseen so the next wait schedules another pass.
-async fn wait_for_maintenance(requests: &mut watch::Receiver<()>, changes: &mut watch::Receiver<u64>, retry: bool) -> bool {
+async fn wait_for_maintenance(requests: &mut watch::Receiver<()>, changes: &mut watch::Receiver<u64>, retry: Option<Duration>) -> bool {
     let changed = tokio::select! {
         changed = requests.changed() => changed,
         changed = changes.changed() => changed,
-        result = sleep(MAINTENANCE_RETRY_INTERVAL), if retry => return result.is_ok(),
+        result = sleep(retry.unwrap_or_default()), if retry.is_some() => return result.is_ok(),
     };
     if changed.is_err() {
         return false;
@@ -528,10 +555,50 @@ mod maintenance_tests {
     use tokio::time::advance;
 
     #[tokio::test(start_paused = true)]
+    async fn offline_maintenance_parks_without_retaining_application_state() {
+        let (sender, requests) = watch::channel(());
+        let (_account_sender, changes) = watch::channel(0);
+        let (connection, status) = watch::channel(false);
+        let mut maintenance = Box::pin(run_maintenance_with_network(Weak::new(), requests, changes, Connectivity::new(status)));
+        assert!(poll!(&mut maintenance).is_pending());
+        sender.send_replace(());
+        assert!(poll!(&mut maintenance).is_pending());
+        advance(MAINTENANCE_DEBOUNCE).await;
+        assert!(poll!(&mut maintenance).is_pending());
+        advance(Duration::from_secs(3600)).await;
+        assert!(poll!(&mut maintenance).is_pending());
+        // Reconnection must be sufficient to schedule work without a new UI event.
+        // No AppState remains here, so the worker exits immediately.
+        connection.send_replace(true);
+        maintenance.await;
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn closing_the_owner_while_offline_ends_maintenance() {
+        let (sender, requests) = watch::channel(());
+        let (_account_sender, changes) = watch::channel(0);
+        let (_connection, status) = watch::channel(false);
+        let mut maintenance = Box::pin(run_maintenance_with_network(Weak::new(), requests, changes, Connectivity::new(status)));
+        assert!(poll!(&mut maintenance).is_pending());
+        drop(sender);
+        maintenance.await;
+    }
+
+    #[cfg(feature = "kobo")]
+    #[test]
+    fn repeated_account_failures_back_off_to_fifteen_minutes() {
+        let mut delay = None;
+        for seconds in [30, 60, 120, 240, 480, 900, 900] {
+            delay = Some(next_maintenance_retry(delay));
+            assert_eq!(delay, Some(Duration::from_secs(seconds)));
+        }
+    }
+
+    #[tokio::test(start_paused = true)]
     async fn failure_retries_after_thirty_seconds_without_an_event() {
         let (_sender, mut requests) = watch::channel(());
         let (_account_sender, mut changes) = watch::channel(0);
-        let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, true));
+        let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, Some(MAINTENANCE_RETRY_INTERVAL)));
         assert!(poll!(&mut waiting).is_pending());
         advance(Duration::from_secs(29)).await;
         assert!(poll!(&mut waiting).is_pending());
@@ -543,7 +610,7 @@ mod maintenance_tests {
     async fn new_events_bypass_retry_wait_and_coalesce_during_debounce() {
         let (sender, mut requests) = watch::channel(());
         let (_account_sender, mut changes) = watch::channel(0);
-        let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, true));
+        let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, Some(MAINTENANCE_RETRY_INTERVAL)));
         assert!(poll!(&mut waiting).is_pending());
         sender.send_replace(());
         assert!(poll!(&mut waiting).is_pending());
@@ -556,7 +623,7 @@ mod maintenance_tests {
 
         // An event raised by a running pass must still schedule the next pass.
         sender.send_replace(());
-        let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, false));
+        let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, None));
         assert!(poll!(&mut waiting).is_pending());
         advance(MAINTENANCE_DEBOUNCE).await;
         assert!(waiting.await);
@@ -571,7 +638,7 @@ mod maintenance_tests {
             let account = DeviceAccountSession::load(context, server).unwrap();
             let mut changes = account.subscribe();
             let (_sender, mut requests) = watch::channel(());
-            let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, retry));
+            let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, retry.then_some(MAINTENANCE_RETRY_INTERVAL)));
             assert!(poll!(&mut waiting).is_pending());
 
             let session = account_client::Session::try_new("https://example.com".parse().unwrap(), "user".into(), "reader@example.com".into(), "a".repeat(43)).unwrap();
@@ -585,7 +652,7 @@ mod maintenance_tests {
 
             // A logout during a maintenance pass must schedule the next pass.
             account.take().unwrap();
-            let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, false));
+            let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, None));
             assert!(poll!(&mut waiting).is_pending());
             advance(MAINTENANCE_DEBOUNCE).await;
             assert!(waiting.await);
@@ -597,7 +664,7 @@ mod maintenance_tests {
         for retry in [false, true] {
             let (sender, mut requests) = watch::channel(());
             let (_account_sender, mut changes) = watch::channel(0);
-            let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, retry));
+            let mut waiting = Box::pin(wait_for_maintenance(&mut requests, &mut changes, retry.then_some(MAINTENANCE_RETRY_INTERVAL)));
             assert!(poll!(&mut waiting).is_pending());
             drop(sender);
             assert!(!waiting.await);

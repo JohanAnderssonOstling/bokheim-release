@@ -35,6 +35,8 @@ create table if not exists book(
     -- whole tree. NULL means no navigation document; [] records inspected
     -- files with no entries. Playback facts belong to the same document.
     entry_count     INTEGER check(entry_count >= 0),
+    -- Historical column names/affinity; new projections store binary BLOBs.
+    -- SQLite accepts both BLOBs and the JSON TEXT retained by older caches.
     toc_json        TEXT,
     duration_ms     INTEGER check(duration_ms >= 0),
     tracks_json     TEXT,

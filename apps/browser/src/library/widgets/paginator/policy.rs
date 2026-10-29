@@ -129,11 +129,11 @@ pub(crate) struct PaginatorGroupPolicy {
     /// Keep the gaps at their width and leave a row's slack after its last
     /// child, rather than spreading it into the gaps.
     pub(crate) pack_start: bool,
-    /// Paint shared one-pixel cell rules after children, inside the paginator's
-    /// clipping bounds. Used by the flush browse section grid.
-    pub(crate) grid_rules: bool,
     /// Paint a shadow on the cell itself, outside its clipped child contents.
     pub(crate) item_shadow: bool,
+    /// Stack this group's rows into columns of this fraction of the viewport.
+    /// A strip containing such a group lays subsequent groups alongside it.
+    pub(crate) column_fraction: Option<f32>,
 }
 
 impl PaginatorGroupPolicy {
@@ -149,8 +149,8 @@ impl PaginatorGroupPolicy {
             inset_edges: true,
             edge_inset: Pixels::ZERO,
             pack_start: false,
-            grid_rules: false,
             item_shadow: false,
+            column_fraction: None,
         }
     }
 
@@ -264,15 +264,8 @@ fn section_body_cover_only(_width: Pixels, rem_size: Pixels) -> Pixels {
     section_body_height(CoverText::CoverOnly, rem_size)
 }
 
-/// Child entries fill the same cover-height body on every library page.
-pub(crate) fn browse_section_subject_rows(cover_text: CoverText, rem_size: Pixels) -> usize {
-    let row_height = f32::from(rem_size) * ui_components::SECTION_CARD_SUBJECT_ROW_HEIGHT_REM;
-    let available_height = (f32::from(section_body_height(cover_text, rem_size)) - ui_components::BOOK_CARD_PADDING * 2.0).max(0.0);
-    (available_height / row_height.max(1.0)).floor().max(1.0) as usize
-}
-
 /// Containers share the height of book previews, including optional cover text.
-pub(crate) fn browse_section_card_policy(cover_text: CoverText, _mobile: bool) -> PaginatorGroupPolicy {
+pub(crate) fn browse_section_card_policy(cover_text: CoverText) -> PaginatorGroupPolicy {
     let width = PaginatorWidthPolicy::pixels(px(ui_components::SECTION_CARD_WIDTH));
     // The body cells provide the full vertical padding below the heading.
     let heading_height = ui_components::SECTION_CARD_HEADING_HEIGHT_REM + ui_components::SECTION_CARD_HEADING_PADDING_REM * 2.0;
@@ -288,15 +281,15 @@ pub(crate) fn browse_section_card_policy(cover_text: CoverText, _mobile: bool) -
 /// Home's shelves: the same cards, each with the row to itself. Any width wider
 /// than the window does that — see `SHELF_ROW_WIDTH_REM`.
 pub(crate) fn browse_shelf_card_policy(cover_text: CoverText) -> PaginatorGroupPolicy {
-    PaginatorGroupPolicy { width: PaginatorWidthPolicy::new(Rems(ui_components::SHELF_ROW_WIDTH_REM)), ..browse_section_card_policy(cover_text, false) }
+    PaginatorGroupPolicy { width: PaginatorWidthPolicy::new(Rems(ui_components::SHELF_ROW_WIDTH_REM)), ..browse_section_card_policy(cover_text) }
 }
 
 /// Folder cards share a cover-height body, whether they contain subfolders
 /// or books. The preferred width fits two covers side by side and can grow
 /// to twice that width.
-pub(crate) fn browse_folder_card_policy(cover_text: CoverText, mobile: bool) -> PaginatorGroupPolicy {
+pub(crate) fn browse_folder_card_policy(cover_text: CoverText) -> PaginatorGroupPolicy {
     let width = PaginatorWidthPolicy::pixels(px(ui_components::FOLDER_CARD_WIDTH));
-    PaginatorGroupPolicy { width, ..browse_section_card_policy(cover_text, mobile) }.with_maximum_width(PaginatorWidthPolicy::pixels(px(ui_components::FOLDER_CARD_WIDTH * 2.0)))
+    PaginatorGroupPolicy { width, ..browse_section_card_policy(cover_text) }.with_maximum_width(PaginatorWidthPolicy::pixels(px(ui_components::FOLDER_CARD_WIDTH * 2.0)))
 }
 
 pub(crate) fn browse_folder_item_policy(cover_text: CoverText, container: bool) -> PaginatorGroupPolicy {
@@ -316,17 +309,13 @@ pub(crate) fn browse_section_cover_policy(cover_text: CoverText) -> PaginatorGro
     PaginatorGroupPolicy::new(width, sizing, gap).with_gap(gap).with_maximum_width(width).pack_start()
 }
 
-/// Container pages have two equal columns; shelves retain their cover cells.
+/// Containers use one full-width column; shelves retain their cover cells.
 pub(crate) fn browse_section_item_policy(cover_text: CoverText, container: bool) -> PaginatorGroupPolicy {
     if container {
-        return PaginatorGroupPolicy::new(
-            PaginatorWidthPolicy::new(Rems(ui_components::SHELF_ROW_WIDTH_REM)),
-            browse_section_cover_policy(cover_text).sizing,
-            Pixels::ZERO,
-        )
-        .with_minimum_columns(ui_components::SECTION_CARD_SUBJECT_COLUMNS)
-        .with_gap(Pixels::ZERO)
-        .flush_edges();
+        return PaginatorGroupPolicy::new(PaginatorWidthPolicy::new(Rems(ui_components::SHELF_ROW_WIDTH_REM)), browse_section_cover_policy(cover_text).sizing, Pixels::ZERO)
+            .with_minimum_columns(ui_components::SECTION_CARD_SUBJECT_COLUMNS)
+            .with_gap(Pixels::ZERO)
+            .flush_edges();
     }
     let width = PaginatorWidthPolicy::pixels(px(section_cover_cell_width()));
     PaginatorGroupPolicy::new(width, browse_section_cover_policy(cover_text).sizing, Pixels::ZERO).with_gap(Pixels::ZERO).with_maximum_width(width).pack_start()
@@ -335,7 +324,7 @@ pub(crate) fn browse_section_item_policy(cover_text: CoverText, container: bool)
 #[cfg(test)]
 mod tests {
     use super::super::geometry::group_geometry;
-    use super::{browse_folder_card_policy, browse_folder_item_policy, browse_section_card_policy, browse_section_item_policy, browse_section_subject_rows, browse_shelf_card_policy};
+    use super::{browse_folder_card_policy, browse_folder_item_policy, browse_section_card_policy, browse_section_item_policy, browse_shelf_card_policy};
     use app_preferences::CoverText;
     use gpui::px;
     use ui_components as components;
@@ -344,25 +333,21 @@ mod tests {
     fn folder_cards_fit_two_covers_and_use_the_same_height_for_subfolders() {
         for rem in [12.0, 16.0, 24.0, 32.0] {
             for setting in [CoverText::CoverOnly, CoverText::Always] {
-                for mobile in [false, true] {
-                    let card = browse_folder_card_policy(setting, mobile);
-                    assert_eq!(card.width.width(px(rem)), px(448.0));
-                    for width in [240.0, 320.0, 390.0, 448.0] {
-                        let body_width = px(width - (components::SPACE_MD - components::BOOK_CARD_PADDING) * 2.0);
-                        let books = browse_folder_item_policy(setting, false);
-                        let folders = browse_folder_item_policy(setting, true);
-                        let covers = group_geometry(books, 0, body_width, px(rem));
-                        let children = group_geometry(folders, 0, body_width, px(rem));
-                        assert_eq!(covers.columns, 2);
-                        assert_eq!(children.columns, 2);
-                        assert!(covers.child_width * 2.0 <= body_width);
-                        assert_eq!(books.sizing.height(covers.child_width, px(rem)), folders.sizing.height(children.child_width, px(rem)));
-                    }
+                let card = browse_folder_card_policy(setting);
+                assert_eq!(card.width.width(px(rem)), px(348.0));
+                for width in [160.0, 200.0, 240.0, 348.0] {
+                    let body_width = px(width - (components::SPACE_MD - components::BOOK_CARD_PADDING) * 2.0);
+                    let books = browse_folder_item_policy(setting, false);
+                    let folders = browse_folder_item_policy(setting, true);
+                    let covers = group_geometry(books, 0, body_width, px(rem));
+                    let children = group_geometry(folders, 0, body_width, px(rem));
+                    assert_eq!(covers.columns, 2);
+                    assert_eq!(children.columns, 1);
+                    assert!(covers.child_width * 2.0 <= body_width);
+                    assert_eq!(books.sizing.height(covers.child_width, px(rem)), folders.sizing.height(children.child_width, px(rem)));
                 }
             }
         }
-        assert_eq!(browse_section_subject_rows(CoverText::CoverOnly, px(16.0)), 13);
-        assert_eq!(browse_section_subject_rows(CoverText::Always, px(16.0)), 16);
     }
 
     #[test]
@@ -384,18 +369,16 @@ mod tests {
     }
 
     #[test]
-    fn containers_keep_two_equal_columns_across_viewports_and_font_sizes() {
+    fn containers_keep_one_full_width_column_across_viewports_and_font_sizes() {
         for rem in [12.0, 16.0, 24.0, 32.0] {
             for setting in [CoverText::CoverOnly, CoverText::Always] {
-                for mobile in [false, true] {
-                    let card = browse_section_card_policy(setting, mobile);
-                    let items = browse_section_item_policy(setting, true);
-                    assert_eq!(card.width.width(px(rem)), px(components::SECTION_CARD_WIDTH));
-                    for width in [240.0, 320.0, 390.0, 600.0, 1200.0] {
-                        let columns = group_geometry(items, 0, px(width), px(rem));
-                        assert_eq!(columns.columns, 2);
-                        assert_eq!(columns.child_width * 2.0, px(width));
-                    }
+                let card = browse_section_card_policy(setting);
+                let items = browse_section_item_policy(setting, true);
+                assert_eq!(card.width.width(px(rem)), px(components::SECTION_CARD_WIDTH));
+                for width in [240.0, 320.0, 390.0, 600.0, 1200.0] {
+                    let columns = group_geometry(items, 0, px(width), px(rem));
+                    assert_eq!(columns.columns, 1);
+                    assert_eq!(columns.child_width, px(width));
                 }
             }
         }
@@ -405,34 +388,13 @@ mod tests {
     fn containers_match_folder_and_book_preview_heights_across_platforms() {
         for rem in [12.0, 16.0, 24.0, 32.0] {
             for setting in [CoverText::CoverOnly, CoverText::Always] {
-                let body = browse_section_item_policy(setting, false).sizing.height(px(216.0), px(rem));
-                let rows = browse_section_subject_rows(setting, px(rem));
-                let row_height = px(components::SECTION_CARD_SUBJECT_ROW_HEIGHT_REM * rem);
-                let padding = px(components::BOOK_CARD_PADDING * 2.0);
-                assert!(row_height * rows as f32 + padding <= body);
-                assert!(row_height * (rows + 1) as f32 + padding > body);
-                for mobile in [false, true] {
-                    for width in [240.0, 390.0, 780.0] {
-                        assert_eq!(browse_section_item_policy(setting, true).sizing.height(px(width), px(rem)), body);
-                        let height = browse_section_card_policy(setting, mobile).sizing.height(px(width), px(rem));
-                        assert_eq!(height, browse_folder_card_policy(setting, mobile).sizing.height(px(width), px(rem)));
-                        assert_eq!(height, browse_shelf_card_policy(setting).sizing.height(px(width), px(rem)));
-                    }
+                let body = browse_section_item_policy(setting, false).sizing.height(px(166.0), px(rem));
+                for width in [240.0, 390.0, 780.0] {
+                    assert_eq!(browse_section_item_policy(setting, true).sizing.height(px(width), px(rem)), body);
+                    let height = browse_section_card_policy(setting).sizing.height(px(width), px(rem));
+                    assert_eq!(height, browse_folder_card_policy(setting).sizing.height(px(width), px(rem)));
+                    assert_eq!(height, browse_shelf_card_policy(setting).sizing.height(px(width), px(rem)));
                 }
-            }
-        }
-    }
-
-    #[test]
-    fn shelf_entry_columns_fit_the_available_cover_height() {
-        for rem in [12.0, 16.0, 24.0, 32.0] {
-            for setting in [CoverText::CoverOnly, CoverText::Always] {
-                let body = browse_section_item_policy(setting, false).sizing.height(px(390.0), px(rem));
-                let rows = browse_section_subject_rows(setting, px(rem));
-                let row_height = px(components::SECTION_CARD_SUBJECT_ROW_HEIGHT_REM * rem);
-                let padding = px(components::BOOK_CARD_PADDING * 2.0);
-                assert!(row_height * rows as f32 + padding <= body);
-                assert!(row_height * (rows + 1) as f32 + padding > body);
             }
         }
     }

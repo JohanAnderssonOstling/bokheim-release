@@ -120,7 +120,7 @@ impl Totals {
         self.layout_detail.layout_tree_traversal += timing.layout_tree_traversal;
         self.layout_detail.root_box_layout += timing.root_box_layout;
         self.layout_detail.finalize_layout += timing.finalize_layout;
-        self.layout_detail.sort_lines_and_remap_images += timing.sort_lines_and_remap_images;
+        self.layout_detail.build_line_traversals += timing.build_line_traversals;
         self.layout_detail.collect_inline_decorations += timing.collect_inline_decorations;
         self.layout_detail.rebuild_image_fragments_by_line += timing.rebuild_image_fragments_by_line;
         self.layout_detail.layout_box_total += timing.layout_box_total;
@@ -276,7 +276,7 @@ fn print_cold_totals(totals: &Totals) {
     print_timing("        write fragments", totals.layout_detail.write_line_fragments, totals.epubs);
     print_timing("      place floats", totals.layout_detail.place_float_anchor, totals.epubs);
     print_timing("finalize layout", totals.layout_detail.finalize_layout, totals.epubs);
-    print_timing("  sort lines/images", totals.layout_detail.sort_lines_and_remap_images, totals.epubs);
+    print_timing("  build line traversals", totals.layout_detail.build_line_traversals, totals.epubs);
     print_timing("  inline decorations", totals.layout_detail.collect_inline_decorations, totals.epubs);
     print_timing("  image line index", totals.layout_detail.rebuild_image_fragments_by_line, totals.epubs);
 }

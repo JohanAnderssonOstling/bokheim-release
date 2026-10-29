@@ -138,16 +138,18 @@ impl Database {
         }
         {
             let folders: &mut Vec<BrowseRow> = &mut folders;
-            for folder in folders.iter_mut() {
+            let show_empty = options.file_types == 0 && options.languages.is_empty() && !options.hide_finished;
+            folders.retain_mut(|folder| {
                 let count = match folder.id {
                     BrowseLocation::Folder(id) => counts.get(&id.to_string()).copied().unwrap_or_default(),
                     _ => FolderCount::default(),
                 };
                 folder.book_count = if options.downloaded_only { count.downloaded } else { count.total };
                 folder.downloaded_book_count = count.downloaded;
-            }
-            let unfiltered = options.search.is_empty() && options.file_types == 0 && options.languages.is_empty() && !options.downloaded_only && !options.hide_finished;
-            folders.retain(|folder| unfiltered || folder.book_count > 0);
+                // Empty directories stay navigable in local-only libraries and name searches.
+                // Folders containing only remote books still obey the download filter.
+                folder.book_count > 0 || show_empty && count.total == 0
+            });
             super::popularity::sort_rows(folders, options.chip_sort, |row| row.id.folder().and_then(|id| counts.get(&id.to_string()).and_then(|count| count.popularity)));
         };
         Ok(folders)

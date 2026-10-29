@@ -56,7 +56,7 @@ impl LibraryImport {
             }
             let path = selected_path(&payload, &file.path)?;
             if path.try_exists()? {
-                failures.push(crate::import_workflow::file_failure(&file.path, "duplicate selected file path"));
+                failures.push(ImportFailure::file(&file.path, "duplicate selected file path"));
                 if audiobook_member(&path) {
                     failed_members.push(path);
                 }
@@ -83,7 +83,7 @@ impl LibraryImport {
                     Err(error) if error.kind() == io::ErrorKind::NotFound => {}
                     Err(error) => return Err(error.into()),
                 }
-                failures.push(crate::import_workflow::file_failure(&file.path, &error.to_string()));
+                failures.push(ImportFailure::file(&file.path, &error));
                 if audiobook_member(&path) {
                     failed_members.push(path);
                 }
@@ -132,7 +132,7 @@ impl LibraryImport {
                 let result = if path.is_dir() || supported(&path) { place_into_directory(&path, &destination, &occupied, moving) } else { Err(io::Error::other("not a supported book or folder")) };
                 match result {
                     Ok(path) => placed.push(path),
-                    Err(error) => failures.push(failure(&path, &error.to_string())),
+                    Err(error) => failures.push(failure(&path, &BackendError::from(error))),
                 }
             }
             (placed, failures)
@@ -145,7 +145,7 @@ impl LibraryImport {
         })
         .await
         .map_err(BackendError::operation)??;
-        failures.extend(inventory.failures.into_iter().map(|(path, message)| crate::import_workflow::folder_failure(&[path.to_string_lossy().into_owned()], &message)));
+        failures.extend(inventory.failures.into_iter().map(|(path, message)| ImportFailure::folder(&[path.to_string_lossy().into_owned()], &message)));
         let mut parents = HashMap::from([(destination_relative, parent)]);
         // Existing folders are reused on retry; register new folders at their
         // actual paths instead of creating another physical copy of the tree.
@@ -158,7 +158,7 @@ impl LibraryImport {
                 Ok(id) => {
                     parents.insert(relative, id);
                 }
-                Err(error) => failures.push(failure(&relative, &error.to_string())),
+                Err(error) => failures.push(failure(&relative, &error)),
             }
         }
         for relative in inventory.files {
@@ -167,7 +167,7 @@ impl LibraryImport {
                 continue;
             };
             if let Err(error) = self.import_file_in_place(directory, &root, &relative).await {
-                failures.push(failure(&relative, &error.to_string()));
+                failures.push(failure(&relative, &error));
             }
         }
         Ok(failures)
@@ -203,10 +203,12 @@ impl LibraryImport {
             (import, ingest_file(path, name.to_owned(), &*self.cpu).await?)
         };
         if self.database.storage_policy()?.external().is_some() {
-            if import.format == BookFormat::Mp3Folder { return Err(BackendError::message("MP3 folder uploads to external storage are not configured yet")); }
             let relative_path = self.database.native_book_path(parent, name)?.ok_or_else(|| BackendError::message("destination folder no longer exists"))?;
-            let copied = self.assets.stage_book(relative_path, Box::new(fs::File::open(root.join(relative))?)).await?;
-            self.finish_provider_import(import, copied.into_staged(ingested.content_hash, ingested.size_bytes), ingested.inspection).await?;
+            let copied = if import.format == BookFormat::Mp3Folder {
+                self.assets.stage_audiobook_folder(root.join(relative), relative_path).await?
+            } else { self.assets.stage_book(relative_path, Box::new(fs::File::open(root.join(relative))?)).await? };
+            let staged = copied.verify_transfer(ingested.content_hash).await?;
+            self.finish_provider_import(import, staged, ingested.inspection).await?;
             return Ok(());
         }
         let _lease = self.assets.lease_book(&ingested.content_hash).await?;
@@ -333,8 +335,8 @@ fn file_name(path: &Path) -> Result<&str, BackendError> {
     path.file_name().and_then(|name| name.to_str()).ok_or_else(|| BackendError::message("invalid file name"))
 }
 
-fn failure(path: &Path, message: &str) -> ImportFailure {
-    crate::import_workflow::file_failure(&[path.to_string_lossy().into_owned()], message)
+fn failure(path: &Path, message: &(impl client_runtime::Classified + ?Sized)) -> ImportFailure {
+    ImportFailure::file(&[path.to_string_lossy().into_owned()], message)
 }
 
 fn selected_path(root: &Path, components: &[String]) -> Result<PathBuf, BackendError> {

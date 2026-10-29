@@ -1,42 +1,9 @@
-use std::cell::RefCell;
+use super::startup::startup_ready;
 use super::task::{owned_task, BackendTask};
 use super::{BackendExecutorError, BackendFuture, BackendOutput, BackendSend, BackendTimeout};
 use std::future::Future;
 use std::time::Duration;
 use wasm_bindgen::{closure::Closure, JsCast};
-
-// Each database worker is an isolated WASM instance. Failed startup keeps this
-// gate closed until the worker is terminated; dropping a permit never releases it.
-thread_local! {
-    static STARTUP_GATE: RefCell<Option<tokio::sync::watch::Receiver<bool>>> = const { RefCell::new(None) };
-}
-
-pub struct StartupPermit(tokio::sync::watch::Sender<bool>);
-impl StartupPermit {
-    pub fn release(self) {
-        STARTUP_GATE.with(|gate| *gate.borrow_mut() = None);
-        self.0.send_replace(true);
-    }
-}
-
-pub fn defer_background_work() -> StartupPermit {
-    let (sender, receiver) = tokio::sync::watch::channel(false);
-    STARTUP_GATE.with(|gate| {
-        assert!(gate.borrow().is_none(), "startup work is already deferred");
-        *gate.borrow_mut() = Some(receiver);
-    });
-    StartupPermit(sender)
-}
-
-async fn startup_ready() {
-    let receiver = STARTUP_GATE.with(|gate| gate.borrow().clone());
-    if let Some(mut receiver) = receiver {
-        loop {
-            if *receiver.borrow_and_update() { break; }
-            if receiver.changed().await.is_err() { std::future::pending::<()>().await; }
-        }
-    }
-}
 
 #[derive(Clone, Default)]
 pub struct BackendExecutor;

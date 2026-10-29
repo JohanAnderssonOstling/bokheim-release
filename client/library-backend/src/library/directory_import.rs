@@ -12,7 +12,7 @@ pub(crate) struct DirectoryImportActivity<'a> {
 impl Drop for DirectoryImportActivity<'_> {
     fn drop(&mut self) {
         self.library.directory_imports.set(self.library.directory_imports.get() - 1);
-        self.library.events.emit(LibraryEvent::DirectoryImportFinished { id: self.id, scanning: self.library.filesystem_scanning.get() });
+        self.library.events.emit(LibraryEvent::DirectoryImportFinished { id: self.id, scanning: self.library.scanning.get() });
     }
 }
 

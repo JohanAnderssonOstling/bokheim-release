@@ -1,5 +1,6 @@
 //! Validate prepared inputs only. Acquisition belongs to shared/pdfium/prepare.py.
 use sha2::{Digest, Sha256};
+use serde_json::Value as JsonValue;
 use std::{env, fs, path::PathBuf};
 
 fn main() {
@@ -8,6 +9,7 @@ fn main() {
     println!("cargo:rerun-if-changed={}", manifest_path.display());
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-env-changed=PDFIUM_PREPARED_DIR");
+    println!("cargo:rerun-if-env-changed=PDFIUM_REQUIRE_SOURCE");
     println!("cargo:rerun-if-env-changed=PDFIUM_PACKAGED_PATH");
     println!("cargo:rerun-if-env-changed=PDFIUM_STATIC_LIB_PATH");
     println!("cargo:rerun-if-env-changed=PDFIUM_STATIC_LIB_PATH_x86_64_pc_windows_msvc");
@@ -18,11 +20,35 @@ fn main() {
     let missing = || format!("PDFium inputs are missing or stale. Run: python3 shared/pdfium/prepare.py --target {target}");
     let receipt_path = directory.join("receipt.json");
     println!("cargo:rerun-if-changed={}", receipt_path.display());
-    let receipt: serde_json::Value = serde_json::from_str(&fs::read_to_string(&receipt_path).unwrap_or_else(|_| panic!("{}", missing()))).expect("invalid PDFium receipt");
+    let receipt: JsonValue = serde_json::from_str(&fs::read_to_string(&receipt_path).unwrap_or_else(|_| panic!("{}", missing()))).expect("invalid PDFium receipt");
     assert_eq!(receipt["target"].as_str(), Some(target.as_str()), "{}", missing());
     let manifest_hash = format!("{:x}", Sha256::digest(fs::read(&manifest_path).unwrap()));
     assert_eq!(receipt["manifest_sha256"].as_str(), Some(manifest_hash.as_str()), "{}", missing());
-    assert_eq!(receipt["archive_sha256"].as_str(), spec["sha256"].as_str(), "{}", missing());
+    let source_build = receipt["kind"].as_str() == Some("source");
+    if env::var("PDFIUM_REQUIRE_SOURCE").as_deref() == Ok("1") {
+        assert!(source_build, "This distribution requires PDFium built from source");
+    }
+    if source_build {
+        assert_eq!(target, "aarch64-linux-android", "Source PDFium is supported only on Android ARM64");
+        assert_eq!(receipt["schema"].as_u64(), Some(2), "Unsupported PDFium source receipt");
+        let source_manifest = root.join("shared/pdfium/source.json");
+        println!("cargo:rerun-if-changed={}", source_manifest.display());
+        let bytes = fs::read(&source_manifest).expect("Missing PDFium source pins");
+        let source_hash = format!("{:x}", Sha256::digest(&bytes));
+        let pins: JsonValue = serde_json::from_slice(&bytes).expect("Invalid PDFium source pins");
+        assert_eq!(receipt["source_manifest_sha256"].as_str(), Some(source_hash.as_str()), "Stale PDFium source receipt");
+        assert_eq!(receipt["source_commit"], pins["pdfium_commit"], "Wrong PDFium source revision");
+        let provenance = directory.join("SOURCE.json");
+        println!("cargo:rerun-if-changed={}", provenance.display());
+        let provenance_bytes = fs::read(&provenance).expect("Missing PDFium source provenance");
+        assert_eq!(receipt["files"]["SOURCE.json"].as_str(), Some(format!("{:x}", Sha256::digest(&provenance_bytes)).as_str()),
+            "PDFium source provenance checksum mismatch");
+        let provenance: JsonValue = serde_json::from_slice(&provenance_bytes).expect("Invalid PDFium source provenance");
+        assert_eq!(provenance["pdfium_commit"], pins["pdfium_commit"], "Wrong PDFium source provenance");
+        assert_eq!(provenance["patches"], pins["patches"], "Wrong PDFium source patches");
+    } else {
+        assert_eq!(receipt["archive_sha256"].as_str(), spec["sha256"].as_str(), "{}", missing());
+    }
     for name in spec["files"].as_table().unwrap().values().map(|v| v.as_str().unwrap()).chain(["LICENSE", "VERSION"]) {
         let path = directory.join(name);
         println!("cargo:rerun-if-changed={}", path.display());

@@ -27,6 +27,7 @@ tokio = { version = "1", features = ["macros", "sync", "time"] }
 uuid = { version = "1", features = ["v4"] }
 
 [dev-dependencies]
+account-client = { path = "../../../account-client" }
 tempfile = "3"
 book-inspection = { path = "../book-inspection" }
 library-database = { path = "../library-database" }

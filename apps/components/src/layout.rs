@@ -119,8 +119,7 @@ pub fn sidebar(theme: BrowserTheme) -> Scrollable<Div> {
 /// grid of cards.
 /// The tiles keep their full height so the outer sidebar can scroll to every
 /// destination in a short viewport.
-pub fn nav_rail_destinations(theme: BrowserTheme) -> Div {
-    let _ = theme;
+pub fn nav_rail_destinations() -> Div {
     div().w_full().flex_none().flex().flex_col().gap_0()
 }
 

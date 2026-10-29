@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Connect Google Drive · Bokheim</title>
+<style>
+  :root { color-scheme: light dark; font: 16px system-ui, sans-serif; }
+  body { max-width: 28rem; margin: 12vh auto; padding: 1.5rem; line-height: 1.5; }
+  h1 { font-size: 1.5rem; } button { font: inherit; padding: .7rem 1rem; cursor: pointer; }
+  #connect { margin-right: .5rem; } button:disabled { cursor: wait; opacity: .6; }
+</style>
+<main>
+  <h1>Connect Google Drive</h1>
+  <p>Your books and covers stay in Google Drive. Choose the library folder after connecting.</p>
+  <p id="status" role="status">Loading Google sign-in…</p>
+  <button id="connect" disabled>Continue with Google</button><button id="cancel">Cancel</button>
+</main>
+<script type="module">
+  import {runGoogleLoginPage} from './google_cloud_login.js';
+  runGoogleLoginPage();
+</script>
+</html>

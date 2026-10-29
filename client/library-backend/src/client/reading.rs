@@ -15,6 +15,10 @@ impl LibraryClient {
     pub async fn update_reading_position(&self, content_hash: BookId, position: String, progress: Option<f32>, entry: Option<String>) -> Result<(), BackendError> {
         self.request(LibraryCommand::Ready(ReadyCommand::UpdateReadingPosition { content_hash, position, progress, entry })).await
     }
+    /// Marks the whole book read or unread, leaving the reading position where it is.
+    pub async fn set_book_read(&self, content_hash: BookId, read: bool) -> Result<(), BackendError> {
+        self.request(LibraryCommand::Ready(ReadyCommand::SetBookRead { content_hash, read })).await
+    }
     pub async fn reset_chapter_read_status(&self, content_hash: BookId) -> Result<book_model::ChapterReadStatus, BackendError> {
         self.request(LibraryCommand::Ready(ReadyCommand::ResetChapterReadStatus { content_hash, target: None })).await
     }

@@ -2,7 +2,7 @@
 use crate::deadline::transfer_deadline;
 use crate::policy::SMALL_REQUEST_TIMEOUT;
 use crate::TransferError;
-use cpu_host::{CpuHost, cover, resize};
+use cpu_host::{resize, CpuHost};
 use library_database::Database;
 use library_files::AssetStore;
 use library_model::BlobKind;
@@ -92,15 +92,8 @@ impl ThumbnailTransfers {
                     ready.push(*thumbnail_hash);
                     continue;
                 }
-                if let Some(bytes) = self.assets.read_bytes(BlobKind::Thumbnail, thumbnail_hash).await? {
-                    if bytes.len() <= MAX_THUMBNAIL_BYTES && bytes.starts_with(&[0xff, 0xd8, 0xff]) {
-                        if let Ok(versions) = cover(&*self.cpu, bytes).await {
-                            self.assets.write_thumbnail_set(thumbnail_hash, &versions.high_density, &versions.browse, &versions.card_high_density).await?;
-                            ready.push(*thumbnail_hash);
-                            continue;
-                        }
-                    }
-                }
+                // Fetch missing variants from the server instead of rebuilding
+                // them from a previously downloaded master on this device.
                 requested.insert(*thumbnail_hash);
             }
             if requested.is_empty() {
@@ -121,10 +114,10 @@ impl ThumbnailTransfers {
                 if thumbnail.browse_bytes.len() > MAX_THUMBNAIL_BYTES || !thumbnail.browse_bytes.starts_with(&[0xff, 0xd8, 0xff]) {
                     return Err(TransferError::retryable("thumbnail batch returned invalid browse bytes"));
                 }
-                // Derive current card geometry from the unmodified master,
-                // including when another client uploaded an older browse JPEG.
-                let versions = cover(&*self.cpu, thumbnail.bytes).await.map_err(TransferError::retryable)?;
-                self.assets.write_thumbnail_set(&thumbnail.content_hash, &versions.high_density, &versions.browse, &versions.card_high_density).await?;
+                // Server artwork is already finished. The transfer supplies a
+                // browse JPEG and a master; use the master for dense cards too,
+                // preserving both images without cropping or re-encoding.
+                self.assets.write_thumbnail_set(&thumbnail.content_hash, &thumbnail.bytes, &thumbnail.browse_bytes, &thumbnail.bytes).await?;
                 self.check_transfer_account(&credentials)?;
                 received.push(thumbnail.content_hash);
                 ready.push(thumbnail.content_hash);

@@ -1,4 +1,5 @@
 use crate::assets::BookUploadReservation;
+use crate::cleanup::lock_publication;
 use crate::assets::{self, BookUploadAdmission};
 use crate::{PostgresDatabase, sync_store};
 use server_asset_store::{AssetError, AssetKind, AssetReader, FsAssetStore, StoredAsset};
@@ -6,12 +7,14 @@ use sqlx::PgPool;
 use std::collections::HashSet;
 use std::sync::Arc;
 use std::time::Instant;
-use sync_common::BookId;
 use sync_common::api::assets::{BlobManifestEntry, BlobManifestResponse};
+use sync_common::BookId;
+use tokio::sync::Notify;
 
 pub struct AssetApplication {
-    pool: PgPool,
-    store: Arc<FsAssetStore>,
+    pub(super) pool: PgPool,
+    pub(super) store: Arc<FsAssetStore>,
+    pub(super) cleanup: Arc<Notify>,
 }
 
 struct BookReservationCleanup {
@@ -58,7 +61,7 @@ pub struct LibraryStorageUsage {
 
 impl AssetApplication {
     pub fn new(database: PostgresDatabase, store: Arc<FsAssetStore>) -> Self {
-        Self { pool: database.pool().clone(), store }
+        Self { pool: database.pool().clone(), cleanup: database.asset_cleanup_signal(), store }
     }
 
     pub async fn thumbnail_presence(&self, user_id: &str, library_id: &sync_common::LibraryId, hashes: &[BookId]) -> Result<Vec<sync_common::api::assets::ThumbnailRevision>, AssetError> {
@@ -109,16 +112,7 @@ impl AssetApplication {
             return Err(AssetError::InvalidInput("book manifest contains duplicate content hashes".into()));
         }
         let phase_started = Instant::now();
-        let manifest_count = blobs.len();
-        let mut verified = HashSet::new();
-        for blob in &blobs {
-            if self.store.size(user_id, AssetKind::Book, &blob.content_hash).await?.is_some() {
-                verified.insert(blob.content_hash);
-            }
-        }
-        tracing::debug!(target: "sync_performance", phase = "manifest_inspect_files", count = manifest_count, elapsed_ms = phase_started.elapsed().as_secs_f64() * 1000.0);
-        let phase_started = Instant::now();
-        let response = assets::negotiate_books(&self.pool, user_id, library_id, &blobs, &verified).await?;
+        let response = assets::negotiate_books(&self.pool, user_id, library_id, &blobs, &self.store).await?;
         tracing::debug!(target: "sync_performance", phase = "manifest_database", elapsed_ms = phase_started.elapsed().as_secs_f64() * 1000.0);
         Ok(response)
     }
@@ -164,9 +158,13 @@ impl AssetApplication {
             BookUploadAdmission::AlreadyOwned => None,
         };
         let result = async {
-            let actual = self.store.put(user_id, AssetKind::Book, hash, Some(length), reader).await?;
+            let staged = self.store.stage(user_id, AssetKind::Book, hash, Some(length), reader).await?;
+            let mut transaction = self.pool.begin().await.map_err(storage)?;
+            lock_publication(&mut transaction).await?;
             let phase_started = Instant::now();
-            let result = assets::finish_book_upload(&self.pool, user_id, library_id, hash, &admission, actual).await;
+            assets::finish_book_upload(&mut transaction, user_id, library_id, hash, &admission, staged.size_bytes()).await?;
+            staged.publish().await?;
+            let result = transaction.commit().await.map_err(storage);
             tracing::debug!(target: "sync_performance", phase = "commit_upload_accounting", ok = result.is_ok(), elapsed_ms = phase_started.elapsed().as_secs_f64() * 1000.0);
             result
         }
@@ -184,12 +182,13 @@ impl AssetApplication {
 
     pub async fn put_thumbnail_pair(&self, user_id: &str, library_id: &sync_common::LibraryId, hash: &BookId, bytes: &[u8], browse_bytes: &[u8]) -> Result<(), AssetError> {
         self.require_library(user_id, library_id).await?;
+        let mut transaction = self.pool.begin().await.map_err(storage)?;
+        lock_publication(&mut transaction).await?;
         for variant in [bytes, browse_bytes] {
-            assets::validate_thumbnail_upload(&self.pool, user_id, library_id, hash, variant.len() as u64).await?;
+            assets::validate_thumbnail_upload_in_transaction(&mut transaction, user_id, library_id, hash, variant.len() as u64).await?;
         }
         self.store.put_thumbnail_pair(user_id, hash, bytes, browse_bytes).await?;
-        // Recheck ownership and lifecycle after publishing, just as for streamed uploads.
-        assets::validate_thumbnail_upload(&self.pool, user_id, library_id, hash, bytes.len() as u64).await
+        transaction.commit().await.map_err(storage)
     }
 
     pub async fn thumbnail_pair(&self, user_id: &str, library_id: &sync_common::LibraryId, hash: &BookId) -> Result<Option<(Vec<u8>, Vec<u8>)>, AssetError> {
@@ -205,18 +204,20 @@ impl AssetApplication {
         if kind.max_bytes().is_some_and(|limit| expected_len > limit) {
             return Err(AssetError::TooLarge { limit: kind.max_bytes().unwrap_or(u64::MAX) });
         }
-        if kind == AssetKind::ThumbnailBrowse {
-            let master_size = self.store.size(user_id, AssetKind::Thumbnail, hash).await?.ok_or_else(|| AssetError::InvalidInput("browse thumbnail requires a stored source".into()))?;
-            assets::validate_thumbnail(&self.pool, user_id, library_id, hash, master_size).await?;
-            self.store.put(user_id, kind, hash, Some(expected_len), reader).await?;
-            return Ok(());
-        }
-        if kind == AssetKind::Thumbnail {
+        if kind != AssetKind::Book {
             assets::validate_thumbnail_upload(&self.pool, user_id, library_id, hash, expected_len).await?;
-            let actual_size = self.store.put(user_id, kind, hash, Some(expected_len), reader).await?;
-            // Recheck the lifecycle after streaming, in case the book was removed.
-            return assets::validate_thumbnail_upload(&self.pool, user_id, library_id, hash, actual_size).await;
+            let staged = self.store.stage(user_id, kind, hash, Some(expected_len), reader).await?;
+            let mut transaction = self.pool.begin().await.map_err(storage)?;
+            lock_publication(&mut transaction).await?;
+            if kind == AssetKind::ThumbnailBrowse && self.store.size(user_id, AssetKind::Thumbnail, hash).await?.is_none() {
+                return Err(AssetError::InvalidInput("browse thumbnail requires a stored source".into()));
+            }
+            assets::validate_thumbnail_upload_in_transaction(&mut transaction, user_id, library_id, hash, staged.size_bytes()).await?;
+            staged.publish().await?;
+            return transaction.commit().await.map_err(storage);
         }
         self.put_book(user_id, library_id, hash, expected_len, reader).await
     }
 }
+
+fn storage(error: impl std::fmt::Display) -> AssetError { AssetError::Storage(error.to_string()) }

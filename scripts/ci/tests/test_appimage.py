@@ -86,16 +86,16 @@ class AppImageTests(unittest.TestCase):
     def check(self):
         return self.run_script('verify-appdir-compatibility.sh', self.appdir)
 
-    def test_core_only_and_newer_optional_browser_pass(self):
+    def test_core_only_and_optional_browser_pass_the_same_baseline(self):
         self.assertEqual(self.check().returncode, 0)
-        self.elf(self.appdir / 'usr/bin/bokheim-opds-webview', '2.39')
+        self.elf(self.appdir / 'usr/bin/bokheim-opds-webview', '2.17')
         result = self.check()
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn('GLIBC_2.17', result.stdout)
-        self.assertIn('GLIBC_2.39', result.stdout)
+        self.assertEqual(result.stdout.count('GLIBC_2.17'), 2)
 
     def test_browser_limit_is_still_enforced(self):
-        self.elf(self.appdir / 'usr/bin/bokheim-opds-webview', '2.40')
+        self.elf(self.appdir / 'usr/bin/bokheim-opds-webview', '2.18')
         self.assertNotEqual(self.check().returncode, 0)
 
     def test_no_other_binary_or_library_can_bypass_core_limit(self):
@@ -121,13 +121,22 @@ class AppImageTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertFalse((self.root / 'captured/usr/bin/bokheim-opds-webview').exists())
         self.assertTrue((self.root / 'release/Bokheim-x86_64.AppImage.sha256').exists())
+        installer = self.root / 'release/install.sh'
+        self.assertEqual(installer.read_bytes(), (APPIMAGE.parent / 'install.sh').read_bytes())
+        self.assertTrue(os.access(installer, os.X_OK))
+        registration = self.root / 'captured/usr/libexec/bokheim-register-desktop'
+        self.assertEqual(registration.read_bytes(), (APPIMAGE / 'register-desktop.sh').read_bytes())
+        self.assertTrue(os.access(registration, os.X_OK))
+        for name in ('LICENSE', 'COPYRIGHT'):
+            self.assertEqual((self.root / 'captured/usr/share/licenses/bokheim' / name).read_bytes(),
+                             (ROOT / name).read_bytes())
 
     def test_separately_built_browser_is_packaged_without_its_libraries(self):
-        helper = self.elf(self.root / 'newer build/bokheim-opds-webview', '2.39')
+        helper = self.elf(self.root / 'separate build/bokheim-opds-webview', '2.17')
         self.elf(helper.parent / 'libwebkit2gtk-4.1.so', '2.39')
         result = self.package(OPDS_BROWSER=str(helper))
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertEqual((self.root / 'captured/usr/bin/bokheim-opds-webview').read_text(), 'ELF:2.39')
+        self.assertEqual((self.root / 'captured/usr/bin/bokheim-opds-webview').read_text(), 'ELF:2.17')
         self.assertFalse(list((self.root / 'captured').rglob('libwebkit*')))
 
     def test_disabled_browser_does_not_package_a_stale_helper(self):
@@ -145,7 +154,7 @@ class AppImageTests(unittest.TestCase):
                 self.assertIn('Browser helper is missing', result.stderr)
 
     def test_packaging_rejects_newer_core_and_browser_before_creating_artifact(self):
-        for relative, version in (('bokheim', '2.18'), ('bokheim-opds-webview', '2.40')):
+        for relative, version in (('bokheim', '2.18'), ('bokheim-opds-webview', '2.18')):
             with self.subTest(relative=relative):
                 self.elf(self.binary.with_name(relative), version)
                 result = self.package()
@@ -190,16 +199,27 @@ class DesktopBuildTests(unittest.TestCase):
                 if without_browser:
                     argv.append('--without-browser')
                 linux_environment = Mock(return_value={'CC_x86_64_unknown_linux_gnu': 'sdk-cc'})
-                with patch.object(sys, 'argv', argv), patch.object(build.runpy, 'run_path', side_effect=[{'prepare': prepare_pdfium}, {'build_environment': linux_environment}, {'prepare_all': prepare_speech}]), patch.object(build.subprocess, 'run') as run:
+                browser_environment = Mock(return_value={'CC_x86_64_unknown_linux_gnu': 'sdk-cc', 'PKG_CONFIG': 'browser-pkg-config'})
+                scripts = [{'prepare': prepare_pdfium}, {'build_environment': linux_environment}]
+                if not without_browser:
+                    scripts.append({'build_environment': browser_environment})
+                scripts.append({'prepare_all': prepare_speech})
+                with patch.object(sys, 'argv', argv), patch.object(build.runpy, 'run_path', side_effect=scripts), patch.object(build.subprocess, 'run') as run:
                     build.main()
                 commands = [call.args[0] for call in run.call_args_list]
-                self.assertEqual(len(commands), 2 if without_browser else 3)
+                self.assertEqual(len(commands), 2 if without_browser else 4)
                 self.assertIn('desktop-gpui', commands[0])
                 self.assertEqual(run.call_args_list[0].kwargs['env']['CC_x86_64_unknown_linux_gnu'], 'sdk-cc')
                 linux_environment.assert_called_once_with(offline=True)
                 if not without_browser:
                     self.assertIn('opds-webview', commands[1])
-                    self.assertNotIn('env', run.call_args_list[1].kwargs)
+                    self.assertEqual(commands[1][:2], ['cargo', 'rustc'])
+                    self.assertEqual(commands[1][-3:], ['--', '-C', 'link-arg=-Wl,--allow-shlib-undefined'])
+                    self.assertEqual(run.call_args_list[1].kwargs['env']['PKG_CONFIG'], 'browser-pkg-config')
+                    browser_environment.assert_called_once_with(offline=True)
+                    self.assertTrue(commands[-1][-2].endswith('bokheim-opds-webview'))
+                else:
+                    browser_environment.assert_not_called()
                 self.assertEqual(commands[-1][-1], '2.17')
                 prepare_speech.assert_called_once()
                 self.assertEqual(prepare_pdfium.call_count, 2)

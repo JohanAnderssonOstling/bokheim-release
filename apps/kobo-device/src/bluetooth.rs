@@ -4,7 +4,12 @@ use std::path::Path;
 use std::io::{self, Read};
 use std::process::{Command, Stdio};
 use std::thread;
+use std::sync::{Mutex, PoisonError};
+use std::sync::atomic::{AtomicBool, Ordering};
 use std::time::{Duration, Instant};
+
+static CONTROLLER: Mutex<()> = Mutex::new(());
+static SLEEPING: AtomicBool = AtomicBool::new(false);
 
 const COMMAND: &str = "bluetoothctl";
 const TIMEOUT: Duration = Duration::from_secs(5);
@@ -35,6 +40,9 @@ pub enum Request {
 }
 
 pub fn request(request: Request) -> io::Result<Status> {
+    let _controller = CONTROLLER.lock().unwrap_or_else(PoisonError::into_inner);
+    if SLEEPING.load(Ordering::Acquire) { return Err(io::Error::other("Bluetooth is unavailable while the device is asleep")); }
+
     match request {
         Request::Status => status(),
         Request::Power(enabled) => {
@@ -54,6 +62,61 @@ pub fn request(request: Request) -> io::Result<Status> {
             let _ = run_with_timeout(&["connect", &address], CONNECT_TIMEOUT)?;
             status()
         }
+    }
+}
+
+/// Owned by the serialized radio worker across the entire logical sleep.
+pub(crate) struct SleepGuard { restore_power: bool }
+
+fn sleep_controller(powered: bool, mut set_power: impl FnMut(bool) -> io::Result<()>) -> io::Result<bool> {
+    if powered {
+        if let Err(error) = set_power(false) {
+            // A failed command may still have changed the adapter.
+            if let Err(restore) = set_power(true) { eprintln!("Kobo Bluetooth rollback failed: {restore}"); }
+            return Err(error);
+        }
+    }
+    Ok(powered)
+}
+
+fn controller_power_with(mut command: impl FnMut(&[&str]) -> io::Result<Vec<u8>>) -> io::Result<bool> {
+    let powered = |output: &[u8]| String::from_utf8_lossy(output).lines().find_map(|line| match line.trim() {
+        "Powered: yes" => Some(true), "Powered: no" => Some(false), _ => None,
+    });
+    if let Ok(output) = command(&["show"]) && let Some(power) = powered(&output) { return Ok(power); }
+    // Some firmware intermittently rejects the default-controller form.
+    let controllers = command(&["list"])?;
+    let text = String::from_utf8_lossy(&controllers);
+    let address = text.lines().find_map(controller_address).ok_or_else(|| io::Error::other("Bluetooth controller power state is unavailable"))?;
+    powered(&command(&["show", &address])?).ok_or_else(|| io::Error::other("Bluetooth controller returned no power state"))
+}
+
+impl SleepGuard {
+    pub(crate) fn prepare() -> io::Result<Self> {
+        let _controller = CONTROLLER.lock().unwrap_or_else(PoisonError::into_inner);
+        if SLEEPING.swap(true, Ordering::AcqRel) { return Err(io::Error::other("Bluetooth sleep is already active")); }
+        let result = (|| {
+            if !Path::new("/sys/class/bluetooth/hci0").exists() { return Ok(false); }
+            let powered = controller_power_with(run)?;
+            sleep_controller(powered, |enabled| run(&["power", if enabled { "on" } else { "off" }]).map(|_| ()))
+        })();
+        match result {
+            Ok(restore_power) => Ok(Self { restore_power }),
+            Err(error) => { SLEEPING.store(false, Ordering::Release); Err(error) }
+        }
+    }
+}
+
+impl Drop for SleepGuard {
+    fn drop(&mut self) {
+        let _controller = CONTROLLER.lock().unwrap_or_else(PoisonError::into_inner);
+        if self.restore_power {
+            // Wi-Fi has already finished restoring shared hardware on this worker.
+            if let Err(error) = ensure_controller().and_then(|_| run(&["power", "on"]).map(|_| ())) {
+                eprintln!("Kobo Bluetooth recovery failed: {error}");
+            }
+        }
+        SLEEPING.store(false, Ordering::Release);
     }
 }
 
@@ -116,8 +179,12 @@ fn ensure_controller() -> io::Result<()> {
     if let Some(helper) = std::env::var_os("BOKHEIM_KOBO_WIFI_HELPER") {
         let interface = std::env::var_os("INTERFACE").ok_or_else(|| io::Error::other("Wi-Fi interface is missing while initializing Bluetooth"))?;
         let module = std::env::var_os("WIFI_MODULE").ok_or_else(|| io::Error::other("Wi-Fi driver is missing while initializing Bluetooth"))?;
-        run_external(Command::new("/bin/sh").env("INTERFACE", &interface).env("WIFI_MODULE", &module).arg(&helper).arg("off"), Duration::from_secs(15), "power-cycle Wi-Fi/Bluetooth radio")?;
-        run_external(Command::new("/bin/sh").env("INTERFACE", &interface).env("WIFI_MODULE", &module).arg(&helper).arg("on"), Duration::from_secs(15), "restore Wi-Fi/Bluetooth radio")?;
+        let result = (|| {
+            run_external(Command::new("/bin/sh").env("INTERFACE", &interface).env("WIFI_MODULE", &module).arg(&helper).arg("off"), Duration::from_secs(15), "power-cycle Wi-Fi/Bluetooth radio")?;
+            run_external(Command::new("/bin/sh").env("INTERFACE", &interface).env("WIFI_MODULE", &module).arg(&helper).arg("on"), Duration::from_secs(15), "restore Wi-Fi/Bluetooth radio")
+        })();
+        crate::wifi::radio_changed();
+        result?;
     }
 
     let mut attach = Command::new("/sbin/rtk_hciattach")
@@ -258,5 +325,41 @@ fn run_with_timeout(arguments: &[&str], timeout: Duration) -> io::Result<Vec<u8>
             return Err(io::Error::new(io::ErrorKind::TimedOut, "Bluetooth command timed out"));
         }
         thread::sleep(Duration::from_millis(20));
+    }
+}
+
+#[cfg(test)]
+mod sleep_tests {
+    use super::*;
+
+    #[test]
+    fn sleep_uses_the_firmware_controller_fallback_and_rejects_unknown_power() {
+        let mut calls = Vec::new();
+        assert!(controller_power_with(|args| {
+            calls.push(args.join(" "));
+            match args {
+                ["show"] => Err(io::Error::other("transient firmware error")),
+                ["list"] => Ok(b"Controller AA:BB:CC:DD:EE:FF Kobo\n".to_vec()),
+                ["show", "AA:BB:CC:DD:EE:FF"] => Ok(b"Powered: yes\n".to_vec()),
+                _ => panic!("unexpected command"),
+            }
+        }).unwrap());
+        assert_eq!(calls, ["show", "list", "show AA:BB:CC:DD:EE:FF"]);
+        assert!(controller_power_with(|_| Ok(Vec::new())).is_err());
+    }
+
+    #[test]
+    fn sleep_preserves_an_off_adapter_and_rolls_back_partial_failure() {
+        let mut changes = Vec::new();
+        assert!(!sleep_controller(false, |power| { changes.push(power); Ok(()) }).unwrap());
+        assert!(changes.is_empty());
+        assert!(sleep_controller(true, |power| { changes.push(power); Ok(()) }).unwrap());
+        assert_eq!(changes, [false]);
+        changes.clear();
+        assert!(sleep_controller(true, |power| {
+            changes.push(power);
+            if power { Ok(()) } else { Err(io::Error::other("partial shutdown")) }
+        }).is_err());
+        assert_eq!(changes, [false, true]);
     }
 }

@@ -33,7 +33,7 @@ async fn cross_library_copy_preserves_nested_empty_folders_bytes_and_reader_stat
     let nested = src.placement.create_directory(&shelf, "Nested").unwrap().id;
     src.placement.create_directory(&nested, "Empty").unwrap();
     let hash = seed(&src, nested, "Novel.epub", EPUB).await;
-    src.placement.copy_book_to_directory(&hash, Some(&nested), &shelf).unwrap();
+    src.placement.copy_book_to_directory(&hash, Some(&nested), &shelf).await.unwrap();
     src.db.update_reading_position(&hash, "epubcfi(/6/2)", Some(42.0), None).unwrap();
     let note = Annotation {
         id: "transfer-note".into(),
@@ -199,7 +199,7 @@ async fn cross_library_move_to_existing_book_preserves_destination_state_and_oth
     let hash = seed(&src, ROOT_DIR_ID, "Novel.epub", EPUB).await;
     seed(&dst, ROOT_DIR_ID, "Existing.epub", EPUB).await;
     let retained = src.placement.create_directory(&ROOT_DIR_ID, "Retained").unwrap().id;
-    src.placement.copy_book_to_directory(&hash, Some(&ROOT_DIR_ID), &retained).unwrap();
+    src.placement.copy_book_to_directory(&hash, Some(&ROOT_DIR_ID), &retained).await.unwrap();
     src.db.update_reading_position(&hash, "epubcfi(/6/2)", Some(20.0), None).unwrap();
     dst.db.update_reading_position(&hash, "epubcfi(/6/4)", Some(60.0), None).unwrap();
     let original = dst.db.book_transfer_state(hash).unwrap();

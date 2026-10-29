@@ -10,6 +10,76 @@ use tokio::net::TcpListener;
 const EPUB: &[u8] = include_bytes!("../../crates/book-inspection/tests/fixtures/back-matter-evidence.epub");
 const OTHER: &[u8] = include_bytes!("../../crates/book-inspection/tests/fixtures/malformed-language.epub");
 
+fn queued_record() -> TorrentRecord {
+    TorrentRecord {
+        info_hash: "a".repeat(40), metadata: Vec::new(), source: None,
+        staging_path: ".bokheim-torrents/queued/Books".into(), output_path: "Books".into(),
+        imported: false, publishing: false, keep_seeding: true, folder_id: None, error: None,
+    }
+}
+
+#[tokio::test]
+async fn an_offline_download_request_waits_without_an_engine_and_remains_cancellable() {
+    use futures_util::poll;
+    let root = tempfile::tempdir().unwrap();
+    let (actor, _, _) = fixture(root.path(), "http://127.0.0.1:1".parse().unwrap());
+    let library = &actor.session;
+    let (_connection, status) = watch::channel(false);
+    library.torrents.set_connectivity(status);
+    let request = library.torrents.begin_request("offline");
+    let input = TorrentInput::Magnet(format!("magnet:?xt=urn:btih:{}", "a".repeat(40)));
+    let mut adding = Box::pin(library.torrents.add_request(&library.db, root.path(), input, request));
+    assert!(poll!(&mut adding).is_pending());
+    assert!(library.torrents.engine.lock().await.is_none());
+    assert_eq!(library.torrents.active_adds.load(Ordering::Acquire), 0);
+    library.torrents.cancel_request("offline");
+    assert!(adding.await.is_err());
+    assert!(library.torrents.engine.lock().await.is_none());
+}
+
+#[tokio::test]
+async fn failed_downloads_use_retry_delays_instead_of_active_progress_polling() {
+    let root = tempfile::tempdir().unwrap();
+    let (actor, _, _) = fixture(root.path(), "http://127.0.0.1:1".parse().unwrap());
+    let library = &actor.session;
+    let record = queued_record();
+    library.db.save_torrent(&record, &[]).unwrap();
+    let policy = TransferPolicy::default();
+    assert_eq!(library.torrents.next_wake(library, &policy, Duration::from_secs(900)).unwrap(), (Some(Duration::from_secs(2)), false));
+    library.db.set_torrent_error(&record.info_hash, Some("download unavailable")).unwrap();
+    for seconds in [30, 60, 900] {
+        let delay = Duration::from_secs(seconds);
+        assert_eq!(library.torrents.next_wake(library, &policy, delay).unwrap(), (Some(delay), true));
+    }
+}
+
+#[tokio::test(start_paused = true)]
+async fn offline_pending_downloads_have_no_progress_timer_or_network_engine() {
+    use futures_util::task::{waker_ref, ArcWake};
+    use std::future::Future;
+    use std::task::Context;
+    struct Wakes(AtomicUsize);
+    impl ArcWake for Wakes {
+        fn wake_by_ref(waker: &Arc<Self>) { waker.0.fetch_add(1, Ordering::Relaxed); }
+    }
+    let root = tempfile::tempdir().unwrap();
+    let (actor, _, _) = fixture(root.path(), "http://127.0.0.1:1".parse().unwrap());
+    let library = &actor.session;
+    library.db.save_torrent(&queued_record(), &[]).unwrap();
+    let policy = TransferPolicy::default();
+    let (connection, status) = watch::channel(false);
+    let wakes = Arc::new(Wakes(AtomicUsize::new(0)));
+    let waker = waker_ref(&wakes);
+    let mut context = Context::from_waker(&waker);
+    let mut worker = Box::pin(library.torrents.run_with_network(library, &policy, Connectivity::new(status)));
+    assert!(worker.as_mut().poll(&mut context).is_pending());
+    tokio::time::advance(Duration::from_secs(3600)).await;
+    assert_eq!(wakes.0.load(Ordering::Relaxed), 0);
+    assert!(library.torrents.engine.lock().await.is_none());
+    connection.send_replace(true);
+    assert!(wakes.0.load(Ordering::Relaxed) > 0, "reconnection wakes the pending download without a timer");
+}
+
 async fn local_engine(path: &Path) -> Arc<Session> {
     Session::new_with_opts(path.into(), SessionOptions { dht: None, listen: Some(Default::default()), disable_local_service_discovery: true, ..Default::default() }).await.unwrap()
 }
@@ -99,7 +169,7 @@ async fn exercise(magnet: bool) {
     }
     let folder = original.folder_id.expect("published torrent binds to its imported directory");
     let shelf = library.placement.create_directory(&ROOT_DIR_ID, "Shelf").unwrap().id;
-    library.placement.queue_directory_move(&folder, Some(&shelf), Some("Moved books")).unwrap();
+    library.placement.queue_directory_move(&folder, Some(&shelf), Some("Moved books")).await.unwrap();
     library.run_file_jobs().await.unwrap();
     assert!(!root.path().join("Books").exists());
     assert_eq!(fs::read(root.path().join("Shelf/Moved books/notes.txt")).unwrap(), b"retain every file");
@@ -296,6 +366,13 @@ async fn interrupted_publication_recovers_destination_without_recreating_staging
     *library.torrents.engine.lock().await = Some(local_engine(root.path()).await);
     library.torrents.pass_with_policy(library, &policy).await.unwrap();
     assert!(library.torrents.engine.lock().await.as_ref().unwrap().get(torrent_id(&hash).unwrap()).unwrap().stats().finished);
+    // Kobo disables background seeding independently of network-cost overrides.
+    policy.set_allow_seeding(false);
+    policy.set_allow_metered(true);
+    library.torrents.pass_with_policy(library, &policy).await.unwrap();
+    assert!(library.torrents.engine.lock().await.is_none());
+    assert_eq!(library.torrents.next_check(library, &policy).unwrap(), None);
+    assert!(library.db.torrents().unwrap()[0].keep_seeding, "device power policy preserves the stored preference");
 }
 
 #[tokio::test(start_paused = true)]
@@ -317,7 +394,7 @@ async fn empty_worker_has_no_periodic_wakes_and_observes_policy_changes() {
     let wakes = Arc::new(Wakes(AtomicUsize::new(0)));
     let waker = waker_ref(&wakes);
     let mut context = Context::from_waker(&waker);
-    let mut worker = Box::pin(library.torrents.run_with_policy(library, &policy));
+    let mut worker = Box::pin(library.torrents.run_with_network(library, &policy, Connectivity::unrestricted()));
     assert!(worker.as_mut().poll(&mut context).is_pending());
     tokio::time::advance(Duration::from_secs(120)).await;
     assert_eq!(wakes.0.load(Ordering::Relaxed), 0, "an empty library has no torrent timer");

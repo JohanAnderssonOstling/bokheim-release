@@ -108,9 +108,17 @@ remove libraries, synced metadata and reading state, OPDS settings, sessions,
 password-reset tokens, storage quota, upload reservations, and blob ownership
 and access records. Pending registrations and queued account emails for that
 email address are also removed. The identity cache is invalidated after commit
-so cached access tokens stop working immediately. Physical book and cover
-files retain the existing asset-store behavior; account deletion does not erase
-files already downloaded to devices or perform physical asset garbage collection.
+so cached access tokens stop working immediately. After commit, deletion wakes
+asset cleanup. Shared book files are removed when no account owns them; covers
+are removed when no live library in their account retains the book. Files
+already downloaded to devices remain on those devices.
+
+Permanent book deletion, library deletion and disabling cloud storage also wake
+cleanup. Books in the trash retain their files so they can be restored. A sweep
+runs at startup and every minute to retry failures and reclaim published files
+left without ownership records. Uploads are staged before publication; database
+advisory locks protect publication and ownership checks against concurrent
+cleanup. No database migration is required for cleanup.
 
 Deploy the sync server before publishing the static page in `bokheim-site`.
 

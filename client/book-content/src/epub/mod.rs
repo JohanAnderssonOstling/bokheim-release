@@ -1,14 +1,20 @@
+use crate::profile::{PreparationProfile, ResourcePreparation};
 use crate::resource_path::resolve_resource_href;
 use crate::resource_path::{is_container_resource, normalize_path as normalize_epub_path};
 use crate::resources::{MAX_BINARY_RESOURCE_BYTES, MAX_PREPARED_TEXT_BYTES};
-use std::collections::HashMap;
+use encoding_rs::{Encoding, UTF_8, UTF_16BE, UTF_16LE, WINDOWS_1252};
+use std::collections::{HashMap, HashSet};
 use std::io;
 use std::sync::{Arc, OnceLock};
+use std::time::Instant;
 
 pub(crate) mod archive;
 use archive::{Archive, ArchiveMetadata, ArchiveReader};
 pub(crate) use inspection::EpubSession;
 mod inspection;
+pub(crate) mod opening;
+#[cfg(test)]
+mod tolerance_tests;
 
 const MAX_CONTAINER_XML_BYTES: u64 = 1024 * 1024;
 const MAX_PACKAGE_DOCUMENT_BYTES: u64 = 8 * 1024 * 1024;
@@ -52,10 +58,25 @@ pub(crate) struct EpubPackage {
 
 impl EpubPackage {
     async fn open(reader: &mut ArchiveReader) -> io::Result<Self> {
-        let container = reader.read("META-INF/container.xml", MAX_CONTAINER_XML_BYTES).await?;
-        let opf_path = Self::parse_container_opf_path(&String::from_utf8_lossy(&container)).ok_or_else(|| io::Error::new(io::ErrorKind::NotFound, "Missing OPF path in container.xml"))?;
-        let opf = reader.read(&opf_path, MAX_PACKAGE_DOCUMENT_BYTES).await?;
-        Ok(Self { archive: reader.metadata.clone(), opf_path, opf_xml: String::from_utf8_lossy(&opf).into_owned(), manifest_cache: OnceLock::new() })
+        let mut candidates = Vec::new();
+        if let Ok(container) = reader.read("META-INF/container.xml", MAX_CONTAINER_XML_BYTES).await
+            && let Some(path) = Self::parse_container_opf_path(&decode_package_xml(&container))
+            && let Some(path) = reader.metadata.resolve(&path)
+        {
+            candidates.push(path);
+        }
+        for name in reader.metadata.names() {
+            if name.to_ascii_lowercase().ends_with(".opf") && !candidates.contains(name) {
+                candidates.push(name.clone());
+            }
+        }
+        for opf_path in candidates {
+            if let Ok(opf) = reader.read(&opf_path, MAX_PACKAGE_DOCUMENT_BYTES).await {
+                return Ok(Self { archive: reader.metadata.clone(), opf_path, opf_xml: decode_package_xml(&opf), manifest_cache: OnceLock::new() });
+            }
+        }
+        // Package metadata is useful, but readable HTML can stand on its own.
+        Ok(Self { archive: reader.metadata.clone(), opf_path: String::new(), opf_xml: String::new(), manifest_cache: OnceLock::new() })
     }
 
     /// Returns the package-declared media type for an archive resource.
@@ -67,18 +88,55 @@ impl EpubPackage {
     }
 
     /// Snapshot container-local manifest metadata without retaining the archive.
-    pub(crate) fn resource_media_types(&self) -> HashMap<String, String> {
-        self.get_or_parse_manifest()
+    pub(crate) fn resource_media_types(&self, resources: &HashMap<String, Vec<u8>>) -> HashMap<String, String> {
+        let mut types: HashMap<_, _> = self.get_or_parse_manifest()
             .items
             .iter()
             .filter(|item| is_container_resource(&item.href))
-            .filter_map(|item| item.media_type.as_ref().map(|media_type| (resolve_resource_href(&self.opf_path, &item.href), media_type.clone())))
-            .collect()
-    }
-
-    /// Progress weights come from immutable ZIP directory metadata.
-    pub(crate) fn document_progress_weights(&self, documents: &[String]) -> io::Result<Vec<u64>> {
-        documents.iter().map(|uri| self.archive.size(uri).map(|size| size.max(1))).collect()
+            .filter_map(|item| {
+                let path = self.archive.resolve(&resolve_resource_href(&self.opf_path, &item.href))?;
+                item.media_type.as_ref().map(|media_type| (path, media_type.clone()))
+            })
+            .collect();
+        for name in self.archive.names() {
+            let inferred = if name.to_ascii_lowercase().ends_with(".css") {
+                "text/css"
+            } else if name.to_ascii_lowercase().ends_with(".svg") {
+                "image/svg+xml"
+            } else if Self::is_html_entry(name) {
+                "text/html"
+            } else {
+                continue;
+            };
+            let prefix = resources.get(name).map(|bytes| decode_package_xml(&bytes[..bytes.len().min(1024)]));
+            let detected = prefix.as_deref().and_then(|prefix| {
+                let mut prefix = prefix.trim_start_matches('\u{feff}').trim_start();
+                loop {
+                    let terminator = if prefix.starts_with("<!--") { "-->" } else if prefix.starts_with("<?xml") { "?>" } else { break };
+                    let Some((_, rest)) = prefix.split_once(terminator) else { return None };
+                    prefix = rest.trim_start();
+                }
+                if prefix.starts_with('<') {
+                    Some(if prefix.starts_with("<svg") { "image/svg+xml" } else { "text/html" })
+                } else if inferred == "text/css" && (prefix.contains('{') || prefix.starts_with('@')) {
+                    Some("text/css")
+                } else {
+                    None
+                }
+            });
+            if let Some(detected) = detected {
+                let keep_xhtml = detected == "text/html" && types.get(name).is_some_and(|kind| kind.eq_ignore_ascii_case("application/xhtml+xml"));
+                if !keep_xhtml {
+                    types.insert(name.clone(), detected.to_owned());
+                }
+                continue;
+            }
+            let usable = types.get(name).is_some_and(|kind| ["text/css", "text/html", "application/xhtml+xml", "image/svg+xml"].iter().any(|expected| kind.eq_ignore_ascii_case(expected)));
+            if !usable {
+                types.insert(name.clone(), inferred.to_owned());
+            }
+        }
+        types
     }
 
     fn exists(&self, uri: &str) -> bool {
@@ -86,24 +144,12 @@ impl EpubPackage {
     }
 
     fn is_html_entry(name: &str) -> bool {
-        let len = name.len();
-        if len >= 5 && name[len - 5..].eq_ignore_ascii_case(".html") {
-            return true;
-        }
-        if len >= 6 && name[len - 6..].eq_ignore_ascii_case(".xhtml") {
-            return true;
-        }
-        if len >= 4 && name[len - 4..].eq_ignore_ascii_case(".htm") {
-            return true;
-        }
-        if len >= 4 && name[len - 4..].eq_ignore_ascii_case(".svg") {
-            return true;
-        }
-        false
+        name.rsplit_once('.').is_some_and(|(_, extension)| ["html", "xhtml", "htm", "svg"].iter().any(|expected| extension.eq_ignore_ascii_case(expected)))
     }
 
     fn parse_container_opf_path(container_xml: &str) -> Option<String> {
         let mut reader = quick_xml::Reader::from_str(container_xml);
+        reader.check_end_names(false);
         reader.trim_text(true);
         let mut buf = Vec::new();
         loop {
@@ -126,6 +172,7 @@ impl EpubPackage {
 
     fn parse_opf_manifest(opf_xml: &str) -> ParsedManifest {
         let mut reader = quick_xml::Reader::from_str(opf_xml);
+        reader.check_end_names(false);
         reader.trim_text(true);
         let mut buf = Vec::new();
         let mut items = Vec::new();
@@ -204,14 +251,19 @@ impl EpubPackage {
         }
 
         let mut out = Vec::new();
+        let mut seen = HashSet::new();
 
         for idref in &manifest.spine {
             let Some(item) = manifest.items.iter().find(|item| &item.id == idref) else {
                 continue;
             };
+            if !is_container_resource(&item.href) {
+                continue;
+            }
             let normalized = resolve_resource_href(&self.opf_path, &item.href);
-            if matches!(item.media_type.as_deref(), Some("application/xhtml+xml" | "text/html")) || (item.media_type.is_none() && Self::is_html_entry(&normalized)) {
-                out.push(normalized);
+            let Some(path) = self.archive.resolve(&normalized) else { continue };
+            if (item.media_type.as_deref().is_some_and(|kind| ["application/xhtml+xml", "text/html"].iter().any(|expected| kind.eq_ignore_ascii_case(expected))) || Self::is_html_entry(&path)) && seen.insert(path.clone()) {
+                out.push(path);
             }
         }
 
@@ -225,8 +277,34 @@ impl EpubPackage {
             return Ok(spine);
         }
 
-        Ok(self.archive.names().iter().filter(|name| Self::is_html_entry(name)).cloned().collect())
+        Ok(self.fallback_documents())
     }
+
+    pub(crate) fn fallback_documents(&self) -> Vec<String> {
+        self.archive.names().iter().filter(|name| Self::is_html_entry(name)).cloned().collect()
+    }
+}
+
+fn decode_package_xml(bytes: &[u8]) -> String {
+    let (mut encoding, bom) = Encoding::for_bom(bytes).unwrap_or((UTF_8, 0));
+    if bom == 0 {
+        if bytes.starts_with(b"<\0?\0") {
+            encoding = UTF_16LE;
+        } else if bytes.starts_with(b"\0<\0?") {
+            encoding = UTF_16BE;
+        } else {
+            let mut declaration = quick_xml::Reader::from_reader(bytes);
+            if let Ok(quick_xml::events::Event::Decl(value)) = declaration.read_event()
+                && let Some(Ok(label)) = value.encoding()
+                && let Some(declared) = Encoding::for_label(&label)
+            {
+                encoding = declared;
+            } else if std::str::from_utf8(bytes).is_err() {
+                encoding = WINDOWS_1252;
+            }
+        }
+    }
+    encoding.decode_without_bom_handling(&bytes[bom..]).0.into_owned()
 }
 
 fn read_xml_attr(attrs: quick_xml::events::attributes::Attributes, key: &[u8]) -> Option<String> {
@@ -243,8 +321,19 @@ impl EpubProvider {
         self.archive.read(uri, MAX_BINARY_RESOURCE_BYTES).await
     }
 
-    pub(crate) async fn prepare_text_resources_async(&self, documents: &[String]) -> io::Result<HashMap<String, Vec<u8>>> {
-        let mut paths = HashMap::new();
+    pub(crate) async fn prepare_text_resources_async<const PROFILE: bool>(&self, documents: &[String], profile: &mut PreparationProfile) -> io::Result<HashMap<String, Vec<u8>>> {
+        let started = PROFILE.then(Instant::now);
+        let mut paths = Vec::new();
+        let mut seen = HashSet::new();
+        // Reserve the preparation budget for readable chapters first.
+        for uri in documents {
+            if is_container_resource(uri)
+                && let Some(path) = self.package.archive.resolve(uri)
+                && seen.insert(path.clone())
+            {
+                paths.push((path, MAX_BINARY_RESOURCE_BYTES));
+            }
+        }
         for item in &self.package.get_or_parse_manifest().items {
             if !is_container_resource(&item.href) {
                 continue;
@@ -254,20 +343,37 @@ impl EpubProvider {
                 Some(media_type) if media_type.eq_ignore_ascii_case("application/xhtml+xml") || media_type.eq_ignore_ascii_case("text/html") => MAX_BINARY_RESOURCE_BYTES,
                 _ => continue,
             };
-            paths.insert(resolve_resource_href(&self.package.opf_path, &item.href), limit);
-        }
-        for uri in documents {
-            if !is_container_resource(uri) {
-                return Err(io::Error::new(io::ErrorKind::InvalidData, "external EPUB documents are unsupported"));
+            if let Some(path) = self.package.archive.resolve(&resolve_resource_href(&self.package.opf_path, &item.href))
+                && seen.insert(path.clone())
+            {
+                paths.push((path, limit));
             }
-            paths.entry(normalize_epub_path(uri)).or_insert(MAX_BINARY_RESOURCE_BYTES);
         }
+        for name in self.package.archive.names() {
+            let limit = if name.to_ascii_lowercase().ends_with(".css") {
+                MAX_MARKUP_RESOURCE_BYTES
+            } else if EpubPackage::is_html_entry(name) {
+                MAX_BINARY_RESOURCE_BYTES
+            } else {
+                continue;
+            };
+            if seen.insert(name.clone()) {
+                paths.push((name.clone(), limit));
+            }
+        }
+        profile.record_sync("resource_plan", started);
         let mut resources = HashMap::new();
         let mut total = 0;
         let mut reader = self.archive.reader();
         for (path, limit) in paths {
-            let bytes = reader.read(&path, limit.min(MAX_PREPARED_TEXT_BYTES - total)).await?;
+            if total >= MAX_PREPARED_TEXT_BYTES {
+                break;
+            }
+            let Ok((bytes, timing)) = reader.read_measured::<PROFILE>(&path, limit.min(MAX_PREPARED_TEXT_BYTES - total)).await else { continue };
             total += bytes.len() as u64;
+            if PROFILE {
+                profile.resources.push(ResourcePreparation { uri: path.clone(), timing });
+            }
             resources.insert(path, bytes);
         }
         Ok(resources)
@@ -369,12 +475,12 @@ mod streaming_tests {
     }
 
     #[test]
-    fn zip64_recovery_does_not_disable_crc_validation() {
+    fn zip64_recovery_allows_readable_data_despite_crc_mismatch() {
         let mut bytes = zip64_epub(0);
         let position = bytes.windows(b"ZIP64 regression chapter".len()).position(|window| window == b"ZIP64 regression chapter").unwrap();
         bytes[position] ^= 1;
         let mut provider = EpubSession::try_from_reader(Cursor::new(bytes)).unwrap();
-        assert!(provider.read_string("OPS/chapter.xhtml").is_err());
+        assert!(provider.read_string("OPS/chapter.xhtml").is_ok());
     }
 
     #[test]
@@ -437,7 +543,6 @@ mod streaming_tests {
         let mut provider = EpubSession::try_from_reader(CountingReader { cursor: Cursor::new(bytes.clone()), bytes_read: Arc::clone(&bytes_read) }).unwrap();
         let documents = provider.package.document_uris().unwrap();
         assert_eq!(documents, vec!["OEBPS/chapter.xhtml", "OEBPS/notes.xhtml"]);
-        assert_eq!(provider.package.document_progress_weights(&documents).unwrap(), vec![43, 41]);
         assert_eq!(provider.read_string("OEBPS/chapter.xhtml").unwrap(), "<html><body>Only this chapter</body></html>");
         assert!(bytes_read.load(Ordering::Relaxed) < bytes.len() / 2, "EPUB provider read the unused archive payload");
     }

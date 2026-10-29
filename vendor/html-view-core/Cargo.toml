@@ -1,0 +1,22 @@
+[package]
+license = "GPL-3.0-or-later"
+name = "html-view-core"
+version = "0.1.0"
+edition = "2024"
+publish = false
+repository = "https://github.com/JohanAnderssonOstling/HtmlViewCore"
+
+[dependencies]
+html = { package = "html-engine", git = "https://github.com/JohanAnderssonOstling/HtmlEngine", rev = "c00d65d1b45435854795f3f2c8c4df1750c71bd7", features = ["math-export"] }
+html-view-cfi = { git = "https://github.com/JohanAnderssonOstling/HtmlViewCore", rev = "b1e1990b939458a4d612ff7d90be066713ec1444" }
+html-view-doc = { git = "https://github.com/JohanAnderssonOstling/HtmlViewCore", rev = "b1e1990b939458a4d612ff7d90be066713ec1444" }
+html-view-load = { git = "https://github.com/JohanAnderssonOstling/HtmlViewCore", rev = "b1e1990b939458a4d612ff7d90be066713ec1444" }
+html-view-navigate = { git = "https://github.com/JohanAnderssonOstling/HtmlViewCore", rev = "b1e1990b939458a4d612ff7d90be066713ec1444" }
+html-view-paginate = { git = "https://github.com/JohanAnderssonOstling/HtmlViewCore", rev = "b1e1990b939458a4d612ff7d90be066713ec1444" }
+html-view-paint = { git = "https://github.com/JohanAnderssonOstling/HtmlViewCore", rev = "b1e1990b939458a4d612ff7d90be066713ec1444" }
+html-view-select = { git = "https://github.com/JohanAnderssonOstling/HtmlViewCore", rev = "b1e1990b939458a4d612ff7d90be066713ec1444" }
+html-view-types = { git = "https://github.com/JohanAnderssonOstling/HtmlViewCore", rev = "b1e1990b939458a4d612ff7d90be066713ec1444" }
+kurbo = "0.11.3"
+peniko = "0.2.0"
+smallvec = "1"
+web-time = "1"

@@ -20,6 +20,16 @@ impl AppClient {
         self.transport.run_ordered(|_| client_platform_kobo::device::battery::read().map_err(BackendError::operation)).await
     }
 
+    pub fn subscribe_kobo_battery(&self) -> tokio::sync::watch::Receiver<Option<super::BatteryReading>> {
+        client_platform_kobo::device::battery::subscribe()
+    }
+
+    /// Observes serialized radio work without starting a UI polling loop.
+    #[cfg(target_os = "linux")]
+    pub fn subscribe_kobo_wifi(&self) -> Result<tokio::sync::watch::Receiver<client_platform_kobo::device::wifi::Snapshot>, BackendError> {
+        client_platform_kobo::device::wifi::subscribe().map_err(BackendError::operation)
+    }
+
     /// Runs serialized radio work on its own worker, independent of library jobs.
     #[cfg(target_os = "linux")]
     pub async fn kobo_wifi(&self, request: client_platform_kobo::device::wifi::Request) -> Result<client_platform_kobo::device::wifi::Snapshot, BackendError> {

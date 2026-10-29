@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-"""Package the optimized Windows build and its runtime files for signed updates."""
+"""Package the optimized Windows runtime for signed updates and portable use."""
 import argparse
 import hashlib
 from pathlib import Path
+import shutil
 import tempfile
 import zipfile
 
 
-def package(binary, icon, output):
+def package(binary, icon, output, portable_output=None):
+    if portable_output is not None and portable_output.resolve() == output.resolve():
+        raise ValueError('Update and portable packages must have different output paths')
     binary = binary.resolve(strict=True)
     files = {'Bokheim.exe': binary, 'Bokheim.ico': icon.resolve(strict=True),
              'bokheim-opds-webview.exe': binary.with_name('bokheim-opds-webview.exe').resolve(strict=True)}
@@ -38,6 +41,13 @@ def package(binary, icon, output):
                 digest.update(block)
         archive.replace(output)
         output.with_suffix(output.suffix + '.sha256').write_text(f'{digest.hexdigest()}  {output.name}\n', encoding='ascii')
+        if portable_output is not None:
+            # Both downloads contain the same complete runtime. Compress the large
+            # speech models once, retaining separate names and checksum sidecars.
+            portable_output.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(output, portable_output)
+            portable_output.with_suffix(portable_output.suffix + '.sha256').write_text(
+                f'{digest.hexdigest()}  {portable_output.name}\n', encoding='ascii')
 
 
 def main():
@@ -45,8 +55,9 @@ def main():
     parser.add_argument('--binary', required=True, type=Path, help='Release bokheim.exe')
     parser.add_argument('--icon', required=True, type=Path)
     parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--portable-output', type=Path, help='Also write a complete standalone ZIP without an installer')
     args = parser.parse_args()
-    package(args.binary, args.icon, args.output)
+    package(args.binary, args.icon, args.output, args.portable_output)
 
 
 if __name__ == '__main__':

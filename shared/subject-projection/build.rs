@@ -56,8 +56,13 @@ fn main() {
     std::fs::write(output_dir.join("bisac-reference-nodes.rs"), format!("&[\n{nodes}\n]\n")).expect("write bundled BISAC nodes");
     drop(query);
     drop(bisac);
-    let bisac_image = std::fs::read(&bisac_path).expect("read compiled BISAC reference");
-    let bisac_digest = blake3::hash(&bisac_image).to_hex().to_string();
+    let bisac_digest = blake3::hash(&std::fs::read(&bisac_path).expect("read compiled BISAC reference")).to_hex().to_string();
+    // Finish the cache metadata before packaging. Native and web can install
+    // this exact image without SQLite backups or a post-install write.
+    let bisac = Connection::open(&bisac_path).expect("open BISAC reference metadata");
+    bisac.execute("UPDATE reference_meta SET revision=?1", [&bisac_digest]).expect("record BISAC artifact identity");
+    drop(bisac);
+    let bisac_image = std::fs::read(&bisac_path).expect("read prepared BISAC reference");
     let mut encoder = GzEncoder::new(Vec::new(), Compression::best());
     encoder.write_all(&bisac_image).expect("compress BISAC reference");
     let compressed = encoder.finish().expect("finish BISAC reference compression");
@@ -85,6 +90,7 @@ fn main() {
     std::fs::write(output_dir.join("unified-taxonomy-matcher.bin"), encoded).expect("write taxonomy matcher");
     std::fs::write(output_dir.join("unified-taxonomy-revision-id.txt"), &matcher.revision_id).expect("write taxonomy revision");
     std::fs::write(output_dir.join("taxonomy-release.rs"), format!("{published_release_id}u64")).expect("write taxonomy release");
+    std::fs::write(output_dir.join("taxonomy-format.rs"), format!("{format_version}u32")).expect("write taxonomy format");
     let image = std::fs::read(&client_database_path).expect("read prepared taxonomy");
     let digest = blake3::hash(&image).to_hex().to_string();
     std::fs::write(output_dir.join("taxonomy.digest"), &digest).expect("write taxonomy digest");

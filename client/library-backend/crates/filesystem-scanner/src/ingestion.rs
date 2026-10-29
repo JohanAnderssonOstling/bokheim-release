@@ -1,6 +1,6 @@
 //! Ingest a native book already present on disk, whether copied or discovered.
 
-use std::io::{self, Read, Seek};
+use std::io::{self, Seek};
 use std::path::{Path, PathBuf};
 
 use book_model::BookFormat;
@@ -24,17 +24,7 @@ pub async fn ingest_file(path: PathBuf, name: String, host: &dyn cpu_host::CpuHo
             let fingerprint = fingerprint(&path)?;
             let mut reader = library_files::filesystem::open(&path)?;
             let mut hasher = blake3::Hasher::new();
-            let mut buffer = [0_u8; 64 * 1024];
-            loop {
-                let read = match reader.read(&mut buffer) {
-                    Err(error) if error.kind() == io::ErrorKind::Interrupted => continue,
-                    result => result?,
-                };
-                if read == 0 {
-                    break;
-                }
-                hasher.update(&buffer[..read]);
-            }
+            hasher.update_reader(&mut reader)?;
             let size_bytes = hasher.count();
             if size_bytes == 0 {
                 return Err(io::Error::new(io::ErrorKind::InvalidData, "empty book"));
@@ -70,17 +60,7 @@ pub async fn ingest_audiobook_folder(path: PathBuf, name: String, host: &dyn cpu
             require_folder_unchanged(&path, fingerprint)?;
             archive.rewind()?;
             let mut hasher = blake3::Hasher::new();
-            let mut bytes = [0u8; 64 * 1024];
-            loop {
-                let read = match archive.read(&mut bytes) {
-                    Err(error) if error.kind() == io::ErrorKind::Interrupted => continue,
-                    result => result?,
-                };
-                if read == 0 {
-                    break;
-                }
-                hasher.update(&bytes[..read]);
-            }
+            hasher.update_reader(&mut archive)?;
             archive.rewind()?;
             Ok((BookId::from(hasher.finalize()), hasher.count(), fingerprint, archive))
         }

@@ -17,7 +17,6 @@ use super::layout::NodeRole;
 use crate::{BrowserTheme, browser_theme};
 
 const HAIR_SPACE: &str = "\u{200A}";
-const LINE_HEIGHT: f32 = 1.12;
 const E_INK: bool = cfg!(feature = "kobo");
 /// A raised count's size and gap relative to its label; on e-ink the count sits on the baseline.
 const COUNT_SCALE: f32 = if E_INK { 0.82 } else { 0.75 };
@@ -56,7 +55,7 @@ fn label_body(role: NodeRole, name: &str, count: Option<usize>, compact: bool, t
         .text_center()
         .line_clamp(MAX_LINES)
         .text_ellipsis()
-        .when(display, |text| text.font_family(theme.display_font_family()).when(role == NodeRole::Selection, |text| text.font_weight(FontWeight::SEMIBOLD)))
+        .when(display, |text| text.when_some(theme.display_font_family(), |text, family| text.font_family(family)).when(role == NodeRole::Selection, |text| text.font_weight(FontWeight::SEMIBOLD)))
         .when(!display, |text| text.font_family(font_family.clone()).font_features(crate::small_caps()))
         .child(shown);
     div()
@@ -65,9 +64,9 @@ fn label_body(role: NodeRole, name: &str, count: Option<usize>, compact: bool, t
         .flex()
         .map(|row| if E_INK { row.items_end() } else { row.items_start() })
         .text_size(rems(text_size))
-        .line_height(rems(text_size * LINE_HEIGHT))
+        .line_height_auto()
         .child(text)
-        .children(count.map(|count| div().flex_none().pl(px(COUNT_GAP)).font_family(font_family).text_size(rems(text_size * COUNT_SCALE)).line_height(rems(text_size * COUNT_SCALE)).text_color(theme.text_muted).child(count.to_string())))
+        .children(count.map(|count| div().flex_none().pl(px(COUNT_GAP)).font_family(font_family).text_size(rems(text_size * COUNT_SCALE)).line_height_auto().text_color(theme.text_muted).child(count.to_string())))
 }
 
 /// Label sizes in rems, for phones and e-readers or for larger windows.

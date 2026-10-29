@@ -1,1 +1,0 @@
-CREATE TABLE asset_file(name TEXT PRIMARY KEY,physical_name TEXT,byte_length INTEGER NOT NULL DEFAULT 0);

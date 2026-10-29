@@ -19,7 +19,7 @@ mod popularity;
 
 mod storage;
 pub use storage::{activate, activate_path, audiobook_candidates, audiobook_url, contains, entry};
-pub(crate) use storage::{read, read_snapshot};
+pub(crate) use storage::{browse_row, read, read_snapshot};
 
 /// Only identical hosted bytes of the same format supply an import answer.
 /// Source-linked entries have catalog identities rather than content hashes.

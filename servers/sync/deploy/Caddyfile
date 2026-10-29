@@ -12,22 +12,42 @@
 	}
 }
 
+# Shared by the API host and browser proxy. The wire media type is outside
+# Caddy's default compression matcher; images and audiobook ranges stay separate.
+(bokheim_protobuf_compression) {
+	encode zstd gzip {
+		match {
+			header Content-Type application/vnd.bokheim+protobuf*
+		}
+	}
+}
+
 {$BOKHEIM_DOMAIN} {
 	header {
 		Strict-Transport-Security "max-age=31536000"
 		-Server
 	}
 
+	import bokheim_protobuf_compression
 	reverse_proxy unix//run/bokheim/sync.sock
 }
 
 {$BOKHEIM_APP_DOMAIN:app.bokheim.se} {
 	header {
 		Strict-Transport-Security "max-age=31536000"
-		Cross-Origin-Opener-Policy "same-origin"
-		Cross-Origin-Embedder-Policy "require-corp"
 		X-Content-Type-Options "nosniff"
 		-Server
+	}
+	@reader not path /google_cloud_login.html
+	header @reader {
+		Cross-Origin-Opener-Policy "same-origin"
+		Cross-Origin-Embedder-Policy "require-corp"
+	}
+	@google_login path /google_cloud_login.html
+	header @google_login {
+		Cross-Origin-Opener-Policy "same-origin-allow-popups"
+		Cross-Origin-Embedder-Policy "unsafe-none"
+		Referrer-Policy "no-referrer"
 	}
 
 	# Compress the GPUI JavaScript and WebAssembly bundle in transit.
@@ -54,6 +74,7 @@
 	}
 
 	handle /api/* {
+		import bokheim_protobuf_compression
 		reverse_proxy unix//run/bokheim/sync.sock
 	}
 
@@ -75,6 +96,7 @@
 
 	@metadata_api path /health /v3/books /v2/audiobooks/audible
 	handle @metadata_api {
+		import bokheim_protobuf_compression
 		reverse_proxy 127.0.0.1:8091
 	}
 

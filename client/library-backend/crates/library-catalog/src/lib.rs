@@ -14,57 +14,38 @@ use web_time::Instant;
 #[cfg(test)]
 mod download_tests;
 
-/// Covers fetched this session, by book and size; `None` when the catalog
-/// has none. Catalog pages ask for the same covers as they scroll back.
-static COVERS: OnceLock<Mutex<HashMap<(CardKey, bool), Option<Vec<u8>>>>> = OnceLock::new();
-static CARD_COVERS: OnceLock<Mutex<HashMap<(CardKey, u32), Option<Vec<u8>>>>> = OnceLock::new();
+/// Cover files fetched this session, by book and filename suffix. Cache each
+/// response once even when several card sizes fall back to the same image.
+/// `None` remembers a missing file; failed requests can be retried.
+static COVERS: OnceLock<Mutex<HashMap<(CardKey, String), Option<Vec<u8>>>>> = OnceLock::new();
 static COVER_GENERATION: AtomicU64 = AtomicU64::new(0);
 
 /// Release retained JPEGs when entering a reader. Loads started before this
-/// call may return to their caller, but cannot repopulate either cache.
+/// call may return to their caller, but cannot repopulate the cache.
 pub fn evict_cover_caches() {
     COVER_GENERATION.fetch_add(1, Ordering::SeqCst);
     if let Some(covers) = COVERS.get() {
         covers.lock().unwrap_or_else(|poisoned| poisoned.into_inner()).clear();
     }
-    if let Some(covers) = CARD_COVERS.get() {
-        covers.lock().unwrap_or_else(|poisoned| poisoned.into_inner()).clear();
-    }
 }
 
-/// Card assets are generated separately from the retained detail image. An
-/// older origin is upgraded once in the CPU worker, then cached by density.
-pub async fn card_cover(key: CardKey, width: u32, cpu: &dyn cpu_host::CpuHost) -> Option<Vec<u8>> {
+/// Cache finished server artwork by density. Older origins supply their
+/// existing card/detail JPEGs without applying local crop rules again.
+pub async fn card_cover(key: CardKey, width: u32) -> Option<Vec<u8>> {
     let generation = COVER_GENERATION.load(Ordering::SeqCst);
     if ![thumbnail::BROWSE_THUMBNAIL_WIDTH, thumbnail::THUMBNAIL_WIDTH].contains(&width) {
         return None;
     }
-    let cache = CARD_COVERS.get_or_init(Default::default);
-    if let Some(cover) = cache.lock().ok()?.get(&(key, width)) {
-        return cover.clone();
-    }
-    if let Some(bytes) = fetch_cover_asset(key, &thumbnail::card_thumbnail_suffix(width)).await.ok()? {
-        let mut cache = cache.lock().ok()?;
-        if COVER_GENERATION.load(Ordering::SeqCst) == generation {
-            cache.insert((key, width), Some(bytes.clone()));
-        }
+    if let Some(bytes) = fetch_cover_at(key, &thumbnail::card_thumbnail_suffix(width), generation).await.ok()? {
         return Some(bytes);
     }
-    let Some(original) = fetch_cover_at(key, true, generation).await else {
-        let mut cache = cache.lock().ok()?;
-        if COVER_GENERATION.load(Ordering::SeqCst) == generation {
-            cache.insert((key, width), None);
-        }
-        return None;
-    };
-    let versions = cpu_host::cover(cpu, original).await.ok()?;
-    let selected = if width == thumbnail::BROWSE_THUMBNAIL_WIDTH { versions.browse.clone() } else { versions.card_high_density.clone() };
-    let mut cache = cache.lock().ok()?;
-    if COVER_GENERATION.load(Ordering::SeqCst) == generation {
-        cache.insert((key, thumbnail::BROWSE_THUMBNAIL_WIDTH), Some(versions.browse));
-        cache.insert((key, thumbnail::THUMBNAIL_WIDTH), Some(versions.card_high_density));
+    let suffix = if width == thumbnail::THUMBNAIL_WIDTH { "detail" } else { "card" };
+    let cover = fetch_cover_at(key, suffix, generation).await.ok().flatten();
+    if cover.is_none() && width == thumbnail::BROWSE_THUMBNAIL_WIDTH {
+        fetch_cover_at(key, "detail", generation).await.ok().flatten()
+    } else {
+        cover
     }
-    Some(selected)
 }
 
 /// Where the catalog's files are served. `BOKHEIM_CATALOG_ORIGIN` points a
@@ -155,32 +136,28 @@ pub async fn fresh_external_cover(entry: CardKey) -> Result<Option<Vec<u8>>, Str
     let cover = fetch_cover_asset_allowed(entry, "detail").await?;
     let mut covers = COVERS.get_or_init(Default::default).lock().map_err(|_| "cover cache is unavailable")?;
     if COVER_GENERATION.load(Ordering::SeqCst) == generation {
-        covers.insert((entry, true), cover.clone());
+        covers.retain(|(key, _), _| *key != entry);
+        covers.insert((entry, "detail".into()), cover.clone());
     }
-    drop(covers);
-    CARD_COVERS.get_or_init(Default::default).lock().map_err(|_| "cover cache is unavailable")?.retain(|(key, _), _| *key != entry);
     Ok(cover)
 }
 
 async fn fetch_cover(key: CardKey, high_density: bool) -> Option<Vec<u8>> {
-    fetch_cover_at(key, high_density, COVER_GENERATION.load(Ordering::SeqCst)).await
+    fetch_cover_at(key, if high_density { "detail" } else { "card" }, COVER_GENERATION.load(Ordering::SeqCst)).await.ok().flatten()
 }
 
-async fn fetch_cover_at(key: CardKey, high_density: bool, generation: u64) -> Option<Vec<u8>> {
+async fn fetch_cover_at(key: CardKey, suffix: &str, generation: u64) -> Result<Option<Vec<u8>>, String> {
     let covers = COVERS.get_or_init(Default::default);
-    if let Some(cover) = covers.lock().ok()?.get(&(key, high_density)) {
-        return cover.clone();
+    let address = (key, suffix.to_owned());
+    if let Some(cover) = covers.lock().map_err(|_| "cover cache is unavailable")?.get(&address) {
+        return Ok(cover.clone());
     }
-    let cover = fetch_origin_cover(key, high_density).await.ok()?;
-    let mut covers = covers.lock().ok()?;
+    let cover = fetch_cover_asset(key, suffix).await?;
+    let mut covers = covers.lock().map_err(|_| "cover cache is unavailable")?;
     if COVER_GENERATION.load(Ordering::SeqCst) == generation {
-        covers.insert((key, high_density), cover.clone());
+        covers.insert(address, cover.clone());
     }
-    cover
-}
-
-async fn fetch_origin_cover(key: CardKey, high_density: bool) -> Result<Option<Vec<u8>>, String> {
-    fetch_cover_asset(key, if high_density { "detail" } else { "card" }).await
+    Ok(cover)
 }
 
 async fn fetch_cover_asset(key: CardKey, suffix: &str) -> Result<Option<Vec<u8>>, String> {

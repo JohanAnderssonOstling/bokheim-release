@@ -51,3 +51,85 @@ fn document_prepares_startup_then_only_requested_pages() -> PdfResult<()> {
     assert!(hook.0.lock().unwrap().len() > 1);
     Ok(())
 }
+
+#[test]
+fn document_batches_opening_and_clamps_stale_saved_page() -> PdfResult<()> {
+    #[derive(Default)]
+    struct Hook(std::sync::Mutex<Vec<(&'static str, usize)>>);
+    impl PdfPageSource for Hook {
+        fn prepare_startup(&self) -> Result<(), String> { self.0.lock().unwrap().push(("startup", 0)); Ok(()) }
+        fn prepare_page(&self, page: usize) -> Result<(), String> { self.0.lock().unwrap().push(("page", page)); Ok(()) }
+        fn prepare_opening(&self, page: usize) -> Result<(), String> { self.0.lock().unwrap().push(("opening", page)); Ok(()) }
+    }
+    let bytes = annotated_streaming_fixture(0);
+    let (_, metadata, _) = inspect_reader_metadata(Cursor::new(bytes.clone()))?;
+    let content_hash = metadata.content_hash.clone();
+    let hook = Arc::new(Hook::default());
+    let document = PdfDocumentSession::from_reader_with_opening_page("fixture", Cursor::new(bytes), &content_hash, Some(metadata), Some(hook.clone()), Some(99))?;
+    assert_eq!(*hook.0.lock().unwrap(), vec![("opening", 0)]);
+    document.render_page(0, Some(100))?;
+    assert!(hook.0.lock().unwrap().iter().skip(1).all(|call| *call == ("page", 0)));
+    Ok(())
+}
+
+#[test]
+#[cfg(not(target_arch = "wasm32"))]
+fn dropping_prefetch_future_cancels_work_already_running_on_the_pdf_worker() -> PdfResult<()> {
+    use std::{
+        sync::{Mutex, mpsc},
+        task::{Context, Poll, Waker},
+        time::Duration,
+    };
+
+    struct Hook {
+        started: mpsc::SyncSender<()>,
+        release: Mutex<mpsc::Receiver<()>>,
+        stopped: mpsc::SyncSender<bool>,
+    }
+    impl PdfPageSource for Hook {
+        fn prepare_startup(&self) -> Result<(), String> { Ok(()) }
+        fn prepare_page(&self, _: usize) -> Result<(), String> { Ok(()) }
+        fn prefetch_pages_cancellable(&self, _: &[usize], cancellation: &PdfPrefetchCancellation) -> Result<(), String> {
+            assert!(!cancellation.is_cancelled());
+            self.started.send(()).unwrap();
+            self.release.lock().unwrap().recv_timeout(Duration::from_secs(10)).unwrap();
+            self.stopped.send(cancellation.is_cancelled()).unwrap();
+            Ok(())
+        }
+    }
+    let (started, wait_started) = mpsc::sync_channel(1);
+    let (release, wait_release) = mpsc::channel();
+    let (stopped, wait_stopped) = mpsc::sync_channel(1);
+    let bytes = annotated_streaming_fixture(0);
+    let (_, metadata, _) = inspect_reader_metadata(Cursor::new(bytes.clone()))?;
+    let hash = metadata.content_hash.clone();
+    let hook = Arc::new(Hook { started, release: Mutex::new(wait_release), stopped });
+    let document = PdfDocumentSession::from_reader_with_page_source("cancel-prefetch", Cursor::new(bytes), &hash, Some(metadata), Some(hook))?;
+    let mut future = Box::pin(document.prefetch_pages(vec![0]));
+    assert!(matches!(future.as_mut().poll(&mut Context::from_waker(Waker::noop())), Poll::Pending));
+    wait_started.recv_timeout(Duration::from_secs(10)).unwrap();
+    drop(future);
+    release.send(()).unwrap();
+    assert!(wait_stopped.recv_timeout(Duration::from_secs(10)).unwrap(), "dropping the async request must be visible inside the running synchronous worker");
+    document.render_page(0, Some(100))?;
+    Ok(())
+}
+
+#[test]
+fn prefetch_window_scales_with_settings_and_prioritizes_visible_pages() {
+    let mut info = PdfDocumentInfo { source_name: "window".into(), pages: vec![PdfPageInfo { width_points: 600.0, height_points: 800.0 }; 30], outline: vec![], skippable_pages: vec![], right_to_left: false };
+    assert_eq!(info.prefetch_window(10, &[10], 1), vec![10, 11]);
+    assert_eq!(info.prefetch_window(10, &[10, 11], 2), vec![10, 11, 12, 9]);
+    assert_eq!(info.prefetch_window(10, &[10, 11, 12, 13], 4), vec![10, 11, 12, 13, 14, 15, 16, 9]);
+    assert_eq!(info.prefetch_window(10, &[10, 11, 12, 13, 14, 15], 6).len(), 12);
+    assert_eq!(info.prefetch_window(0, &[0, 1, 2, 3], 4), vec![0, 1, 2, 3, 4, 5, 6, 7]);
+    assert_eq!(info.prefetch_window(29, &[29], 4), vec![29, 28, 27, 26, 25, 24, 23, 22]);
+    info.skippable_pages = vec![9, 12, 14, 16];
+    assert_eq!(info.prefetch_window(10, &[10, 11, 13, 15], 4), vec![10, 11, 13, 15, 17, 18, 19, 8]);
+    assert!(info.prefetch_window(30, &[], 4).is_empty());
+    info.pages.truncate(3);
+    info.skippable_pages.clear();
+    assert_eq!(info.prefetch_window(0, &[0], 4), vec![0, 1, 2]);
+    info.pages.clear();
+    assert!(info.prefetch_window(0, &[], 4).is_empty());
+}

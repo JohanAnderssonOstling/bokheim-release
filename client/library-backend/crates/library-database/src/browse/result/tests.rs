@@ -24,7 +24,7 @@ fn populate(db: &Database) {
 }
 
 fn query(location: BrowseLocation) -> LibraryBrowseQuery {
-    LibraryBrowseQuery { location, search: String::new(), languages: vec![], file_types: vec![], chip_sort: BrowseChipSort::Alphabetical, book_sort: BrowseBookSort::Alphabetical, hide_finished: false, include_direct_child_books: false }
+    LibraryBrowseQuery { location, search: String::new(), languages: vec![], file_types: vec![], chip_sort: BrowseChipSort::Alphabetical, book_sort: BrowseBookSort::Alphabetical, hide_finished: false }
 }
 
 #[test]

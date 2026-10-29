@@ -1,0 +1,78 @@
+# SPDX-License-Identifier: 0BSD
+# Maintainer: Johan <johan@bokheim.se>
+pkgname=bokheim-bin
+pkgver=0.1.10
+pkgrel=2
+pkgdesc='Read and organize ebooks and audiobooks'
+arch=('x86_64')
+url='https://bokheim.se'
+license=('GPL-3.0-or-later')
+depends=(
+  'alsa-lib'
+  'cairo'
+  'dbus'
+  'fontconfig'
+  'freetype2'
+  'gcc-libs'
+  'gdk-pixbuf2'
+  'glib2'
+  'glibc'
+  'gtk3'
+  'libglvnd'
+  'libsoup3'
+  'libx11'
+  'libxcb'
+  'libxkbcommon'
+  'libxkbcommon-x11'
+  'vulkan-icd-loader'
+  'wayland'
+  'webkit2gtk-4.1'
+  'xdg-desktop-portal'
+  'xdg-utils'
+)
+provides=('bokheim')
+conflicts=('bokheim')
+options=('!strip' '!debug')
+_release_url='https://github.com/JohanAnderssonOstling/bokheim-release/releases/download'
+source=(
+  "${pkgname}-${pkgver}-${CARCH}.AppImage::${_release_url}/v${pkgver}/Bokheim-${CARCH}.AppImage"
+  'bokheim'
+  'LICENSE'
+  'COPYING'
+  'COPYRIGHT'
+)
+noextract=("${pkgname}-${pkgver}-${CARCH}.AppImage")
+sha256sums=(
+  '2599285adfdde320319138c13ae74a83068061b05bc96d5b910c059199aae92b'
+  '6b41e1199d4c029d0055da4cbc0ae092e07a63387a78d19d885b63ee113b4dd5'
+  '63e6c11ccd82721acab5fcd89d9ab22b1b3ff2aa7aa0edbc308d4307485cefbf'
+  'fb981668c18a279e285fc4d83fba1e836cc84dd4daa73c9697d3cfd2d8aca6e0'
+  '8c5fefe04d69e3078903ee87828d446ffcb7729f79b6b7c10982ed29fddc97cd'
+)
+
+prepare() {
+  chmod +x "${pkgname}-${pkgver}-${CARCH}.AppImage"
+  ./"${pkgname}-${pkgver}-${CARCH}.AppImage" --appimage-extract
+  # The AppImage extractor creates private directories; installed files are shared.
+  chmod -R a+rX squashfs-root
+  test -x squashfs-root/AppRun
+  test -x squashfs-root/usr/bin/bokheim
+  test -x squashfs-root/usr/bin/bokheim-opds-webview
+}
+
+package() {
+  install -dm755 "${pkgdir}/opt/bokheim"
+  cp -a "${srcdir}/squashfs-root/." "${pkgdir}/opt/bokheim/"
+  install -Dm755 "${srcdir}/bokheim" "${pkgdir}/usr/bin/bokheim"
+  install -Dm644 \
+    "${srcdir}/squashfs-root/usr/share/applications/se.bokheim.Bokheim.desktop" \
+    "${pkgdir}/usr/share/applications/se.bokheim.Bokheim.desktop"
+  install -dm755 "${pkgdir}/usr/share/icons"
+  cp -a "${srcdir}/squashfs-root/usr/share/icons/." "${pkgdir}/usr/share/icons/"
+  install -Dm644 "${srcdir}/LICENSE" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/PACKAGING-LICENSE"
+  install -Dm644 "${srcdir}/COPYING" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  install -Dm644 "${srcdir}/COPYRIGHT" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/COPYRIGHT"
+}

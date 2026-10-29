@@ -6,16 +6,30 @@ use crate::sync::apply::registers::{canonical_body, record_local};
 use crate::{Database, DatabaseError};
 use content_address::BookId;
 use library_replica::{BookLifecycleState, ExternalBook, LibraryStateEntry};
-use rusqlite::{params, OptionalExtension};
+use rusqlite::{OptionalExtension, params};
 use sync_common::storage::{LibraryStorage, ProviderFile, ProviderId, ProviderThumbnails};
 use sync_common::{DirId, StateKey};
 mod covers;
+mod downloads;
+pub use downloads::ProviderDownloadSnapshot;
 mod scans;
 mod uploads;
 pub use scans::ProviderScan;
 pub use uploads::{ProviderUpload, ProviderUploadDraft};
 
 impl Database {
+    pub fn admit_transferred_provider_book(&self, parent: DirId, file: ProviderFile, source: crate::transfer::BookTransferState) -> Result<BookId, DatabaseError> {
+        if source.expected_checksum().is_none() || file.content_hash != source.expected_checksum() {
+            return Err(DatabaseError::message("provider transfer has no matching verified byte checksum"));
+        }
+        let id = file.identity.book_id();
+        let mut source = source.retarget(id)?;
+        if source.addition.enrichment.is_none() {
+            source.addition.enrichment = Some(library_replica::EnrichmentResult::NoMatch);
+        }
+        let thumbnails = if self.provider_file(&id)?.is_some_and(|previous| previous.revision == file.revision) { self.provider_thumbnails(&id)? } else { None };
+        self.admit_external_book(parent, ExternalBook { file, addition: source.addition, thumbnails })
+    }
     pub fn remember_provider_directory(&self, directory: DirId, folder: &ProviderId) -> Result<(), DatabaseError> {
         self.connection.execute("INSERT INTO provider_directory(folder_id,directory_id) VALUES(?1,?2) ON CONFLICT(folder_id) DO UPDATE SET directory_id=excluded.directory_id", params![folder.as_str(), directory.to_string()])?;
         Ok(())
@@ -29,8 +43,15 @@ impl Database {
     pub fn admit_inspected_provider_book(&self, parent: DirId, mut file: ProviderFile, format: book_model::BookFormat, mut inspection: book_inspection::InspectedBook) -> Result<BookId, DatabaseError> {
         let id = file.identity.book_id();
         if let Some(pdf) = &mut inspection.pdf {
-            file.content_hash = pdf.content_hash.parse().ok();
+            if let Ok(checksum) = pdf.content_hash.parse() {
+                file.content_hash = Some(checksum);
+            }
             pdf.content_hash = id.to_hex();
+        }
+        if let Some(audio) = &mut inspection.audiobook {
+            for track in &mut audio.tracks {
+                track.archive_hash = Some(id);
+            }
         }
         let prepared = crate::import::prepare_inspection(&inspection, &id, format)?;
         let added_at: i64 = self.connection.ingestion_added_at(&id, &crate::sync::unix_millis()?, |row| row.get(0)).optional()?.unwrap_or(crate::sync::unix_millis()?);
@@ -164,8 +185,8 @@ mod tests {
     use book_model::{BookFormat, BookRecord};
     use library_replica::{BookAddition, BookFacts, EnrichmentResult};
     use sync_common::{
-        storage::{CloudLibraryRoot, CloudProvider, ProviderFileIdentity, ProviderId, ProviderScope},
         ROOT_DIR_ID,
+        storage::{CloudLibraryRoot, CloudProvider, ProviderFileIdentity, ProviderId, ProviderScope},
     };
 
     fn external() -> (LibraryStorage, ExternalBook) {
@@ -215,6 +236,106 @@ mod tests {
         let mut other = value;
         other.file.identity.scope.account_id = ProviderId::new("other").unwrap();
         assert!(db.admit_external_book(ROOT_DIR_ID, other).is_err());
+    }
+
+    #[test]
+    fn transfers_refuse_to_remove_a_replaced_provider_book_or_its_folder() {
+        use crate::transfer::TransferSelection;
+        for nested in [false, true] {
+            let db = Database::open(":memory:").unwrap();
+            db.initialize_library().unwrap();
+            let (storage, mut value) = external();
+            db.set_storage_policy(&storage, false).unwrap();
+            let parent = if nested {
+                let id = DirId::new_v4();
+                db.upsert_provider_directory(id, ROOT_DIR_ID, "Books".into()).unwrap();
+                id
+            } else {
+                ROOT_DIR_ID
+            };
+            let id = db.admit_external_book(parent, value.clone()).unwrap();
+            let selection = if nested { TransferSelection { folders: vec![parent], books: Vec::new(), source: None } } else { TransferSelection { folders: Vec::new(), books: vec![id], source: Some(parent) } };
+            let plan = db.transfer_plan(selection.clone()).unwrap();
+            value.file.revision = ProviderId::new("replacement").unwrap();
+            db.admit_external_book(parent, value).unwrap();
+            assert!(db.remove_transferred_selection(&plan).is_err());
+            assert!(db.transfer_destination_name(&id, &parent).unwrap().is_some());
+            assert!(db.is_live_destination(&parent).unwrap());
+            assert!(db.library_trash().unwrap().books.is_empty());
+            let current = db.transfer_plan(selection).unwrap();
+            db.remove_transferred_selection(&current).unwrap();
+            assert!(db.transfer_destination_name(&id, &parent).unwrap().is_none());
+        }
+    }
+
+    #[test]
+    fn browser_provider_download_requires_a_live_matching_request_and_never_records_bokheim_presence() {
+        let db = Database::open(":memory:").unwrap();
+        db.initialize_library().unwrap();
+        let (storage, value) = external();
+        db.set_storage_policy(&storage, false).unwrap();
+        let id = db.admit_external_book(ROOT_DIR_ID, value.clone()).unwrap();
+        assert!(db.provider_download_snapshot(id).unwrap().is_none());
+        db.sync_request_book_downloads(&[id], library_model::TransferOrigin::UserInitiated).unwrap();
+        let snapshot = db.provider_download_snapshot(id).unwrap().unwrap();
+        assert!(db.complete_provider_download(&snapshot).unwrap());
+        assert!(db.is_book_downloaded(&id).unwrap());
+        assert!(db.book_download_requests(-1, None, 10).unwrap().is_empty());
+        assert!(!db.complete_provider_download(&snapshot).unwrap());
+        assert!(db.pending_book_uploads(0, 10).unwrap().is_empty());
+        assert_eq!(db.connection.query_row("SELECT server_has_book FROM book_transfer WHERE content_hash=?1", [id], |row| row.get::<_, i64>(0)).unwrap(), 0);
+    }
+
+    #[test]
+    fn obsolete_browser_download_cannot_replace_a_new_revision_or_settle_a_new_request() {
+        let db = Database::open(":memory:").unwrap();
+        db.initialize_library().unwrap();
+        let (storage, mut value) = external();
+        db.set_storage_policy(&storage, false).unwrap();
+        let id = db.admit_external_book(ROOT_DIR_ID, value.clone()).unwrap();
+        db.sync_request_book_downloads(&[id], library_model::TransferOrigin::UserInitiated).unwrap();
+        let snapshot = db.provider_download_snapshot(id).unwrap().unwrap();
+        value.file.revision = ProviderId::new("new-revision").unwrap();
+        db.admit_external_book(ROOT_DIR_ID, value).unwrap();
+        assert!(!db.complete_provider_download(&snapshot).unwrap());
+        assert!(!db.is_book_downloaded(&id).unwrap());
+        let current = db.provider_download_snapshot(id).unwrap().unwrap();
+        db.cancel_download(&id).unwrap();
+        assert!(!db.complete_provider_download(&current).unwrap());
+        db.sync_request_book_downloads(&[id], library_model::TransferOrigin::UserInitiated).unwrap();
+        db.connection.execute("UPDATE book_transfer SET book_download_at=book_download_at+100 WHERE content_hash=?1", [id]).unwrap();
+        assert!(!db.complete_provider_download(&current).unwrap());
+        let current = db.provider_download_snapshot(id).unwrap().unwrap();
+        db.trash_book(&id).unwrap();
+        assert!(!db.complete_provider_download(&current).unwrap());
+        assert!(!db.is_book_downloaded(&id).unwrap());
+    }
+
+    #[test]
+    fn a_late_provider_download_cannot_mark_a_newer_revision_downloaded() {
+        use crate::{NativeBookAcknowledgement, NativeBookCompletion};
+        let db = Database::open(":memory:").unwrap();
+        db.initialize_library().unwrap();
+        let (storage, mut value) = external();
+        db.set_storage_policy(&storage, false).unwrap();
+        let id = db.admit_external_book(ROOT_DIR_ID, value.clone()).unwrap();
+        let snapshot = db.transfer_snapshot(&[id]).unwrap().placements.into_iter().find_map(|entry| entry.book).unwrap();
+        let old = value.file.clone();
+        value.file.revision = ProviderId::new("2").unwrap();
+        db.admit_external_book(ROOT_DIR_ID, value.clone()).unwrap();
+        let mut completion = NativeBookCompletion {
+            publication: library_model::PublishedStagedBook { name: snapshot.name.clone(), relative_path: snapshot.relative_path.to_string(), published: true, fingerprint: Some("123".into()) },
+            snapshot,
+            size_bytes: old.size_bytes,
+            provider_file: Some(old),
+        };
+        assert_eq!(db.complete_downloaded_book(completion.clone(), false).unwrap(), NativeBookAcknowledgement::Obsolete);
+        assert!(!db.is_book_downloaded(&id).unwrap());
+        completion.provider_file = None;
+        assert_eq!(db.complete_downloaded_book(completion.clone(), false).unwrap(), NativeBookAcknowledgement::Obsolete);
+        completion.provider_file = Some(value.file);
+        assert_eq!(db.complete_downloaded_book(completion, false).unwrap(), NativeBookAcknowledgement::Applied);
+        assert!(db.is_book_downloaded(&id).unwrap());
     }
 
     fn covers(file: &ProviderFile) -> ProviderThumbnails {
@@ -292,6 +413,68 @@ mod tests {
     }
 
     #[test]
+    fn provider_pdf_identity_does_not_replace_a_confirmed_byte_checksum() {
+        let db = Database::open(":memory:").unwrap();
+        db.initialize_library().unwrap();
+        let (storage, mut value) = external();
+        db.set_storage_policy(&storage, false).unwrap();
+        let checksum = blake3::hash(b"provider PDF bytes").into();
+        value.file.content_hash = Some(checksum);
+        let id = value.file.identity.book_id();
+        let inspection = book_inspection::InspectedBook {
+            pdf: Some(pdf_view_common::PdfReaderMetadata {
+                version: 1,
+                content_hash: id.to_hex(),
+                pages: vec![pdf_view_common::PdfStoredPage { width: 600.0, height: 800.0, rotation: 0 }],
+                skippable_pages: None,
+                annotations: Vec::new(),
+                dependencies: None,
+            }),
+            metadata: value.addition.record,
+            audiobook: None,
+            toc: Vec::new(),
+        };
+        db.admit_inspected_provider_book(ROOT_DIR_ID, value.file, BookFormat::Pdf, inspection).unwrap();
+        assert_eq!(db.provider_file(&id).unwrap().unwrap().content_hash, Some(checksum));
+        assert!(db.book_transfer_state(id).unwrap().addition.pdf.unwrap().valid_for(&id.to_hex()));
+    }
+
+    #[test]
+    fn pending_transfer_checks_provider_digest_even_without_an_explicit_byte_checksum() {
+        let (storage, mut value) = external();
+        let checksum = BookId::from(blake3::hash(b"source bytes"));
+        value.file.content_hash = checksum.content_hash();
+        let mut draft = ProviderUploadDraft {
+            id: ProviderUploadDraft::identity(ROOT_DIR_ID, "Book.m4b", checksum),
+            library_id: DirId::new_v4(),
+            root: storage.external().unwrap().clone(),
+            parent: ROOT_DIR_ID,
+            file_name: "Book.m4b".into(),
+            format: BookFormat::M4b,
+            checksum,
+            size_bytes: value.file.size_bytes,
+            inspection: None,
+            transfer: Some(crate::transfer::BookTransferState {
+                content_hash: value.file.identity.book_id(),
+                byte_checksum: None,
+                provider_file: Some(value.file),
+                addition: value.addition,
+                reading: None,
+                chapter_read: None,
+                annotations: Vec::new(),
+            }),
+        };
+        draft.validate().unwrap();
+        draft.checksum = BookId::from(blake3::hash(b"different bytes"));
+        draft.id = ProviderUploadDraft::identity(draft.parent, &draft.file_name, draft.checksum);
+        assert!(draft.validate().is_err());
+        draft.checksum = checksum;
+        draft.id = ProviderUploadDraft::identity(draft.parent, &draft.file_name, draft.checksum);
+        draft.size_bytes += 1;
+        assert!(draft.validate().is_err());
+    }
+
+    #[test]
     fn pending_upload_caps_and_metadata_stay_local_until_provider_commit() {
         use super::ProviderUploadDraft;
         let db = Database::open(":memory:").unwrap();
@@ -308,7 +491,8 @@ mod tests {
             format: BookFormat::M4b,
             checksum,
             size_bytes: value.file.size_bytes,
-            inspection: book_inspection::InspectedBook { pdf: None, metadata: value.addition.record.clone(), audiobook: None, toc: Vec::new() },
+            inspection: Some(book_inspection::InspectedBook { pdf: None, metadata: value.addition.record.clone(), audiobook: None, toc: Vec::new() }),
+            transfer: None,
         };
         db.queue_provider_upload(&draft).unwrap();
         db.queue_provider_upload(&draft).unwrap();

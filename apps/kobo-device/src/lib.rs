@@ -7,6 +7,7 @@ pub mod brightness;
 pub mod natural_light;
 mod frontlight;
 pub mod profile;
+pub mod settings;
 #[cfg(target_os = "linux")]
 pub mod power;
 #[cfg(target_os = "linux")]

@@ -1,6 +1,5 @@
 //! Account-wide asset retention, independent of library metadata lifecycle.
 
-use crate::PostgresDatabase;
 use crate::{assets, PostgresSyncRepository, SyncError};
 use sync_common::{LibraryId, BookId, api::libraries::LibraryCloudStorage};
 
@@ -35,6 +34,7 @@ impl PostgresSyncRepository {
             }
         }
         tx.commit().await.map_err(internal)?;
+        if !enabled { self.cleanup.notify_one(); }
         Ok(LibraryCloudStorage { library_id: *id, enabled })
     }
 }

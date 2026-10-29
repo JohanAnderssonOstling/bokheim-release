@@ -8,6 +8,8 @@ publish = false
 crate-type = ["cdylib"]
 
 [features]
+# Experimental provider integration; excluded from default and release builds.
+google-drive = ["app/google-drive"]
 
 [dependencies]
 book-model = { path = "../../shared/book-model" }
@@ -35,3 +37,10 @@ crate-type = ["cdylib"]
 [[example]]
 name = "cpu_worker"
 crate-type = ["cdylib"]
+
+[[example]]
+name = "startup_probe"
+crate-type = ["cdylib"]
+
+[dev-dependencies]
+wasm-callback = { path = "../../shared/wasm-callback" }

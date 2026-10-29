@@ -5,8 +5,10 @@ use crate::source::{ReaderFactory, Source};
 use crate::xml::{self, invalid};
 use crate::{BookReader, CreatorRole, DeclaredMetadata, MetadataCredit, MetadataDate, MetadataProperty};
 use futures_lite::future::block_on;
+use futures_util::future::BoxFuture;
 use std::{
     cmp::Ordering,
+    future::Future,
     io::{self, Read, Seek},
     sync::Arc,
 };
@@ -14,6 +16,7 @@ use std::{
 pub const MAX_PAGE_BYTES: u64 = 24 * 1024 * 1024;
 const MAX_COMIC_INFO_BYTES: u64 = 2 * 1024 * 1024;
 const MAX_PAGES: usize = 20_000;
+type Prefetch = Arc<dyn Fn(Vec<(u64, usize)>) -> BoxFuture<'static, io::Result<()>> + Send + Sync>;
 
 #[derive(Clone, Debug)]
 pub struct ComicPage {
@@ -28,6 +31,7 @@ pub struct ComicBook {
     pub metadata: DeclaredMetadata,
     pub right_to_left: bool,
     pub cover_page: usize,
+    prefetch: Option<Prefetch>,
 }
 
 #[derive(Clone)]
@@ -35,6 +39,7 @@ pub struct ComicReader {
     archive: Arc<Archive>,
     pub pages: Arc<[ComicPage]>,
     pub right_to_left: bool,
+    prefetch: Option<Prefetch>,
 }
 
 impl ComicBook {
@@ -43,14 +48,27 @@ impl ComicBook {
         F: Fn() -> R + Send + Sync + 'static,
         R: BookReader + 'static,
     {
-        Self::open_source(Source::reopenable(ReaderFactory::new(factory))).await
+        Self::open_source(Source::reopenable(ReaderFactory::new(factory)), 0, None).await
+    }
+
+    /// Fetch optional metadata and the requested page together when their ZIP
+    /// spans are known. Deleted-page metadata is applied before actual reading.
+    pub async fn open_with_prefetch<F, R, P, PF>(factory: F, initial_page: usize, prefetch: P) -> io::Result<Self>
+    where
+        F: Fn() -> R + Send + Sync + 'static,
+        R: BookReader + 'static,
+        P: Fn(Vec<(u64, usize)>) -> PF + Send + Sync + 'static,
+        PF: Future<Output = io::Result<()>> + Send + 'static,
+    {
+        let prefetch: Prefetch = Arc::new(move |ranges| Box::pin(prefetch(ranges)));
+        Self::open_source(Source::reopenable(ReaderFactory::new(factory)), initial_page, Some(prefetch)).await
     }
 
     pub fn open_reader(reader: impl Read + Seek + Send + 'static) -> io::Result<Self> {
-        block_on(Self::open_source(Source::from_reader(reader)))
+        block_on(Self::open_source(Source::from_reader(reader), 0, None))
     }
 
-    async fn open_source(source: Source) -> io::Result<Self> {
+    async fn open_source(source: Source, initial_page: usize, prefetch: Option<Prefetch>) -> io::Result<Self> {
         let mut archive = ArchiveReader::open_with_limit(source, MAX_PAGE_BYTES).await?;
         let mut pages: Vec<_> = archive.metadata.names().iter().filter(|name| is_page(name)).map(|name| ComicPage { name: name.clone(), bookmark: None, double_page: false }).collect();
         if pages.is_empty() || pages.len() > MAX_PAGES {
@@ -58,6 +76,18 @@ impl ComicBook {
         }
         pages.sort_by(|left, right| natural_order(&left.name, &right.name));
         let info_name = archive.metadata.names().iter().find(|name| name.eq_ignore_ascii_case("ComicInfo.xml")).cloned();
+        if let Some(prefetch) = &prefetch {
+            let mut names = vec![pages[initial_page.min(pages.len() - 1)].name.clone()];
+            if let Some(name) = &info_name {
+                if archive.metadata.size(name).is_ok_and(|size| size <= MAX_COMIC_INFO_BYTES) {
+                    names.push(name.clone());
+                }
+            }
+            // Warming must not replace the reader's ordinary error/retry path.
+            if let Ok(ranges) = archive.metadata.record_ranges(&names) {
+                let _ = prefetch(ranges).await;
+            }
+        }
         let mut metadata = DeclaredMetadata::default();
         let mut right_to_left = false;
         let mut cover_page = 0;
@@ -116,7 +146,7 @@ impl ComicBook {
                 cover_page = pages.iter().position(|page| page.name == cover_name).unwrap_or(0);
             }
         }
-        Ok(Self { archive, pages, metadata, right_to_left, cover_page })
+        Ok(Self { archive, pages, metadata, right_to_left, cover_page, prefetch })
     }
 
     pub fn read_page(&mut self, index: usize) -> io::Result<Vec<u8>> {
@@ -125,13 +155,18 @@ impl ComicBook {
     }
 
     pub async fn into_reader(self) -> io::Result<ComicReader> {
-        Ok(ComicReader { archive: Arc::new(self.archive.into_archive().await?), pages: self.pages.into(), right_to_left: self.right_to_left })
+        Ok(ComicReader { archive: Arc::new(self.archive.into_archive().await?), pages: self.pages.into(), right_to_left: self.right_to_left, prefetch: self.prefetch })
     }
 }
 
 impl ComicReader {
     pub async fn read_page(&self, index: usize) -> io::Result<Vec<u8>> {
         let page = self.pages.get(index).ok_or_else(|| invalid("comic page index out of bounds"))?;
+        if let Some(prefetch) = &self.prefetch {
+            if let Ok(ranges) = self.archive.reader().metadata.record_ranges(std::slice::from_ref(&page.name)) {
+                let _ = prefetch(ranges).await;
+            }
+        }
         self.archive.read(&page.name, MAX_PAGE_BYTES).await
     }
 }

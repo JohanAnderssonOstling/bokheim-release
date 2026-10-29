@@ -1,6 +1,7 @@
 use crate::actions::{Cancel, Confirm, SelectDown, SelectUp};
 use crate::actions::{SelectLeft, SelectRight};
 use crate::menu::menu_item::MenuItemElement;
+use crate::menu::{ChoiceRowColors, choice_row_checkmark};
 use crate::scroll::ScrollableElement;
 use crate::{ActiveTheme, ElementExt, Icon, IconName, Sizable as _, h_flex, v_flex};
 use crate::{Side, Size, StyledExt, kbd::Kbd};
@@ -369,11 +370,11 @@ impl PopupMenu {
             min_width: None,
             max_width: None,
             max_height: None,
-            check_side: Side::Left,
+            check_side: Side::Right,
             bounds: Bounds::default(),
             scrollable: false,
             dismiss_on_select: true,
-            touch_friendly: cfg!(target_family = "wasm") && cx.supports_touch_input(),
+            touch_friendly: cx.supports_touch_input(),
             scroll_handle: ScrollHandle::default(),
             external_link_icon: true,
             size: Size::default(),
@@ -447,7 +448,7 @@ impl PopupMenu {
         self
     }
 
-    /// Set max height of the popup menu, default is half of the window height
+    /// Set max height of the popup menu, capped to the safe viewport height.
     pub fn max_h(mut self, height: impl Into<Pixels>) -> Self {
         self.max_height = Some(height.into());
         self
@@ -473,7 +474,7 @@ impl PopupMenu {
         self
     }
 
-    /// Set the side to show check icon, default is `Side::Left`.
+    /// Set the side to show check icon, default is `Side::Right`.
     pub fn check_side(mut self, side: Side) -> Self {
         self.check_side = side;
         self
@@ -1206,7 +1207,9 @@ impl PopupMenu {
     /// Calculate the anchor corner and left offset for child submenu
     fn update_submenu_menu_anchor(&mut self, window: &Window) {
         let bounds = self.bounds;
-        let max_width = self.max_width();
+        let viewport = window.viewport_size();
+        let safe = window.insets().effective();
+        let max_width = self.max_width().min((viewport.width - safe.left - safe.right - px(18.)).max(px(1.)));
         let (anchor, left) = if max_width + bounds.origin.x > window.bounds().size.width {
             (Anchor::TopRight, -px(16.))
         } else {
@@ -1232,7 +1235,7 @@ impl PopupMenu {
         let has_left_icon = options.has_left_icon;
         let is_left_check = options.check_side.is_left() && item.is_checked();
         let right_check_icon = if options.check_side.is_right() && item.is_checked() {
-            Some(Icon::new(IconName::Check).xsmall())
+            Some(choice_row_checkmark(ChoiceRowColors::from(cx.theme())))
         } else {
             None
         };
@@ -1259,6 +1262,7 @@ impl PopupMenu {
             .rounded(radius)
             .items_center()
             .selected(selected)
+            .checked(item.is_checked())
             .on_hover(cx.listener(move |this, hovered, _, cx| {
                 if *hovered {
                     this.selected_index = Some(ix);
@@ -1410,21 +1414,25 @@ impl PopupMenu {
                         let (anchor, left) = self.submenu_anchor;
                         let is_bottom_pos =
                             matches!(anchor, Anchor::BottomLeft | Anchor::BottomRight);
-                        deferred(
-                            anchored()
-                                .anchor(anchor)
-                                .child(
-                                    div()
-                                        .id("submenu")
-                                        .occlude()
-                                        .when(is_bottom_pos, |this| this.bottom_0())
-                                        .when(!is_bottom_pos, |this| this.top_neg_1())
-                                        .left(left)
-                                        .child(menu.clone()),
-                                )
-                                .snap_to_window_with_margin(Edges::all(EDGE_PADDING)),
-                        )
-                        .with_priority(self.priority + 1)
+                        if cx.supports_touch_input() {
+                            deferred(crate::popover::centered_overlay(menu.clone(), window, cx)).with_priority(self.priority + 1)
+                        } else {
+                            deferred(
+                                anchored()
+                                    .anchor(anchor)
+                                    .child(
+                                        div()
+                                            .id("submenu")
+                                            .occlude()
+                                            .when(is_bottom_pos, |this| this.bottom_0())
+                                            .when(!is_bottom_pos, |this| this.top_neg_1())
+                                            .left(left)
+                                            .child(menu.clone()),
+                                    )
+                                    .snap_to_window_with_margin(Edges::all(EDGE_PADDING)),
+                            )
+                            .with_priority(self.priority + 1)
+                        }
                     })
                 }),
         }
@@ -1473,17 +1481,21 @@ impl Render for PopupMenu {
         let view = cx.entity().clone();
         let items_count = self.menu_items.len();
 
-        let max_height = self.max_height.unwrap_or_else(|| {
-            let window_half_height = window.window_bounds().get_bounds().size.height * 0.5;
-            window_half_height.min(px(450.))
-        });
+        self.touch_friendly |= cx.supports_touch_input();
+        let scrollable = self.scrollable || cx.supports_touch_input();
+        let viewport = window.viewport_size();
+        let safe = window.insets().effective();
+        // Match the popover's 8 px edge margins and its two 1 px borders.
+        let available_height = (viewport.height - safe.top - safe.bottom - px(18.)).max(px(1.));
+        let max_height = self.max_height.unwrap_or(available_height).min(available_height);
+        let padding = if self.touch_friendly { px(12.) } else { window.rem_size() * 0.25 };
 
         let has_left_icon = self
             .menu_items
             .iter()
             .any(|item| item.has_left_icon(self.check_side));
 
-        let max_width = self.max_width();
+        let max_width = self.max_width().min((viewport.width - safe.left - safe.right - px(18.)).max(px(1.)));
         let options = RenderOptions {
             has_left_icon,
             check_side: self.check_side,
@@ -1508,32 +1520,33 @@ impl Render for PopupMenu {
             .occlude()
             .child(
                 v_flex()
-                    .id("items")
-                    .p_1()
-                    .when(self.touch_friendly, |this| this.p(px(12.)))
-                    .gap_y_0p5()
+                    // Keep padding outside the scroll area: GPUI otherwise
+                    // counts it as overflow even when all menu rows fit.
+                    .p(padding)
                     .min_w(rems(8.))
                     .when_some(self.min_width, |this, min_width| this.min_w(min_width))
                     .max_w(max_width)
-                    .when(self.scrollable, |this| {
-                        this.max_h(max_height)
-                            .overflow_y_scroll()
-                            .track_scroll(&self.scroll_handle)
-                    })
-                    .children(
-                        self.menu_items
-                            .iter()
-                            .enumerate()
-                            // Ignore last separator
-                            .filter(|(ix, item)| !(*ix + 1 == items_count && item.is_separator()))
-                            .map(|(ix, item)| self.render_item(ix, item, options, window, cx)),
+                    .child(
+                        v_flex()
+                            .id("items")
+                            .gap_y_0p5()
+                            .when(scrollable, |this| {
+                                this.max_h((max_height - padding * 2.).max(px(1.)))
+                                    .overflow_y_scroll()
+                                    .track_scroll(&self.scroll_handle)
+                            })
+                            .children(
+                                self.menu_items
+                                    .iter()
+                                    .enumerate()
+                                    // Ignore last separator
+                                    .filter(|(ix, item)| !(*ix + 1 == items_count && item.is_separator()))
+                                    .map(|(ix, item)| self.render_item(ix, item, options, window, cx)),
+                            )
+                            .when(scrollable, |this| this.vertical_scrollbar(&self.scroll_handle)),
                     )
                     .on_prepaint(move |bounds, _, cx| view.update(cx, |r, _| r.bounds = bounds)),
             )
-            .when(self.scrollable, |this| {
-                // TODO: When the menu is limited by `overflow_y_scroll`, the sub-menu will cannot be displayed.
-                this.vertical_scrollbar(&self.scroll_handle)
-            })
     }
 }
 

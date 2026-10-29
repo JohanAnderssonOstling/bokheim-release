@@ -1,6 +1,6 @@
 //! Prepared bytes shared by text reading preparation.
 
-use crate::resource_path::{is_container_resource, local_resource_uri, resolve_resource_href};
+use crate::resource_path::{is_container_resource, local_resource_uri, resolve_resource_href, resource_entry};
 use std::collections::HashMap;
 use std::io;
 
@@ -29,7 +29,7 @@ impl PreparedResources {
 
     fn bytes(&self, uri: &str) -> io::Result<&[u8]> {
         let uri = local_resource_uri("", uri)?;
-        self.bytes.get(&uri).map(Vec::as_slice).ok_or_else(|| io::Error::new(io::ErrorKind::NotFound, "book resource was not prepared"))
+        resource_entry(&self.bytes, &uri).map(Vec::as_slice).ok_or_else(|| io::Error::new(io::ErrorKind::NotFound, "book resource was not prepared"))
     }
 
     pub(crate) fn read_prefix(&self, uri: &str, max_bytes: u64) -> io::Result<Vec<u8>> {
@@ -40,12 +40,12 @@ impl PreparedResources {
 
     pub fn media_type(&self, uri: &str) -> io::Result<Option<String>> {
         let uri = local_resource_uri("", uri)?;
-        let media_type = self.media_types.as_ref().map(|types| types.get(&uri).map(String::as_str).unwrap_or("application/octet-stream").to_owned());
+        let media_type = self.media_types.as_ref().map(|types| resource_entry(types, &uri).map(String::as_str).unwrap_or("application/octet-stream").to_owned());
         Ok(media_type)
     }
 
     pub fn exists(&self, uri: &str) -> bool {
-        is_container_resource(uri) && self.bytes.contains_key(&resolve_resource_href("", uri))
+        is_container_resource(uri) && resource_entry(&self.bytes, &resolve_resource_href("", uri)).is_some()
     }
 
     pub fn resolve(&self, base: &str, href: &str) -> String {

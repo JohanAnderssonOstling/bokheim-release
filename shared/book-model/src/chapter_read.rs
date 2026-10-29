@@ -22,6 +22,24 @@ impl ChapterReadStatus {
         self.completed.clear();
     }
 
+    /// Every chapter read, or none, and none under way: what marking the whole
+    /// book read or unread leaves.
+    pub fn mark_all(&mut self, entries: &[BookTocEntry], read: bool) {
+        fn complete(entries: &[BookTocEntry], completed: &mut BTreeSet<String>) {
+            for entry in entries {
+                if !entry.target.is_empty() {
+                    completed.insert(entry.target.clone());
+                }
+                complete(&entry.children, completed);
+            }
+        }
+        self.completed.clear();
+        if read {
+            complete(entries, &mut self.completed);
+        }
+        self.active = None;
+    }
+
     pub fn reset_chapter(&mut self, entries: &[BookTocEntry], target: &str) {
         fn clear(entries: &[BookTocEntry], target: &str, inherited: bool, completed: &mut BTreeSet<String>) {
             for entry in entries {

@@ -7,13 +7,14 @@ use std::ops::Range;
 use std::rc::Rc;
 
 use gpui::{App, Entity, SharedString};
-use library_model::{BrowseBookSort, BrowseChipSort, BrowseLocation, BrowsePageRequest, BrowsePageState, BrowseRow, CardKey};
+use library_model::{BrowseBookSort, BrowseChipSort, BrowseLocation, BrowsePageRequest, BrowsePageState, BrowsePathSegment, BrowseRow, CardKey};
 use sync_common::{DirId, ROOT_DIR_ID};
 use ui_components as components;
 
 use super::controls::BrowseControls;
 use crate::library::services::LibraryContext;
 use crate::library::widgets::{BookCardEvents, BookCardView};
+use crate::{LibraryRoute, Route};
 
 /// What a browse page lists. Folders are real directories, with the
 /// commands that go with them; subjects and authors are queries over the
@@ -30,6 +31,17 @@ pub(crate) enum BrowseKind {
 }
 
 impl BrowseKind {
+    pub(super) fn route(self) -> LibraryRoute {
+        match self {
+            Self::Home => LibraryRoute::Home,
+            Self::Books => LibraryRoute::Books,
+            Self::Folder => LibraryRoute::Folders,
+            Self::Subject => LibraryRoute::Subjects,
+            Self::Author => LibraryRoute::Authors,
+            Self::Catalog => LibraryRoute::Catalog,
+        }
+    }
+
     pub(super) fn root_location(self) -> BrowseLocation {
         // The catalog shown by author starts at `CatalogAuthor(None)`
         // instead; the navigator decides which.
@@ -44,14 +56,7 @@ impl BrowseKind {
     }
 
     pub(super) fn root_label(self) -> SharedString {
-        match self {
-            Self::Home => "Home".into(),
-            Self::Books => "Books".into(),
-            Self::Folder => "Folders".into(),
-            Self::Subject => "Subjects".into(),
-            Self::Author => "Authors".into(),
-            Self::Catalog => "Catalog".into(),
-        }
+        Route::Library(self.route()).presentation().0.into()
     }
 
     /// Prefixes the element ids the page hands out.
@@ -69,6 +74,9 @@ impl BrowseKind {
     /// The graph a kind can be shown as, and the layout it opens in: only the
     /// trees have one. Books, Home's shelves and the author index are flat.
     pub(super) fn graph_layout(self) -> Option<components::GraphLayoutKind> {
+        if cfg!(feature = "kobo") {
+            return None;
+        }
         match self {
             Self::Folder => Some(components::GraphLayoutKind::Columns),
             Self::Subject | Self::Catalog => Some(components::GraphLayoutKind::AdaptiveRadial),
@@ -77,22 +85,8 @@ impl BrowseKind {
     }
 
     pub(super) fn child_icon(self) -> components::NavigationIcon {
-        match self {
-            Self::Home => components::NavigationIcon::House,
-            Self::Books => components::NavigationIcon::BookOpen,
-            Self::Folder => components::NavigationIcon::Folder,
-            Self::Subject => components::NavigationIcon::Tags,
-            Self::Author => components::NavigationIcon::User,
-            // The catalog's own icon, on its subjects and feeds alike.
-            Self::Catalog => components::NavigationIcon::Building2,
-        }
+        Route::Library(self.route()).presentation().1
     }
-}
-
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub(crate) struct BrowseCrumb {
-    pub(crate) location: BrowseLocation,
-    pub(crate) label: String,
 }
 
 /// A browsable panel with the immediate children and directly assigned books
@@ -119,6 +113,13 @@ impl BrowseItem {
             Self::Book(_) => None,
         }
     }
+    pub(super) fn book(&self) -> Option<&Entity<BookCardView>> {
+        match self {
+            Self::Book(book) => Some(book),
+            Self::Child { .. } => None,
+        }
+    }
+
     pub(super) fn id(&self, cx: &App) -> SharedString {
         match self {
             Self::Child { row, .. } => chip_id(row.id),
@@ -149,14 +150,14 @@ pub(super) fn resolve_items(ids: &[SharedString], items: &HashMap<SharedString, 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub(super) struct BrowseDestination {
     pub(super) location: BrowseLocation,
-    pub(super) path: Vec<BrowseCrumb>,
+    pub(super) path: Vec<BrowsePathSegment>,
 }
 
 impl BrowseDestination {
     /// `root` is where an empty path leads: the kind's root, or for the
     /// catalog shown by author, its author index.
-    pub(super) fn from_path(root: BrowseLocation, path: Vec<BrowseCrumb>) -> Self {
-        let location = path.last().map_or(root, |crumb| crumb.location);
+    pub(super) fn from_path(root: BrowseLocation, path: Vec<BrowsePathSegment>) -> Self {
+        let location = path.last().map_or(root, |crumb| crumb.id);
         Self { location, path }
     }
 }
@@ -236,7 +237,6 @@ impl BrowseListing {
     }
 
     fn controls_for(kind: BrowseKind, mut controls: BrowseControls) -> BrowseControls {
-        controls.supports_direct_child_books = matches!(kind, BrowseKind::Subject | BrowseKind::Catalog);
         if kind == BrowseKind::Books {
             controls.collection_sorts.clear();
         }
@@ -259,7 +259,7 @@ impl BrowseListing {
     /// Installs a response, and hands back the trail the library says leads to
     /// it, where it knows one.
     /// `searched` says whether `data` answers a search.
-    pub(super) fn install(&mut self, data: LibraryBrowseData, searched: bool, cx: &mut App) -> Vec<BrowseCrumb> {
+    pub(super) fn install(&mut self, data: LibraryBrowseData, searched: bool, cx: &mut App) -> Vec<BrowsePathSegment> {
         self.revision = self.revision.wrapping_add(1);
         let LibraryBrowseData { contents, sections, path, ancestors, language_counts, format_counts, feed, page } = data;
         self.ancestors = ancestors;
@@ -306,7 +306,7 @@ impl BrowseListing {
         let sections = sections
             .into_iter()
             .map(|section| {
-                let books = if section_shows_books(section.parent.id, section.children.is_empty()) { section.books.into_iter().map(|book| card_for(book, cx)).collect() } else { Vec::new() };
+                let books = section.books.into_iter().map(|book| card_for(book, cx)).collect();
                 BrowseSection { parent: section.parent, children: section.children, books, book_count: section.book_count }
             })
             .collect();
@@ -318,34 +318,28 @@ impl BrowseListing {
         let nested = self.sections.iter().flat_map(|section| section.children.iter().cloned().map(move |row| BrowseItem::Child { row, parent: section.parent.id.folder() }));
         let books = self.books.iter().cloned().map(BrowseItem::Book);
         self.items = Rc::new(direct.chain(nested).chain(books).map(|item| (item.id(cx), item)).collect());
-        path.into_iter().map(|segment| BrowseCrumb { location: segment.id, label: segment.name }).collect()
+        path
     }
 
     /// Adds a feed's next page after what is listed. A book or chip the
     /// listing already has is not listed twice.
     pub(super) fn append(&mut self, data: LibraryBrowseData, cx: &mut App) {
         self.next = data.feed.and_then(|feed| feed.next);
-        let mut items = (*self.items).clone();
-        let mut children = (*self.children).clone();
         for row in data.contents.children {
             let item = BrowseItem::Child { row: row.clone(), parent: None };
-            if items.insert(item.id(cx), item).is_none() {
-                children.push(row);
+            if Rc::make_mut(&mut self.items).insert(item.id(cx), item).is_none() {
+                Rc::make_mut(&mut self.children).push(row);
             }
         }
-        let mut books = (*self.books).clone();
         for book in data.contents.books {
             let id = book_id(book.key(), book.source_directory);
-            if items.contains_key(&id) {
+            if self.items.contains_key(&id) {
                 continue;
             }
             let card = BookCardView::create_in_grid(book, self.ui.clone(), self.book_events.clone(), self.folder_commands, false, cx);
-            items.insert(id, BrowseItem::Book(card.clone()));
-            books.push(card);
+            Rc::make_mut(&mut self.items).insert(id, BrowseItem::Book(card.clone()));
+            Rc::make_mut(&mut self.books).push(card);
         }
-        self.children = Rc::new(children);
-        self.books = Rc::new(books);
-        self.items = Rc::new(items);
     }
 
     /// Merge a window without changing the listing revision or existing card
@@ -426,10 +420,6 @@ pub(super) fn is_author_heading(location: BrowseLocation) -> bool {
     matches!(location, BrowseLocation::Author(Some(_)) | BrowseLocation::CatalogAuthor(Some(_)))
 }
 
-pub(super) fn section_shows_books(location: BrowseLocation, no_children: bool) -> bool {
-    matches!(location, BrowseLocation::Home(_)) || is_author_heading(location) || (matches!(location, BrowseLocation::Folder(_)) && no_children)
-}
-
 fn compatible_pages(current: &BrowsePageState, next: &BrowsePageState) -> bool {
     current.result_revision == next.result_revision
         && current.book_total == next.book_total
@@ -453,16 +443,7 @@ fn page_request_for_slots(slots: Range<usize>, compact: usize, sections: usize, 
 }
 
 #[cfg(test)]
-mod paging_tests {
-    #[test]
-    fn leaf_folders_preview_books_while_parent_folders_preview_children() {
-        let folder = BrowseLocation::Folder(DirId::from_u128(1));
-        assert!(super::section_shows_books(folder, true));
-        assert!(!super::section_shows_books(folder, false));
-        assert!(!super::section_shows_books(BrowseLocation::Subject(0), true));
-        assert!(super::section_shows_books(BrowseLocation::Home(None), true));
-    }
-
+mod tests {
     #[test]
     fn folder_placements_have_distinct_selection_and_cursor_ids() {
         let key = CardKey([1; 32]);
@@ -532,5 +513,64 @@ mod paging_tests {
         let distant = page_request_for_slots(4020..4024, 0, 4707, 0, |index| index < 24, |_| false).unwrap();
         assert_eq!(distant.section_offset, 4020);
         assert_eq!(distant.book_limit, 0);
+    }
+
+    #[cfg(all(not(target_arch = "wasm32"), not(feature = "kobo")))]
+    #[gpui::test]
+    async fn overlapping_feed_pages_preserve_snapshots_order_and_existing_cards(cx: &mut gpui::TestAppContext) {
+        use super::{BrowseKind, BrowseListing, chip_id};
+        use crate::navigation::LibrarySession;
+        use library_backend::LibraryBrowseData;
+        use library_model::{BookCardRow, BookSource, BrowseContents, BrowseRow, FeedPage, LibraryFileTypeFilter};
+        use std::rc::Rc;
+        use sync_common::BookId;
+
+        let _backend = crate::test_support::BACKEND.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
+        let (_directory, _session, library) = LibrarySession::test_context(cx).await;
+        let mut listing = BrowseListing::new(library, BrowseKind::Catalog, Rc::new(|_, _, _| {}), false);
+        let child = |index| BrowseRow { id: BrowseLocation::Folder(DirId::from_u128(index)), name: format!("Link {index}"), path: None, book_count: 0, downloaded_book_count: 0 };
+        let book = |index| BookCardRow {
+            source: BookSource::Catalog { content_hash: BookId::from_bytes([index; 32]) },
+            title: format!("Book {index}"),
+            subtitle: None,
+            author: "Writer".into(),
+            progress: 0.0,
+            downloaded: false,
+            download_requested: false,
+            format_category: LibraryFileTypeFilter::Book,
+            audiobook_duration_ms: None,
+            added_at: 0,
+            source_directory: None,
+        };
+        let next = BrowseLocation::Folder(DirId::from_u128(10));
+        let first = LibraryBrowseData { contents: BrowseContents { children: vec![child(1)], books: vec![book(1)] }, feed: Some(FeedPage { next: Some(next), ..Default::default() }), ..Default::default() };
+        cx.update(|cx| listing.install(first, false, cx));
+        assert_eq!(listing.next, Some(next));
+        let children = listing.children.clone();
+        let books = listing.books.clone();
+        let items = listing.items.clone();
+        let mut duplicate_child = child(1);
+        duplicate_child.name = "Updated link".into();
+        let mut duplicate_book = book(1);
+        duplicate_book.title = "Updated book".into();
+        let second = LibraryBrowseData { contents: BrowseContents { children: vec![duplicate_child, child(2), child(2)], books: vec![duplicate_book, book(2), book(2)] }, feed: Some(FeedPage::default()), ..Default::default() };
+        cx.update(|cx| listing.append(second, cx));
+        assert!(listing.next.is_none());
+        assert_eq!(&*children, &[child(1)]);
+        assert_eq!(books.len(), 1);
+        assert_eq!(items.len(), 2);
+        assert_eq!(items[&chip_id(child(1).id)].child().unwrap().name, "Link 1");
+        assert_eq!(&*listing.children, &[child(1), child(2)]);
+        assert_eq!(listing.items.len(), 4);
+        assert_eq!(listing.items[&chip_id(child(1).id)].child().unwrap().name, "Updated link");
+        assert_eq!(listing.books[0], books[0]);
+        cx.update(|cx| {
+            let titles: Vec<_> = listing.books.iter().map(|book| book.read(cx).title()).collect();
+            assert_eq!(titles, ["Book 1", "Book 2"]);
+            for card in listing.books.iter() {
+                let id = book_id(card.read(cx).key(), card.read(cx).source_directory());
+                assert_eq!(listing.items[&id].book(), Some(card));
+            }
+        });
     }
 }

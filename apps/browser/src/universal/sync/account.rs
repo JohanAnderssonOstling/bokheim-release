@@ -1,45 +1,22 @@
 //! Loads account and library state; local sizes and transfers arrive separately.
 
+use app::{AccountSnapshot, BackendError};
 use gpui::Context;
 use ui_components::user_facing_error;
 
 use super::SyncPage;
-#[cfg(not(target_arch = "wasm32"))]
-use crate::services::UiFuture;
-#[cfg(not(target_arch = "wasm32"))]
-use app::AppClient;
-
-pub(super) type CloudSnapshot = app::AccountSnapshot;
-
-#[cfg(not(target_arch = "wasm32"))]
-fn snapshot(backend: &AppClient) -> UiFuture<CloudSnapshot> {
-    let backend = backend.clone();
-    Box::pin(async move { backend.account_snapshot().await })
-}
-
-#[cfg(not(target_arch = "wasm32"))]
-pub(super) fn login(backend: &AppClient, email: String, password: String) -> UiFuture<CloudSnapshot> {
-    let backend = backend.clone();
-    Box::pin(async move { backend.login(email, password).await })
-}
-
-#[cfg(not(target_arch = "wasm32"))]
-pub(super) fn verify_email(backend: &AppClient, email: String, pin: String, password: String) -> UiFuture<CloudSnapshot> {
-    let backend = backend.clone();
-    Box::pin(async move { backend.verify_email(email, pin, password).await })
-}
 
 impl SyncPage {
     #[cfg(target_arch = "wasm32")]
     pub(super) fn send_event(&mut self, event: super::SyncEvent, cx: &mut Context<Self>) {
         if self.events.try_send(event).is_err() {
             self.asset_storage_pending.clear();
-            self.apply_error(app::BackendError::message("the web sync event inbox is closed"), cx);
+            self.apply_error(BackendError::message("the web sync event inbox is closed"), cx);
         }
     }
 
     #[cfg(not(any(target_arch = "wasm32", target_os = "android")))]
-    pub(super) fn authentication_error(&self, error: &app::BackendError) -> &'static str {
+    pub(super) fn authentication_error(&self, error: &BackendError) -> &'static str {
         use crate::model::AccountFlow;
         use ui_components::AccountAction;
         let action = match self.flow {
@@ -74,7 +51,6 @@ impl SyncPage {
             }
             #[cfg(not(target_arch = "wasm32"))]
             {
-                super::after_browser_callback(cx).await;
                 let _ = page.update(cx, |page, cx| {
                     page.refresh_scheduled = false;
                     page.refresh_with_feedback(false, cx);
@@ -109,10 +85,9 @@ impl SyncPage {
         }
         #[cfg(not(target_arch = "wasm32"))]
         {
-            let operation = snapshot(&self.services.backend);
+            let backend = self.services.backend.clone();
             self.task = Some(cx.spawn(async move |page, cx| {
-                let result = operation.await;
-                super::after_browser_callback(cx).await;
+                let result = backend.account_snapshot().await;
                 let _ = page.update(cx, |page, cx| match result {
                     Ok(snapshot) => page.apply_snapshot(snapshot, None, cx),
                     Err(error) => page.apply_error(error, cx),
@@ -121,7 +96,7 @@ impl SyncPage {
         }
     }
 
-    pub(super) fn apply_snapshot(&mut self, snapshot: CloudSnapshot, message: Option<&str>, cx: &mut Context<Self>) {
+    pub(super) fn apply_snapshot(&mut self, snapshot: AccountSnapshot, message: Option<&str>, cx: &mut Context<Self>) {
         #[cfg(not(target_arch = "wasm32"))]
         self.state.update(cx, |state, cx| state.apply_account_snapshot(&snapshot, cx));
         #[cfg(target_arch = "wasm32")]
@@ -161,7 +136,6 @@ impl SyncPage {
         let backend = self.services.backend.clone();
         cx.spawn(async move |page, cx| {
             let result = backend.local_storage_usage().await;
-            super::after_browser_callback(cx).await;
             let _ = page.update(cx, |page, cx| {
                 if generation != page.local_usage_generation {
                     return;
@@ -175,7 +149,7 @@ impl SyncPage {
         .detach();
     }
 
-    pub(super) fn apply_error(&mut self, error: app::BackendError, cx: &mut Context<Self>) {
+    pub(super) fn apply_error(&mut self, error: BackendError, cx: &mut Context<Self>) {
         if self.activity == super::AccountActivity::DeletingAccount {
             self.activity = super::AccountActivity::Idle;
             self.message = None;
@@ -198,7 +172,9 @@ impl SyncPage {
     }
 
     #[cfg(not(target_arch = "wasm32"))]
-    pub(super) fn start_snapshot_operation(&mut self, progress: &'static str, success: Option<&'static str>, reveal_password_reset_on_error: bool, operation: UiFuture<CloudSnapshot>, cx: &mut Context<Self>) {
+    pub(super) fn start_snapshot_operation(
+        &mut self, progress: &'static str, success: Option<&'static str>, reveal_password_reset_on_error: bool, operation: impl Future<Output = Result<AccountSnapshot, BackendError>> + 'static, cx: &mut Context<Self>,
+    ) {
         if self.is_busy() {
             return;
         }
@@ -211,7 +187,6 @@ impl SyncPage {
         cx.notify();
         self.task = Some(cx.spawn(async move |page, cx| {
             let result = operation.await;
-            super::after_browser_callback(cx).await;
             let _ = page.update(cx, |page, cx| match result {
                 Ok(snapshot) => {
                     page.login_failed = false;
@@ -240,7 +215,7 @@ impl SyncPage {
         #[cfg(not(target_arch = "wasm32"))]
         {
             let backend = self.services.backend.clone();
-            let operation = Box::pin(async move { backend.logout().await });
+            let operation = async move { backend.logout().await };
             self.start_snapshot_operation("Signing out…", Some("Signed out"), false, operation, cx);
         }
     }
@@ -260,7 +235,6 @@ impl SyncPage {
             let backend = self.services.backend.clone();
             cx.spawn(async move |page, cx| {
                 let result = backend.set_library_asset_storage(library_id, enabled).await;
-                super::after_browser_callback(cx).await;
                 let _ = page.update(cx, |page, cx| {
                     page.asset_storage_pending.remove(&library_id);
                     match result {

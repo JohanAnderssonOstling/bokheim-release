@@ -93,6 +93,9 @@ impl BackendError {
             } else if let Some(Self::Classified { failure: classified, message }) = error.downcast_ref::<Self>() {
                 failure = failure.or(Some(*classified));
                 causes.push(ErrorCause::Diagnostic { message: message.clone() });
+            } else if let Some(classified) = error.downcast_ref::<Failure>() {
+                failure = failure.or(Some(*classified));
+                causes.push(ErrorCause::Diagnostic { message: classified.to_string() });
             } else if let Some(error) = error.downcast_ref::<std::io::Error>() {
                 failure = failure.or(Failure::from_io(error.kind()));
                 causes.push(ErrorCause::Io { kind: format!("{:?}", error.kind()), os_code: error.raw_os_error() });
@@ -222,3 +225,19 @@ macro_rules! backend_error_from {
     )+};
 }
 backend_error_from!(std::io::Error, rusqlite::Error, client_platform_runtime::executor::BackendExecutorError, std::time::SystemTimeError,);
+
+#[cfg(test)]
+mod classified_cause_tests {
+    use super::*;
+
+    #[test]
+    fn local_and_cloud_space_failures_survive_context_and_worker_serialization() {
+        for failure in [Failure::StorageFull, Failure::CloudStorageFull] {
+            let error = BackendError::operation(failure).context("transfer remains pending");
+            assert_eq!(error.failure(), Some(failure));
+            let bytes = rmp_serde::to_vec_named(&error).unwrap();
+            let received: BackendError = rmp_serde::from_slice(&bytes).unwrap();
+            assert_eq!(received.failure(), Some(failure));
+        }
+    }
+}

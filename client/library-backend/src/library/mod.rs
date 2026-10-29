@@ -3,7 +3,6 @@
 pub mod discovery;
 pub(crate) use library_runtime::events;
 
-mod annotations;
 mod browse;
 pub mod commands;
 mod directory;
@@ -19,12 +18,11 @@ pub(crate) mod jobs;
 mod pending;
 mod reading;
 mod resources;
-#[cfg(not(target_arch = "wasm32"))]
-mod cloud;
+pub(crate) mod cloud;
 #[cfg(not(target_arch = "wasm32"))]
 mod torrents;
-#[cfg(not(target_arch = "wasm32"))]
 pub(crate) mod transfer;
+pub use transfer::StorageCopyProgress;
 #[cfg(not(target_arch = "wasm32"))]
 pub use book_access::remote_file::AudioStreamControl;
 pub use book_access::remote_file::RemoteFile;

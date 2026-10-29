@@ -182,7 +182,7 @@ impl<R: AsyncBufRead + AsyncSeek + Unpin> SeekOps<R> {
     pub async fn cd(&mut self, options: &ZipOptions, ceocdr: &CEOCDR) -> Result<(Vec<CDR>, Vec<u64>)> {
         let cdrs_capacity = ceocdr.num_entries()?.min(options.max_cd_num_files_load);
         let offsets_capacity = ceocdr.num_entries()?.min(options.max_cd_num_files);
-        let load_cdrs = ceocdr.num_entries()? <= options.max_cd_num_files_load;
+        let load_cdrs = options.max_cd_num_files_load >= options.max_cd_num_files || ceocdr.num_entries()? <= options.max_cd_num_files_load;
 
         let mut offsets = Vec::with_capacity(offsets_capacity as usize);
         let mut cdrs = Vec::with_capacity(cdrs_capacity as usize);
@@ -195,6 +195,10 @@ impl<R: AsyncBufRead + AsyncSeek + Unpin> SeekOps<R> {
                 break;
             }
 
+            if offsets.len() as u64 >= options.max_cd_num_files {
+                return Err(ZipError::NumFilesAboveMax(options.max_cd_num_files));
+            }
+
             offsets.push(offset);
 
             let cdr = Ops::new(&mut self.reader, options).cdr(false).await?;
@@ -205,6 +209,9 @@ impl<R: AsyncBufRead + AsyncSeek + Unpin> SeekOps<R> {
 
             // TODO: use math instead of seeks for position calc.
             offset = self.reader.seek(SeekFrom::Current(0)).await?;
+            if offset.saturating_sub(ceocdr.cd_offset()?) > options.max_cd_size_in_bytes {
+                return Err(ZipError::CDSizeAboveMax(options.max_cd_size_in_bytes));
+            }
         }
 
         // Validate that the number of CDRs read matches the number of entries in the EOCDR
@@ -226,7 +233,12 @@ impl<R: AsyncBufRead + AsyncSeek + Unpin> SeekOps<R> {
         let mut lf = Ops::new(&mut self.reader, opts).lf().await?;
         crate::base::read1::valid::validate_file(&lf, &cdr, opts)?;
 
-        if cdr.cdrh.gpf.data_descriptor() {
+        if opts.prefer_central_directory {
+            lf.lfh.compression = cdr.cdrh.compression;
+            lf.lfh.gpf = cdr.cdrh.gpf.clone();
+        }
+
+        if opts.prefer_central_directory || cdr.cdrh.gpf.data_descriptor() {
             // We know the values from the CDR are 'good', because they were written after the file finished writing.
             
             lf.lfh.compressed_size = cdr.cdrh.compressed_size;

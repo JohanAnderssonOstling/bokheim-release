@@ -1,15 +1,10 @@
 //! Host adapters for library-owned filesystem services.
 
 #[cfg(target_arch = "wasm32")]
-use std::sync::Arc;
-#[cfg(target_arch = "wasm32")]
 use crate::executor::BoxedBackendFuture;
 pub use library_files::asset_store::*;
-
-#[cfg(not(target_arch = "wasm32"))]
-pub(crate) fn open(locator: &str) -> Result<AssetStore, AssetStoreError> {
-    AssetStore::open(locator)
-}
+#[cfg(target_arch = "wasm32")]
+use std::sync::Arc;
 
 #[cfg(target_arch = "wasm32")]
 pub(crate) fn open(locator: &str, cpu: Arc<dyn cpu_host::CpuHost>) -> Result<AssetStore, AssetStoreError> {

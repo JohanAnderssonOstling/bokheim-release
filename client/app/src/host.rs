@@ -2,6 +2,10 @@
 //! Views use the clients and result types at the crate root instead.
 
 pub use client_platform_runtime::startup_profile;
+#[cfg(target_os = "android")]
+pub use cloud_storage::set_google_play_services_available;
+#[cfg(all(feature = "google-drive", target_os = "android"))]
+pub use cloud_storage::{android_authorization, CloudError as CloudAuthorizationError, oauth::GoogleAccessGrant as AndroidGoogleAccessGrant};
 
 #[cfg(not(target_arch = "wasm32"))]
 pub use crate::api::BackendLaunch;
@@ -29,6 +33,8 @@ pub mod web {
 pub mod cpu {
     #[cfg(target_arch = "wasm32")]
     pub use crate::runtime::bisac::install as initialize_bisac_reference;
+    #[cfg(target_arch = "wasm32")]
+    pub use crate::runtime::taxonomy::install_bundled_matching as initialize_bundled_taxonomy;
     pub use cpu_host::{execute, execute_book_with_mobi, BookTask, CpuRequest, CpuResponse, ThumbnailBytes};
 }
 

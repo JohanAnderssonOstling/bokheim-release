@@ -82,6 +82,12 @@ impl<'a, P: ThumbnailProcessor> ThumbnailJobs<'a, P> {
         async {
             let lease = self.assets.lease_book(&hash).await.map_err(BackendError::operation)?;
             let Some(format) = self.db.thumbnail_book_format(hash)? else { return Ok(false) };
+            // Server covers are downloaded as finished images. Do not rebuild
+            // a cached server master while local recovery is being retired.
+            if self.db.server_has_cover(&hash)? {
+                self.db.discard_thumbnail_work(&hash)?;
+                return Ok(true);
+            }
             // A book's cover is set once, so a stored cover is kept. A pending
             // job may have left incomplete bytes behind: decode the cached
             // master before confirming it, and rebuild its browse variant.
@@ -105,10 +111,6 @@ impl<'a, P: ThumbnailProcessor> ThumbnailJobs<'a, P> {
                 drop(_lease);
                 self.store(hash, &versions, observer).await?;
                 self.db.complete_thumbnail_work(&hash, true)?;
-                return Ok(true);
-            }
-            if self.db.server_has_cover(&hash)? {
-                self.db.discard_thumbnail_work(&hash)?;
                 return Ok(true);
             }
             let title = || self.db.browse_book_detail(&hash).ok().map(|detail| detail.book.title).unwrap_or_else(|| "Untitled".into());

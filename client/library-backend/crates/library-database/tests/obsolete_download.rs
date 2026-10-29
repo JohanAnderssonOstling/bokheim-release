@@ -19,6 +19,7 @@ fn late_download_requeues_removal_after_purge_work_has_finished() {
         },
         publication: library_model::PublishedStagedBook { name: "book (1).epub".into(), relative_path: "/book (1).epub".into(), published: false, fingerprint: Some("verified".into()) },
         size_bytes: 123,
+        provider_file: None,
     };
     assert_eq!(db.complete_downloaded_book(completion.clone(), true).unwrap(), NativeBookAcknowledgement::Obsolete);
     assert!(db.native_file_work().unwrap().is_empty());

@@ -49,19 +49,13 @@ fn publications(publications: &Value, base: &Url) -> Vec<Publication> {
     array(publications)
         .filter_map(|publication| {
             let metadata = &publication["metadata"];
-            let open = array(&publication["links"])
-                .filter(|link| has_rel(link, ACQUISITION) || has_rel(link, OPEN_ACCESS))
-                .filter_map(|link| Some((base.join(link["href"].as_str()?).ok()?, link["type"].as_str().unwrap_or_default().to_owned(), None)))
-                .collect();
+            let open = array(&publication["links"]).filter(|link| has_rel(link, ACQUISITION) || has_rel(link, OPEN_ACCESS)).filter_map(|link| Some((base.join(link["href"].as_str()?).ok()?, link["type"].as_str().unwrap_or_default(), None)));
             let download = choose_download(open);
             let buy = array(&publication["links"]).find(|link| has_rel(link, BUY));
             // A book offered only with DRM, sold, lent or free, is not listed.
-            let mut types = Vec::new();
-            for link in array(&publication["links"]).filter(|link| rels(link).any(|rel| rel.starts_with(ACQUISITION))) {
-                types.push(&link["type"]);
-                types.extend(acquisition_types(&link["properties"]["indirectAcquisition"]));
-            }
-            if download.is_none() && protected(types.into_iter().filter_map(Value::as_str)) {
+            if download.is_none()
+                && array(&publication["links"]).filter(|link| rels(link).any(|rel| rel.starts_with(ACQUISITION))).any(|link| protected(link["type"].as_str()) || protected_acquisitions(&link["properties"]["indirectAcquisition"]))
+            {
                 return None;
             }
             Some(Publication {
@@ -101,9 +95,9 @@ fn number_of_items(link: &Value) -> Option<u32> {
     link["properties"]["numberOfItems"].as_u64().and_then(|count| u32::try_from(count).ok())
 }
 
-/// The media types of indirect acquisitions, nested through their `child`.
-fn acquisition_types(acquisitions: &Value) -> Vec<&Value> {
-    array(acquisitions).flat_map(|acquisition| std::iter::once(&acquisition["type"]).chain(acquisition_types(&acquisition["child"]))).collect()
+/// Whether any indirect acquisition requires a DRM license, including its children.
+fn protected_acquisitions(acquisitions: &Value) -> bool {
+    array(acquisitions).any(|acquisition| protected(acquisition["type"].as_str()) || protected_acquisitions(&acquisition["child"]))
 }
 
 fn array(value: &Value) -> impl Iterator<Item = &Value> {

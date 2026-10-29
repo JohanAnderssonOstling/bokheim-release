@@ -92,7 +92,17 @@ impl Preferences {
         let backend = services.backend.clone();
         #[cfg(feature = "kobo")]
         cx.set_global(gpui_kobo::KoboKeyboardLayouts(browsing.keyboard_layouts().to_vec()));
-        let store = cx.new(|_| Self { backend, browsing });
+        let store = cx.new(|cx| {
+            #[cfg(target_os = "android")]
+            cx.observe_global::<ui_components::SystemFontFamilies>(|preferences: &mut Self, cx| {
+                apply_appearance(&preferences.browsing, cx);
+                cx.notify();
+            })
+            .detach();
+            #[cfg(not(target_os = "android"))]
+            let _ = cx;
+            Self { backend, browsing }
+        });
         cx.set_global(PreferencesStore(store.clone()));
         let shortcut_preferences = store.clone();
         ui_components::configure_shortcut_saving(
@@ -102,7 +112,7 @@ impl Preferences {
             },
             cx,
         );
-        // The keyboard's layout key rotates the global; save what it chose.
+        // The keyboard's layout chooser updates the global; save its selection.
         #[cfg(feature = "kobo")]
         cx.observe_global::<gpui_kobo::KoboKeyboardLayouts>(|cx| {
             let layouts = cx.global::<gpui_kobo::KoboKeyboardLayouts>().0.clone();
@@ -124,8 +134,8 @@ impl Preferences {
         self.browsing.clone()
     }
 
-    pub(crate) fn interface_font_name(&self) -> SharedString {
-        SharedString::from(self.browsing.ui_font_family().family_name())
+    pub(crate) fn interface_font_name(&self, cx: &App) -> SharedString {
+        SharedString::from(ui_components::configured_ui_font_name(&self.browsing, cx).to_owned())
     }
 
     pub(crate) fn ui_font_size_px(&self) -> u8 {
@@ -178,8 +188,12 @@ impl Preferences {
         let previous = self.browsing();
         let mut browsing = previous.clone();
         patch.clone().apply(&mut browsing).map_err(|error| error.to_string())?;
-        let appearance_changed =
-            previous.theme() != browsing.theme() || previous.appearance_override() != browsing.appearance_override() || previous.ui_font_size_px() != browsing.ui_font_size_px() || previous.ui_font_family() != browsing.ui_font_family();
+        let appearance_changed = previous.theme() != browsing.theme()
+            || previous.appearance_override() != browsing.appearance_override()
+            || previous.ui_font_size_px() != browsing.ui_font_size_px()
+            || previous.ui_font_family() != browsing.ui_font_family()
+            || previous.custom_ui_font_active() != browsing.custom_ui_font_active()
+            || previous.custom_ui_font_family() != browsing.custom_ui_font_family();
         self.browsing = browsing.clone();
         if previous.keyboard_shortcuts() != browsing.keyboard_shortcuts() {
             ui_components::apply_keyboard_shortcuts(browsing.keyboard_shortcuts(), cx);

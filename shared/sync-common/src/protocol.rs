@@ -1,12 +1,12 @@
 //! Transport-independent validation for synchronization pages.
 
+use crate::transport::encoded_len;
 use crate::BookId;
+use crate::{LibraryRevision, MutationRejection, MutationRejectionReason, OpaquePublication, PullStateResponse, PushMutationsResponse, SyncCursor};
+use crate::{ReplicaSeq, MAX_PUSH_BATCH_BYTES, MAX_PUSH_MUTATIONS};
+use std::collections::{HashSet, VecDeque};
 use std::error::Error;
 use std::fmt::{Display, Formatter};
-use crate::transport::encoded_len;
-use crate::{MAX_PUSH_BATCH_BYTES, MAX_PUSH_MUTATIONS, ReplicaSeq};
-use crate::{LibraryRevision, MutationRejection, MutationRejectionReason, PullStateResponse, PushMutationsResponse, SyncCursor, OpaquePublication};
-use std::collections::{HashSet, VecDeque};
 
 #[derive(Debug)]
 struct EncodedMutation {
@@ -136,11 +136,8 @@ fn revision(value: Option<LibraryRevision>) -> u64 {
 }
 
 pub fn validate_pull_batch(response: &PullStateResponse, cursor: SyncCursor) -> Result<(), PullBatchError> {
-    if response.mutations.len() > crate::MAX_PULL_CHANGES {
-        return Err(PullBatchError("a pull page contains too many cells".into()));
-    }
     let bytes = response.mutations.iter().fold(0usize, |sum, row| sum.saturating_add(row.state.value.delivery_byte_budget()));
-    if response.mutations.len() > 1 && bytes > crate::MAX_PULL_BATCH_BYTES {
+    if bytes > crate::MAX_PULL_BATCH_BYTES {
         return Err(PullBatchError("a pull page exceeds its byte budget".into()));
     }
     let generation = response.next_cursor.generation.ok_or_else(|| PullBatchError("a pull page must name its server history".into()))?;
@@ -273,5 +270,36 @@ mod history_tests {
         let bound = cursor(Some(history), 1_000);
         let decoded: SyncCursor = crate::transport::decode(&crate::transport::encode(&bound).unwrap(), 1024).unwrap();
         assert_eq!(decoded, bound);
+    }
+
+    fn page(count: usize) -> PullStateResponse {
+        use crate::{ConflictRank, OpaqueStateEntry, ReplicaId, StateAddress, VersionKey, Versioned};
+        PullStateResponse {
+            mutations: (1..=count as u64)
+                .map(|revision| crate::Delivery {
+                    state: Versioned {
+                        value: OpaqueStateEntry { address: StateAddress { kind: "directory_name".into(), entity_key: "a".into(), entity_subkey: String::new() }, book: None, bytes: vec![] },
+                        version: VersionKey::new(1, ConflictRank::Update, ReplicaId::from_u128(1), ReplicaSeq::new(revision).unwrap()),
+                    },
+                    revision: LibraryRevision::new(revision).unwrap(),
+                })
+                .collect(),
+            next_cursor: cursor(Some(SyncGeneration::from_u128(1)), count as u64),
+            has_more: false,
+        }
+    }
+
+    #[test]
+    fn pull_pages_use_bytes_without_a_thousand_change_limit() {
+        assert!(validate_pull_batch(&page(2_000), SyncCursor::default()).is_ok());
+        let mut page = page(2);
+        let overhead: usize = page.mutations.iter().map(|row| row.state.value.delivery_byte_budget()).sum();
+        page.mutations[0].state.value.bytes.resize(crate::MAX_PULL_BATCH_BYTES - overhead, 0);
+        assert!(validate_pull_batch(&page, SyncCursor::default()).is_ok());
+        page.mutations[0].state.value.bytes.push(0);
+        assert!(validate_pull_batch(&page, SyncCursor::default()).is_err());
+        page.mutations.remove(1);
+        page.mutations[0].state.value.bytes.resize(crate::MAX_PULL_BATCH_BYTES, 0);
+        assert!(validate_pull_batch(&page, SyncCursor::default()).is_err(), "a single oversized state must retain the byte bound");
     }
 }

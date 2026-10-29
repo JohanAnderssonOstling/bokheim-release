@@ -1,6 +1,6 @@
 //! Android notification controls act on the speech worker directly, then notify
 //! the reader so its dock and highlighting follow the same playback state.
-use crate::{Command, Shared, SpeechControl, SpeechEvent, SpeechEvents, recover_lock};
+use super::{Command, Shared, SpeechControl, SpeechEvent, SpeechEvents, recover_lock};
 use serde_json::json;
 use std::collections::HashMap;
 use std::sync::{
@@ -20,13 +20,22 @@ struct Session {
     events: SpeechEvents,
     owner: u64,
     title: Mutex<String>,
+    metadata: Mutex<MediaMetadata>,
     active: AtomicBool,
     last_state: Mutex<Option<NotificationState>>,
+}
+
+#[derive(Clone, Default, PartialEq)]
+pub(super) struct MediaMetadata {
+    pub author: String,
+    pub chapter: String,
+    pub cover: Vec<u8>,
 }
 
 #[derive(PartialEq)]
 struct NotificationState {
     title: String,
+    metadata: MediaMetadata,
     paused: bool,
     preparing: bool,
     rate: u32,
@@ -39,7 +48,7 @@ impl Session {
         }
         let shared = self.shared.upgrade()?;
         let preparing = shared.lock(&shared.player).as_ref().is_none_or(|player| player.empty());
-        Some(NotificationState { title: recover_lock(&self.title).clone(), paused: shared.paused.load(Ordering::Acquire), preparing, rate: shared.rate.load(Ordering::Acquire) })
+        Some(NotificationState { title: recover_lock(&self.title).clone(), metadata: recover_lock(&self.metadata).clone(), paused: shared.paused.load(Ordering::Acquire), preparing, rate: shared.rate.load(Ordering::Acquire) })
     }
 }
 
@@ -55,20 +64,30 @@ pub fn initialize(dispatch: impl Fn(&str) -> Result<(), String> + Send + Sync + 
     let _ = BRIDGE.set(Box::new(dispatch));
 }
 
-pub(crate) fn register(shared: &Arc<Shared>, commands: mpsc::Sender<Command>, events: SpeechEvents, owner: u64) -> u64 {
+pub(super) fn register(shared: &Arc<Shared>, commands: mpsc::Sender<Command>, events: SpeechEvents, owner: u64) -> u64 {
     let id = NEXT_ID.fetch_add(1, Ordering::Relaxed);
-    recover_lock(sessions()).insert(id, Arc::new(Session { shared: Arc::downgrade(shared), commands, events, owner, title: Mutex::new("Read aloud".into()), active: AtomicBool::new(false), last_state: Mutex::new(None) }));
+    recover_lock(sessions()).insert(
+        id,
+        Arc::new(Session { shared: Arc::downgrade(shared), commands, events, owner, title: Mutex::new("Read aloud".into()), metadata: Mutex::new(MediaMetadata::default()), active: AtomicBool::new(false), last_state: Mutex::new(None) }),
+    );
     id
 }
 
-pub(crate) fn set_title(id: u64, title: &str) {
+pub(super) fn set_title(id: u64, title: &str) {
     if let Some(session) = session(id) {
         *recover_lock(&session.title) = title.into();
         changed(id);
     }
 }
 
-pub(crate) fn start(id: u64) -> Result<(), String> {
+pub(super) fn set_metadata(id: u64, metadata: MediaMetadata) {
+    if let Some(session) = session(id) {
+        *recover_lock(&session.metadata) = metadata;
+        changed(id);
+    }
+}
+
+pub(super) fn start(id: u64) -> Result<(), String> {
     let session = session(id).ok_or("Speech session has ended")?;
     if session.active.swap(true, Ordering::AcqRel) {
         changed(id);
@@ -85,7 +104,7 @@ pub(crate) fn start(id: u64) -> Result<(), String> {
     result
 }
 
-pub(crate) fn stop(id: u64) {
+pub(super) fn stop(id: u64) {
     if let Some(session) = session(id) {
         session.active.store(false, Ordering::Release);
         if let Some(dispatch) = BRIDGE.get() {
@@ -94,7 +113,7 @@ pub(crate) fn stop(id: u64) {
     }
 }
 
-pub(crate) fn remove(id: u64) {
+pub(super) fn remove(id: u64) {
     recover_lock(sessions()).remove(&id);
 }
 
@@ -109,7 +128,7 @@ pub fn snapshot(id: u64) -> Option<String> {
     let session = session(id)?;
     let state = session.state()?;
     Some(
-        json!({"id":id, "title":state.title, "paused":state.paused, "preparing":state.preparing,
+        json!({"id":id, "title":state.title, "author":state.metadata.author, "chapter":state.metadata.chapter, "cover":state.metadata.cover, "paused":state.paused, "preparing":state.preparing,
         "rate":f32::from_bits(state.rate)})
         .to_string(),
     )
@@ -121,7 +140,7 @@ fn changed(id: u64) {
     }
 }
 
-pub(crate) fn changed_for(shared: &Shared) {
+pub(super) fn changed_for(shared: &Shared) {
     let id = recover_lock(sessions()).iter().find(|(_, session)| session.active.load(Ordering::Acquire) && std::ptr::eq(session.shared.as_ptr(), shared)).map(|(&id, _)| id);
     if let Some(id) = id {
         changed(id);
@@ -309,6 +328,21 @@ mod tests {
         assert!(shared.paused.load(Ordering::Acquire));
         assert!(snapshot(id).is_none());
         assert!(matches!(events.try_recv().unwrap(), SpeechEvent::Remote { generation: 7, command: SpeechControl::Stop }));
+        remove(id);
+    }
+
+    #[test]
+    fn notification_metadata_survives_pause_and_is_removed_when_stopped() {
+        let (id, shared, _commands, _events) = fixture();
+        set_metadata(id, MediaMetadata { author: "Author".into(), chapter: "Chapter 2 · Garden".into(), cover: vec![1, 2, 3] });
+        shared.paused.store(true, Ordering::Release);
+        let state: serde_json::Value = serde_json::from_str(&snapshot(id).unwrap()).unwrap();
+        assert_eq!(state["author"], "Author");
+        assert_eq!(state["chapter"], "Chapter 2 · Garden");
+        assert_eq!(state["cover"], json!([1, 2, 3]));
+        assert_eq!(state["paused"], true);
+        assert!(control(id, "stop"));
+        assert!(snapshot(id).is_none());
         remove(id);
     }
 

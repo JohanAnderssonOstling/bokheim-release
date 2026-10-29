@@ -1,4 +1,5 @@
 use gpui::{FontWeight, Styled};
+use crate::Button;
 
 use crate::theme::BrowserTheme;
 
@@ -14,10 +15,11 @@ use crate::theme::BrowserTheme;
 ///             correct over any surface
 ///   keyboard  `accent_wash` — the keyboard cursor and the selection, which
 ///             is transient however it was made. The value chosen in a
-///             settings control keeps this wash too, with its underline.
+///             settings control is marked separately with the current tier.
 ///   current   `accent` with `accent_text` on it — state the app holds: the
 ///             place you are, a mode that is on, a filter narrowing the
-///             content, the sort and filters chosen in the sort & filter menu
+///             content. Menu and sheet choices share this solid accent and a
+///             trailing checkmark through `gpui_component::menu::choice_row`.
 ///
 /// Nothing is drawn as an outline for hover or the cursor. The pointer on a
 /// keyboard item steps it to `accent_wash_hover`; the pointer or the cursor on
@@ -29,8 +31,8 @@ use crate::theme::BrowserTheme;
 /// site's, because only it knows where the cursor is.
 ///
 /// Do not call this on an element that already sets its own `hover`: gpui
-/// asserts a hover style is only set once. A `gpui_component` `Button` is such
-/// an element — use [`selectable_button`] for those.
+/// asserts a hover style is only set once. Use [`selectable_button`] for the
+/// application's `Button`, which owns its interaction styles.
 pub trait Interactive: Styled + gpui::InteractiveElement + Sized {
     fn selectable(self, current: bool, theme: BrowserTheme) -> Self {
         // On Kobo nothing is filled: current is a black border on the page.
@@ -49,19 +51,11 @@ pub trait Interactive: Styled + gpui::InteractiveElement + Sized {
 
 impl<T: Styled + gpui::InteractiveElement + Sized> Interactive for T {}
 
-/// [`Interactive::selectable`] for a `gpui_component` `Button`.
+/// Shared current-state styling for the application's `Button`.
 ///
-/// A `Button` hands out its inner element's interactivity, so a caller's hover
-/// and the button's own hover are the same slot — and gpui allows that slot to
-/// be written exactly once. The button writes it only while it is neither
-/// selected nor disabled, which leaves the selected state free; taking only
-/// that state is what makes this safe where [`Interactive::selectable`] is not.
-///
-/// An unselected button therefore keeps its own hover treatment rather than the
-/// `accent_wash` a plain surface gets. That is the cost of the button styling
-/// itself, and it is a smaller one than a page that cannot be opened.
-pub fn selectable_button(button: gpui_component::button::Button, selected: bool, theme: BrowserTheme) -> gpui_component::button::Button {
-    use gpui::InteractiveElement;
+/// Selected buttons keep the heavy accent and contrasting text. Unselected
+/// buttons take their light accent hover from the application button component.
+pub fn selectable_button(button: Button, selected: bool, theme: BrowserTheme) -> Button {
     use gpui_component::Selectable;
     if !selected {
         return button;
@@ -192,7 +186,6 @@ pub fn small_caps() -> gpui::FontFeatures {
     gpui::FontFeatures(std::sync::Arc::new(vec![("smcp".to_owned(), 1), ("c2sc".to_owned(), 1)]))
 }
 
-pub const BOOK_COVER_WIDTH: f32 = 200.0;
 /// Placeholder proportions and the tallest cover frame reserved by book cards.
 /// GPUI uses width over height; card JPEG generation enforces this limit.
 pub const BOOK_COVER_ASPECT_RATIO: f32 = 1.0 / 1.6;
@@ -200,7 +193,6 @@ pub const BOOK_COVER_ASPECT_RATIO: f32 = 1.0 / 1.6;
 /// One cover stretched across a phone screen is not a grid, and the covers are
 /// what the reader scans.
 pub const BOOK_GRID_MINIMUM_COLUMNS: usize = 2;
-pub const BOOK_CARD_MINIMUM_WIDTH_REM: f32 = 10.0;
 /// Cover width in logical pixels, independent of the UI font size.
 pub const BOOK_CARD_CONTENT_WIDTH: f32 = 200.0;
 pub const BOOK_CARD_WIDTH: f32 = BOOK_CARD_CONTENT_WIDTH + BOOK_CARD_PADDING * 2.0;
@@ -243,11 +235,7 @@ pub const BOOK_CARD_TITLE_SIZE: f32 = TEXT_SM;
 pub const BOOK_CARD_TITLE_WEIGHT: FontWeight = FontWeight::SEMIBOLD;
 pub const BOOK_CARD_TITLE_LINE_HEIGHT_EM: f32 = 1.25;
 pub const BOOK_CARD_TEXT_LINES: usize = 3;
-pub const BOOK_CARD_TITLE_LINES: usize = 2;
 pub const BOOK_CARD_SUBTITLE_SIZE: f32 = TEXT_XS;
-pub const BOOK_CARD_SUBTITLE_LINES: usize = 2;
-/// Author lines run at `TEXT_XS`.
-pub const BOOK_CARD_AUTHOR_LINE_HEIGHT_EM: f32 = 1.0;
 /// Compact card spacing for the GPUI browser surface.
 pub const BOOK_CARD_COVER_CONTENT_GAP: f32 = SPACE_SM;
 // Three main-title lines are the tallest allocation of the shared budget.
@@ -376,16 +364,17 @@ pub const COMPACT_HIERARCHY_ITEM_ROW_GAP: f32 = SPACE_SM;
 pub const COMPACT_HIERARCHY_ITEM_HORIZONTAL_PADDING: f32 = CONTENT_INSET;
 pub const COMPACT_HIERARCHY_ITEM_CONTENT_GAP: f32 = SPACE_SM;
 
-/// Container cards show two columns of child entries beneath the title.
-pub const SECTION_CARD_WIDTH: f32 = 384.0;
-pub const SECTION_CARD_SUBJECT_COLUMNS: usize = 2;
+/// Container cards show one column of child entries beneath the title.
+/// Match folder cards so their width follows the cover size.
+pub const SECTION_CARD_WIDTH: f32 = FOLDER_CARD_WIDTH;
+pub const SECTION_CARD_SUBJECT_COLUMNS: usize = 1;
 pub const SECTION_CARD_HEADING_HEIGHT_REM: f32 = 2.5;
 pub const SECTION_CARD_HEADING_PADDING_REM: f32 = 0.5;
 pub const SECTION_CARD_SUBJECT_ROW_HEIGHT_REM: f32 = 1.5;
 pub const SECTION_CARD_COLUMN_GAP: f32 = SPACE_MD;
 /// The cover art in a section card's strip. The cell adds the book card's
 /// padding around it.
-pub const SECTION_CARD_COVER_WIDTH: f32 = 200.0;
+pub const SECTION_CARD_COVER_WIDTH: f32 = 150.0;
 /// Two cover cells plus the enclosing section's horizontal inset.
 pub const FOLDER_CARD_WIDTH: f32 = (SECTION_CARD_COVER_WIDTH + BOOK_CARD_PADDING * 2.0) * 2.0 + (SPACE_MD - BOOK_CARD_PADDING) * 2.0;
 
@@ -416,10 +405,6 @@ pub const CONTENTS_AMOUNT_WIDTH_REM: f32 = 5.125;
 /// no `ch`; this is a little over the interface face's figure width, so a
 /// column sized by digit count never clips its widest number.
 pub const CONTENTS_DIGIT_WIDTH_EM: f32 = 0.55;
-
-/// The rule a tab draws under its own label to say the panel below belongs to
-/// it. Thicker than `rule`'s hairline on purpose: it is a state, not a divider.
-pub const TAB_UNDERLINE_HEIGHT: f32 = 2.0;
 
 /// Shared geometry for settings controls.
 pub fn settings_control_size_rem() -> f32 {

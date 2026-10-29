@@ -2,6 +2,7 @@
 """Run shared release tests off hosted runners; optionally attest the exact commit."""
 import argparse
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -68,9 +69,13 @@ def main():
         report(args.report, sha, 'pending')
     try:
         failures = []
+        environment = os.environ.copy()
+        # Integration executables use the linked PDF core without cfg(test).
+        environment.setdefault('BOKHEIM_PDFIUM_LIBRARY_PATH',
+                               str(ROOT / '.pdfium/x86_64-unknown-linux-gnu/libpdfium.so'))
         for command in commands():
             print('+ ' + ' '.join(command), flush=True)
-            result = subprocess.run(command, cwd=ROOT)
+            result = subprocess.run(command, cwd=ROOT, env=environment)
             if result.returncode:
                 if 'shared/pdfium/prepare.py' in command:
                     raise subprocess.CalledProcessError(result.returncode, command)

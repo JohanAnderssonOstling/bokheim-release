@@ -2,17 +2,30 @@
 
 mod controls;
 mod image_decode;
+mod layout;
+#[cfg(all(test, not(feature = "kobo"), not(target_arch = "wasm32")))]
+mod tests;
+
+#[cfg(feature = "kobo")]
+use gpui::AnyView;
 
 use book_content::comic::ComicReader;
 use fixed_page::{DISPLAY_CACHE_BUDGET, PageCache, PageImage, PageLayout, PageSwipe, PageZoom as Zoom};
-use gpui::{App, Bounds, Context, FocusHandle, Focusable, MouseButton, Pixels, Point, Render, ScrollDelta, Task, Window, div, img, prelude::*, px};
+use gpui::{App, Bounds, Context, FocusHandle, Focusable, MouseButton, PinchEvent, Pixels, Point, Render, ScrollDelta, ScrollWheelEvent, Task, TouchPhase, Window, div, img, prelude::*, px};
 use gpui_component::ElementExt;
 use library_backend::LibraryClient;
 use library_model::BookLocator;
-use std::{collections::HashMap, rc::Rc, sync::Arc};
+use std::{
+    collections::{HashMap, VecDeque},
+    rc::Rc,
+    sync::Arc,
+};
 use ui_components as components;
 
+use layout::{ComicLayout, MAX_COLUMNS};
+
 use crate::invalidation::Component;
+use crate::settings::ReaderSettings;
 use crate::shell::{
     chrome,
     page::ReaderSurface,
@@ -27,17 +40,23 @@ pub(crate) struct ComicReaderView {
     title: String,
     current: usize,
     columns: usize,
+    page_gap: f32,
     right_to_left: bool,
     zoom: Zoom,
     offset: f32,
     pan_x: f32,
     viewport: Bounds<Pixels>,
+    /// Pointer origin, absolute flow position, and horizontal pan at drag start.
     drag: Option<(Point<Pixels>, f32, f32)>,
     dragged: bool,
     swipe: PageSwipe,
+    touchpad: components::TouchpadNavigation,
     pages: PageCache<usize, PageImage>,
     errors: HashMap<usize, String>,
     load_task: Option<Task<()>>,
+    requested_pages: VecDeque<usize>,
+    loading_page: Option<usize>,
+    page_sizes: HashMap<usize, (u32, u32)>,
     positions: ReadingPositionWriter,
     navigation_revision: u64,
     sidebar: SidebarState,
@@ -48,7 +67,7 @@ pub(crate) struct ComicReaderView {
     settings_navigation: SettingsNavigation,
     close_reader: crate::CloseReader,
     #[cfg(feature = "kobo")]
-    brightness: gpui::Entity<crate::shell::brightness::BrightnessControls>,
+    device_controls: Option<AnyView>,
 }
 
 impl Focusable for ComicReaderView {
@@ -59,7 +78,7 @@ impl Focusable for ComicReaderView {
 
 impl ComicReaderView {
     pub(crate) fn new(
-        locator: BookLocator, title: String, reader: ComicReader, initial_page: usize, offset: f32, _app: app::AppClient, library: Rc<LibraryClient>, close_reader: crate::CloseReader, window: &mut Window, cx: &mut Context<Self>,
+        locator: BookLocator, title: String, reader: ComicReader, initial_page: usize, offset: f32, _app: app::AppClient, library: Rc<LibraryClient>, close_reader: crate::CloseReader, #[cfg(feature = "kobo")] device_controls: Option<AnyView>, window: &mut Window, cx: &mut Context<Self>,
     ) -> Self {
         let focus = cx.focus_handle();
         focus.focus(window, cx);
@@ -74,6 +93,7 @@ impl ComicReaderView {
             title,
             current,
             columns: 1,
+            page_gap: ReaderSettings::preferences(cx).comic_page_gap_px,
             zoom: if offset > 0.0 { Zoom::FitWidth } else { Zoom::FitPage },
             offset,
             pan_x: 0.0,
@@ -81,9 +101,13 @@ impl ComicReaderView {
             drag: None,
             dragged: false,
             swipe: PageSwipe::default(),
+            touchpad: components::TouchpadNavigation::default(),
             pages: PageCache::new(DISPLAY_CACHE_BUDGET),
             errors: HashMap::new(),
             load_task: None,
+            requested_pages: VecDeque::new(),
+            loading_page: None,
+            page_sizes: HashMap::new(),
             positions: ReadingPositionWriter::new(cx, locator.content_hash(), library),
             navigation_revision: 0,
             sidebar,
@@ -94,26 +118,34 @@ impl ComicReaderView {
             settings_navigation: SettingsNavigation::new(window, cx),
             close_reader,
             #[cfg(feature = "kobo")]
-            brightness: cx.new(|cx| crate::shell::brightness::BrightnessControls::new(_app, window, cx)),
+            device_controls,
         };
         view.request_pages(cx);
         view
     }
 
+    fn flow(&self) -> ComicLayout {
+        ComicLayout::new(&self.reader.pages, self.columns, (f32::from(self.viewport.size.width), f32::from(self.viewport.size.height)), self.zoom, self.page_gap, |index| self.page_sizes.get(&index).copied())
+    }
+
     fn request_pages(&mut self, cx: &mut Context<Self>) {
-        let end = self.current + self.visible_count();
-        let mut requested: Vec<_> = (self.current..end).collect();
-        if end < self.reader.pages.len() {
-            requested.push(end);
+        let flow = self.flow();
+        let top = flow.scroll_top(self.current, self.offset);
+        self.requested_pages = flow.requested_pages(top).into_iter().filter(|index| !self.pages.contains(*index) && !self.errors.contains_key(index) && self.loading_page != Some(*index)).collect();
+        if self.load_task.is_some() || self.requested_pages.is_empty() {
+            return;
         }
-        if self.current > 0 {
-            requested.push(self.current - 1);
-        }
-        requested.retain(|index| !self.pages.contains(*index) && !self.errors.contains_key(index));
-        let reader = self.reader.clone();
         self.load_task = Some(cx.spawn(async move |this, cx| {
-            for index in requested {
-                let reader = reader.clone();
+            loop {
+                let next = this.update(cx, |view, _| {
+                    let next = view.requested_pages.pop_front();
+                    view.loading_page = next;
+                    if next.is_none() {
+                        view.load_task = None;
+                    }
+                    next.map(|index| (index, view.reader.clone()))
+                });
+                let Ok(Some((index, reader))) = next else { return };
                 let result = cx
                     .background_executor()
                     .spawn(async move {
@@ -123,10 +155,13 @@ impl ComicReaderView {
                     .await;
                 if this
                     .update(cx, |view, cx| {
+                        view.loading_page = None;
                         match result {
                             Ok(page) => {
                                 gpui_image_eviction::track_image(&page.image, cx);
-                                let visible = view.current..view.current + view.visible_count();
+                                view.page_sizes.insert(index, (page.width, page.height));
+                                let flow = view.flow();
+                                let visible = flow.visible_pages(flow.scroll_top(view.current, view.offset));
                                 let bytes = page.byte_len;
                                 view.pages.insert_protected(index, Arc::new(page), bytes, |key| visible.contains(&key));
                             }
@@ -134,6 +169,8 @@ impl ComicReaderView {
                                 view.errors.insert(index, error);
                             }
                         }
+                        view.clamp_position();
+                        view.request_pages(cx);
                         cx.notify();
                     })
                     .is_err()
@@ -145,80 +182,102 @@ impl ComicReaderView {
     }
 
     fn evict_pages(&mut self) {
-        let visible = self.current..self.current + self.visible_count();
+        let flow = self.flow();
+        let visible = flow.visible_pages(flow.scroll_top(self.current, self.offset));
         self.pages.trim(|key| visible.contains(&key));
     }
 
     fn layout(&self, index: usize) -> Option<PageLayout> {
-        let page = self.pages.peek(index)?;
-        Some(PageLayout::new((page.width, page.height), (f32::from(self.viewport.size.width) / self.visible_count() as f32, f32::from(self.viewport.size.height)), self.zoom, self.offset, self.pan_x))
-    }
-
-    fn visible_count(&self) -> usize {
-        let remaining = self.reader.pages.len().saturating_sub(self.current);
-        if self.reader.pages[self.current].double_page || self.reader.pages.get(self.current + 1).is_some_and(|page| page.double_page) { 1 } else { self.columns.min(remaining).max(1) }
+        let size = self.page_sizes.get(&index).copied()?;
+        let flow = self.flow();
+        let row = flow.rows[flow.row_for_page(index)];
+        Some(PageLayout::new(size, (row.cell_width, f32::from(self.viewport.size.height)), self.zoom, 0.0, self.pan_x))
     }
 
     fn record_position(&self) {
-        self.positions.record(StoredPosition::comic_page(self.current, self.offset, self.reader.pages.len(), self.visible_count()), self.navigation_revision);
+        let flow = self.flow();
+        let visible = flow.visible_pages(flow.scroll_top(self.current, self.offset));
+        // Whole-page mode resumes at the current page. A nonzero saved offset
+        // denotes fit-width mode in the existing comic position format.
+        let offset = if self.zoom == Zoom::FitPage { 0.0 } else { self.offset };
+        self.positions.record(StoredPosition::comic_page(self.current, offset, self.reader.pages.len(), visible.len()), self.navigation_revision);
+    }
+
+    fn max_pan(&self, flow: &ComicLayout, top: f32) -> f32 {
+        flow.visible_pages(top)
+            .filter_map(|index| {
+                let size = self.page_sizes.get(&index).copied()?;
+                let cell_width = flow.rows[flow.row_for_page(index)].cell_width;
+                Some((PageLayout::new(size, (cell_width, f32::from(self.viewport.size.height)), self.zoom, 0.0, 0.0).width - cell_width).max(0.0))
+            })
+            .fold(0.0, f32::max)
     }
 
     fn clamp_position(&mut self) {
-        if let Some(layout) = self.layout(self.current) {
-            self.offset = self.offset.clamp(0.0, layout.max_offset);
-            self.pan_x = layout.pan_x;
-        }
+        let flow = self.flow();
+        let top = flow.scroll_top(self.current, self.offset);
+        (self.current, self.offset) = flow.anchor(top);
+        self.pan_x = self.pan_x.clamp(0.0, self.max_pan(&flow, top));
     }
 
-    fn go_to(&mut self, page: usize, cx: &mut Context<Self>) {
-        let page = page.min(self.reader.pages.len().saturating_sub(1));
-        if page == self.current {
+    fn move_viewport(&mut self, top: f32, pan_x: f32, cx: &mut Context<Self>) {
+        let flow = self.flow();
+        let top = top.clamp(0.0, flow.max_scroll);
+        let (current, offset) = flow.anchor(top);
+        let pan_x = pan_x.clamp(0.0, self.max_pan(&flow, top));
+        if (self.current, self.offset, self.pan_x) == (current, offset, pan_x) {
             return;
         }
-        self.current = page;
-        self.offset = 0.0;
-        self.pan_x = 0.0;
-        self.navigation_revision += 1;
+        if self.current != current {
+            self.navigation_revision += 1;
+        }
+        self.current = current;
+        self.offset = offset;
+        self.pan_x = pan_x;
         self.record_position();
         self.evict_pages();
         self.request_pages(cx);
         cx.notify();
     }
 
-    fn turn(&mut self, direction: i32, cx: &mut Context<Self>) {
-        let previous = if self.columns == 2 && self.current >= 2 && !self.reader.pages[self.current].double_page && !self.reader.pages[self.current - 1].double_page && !self.reader.pages[self.current - 2].double_page { 2 } else { 1 };
-        let page = if direction < 0 {
-            self.current.saturating_sub(previous)
-        } else if self.current + self.visible_count() < self.reader.pages.len() {
-            self.current + self.visible_count()
-        } else {
-            self.current
-        };
-        self.go_to(page, cx);
+    fn go_to(&mut self, page: usize, cx: &mut Context<Self>) {
+        let flow = self.flow();
+        let page = page.min(self.reader.pages.len().saturating_sub(1));
+        self.move_viewport(flow.rows[flow.row_for_page(page)].top, 0.0, cx);
     }
 
-    fn scroll(&mut self, dx: f32, dy: f32, turn_at_edge: bool, cx: &mut Context<Self>) {
-        let Some(layout) = self.layout(self.current) else { return };
-        let offset = (self.offset - dy / layout.height).clamp(0.0, layout.max_offset);
-        let page = self.pages.peek(self.current).expect("layout requires a loaded page");
-        let pan = PageLayout::new((page.width, page.height), (f32::from(self.viewport.size.width) / self.visible_count() as f32, f32::from(self.viewport.size.height)), self.zoom, offset, self.pan_x - dx).pan_x;
-        if offset == self.offset && pan == self.pan_x {
-            if turn_at_edge && dy.abs() >= 1.0 {
-                self.turn(if dy < 0.0 { 1 } else { -1 }, cx);
-            }
-            return;
+    fn turn(&mut self, direction: i32, cx: &mut Context<Self>) {
+        let flow = self.flow();
+        self.move_viewport(flow.scroll_top(self.current, self.offset) + direction as f32 * flow.viewport_height, self.pan_x, cx);
+    }
+
+    fn scroll(&mut self, dx: f32, dy: f32, cx: &mut Context<Self>) {
+        let flow = self.flow();
+        self.move_viewport(flow.scroll_top(self.current, self.offset) - dy, self.pan_x - dx, cx);
+    }
+
+    fn adjust_columns(&mut self, delta: isize, cx: &mut Context<Self>) {
+        let next = self.columns.saturating_add_signed(delta).clamp(1, MAX_COLUMNS);
+        if next != self.columns {
+            self.columns = next;
+            self.pan_x = 0.0;
+            self.clamp_position();
+            self.record_position();
+            self.evict_pages();
+            self.request_pages(cx);
+            cx.notify();
         }
-        self.offset = offset;
-        self.pan_x = pan;
-        self.record_position();
-        cx.notify();
     }
 
     fn adjust_zoom(&mut self, factor: f32, cx: &mut Context<Self>) {
+        if !factor.is_finite() || factor <= 0.0 || factor == 1.0 {
+            return;
+        }
         if let Some(layout) = self.layout(self.current) {
             self.zoom = Zoom::Fixed((layout.scale * factor).clamp(0.01, 16.0));
             self.clamp_position();
             self.record_position();
+            self.request_pages(cx);
             cx.notify();
         }
     }
@@ -251,37 +310,39 @@ impl Render for ComicReaderView {
         let visible = self.chrome.is_visible();
         let active_tab = active_tab.filter(|_| visible);
         self.chrome.sync_system_bars(visible, cx);
+        let preferences = ReaderSettings::preferences(cx);
+        let available_width = f32::from(window.viewport_size().width) - chrome::sidebar_width(active_tab.is_some(), window, cx);
+        let horizontal_margin = preferences.comic_horizontal_margin_px.min(((available_width - 100.0) / 2.0).max(0.0));
+        let vertical_margin = preferences.comic_vertical_margin_px.min(((f32::from(window.viewport_size().height) - 100.0) / 2.0).max(0.0));
+        if self.page_gap != preferences.comic_page_gap_px {
+            self.page_gap = preferences.comic_page_gap_px;
+            self.clamp_position();
+            self.request_pages(cx);
+        }
         let entity = cx.entity();
-        let mut document = div().id("comic-document").size_full().relative().overflow_hidden().bg(gpui::rgb(0x242424)).track_focus(&self.focus).key_context("ComicReaderDocument");
-        let visible_count = self.visible_count();
-        let end = self.current + visible_count;
-        for index in self.current..end {
-            let slot = if self.right_to_left { visible_count - 1 - (index - self.current) } else { index - self.current };
-            let cell_width = f32::from(self.viewport.size.width) / visible_count as f32;
-            if let Some(layout) = self.layout(index) {
+        let mut document = div().id("comic-document").debug_selector(|| "comic-document".into()).size_full().relative().overflow_hidden().bg(gpui::rgb(0x242424)).track_focus(&self.focus).key_context("ComicReaderDocument");
+        let flow = self.flow();
+        let scroll_top = flow.scroll_top(self.current, self.offset);
+        let visible_pages = flow.visible_pages(scroll_top);
+        for row_index in flow.visible_rows(scroll_top) {
+            let row = flow.rows[row_index];
+            let cell_width = row.cell_width;
+            for index in row.first..row.first + row.count {
+                let slot = if self.right_to_left { row.count - 1 - (index - row.first) } else { index - row.first };
+                let cell = div().debug_selector(move || format!("comic-page-{index}")).absolute().left(px(slot as f32 * (cell_width + row.gap))).top(px(row.top - scroll_top)).w(px(cell_width)).h(px(row.height)).overflow_hidden();
                 if let Some(page) = self.pages.get(index) {
-                    document = document.child(
-                        div()
-                            .absolute()
-                            .left(px(slot as f32 * cell_width))
-                            .top_0()
-                            .w(px(cell_width))
-                            .h_full()
-                            .overflow_hidden()
-                            .child(img(page.image.clone()).absolute().left(px(layout.left)).top(px(layout.top)).w(px(layout.width)).h(px(layout.height)).bg(gpui::rgb(0xffffff))),
-                    );
-                }
-            } else {
-                let message = self.errors.get(&index).map(|error| format!("Could not display page {}: {error}", index + 1)).unwrap_or_else(|| format!("Loading page {}…", index + 1));
-                document = document.child(div().absolute().left(px(slot as f32 * cell_width)).top_0().w(px(cell_width)).h_full().flex().items_center().justify_center().text_color(gpui::rgb(0xffffff)).child(message).when(
-                    self.errors.contains_key(&index),
-                    |body| {
+                    let layout = PageLayout::new((page.width, page.height), (cell_width, f32::from(self.viewport.size.height)), self.zoom, 0.0, self.pan_x);
+                    let top = (row.height - layout.height).max(0.0) * 0.5;
+                    document = document.child(cell.child(img(page.image.clone()).absolute().left(px(layout.left)).top(px(top)).w(px(layout.width)).h(px(layout.height)).bg(gpui::rgb(0xffffff))));
+                } else {
+                    let message = self.errors.get(&index).map(|error| format!("Could not display page {}: {error}", index + 1)).unwrap_or_else(|| format!("Loading page {}…", index + 1));
+                    document = document.child(cell.flex().items_center().justify_center().text_color(gpui::rgb(0xffffff)).child(message).when(self.errors.contains_key(&index), |body| {
                         body.child(components::outlined_text_button(("comic-retry", index), "Retry").on_click(cx.listener(move |view, _, _, cx| {
                             view.errors.remove(&index);
                             view.request_pages(cx);
                         })))
-                    },
-                ));
+                    }));
+                }
             }
         }
         let measure_target = entity.clone();
@@ -289,12 +350,13 @@ impl Render for ComicReaderView {
             .on_prepaint(move |bounds, _, cx| {
                 measure_target.update(cx, |view, cx| {
                     if view.viewport != bounds {
-                        let previous = (view.offset, view.pan_x);
+                        let previous = (view.current, view.offset, view.pan_x);
                         view.viewport = bounds;
                         view.clamp_position();
-                        if previous != (view.offset, view.pan_x) {
+                        if previous != (view.current, view.offset, view.pan_x) {
                             view.record_position();
                         }
+                        view.request_pages(cx);
                         cx.notify();
                     }
                 });
@@ -303,7 +365,7 @@ impl Render for ComicReaderView {
                 MouseButton::Left,
                 cx.listener(|view, event: &gpui::MouseDownEvent, window, cx| {
                     view.focus.focus(window, cx);
-                    view.drag = Some((event.position, view.offset, view.pan_x));
+                    view.drag = Some((event.position, view.flow().scroll_top(view.current, view.offset), view.pan_x));
                     view.dragged = false;
                 }),
             )
@@ -311,7 +373,7 @@ impl Render for ComicReaderView {
                 if !components::uses_mobile_reader_controls(window) && !view.focus.is_focused(window) {
                     view.focus.focus(window, cx);
                 }
-                let Some((start, offset, pan)) = view.drag else { return };
+                let Some((start, top, pan)) = view.drag else { return };
                 if !event.dragging() {
                     return;
                 }
@@ -320,9 +382,7 @@ impl Render for ComicReaderView {
                     return;
                 }
                 view.dragged = true;
-                view.offset = offset;
-                view.pan_x = pan;
-                view.scroll(dx, dy, false, cx);
+                view.move_viewport(top - dy, pan - dx, cx);
                 cx.stop_propagation();
             }))
             .on_mouse_up(
@@ -337,7 +397,7 @@ impl Render for ComicReaderView {
                     view.drag = None;
                 }),
             )
-            .on_click(cx.listener(|view, event: &gpui::ClickEvent, window, cx| {
+            .on_click(cx.listener(|view, event: &gpui::ClickEvent, _, cx| {
                 if view.dragged {
                     view.dragged = false;
                     return;
@@ -346,17 +406,9 @@ impl Render for ComicReaderView {
                 if fraction < 0.25 || fraction > 0.75 {
                     let direction = if (fraction < 0.25) != view.right_to_left { -1 } else { 1 };
                     view.turn(direction, cx);
-                    view.chrome.hide_for_motion(window, cx);
-                } else {
-                    if components::uses_mobile_reader_controls(window) && !view.chrome.is_visible() {
-                        view.sidebar.close(cx);
-                        view.chrome.show_from_touch(cx);
-                    } else {
-                        view.chrome.toggle(cx);
-                    }
                 }
             }))
-            .on_scroll_wheel(cx.listener(|view, event: &gpui::ScrollWheelEvent, window, cx| {
+            .on_scroll_wheel(cx.listener(|view, event: &ScrollWheelEvent, window, cx| {
                 let (dx, dy) = match event.delta {
                     ScrollDelta::Pixels(delta) => (f32::from(delta.x), f32::from(delta.y)),
                     ScrollDelta::Lines(delta) => (delta.x * 32.0, delta.y * 32.0),
@@ -367,38 +419,57 @@ impl Render for ComicReaderView {
                     view.swipe.push(dx, dy);
                     view.finish_swipe(window, cx);
                 } else if window.is_page_scroll_swipe() {
-                    if matches!(event.touch_phase, gpui::TouchPhase::Started) {
+                    if matches!(event.touch_phase, TouchPhase::Started) {
                         view.swipe.begin(components::in_bottom_gesture_edge(event.position, window));
                     }
-                    if matches!(event.touch_phase, gpui::TouchPhase::Cancelled) {
+                    if matches!(event.touch_phase, TouchPhase::Cancelled) {
                         view.swipe.cancel();
                     }
                     if view.swipe.push(dx, dy).is_some() {
-                        let previous = (view.offset, view.pan_x);
-                        view.scroll(dx, dy, false, cx);
-                        if previous != (view.offset, view.pan_x) {
+                        let previous = (view.current, view.offset, view.pan_x);
+                        view.scroll(dx, dy, cx);
+                        if previous != (view.current, view.offset, view.pan_x) {
                             view.swipe.mark_panned();
                         }
                     }
-                    if matches!(event.touch_phase, gpui::TouchPhase::Ended) {
+                    if matches!(event.touch_phase, TouchPhase::Ended) {
                         view.finish_swipe(window, cx);
                     }
+                } else if matches!(event.delta, ScrollDelta::Pixels(_)) || view.touchpad.is_active() || matches!(event.delta, ScrollDelta::Lines(delta) if delta.x.abs() > delta.y.abs()) {
+                    let turn = view.touchpad.update(event);
+                    let previous = (view.current, view.offset, view.pan_x);
+                    view.scroll(dx, dy, cx);
+                    if previous != (view.current, view.offset, view.pan_x) {
+                        view.touchpad.consume();
+                    } else if let Some(travel) = turn {
+                        let forward = if travel.x != 0.0 { (travel.x < 0.0) != view.right_to_left } else { travel.y < 0.0 };
+                        view.turn(if forward { 1 } else { -1 }, cx);
+                    }
                 } else {
-                    view.scroll(dx, dy, true, cx);
+                    view.scroll(dx, dy, cx);
                 }
                 view.chrome.hide_for_motion(window, cx);
                 cx.stop_propagation();
+            }))
+            .on_pinch(cx.listener(|view, event: &PinchEvent, window, cx| {
+                view.swipe.cancel();
+                view.touchpad.consume();
+                if event.phase != TouchPhase::Cancelled {
+                    view.adjust_zoom(1.0 + event.delta, cx);
+                    view.chrome.hide_for_motion(window, cx);
+                }
+                cx.stop_propagation();
             }));
         let count = self.reader.pages.len();
-        let percent = book_model::pdf_page_progress(self.current + visible_count - 1, count);
+        let percent = book_model::pdf_page_progress(visible_pages.end - 1, count);
         let progress_label = format!("{percent:.0}%");
         let sidebar = active_tab.map(|tab| {
             let body = self.render_panel(tab, window, cx);
-            let content = SidebarContent::new(percent / 100.0, progress_label.clone(), format!("{}/{count}", self.current + 1), Some(self.focus.clone()), body);
+            let content = SidebarContent::new(body);
             toolbar::reader_sidebar(self, &entity, content, theme, window, cx)
         });
         let surface = ReaderSurface {
-            document: components::reader_document_body().child(document).into_any_element(),
+            document: components::reader_document_body().px(px(horizontal_margin)).py(px(vertical_margin)).bg(gpui::rgb(0x242424)).child(document).into_any_element(),
             dock: None,
             sidebar,
             active_tab,
@@ -408,16 +479,15 @@ impl Render for ComicReaderView {
             title: self.title.clone(),
             chapter: format!("Page {} of {count}", self.current + 1),
             progress_label,
+            progress_fraction: percent / 100.0,
+            progress_detail: format!("{}/{count}", self.current + 1),
             bottom_bar_id: "comic-reader-bottom-bar",
         };
         let touch = cx.supports_touch_input() || components::uses_mobile_reader_controls(window);
-        let interactions = chrome::surface_interactions("comic", visible, active_tab.is_some(), touch, cx, |view: &mut Self, action, _, cx| match action {
+        let interactions = chrome::surface_interactions("comic", active_tab.is_some(), touch, cx, |view: &mut Self, action, _, cx| match action {
             chrome::SurfaceAction::PreviousPage => view.turn(-1, cx),
             chrome::SurfaceAction::NextPage => view.turn(1, cx),
-            chrome::SurfaceAction::ToggleChrome => view.chrome.toggle(cx),
-            chrome::SurfaceAction::ShowChrome => {
-                view.chrome.show_from_pointer(cx);
-            }
+            chrome::SurfaceAction::ToggleChrome => {}
         });
         crate::shell::page::reader_surface(self, surface, theme, window, cx).children(interactions)
     }

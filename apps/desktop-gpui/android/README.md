@@ -1,5 +1,226 @@
 # Android reader
 
+## F-Droid build mode
+
+Use a fresh, isolated checkout with the committed `Cargo.lock`, Python, CMake,
+Ninja, Git, Gradle 8.14.3, JDK 21, Android SDK 36, build-tools 36.0.0,
+NDK 29.0.14206865, and Rust 1.99.1 with the `aarch64-linux-android` target.
+The exact toolchain and APK normalization pins are in
+`scripts/fdroid/toolchains.json`. From the isolated repository root:
+
+```sh
+python3 scripts/fdroid/prefetch.py \
+  --pdfium-source-work ../.bokheim-native/pdfium \
+  --speech-source-work ../.bokheim-native/speech
+python3 scripts/fdroid/build.py \
+  --pdfium-source-work ../.bokheim-native/pdfium \
+  --speech-source-work ../.bokheim-native/speech
+```
+
+The preparation script downloads the pinned public companion sources to sibling
+directories, selects the F-Droid repository configuration, and removes unused
+Kobo packages, historical report archives, and binary test fixtures from this
+isolated checkout. It refuses to overwrite existing developer repositories.
+The pinned HtmlViewCore revision receives a small reading-line API compatibility
+patch required by the committed reader; the patch and resulting file hashes are
+recorded in `scripts/fdroid/sources.json`.
+
+F-Droid mode builds PDFium 7961 and Sherpa-ONNX 1.13.8 from pinned source. It
+links Sherpa against Microsoft's MIT-licensed ONNX Runtime 1.28.0 AAR, resolved
+through Maven Central and checked against its pinned SHA-256. The Rustls Android
+certificate verifier is compiled from the vendored upstream Kotlin source.
+Alba's published model card, CC BY 4.0 dataset license, attribution, runtime
+notices, and native source receipts are packaged in the APK assets.
+
+The release APK is unsigned regardless of local production signing settings.
+Google Play Services cannot be enabled. The updater is disabled in Java and
+Rust, and the installer permission and update components are removed. Normal
+Android storage access is retained. Output is under
+`apps/desktop-gpui/android/build/outputs/apk/release/`.
+
+Native caches and Rust outputs are separate from direct release builds.
+`-Pbokheim.pdfiumSourceWork=/path/to/cache` and
+`-Pbokheim.speechSourceWork=/path/to/cache` reuse verified native source work;
+`-Pbokheim.nativeJobs=2` and `-Pbokheim.rustJobs=2` control compilation parallelism.
+Run `verify-fdroid.py --apk <unsigned.apk> --aapt <SDK aapt> --output <report.json>`
+from the Android directory to verify manifest policy, native receipts, API
+architecture, 16 KiB page support, and packaged license notices.
+
+Install `fdroidserver` separately and use `scripts/fdroid/scan.py` for source and
+APK scanning. Scan the prepared sources before building, or use a separate source
+snapshot, so generated libraries are not mistaken for bundled source inputs.
+Android device testing was confirmed complete by the maintainer on 2026-10-26.
+The pinned HtmlEngine and HtmlViewCore sources include GPL-3.0-or-later license
+text and Cargo declarations. F-Droid maintainer review is still required.
+
+For a fresh checkout, keep the source preparation away from existing developer
+repositories. The following commands use the review branch until it is merged;
+`gradle` must be Gradle 8.14.3. Install JDK 21, Python 3 and bubblewrap
+(`bwrap`) on Linux, with unprivileged user namespaces enabled. Allow at least
+30 GiB of free space for downloads and build outputs, in addition to the
+installed Android SDK. The native work directories can live on a larger mounted
+filesystem; use the same paths for prefetch and build:
+
+```sh
+mkdir -p /path/to/isolated-fdroid-build
+cd /path/to/isolated-fdroid-build
+git clone --branch fdroid/android-source-build-20261026 \
+  https://github.com/JohanAnderssonOstling/bokheim.git bokheim
+cd bokheim
+export ANDROID_HOME="$HOME/Android/Sdk"
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+python3 scripts/fdroid/prefetch.py \
+  --pdfium-source-work ../.bokheim-native/pdfium \
+  --speech-source-work ../.bokheim-native/speech
+python3 scripts/fdroid/build.py \
+  --pdfium-source-work ../.bokheim-native/pdfium \
+  --speech-source-work ../.bokheim-native/speech
+```
+
+The unsigned output is
+`apps/desktop-gpui/android/build/outputs/apk/release/BokheimGpui-release-unsigned.apk`.
+The preparation step changes this isolated checkout's settings and removes the
+non-Android files described above; do not run it in your development checkout.
+
+### Offline recipe and clean rebuild verification
+
+`scripts/fdroid/metadata/se.bokheim.reader.gpui.yml` is the fdroiddata recipe.
+It pins the application commit, Rustup source, Rust version, Android NDK and
+upstream signing certificate. Its prebuild phase fetches dependencies; its build
+phase runs the unsigned build with Gradle/Cargo downloads disabled and compiler
+caches disabled. Native source archives are SHA-verified before compilation.
+The draft is disabled until a developer-signed F-Droid APK is published at its
+versioned `binary` URL. Publishing a release and submitting fdroiddata remain
+separate steps.
+
+For a network-enforced local check on Linux, run the build inside the provided
+user/network namespace wrapper. It allows loopback for Gradle, rejects external
+interfaces, probes the external network, and records the command result:
+
+```sh
+python3 scripts/fdroid/offline.py --report offline-network.json -- \
+  python3 scripts/fdroid/build.py \
+  --pdfium-source-work ../.bokheim-native/pdfium \
+  --speech-source-work ../.bokheim-native/speech
+```
+
+For a clean rebuild, use another fresh isolated checkout and fresh Cargo/Android
+outputs. Move aside the builder-owned PDFium `out/android-arm64` and speech
+`build` directories before rebuilding; keep their pinned source archives and
+toolchains. Never remove unrelated developer caches. Run the prefetch phase
+before disabling networking. The second checkout should have a different parent path. The directory name
+may differ: `build.py` mounts the app and its sibling dependencies under
+`/mnt/bokheim-build` in a private mount namespace. This is required because
+Cargo hashes absolute paths into external path dependency identities; Rust
+source-path remapping alone does not stabilize them.
+
+Prefetch includes Cargo's host dependencies, project dependency version
+constraints, AAPT2 and the pinned lint runtime. If other Gradle builds are active,
+use a separate `GRADLE_USER_HOME` for both prefetch and offline compilation to
+avoid shared cache locks. Signing settings must be available in that home's
+`gradle.properties` or through the `BOKHEIM_ANDROID_*` environment settings below.
+
+The build maps Rust and speech source paths to stable paths, fixes the build
+epoch, omits checkout-specific VCS metadata, and normalizes the unsigned APK with
+the SHA-pinned upstream `reproducible-apk-tools` alignment script. Developer
+signing preserves alignment and uses v2/v3 signatures (minimum Android API 26).
+Speech debug data is stripped during linking so its ELF build ID does not retain
+differences from debug paths that would survive a later strip operation.
+
+After building the independent unsigned APK, install the verification tools in
+a separate environment and compare it with the developer-signed reference:
+
+```sh
+python3 -m venv /path/to/fdroid-tools
+/path/to/fdroid-tools/bin/pip install -r scripts/fdroid/requirements.txt
+/path/to/fdroid-tools/bin/python scripts/fdroid/compare.py \
+  --signed-apk /path/to/developer-signed.apk \
+  --rebuilt-apk /path/to/clean-rebuilt-unsigned.apk \
+  --output reproducibility.json
+```
+
+The comparison verifies the reference signature, copies that signature onto the
+independent rebuild using `apksigcopier`, and verifies the result. Matching ZIP
+entry contents alone is insufficient; the signature-copy check must pass.
+F-Droid still needs to repeat this validation on its build infrastructure.
+
+### Automated developer-signed releases
+
+With the production signing settings described below configured, run this from
+the repository root:
+
+```sh
+python3 scripts/fdroid/release.py
+```
+
+The command builds the committed `HEAD` in an isolated source snapshot, prepares
+the companion sources, builds the unsigned F-Droid APK, checks its contents and
+native receipts, signs it with the existing production keystore, and verifies
+the certificate, alignment and unchanged APK contents. It finds JDK 21 and
+Gradle 8.14.3 in the environment or standard local installation/cache locations.
+Android SDK build-tools 36.0.0 and NDK 29.0.14206865 must be installed.
+Uncommitted developer changes are excluded; select another committed source
+with `--ref <commit-or-branch>`.
+
+Both APKs, SHA-256 checksums, and JSON verification reports are saved in a new
+timestamped directory under `artifacts/fdroid-release/`. The reports explicitly
+record that clean-build reproducibility has not been verified. This command
+creates local artifacts; official F-Droid submission and publication are separate.
+
+The helper reads the existing `BOKHEIM_ANDROID_*` environment settings or user
+Gradle properties, including private password files and a separate key password.
+Passwords reach the signing tools through child-process environment variables,
+never command-line password values. The keystore's certificate is checked against
+`BOKHEIM_ANDROID_CERT_SHA256` or `ANDROID_CERT_SHA256` when either is configured.
+The private key and passwords are never copied into the output directory.
+
+To reuse a prepared checkout and native caches:
+
+```sh
+python3 scripts/fdroid/release.py --checkout /path/to/prepared/bokheim \
+  --pdfium-source-work /path/to/pdfium-cache \
+  --speech-source-work /path/to/speech-cache
+```
+
+To sign an existing verified unsigned build without rebuilding:
+
+```sh
+python3 scripts/fdroid/release.py --apk /path/to/BokheimGpui-release-unsigned.apk
+```
+
+Additional options include `--output-dir`, `--gradle`, `--sdk`, `--jobs`,
+`--native-jobs`, and `--offline`. Existing output directories are preserved.
+The normal F-Droid Gradle build continues to produce an unsigned APK without
+requiring production signing credentials.
+
+F-Droid can either sign the app with its own per-app key, or distribute an APK
+signed with the existing developer key after verifying a reproducible build.
+The latter preserves update compatibility with direct APKs using that key, an
+unchanged application ID, and increasing version codes. The F-Droid-mode APK may
+have different features from direct releases; the F-Droid rebuild must match
+the developer-signed **F-Droid-mode** APK exactly, apart from signing data.
+Use the clean-rebuild comparison above to verify reproducibility. See F-Droid's
+[signing and reproducibility documentation](https://f-droid.org/docs/Reproducible_Builds/).
+
+To sign the unsigned F-Droid-mode APK yourself, use the existing production
+keystore and Android SDK `apksigner`; do not enable Gradle's local test signing.
+The following prompts for passwords rather than putting them in shell history:
+
+```sh
+"$ANDROID_HOME/build-tools/36.0.0/apksigner" sign \
+  --ks "$BOKHEIM_ANDROID_KEYSTORE" \
+  --ks-key-alias "$BOKHEIM_ANDROID_KEY_ALIAS" \
+  --alignment-preserved true --v1-signing-enabled false \
+  --v2-signing-enabled true --v3-signing-enabled true \
+  --out Bokheim-fdroid-signed.apk \
+  apps/desktop-gpui/android/build/outputs/apk/release/BokheimGpui-release-unsigned.apk
+"$ANDROID_HOME/build-tools/36.0.0/apksigner" verify \
+  --verbose --print-certs Bokheim-fdroid-signed.apk
+```
+
+F-Droid needs the public APK and certificate fingerprint for verification; the
+private signing key stays with the developer.
+
 Build an optimized ARM64 release APK with a JDK supported by Gradle (for example JDK 21),
 Android SDK 36, the configured Android NDK, and Rust's `aarch64-linux-android`
 target installed:
@@ -110,6 +331,50 @@ Check file and folder imports (including a cloud document provider), cancellatio
 downloads, reading after restart, and screen-locked audio. Local APK trials do
 not test Play-delivered split APKs; validate the bundle through an internal Play
 track before expanding the beta.
+
+## Google Drive availability
+
+Google Drive is disabled by default, including GitHub releases. These builds
+omit the Google authorization SDK. Opt in for a custom build with
+`-Pbokheim.googleDrive=true`, for example:
+
+```sh
+gradle assembleRelease -Pbokheim.googleDrive=true
+```
+
+The property enables both the Rust `google-drive` feature and the Google Play
+services dependency. With it enabled, both Android distributions offer Google
+Drive only when the Google Play services SDK reports that Play services is installed, enabled, valid, and up
+to date. The launcher publishes this capability before opening the backend and
+checks it again when the activity resumes. Unsupported devices hide the cloud
+connection entry and reject provider operations, including requests through an
+existing connection. Cached books and library metadata remain available.
+
+Drive connects through Google Play services' native AuthorizationClient. Google
+owns account selection and consent; a device browser is not required. Access
+is separate from the Bokheim account. Background renewal is bound to the saved
+Google account and never opens consent UI; revoked access requires reconnecting.
+A rejected token is cleared from the SDK cache before renewal. Account identity
+is checked against Google's verified user information before credentials are saved.
+
+The Google Cloud project must register an Android OAuth client for each package
+and signing certificate used by a distribution. That registration is deployment
+configuration and is not generated by the app. Devices without usable Play
+services have no browser fallback.
+
+Authorization tests cover consent, cancellation, partial permissions, silent
+renewal, account selection, activity destruction, and late callbacks.
+Availability tests cover missing, disabled, outdated, invalid, and updating
+services, settings changes, SDK failures, and a real SDK check without a Play
+services package. Run them in both distributions with:
+
+```sh
+gradle -Pbokheim.googleDrive=true testReleaseUnitTest --tests '*GoogleDrive*Test' testPlayUnitTest --tests '*GoogleDrive*Test' -x buildRustRelease
+cargo test -p cloud-storage --features google-drive --lib
+
+# Disabled builds reject authorization and have no Google auth SDK dependency.
+gradle -Pbokheim.googleDrive=false testReleaseUnitTest --tests '*GoogleDrive*Test' testPlayUnitTest --tests '*GoogleDrive*Test' -x buildRustRelease
+```
 
 ## Launcher icon
 
@@ -354,6 +619,21 @@ screen turns off or another app opens. The notification/lock screen and headset
 buttons control this same session. Audio focus and headphone disconnection are
 handled by Media3. The reader's close button explicitly stops playback.
 
+The media session publishes library cover artwork, the book title, author and
+current chapter. `ChapterPlayer` exposes the current chapter's duration and
+position to system controls while the decoder and persistence keep file-relative
+positions. Timed skips can cross chapter boundaries; expanded system controls
+also offer previous/next chapter actions. Seeks to another file are routed back
+to the owning Rust playback session. Artwork arriving after playback starts
+updates the existing session.
+
+TTS publishes the same book artwork and credits with the reader's current
+chapter, plus previous passage, play/pause and next passage. It has no invented
+seek timeline or Stop notification action; stopping/closing narration removes
+its media session and notification. Native card size, artwork presentation,
+action placement and button dimensions are controlled by Android/OEM SystemUI.
+The larger HTML card remains a design reference, not a custom lock-screen view.
+
 The service sends position updates to Rust independently of the UI. Positions
 are saved about every five seconds of progress and at pauses, seeks, and service
 shutdown. Reopening a book uses its saved library position. Force-stopping the
@@ -532,3 +812,117 @@ and prepaint (`layout_ms`), painting and frame completion, and renderer submissi
 shows the age of the position actually drawn. These stop at renderer submission;
 they do not measure display scanout. Tracing is off by default; force-stop and
 launch normally to disable it after profiling. Desktop hosts can enable the same frame tracing with `RUST_LOG=input_frame=debug`.
+
+## Historical F-Droid native dependency investigation
+
+These notes record the initial investigation on 2026-10-26. The implementation
+and validation described in the F-Droid sections at the start of this document
+supersede the experimental status and original checklist below.
+
+### Speech runtime
+
+An Android ARM64 `libsherpa-onnx-c-api.so` was successfully compiled from
+Sherpa-ONNX 1.13.8, commit
+`11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf`, using NDK `29.0.13599879`, API 26,
+and Microsoft's `com.microsoft.onnxruntime:onnxruntime-android:1.28.0` AAR from
+Maven Central. The ONNX Runtime headers and `jni/arm64-v8a/libonnxruntime.so` were
+extracted from the AAR and supplied through `SHERPA_ONNXRUNTIME_INCLUDE_DIR`
+and `SHERPA_ONNXRUNTIME_LIB_DIR`. This avoids Sherpa's default download of a
+different runtime from GitHub. Runtime version 1.28.0 is an investigated
+alternative; device synthesis and release-parity tests are still required.
+
+The important configuration was:
+
+```text
+ANDROID_ABI=arm64-v8a
+ANDROID_PLATFORM=android-26
+ANDROID_STL=c++_static
+BUILD_SHARED_LIBS=ON
+SHERPA_ONNX_ENABLE_C_API=ON
+SHERPA_ONNX_ENABLE_JNI=OFF
+SHERPA_ONNX_ENABLE_TTS=ON
+SHERPA_ONNX_ENABLE_PORTAUDIO=OFF
+SHERPA_ONNX_ENABLE_WEBSOCKET=OFF
+SHERPA_ONNX_ENABLE_BINARY=OFF
+SHERPA_ONNX_ENABLE_TESTS=OFF
+SHERPA_ONNX_BUILD_C_API_EXAMPLES=OFF
+SHERPA_ONNX_ENABLE_SPEAKER_DIARIZATION=OFF
+SHERPA_ONNX_ENABLE_PYTHON=OFF
+```
+
+The build compiles Piper phonemization and eSpeak NG from pinned source too.
+After fetching those source dependencies, a fresh CMake configuration also
+succeeded with network access disabled, using `FETCHCONTENT_SOURCE_DIR_*`
+overrides and `FETCHCONTENT_FULLY_DISCONNECTED=ON`.
+
+F-Droid's [Anti-Vocale recipe](https://raw.githubusercontent.com/f-droid/fdroiddata/0a6edd297c5fa86add3b5e0346d8802b4d53a3de/metadata/com.antivocale.app.yml)
+already builds this exact Sherpa revision. Its JNI-only flags must be adapted:
+Bokheim loads the C API from Rust and requires `SHERPA_ONNX_ENABLE_C_API=ON`.
+The [upstream F-Droid guide](https://github.com/k2-fsa/sherpa-onnx/blob/master/android/fdroid-reproducible-builds.md)
+helps with pinning and reproducibility, but its C-API-disabled example is for
+Java/JNI consumers.
+
+F-Droid [allows some freely licensed Maven dependencies](https://f-droid.org/docs/Inclusion_Policy/#build-transparency-and-reproducibility).
+Microsoft [documents using its Maven AAR from C/C++](https://onnxruntime.ai/docs/install/#cc-1).
+This is a candidate ONNX Runtime sourcing route, not confirmation of F-Droid
+acceptance for Bokheim. Building ONNX Runtime itself from source remains another
+option if review requires it. Voice-model licensing and provenance must be
+reviewed separately from the executable libraries.
+
+### PDFium
+
+F-Droid's [MJ PDF recipe](https://raw.githubusercontent.com/f-droid/fdroiddata/0a6edd297c5fa86add3b5e0346d8802b4d53a3de/metadata/com.gitlab.mudlej.MjPdfReader.yml)
+builds PDFium from source with GN/Ninja. Its [source builder](https://gitlab.com/mudlej_android/mj_pdf_reader/-/blob/18f9a3b2f685cd26f7dc145b33f40f9e91a9c20f/build_dependencies/pdfium_source.py)
+pins PDFium/depot_tools and applies the same family of shared-library and Android
+patches as Bokheim's current binary provider.
+
+The investigation checked PDFium branch 7961 at commit
+`dd3583292697a0356cca1f64892892a92f0a2770`, with Chromium build dependency
+`73c0fa98c5cf963c60ea685c57826fa7ba6253d8`. All four applicable patches from
+`bblanchon/pdfium-binaries` commit `c6529b58791d142002f819beb46e370e668797d7`
+applied with zero fuzz: `shared_library.patch`, `public_headers.patch`,
+`clang_rt.patch`, and `android/build.patch`. The shared-library and Android
+visibility patches provide the library and exported C API used by `pdfium-render`.
+An isolated Android ARM64 source build with all four upstream patches succeeded
+on 2026-10-26. It used pinned depot_tools commit
+`13febbee9ece9e03df923f69d540afc63c6db93e`, PDFium's pinned Android toolchain
+`30.0.14608247`, and GN/Ninja with V8/XFA and ThinLTO disabled. Compilation with
+two jobs took 321 seconds; setup through build completion took about nine minutes.
+The checkout, tools, caches, and outputs occupy about 9.1 GiB under
+`.tmp/pdfium-source-build-7961/`.
+
+The resulting `libpdfium.so` is 6,329,920 bytes, with SHA-256
+`a743798ff9e35eff987354e9a15d0c8e154f9206537b276e651c30b4e9c64c88`.
+Validation confirmed an ELF64 AArch64 library, all 461 C API exports from the
+current Android binary, 16 KiB alignment on every load segment, and only
+`libc.so`, `libdl.so`, and `libm.so` as shared dependencies. Source revisions,
+resolved CIPD package IDs, patch hashes, license files, build logs, and the library
+are saved in `artifacts/pdfium-source-build-20261026/`.
+
+Repeat the isolated build and validation from the repository root:
+
+```sh
+python3 artifacts/pdfium-source-build-20261026/build.py
+python3 artifacts/pdfium-source-build-20261026/validate.py
+```
+
+This experiment does not replace Gradle's current prebuilt input. Android device
+rendering, text extraction, PDF links, APK integration, and clean-build
+reproducibility remain to be tested before adopting the source-built library.
+
+### Original implementation checklist
+
+1. Add an explicit source-input mode to `shared/pdfium/prepare.py` and
+   `shared/reader-speech/prepare_android.py`. Current preparation always fetches
+   pinned prebuilt runtime archives and would overwrite separately built inputs.
+2. Extend `shared/pdf-reader-core/build.rs` and the PDFium receipt format to
+   validate source-built inputs. `PDFIUM_PREPARED_DIR` alone is insufficient:
+   the current receipt requires the prebuilt archive's SHA-256. Record source
+   commits, patches, toolchain, output hashes, and notices instead of claiming a
+   locally built library came from that archive.
+3. Let Gradle stage the selected source-built libraries and their notices. Keep
+   production binary acquisition as a separate mode; do not substitute libraries
+   silently or disable integrity checks for F-Droid.
+4. Build the full F-Droid variant in a clean environment, test PDF rendering and
+   TTS synthesis on-device, and then verify APK reproducibility if distributing
+   with the existing developer signing key.

@@ -4,7 +4,7 @@ use gpui::{AppContext, Context, Entity, Window};
 use gpui_component::input::{InputState, OtpState};
 
 use crate::model::AccountFlow;
-use crate::services::UiFuture;
+use app::BackendError;
 
 use super::SyncPage;
 
@@ -37,13 +37,12 @@ impl AuthenticationInputs {
 impl SyncPage {
     /// Leaving a flow re-masks every password, so a field revealed on one
     /// screen is never left in clear text behind another.
-    pub(super) fn set_flow(&mut self, flow: AccountFlow, window: &mut Window, cx: &mut Context<Self>) {
+    pub(super) fn set_flow(&mut self, flow: AccountFlow, cx: &mut Context<Self>) {
         if self.flow == flow && self.error.is_none() && self.message.is_none() {
             return;
         }
-        self.password_revealed = false;
         for state in [&self.authentication.password, &self.authentication.registration_password, &self.authentication.new_password] {
-            state.update(cx, |state, cx| state.set_masked(true, window, cx));
+            state.update(cx, |state, cx| state.set_masked(true, cx));
         }
         self.flow = flow;
         self.login_failed = false;
@@ -52,7 +51,7 @@ impl SyncPage {
         cx.notify();
     }
 
-    fn start_account_request(&mut self, progress: &'static str, success: &'static str, next_flow: AccountFlow, operation: UiFuture<()>, cx: &mut Context<Self>) {
+    fn start_account_request(&mut self, progress: &'static str, success: &'static str, next_flow: AccountFlow, operation: impl Future<Output = Result<(), BackendError>> + 'static, cx: &mut Context<Self>) {
         if self.is_busy() {
             return;
         }
@@ -66,8 +65,7 @@ impl SyncPage {
                 page.activity = super::AccountActivity::Idle;
                 match result {
                     Ok(()) => {
-                        page.password_revealed = false;
-                        page.flow = next_flow;
+                        page.set_flow(next_flow, cx);
                         page.message = Some(success.into());
                     }
                     Err(error) => {
@@ -88,7 +86,8 @@ impl SyncPage {
             cx.notify();
             return;
         }
-        let operation = super::account::login(&self.services.backend, email, password);
+        let backend = self.services.backend.clone();
+        let operation = async move { backend.login(email, password).await };
         self.start_snapshot_operation("Signing in…", None, true, operation, cx);
     }
 
@@ -101,7 +100,7 @@ impl SyncPage {
             return;
         }
         let backend = self.services.backend.clone();
-        let operation = Box::pin(async move { backend.request_public_registration(email, password).await });
+        let operation = async move { backend.request_public_registration(email, password).await };
         self.start_account_request("Creating account…", "Check your email for a six-digit verification PIN", AccountFlow::VerifyEmail, operation, cx);
     }
 
@@ -113,7 +112,7 @@ impl SyncPage {
             return;
         }
         let backend = self.services.backend.clone();
-        let operation = Box::pin(async move { backend.resend_verification(email).await });
+        let operation = async move { backend.resend_verification(email).await };
         self.start_account_request("Resending PIN…", "Verification PIN sent if the address exists", AccountFlow::VerifyEmail, operation, cx);
     }
 
@@ -137,7 +136,8 @@ impl SyncPage {
             cx.notify();
             return;
         }
-        let operation = super::account::verify_email(&self.services.backend, email, pin, password);
+        let backend = self.services.backend.clone();
+        let operation = async move { backend.verify_email(email, pin, password).await };
         self.start_snapshot_operation("Verifying email…", Some("Email verified"), false, operation, cx);
     }
 
@@ -149,7 +149,7 @@ impl SyncPage {
             return;
         }
         let backend = self.services.backend.clone();
-        let operation = Box::pin(async move { backend.request_password_reset(email).await });
+        let operation = async move { backend.request_password_reset(email).await };
         self.start_account_request("Requesting reset…", "Check your email for a password reset code. If the address has an account, an email will arrive shortly.", AccountFlow::ResetPassword, operation, cx);
     }
 
@@ -162,7 +162,7 @@ impl SyncPage {
             return;
         }
         let backend = self.services.backend.clone();
-        let operation = Box::pin(async move { backend.reset_password(token, password).await });
+        let operation = async move { backend.reset_password(token, password).await };
         self.start_account_request("Updating password…", "Password updated. Sign in with your new password.", AccountFlow::SignIn, operation, cx);
     }
 }

@@ -140,6 +140,7 @@ pub fn open_ui(
     let update_controls = windows_updates::bind(cx);
     #[cfg(all(feature = "android", target_os = "android"))]
     let update_controls = android_updates::bind(cx);
+    reader_ui::configure_font_cache(backend_context.app_data_dir().join("cache/fonts/v1"));
     let session_path = session_path(backend_context.app_data_dir());
     let playback_restore_path = Some(backend_context.app_data_dir().join("active-audiobook.json"));
     let saved_session = UiSession::load(&session_path);

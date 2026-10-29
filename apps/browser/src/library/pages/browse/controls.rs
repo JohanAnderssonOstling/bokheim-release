@@ -12,11 +12,10 @@ use library_model::{BrowseBookSort, BrowseChipSort, BrowseLocation, FeedFacetGro
 pub(crate) struct BrowseOptionsSelection {
     pub(crate) search: String,
     pub(super) formats: Vec<LibraryFileTypeFilter>,
-    pub(super) chip_sort: Option<BrowseChipSort>,
-    pub(super) book_sort: Option<BrowseBookSort>,
+    pub(super) chip_sort: BrowseChipSort,
+    pub(super) book_sort: BrowseBookSort,
     pub(super) languages: Vec<String>,
     pub(super) hide_finished: bool,
-    pub(super) include_direct_child_books: bool,
     /// The catalog grouped by author rather than by subject.
     pub(super) by_author: bool,
 }
@@ -26,11 +25,10 @@ impl BrowseOptionsSelection {
         Self {
             search: String::new(),
             formats: Vec::new(),
-            chip_sort: controls.collection_sorts.first().copied(),
-            book_sort: controls.book_sorts.first().copied(),
+            chip_sort: controls.collection_sorts.first().copied().unwrap_or_default(),
+            book_sort: controls.book_sorts.first().copied().unwrap_or_default(),
             languages: Vec::new(),
             hide_finished: false,
-            include_direct_child_books: false,
             by_author: false,
         }
     }
@@ -40,11 +38,10 @@ impl BrowseOptionsSelection {
             location,
             search: if include_search { self.search.clone() } else { String::new() },
             file_types: self.formats.clone(),
-            chip_sort: self.chip_sort.unwrap_or_default(),
-            book_sort: self.book_sort.unwrap_or_default(),
+            chip_sort: self.chip_sort,
+            book_sort: self.book_sort,
             languages: super::languages::query_codes(&self.languages),
             hide_finished: self.hide_finished,
-            include_direct_child_books: self.include_direct_child_books,
         }
     }
 
@@ -52,8 +49,8 @@ impl BrowseOptionsSelection {
     /// it changed anything. A choice the controls do not offer is ignored.
     pub(crate) fn apply(&mut self, event: BrowseOptionsEvent, controls: &BrowseControls) -> bool {
         match event {
-            BrowseOptionsEvent::SelectChipSort(sort) => controls.collection_sorts.contains(&sort) && std::mem::replace(&mut self.chip_sort, Some(sort)) != Some(sort),
-            BrowseOptionsEvent::SelectBookSort(sort) => controls.book_sorts.contains(&sort) && std::mem::replace(&mut self.book_sort, Some(sort)) != Some(sort),
+            BrowseOptionsEvent::SelectChipSort(sort) => controls.collection_sorts.contains(&sort) && std::mem::replace(&mut self.chip_sort, sort) != sort,
+            BrowseOptionsEvent::SelectBookSort(sort) => controls.book_sorts.contains(&sort) && std::mem::replace(&mut self.book_sort, sort) != sort,
             BrowseOptionsEvent::ToggleFormat(format) => toggle(&mut self.formats, format, &controls.formats),
             BrowseOptionsEvent::ToggleLanguage(language) => toggle(&mut self.languages, language, &controls.languages),
             BrowseOptionsEvent::ToggleHideFinished => {
@@ -61,10 +58,6 @@ impl BrowseOptionsSelection {
                     return false;
                 }
                 self.hide_finished = !self.hide_finished;
-                true
-            }
-            BrowseOptionsEvent::ToggleDirectChildBooks => {
-                self.include_direct_child_books = !self.include_direct_child_books;
                 true
             }
             BrowseOptionsEvent::ShowByAuthor(by_author) => controls.groupings && std::mem::replace(&mut self.by_author, by_author) != by_author,
@@ -76,9 +69,8 @@ impl BrowseOptionsSelection {
     /// Whether a filter is narrowing the books. The search is not one: it has
     /// its own button. Nor is the grouping, which chooses what the page is, or
     /// a sort, which orders the books without hiding any.
-    fn is_filtered(&self, controls: &BrowseControls) -> bool {
-        let defaults = Self::for_controls(controls);
-        Self { search: String::new(), by_author: false, languages: Vec::new(), chip_sort: defaults.chip_sort, book_sort: defaults.book_sort, ..self.clone() } != defaults
+    fn is_filtered(&self) -> bool {
+        !self.formats.is_empty() || self.hide_finished
     }
 }
 
@@ -110,7 +102,6 @@ pub(crate) enum BrowseOptionsEvent {
     ToggleFormat(Option<LibraryFileTypeFilter>),
     ToggleLanguage(Option<String>),
     ToggleHideFinished,
-    ToggleDirectChildBooks,
     /// The catalog by author (`true`) or by subject.
     ShowByAuthor(bool),
     /// One of a feed's own sort or filter choices: the feed page it names.
@@ -133,7 +124,6 @@ fn offered<T>(facets: Vec<Facet<T>>) -> Vec<Facet<T>> {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub(crate) struct BrowseControls {
-    pub(crate) supports_direct_child_books: bool,
     /// Offers to hide finished books; catalog books have no reading history.
     pub(crate) hide_finished: bool,
     /// The catalog offers to group its books by subject or by author.
@@ -148,13 +138,13 @@ pub(crate) struct BrowseControls {
 
 impl BrowseControls {
     pub(crate) fn library() -> Self {
-        Self { supports_direct_child_books: false, hide_finished: true, groupings: false, collection_sorts: BrowseChipSort::ALL.to_vec(), book_sorts: BrowseBookSort::ALL.to_vec(), formats: Vec::new(), languages: Vec::new(), feed: None }
+        Self { hide_finished: true, groupings: false, collection_sorts: BrowseChipSort::ALL.to_vec(), book_sorts: BrowseBookSort::ALL.to_vec(), formats: Vec::new(), languages: Vec::new(), feed: None }
     }
 
     /// A feed page offers only the feed's own choices: the library's sorts and
     /// filters do not reach a page fetched from the feed.
     pub(crate) fn feed(facets: Vec<FeedFacetGroup>) -> Self {
-        Self { supports_direct_child_books: false, hide_finished: false, groupings: false, collection_sorts: Vec::new(), book_sorts: Vec::new(), formats: Vec::new(), languages: Vec::new(), feed: Some(facets) }
+        Self { hide_finished: false, groupings: false, collection_sorts: Vec::new(), book_sorts: Vec::new(), formats: Vec::new(), languages: Vec::new(), feed: Some(facets) }
     }
 
     pub(crate) fn library_with_facets(language_counts: &[LibraryLanguageCount], format_counts: &[LibraryFormatCount]) -> Self {
@@ -165,16 +155,16 @@ impl BrowseControls {
 }
 
 /// Sort and filter choices use the same popup-menu surface as the Add action
-/// on wide windows. On a compact window the popup menu widget has no bottom
-/// sheet mode, so the trigger instead toggles `browse_options_sheet` below.
+/// on wide pointer-driven windows. Compact windows and touch targets use
+/// `browse_options_sheet` below.
 /// `menu_anchor` is the menu's corner at the trigger.
-pub(super) fn browse_options_control(page: Entity<BrowsePage>, controls: BrowseControls, selection: BrowseOptionsSelection, compact: bool, menu_anchor: Anchor, theme: components::BrowserTheme) -> AnyElement {
+pub(super) fn browse_options_control(page: Entity<BrowsePage>, selection: &BrowseOptionsSelection, compact: bool, menu_anchor: Anchor, theme: components::BrowserTheme) -> AnyElement {
     // A filter narrowing the books is state the page holds, so the trigger
     // takes the solid accent while one is on — the same mark as an open search.
-    let filtered = selection.is_filtered(&controls);
-    let trigger = components::selectable_button(components::outlined_icon_button("browse-options", "Sort & filter", IconName::Settings2, theme), filtered, theme);
+    let filtered = selection.is_filtered();
+    let trigger = components::selectable_button(components::outlined_icon_button("browse-options", "Sort & filter", IconName::Settings2), filtered, theme);
 
-    if compact {
+    if compact || components::touch_ui() || cfg!(feature = "kobo") {
         return trigger.on_click(move |_, _, cx| page.update(cx, |page, cx| page.toggle_browse_options_sheet(cx))).into_any_element();
     }
 
@@ -183,11 +173,11 @@ pub(super) fn browse_options_control(page: Entity<BrowsePage>, controls: BrowseC
         .into_any_element()
 }
 
-pub(super) fn browse_language_control(page: Entity<BrowsePage>, controls: &BrowseControls, selection: &BrowseOptionsSelection, compact: bool, anchor: Anchor, theme: components::BrowserTheme) -> Option<AnyElement> {
+pub(super) fn browse_language_control(page: Entity<BrowsePage>, controls: &BrowseControls, selection: &BrowseOptionsSelection, compact: bool, anchor: Anchor) -> Option<AnyElement> {
     if controls.feed.is_some() || (controls.languages.is_empty() && selection.languages.is_empty()) {
         return None;
     }
-    Some(components::outlined_icon_button("browse-languages", "Languages", Icon::empty().path("icons/translate.svg"), theme)
+    Some(components::outlined_icon_button("browse-languages", "Languages", Icon::empty().path("icons/translate.svg"))
         .dropdown_menu_with_anchor(anchor, move |menu, _, cx| options_menu(menu.touch_friendly(compact || components::touch_ui()), page.clone(), true, cx))
         .into_any_element())
 }
@@ -296,7 +286,6 @@ impl BrowseControls {
             (Some("Sort collections"), self.collection_sorts.iter().copied().map(SelectChipSort).collect()),
             (Some("Format"), facet_events(&self.formats, &selection.formats, ToggleFormat)),
             (None, self.hide_finished.then_some(ToggleHideFinished).into_iter().collect()),
-            (None, self.supports_direct_child_books.then_some(ToggleDirectChildBooks).into_iter().collect()),
         ]
         .into_iter()
         .filter(|(_, events)| !events.is_empty())
@@ -313,8 +302,8 @@ impl BrowseControls {
     fn option(&self, event: BrowseOptionsEvent, selection: &BrowseOptionsSelection) -> OptionRow {
         use BrowseOptionsEvent::*;
         let (id, label, checked) = match event.clone() {
-            SelectBookSort(sort) => (format!("sheet-book-sort-{}", sort.label()), sort.label().into(), Some(sort) == selection.book_sort),
-            SelectChipSort(sort) => (format!("sheet-chip-sort-{}", sort.label()), sort.label().into(), Some(sort) == selection.chip_sort),
+            SelectBookSort(sort) => (format!("sheet-book-sort-{}", sort.label()), sort.label().into(), sort == selection.book_sort),
+            SelectChipSort(sort) => (format!("sheet-chip-sort-{}", sort.label()), sort.label().into(), sort == selection.chip_sort),
             ToggleFormat(None) => ("sheet-format-All".into(), "All".into(), selection.formats.is_empty()),
             ToggleFormat(Some(format)) => (format!("sheet-format-{}", format.label()), facet_label(&self.formats, format), selection.formats.contains(&format)),
             ToggleLanguage(None) => ("sheet-language-any".into(), "Any".into(), selection.languages.is_empty()),
@@ -324,7 +313,6 @@ impl BrowseControls {
                 (format!("sheet-language-{language}"), label, checked)
             }
             ToggleHideFinished => ("sheet-hide-finished".into(), "Hide finished".into(), selection.hide_finished),
-            ToggleDirectChildBooks => ("sheet-direct-child-books".into(), "Include books from direct children".into(), selection.include_direct_child_books),
             ShowByAuthor(false) => ("sheet-show-by-subject".into(), "Subject".into(), !selection.by_author),
             ShowByAuthor(true) => ("sheet-show-by-author".into(), "Author".into(), selection.by_author),
             OpenFeedPage(_) => unreachable!("a feed's choices are rows of their own"),
@@ -350,6 +338,38 @@ fn facet_label<T: PartialEq>(facets: &[Facet<T>], value: T) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn sort_choices_follow_offered_defaults_and_ignore_unoffered_actions() {
+        let mut controls = BrowseControls::library();
+        controls.collection_sorts = vec![BrowseChipSort::DefaultOrder, BrowseChipSort::BookCount];
+        controls.book_sorts = vec![BrowseBookSort::DefaultOrder, BrowseBookSort::Alphabetical];
+        let mut selection = BrowseOptionsSelection::for_controls(&controls);
+        let query = selection.backend_query(BrowseLocation::Books, true);
+        assert_eq!(query.chip_sort, BrowseChipSort::DefaultOrder);
+        assert_eq!(query.book_sort, BrowseBookSort::DefaultOrder);
+        assert!(!selection.apply(BrowseOptionsEvent::SelectBookSort(BrowseBookSort::DefaultOrder), &controls));
+        assert!(!selection.apply(BrowseOptionsEvent::SelectChipSort(BrowseChipSort::DefaultOrder), &controls));
+        assert!(selection.apply(BrowseOptionsEvent::SelectBookSort(BrowseBookSort::Alphabetical), &controls));
+        assert!(selection.apply(BrowseOptionsEvent::SelectChipSort(BrowseChipSort::BookCount), &controls));
+        let checked = controls.options(&selection).into_iter().flat_map(|section| section.options).filter(|row| row.checked).map(|row| row.label).collect::<Vec<_>>();
+        assert_eq!(checked, ["Alphabetical", "Book count"]);
+        let snapshot = selection.clone();
+        assert!(!selection.apply(BrowseOptionsEvent::SelectBookSort(BrowseBookSort::Popularity), &controls));
+        assert!(!selection.apply(BrowseOptionsEvent::SelectChipSort(BrowseChipSort::Popularity), &controls));
+        assert_eq!(selection, snapshot);
+
+        let feed = BrowseControls::feed(Vec::new());
+        let mut selection = BrowseOptionsSelection::for_controls(&feed);
+        let snapshot = selection.clone();
+        let query = selection.backend_query(BrowseLocation::Books, true);
+        assert_eq!(query.chip_sort, BrowseChipSort::Alphabetical);
+        assert_eq!(query.book_sort, BrowseBookSort::Alphabetical);
+        assert!(!selection.apply(BrowseOptionsEvent::SelectBookSort(BrowseBookSort::DefaultOrder), &feed));
+        assert!(!selection.apply(BrowseOptionsEvent::SelectChipSort(BrowseChipSort::BookCount), &feed));
+        assert_eq!(selection, snapshot);
+        assert!(feed.options(&selection).is_empty());
+    }
 
     #[test]
     fn catalog_languages_allow_deselecting_english_and_any() {

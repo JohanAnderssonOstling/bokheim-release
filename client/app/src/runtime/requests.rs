@@ -77,6 +77,9 @@ pub enum AppCommand {
     CloudFolders { scope: sync_common::storage::ProviderScope, folder: Option<sync_common::storage::ProviderId>, page: Option<String> },
     CreateCloudFolder { scope: sync_common::storage::ProviderScope, parent: sync_common::storage::ProviderId, name: String },
     CreateCloudLibrary { name: String, root: sync_common::storage::CloudLibraryRoot },
+    GoogleCloudWebClientId,
+    ConnectGoogleCloudAccessGrant { grant: crate::GoogleAccessGrant },
+    CopyLibraryStorage { library_id: LibraryId, bokheim: bool },
 }
 
 impl AppCommand {
@@ -111,12 +114,15 @@ pub(super) async fn dispatch_request(backend: AppBackend, command: AppCommand) -
     let reply = match command {
         AppCommand::Libraries => storage_command(move || reply(backend.libraries().map_err(message)?)).await?,
         AppCommand::GoogleCloudAccounts => storage_command(move || reply(backend.google_cloud_accounts()?)).await?,
+        AppCommand::GoogleCloudWebClientId => reply(backend.google_cloud_web_client_id()?)?,
+        AppCommand::ConnectGoogleCloudAccessGrant { grant } => reply(backend.connect_google_cloud_access_grant(grant).await?)?,
         AppCommand::BeginGoogleCloudLogin => reply(backend.begin_google_cloud_login().await?)?,
         AppCommand::WaitGoogleCloudLogin { attempt_id } => reply(backend.wait_google_cloud_login(attempt_id).await?)?,
         AppCommand::DisconnectGoogleCloudAccount { account } => storage_command(move || reply(backend.disconnect_google_cloud_account(account)?)).await?,
         AppCommand::CloudFolders { scope, folder, page } => reply(backend.cloud_folders(scope, folder, page).await?)?,
         AppCommand::CreateCloudFolder { scope, parent, name } => reply(backend.create_cloud_folder(scope, parent, name).await?)?,
         AppCommand::CreateCloudLibrary { name, root } => reply(backend.create_cloud_library(name, root).await?)?,
+        AppCommand::CopyLibraryStorage { library_id, bokheim } => reply(backend.copy_library_storage(library_id, bokheim).await?)?,
 
         AppCommand::EstimateLibraryFolders { locators } => crate::executor::run_blocking(move || {
             let cancelled = std::sync::atomic::AtomicBool::new(false);

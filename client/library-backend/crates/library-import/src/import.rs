@@ -1,9 +1,9 @@
 //! The shared import path: validate the destination, prepare folders,
 //! inspect the book, publish its bytes, and commit the addition.
 
-
 use book_model::BookFormat;
 use client_runtime::BackendError;
+use library_database::ContributorNameMatcher;
 use library_files::asset_store::CopiedBook;
 use library_replica::filenames;
 use sync_common::{BookId, DirId};
@@ -25,6 +25,10 @@ pub(crate) fn validate_import_destination(db: &library_database::Database, paren
 
 impl LibraryImport {
     pub(crate) fn validate_import(&self, parent_id: &DirId, file_name: &str) -> Result<ValidatedImport, BackendError> {
+        #[cfg(target_os = "android")]
+        if self.database.storage_policy().map_err(BackendError::operation)?.external().is_some_and(|root| root.scope.provider == sync_common::storage::CloudProvider::GoogleDrive) {
+            cloud_storage::require_google_drive().map_err(BackendError::operation)?;
+        }
         let file_name = filenames::validate_component(file_name)?;
         let format = BookFormat::from_file_name(&file_name).ok_or("only EPUB, PDF, DRM-free MOBI/AZW/AZW3, FB2, CBZ, and M4B files can be added to a library")?;
         validate_import_destination(&self.database, parent_id)?;
@@ -36,13 +40,15 @@ impl LibraryImport {
         let (staged, inspection) = {
             let ingested = filesystem_scanner::ingestion::ingest_file(staged.path().to_owned(), import.file_name.clone(), &*self.cpu)
                 .await
-                .map_err(|error| BackendError::message(format!("invalid {} book: {error}", import.format.canonical_extension().to_ascii_uppercase())))?;
+                .map_err(|error| BackendError::operation(error).context(format!("invalid {} book", import.format.canonical_extension().to_ascii_uppercase())))?;
             let inspection = Some(ingested.inspection);
             (staged.into_staged(ingested.content_hash, ingested.size_bytes), inspection)
         };
         #[cfg(target_arch = "wasm32")]
         let inspection = {
-            let reuse = import.format != BookFormat::Pdf && self.database.has_import_inspection(&staged.content_hash(), import.format, book_inspection::inspection_version(import.format)).map_err(BackendError::operation)?;
+            let reuse = self.database.storage_policy().map_err(BackendError::operation)?.external().is_none()
+                && import.format != BookFormat::Pdf
+                && self.database.has_import_inspection(&staged.content_hash(), import.format, book_inspection::inspection_version(import.format)).map_err(BackendError::operation)?;
             if reuse {
                 None
             } else {
@@ -50,24 +56,19 @@ impl LibraryImport {
                 Some(
                     cpu_host::submit_book(&*self.cpu, cpu_host::Inspect { source_name: import.file_name.clone(), format: import.format, content_hash: Some(staged.content_hash()) }, cpu_host::as_cpu_reader(reader))
                         .await
-                        .map_err(|error| BackendError::message(format!("invalid {} book: {error}", import.format.canonical_extension().to_ascii_uppercase())))?,
+                        .map_err(|error| error.context(format!("invalid {} book", import.format.canonical_extension().to_ascii_uppercase())))?,
                 )
             }
         };
-        #[cfg(not(target_arch = "wasm32"))]
         if self.database.storage_policy().map_err(BackendError::operation)?.external().is_some() {
-            return self.finish_provider_import(import, staged, inspection.expect("native import inspection")).await;
-        }
-        #[cfg(target_arch = "wasm32")]
-        if self.database.storage_policy().map_err(BackendError::operation)?.external().is_some() {
-            return Err(BackendError::message("cloud provider imports are not configured for this platform yet"));
+            return self.finish_provider_import(import, staged, inspection.ok_or_else(|| BackendError::message("provider import inspection is unavailable"))?).await;
         }
         let content_hash = staged.content_hash();
         let size_bytes = staged.size_bytes();
         // Inspection may overlap a delete/move. Do not publish into a folder
         // that became unavailable while CPU or source I/O was in flight.
         validate_import_destination(&self.database, &import.parent_id)?;
-        let _lease = self.assets.lease_book(&content_hash).await.map_err(|error| BackendError::message(format!("could not lock the imported book: {error}")))?;
+        let _lease = self.assets.lease_book(&content_hash).await.map_err(|error| BackendError::operation(error).context("could not lock the imported book"))?;
 
         // Book precedes the metadata commit. On a database failure the
         // library file remains discoverable by the next scan.
@@ -78,9 +79,7 @@ impl LibraryImport {
     }
 
     pub(crate) async fn publish_import(&self, import: &ValidatedImport, staged: library_files::asset_store::StagedBook) -> Result<library_model::PublishedStagedBook, BackendError> {
-        library_placement::publish_import(&self.assets, &self.database, import.parent_id, &import.file_name, staged, import.format == BookFormat::Mp3Folder)
-            .await
-            .map_err(|error| BackendError::message(format!("could not publish the imported book: {error}")))
+        library_placement::publish_import(&self.assets, &self.database, import.parent_id, &import.file_name, staged, import.format == BookFormat::Mp3Folder).await.map_err(|error| error.context("could not publish the imported book"))
     }
 
     /// Placement rows whose remembered path disagrees with storage, resolved
@@ -106,7 +105,7 @@ impl LibraryImport {
         self.database
             .commit_import_with_catalog_answer(
                 library_database::ImportCommit { parent_id, file_name, format, content_hash, size_bytes, inspection_version: book_inspection::inspection_version(format), inspection, published, request_thumbnail, restore_paths },
-                Some(metadata_contract::matching::same_author),
+                Some(ContributorNameMatcher::Normalized),
                 catalog_record,
             )
             .map_err(BackendError::operation)?;

@@ -18,7 +18,7 @@
 
 use gpui::prelude::*;
 use gpui::{Div, ElementId, MouseButton, SharedString, Stateful, div, px};
-use gpui_component::button::{Button, ButtonVariants};
+use crate::Button;
 use gpui_component::{Icon, IconName};
 use std::rc::Rc;
 
@@ -81,9 +81,8 @@ pub fn contents_panel(theme: BrowserTheme) -> Div {
 /// clicked — so the title takes the mouse down and stops it, and navigation
 /// stays separable from expansion. A surface with nothing else on the row can
 /// pass a bare string instead. Reader titles wrap to two lines at most.
-pub fn contents_title(id: impl Into<ElementId>, title: impl Into<SharedString>, theme: BrowserTheme) -> Stateful<Div> {
-    let _ = theme;
-    div().id(id).flex_1().min_w_0().whitespace_normal().line_height(gpui::relative(1.2)).line_clamp(2).text_ellipsis().cursor_pointer().on_mouse_down(MouseButton::Left, |_, _, cx| cx.stop_propagation()).child(title.into())
+pub fn contents_title(id: impl Into<ElementId>, title: impl Into<SharedString>) -> Stateful<Div> {
+    div().id(id).flex_1().min_w_0().whitespace_normal().line_height_auto().line_clamp(2).text_ellipsis().cursor_pointer().on_mouse_down(MouseButton::Left, |_, _, cx| cx.stop_propagation()).child(title.into())
 }
 
 /// The disclosure, for a surface whose row already opens the entry: drawn, and
@@ -172,11 +171,13 @@ pub fn contents_row(id: impl Into<ElementId>, row: ContentsRow, disclosure: Opti
         .children(disclosure)
         .children(row.number.map(|number| contents_number(number, number_width, quiet)))
         .child(div().flex_1().min_w_0().overflow_hidden().whitespace_nowrap().text_ellipsis().child(title))
+        .children(
+            amount.map(|amount| div().debug_selector(|| "contents-row-amount".into()).w(gpui::rems(CONTENTS_AMOUNT_WIDTH_REM)).flex_none().whitespace_nowrap().text_right().text_size(gpui::rems(TEXT_XS)).text_color(quiet).child(amount)),
+        )
         .when(row.read, |row| match reset {
             Some(reset) => row.child(contents_read_checkmark("chapter-read-checkmark", reset).text_color(quiet)),
             None => row.child(Icon::new(IconName::Check).size(gpui::rems(TEXT_XS)).text_color(quiet)),
         })
-        .children(amount.map(|amount| div().w(gpui::rems(CONTENTS_AMOUNT_WIDTH_REM)).flex_none().text_right().text_size(gpui::rems(TEXT_XS)).text_color(quiet).child(amount)))
 }
 
 /// The number column's width in rems: as many figures as the list's largest
@@ -188,7 +189,7 @@ fn contents_number_width(digits: usize) -> f32 {
 /// An entry's number, left-aligned in its column, which keeps a little air
 /// before the title.
 fn contents_number(number: usize, width: f32, colour: gpui::Hsla) -> Div {
-    div().flex_none().w(gpui::rems(width)).mr(px(SPACE_XS)).text_size(gpui::rems(TEXT_XS)).text_color(colour).child(number.to_string())
+    div().debug_selector(|| "contents-row-number".into()).flex_none().w(gpui::rems(width)).whitespace_nowrap().mr(px(SPACE_XS)).text_size(gpui::rems(TEXT_XS)).text_color(colour).child(number.to_string())
 }
 
 /// How many figures a number has, for [`ContentsRow::number_digits`].
@@ -205,3 +206,31 @@ const MAXIMUM_DRAWN_DEPTH: usize = 3;
 /// Owned here rather than by each surface because the disclosure's margins
 /// cancel exactly this, to run the row's full height.
 const ROW_PADDING_Y: f32 = SPACE_SM;
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use gpui::{Context, Render, TestAppContext, Window};
+
+    struct NumberedContents;
+
+    impl Render for NumberedContents {
+        fn render(&mut self, _: &mut Window, _: &mut Context<Self>) -> impl IntoElement {
+            let row = ContentsRow { number: Some(1000), number_digits: 4, read: true, ..Default::default() };
+            div().w(px(260.0)).child(contents_row("chapter", row, None::<Div>, "Chapter title", Some("123 min".into()), Some(Rc::new(|_, _, _| {})), BrowserTheme::default()))
+        }
+    }
+
+    #[gpui::test]
+    fn completed_contents_keep_large_numbers_on_one_line_and_checkmark_last(cx: &mut TestAppContext) {
+        cx.update(gpui_component::init);
+        let (_, cx) = cx.add_window_view(|_, _| NumberedContents);
+        cx.run_until_parked();
+        let number = cx.debug_bounds("contents-row-number").unwrap();
+        let amount = cx.debug_bounds("contents-row-amount").unwrap();
+        let check = cx.debug_bounds("chapter-read-checkmark").unwrap();
+        assert!(number.size.height <= px(24.0), "a four-digit number must remain one line");
+        assert!(amount.size.height <= px(24.0), "a three-digit duration must remain one line");
+        assert!(check.left() >= amount.right(), "the completion checkmark follows the duration at the far right");
+    }
+}

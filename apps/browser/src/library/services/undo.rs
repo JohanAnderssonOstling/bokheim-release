@@ -23,8 +23,6 @@ pub(crate) enum UndoStep {
     TrashDirectory { directory: DirId },
     /// Put a folder back that an action discarded.
     RestoreDirectory { directory: DirId, parent: Option<DirId> },
-    /// Put a book back in the folder it was moved out of.
-    MoveBook { book: BookId, from: DirId, to: DirId },
     /// Drop a placement an action created.
     RemoveBookFromDirectory { book: BookId, directory: DirId },
     /// Put back a placement an action removed.
@@ -39,7 +37,6 @@ impl UndoStep {
             Self::MoveDirectory { directory, parent } => library.move_directory(directory, parent).await.map(|_| ()),
             Self::TrashDirectory { directory } => library.move_directory_to_trash(directory).await,
             Self::RestoreDirectory { directory, parent } => library.restore_directory(directory, parent).await.map(|_| ()),
-            Self::MoveBook { book, from, to } => library.move_book_to_directory(book, from, to).await.map(|_| ()),
             Self::RemoveBookFromDirectory { book, directory } => library.remove_book_from_directory(book, directory).await.map(|_| ()),
             Self::RestoreBookPlacement { book, directory } => library.restore_book_placement(book, directory).await,
             Self::RenameDirectory { directory, name } => library.rename_directory(directory, name).await.map(|_| ()),

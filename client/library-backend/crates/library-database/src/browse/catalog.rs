@@ -350,7 +350,16 @@ pub(super) fn detail(hash: &BookId) -> Result<Option<BookDetail>, DatabaseError>
 impl Database {
     pub fn external_catalog_detail(&self, entry: CardKey) -> Result<BookDetail, DatabaseError> {
         let book = crate::catalog::entry(entry)?.filter(|book| book.hash.is_none()).ok_or_else(|| DatabaseError::message("the entry is not in the catalog"))?;
-        Ok(book_detail(&book))
+        self.with_catalog_subjects(book_detail(&book))
+    }
+
+    /// A catalog book's detail with the subjects the catalog's subject pages
+    /// list it under.
+    pub(super) fn with_catalog_subjects(&self, mut detail: BookDetail) -> Result<BookDetail, DatabaseError> {
+        if let Some(row) = crate::catalog::browse_row(detail.book.key())? {
+            detail.subjects = self.book_subjects(super::subjects::Books::Catalog, row)?;
+        }
+        Ok(detail)
     }
 }
 
@@ -360,6 +369,7 @@ fn book_detail(book: &CatalogBook) -> BookDetail {
         external_url: book.external_url.clone(),
         audiobook_chapter_count: None,
         description: book.record.description.clone(),
+        subjects: Vec::new(),
         year: book.record.book.year,
         source_directory_id: None,
         path: Vec::new(),
@@ -453,7 +463,6 @@ mod tests {
                             chip_sort: Default::default(),
                             book_sort: Default::default(),
                             hide_finished: false,
-                            include_direct_child_books: false,
                         };
                         let options = BrowseOptions::from_query(&query, false);
                         let actual = matching_in(&db, &candidates, &held, &options).unwrap();
@@ -474,7 +483,6 @@ mod tests {
                 chip_sort: Default::default(),
                 book_sort: Default::default(),
                 hide_finished: false,
-                include_direct_child_books: false,
             },
             false,
         );
@@ -534,7 +542,6 @@ mod tests {
             chip_sort: Default::default(),
             book_sort: Default::default(),
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let options = BrowseOptions::from_query(&query, false);
         let matching = matching_books(&books, &candidates(None, &authors), &HashSet::new(), &options);
@@ -596,7 +603,6 @@ mod tests {
             chip_sort: BrowseChipSort::Popularity,
             book_sort: BrowseBookSort::Popularity,
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let authors = catalog_authors(&books);
         let options = BrowseOptions::from_query(&query, false);
@@ -643,7 +649,6 @@ mod tests {
             chip_sort: BrowseChipSort::Popularity,
             book_sort: BrowseBookSort::Popularity,
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let candidates = candidates(None, &authors);
         let options = BrowseOptions::from_query(&query, false);
@@ -693,7 +698,6 @@ mod tests {
             chip_sort: BrowseChipSort::Popularity,
             book_sort: BrowseBookSort::Popularity,
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let options = BrowseOptions::from_query(&query, false);
         let matching = matching_books(&books, &BTreeSet::from([0, 1, 2]), &HashSet::new(), &options);
@@ -738,7 +742,6 @@ mod tests {
             chip_sort: BrowseChipSort::DefaultOrder,
             book_sort: BrowseBookSort::DefaultOrder,
             hide_finished: false,
-            include_direct_child_books: false,
         };
         for (book_sort, chip_sort, expected) in [
             (BrowseBookSort::DefaultOrder, BrowseChipSort::DefaultOrder, ["Book 2", "Book 4", "Book 1", "Book 3"]),
@@ -801,7 +804,6 @@ mod tests {
             chip_sort: Default::default(),
             book_sort: Default::default(),
             hide_finished: false,
-            include_direct_child_books: false,
         };
         for downloaded_only in [false, true] {
             for (filters, expected) in [
@@ -851,7 +853,6 @@ mod tests {
             chip_sort: Default::default(),
             book_sort: Default::default(),
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let options = BrowseOptions::from_query(&query, false);
         let counts = book_facets(&books, &options).1;
@@ -890,7 +891,6 @@ mod tests {
             chip_sort: Default::default(),
             book_sort: Default::default(),
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let candidates = BTreeSet::from([0]);
         let held = HashSet::new();

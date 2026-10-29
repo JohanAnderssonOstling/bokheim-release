@@ -1,9 +1,11 @@
 //! PDF annotation loading, editing, navigation, and sidebar presentation.
 
 use crate::invalidation::notify;
+use crate::shell::sidebar_list;
+use crate::shell::state_panel::{AnnotationSidebarTarget, reader_state_rows, render_annotation_row};
 use book_model::{AnnotationAnchor, AnnotationStyle, PdfAnnotationAnchor, PdfAnnotationRect};
 use gpui::prelude::*;
-use gpui::{Context, Window};
+use gpui::{Context, Window, div};
 use library_backend::Annotation;
 use pdf_reader_core::NormalizedRect;
 use ui_components as components;
@@ -14,7 +16,6 @@ use crate::pdf::marks::annotation_overlays;
 use crate::shell::annotation_editor;
 use crate::shell::annotation_editor::AnnotationEditorTarget;
 use crate::shell::persistence;
-use crate::shell::state_panel::AnnotationSidebarTarget;
 
 impl AnnotationEditorTarget for PdfReaderView {
     fn save_annotation_changes(&mut self, style: Option<AnnotationStyle>, color: Option<u32>, cx: &mut Context<Self>) {
@@ -155,14 +156,19 @@ impl PdfReaderView {
         });
     }
 
-    pub(super) fn render_annotations_body(&self, theme: components::BrowserTheme, cx: &mut Context<Self>) -> gpui::AnyElement {
-        let target = cx.entity();
-        components::reader_state_panel(theme)
-            .children(crate::shell::state_panel::reader_state_rows(&target, &self.marks, "No notes yet. Select PDF text, then choose Annotation to add a note.", theme, |annotation: &Annotation| {
-                let page = annotation.anchor.pdf_anchor().map(|anchor| anchor.page_index as usize);
-                if let Some(page) = page { (format!("page:{page}"), format!("Page {}", page + 1)) } else { ("other".to_owned(), "Other notes".to_owned()) }
-            }))
-            .into_any_element()
+    pub(super) fn render_annotations_body(&mut self, theme: components::BrowserTheme, cx: &mut Context<Self>) -> gpui::AnyElement {
+        let rows = reader_state_rows(self.marks.annotations(), "No notes yet. Select PDF text, then choose Annotation to add a note.", |annotation: &Annotation| {
+            let page = annotation.anchor.pdf_anchor().map(|anchor| anchor.page_index as usize);
+            if let Some(page) = page { (format!("page:{page}"), format!("Page {}", page + 1)) } else { ("other".to_owned(), "Other notes".to_owned()) }
+        });
+        let selected = self.marks.selected_id();
+        let selected_row = selected.and_then(|id| rows.iter().position(|row| row.annotation_id() == Some(id)));
+        self.annotation_list.set_rows(rows);
+        self.annotation_list.reveal_selected(selected, selected_row);
+        sidebar_list::panel("pdf-annotation-list", &cx.entity(), &self.annotation_list.state, theme, |this, row, target, theme, _| {
+            let Some(row) = this.annotation_list.rows.get(row) else { return div().into_any_element() };
+            render_annotation_row(target, row, this.marks.annotations(), this.marks.selected_id(), "", theme)
+        })
     }
 
     pub(super) fn render_annotation_popup(&self, annotation: Annotation, geometry: annotation_editor::Geometry, window: &mut Window, cx: &mut Context<Self>) -> gpui::AnyElement {

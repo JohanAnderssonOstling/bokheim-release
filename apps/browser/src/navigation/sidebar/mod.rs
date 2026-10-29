@@ -4,12 +4,16 @@
 //! own, only the open/closed state of its own overlays.
 
 mod add_library;
-mod switcher_overlay;
+#[cfg(feature = "google-drive")]
 mod cloud_library;
+#[cfg(not(feature = "google-drive"))]
+#[path = "cloud_library_disabled.rs"]
+mod cloud_library;
+mod switcher_overlay;
 
 use gpui::prelude::*;
-use gpui::{Context, Edges, Entity, FocusHandle, Pixels, SharedString};
-use gpui_component::Icon;
+use gpui::{Context, Edges, Entity, FocusHandle, Pixels, SharedString, Window};
+use gpui_component::IconName;
 use ui_components as components;
 
 use super::{GlobalRoute, Libraries, LibraryRoute, Navigate, Route};
@@ -50,20 +54,11 @@ pub(crate) struct Sidebar {
     pub(super) switcher_focus: FocusHandle,
 }
 
-pub(super) fn route_definition(route: Route) -> (&'static str, Icon) {
-    use components::NavigationIcon;
-    let (label, icon) = match route {
-        Route::Library(LibraryRoute::Home) => ("Home", NavigationIcon::House),
-        Route::Library(LibraryRoute::Books) => ("Books", NavigationIcon::BookOpen),
-        Route::Library(LibraryRoute::Authors) => ("Authors", NavigationIcon::User),
-        Route::Library(LibraryRoute::Folders) => ("Folders", NavigationIcon::Folder),
-        Route::Library(LibraryRoute::Subjects) => ("Subjects", NavigationIcon::Tags),
-        Route::Library(LibraryRoute::Catalog) => ("Catalog", NavigationIcon::Building2),
-        Route::Library(LibraryRoute::Trash) => ("Trash", NavigationIcon::Trash2),
-        Route::Global(GlobalRoute::Settings) => ("Settings", NavigationIcon::Settings),
-    };
-    (label, components::navigation_icon(icon))
-}
+impl gpui::EventEmitter<crate::PaneRequest> for Sidebar {}
+
+pub(super) struct SplitPane;
+
+impl gpui::EventEmitter<SplitPane> for Sidebar {}
 
 impl Sidebar {
     pub(crate) fn new(libraries: Entity<Libraries>, navigate: Navigate, cx: &mut Context<Self>) -> Self {
@@ -73,8 +68,8 @@ impl Sidebar {
     /// Draws the rail or the bottom bar, whichever the window width calls for.
     /// `library_view` is the Library tab's view: the one last shown, which the
     /// tab returns to.
-    pub(super) fn render_navigation(&self, emitter: Entity<Self>, route: Route, library_view: LibraryRoute, compact: bool, safe_area: Edges<Pixels>, cx: &gpui::App) -> gpui::AnyElement {
-        if compact { self.render_bottom_navigation(emitter, route, library_view, safe_area, cx) } else { self.render_sidebar(emitter, route, cx) }
+    pub(super) fn render_navigation(&self, emitter: Entity<Self>, route: Route, library_view: LibraryRoute, compact: bool, close_pane: bool, safe_area: Edges<Pixels>, window: &Window, cx: &gpui::App) -> gpui::AnyElement {
+        if compact { self.render_bottom_navigation(emitter, route, library_view, safe_area, cx) } else { self.render_sidebar(emitter, route, close_pane, window, cx) }
     }
 
     /// The compact tab bar: the rail's destinations. On a phone the library's
@@ -86,11 +81,11 @@ impl Sidebar {
         let tabs = if components::touch_ui() { vec![Route::Library(LibraryRoute::Home), Route::Library(library_view), Route::Library(LibraryRoute::Catalog), Route::Global(GlobalRoute::Settings)] } else { RAIL_ROUTES.to_vec() };
         let mut navigation = components::bottom_navigation(theme);
         for target in tabs {
-            let (id, icon) = route_definition(target);
+            let (id, icon) = target.presentation();
             let library_tab = components::touch_ui() && target == Route::Library(library_view);
             let (id, label, selected) = if library_tab { ("library", "Library", in_library_view) } else { (id, id, route == target) };
             let select = emitter.clone();
-            navigation = navigation.child(components::bottom_navigation_item(format!("bottom-{id}"), icon, label, selected, theme).on_click(move |_, window, cx| {
+            navigation = navigation.child(components::bottom_navigation_item(format!("bottom-{id}"), components::navigation_icon(icon), label, selected, theme).on_click(move |_, window, cx| {
                 select.update(cx, |navigation, cx| (navigation.navigate)(target, window, cx));
             }));
         }
@@ -101,21 +96,36 @@ impl Sidebar {
         gpui::div().w_full().flex_none().flex().flex_col().pl(safe_area.left).pr(safe_area.right).bg(theme.page_bg).child(navigation).child(gpui::div().w_full().h(safe_area.bottom).flex_none()).into_any_element()
     }
 
-    fn render_sidebar(&self, emitter: Entity<Self>, route: Route, cx: &gpui::App) -> gpui::AnyElement {
+    fn render_sidebar(&self, emitter: Entity<Self>, route: Route, close_pane: bool, window: &Window, cx: &gpui::App) -> gpui::AnyElement {
         let theme = components::browser_theme(cx);
         // The switcher and destinations share the same square tile geometry.
-        let mut destinations = components::nav_rail_destinations(theme);
-        for target in RAIL_ROUTES {
-            let (id, icon) = route_definition(target);
+        let destination = |target: Route| {
+            let (id, icon) = target.presentation();
             let label = SharedString::from(id);
             let select = emitter.clone();
-            destinations = destinations.child(components::nav_rail_item(id, icon, label, route == target, theme).on_click(move |_, window, cx| {
+            components::nav_rail_item(id, components::navigation_icon(icon), label, route == target, theme).on_click(move |_, window, cx| {
                 select.update(cx, |navigation, cx| {
                     (navigation.navigate)(target, window, cx);
                 });
-            }));
+            })
+        };
+        let mut destinations = components::nav_rail_destinations();
+        for target in RAIL_ROUTES.into_iter().filter(|route| !matches!(route, Route::Global(GlobalRoute::Settings))) {
+            destinations = destinations.child(destination(target));
         }
-        let sidebar = components::sidebar(theme).child(self.render_library_switcher_trigger(emitter.clone(), cx)).child(destinations);
-        gpui::div().w(gpui::rems(components::NAV_RAIL_SIZE_REM)).h_full().flex_none().child(sidebar).into_any_element()
+        let split_available = crate::split_panes_available(window);
+        if split_available {
+            let split = emitter.clone();
+            destinations = destinations.child(components::nav_rail_item("split-pane", IconName::PanelLeft, "Split", false, theme).tooltip("Open split pane").on_click(move |_, _, cx| split.update(cx, |_, cx| cx.emit(SplitPane))));
+        }
+        let library_name = self.active_library_name(cx);
+        if close_pane {
+            let close = emitter.clone();
+            destinations = destinations.child(components::nav_rail_item("close-pane", IconName::Close, "Close", false, theme).on_click(move |_, _, cx| close.update(cx, |_, cx| cx.emit(crate::PaneRequest::Close))));
+        }
+        let labels = RAIL_ROUTES.into_iter().map(|route| route.presentation().0).chain(std::iter::once(library_name.as_ref())).chain(split_available.then_some("Split")).chain(close_pane.then_some("Close"));
+        let width = components::navigation_rail_width(labels, window, cx);
+        let sidebar = components::sidebar(theme).w(width).flex_1().child(self.render_library_switcher_trigger(emitter.clone(), cx)).child(destinations);
+        gpui::div().w(width).h_full().min_h_0().flex_none().flex().flex_col().bg(theme.page_bg).child(sidebar).child(destination(Route::Global(GlobalRoute::Settings))).into_any_element()
     }
 }

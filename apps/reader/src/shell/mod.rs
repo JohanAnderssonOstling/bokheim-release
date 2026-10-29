@@ -16,10 +16,13 @@ mod layout;
 pub(crate) mod marks;
 pub(crate) mod page;
 pub(crate) mod persistence;
+pub(crate) mod reading_ruler;
+mod screenshot;
 pub(crate) mod search;
 pub(crate) mod settings_navigation;
+pub(crate) mod sidebar_list;
 pub(crate) mod state_panel;
 pub(crate) mod theme_picker;
 pub(crate) mod toolbar;
-#[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+#[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
 pub(crate) mod tts;

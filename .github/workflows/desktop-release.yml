@@ -34,9 +34,9 @@ env:
   CARGO_TERM_COLOR: always
   CARGO_BUILD_JOBS: "1"
   RUST_VERSION: stable
-  GPUI_FORK_REF: c186a827d40ba6b3f85789138dabe55554e2a4c0
-  HTML_ENGINE_REF: fbdc9748d7ddb339d23b8f3cd65e54c16f371fad
-  HTML_VIEW_CORE_REF: e34aba1f7d91f5e4ce95d5d9141f97c74d42f6a9
+  GPUI_FORK_REF: 6b1ef5fab98df3c62babc7c9245ccffde5a493a2
+  HTML_ENGINE_REF: 90bf31db848ec7ad5c405d37fd6027e532d34403
+  HTML_VIEW_CORE_REF: 60aa193d0381479e06811378decf7f09f0d93f6e
   LINUXDEPLOY_VERSION: 1-alpha-20251107-1
   APPIMAGETOOL_VERSION: 1.9.1
   BOKHEIM_UPDATE_PUBLIC_KEY_HEX: ${{ vars.BOKHEIM_UPDATE_PUBLIC_KEY_HEX || 'f9e4a3504b65243b84d497bc3b0434793803c794c0db129701ea563d0a51efa3' }}
@@ -49,7 +49,7 @@ jobs:
     uses: ./.github/workflows/client-platforms.yml
 
   build-windows:
-    name: x86-64 Windows installer
+    name: x86-64 Windows installer and portable app
     runs-on: windows-2025
     timeout-minutes: 120
 
@@ -163,7 +163,7 @@ jobs:
       - name: Build GPUI desktop release
         working-directory: bokheim
         shell: pwsh
-        run: python apps/desktop-gpui/scripts/build.py
+        run: python apps/desktop-gpui/scripts/build.py --no-google-drive
 
       - name: Build Windows installer
         working-directory: bokheim
@@ -186,19 +186,31 @@ jobs:
           $hash = (Get-FileHash -Algorithm SHA256 "release/$installer").Hash.ToLowerInvariant()
           "$hash  $installer" | Out-File -FilePath "release/$installer.sha256" -Encoding ascii
 
-      - name: Package complete Windows update
+      - name: Package complete Windows update and portable app
         working-directory: bokheim
         shell: pwsh
         run: |
-          python apps/desktop-gpui/windows/package-update.py --binary target/release/bokheim.exe --icon apps/ui/design-tokens/assets/icon/favicon.ico --output release/Bokheim-Windows-x86_64-Update.zip
+          python apps/desktop-gpui/windows/package-update.py --binary target/release/bokheim.exe --icon apps/ui/design-tokens/assets/icon/favicon.ico --output release/Bokheim-Windows-x86_64-Update.zip --portable-output release/Bokheim-Windows-x86_64-Portable.zip
           if ($LASTEXITCODE -ne 0) { throw "Windows update packaging failed" }
 
-      - name: Verify packaged Windows update metadata
+      - name: Build and test single-file Windows app
+        working-directory: bokheim
+        shell: pwsh
+        run: |
+          cargo test --release --locked --manifest-path apps/desktop-gpui/windows/standalone/Cargo.toml --target-dir target/windows-standalone
+          if ($LASTEXITCODE -ne 0) { throw "Standalone launcher tests failed" }
+          python apps/desktop-gpui/windows/package-standalone.py --archive release/Bokheim-Windows-x86_64-Portable.zip --output release/Bokheim-Windows-x86_64-Standalone.exe
+          if ($LASTEXITCODE -ne 0) { throw "Standalone executable packaging failed" }
+
+      - name: Verify portable Windows runtime and update metadata
         working-directory: bokheim
         shell: pwsh
         run: |
           $probe = Join-Path $env:RUNNER_TEMP "windows-update-probe"
-          Expand-Archive -Path "release/Bokheim-Windows-x86_64-Update.zip" -DestinationPath $probe -Force
+          $updateHash = (Get-FileHash -Algorithm SHA256 "release/Bokheim-Windows-x86_64-Update.zip").Hash
+          $portableHash = (Get-FileHash -Algorithm SHA256 "release/Bokheim-Windows-x86_64-Portable.zip").Hash
+          if ($updateHash -ne $portableHash) { throw "Portable and update runtime packages differ" }
+          Expand-Archive -Path "release/Bokheim-Windows-x86_64-Portable.zip" -DestinationPath $probe -Force
           $stdout = Join-Path $env:RUNNER_TEMP "windows-update-info.stdout"
           $stderr = Join-Path $env:RUNNER_TEMP "windows-update-info.stderr"
           $process = Start-Process -FilePath (Join-Path $probe "Bokheim.exe") -ArgumentList "--bokheim-update-info" -NoNewWindow -Wait -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
@@ -212,6 +224,27 @@ jobs:
             throw "Packaged Windows update has invalid compatibility metadata"
           }
           $info | Set-Content -Encoding utf8 "release/update-info-windows-x86_64-zip.json"
+
+      - name: Verify first and cached standalone launches
+        working-directory: bokheim
+        shell: pwsh
+        run: |
+          $payloadHash = (Get-FileHash -Algorithm SHA256 "release/Bokheim-Windows-x86_64-Portable.zip").Hash.ToLowerInvariant()
+          $runtime = Join-Path $env:LOCALAPPDATA "Bokheim\Standalone\$payloadHash"
+          $standalone = (Resolve-Path "release/Bokheim-Windows-x86_64-Standalone.exe").Path
+          $expected = Get-Content -Raw "release/update-info-windows-x86_64-zip.json" | ConvertFrom-Json | ConvertTo-Json -Depth 10 -Compress
+          $preparedAt = $null
+          foreach ($attempt in 1..2) {
+            $stdout = Join-Path $env:RUNNER_TEMP "standalone-$attempt.stdout"
+            $stderr = Join-Path $env:RUNNER_TEMP "standalone-$attempt.stderr"
+            $process = Start-Process -FilePath $standalone -ArgumentList "--bokheim-update-info" -NoNewWindow -Wait -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
+            if ($process.ExitCode -ne 0) { throw "Standalone launch $attempt failed with exit code $($process.ExitCode): $(Get-Content -Raw $stderr)" }
+            $actual = Get-Content -Raw $stdout | ConvertFrom-Json | ConvertTo-Json -Depth 10 -Compress
+            if ($actual -ne $expected) { throw "Standalone runtime metadata differs from the packaged app" }
+            $marker = Get-Item -LiteralPath (Join-Path $runtime ".ready")
+            if ($preparedAt -and $marker.LastWriteTimeUtc -ne $preparedAt) { throw "Standalone app extracted again on its second launch" }
+            $preparedAt = $marker.LastWriteTimeUtc
+          }
 
       - name: Verify Windows installer
         working-directory: bokheim

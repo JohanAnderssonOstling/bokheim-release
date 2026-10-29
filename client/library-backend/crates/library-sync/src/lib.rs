@@ -6,7 +6,6 @@ mod asset_sync;
 mod engine;
 mod error;
 mod library_sync;
-#[cfg(target_arch = "wasm32")]
 mod recovery;
 mod state_sync;
 #[cfg(target_arch = "wasm32")]

@@ -2,6 +2,7 @@
 //! PDFium handles and JavaScript bindings never leave that worker.
 
 use super::*;
+use crate::prefetch::CancelPrefetchOnDrop;
 use futures_channel::oneshot;
 use std::cell::RefCell;
 use std::rc::Rc;
@@ -164,8 +165,18 @@ impl BrowserSession {
         self.with_document(move |document| document.render_page_with_margin_trim(key.page_index(), Some(key.target_width()), key.trim_margins())).await
     }
 
+    pub async fn prefetch_pages(&self, pages: Vec<usize>) -> PdfResult<()> {
+        let cancellation = CancelPrefetchOnDrop::default();
+        let cancelled = cancellation.token();
+        self.with_document(move |document| document.prefetch_pages_cancellable(&pages, &cancelled)).await
+    }
+
     pub async fn page_geometry(&self, page_index: usize, trim_margins: bool) -> PdfResult<PdfPageGeometry> {
         self.with_document(move |document| document.page_geometry(page_index, trim_margins)).await
+    }
+
+    pub async fn reading_fragments(&self, page_index: usize) -> PdfResult<Vec<PdfReadingFragment>> {
+        self.with_document(move |document| document.extract_reading_fragments(page_index)).await
     }
 
     pub async fn render_for_display(&self, key: PageRenderKey) -> PdfResult<RenderedPdfBgraPage> {

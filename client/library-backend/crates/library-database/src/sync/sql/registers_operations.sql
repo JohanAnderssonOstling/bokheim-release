@@ -1,15 +1,5 @@
 -- Merge mutable registers and schedule exact publications and recovery.
 
--- name: registers_book_exists ->
--- param: content_hash: &SqlParam<'_>
-SELECT EXISTS(SELECT 1 FROM book WHERE content_hash=:content_hash);
-
--- name: registers_previous_owner ->
--- param: state_kind: &SqlParam<'_>
--- param: state_key: &SqlParam<'_>
--- param: state_subkey: &SqlParam<'_>
-SELECT book_key FROM sync_state_version WHERE state_kind=:state_kind AND state_key=:state_key AND state_subkey=:state_subkey;
-
 -- name: registers_mark_book_dirty !
 -- param: content_hash: &SqlParam<'_>
 INSERT OR IGNORE INTO sync_projection_dirty VALUES('book_projection',:content_hash,'');

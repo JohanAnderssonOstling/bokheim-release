@@ -58,13 +58,13 @@ fn open_library(root: &Path, server: &str, executor: &BackendExecutor) -> (Libra
                 database_locator: root.join("library.sqlite").to_string_lossy().into_owned(),
                 default_sync_server_url: server.parse().unwrap(),
                 metadata_server_url: server.into(),
-                google_books_api_key: None,
                 storage: sync_common::storage::LibraryStorage::Bokheim,
                 reset_cloud_presence: false,
             },
             account: account.library_account(),
             cloud: Default::default(),
             notification_interest: Default::default(),
+            root_failures: None,
         },
         executor,
     )
@@ -78,7 +78,8 @@ fn open_library(root: &Path, server: &str, executor: &BackendExecutor) -> (Libra
 async fn explicit_reading_and_downloads_bypass_metering_while_automatic_downloads_defer() {
     let _maintenance = defer_library_maintenance();
     let root = tempfile::tempdir().unwrap();
-    let bytes: Arc<Vec<u8>> = Arc::new((0..256 * 1024).map(|index| (index % 251) as u8).collect());
+    // Valid EPUB metadata plus an unused stored payload for later demand reads.
+    let bytes = Arc::new(include_bytes!("fixtures/metered-reading.epub").to_vec());
     let hash = BookId::from(blake3::hash(&bytes));
     {
         let db = Database::open(root.path().join("library.sqlite")).unwrap();
@@ -122,18 +123,30 @@ async fn explicit_reading_and_downloads_bypass_metering_while_automatic_download
                     }
                     let lower = line.to_ascii_lowercase();
                     if let Some(value) = lower.strip_prefix("range: bytes=") {
-                        let (start, end) = value.trim().split_once('-').unwrap();
-                        range = Some((start.parse::<usize>().unwrap(), end.parse::<usize>().unwrap()));
+                        range = Some(value.trim().to_owned());
                     }
                     if lower.trim() == format!("authorization: bearer {}", "a".repeat(43)) {
                         authenticated = true;
                     }
                 }
                 assert!(authenticated);
-                let partial = range.is_some();
-                let (start, end) = range.unwrap_or((0, bytes.len() - 1));
-                let end = end.min(bytes.len() - 1);
                 requests.fetch_add(1, Ordering::SeqCst);
+                // Exercise the reader's fallback for single-range servers.
+                if range.as_ref().is_some_and(|value| value.contains(',')) {
+                    socket.write_all(b"HTTP/1.1 416 Range Not Satisfiable\r\nContent-Length: 0\r\nConnection: close\r\n\r\n").await.unwrap();
+                    socket.flush().await.unwrap();
+                    continue;
+                }
+                let partial = range.is_some();
+                let (start, end) = range.map_or((0, bytes.len() - 1), |value| {
+                    let (start, end) = value.split_once('-').unwrap();
+                    if start.is_empty() {
+                        (bytes.len().saturating_sub(end.parse::<usize>().unwrap()), bytes.len() - 1)
+                    } else {
+                        (start.parse::<usize>().unwrap(), if end.is_empty() { bytes.len() - 1 } else { end.parse::<usize>().unwrap() })
+                    }
+                });
+                let end = end.min(bytes.len() - 1);
                 let status = if partial { "206 Partial Content" } else { "200 OK" };
                 let header = format!("HTTP/1.1 {status}\r\nContent-Length: {}\r\nContent-Range: bytes {start}-{end}/{}\r\nETag: \"{hash}\"\r\nConnection: close\r\n\r\n", end - start + 1, bytes.len());
                 socket.write_all(header.as_bytes()).await.unwrap();
@@ -155,12 +168,14 @@ async fn explicit_reading_and_downloads_bypass_metering_while_automatic_download
     let DocumentSource::Async(source) = book.source else { panic!("expected an async remote source") };
     let mut reader = source.reader();
     // Seek beyond the opening prefix to require another HTTP request.
+    let before_page = requests.load(Ordering::SeqCst);
     reader.seek(SeekFrom::Start(192 * 1024)).await.unwrap();
     let mut page = vec![0; 1024];
     timeout(Duration::from_secs(5), reader.read_exact(&mut page)).await.expect("subsequent page reads must also bypass metering").unwrap();
     assert_eq!(page, bytes[192 * 1024..193 * 1024]);
+    assert!(requests.load(Ordering::SeqCst) > before_page, "the page read must exercise HTTP access after opening");
 
-    let source = RemoteFile { hash, length: bytes.len() as u64 };
+    let source = RemoteFile { hash, length: bytes.len() as u64, revision: None };
     let bundle: serde_bytes::ByteBuf =
         timeout(Duration::from_secs(5), client.request(LibraryCommand::Pending(PendingCommand::ReadFileBundle { source, ranges: vec![(32, 128), (96 * 1024, 256)] }))).await.expect("PDF range bundles must bypass metering").unwrap();
     assert_eq!(bundle.as_ref(), [bytes[32..160].to_vec(), bytes[96 * 1024..96 * 1024 + 256].to_vec()].concat());

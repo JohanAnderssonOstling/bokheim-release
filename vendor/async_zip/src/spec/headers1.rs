@@ -154,6 +154,10 @@ impl KnownSize for EOCDRH {
 pub struct GPF(u16);
 
 impl GPF {
+    pub(crate) fn matches_ignoring_language_encoding_flag(&self, other: &Self) -> bool {
+        (self.0 ^ other.0) & !0x800 == 0
+    }
+
     pub fn data_descriptor(&self) -> bool {
         self.0 & 0x08 != 0
     }

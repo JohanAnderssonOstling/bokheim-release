@@ -14,11 +14,17 @@ pub enum NetworkCost {
     Metered,
 }
 
-#[derive(Default)]
 pub struct TransferPolicy {
     allow_metered: AtomicBool,
+    allow_seeding: AtomicBool,
     cost: AtomicU8,
     changes: OnceLock<watch::Sender<()>>,
+}
+
+impl Default for TransferPolicy {
+    fn default() -> Self {
+        Self { allow_metered: AtomicBool::new(false), allow_seeding: AtomicBool::new(true), cost: AtomicU8::new(0), changes: OnceLock::new() }
+    }
 }
 
 #[derive(Clone, Copy, Debug)]
@@ -32,6 +38,13 @@ impl std::fmt::Display for Deferred {
 impl std::error::Error for Deferred {}
 
 impl TransferPolicy {
+    /// Device power policy for completed torrents, independent of downloads.
+    pub fn set_allow_seeding(&self, allow: bool) {
+        if self.allow_seeding.swap(allow, Ordering::AcqRel) != allow { self.notify(); }
+    }
+    pub fn seeding_allowed(&self) -> bool {
+        self.allow_seeding.load(Ordering::Acquire) && self.allowed()
+    }
     pub fn set_allow_metered(&self, allow: bool) {
         if self.allow_metered.swap(allow, Ordering::AcqRel) != allow {
             self.notify();
@@ -89,7 +102,7 @@ impl TransferPolicy {
     }
 }
 
-pub static POLICY: TransferPolicy = TransferPolicy { allow_metered: AtomicBool::new(false), cost: AtomicU8::new(0), changes: OnceLock::new() };
+pub static POLICY: TransferPolicy = TransferPolicy { allow_metered: AtomicBool::new(false), allow_seeding: AtomicBool::new(true), cost: AtomicU8::new(0), changes: OnceLock::new() };
 pub fn allowed() -> bool {
     POLICY.allowed()
 }
@@ -109,7 +122,7 @@ pub async fn retry<T, F: Future<Output = T>>(request: impl FnMut() -> F) -> T {
 #[cfg(not(target_arch = "wasm32"))]
 mod native;
 #[cfg(not(target_arch = "wasm32"))]
-pub use native::{configure_reader, initialize, save_allow_metered};
+pub use native::{configure_reader, initialize, initialize_device, save_allow_metered};
 
 #[cfg(test)]
 mod tests {
@@ -118,6 +131,18 @@ mod tests {
     use std::sync::Arc;
     use std::time::Duration;
     use tokio::sync::oneshot;
+
+    #[test]
+    fn disabling_seeding_keeps_downloads_available_even_with_metered_override() {
+        let policy = TransferPolicy::default();
+        assert!(policy.seeding_allowed());
+        policy.set_allow_seeding(false);
+        assert!(policy.allowed());
+        assert!(!policy.seeding_allowed());
+        policy.set_allow_metered(true);
+        assert!(policy.allowed());
+        assert!(!policy.seeding_allowed());
+    }
 
     #[tokio::test]
     async fn changes_notify_all_subscribers_without_repeating_identical_observations() {

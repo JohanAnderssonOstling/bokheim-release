@@ -63,3 +63,15 @@ test('successful startup waits for backend readiness and clears retry state', as
     assert.equal(panel.removed, true);
     assert.deepEqual(removedKeys, ['bokheim-startup-retry-v1']);
 });
+
+test('UI loading failure releases its early backend before retrying', async t => {
+    t.mock.method(console, 'error', () => {});
+    const panel = new Element('main');
+    const events = [];
+    assert.equal(await startApplication(panel, async () => { throw new Error('UI download failed'); }, {
+        storage: {getItem: () => null, setItem() {}},
+        onFailure: () => events.push('backend released'),
+        reload: () => events.push('reload'),
+    }), false);
+    assert.deepEqual(events, ['backend released', 'reload']);
+});

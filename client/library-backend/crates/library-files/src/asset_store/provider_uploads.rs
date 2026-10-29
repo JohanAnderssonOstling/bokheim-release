@@ -1,7 +1,7 @@
 //! Atomic device-owned import snapshots. The book and a credential-free
 //! manifest survive a process exit even before SQLite records the queue row.
 
-use super::{imp, AssetStore, AssetStoreError, StagedBook};
+use super::{AssetStore, AssetStoreError, StagedBook, imp};
 use std::{
     fs::{self, File, OpenOptions},
     io::{ErrorKind, Read, Write},
@@ -61,6 +61,53 @@ impl StagedBook {
 }
 
 impl AssetStore {
+    pub fn provider_upload_metadata(&self, id: Uuid) -> Result<Option<Vec<u8>>, AssetStoreError> {
+        match fs::metadata(directory(self, id)) {
+            Ok(_) => manifest(self, id).map(Some),
+            Err(error) if error.kind() == ErrorKind::NotFound => Ok(None),
+            Err(error) => Err(error.into()),
+        }
+    }
+
+    /// Refresh a manifest before updating its database row. A restart can then
+    /// recover the latest reader state while retaining the same upload session.
+    pub fn replace_provider_upload_metadata(&self, id: Uuid, previous: &[u8], metadata: &[u8]) -> Result<(), AssetStoreError> {
+        if metadata.len() as u64 > MAX_MANIFEST_BYTES || !imp::root_available(&self.0) {
+            return Err(AssetStoreError::operation("invalid pending provider import or unavailable library storage"));
+        }
+        if manifest(self, id)? != previous {
+            return Err(AssetStoreError::operation("pending provider import metadata changed before refresh"));
+        }
+        let path = directory(self, id);
+        let mut temporary = tempfile::NamedTempFile::new_in(&path)?;
+        temporary.write_all(metadata)?;
+        temporary.as_file().sync_all()?;
+        temporary.persist(path.join("draft.json")).map_err(|error| AssetStoreError::operation(error.error))?;
+        imp::sync_parent(&path.join("draft.json"))
+    }
+
+    pub async fn stage_audiobook_folder(&self, source: PathBuf, relative: library_model::RelativeBookPath) -> Result<super::CopiedBook, AssetStoreError> {
+        let store = self.clone();
+        client_platform_runtime::executor::run_blocking(move || {
+            let tracks = audiobook_folder::discover(&source)?;
+            let fingerprint = crate::filesystem::audiobook_fingerprint(&source, &tracks)?;
+            let estimated_size = tracks.iter().try_fold(0_u64, |size, track| -> Result<u64, AssetStoreError> { size.checked_add(fs::metadata(&track.path)?.len()).ok_or_else(|| AssetStoreError::operation("audiobook length overflow")) })?;
+            store.check_write_capacity(estimated_size)?;
+            let destination = imp::placement_path(&store.0, &relative);
+            let parent = client_platform_native::filesystem::parent_directory(&destination)?;
+            let mut archive = tempfile::Builder::new().prefix(".bokheim-import.part-").tempfile_in(parent)?;
+            audiobook_folder::write_folder_archive(&source, archive.as_file_mut(), &tracks)?;
+            archive.as_file_mut().flush()?;
+            archive.as_file().sync_all()?;
+            if crate::filesystem::audiobook_fingerprint(&source, &audiobook_folder::discover(&source)?)? != fingerprint {
+                return Err(AssetStoreError::operation("audiobook folder changed during import"));
+            }
+            Ok(super::CopiedBook { inner: imp::CopiedBook { temporary_path: archive.into_temp_path(), direct: None } })
+        })
+        .await
+        .map_err(AssetStoreError::operation)?
+    }
+
     pub fn retained_provider_uploads(&self) -> Result<Vec<(Uuid, Vec<u8>)>, AssetStoreError> {
         let entries = match fs::read_dir(self.0.assets_root.join("provider-uploads")) {
             Ok(entries) => entries,
@@ -187,6 +234,37 @@ mod tests {
         assert!(!interrupted.exists());
         let mut reader = store.open_provider_upload(upload).unwrap();
         assert_eq!(content_address::hash_file(&mut reader).unwrap(), digest(bytes));
+    }
+
+    #[tokio::test]
+    async fn provider_mp3_archive_download_copy_and_eviction_preserve_the_original() {
+        let root = tempfile::tempdir().unwrap();
+        let source = tempfile::tempdir().unwrap();
+        fs::create_dir_all(source.path().join("Disc 1")).unwrap();
+        fs::create_dir_all(source.path().join("Disc 2")).unwrap();
+        let mp3 = include_bytes!("../../../book-inspection/tests/fixtures/silence.mp3");
+        fs::write(source.path().join("Disc 1/01.mp3"), mp3).unwrap();
+        fs::write(source.path().join("Disc 2/01.mp3"), mp3).unwrap();
+        fs::write(source.path().join("book.nfo"), b"<audiobook><title>Cloud book</title></audiobook>").unwrap();
+        let store = AssetStore::open(root.path().to_str().unwrap()).unwrap();
+        let relative = RelativeBookPath::parse("Book").unwrap();
+        let copied = store.stage_audiobook_folder(source.path().to_owned(), relative.clone()).await.unwrap();
+        let checksum = BookId::from(audiobook_folder::folder_hash(source.path()).unwrap());
+        let staged = copied.verify_transfer(checksum).await.unwrap();
+        let size = staged.size_bytes();
+        let upload = Uuid::new_v4();
+        staged.retain_provider_upload(store.clone(), upload, b"manifest".to_vec()).await.unwrap();
+        let id = BookId::for_provider("google_drive", "account", "my_drive", "mp3-archive");
+        store.stage_retained_provider_upload(upload, id, size).unwrap().unwrap().publish_snapshot(&store, &relative, &[], true).unwrap();
+        let copy = RelativeBookPath::parse("Copy").unwrap();
+        store.prepare_placement(&id, &copy, &[relative.clone()], &[]).unwrap().unwrap().publish().unwrap();
+        assert_eq!(audiobook_folder::folder_hash(&root.path().join("Copy")).unwrap().as_bytes(), checksum.content_hash().unwrap().as_bytes());
+        let original = source.path().join("Disc 1/01.mp3");
+        assert_eq!(fs::read(&original).unwrap(), mp3);
+        store.evict_book_files(&[relative, copy], &id).unwrap();
+        assert!(!root.path().join("Book").exists());
+        assert!(!root.path().join("Copy").exists());
+        assert_eq!(fs::read(original).unwrap(), mp3);
     }
 
     fn digest(bytes: &[u8]) -> content_address::ContentHash {

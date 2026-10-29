@@ -6,7 +6,7 @@ SELECT COALESCE(title,'Untitled'), author FROM book WHERE content_hash = :conten
 
 -- name: audiobook_cached_metadata?
 -- param: content_hash: &BookId
-SELECT duration_ms, toc_json FROM book
+SELECT duration_ms, CAST(toc_json AS BLOB) FROM book
 WHERE content_hash = :content_hash AND duration_ms > 0;
 
 -- name: audiobook_record_recording!
@@ -17,9 +17,9 @@ ON CONFLICT(content_hash) DO UPDATE SET recording_json = excluded.recording_json
 
 -- name: audiobook_chapters_select?
 -- param: content_hash: &BookId
-SELECT toc_json, duration_ms FROM book
+SELECT CAST(toc_json AS BLOB), duration_ms FROM book
 WHERE content_hash=:content_hash AND duration_ms IS NOT NULL;
 
 -- name: audiobook_track_index_select?
 -- param: content_hash: &BookId
-SELECT tracks_json FROM book WHERE content_hash=:content_hash AND tracks_json IS NOT NULL;
+SELECT CAST(tracks_json AS BLOB) FROM book WHERE content_hash=:content_hash AND tracks_json IS NOT NULL;

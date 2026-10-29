@@ -3,16 +3,15 @@
 use std::{collections::HashMap, rc::Rc};
 
 use gpui::prelude::*;
-use gpui::{AnyElement, App, Context, Entity, Window};
+use gpui::{AnyElement, App, Context, Entity, SharedString, Window, div, px};
 use gpui_component::list::ListItem;
 use gpui_component::tree::{TreeState, tree};
-use html_view_core::SearchOptions;
+use skrift_column_paginator::SearchOptions;
 use library_backend::Annotation;
 use ui_components as components;
 
 use crate::settings::ReaderSettings;
 pub(crate) use crate::settings::SidebarTab;
-use crate::shell::marks::MarkSession;
 use crate::shell::search::highlighted_text;
 
 /// Shared sidebar tab-selection state.
@@ -138,39 +137,70 @@ pub(crate) trait AnnotationSidebarTarget: Sized + 'static {
     fn delete_sidebar_annotation(&mut self, id: String, cx: &mut Context<Self>);
 }
 
-/// The annotation rows below the panel header.
-///
-/// The caller appends these to its own panel container, because that is the
-/// one part of the sidebar the readers build differently. Element ids are not
-/// namespaced per reader: a window hosts one reader, so the two can never
-/// collide.
-pub(crate) fn reader_state_rows<C, H>(target: &Entity<C>, marks: &MarkSession, no_annotations: &'static str, theme: components::BrowserTheme, group_for_annotation: H) -> Vec<AnyElement>
+/// Compact descriptions shared by the flat PDF list and EPUB chapter tree.
+#[derive(Debug, PartialEq, Eq)]
+pub(crate) enum AnnotationRow {
+    Heading(String),
+    Card { index: usize, depth: usize, id: SharedString, modified_at: u64 },
+    Empty(&'static str),
+}
+
+impl AnnotationRow {
+    pub(crate) fn card(index: usize, depth: usize, annotation: &Annotation) -> Self {
+        Self::Card { index, depth, id: annotation.id.clone().into(), modified_at: annotation.modified_at }
+    }
+
+    pub(crate) fn annotation_id(&self) -> Option<&str> {
+        match self {
+            Self::Card { id, .. } => Some(id),
+            _ => None,
+        }
+    }
+}
+
+/// Group indices without copying quotes, notes or annotation anchors.
+pub(crate) fn reader_state_rows<H>(annotations: &[Annotation], no_annotations: &'static str, group_for_annotation: H) -> Vec<AnnotationRow>
 where
-    C: AnnotationSidebarTarget,
     H: Fn(&Annotation) -> (String, String),
 {
-    let mut rows = Vec::new();
-    if marks.annotations().is_empty() {
-        rows.push(components::reader_state_note(no_annotations, theme).p(gpui::px(12.0)).into_any_element());
+    if annotations.is_empty() {
+        return vec![AnnotationRow::Empty(no_annotations)];
     }
-    let mut groups: Vec<(String, Vec<(usize, Annotation)>)> = Vec::new();
+    let mut groups: Vec<(String, Vec<usize>)> = Vec::new();
     let mut group_indices = HashMap::<String, usize>::new();
-    for (index, annotation) in marks.annotations().iter().cloned().enumerate() {
-        let (key, title) = group_for_annotation(&annotation);
+    for (index, annotation) in annotations.iter().enumerate() {
+        let (key, title) = group_for_annotation(annotation);
         let group_index = *group_indices.entry(key).or_insert_with(|| {
             groups.push((title, Vec::new()));
             groups.len() - 1
         });
-        groups[group_index].1.push((index, annotation));
+        groups[group_index].1.push(index);
     }
-    for (title, annotations) in groups {
-        rows.push(components::reader_annotation_group_heading(title, theme).into_any_element());
-        for (index, annotation) in annotations {
-            let selected = marks.selected_id() == Some(annotation.id.as_str());
-            rows.push(reader_annotation_card(target, index, &annotation, selected, "", theme));
+    let mut rows = Vec::new();
+    for (title, indices) in groups {
+        rows.push(AnnotationRow::Heading(title));
+        for index in indices {
+            rows.push(AnnotationRow::card(index, 0, &annotations[index]));
         }
     }
     rows
+}
+
+pub(crate) fn render_annotation_row<C: AnnotationSidebarTarget>(target: &Entity<C>, row: &AnnotationRow, annotations: &[Annotation], selected_id: Option<&str>, query: &str, theme: components::BrowserTheme) -> AnyElement {
+    match row {
+        AnnotationRow::Heading(title) => components::reader_annotation_group_heading(title.clone(), theme).into_any_element(),
+        AnnotationRow::Empty(message) => components::reader_state_note(*message, theme).p(px(12.0)).into_any_element(),
+        AnnotationRow::Card { index, depth, id, .. } => {
+            let Some(annotation) = annotations.get(*index).filter(|annotation| annotation.id == id.as_str()) else { return div().into_any_element() };
+            div()
+                .w_full()
+                .min_w_0()
+                .flex_none()
+                .pl(px(components::CONTENTS_ROW_INDENT * (*depth).min(3) as f32))
+                .child(reader_annotation_card(target, *index, annotation, selected_id == Some(annotation.id.as_str()), query, theme))
+                .into_any_element()
+        }
+    }
 }
 
 /// One annotation, shared by flat lists and the filtered TOC tree.
@@ -308,7 +338,7 @@ where
                 });
                 // The tree toggles an entry when its row is clicked, so navigation
                 // hangs on the title, which stops the click reaching the row.
-                let title = components::contents_title(("reader-toc-title", index), item.label.clone(), theme).debug_selector(move || format!("reader-toc-title-{index}")).on_click(move |_, window, cx| {
+                let title = components::contents_title(("reader-toc-title", index), item.label.clone()).debug_selector(move || format!("reader-toc-title-{index}")).on_click(move |_, window, cx| {
                     let id = id.clone();
                     navigation_target.update(cx, |this, cx| on_navigate(&id, TocActivation::Pointer, window, this, cx));
                 });
@@ -321,7 +351,7 @@ where
                     components::contents_row(("reader-toc-row", index), row, nested.then(|| components::contents_disclosure(("reader-toc-disclosure", index), row, theme)), title, None, reset, theme)
                         .debug_selector(move || format!("reader-toc-row-{index}"))
                         .min_h_0()
-                        .line_height(gpui::relative(1.2)),
+                        .line_height_auto(),
                 )
             })
             .pr(gpui::px(components::READER_SCROLLBAR_GUTTER_PX)),

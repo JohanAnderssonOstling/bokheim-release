@@ -69,6 +69,32 @@ async fn requests(server: JoinHandle<Vec<String>>) -> Vec<String> {
 }
 
 #[tokio::test]
+async fn content_revision_survives_background_metadata_changes_during_a_read() {
+    let mut before = drive_file("1");
+    before["headRevisionId"] = "content-one".into();
+    let mut after = before.clone();
+    after["version"] = "3".into();
+    after["name"] = "Renamed.m4b".into();
+    let (drive, task) = server(vec![Reply::json(before.clone()), Reply { status: 206, headers: vec![("Content-Range", "bytes 1-2/4".into())], body: b"bc".to_vec() }, Reply::json(after)]).await;
+    let CloudEntry::File(file) = serde_json::from_value::<DriveFile>(before).unwrap().entry(&scope()).unwrap().unwrap() else { panic!("expected file") };
+    assert_eq!(file.file.revision.as_str(), "head:content-one");
+    assert_eq!(drive.read_range("token", &file.file, 1, 2).await.unwrap(), b"bc");
+    assert_eq!(requests(task).await.len(), 3);
+}
+
+#[tokio::test]
+async fn replacement_content_revision_is_rejected_before_downloading_bytes() {
+    let mut original = drive_file("1");
+    original["headRevisionId"] = "content-one".into();
+    let mut replacement = original.clone();
+    replacement["headRevisionId"] = "content-two".into();
+    let (drive, task) = server(vec![Reply::json(replacement)]).await;
+    let CloudEntry::File(file) = serde_json::from_value::<DriveFile>(original).unwrap().entry(&scope()).unwrap().unwrap() else { panic!("expected file") };
+    assert!(matches!(drive.read_range("token", &file.file, 1, 2).await, Err(CloudError::RevisionChanged)));
+    assert_eq!(requests(task).await.len(), 1);
+}
+
+#[tokio::test]
 async fn folder_picker_uses_folder_ids_and_follows_pages_without_reading_book_bytes() {
     let (drive, task) = server(vec![Reply::json(json!({"nextPageToken":"second", "files":[{"id":"child", "name":"Audio", "mimeType":FOLDER_MIME, "parents":["folder"]}]})), Reply::json(json!({"files":[]}))]).await;
     let folder = ProviderId::new("folder'\\").unwrap();
@@ -159,4 +185,43 @@ fn persisted_upload_sessions_cannot_redirect_credentials_to_another_origin() {
         assert!(!trusted_upload_url(&Url::parse(url).unwrap(), &base));
     }
     assert!(trusted_upload_url(&base.join("files?upload_id=secret").unwrap(), &base));
+}
+
+fn rejected(reason: &str) -> Reply {
+    let mut reply = Reply::json(json!({"error":{"code":403,"message":"provider diagnostic","errors":[{"reason":reason}]}}));
+    reply.status = 403;
+    reply
+}
+
+#[tokio::test]
+async fn storage_quota_is_distinct_from_permissions_during_upload_creation_and_commit() {
+    let (drive, task) = server(vec![rejected("storageQuotaExceeded"), rejected("storageQuotaExceeded")]).await;
+    assert!(matches!(drive.begin_upload("secret", &ProviderId::new("folder").unwrap(), &ProviderId::new("audio").unwrap(), "Book.m4b", 4).await, Err(CloudError::StorageFull)));
+    let upload = DriveUpload { url: drive.uploads.join("files?upload_id=secret").unwrap(), scope: scope(), file_id: ProviderId::new("audio").unwrap(), size_bytes: 4 };
+    let error = match drive.upload_chunk("secret", &upload, 0, b"abcd".to_vec()).await {
+        Err(error) => error,
+        Ok(_) => panic!("quota-rejected upload cannot be complete"),
+    };
+    assert_eq!(error, CloudError::StorageFull);
+    assert_eq!(std::error::Error::source(&error).unwrap().downcast_ref::<operation_failure::Failure>(), Some(&operation_failure::Failure::CloudStorageFull));
+    assert_eq!(requests(task).await.len(), 2);
+}
+
+#[tokio::test]
+async fn request_limits_are_not_reported_as_full_storage_or_permission_denials() {
+    for reason in ["rateLimitExceeded", "userRateLimitExceeded", "dailyLimitExceeded", "quotaExceeded", "insufficientFilePermissions"] {
+        let (drive, task) = server(vec![rejected(reason)]).await;
+        let error = drive.list_folder("secret", &ProviderId::new("folder").unwrap(), None, false).await.unwrap_err();
+        assert_eq!(error, if reason == "insufficientFilePermissions" { CloudError::PermissionDenied } else { CloudError::RateLimited });
+        requests(task).await;
+    }
+}
+
+#[tokio::test]
+async fn provider_error_message_text_cannot_misclassify_a_permission_error() {
+    let mut reply = Reply::json(json!({"error":{"message":"storageQuotaExceeded", "errors":[{"reason":"insufficientFilePermissions"}]}}));
+    reply.status = 403;
+    let (drive, task) = server(vec![reply]).await;
+    assert!(matches!(drive.list_folder("secret", &ProviderId::new("folder").unwrap(), None, false).await, Err(CloudError::PermissionDenied)));
+    requests(task).await;
 }

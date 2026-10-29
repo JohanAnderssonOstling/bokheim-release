@@ -25,7 +25,6 @@ rm -f "$BOKHEIM_KOBO_EXIT_ACTION_FILE"
 export RUST_BACKTRACE="${RUST_BACKTRACE:-1}"
 export RUST_LOG="${RUST_LOG:-warn,book_startup=debug}"
 export BOKHEIM_KOBO_CANVAS_MODE_FILE="${BOKHEIM_KOBO_CANVAS_MODE_FILE:-$WORKDIR/data/canvas-mode}"
-export BOKHEIM_WESTERN_SHAPING_BENCHMARK=1
 NICKEL_WAS_RUNNING=${BOKHEIM_KOBO_RESTORE_NICKEL:-0}
 export BOKHEIM_KOBO_WIFI_HELPER="$WORKDIR/wifi-power.sh"
 # Read only selected hardware hints while Nickel still exists. Never eval /proc data.

@@ -73,7 +73,6 @@ fn catalog_first_pages_and_arrow_pages_match_complete_sections() {
             chip_sort: BrowseChipSort::Alphabetical,
             book_sort: BrowseBookSort::Alphabetical,
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let initial_headings = db.browse_page(&heading_query, false, BrowsePageRequest::default()).unwrap();
         assert_eq!(initial_headings.contents.children.len(), 24);
@@ -99,7 +98,7 @@ fn catalog_first_pages_and_arrow_pages_match_complete_sections() {
                 for languages in [vec![], vec!["en".to_owned()], vec!["sv".to_owned()]] {
                     for file_types in [vec![], vec![LibraryFileTypeFilter::Book], vec![LibraryFileTypeFilter::Audiobook]] {
                         let mut query =
-                            LibraryBrowseQuery { location, search: String::new(), file_types, languages: languages.clone(), chip_sort: BrowseChipSort::Popularity, book_sort: sort, hide_finished: false, include_direct_child_books: false };
+                            LibraryBrowseQuery { location, search: String::new(), file_types, languages: languages.clone(), chip_sort: BrowseChipSort::Popularity, book_sort: sort, hide_finished: false };
                         let full = db.browse(&query, false).unwrap();
                         for card in full.contents.books.iter().chain(full.sections.iter().flat_map(|section| &section.books)) {
                             let expected_duration = (card.key() == audio_key).then_some(27_789_000);

@@ -59,6 +59,10 @@ impl LibraryEntry {
 
 mod owner;
 pub use owner::LibraryRegistry;
+#[cfg(not(target_arch = "wasm32"))]
+mod recovery;
+#[cfg(not(target_arch = "wasm32"))]
+pub use recovery::LibraryRootRecovery;
 
 struct LocalRegistry {
     #[cfg(not(target_arch = "wasm32"))]

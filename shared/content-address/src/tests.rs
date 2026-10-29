@@ -68,6 +68,43 @@ fn identity_hashes_all_bytes_without_format_parsing() {
 }
 
 #[test]
+fn stream_hashing_retries_interruptions_and_starts_at_the_current_position() {
+    struct Fragmented<'a> {
+        bytes: Cursor<&'a [u8]>,
+        interrupt: bool,
+    }
+    impl Read for Fragmented<'_> {
+        fn read(&mut self, output: &mut [u8]) -> io::Result<usize> {
+            self.interrupt = !self.interrupt;
+            if self.interrupt {
+                return Err(io::ErrorKind::Interrupted.into());
+            }
+            let count = output.len().min(8191);
+            self.bytes.read(&mut output[..count])
+        }
+    }
+    let bytes: Vec<_> = (0..131_091).map(|index| index as u8).collect();
+    let mut reader = Fragmented { bytes: Cursor::new(bytes.as_slice()), interrupt: false };
+    reader.bytes.set_position(17);
+    assert_eq!(hash_reader(&mut reader).unwrap(), ContentHash::from(blake3::hash(&bytes[17..])));
+    assert_eq!(reader.bytes.position(), bytes.len() as u64);
+}
+
+#[test]
+fn stream_hashing_preserves_source_errors() {
+    struct Failed;
+    impl Read for Failed {
+        fn read(&mut self, _: &mut [u8]) -> io::Result<usize> {
+            Err(io::Error::new(io::ErrorKind::PermissionDenied, "fixture source unreadable"))
+        }
+    }
+    let mut reader = b"partial book".as_slice().chain(Failed);
+    let error = hash_reader(&mut reader).unwrap_err();
+    assert_eq!(error.kind(), io::ErrorKind::PermissionDenied);
+    assert_eq!(error.to_string(), "fixture source unreadable");
+}
+
+#[test]
 fn raw_hash_roundtrips_without_changing_json() {
     let bytes = std::array::from_fn(|index| index as u8);
     let hash = ContentHash::from_bytes(bytes);

@@ -1,5 +1,17 @@
 # Public Internet deployment
 
+Sync pull pages use a decoded-byte budget of 63.5 MiB, with 512 KiB reserved
+below the 64 MiB response ceiling. There is no independent pull change-count
+cap. Native and web clients share this budget and cursor validation.
+
+The Caddy configuration enables Zstandard/gzip for protobuf responses on the
+API host, browser API proxy, and metadata API. Its explicit media-type matcher
+includes `application/vnd.bokheim+protobuf`, which is outside the
+[default compression matcher](https://caddyserver.com/docs/caddyfile/directives/encode).
+The transferred size depends on the negotiated encoding; 4 MiB is not a strict
+compressed-page limit. Install the updated Caddy configuration as well as the
+coordinated client/server release to enable compression in production.
+
 ## Remote code deployment
 
 After the host has been prepared once with `install-server.sh`, deploy a new

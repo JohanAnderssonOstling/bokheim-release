@@ -31,14 +31,57 @@ pub use directory_projection::{DirectoryIntent, DirectoryProjection, project_dir
 
 /// The complete, immutable facts admitted when a file is added to a library.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(from = "DecodedBookAddition")]
 pub struct BookAddition {
     pub facts: BookFacts,
+    /// File metadata while drafting; the finalized record after enrichment.
+    #[serde(with = "book_model::record_transport")]
     pub record: BookRecord,
     pub navigation: Option<BookTocDocument>,
     pub pdf: Option<PdfReaderMetadata>,
     pub recording: Option<metadata_contract::audible::LookupRequest>,
     /// Absent only in a device-local draft. Every publication has a definitive answer.
     pub enrichment: Option<EnrichmentResult>,
+}
+
+#[derive(Deserialize)]
+struct DecodedBookAddition {
+    facts: BookFacts,
+    #[serde(with = "book_model::record_transport")]
+    record: BookRecord,
+    navigation: Option<BookTocDocument>,
+    pdf: Option<PdfReaderMetadata>,
+    recording: Option<metadata_contract::audible::LookupRequest>,
+    enrichment: Option<enrichment::DecodedEnrichment>,
+}
+
+impl From<DecodedBookAddition> for BookAddition {
+    fn from(decoded: DecodedBookAddition) -> Self {
+        let mut addition = Self { facts: decoded.facts, record: decoded.record, navigation: decoded.navigation, pdf: decoded.pdf, recording: decoded.recording, enrichment: None };
+        if let Some(enrichment) = decoded.enrichment {
+            if let Some(record) = enrichment.record {
+                addition.apply_enrichment(record, enrichment.result);
+            } else {
+                addition.enrichment = Some(enrichment.result);
+            }
+        }
+        addition
+    }
+}
+
+impl BookAddition {
+    /// Complete the draft before publication. Historical two-record additions
+    /// use this same merge while decoding on native and web.
+    pub fn apply_enrichment(&mut self, record: BookRecord, result: EnrichmentResult) {
+        let year = self.record.book.year.or(record.book.year);
+        self.record.metadata.book = record.metadata.book;
+        self.record.book.year = year;
+        self.record.metadata.contributors = record.metadata.contributors;
+        if self.record.description.trim().is_empty() {
+            self.record.description = record.description;
+        }
+        self.enrichment = Some(result);
+    }
 }
 
 /// Provider metadata can advance as the same remote file is edited. Its stable
@@ -221,11 +264,11 @@ impl StatePayload for LibraryStateEntry {
     fn serialize_entry<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         self.validate().map_err(serde::ser::Error::custom)?;
         let entry = OpaqueStateEntry { address: self.address(), book: self.book(), bytes: sync_common::transport::encode(self).map_err(serde::ser::Error::custom)? };
-        entry.serialize(serializer)
+        entry.serialize_entry(serializer)
     }
 
     fn deserialize_entry<'de, D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
-        let entry = OpaqueStateEntry::deserialize(deserializer)?;
+        let entry = OpaqueStateEntry::deserialize_entry(deserializer)?;
         let decode = || -> Result<Self, sync_common::transport::WireError> {
             use sync_common::transport::WireError;
             if !Self::recognizes_kind(&entry.address.kind) {

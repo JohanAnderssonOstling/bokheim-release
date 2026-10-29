@@ -1,1 +1,0 @@
-SELECT physical_name FROM asset_file WHERE name='assets/library/book/001'

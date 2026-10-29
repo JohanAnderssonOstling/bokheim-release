@@ -1,23 +1,28 @@
-//! Provider-owned inventory and native downloads. This worker runs without a
+//! Provider-owned inventory and offline downloads. This worker runs without a
 //! Bokheim session and never sends file or thumbnail bytes to Bokheim storage.
 
 use super::{events::LibraryEvent, LibrarySession};
 use crate::BackendError;
-use book_access::{FetchFuture, RemoteFileError};
 use book_model::BookFormat;
+use client_platform_runtime::pending::OnDrop;
 use cloud_storage::{connections::ConnectedDrive, scanner::ScanCursor, CloudChange, CloudEntry, CloudError};
-use library_database::NativeBookCompletion;
-use library_model::{DownloadProgress, DownloadState, TransferOrigin};
-use std::{
-    collections::{HashMap, HashSet},
-    path::PathBuf,
-};
+use library_model::{DownloadProgress, DownloadState, LibraryUpdate, TransferOrigin};
+use std::collections::{HashMap, HashSet};
+use std::ops::AsyncFnMut;
 use sync_common::{
     storage::{CloudLibraryRoot, ProviderFile, ProviderId},
     BookId, DirId, ROOT_DIR_ID,
 };
 
+#[cfg(all(target_arch = "wasm32", feature = "browser-cloud-checks"))]
+pub mod browser_checks;
+#[cfg(not(target_arch = "wasm32"))]
+mod native;
+#[cfg(all(test, feature = "google-drive", not(target_arch = "wasm32")))]
+pub(super) mod tests;
 mod thumbnails;
+#[cfg(target_arch = "wasm32")]
+mod web;
 
 fn entry_id(entry: &CloudEntry) -> &ProviderId {
     match entry {
@@ -27,16 +32,34 @@ fn entry_id(entry: &CloudEntry) -> &ProviderId {
 }
 
 impl LibrarySession {
+    /// Copy revision-pinned chunks into the host's writer. A stale browser
+    /// snapshot stops before publication; native publication rechecks its revision.
+    async fn copy_cloud_download(
+        &self, connection: &ConnectedDrive, file: &ProviderFile, mut write: impl AsyncFnMut(&[u8]) -> Result<(), BackendError>, mut current: impl FnMut() -> Result<bool, BackendError>,
+    ) -> Result<Option<u64>, BackendError> {
+        let mut completed = 0;
+        while completed < file.size_bytes {
+            if !current()? {
+                return Ok(None);
+            }
+            let length = (file.size_bytes - completed).min(cloud_storage::MAX_RANGE_BYTES as u64) as usize;
+            let bytes = connection.read_range(file, completed, length).await.map_err(BackendError::operation)?;
+            if bytes.len() != length {
+                return Err(BackendError::message("cloud download returned an incomplete range"));
+            }
+            write(&bytes).await?;
+            completed += bytes.len() as u64;
+            self.emit(LibraryEvent::DownloadStatusChanged { content_hash: file.identity.book_id(), state: DownloadState::Downloading(DownloadProgress::from_ratio(completed, file.size_bytes)) });
+        }
+        Ok(Some(completed))
+    }
+
     pub(crate) async fn run_cloud_pass(&self) -> Result<(), BackendError> {
         let storage = self.db.storage_policy()?;
         let Some(root) = storage.external() else { return Ok(()) };
         let connection = self.cloud.google_drive(root.scope.clone()).map_err(BackendError::operation)?;
         let uploads = self.import.run_provider_uploads().await;
-        let scan = async {
-            let inventory = self.cloud_inventory(&connection, root).await?;
-            self.admit_cloud_inventory(&connection, root, inventory).await
-        }
-        .await;
+        let scan = self.scan_cloud_library(&connection, root).await;
         // A malformed or changing book must not block requested downloads of
         // other files whose provider references are already confirmed.
         let downloads = self.cloud_downloads(&connection).await;
@@ -45,6 +68,21 @@ impl LibrarySession {
         scan?;
         downloads?;
         covers
+    }
+
+    async fn scan_cloud_library(&self, connection: &ConnectedDrive, root: &CloudLibraryRoot) -> Result<(), BackendError> {
+        self.scanning.set(true);
+        let _scanning = OnDrop::new(|| {
+            self.scanning.set(false);
+            // This scan already runs inside the asset worker. Announce its
+            // result without scheduling another asset pass on its own completion.
+            self.events.publish_update(LibraryUpdate::Scanning(self.scanner_running()));
+            self.events.publish_update(LibraryUpdate::Contents);
+            self.events.files.wake();
+        });
+        self.emit(LibraryEvent::ScanStarted);
+        let inventory = self.cloud_inventory(connection, root).await?;
+        self.admit_cloud_inventory(connection, root, inventory).await
     }
 
     async fn cloud_inventory(&self, connection: &ConnectedDrive, root: &CloudLibraryRoot) -> Result<Vec<CloudEntry>, BackendError> {
@@ -66,39 +104,33 @@ impl LibrarySession {
             Some(scan) => scan,
             None => self.db.begin_provider_scan(connection.start_checkpoint().await.map_err(BackendError::operation)?, serde_json::to_string(&ScanCursor::new(root.folder_id.clone())).map_err(BackendError::operation)?)?,
         };
-        self.emit(LibraryEvent::ScanStarted);
-        let result = async {
-            while let Some(cursor) = scan.cursor.as_deref() {
-                let cursor: ScanCursor = serde_json::from_str(cursor).map_err(BackendError::operation)?;
-                if cursor.root() != &root.folder_id {
-                    return Err(BackendError::message("cloud scan belongs to another library folder"));
-                }
-                let page = connection.scan_page(&cursor).await.map_err(BackendError::operation)?;
-                let next = page.next.map(|next| serde_json::to_string(&next)).transpose().map_err(BackendError::operation)?;
-                let entries = page.entries.into_iter().map(|entry| Ok((entry_id(&entry).as_str().to_owned(), serde_json::to_string(&entry).map_err(BackendError::operation)?))).collect::<Result<Vec<_>, BackendError>>()?;
-                if !self.db.commit_provider_scan_page(&scan, next.clone(), entries)? {
-                    return Err(BackendError::message("cloud scan position changed"));
-                }
-                scan.cursor = next;
+        while let Some(cursor) = scan.cursor.as_deref() {
+            let cursor: ScanCursor = serde_json::from_str(cursor).map_err(BackendError::operation)?;
+            if cursor.root() != &root.folder_id {
+                return Err(BackendError::message("cloud scan belongs to another library folder"));
             }
-            let entries = self.cloud_scan_entries(scan.generation)?;
-            let (changed, checkpoint) = match self.cloud_changes_affect_inventory(connection, root, &entries, &scan.checkpoint).await {
-                Ok(result) => result,
-                Err(CloudError::CursorExpired) => (true, connection.start_checkpoint().await.map_err(BackendError::operation)?),
-                Err(error) => return Err(BackendError::operation(error)),
-            };
-            if changed {
-                self.db.begin_provider_scan(checkpoint, serde_json::to_string(&ScanCursor::new(root.folder_id.clone())).map_err(BackendError::operation)?)?;
-                return Err(BackendError::message("cloud folder changed during enumeration; the new scan will resume"));
+            let page = connection.scan_page(&cursor).await.map_err(BackendError::operation)?;
+            let next = page.next.map(|next| serde_json::to_string(&next)).transpose().map_err(BackendError::operation)?;
+            let entries = page.entries.into_iter().map(|entry| Ok((entry_id(&entry).as_str().to_owned(), serde_json::to_string(&entry).map_err(BackendError::operation)?))).collect::<Result<Vec<_>, BackendError>>()?;
+            if !self.db.commit_provider_scan_page(&scan, next.clone(), entries)? {
+                return Err(BackendError::message("cloud scan position changed"));
             }
-            if !self.db.finish_provider_scan(scan.generation, &checkpoint)? {
-                return Err(BackendError::message("cloud scan changed before completion"));
-            }
-            Ok(entries)
+            scan.cursor = next;
         }
-        .await;
-        self.emit(LibraryEvent::ScanComplete { busy: false });
-        result
+        let entries = self.cloud_scan_entries(scan.generation)?;
+        let (changed, checkpoint) = match self.cloud_changes_affect_inventory(connection, root, &entries, &scan.checkpoint).await {
+            Ok(result) => result,
+            Err(CloudError::CursorExpired) => (true, connection.start_checkpoint().await.map_err(BackendError::operation)?),
+            Err(error) => return Err(BackendError::operation(error)),
+        };
+        if changed {
+            self.db.begin_provider_scan(checkpoint, serde_json::to_string(&ScanCursor::new(root.folder_id.clone())).map_err(BackendError::operation)?)?;
+            return Err(BackendError::message("cloud folder changed during enumeration; the new scan will resume"));
+        }
+        if !self.db.finish_provider_scan(scan.generation, &checkpoint)? {
+            return Err(BackendError::message("cloud scan changed before completion"));
+        }
+        Ok(entries)
     }
 
     fn cloud_scan_entries(&self, generation: uuid::Uuid) -> Result<Vec<CloudEntry>, BackendError> {
@@ -192,6 +224,11 @@ impl LibrarySession {
             }
             folders = pending;
         }
+        // Folders are usable before potentially slow book inspection finishes.
+        // Refresh the view now so its empty-library scan overlay can disappear.
+        if !projected.is_empty() {
+            self.events.publish_update(LibraryUpdate::Contents);
+        }
         let mut present = HashSet::new();
         let mut failed = false;
         for entry in inventory {
@@ -199,9 +236,6 @@ impl LibrarySession {
             present.insert(file.file.identity.file_id.clone());
             let Some(parent) = file.parent_ids.iter().find_map(|parent| directories.get(parent)).copied() else { continue };
             let Some(format) = BookFormat::from_file_name(&file.name) else { continue };
-            if format == BookFormat::Mp3Folder {
-                continue;
-            }
             let id = file.file.identity.book_id();
             if self.db.provider_file(&id)?.is_some_and(|previous| previous.revision == file.file.revision) {
                 self.db.confirm_provider_available(&id)?;
@@ -234,20 +268,9 @@ impl LibrarySession {
         }
     }
 
-    async fn inspect_cloud_file(&self, connection: ConnectedDrive, file: ProviderFile, name: String, format: BookFormat) -> Result<book_inspection::InspectedBook, BackendError> {
-        let id = file.identity.book_id();
-        let length = file.size_bytes;
-        let fetch = move |offset, length| {
-            let connection = connection.clone();
-            let file = file.clone();
-            Box::pin(async move { connection.read_range(&file, offset, length).await.map_err(|error| RemoteFileError::Failed(error.to_string())) }) as FetchFuture<'static, Result<Vec<u8>, RemoteFileError>>
-        };
-        let reader = book_access::remote_file::native_reader(length, Vec::new(), fetch).map_err(BackendError::operation)?;
-        client_platform_runtime::executor::run_blocking(move || book_inspection::inspect_book_reader_with_hash(&PathBuf::from(name), format, reader, Some(id)).map_err(BackendError::operation)).await.map_err(BackendError::operation)?
-    }
-
     async fn cloud_downloads(&self, connection: &ConnectedDrive) -> Result<(), BackendError> {
         let (mut after, mut after_id) = (-1, None);
+        let mut failure = None;
         loop {
             let page = self.db.book_download_requests(after, after_id.as_ref(), 32)?;
             let Some((last, at)) = page.last() else { break };
@@ -258,45 +281,19 @@ impl LibrarySession {
                     continue;
                 }
                 if let Err(error) = self.download_cloud_book(connection, id).await {
+                    log::warn!("could not download cloud book {id}: {error}");
                     if origin == TransferOrigin::UserInitiated {
                         self.db.cancel_download(&id)?;
                         self.events.publish_update(library_model::LibraryUpdate::DownloadFailed { content_hash: id, failure: error.failure() });
                     }
-                    return Err(error);
+                    failure.get_or_insert(error);
                 }
             }
         }
-        Ok(())
-    }
-
-    async fn download_cloud_book(&self, connection: &ConnectedDrive, id: BookId) -> Result<(), BackendError> {
-        let file = self.db.provider_file(&id)?.ok_or_else(|| BackendError::message("cloud book is unavailable"))?;
-        let snapshot = self.db.transfer_snapshot(&[id])?;
-        let Some(book) = snapshot.placements.iter().find_map(|entry| entry.book.clone()) else {
-            self.db.cancel_download(&id)?;
-            return Ok(());
-        };
-        self.assets.check_write_capacity(file.size_bytes).map_err(BackendError::operation)?;
-        self.assets.ensure_placement_parent(&book.relative_path).map_err(BackendError::operation)?;
-        let mut writer = self.assets.begin_book_write(&book.relative_path, &id).await.map_err(BackendError::operation)?;
-        let mut completed = 0;
-        while completed < file.size_bytes {
-            let length = (file.size_bytes - completed).min(cloud_storage::MAX_RANGE_BYTES as u64) as usize;
-            let bytes = connection.read_range(&file, completed, length).await.map_err(BackendError::operation)?;
-            writer.write_all(&bytes).await.map_err(BackendError::operation)?;
-            completed += bytes.len() as u64;
-            self.emit(LibraryEvent::DownloadStatusChanged { content_hash: id, state: DownloadState::Downloading(DownloadProgress::from_ratio(completed, file.size_bytes)) });
+        match failure {
+            Some(error) => Err(error),
+            None => Ok(()),
         }
-        if self.db.provider_file(&id)?.is_none_or(|current| current.revision != file.revision) {
-            return Err(BackendError::message("cloud file changed during download"));
-        }
-        let writer = writer.verify_provider(file.size_bytes, file.content_hash).await.map_err(BackendError::operation)?;
-        let staged = writer.finish_book().await.map_err(BackendError::operation)?;
-        let publication = staged.publish_snapshot_with_track_titles(&self.assets, &book.relative_path, &book.occupied_names, false, &[]).map_err(BackendError::operation)?;
-        self.db.complete_downloaded_book(NativeBookCompletion { snapshot: book, publication, size_bytes: completed }, self.assets.thumbnail_set_exists(&id).map_err(BackendError::operation)?)?;
-        self.emit(LibraryEvent::DownloadStatusChanged { content_hash: id, state: self.persistent_download_state(id)? });
-        self.events.notify_contents_changed();
-        Ok(())
     }
 }
 

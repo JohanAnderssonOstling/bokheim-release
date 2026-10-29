@@ -1,0 +1,61 @@
+Categories:
+  - Ebook Reader
+License: GPL-3.0-or-later
+AuthorName: Johan
+AuthorEmail: johan@bokheim.se
+SourceCode: https://github.com/JohanAnderssonOstling/bokheim
+IssueTracker: https://github.com/JohanAnderssonOstling/bokheim/issues
+
+AutoName: Bokheim
+
+RepoType: git
+Repo: https://github.com/JohanAnderssonOstling/bokheim.git
+
+Builds:
+  - versionName: 0.1.10
+    versionCode: 1010
+    disable: Waiting for the first developer-signed F-Droid release
+    commit: ce6d9b2eae57aa4871df31460c8f85af5b50a4f5
+    subdir: apps/desktop-gpui/android
+    sudo:
+      - apt-get update
+      - apt-get install -y build-essential cmake ninja-build pkg-config python3 curl
+        openjdk-21-jdk-headless bubblewrap
+    init: sdkmanager 'platforms;android-36' 'build-tools;36.0.0'
+    output: build/outputs/apk/release/BokheimGpui-release-unsigned.apk
+    binary: https://github.com/JohanAnderssonOstling/bokheim/releases/download/v%v/Bokheim-fdroid-arm64.apk
+    srclibs:
+      - rustup@d8c92c6765f85625b20482e165066bf1e98e7297
+    prebuild:
+      - bash $$rustup$$/rustup-init.sh -y --default-toolchain 1.99.1 --profile minimal
+        --no-modify-path
+      - export PATH="$HOME/.cargo/bin:$PATH"
+      - python3 ../../../scripts/fdroid/prefetch.py --gradle gradle --sdk $$SDK$$
+        --pdfium-source-work ../../../../.bokheim-native/pdfium --speech-source-work
+        ../../../../.bokheim-native/speech
+    build:
+      - export PATH="$HOME/.cargo/bin:$PATH"
+      - python3 ../../../scripts/fdroid/build.py --gradle gradle --sdk $$SDK$$ --pdfium-source-work
+        ../../../../.bokheim-native/pdfium --speech-source-work ../../../../.bokheim-native/speech
+        --jobs 2 --native-jobs 2
+    ndk: 29.0.14206865
+
+AllowedAPKSigningKeys: 97220997a830cbd326ab178a7467b1c85e7af172f5560b3ec29e54e457b384f0
+
+MaintainerNotes: |-
+  ARM64 only. prebuild fetches pinned source archives and toolchains without
+  compiling application libraries; build runs Gradle, Cargo and native builders
+  offline. PDFium and Sherpa/Piper/eSpeak are compiled from source. ONNX Runtime
+  1.28.0 is the SHA-verified official Microsoft Maven Central AAR. The Rustls
+  Android verifier is built from vendored source. The Alba model archive is
+  SHA-verified data with the upstream model card and dataset attribution.
+  Updater components and Google Play Services are excluded in this build.
+  The build remains disabled until the signed F-Droid APK is published at the
+  binary URL. Remove disable only after that release is available.
+  Unsigned APK layout is normalized using SHA-pinned reproducible-apk-tools.
+  Developer APKs use v2/v3 signatures with preserved alignment (minimum API 26).
+
+AutoUpdateMode: None
+UpdateCheckMode: None
+CurrentVersion: 0.1.10
+CurrentVersionCode: 1010

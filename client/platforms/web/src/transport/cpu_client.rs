@@ -1,15 +1,11 @@
-use super::{BytesFuture, Port, error_message, object, read_byte_reply};
-use crate::reply::{OwnedReply, send_once};
+use super::{error_message, object, read_byte_reply, BytesFuture, Port};
+use crate::reply::{send_once, OwnedReply};
 use async_channel::bounded;
 use js_sys::{Array, Uint8Array};
 use wasm_bindgen::prelude::*;
 use web_sys::{DedicatedWorkerGlobalScope, MessageChannel};
 
 /// Each CPU request owns its reply port; no global listener or correlation map.
-pub fn request(bytes: Vec<u8>) -> Result<BytesFuture, String> {
-    request_with_source(bytes, JsValue::UNDEFINED)
-}
-
 pub fn request_with_source(bytes: Vec<u8>, source: JsValue) -> Result<BytesFuture, String> {
     let channel = MessageChannel::new().map_err(|error| error_message(&error))?;
     let (reply, response) = bounded(1);

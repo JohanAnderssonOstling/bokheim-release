@@ -37,6 +37,17 @@ pub fn inspect_reader_metadata<R: Read + Seek + Send + 'static>(mut reader: R) -
     }
     reader.seek(SeekFrom::Start(0)).map_err(PdfError::new_io)?;
     let content_hash = hash.finalize().to_hex().to_string();
+    inspect_reader_metadata_with_identity(reader, content_hash)
+}
+
+/// Inspect a source whose identity is already established by the caller.
+/// The identity may be a verified content digest or a provider file identity;
+/// this function does not calculate or verify a byte checksum. Provider
+/// readers must pin one revision for the complete inspection, and callers
+/// must invalidate cached metadata when that revision changes.
+pub fn inspect_reader_metadata_with_identity<R: Read + Seek + Send + 'static>(mut reader: R, identity: String) -> PdfResult<(R, PdfReaderMetadata, Vec<BookTocEntry>)> {
+    reader.seek(SeekFrom::Start(0)).map_err(PdfError::new_io)?;
+    let content_hash = identity;
     let (mut reader, mut metadata, outline) = runtime::run(move || inspect_local(reader, content_hash))?;
     reader.seek(SeekFrom::Start(0)).map_err(PdfError::new_io)?;
     metadata.dependencies = pdf_range_reader::dependency_index(&mut reader).ok().filter(|d| d.valid(metadata.pages.len()));
@@ -105,8 +116,19 @@ impl LocalDocumentSession {
 
 impl LocalDocumentSession {
     pub fn from_reader_with_page_source<R: Read + Seek + 'static>(source_name: impl Into<String>, reader: R, content_hash: &str, metadata: Option<PdfReaderMetadata>, page_source: Option<Arc<dyn PdfPageSource>>) -> PdfResult<Self> {
+        Self::from_reader_with_opening_page(source_name, reader, content_hash, metadata, page_source, None)
+    }
+
+    pub fn from_reader_with_opening_page<R: Read + Seek + 'static>(
+        source_name: impl Into<String>, reader: R, content_hash: &str, metadata: Option<PdfReaderMetadata>, page_source: Option<Arc<dyn PdfPageSource>>, opening_page: Option<usize>,
+    ) -> PdfResult<Self> {
         if let Some(source) = &page_source {
-            source.prepare_startup().map_err(PdfError::new)?;
+            if let Some(page) = opening_page {
+                let page = metadata.as_ref().filter(|metadata| metadata.valid_for(content_hash)).map_or(page, |metadata| page.min(metadata.pages.len() - 1));
+                source.prepare_opening(page).map_err(PdfError::new)?;
+            } else {
+                source.prepare_startup().map_err(PdfError::new)?;
+            }
         }
         let already_classified = metadata.as_ref().is_some_and(|value| value.valid_for(content_hash) && value.skippable_pages.is_some());
         let mut session = Self::from_reader_with_metadata(source_name, reader, content_hash, metadata)?;

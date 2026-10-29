@@ -2,7 +2,6 @@ use std::cell::Cell;
 use std::panic::Location;
 use std::rc::Rc;
 
-use gpui::prelude::FluentBuilder;
 use gpui::{
     App, Bounds, Div, Element, ElementId, Global, InteractiveElement, IntoElement, ParentElement, Pixels, RenderOnce, ScrollHandle, Stateful, StatefulInteractiveElement, StyleRefinement, Styled, Subscription, Window, canvas, div, point,
 };
@@ -14,10 +13,9 @@ struct RegisteredScroll {
     handle: ScrollHandle,
 }
 
-#[derive(Default)]
 struct PageScrollRegistry {
     scrolls: Vec<RegisteredScroll>,
-    _keystroke_subscription: Option<Subscription>,
+    _keystroke_subscription: Subscription,
 }
 
 impl Global for PageScrollRegistry {}
@@ -29,7 +27,6 @@ pub fn init_page_scrolling(cx: &mut App) {
     if cx.has_global::<PageScrollRegistry>() {
         return;
     }
-    cx.set_global(PageScrollRegistry::default());
     let subscription = cx.observe_keystrokes(|event, window, cx| {
         if event.action.is_some() || event.keystroke.modifiers != gpui::Modifiers::default() {
             return;
@@ -45,7 +42,7 @@ pub fn init_page_scrolling(cx: &mut App) {
             page_scroll(&handle, direction, window, cx);
         }
     });
-    cx.global_mut::<PageScrollRegistry>()._keystroke_subscription = Some(subscription);
+    cx.set_global(PageScrollRegistry { scrolls: Vec::new(), _keystroke_subscription: subscription });
 }
 
 /// Registers an externally managed vertical scroll handle for application-wide
@@ -66,12 +63,12 @@ pub trait ScrollableElement: InteractiveElement + Styled + ParentElement + Eleme
     /// scroll area's measured viewport height.
     #[track_caller]
     fn overflow_y_scrollbar(self) -> Scrollable<Self> {
-        Scrollable::new(self, ScrollbarAxis::Vertical)
+        Scrollable::new(self)
     }
 
     /// Adds vertical scrolling without drawing a bar inside the surface.
     fn overflow_y_scroll_hidden(self) -> Scrollable<Self> {
-        Scrollable::hidden(self, ScrollbarAxis::Vertical)
+        Scrollable::new(self).hide_scrollbar()
     }
 
     /// Adds a vertical scrollbar driven by a scroll handle the caller owns, for
@@ -79,23 +76,22 @@ pub trait ScrollableElement: InteractiveElement + Styled + ParentElement + Eleme
     /// reached with the keyboard into view, for one.
     #[track_caller]
     fn overflow_y_scrollbar_with_handle(self, handle: &ScrollHandle) -> Scrollable<Self> {
-        Scrollable::new(self, ScrollbarAxis::Vertical).with_handle(handle.clone())
+        Scrollable { handle: Some(handle.clone()), ..Scrollable::new(self) }
     }
 
     /// Adds a vertical scrollbar with a stable identity supplied by the
     /// caller. This is useful for repeated scroll surfaces rendered from the
     /// same source location, such as the columns in a folder picker.
     fn overflow_y_scrollbar_with_id(self, id: impl Into<ElementId>) -> Scrollable<Self> {
-        Scrollable::with_id(self, ScrollbarAxis::Vertical, id.into())
+        Scrollable { id: id.into(), ..Scrollable::new(self) }
     }
 }
 
-/// A scrollable container with an overlaid scrollbar and viewport paging.
+/// A vertical scroll container with an overlaid scrollbar and viewport paging.
 #[derive(IntoElement)]
 pub struct Scrollable<E: InteractiveElement + Styled + ParentElement + Element> {
     id: ElementId,
     element: E,
-    axis: ScrollbarAxis,
     show_scrollbar: bool,
     /// A handle supplied by the caller, for surfaces that scroll themselves.
     /// Without one the surface keeps its own offset across frames.
@@ -107,22 +103,8 @@ where
     E: InteractiveElement + Styled + ParentElement + Element,
 {
     #[track_caller]
-    fn new(element: E, axis: ScrollbarAxis) -> Self {
-        Self { id: ElementId::CodeLocation(*Location::caller()), element, axis, show_scrollbar: true, handle: None }
-    }
-
-    #[track_caller]
-    fn hidden(element: E, axis: ScrollbarAxis) -> Self {
-        Self { id: ElementId::CodeLocation(*Location::caller()), element, axis, show_scrollbar: false, handle: None }
-    }
-
-    fn with_id(element: E, axis: ScrollbarAxis, id: ElementId) -> Self {
-        Self { id, element, axis, show_scrollbar: true, handle: None }
-    }
-
-    fn with_handle(mut self, handle: ScrollHandle) -> Self {
-        self.handle = Some(handle);
-        self
+    fn new(element: E) -> Self {
+        Self { id: ElementId::CodeLocation(*Location::caller()), element, show_scrollbar: true, handle: None }
     }
 
     /// Keep scrolling and the surface's stable identity without drawing a bar.
@@ -171,27 +153,13 @@ where
         register_page_scroll_handle(self.id.clone(), scroll_handle.clone(), cx);
         let root_style = outer_layout_style(&mut self.element);
 
-        let content = self.element.id((self.id.clone(), "content")).flex_none().map(|this| match self.axis {
-            ScrollbarAxis::Vertical => this.h_auto().min_h_full(),
-            ScrollbarAxis::Horizontal => this.w_auto().min_w_full(),
-            ScrollbarAxis::Both => this.size_auto().min_size_full(),
-        });
-        let scroll_area = div()
-            .id((self.id.clone(), "area"))
-            .size_full()
-            .flex()
-            .track_scroll(&scroll_handle)
-            .map(|this| match self.axis {
-                ScrollbarAxis::Vertical => this.flex_col().overflow_y_scroll(),
-                ScrollbarAxis::Horizontal => this.flex_row().overflow_x_scroll(),
-                ScrollbarAxis::Both => this.overflow_scroll(),
-            })
-            .child(content);
+        let content = self.element.id((self.id.clone(), "content")).flex_none().h_auto().min_h_full();
+        let scroll_area = div().id((self.id.clone(), "area")).size_full().flex().track_scroll(&scroll_handle).flex_col().overflow_y_scroll().child(content);
 
         // Scrollbar is absolute but supplies no inset of its own. Anchor its
         // layer to the viewport so its static position cannot follow the
         // preceding scroll area and extend below a popup.
-        let scrollbar = self.show_scrollbar.then(|| div().absolute().inset_0().child(Scrollbar::new(&scroll_handle).id((self.id.clone(), "scrollbar")).axis(self.axis)));
+        let scrollbar = self.show_scrollbar.then(|| div().absolute().inset_0().child(Scrollbar::new(&scroll_handle).id((self.id.clone(), "scrollbar")).axis(ScrollbarAxis::Vertical)));
         div().id(self.id).size_full().relative().refine_style(&root_style).on_key_down(page_with_arrow_keys(scroll_handle.clone())).child(scroll_area).children(scrollbar)
     }
 }
@@ -214,7 +182,6 @@ where
 pub fn measured_bounds(bounds: Rc<Cell<Bounds<Pixels>>>) -> impl IntoElement {
     canvas(move |laid_out, _, _| bounds.set(laid_out), |_, _: (), _, _| {}).absolute().size_full()
 }
-
 /// Scrolls `handle` the shortest distance that brings `target` inside the
 /// viewport, with `margin` of room left around it. Returns whether the offset
 /// moved.
@@ -301,6 +268,47 @@ mod tests {
     use super::*;
     use gpui::{Context, Render, ScrollDelta, ScrollWheelEvent, TestAppContext, TouchPhase, px};
 
+    struct RepeatedScrolls;
+
+    impl Render for RepeatedScrolls {
+        fn render(&mut self, _: &mut Window, _: &mut Context<Self>) -> impl IntoElement {
+            div().w(px(280.0)).h(px(320.0)).flex().flex_col().children([("first-scroll", false), ("second-scroll", true)].map(|(id, hidden)| {
+                let surface = div().w_full().h(px(160.0)).flex_none().child(div().h(px(2400.0)).flex_none()).overflow_y_scrollbar_with_id(id);
+                if hidden { surface.hide_scrollbar() } else { surface }
+            }))
+        }
+    }
+
+    #[gpui::test]
+    fn repeated_explicit_scroll_ids_retain_independent_offsets_with_hidden_bars(cx: &mut TestAppContext) {
+        cx.update(|cx| cx.set_reduce_motion(true));
+        cx.update(gpui_component::init);
+        cx.update(init_page_scrolling);
+        let (surface, visual) = cx.add_window_view(|_, _| RepeatedScrolls);
+        visual.run_until_parked();
+        let handles = visual.update(|_, cx| ["first-scroll", "second-scroll"].map(|id| cx.global::<PageScrollRegistry>().scrolls.iter().find(|registered| registered.id == ElementId::from(id)).unwrap().handle.clone()));
+        for handle in &handles {
+            assert_eq!(handle.bounds().size.height, px(160.0));
+            assert!(handle.max_offset().y > Pixels::ZERO);
+        }
+        visual.simulate_event(ScrollWheelEvent { position: handles[0].bounds().center(), delta: ScrollDelta::Pages(point(0.0, -1.0)), touch_phase: TouchPhase::Ended, ..Default::default() });
+        visual.run_until_parked();
+        assert_eq!(handles[0].offset().y, px(-160.0));
+        assert_eq!(handles[1].offset().y, Pixels::ZERO);
+        visual.simulate_event(ScrollWheelEvent { position: handles[1].bounds().center(), delta: ScrollDelta::Pixels(point(px(0.0), px(-37.0))), touch_phase: TouchPhase::Ended, ..Default::default() });
+        visual.run_until_parked();
+        assert_eq!(handles[0].offset().y, px(-160.0));
+        assert_eq!(handles[1].offset().y, px(-37.0), "a hidden bar must retain ordinary scrolling");
+        surface.update(visual, |_, cx| cx.notify());
+        visual.run_until_parked();
+        let retained = visual.update(|_, cx| ["first-scroll", "second-scroll"].map(|id| cx.global::<PageScrollRegistry>().scrolls.iter().find(|registered| registered.id == ElementId::from(id)).unwrap().handle.offset().y));
+        assert_eq!(retained, [px(-160.0), px(-37.0)], "rebuilding repeated surfaces must keep each explicit ID's own offset");
+        visual.simulate_event(ScrollWheelEvent { position: handles[0].bounds().center(), delta: ScrollDelta::Pages(point(0.0, -1.0)), touch_phase: TouchPhase::Ended, ..Default::default() });
+        visual.run_until_parked();
+        assert_eq!(handles[0].offset().y, px(-320.0));
+        assert_eq!(handles[1].offset().y, px(-37.0));
+    }
+
     struct PagingSurface {
         height: Pixels,
         handle: ScrollHandle,
@@ -368,8 +376,8 @@ mod tests {
             assert_eq!(handle.offset().y, px(-160.0), "movement must be visible before release");
             visual.simulate_event(ScrollWheelEvent { position: point(px(400.0), px(500.0)), ..scroll(0.0, TouchPhase::Ended) });
             visual.run_until_parked();
-            assert_eq!(handle.offset().y, -bounds.size.height);
-            assert_eq!(bounds.top() - handle.offset().y, bounds.bottom());
+            assert_eq!(handle.offset().y, -bounds.size.height * 0.9);
+            assert_eq!(bounds.top() - handle.offset().y, bounds.bottom() - bounds.size.height * 0.1);
             visual.simulate_event(scroll(20.0, TouchPhase::Started));
             visual.simulate_event(scroll(140.0, TouchPhase::Moved));
             visual.simulate_event(scroll(0.0, TouchPhase::Ended));
@@ -455,11 +463,11 @@ mod tests {
         assert_eq!(visual.update(|_, cx| input.read(cx).scroll_offset().y), px(-120.0));
         visual.simulate_event(scroll(0.0, TouchPhase::Ended));
         visual.run_until_parked();
-        assert_eq!(visual.update(|_, cx| input.read(cx).scroll_offset()), one_page);
+        assert_eq!(visual.update(|_, cx| input.read(cx).scroll_offset()), one_page * 0.9);
         visual.simulate_event(scroll(40.0, TouchPhase::Started));
         visual.simulate_event(scroll(0.0, TouchPhase::Cancelled));
         visual.run_until_parked();
-        assert_eq!(visual.update(|_, cx| input.read(cx).scroll_offset()), one_page);
+        assert_eq!(visual.update(|_, cx| input.read(cx).scroll_offset()), one_page * 0.9);
     }
 
     struct NestedPagingSurface {
@@ -501,12 +509,12 @@ mod tests {
         assert_eq!(outer.offset().y, Pixels::ZERO);
         visual.simulate_event(scroll(0.0, TouchPhase::Ended));
         visual.run_until_parked();
-        assert_eq!(inner.offset().y, px(-160.0), "the preview must not be added to the page target");
+        assert_eq!(inner.offset().y, px(-144.0), "the preview must not be added to the page target");
         assert_eq!(outer.offset().y, Pixels::ZERO);
         visual.simulate_event(scroll(-80.0, TouchPhase::Started));
         visual.simulate_event(scroll(0.0, TouchPhase::Cancelled));
         visual.run_until_parked();
-        assert_eq!(inner.offset().y, px(-160.0));
+        assert_eq!(inner.offset().y, px(-144.0));
         assert_eq!(outer.offset().y, Pixels::ZERO);
     }
 

@@ -1,5 +1,6 @@
 use crate::{LibraryStorageUsage, StorageUsage};
-use server_asset_store::AssetError;
+use crate::cleanup::lock_publication;
+use server_asset_store::{AssetError, AssetKind, FsAssetStore};
 use sqlx::{PgPool, Postgres, Row, Transaction};
 use std::collections::HashSet;
 use std::time::Instant;
@@ -137,11 +138,18 @@ async fn insert_blob_object(transaction: &mut Transaction<'_, Postgres>, hash: &
     }
 }
 
-/// `verified` contains immutable content hashes present in the asset store
-/// before acquiring this transaction's account writer lock.
-pub(super) async fn negotiate_books(pool: &PgPool, user_id: &str, library_id: &LibraryId, blobs: &[BlobManifestEntry], verified: &HashSet<BookId>) -> Result<BlobManifestResponse, AssetError> {
+/// Verify physical presence while protected from collection, before taking
+/// this transaction's account writer lock.
+pub(super) async fn negotiate_books(pool: &PgPool, user_id: &str, library_id: &LibraryId, blobs: &[BlobManifestEntry], store: &FsAssetStore) -> Result<BlobManifestResponse, AssetError> {
     let mut transaction = begin_authorized_transaction(pool, user_id, library_id).await?;
+    lock_publication(&mut transaction).await?;
     require_cloud_storage(&mut transaction, user_id, library_id).await?;
+    let mut verified = HashSet::new();
+    for blob in blobs {
+        if store.size(user_id, AssetKind::Book, &blob.content_hash).await?.is_some() {
+            verified.insert(blob.content_hash);
+        }
+    }
     let mut seen = HashSet::with_capacity(blobs.len());
     if blobs.iter().any(|blob| !seen.insert(blob.content_hash.clone())) {
         return Err(AssetError::InvalidInput("book manifest contains a duplicate content hash".to_string()));
@@ -285,6 +293,12 @@ pub(super) async fn validate_thumbnail_upload(pool: &PgPool, user_id: &str, libr
     transaction.commit().await.map_err(storage)
 }
 
+pub(super) async fn validate_thumbnail_upload_in_transaction(transaction: &mut Transaction<'_, Postgres>, user: &str, library: &LibraryId, hash: &BookId, size: u64) -> Result<(), AssetError> {
+    require_library_owner(transaction, user, library).await?;
+    require_cloud_storage(transaction, user, library).await?;
+    require_thumbnail_book(transaction, library, hash, size).await
+}
+
 /// Applies reference-count changes atomically with a winning lifecycle write.
 /// Placement mutations are deliberately absent: a book may be present in any
 /// number of directories but owns exactly one content blob reference.
@@ -315,33 +329,33 @@ async fn record_library_claim(tx: &mut Transaction<'_, Postgres>, user: &str, li
 }
 
 /// Charge the verified content hash and record its library claim atomically.
-pub(super) async fn finish_book_upload(pool: &PgPool, user: &str, library: &LibraryId, hash: &BookId, admission: &BookUploadAdmission, actual: u64) -> Result<(), AssetError> {
-    let mut transaction = begin_authorized_transaction(pool, user, library).await?;
-    require_cloud_storage(&mut transaction, user, library).await?;
+pub(super) async fn finish_book_upload(transaction: &mut Transaction<'_, Postgres>, user: &str, library: &LibraryId, hash: &BookId, admission: &BookUploadAdmission, actual: u64) -> Result<(), AssetError> {
+    require_library_owner(transaction, user, library).await?;
+    require_cloud_storage(transaction, user, library).await?;
     // A library deletion cannot pass between authorization and book.
-    let live = sqlx::query("SELECT id FROM libraries WHERE id=$1 AND user_id=$2 AND deleted_at IS NULL FOR SHARE").bind(library.to_string()).bind(user).fetch_optional(&mut *transaction).await.map_err(storage)?.is_some();
+    let live = sqlx::query("SELECT id FROM libraries WHERE id=$1 AND user_id=$2 AND deleted_at IS NULL FOR SHARE").bind(library.to_string()).bind(user).fetch_optional(&mut **transaction).await.map_err(storage)?.is_some();
     if !live {
         return Err(AssetError::Forbidden);
     }
-    let _ = account_snapshot(&mut transaction, user).await?;
+    let _ = account_snapshot(transaction, user).await?;
     let phase_started = Instant::now();
-    sqlx::query("SELECT user_id FROM user_storage_account WHERE user_id=$1 FOR UPDATE").bind(user).fetch_one(&mut *transaction).await.map_err(storage)?;
+    sqlx::query("SELECT user_id FROM user_storage_account WHERE user_id=$1 FOR UPDATE").bind(user).fetch_one(&mut **transaction).await.map_err(storage)?;
     tracing::debug!(target: "sync_performance", phase = "upload_account_lock", elapsed_ms = phase_started.elapsed().as_secs_f64() * 1000.0);
     if let BookUploadAdmission::Reserved(reservation) = admission {
         if actual != reservation.expected_size_bytes {
             return Err(AssetError::LengthMismatch { expected: reservation.expected_size_bytes, actual });
         }
-        let released: Option<i64> = sqlx::query_scalar(include_str!("sql/assets/delete_reservation_by_id_and_user_returning_size.sql")).bind(&reservation.id).bind(user).fetch_optional(&mut *transaction).await.map_err(storage)?;
+        let released: Option<i64> = sqlx::query_scalar(include_str!("sql/assets/delete_reservation_by_id_and_user_returning_size.sql")).bind(&reservation.id).bind(user).fetch_optional(&mut **transaction).await.map_err(storage)?;
         let Some(released) = released else {
             return Err(AssetError::Storage("book upload reservation expired".into()));
         };
         if released != size_i64(actual)? {
             return Err(AssetError::LengthMismatch { expected: released.max(0) as u64, actual });
         }
-        insert_blob_object(&mut transaction, hash, released).await?;
-        let charged = sqlx::query(include_str!("sql/assets/insert_charge_idempotent.sql")).bind(user).bind(hash.as_bytes()).execute(&mut *transaction).await.map_err(storage)?.rows_affected() == 1;
-        sqlx::query(include_str!("sql/assets/finish_upload_update_account.sql")).bind(user).bind(released).bind(charged).execute(&mut *transaction).await.map_err(storage)?;
+        insert_blob_object(transaction, hash, released).await?;
+        let charged = sqlx::query(include_str!("sql/assets/insert_charge_idempotent.sql")).bind(user).bind(hash.as_bytes()).execute(&mut **transaction).await.map_err(storage)?.rows_affected() == 1;
+        sqlx::query(include_str!("sql/assets/finish_upload_update_account.sql")).bind(user).bind(released).bind(charged).execute(&mut **transaction).await.map_err(storage)?;
     }
-    record_library_claim(&mut transaction, user, library, hash).await?;
-    transaction.commit().await.map_err(storage)
+    record_library_claim(transaction, user, library, hash).await?;
+    Ok(())
 }

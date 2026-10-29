@@ -1,5 +1,5 @@
 WITH candidates AS MATERIALIZED (
-    SELECT *, octet_length(value)::bigint + octet_length(kind) + octet_length(entity_key) + octet_length(entity_subkey) + 1024 AS row_bytes
+    SELECT *, octet_length(value)::bigint + octet_length(kind) + octet_length(entity_key) + octet_length(entity_subkey) + $7::bigint AS row_bytes
     FROM sync_state
     WHERE library_id=$1 AND kind<>'book_lifecycle' AND server_seq>$2 AND server_seq<=$3
     ORDER BY server_seq LIMIT $4

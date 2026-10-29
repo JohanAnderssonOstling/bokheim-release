@@ -14,4 +14,4 @@ pub use client_platform_kobo::device::bluetooth::{Device as BluetoothDevice, Req
 pub use client_platform_kobo::device::wifi::{Network as WifiNetwork, Phase as WifiPhase, Request as WifiRequest, Security as WifiSecurity, Snapshot as WifiSnapshot};
 
 #[cfg(all(feature = "kobo", not(target_arch = "wasm32")))]
-pub use client_platform_kobo::device::battery::BatteryStatus;
+pub use client_platform_kobo::device::battery::{BatteryReading, BatteryStatus};

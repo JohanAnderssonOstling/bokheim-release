@@ -1,4 +1,4 @@
-//! Register readable Android fonts before the reader snapshots font families.
+//! Register readable Android fonts on a background worker.
 
 use std::borrow::Cow;
 use std::collections::HashSet;

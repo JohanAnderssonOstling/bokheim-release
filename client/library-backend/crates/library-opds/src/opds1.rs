@@ -41,8 +41,7 @@ pub(crate) fn parse(xml: &str, base: &Url) -> Result<Feed, String> {
             let open = links
                 .iter()
                 .filter(|link| matches!(link.attribute("rel"), Some(ACQUISITION | OPEN_ACCESS)))
-                .filter_map(|link| Some((base.join(link.attribute("href")?).ok()?, link.attribute("type").unwrap_or_default().to_owned(), link.attribute("length").and_then(|length| length.parse().ok()))))
-                .collect();
+                .filter_map(|link| Some((base.join(link.attribute("href")?).ok()?, link.attribute("type").unwrap_or_default(), link.attribute("length").and_then(|length| length.parse().ok()))));
             let download = choose_download(open);
             let buy = links.iter().find(|link| link.attribute("rel") == Some(BUY));
             // A book offered only with DRM, sold, lent or free, is not listed.

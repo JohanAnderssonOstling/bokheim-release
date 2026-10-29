@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bokheim · Device voices</title>
+  <style>
+    @font-face { font-family: Garamond; src: url('../../desktop-gpui/assets/fonts/NV_Garamond-Regular.ttf'); }
+    @font-face { font-family: Garamond; src: url('../../desktop-gpui/assets/fonts/NV_Garamond-Italic.ttf'); font-style: italic; }
+    @font-face { font-family: Raleway; src: url('../../desktop-gpui/assets/fonts/Raleway-Regular.ttf'); }
+    @font-face { font-family: Bodoni; src: url('../../desktop-gpui/assets/fonts/BodoniModa-Regular.ttf'); }
+    :root { color-scheme: light; --canvas: #eae5dc; --paper: #f6f2eb; --ink: #22201d; --muted: #6b675f; --rule: #c5bdac; --border: #8c7f64; --accent: #466853; --accent-ink: #fffdfa; --wash: #d9e8de; --hover: #4668530d; --shadow: #22201d24; }
+    [data-theme="dark"] { color-scheme: dark; --canvas: #1c1a16; --paper: #11100d; --ink: #efe6d0; --muted: #a69c86; --rule: #4e4334; --border: #786644; --accent: #d3b271; --accent-ink: #11100d; --wash: #3c3423; --hover: #d3b27114; --shadow: #0008; }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; background: var(--canvas); color: var(--ink); font: 14px/1.5 Raleway, sans-serif; }
+    button, select, input { font: inherit; color: inherit; }
+    button { cursor: pointer; border: 0; background: transparent; }
+    button:hover { background: var(--hover); }
+    button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    button:disabled { cursor: default; opacity: .5; }
+    button:disabled:hover { background: transparent; }
+    main { max-width: 1500px; margin: auto; padding: 28px 32px 24px; }
+    .board-header, .board-title, .controls { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .board-header { justify-content: space-between; padding-bottom: 22px; border-bottom: 1px solid var(--rule); }
+    .brand { font: 34px Bodoni, serif; }
+    h1 { margin: 0; font-size: 14px; font-weight: 400; padding-left: 18px; border-left: 1px solid var(--rule); }
+    .controls { gap: 12px; font-size: 12px; }
+    .controls label { display: flex; align-items: center; gap: 8px; }
+    select, .theme { min-height: 36px; border: 1px solid var(--border); padding: 6px 10px; background: var(--paper); }
+    .intro { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin: 24px 0; }
+    .intro h2 { font: 34px/1.15 Bodoni, serif; margin: 0; }
+    .intro p { max-width: 540px; color: var(--muted); margin: 0; font-size: 13px; }
+    .gallery { display: grid; grid-template-columns: minmax(0, 1fr) 370px; align-items: start; gap: 28px; }
+    .screen-label { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 10px; font-size: 12px; }
+    .screen-label span { color: var(--muted); font-size: 11px; }
+    .reader { height: 690px; position: relative; display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--border); font: 18px/1.45 Garamond, Georgia, serif; }
+    .topbar { height: 54px; flex: none; padding: 0 12px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--rule); }
+    .topbar .title { flex: 1; text-align: center; }
+    .icon { width: 20px; height: 20px; fill: currentColor; display: inline-block; flex: none; }
+    .icon-button { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 36px; height: 36px; padding: 8px; }
+    .workarea { display: flex; flex: 1; min-height: 0; }
+    .rail { width: 48px; flex: none; padding: 16px 6px; display: flex; flex-direction: column; gap: 12px; border-right: 1px solid var(--rule); }
+    .rail .last { margin-top: auto; }
+    .pages { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; padding: 30px 38px; overflow: hidden; flex: 1; }
+    .page { min-width: 0; position: relative; }
+    .running { margin: 0 0 26px; text-align: center; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; }
+    .page h3 { text-align: center; font: 25px/1.2 Bodoni, serif; margin: 0 0 24px; }
+    .page p.copy { font-size: 20px; line-height: 1.6; margin: 0 0 16px; }
+    mark { background: var(--wash); color: inherit; }
+    .folio { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 13px; color: var(--muted); }
+    .dock { position: relative; flex: none; border-top: 1px solid var(--rule); padding: 8px 10px; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .dock::before { content: ''; position: absolute; top: -2px; left: 0; width: 32%; height: 3px; background: var(--accent); }
+    .dock-group { display: flex; align-items: center; gap: 3px; }
+    .voice-trigger { display: flex; align-items: center; gap: 6px; max-width: 150px; border: 1px solid var(--border); padding: 6px 9px; min-height: 36px; }
+    .voice-trigger span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .voice-trigger .icon { width: 12px; height: 12px; }
+    .voice-trigger[aria-expanded="true"] { background: var(--wash); border-color: var(--accent); }
+    .play { border: 1px solid var(--accent); color: var(--accent); }
+    .read-status { color: var(--muted); font-size: 12px; white-space: nowrap; }
+    .picker { position: absolute; z-index: 3; bottom: 76px; right: 12px; width: 336px; max-width: calc(100% - 24px); background: var(--paper); border: 1px solid var(--border); box-shadow: 0 8px 30px var(--shadow); font: 17px/1.4 Garamond, serif; }
+    .source-tabs { display: flex; align-items: center; border-bottom: 1px solid var(--rule); margin: 8px 10px 0; }
+    .source-tabs .icon-button { flex: none; width: 32px; }
+    .source-tabs .icon-button .icon { width: 16px; height: 16px; }
+    .source-tabs button { position: relative; flex: 1; min-height: 42px; padding: 8px; color: var(--muted); }
+    .source-tabs [aria-pressed="true"] { color: var(--ink); }
+    .source-tabs [aria-pressed="true"]::after { content: ''; height: 2px; position: absolute; bottom: -1px; left: 0; right: 0; background: var(--accent); }
+    .picker-body { padding: 10px; }
+    .voice-row { display: flex; align-items: center; margin: 2px 0; }
+    .voice-row:hover { background: var(--wash); }
+    .voice-row:has(input:checked) { background: var(--accent); color: var(--accent-ink); }
+    .voice-row:has(input:checked) .voice-detail { color: var(--accent-ink); }
+    .voice-row:has(input:checked) .choice-check { color: var(--accent-ink); }
+    .voice-row:has(input:checked) .voice-choice:has(input:focus-visible) { outline-color: var(--accent-ink); }
+    .voice-row:has(input:checked) .preview:focus-visible { outline-color: var(--accent-ink); }
+    .voice-choice { position: relative; display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; min-height: 48px; cursor: pointer; padding: 8px 16px; }
+    .voice-choice input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .voice-choice:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px; }
+    .choice-check { display: inline-flex; flex: none; order: 1; visibility: hidden; color: var(--accent); }
+    .choice-check .icon { width: 14px; height: 14px; }
+    .voice-choice input:checked ~ .choice-check { visibility: visible; }
+    .voice-label { flex: 1; min-width: 0; }
+    .voice-name { display: block; font-size: 18px; }
+    .voice-detail { display: block; font-size: 13px; color: var(--muted); margin-top: 1px; }
+    .preview { margin-right: 4px; }
+    .preview .icon { width: 17px; height: 17px; }
+    .preview[aria-pressed="true"] { color: var(--accent); background: var(--wash); }
+    .voice-row:has(input:checked) .preview[aria-pressed="true"] { color: var(--accent); background: var(--accent-ink); }
+    .notice { margin: 14px 8px 8px; padding: 16px 10px; text-align: center; }
+    .notice .icon { width: 26px; height: 26px; color: var(--muted); margin-bottom: 8px; }
+    .notice strong { display: block; font-size: 19px; font-weight: 400; }
+    .notice p { font-size: 15px; color: var(--muted); margin: 6px 0 16px; }
+    .action { border: 1px solid var(--accent); padding: 7px 14px; color: var(--accent); font-size: 16px; }
+    .mobile { height: 690px; border-radius: 16px; overflow: hidden; isolation: isolate; }
+    .statusbar { display: flex; justify-content: space-between; padding: 9px 18px 3px; font: 11px Raleway, sans-serif; }
+    .mobile .topbar { border: 0; height: 48px; padding-inline: 8px; }
+    .mobile .pages { display: block; padding: 20px 24px 28px; }
+    .mobile .page { height: 100%; }
+    .mobile .page p.copy { font-size: 20px; }
+    .mobile .second, .mobile .rail { display: none; }
+    .mobile .dock { min-height: 64px; padding: 8px; }
+    .mobile .voice-trigger { max-width: 102px; padding-inline: 7px; font-size: 16px; }
+    .mobile .dock-group { gap: 0; }
+    .mobile .dock .icon-button { width: 32px; }
+    .mobile .read-status, .mobile .desktop-only { display: none; }
+    .shade { display: none; }
+    .mobile:has(.picker:not([hidden])) .shade { display: block; position: absolute; z-index: 2; inset: 28px 0 18px; background: #11100d30; }
+    .mobile .picker { bottom: 18px; left: 0; right: 0; width: 100%; max-width: none; max-height: calc(100% - 80px); overflow: auto; border-inline: 0; border-bottom: 0; box-shadow: 0 -8px 24px var(--shadow); padding-top: 4px; }
+    .mobile .picker::before { content: ''; display: block; height: 3px; width: 32px; background: var(--rule); border-radius: 2px; margin: 4px auto 0; }
+    .home { height: 18px; flex: none; display: grid; place-items: center; background: var(--paper); z-index: 4; }
+    .home::after { content: ''; width: 100px; height: 3px; background: var(--ink); border-radius: 2px; }
+    .caption { margin: 12px 0 0; font-size: 12px; color: var(--muted); }
+    .decisions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin: 28px 0 22px; padding-top: 18px; border-top: 1px solid var(--rule); }
+    .decisions h3 { margin: 0 0 6px; font: 20px Bodoni, serif; }
+    .decisions p { font-size: 12px; margin: 0; color: var(--muted); max-width: 380px; }
+    .board-footer { border-top: 1px solid var(--rule); padding-top: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: 11px; }
+    @media (max-width: 1200px) { .gallery { grid-template-columns: minmax(0, 1fr) 350px; gap: 20px; } .desktop .pages { grid-template-columns: 1fr; padding-inline: 34px; } .desktop .second { display: none; } .desktop .read-status { display: none; } }
+    @media (max-width: 850px) { main { padding: 20px 16px; } .gallery { grid-template-columns: 1fr; gap: 30px; } .mobile-screen { width: min(370px, 100%); margin: auto; } .intro { align-items: start; flex-direction: column; gap: 10px; } .decisions { grid-template-columns: 1fr; gap: 18px; } }
+    @media (max-width: 430px) { .board-title { gap: 12px; } h1 { padding-left: 12px; } .intro h2 { font-size: 29px; } .desktop .rail, .desktop .desktop-only { display: none; } .desktop .dock { flex-wrap: wrap; } .controls { gap: 8px; } }
+  </style>
+</head>
+<body>
+  <!-- Inline copies of the shared Phosphor Light icons also work from a local file. -->
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="icon-arrow-left" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H54.49l61.75,61.76a6,6,0,1,1-8.48,8.48l-72-72a6,6,0,0,1,0-8.48l72-72a6,6,0,0,1,8.48,8.48L54.49,122H216A6,6,0,0,1,222,128Z"/></symbol><symbol id="icon-dots-three" viewBox="0 0 256 256"><circle cx="60" cy="128" r="10"/><circle cx="128" cy="128" r="10"/><circle cx="196" cy="128" r="10"/></symbol><symbol id="icon-list" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128ZM40,70H216a6,6,0,0,0,0-12H40a6,6,0,0,0,0,12ZM216,186H40a6,6,0,0,0,0,12H216a6,6,0,0,0,0-12Z"/></symbol><symbol id="icon-magnifying-glass" viewBox="0 0 256 256"><path d="M228.24,219.76l-51.38-51.38a86.15,86.15,0,1,0-8.48,8.48l51.38,51.38a6,6,0,0,0,8.48-8.48ZM38,112a74,74,0,1,1,74,74A74.09,74.09,0,0,1,38,112Z"/></symbol><symbol id="icon-sliders-horizontal" viewBox="0 0 256 256"><path d="M40,86H74.6a30,30,0,0,0,58.8,0H216a6,6,0,0,0,0-12H133.4a30,30,0,0,0-58.8,0H40a6,6,0,0,0,0,12Zm64-24A18,18,0,1,1,86,80,18,18,0,0,1,104,62ZM216,170H197.4a30,30,0,0,0-58.8,0H40a6,6,0,0,0,0,12h98.6a30,30,0,0,0,58.8,0H216a6,6,0,0,0,0-12Zm-48,24a18,18,0,1,1,18-18A18,18,0,0,1,168,194Z"/></symbol><symbol id="icon-arrow-counter-clockwise" viewBox="0 0 256 256"><path d="M222,128a94,94,0,0,1-92.74,94H128a93.43,93.43,0,0,1-64.5-25.65,6,6,0,1,1,8.24-8.72A82,82,0,1,0,70,70l-.19.19L39.44,98H72a6,6,0,0,1,0,12H24a6,6,0,0,1-6-6V56a6,6,0,0,1,12,0V90.34L61.63,61.4A94,94,0,0,1,222,128Z"/></symbol><symbol id="icon-pause" viewBox="0 0 256 256"><path d="M200,34H160a14,14,0,0,0-14,14V208a14,14,0,0,0,14,14h40a14,14,0,0,0,14-14V48A14,14,0,0,0,200,34Zm2,174a2,2,0,0,1-2,2H160a2,2,0,0,1-2-2V48a2,2,0,0,1,2-2h40a2,2,0,0,1,2,2ZM96,34H56A14,14,0,0,0,42,48V208a14,14,0,0,0,14,14H96a14,14,0,0,0,14-14V48A14,14,0,0,0,96,34Zm2,174a2,2,0,0,1-2,2H56a2,2,0,0,1-2-2V48a2,2,0,0,1,2-2H96a2,2,0,0,1,2,2Z"/></symbol><symbol id="icon-play" viewBox="0 0 256 256"><path d="M231.36,116.19,87.28,28.06a14,14,0,0,0-14.18-.27A13.69,13.69,0,0,0,66,39.87V216.13a13.69,13.69,0,0,0,7.1,12.08,14,14,0,0,0,14.18-.27l144.08-88.13a13.82,13.82,0,0,0,0-23.62Zm-6.26,13.38L81,217.7a2,2,0,0,1-2.06,0,1.78,1.78,0,0,1-1-1.61V39.87a1.78,1.78,0,0,1,1-1.61A2.06,2.06,0,0,1,80,38a2,2,0,0,1,1,.31L225.1,126.43a1.82,1.82,0,0,1,0,3.14Z"/></symbol><symbol id="icon-arrow-clockwise" viewBox="0 0 256 256"><path d="M238,56v48a6,6,0,0,1-6,6H184a6,6,0,0,1,0-12h32.55l-30.38-27.8c-.06-.06-.12-.13-.19-.19a82,82,0,1,0-1.7,117.65,6,6,0,0,1,8.24,8.73A93.46,93.46,0,0,1,128,222h-1.28A94,94,0,1,1,194.37,61.4L226,90.35V56a6,6,0,1,1,12,0Z"/></symbol><symbol id="icon-hourglass-medium" viewBox="0 0 256 256"><path d="M198,75.64V40a14,14,0,0,0-14-14H72A14,14,0,0,0,58,40V76a14.06,14.06,0,0,0,5.6,11.2L118,128,63.6,168.8A14.06,14.06,0,0,0,58,180v36a14,14,0,0,0,14,14H184a14,14,0,0,0,14-14V180.36a14.08,14.08,0,0,0-5.56-11.17L138,128l54.49-41.19A14.08,14.08,0,0,0,198,75.64ZM70,40a2,2,0,0,1,2-2H184a2,2,0,0,1,2,2V75.64a2,2,0,0,1-.79,1.6L178.9,82H76.67L70.8,77.6A2,2,0,0,1,70,76Zm58,80.49L92.67,94H163Zm58,59.87V216a2,2,0,0,1-2,2H72a2,2,0,0,1-2-2V180a2,2,0,0,1,.8-1.6L122,140v28a6,6,0,0,0,12,0V140.06l51.21,38.7A2,2,0,0,1,186,180.36Z"/></symbol><symbol id="icon-caret-up" viewBox="0 0 256 256"><path transform="rotate(180 128 128)" d="M212.24,100.24l-80,80a6,6,0,0,1-8.48,0l-80-80a6,6,0,0,1,8.48-8.48L128,167.51l75.76-75.75a6,6,0,0,1,8.48,8.48Z"/></symbol><symbol id="icon-alarm" viewBox="0 0 256 256"><circle cx="128" cy="136" r="80"/><path d="M128 96v40l28 16M32 56l24-24M200 32l24 24M72 202l-16 22M184 202l16 22"/></symbol><symbol id="icon-x" viewBox="0 0 256 256"><path d="M204.24,195.76a6,6,0,1,1-8.48,8.48L128,136.49,60.24,204.24a6,6,0,0,1-8.48-8.48L119.51,128,51.76,60.24a6,6,0,0,1,8.48-8.48L128,119.51l67.76-67.75a6,6,0,0,1,8.48,8.48L136.49,128Z"/></symbol><symbol id="icon-info" viewBox="0 0 256 256"><path d="M142,176a6,6,0,0,1-6,6,14,14,0,0,1-14-14V128a2,2,0,0,0-2-2,6,6,0,0,1,0-12,14,14,0,0,1,14,14v40a2,2,0,0,0,2,2A6,6,0,0,1,142,176ZM124,94a10,10,0,1,0-10-10A10,10,0,0,0,124,94Zm106,34A102,102,0,1,1,128,26,102.12,102.12,0,0,1,230,128Zm-12,0a90,90,0,1,0-90,90A90.1,90.1,0,0,0,218,128Z"/></symbol><symbol id="icon-globe" viewBox="0 0 256 256"><path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm81.57,64H169.19a132.58,132.58,0,0,0-25.73-50.67A90.29,90.29,0,0,1,209.57,90ZM218,128a89.7,89.7,0,0,1-3.83,26H171.81a155.43,155.43,0,0,0,0-52h42.36A89.7,89.7,0,0,1,218,128Zm-90,87.83a110,110,0,0,1-15.19-19.45A124.24,124.24,0,0,1,99.35,166h57.3a124.24,124.24,0,0,1-13.46,30.38A110,110,0,0,1,128,215.83ZM96.45,154a139.18,139.18,0,0,1,0-52h63.1a139.18,139.18,0,0,1,0,52ZM38,128a89.7,89.7,0,0,1,3.83-26H84.19a155.43,155.43,0,0,0,0,52H41.83A89.7,89.7,0,0,1,38,128Zm90-87.83a110,110,0,0,1,15.19,19.45A124.24,124.24,0,0,1,156.65,90H99.35a124.24,124.24,0,0,1,13.46-30.38A110,110,0,0,1,128,40.17Zm-15.46-.84A132.58,132.58,0,0,0,86.81,90H46.43A90.29,90.29,0,0,1,112.54,39.33ZM46.43,166H86.81a132.58,132.58,0,0,0,25.73,50.67A90.29,90.29,0,0,1,46.43,166Zm97,50.67A132.58,132.58,0,0,0,169.19,166h40.38A90.29,90.29,0,0,1,143.46,216.67Z"/></symbol><symbol id="icon-circle-notch" viewBox="0 0 256 256"><path d="M230,128a102,102,0,0,1-204,0c0-40.18,23.35-76.86,59.5-93.45a6,6,0,0,1,5,10.9C58.61,60.09,38,92.49,38,128a90,90,0,0,0,180,0c0-35.51-20.61-67.91-52.5-82.55a6,6,0,0,1,5-10.9C206.65,51.14,230,87.82,230,128Z"/></symbol><symbol id="icon-check" viewBox="0 0 256 256"><path d="M228.24,76.24l-128,128a6,6,0,0,1-8.48,0l-56-56a6,6,0,0,1,8.48-8.48L96,191.51,219.76,67.76a6,6,0,0,1,8.48,8.48Z"/></symbol></defs></svg>
+  <main>
+    <header class="board-header">
+      <div class="board-title"><span class="brand">Bokheim</span><h1>Native text to speech</h1></div>
+      <div class="controls">
+        <label>Book language <select id="book-language"><option value="en">English</option><option value="en-GB">English (UK)</option><option value="sv">Swedish</option><option value="fr">French</option><option value="und">Unknown</option></select></label>
+        <label>Device support <select id="scenario"><option value="available">Available</option><option value="unavailable">Unavailable</option><option value="language">No matching language</option><option value="loading">Finding voices</option><option value="error">Voice interrupted</option></select></label>
+        <button class="theme" id="theme" aria-pressed="false">Dark appearance</button>
+      </div>
+    </header>
+    <div class="intro"><h2>A familiar voice, already on your device.</h2><p>Choose a device voice from the existing narration dock, with Bokheim voices alongside it. Explore the availability states above.</p></div>
+    <div class="gallery">
+      <section><h2 class="screen-label">01 / Desktop <span>Voice picker above the dock</span></h2><div id="desktop" class="reader desktop" aria-label="Desktop reader mockup"></div><p class="caption">Open the voice picker from the dock. A selection stays visible while you compare voices.</p></section>
+      <section class="mobile-screen"><h2 class="screen-label">02 / Mobile <span>Bottom sheet</span></h2><div id="mobile" class="reader mobile" aria-label="Mobile reader mockup"></div><p class="caption">The same choices in a sheet, with room for voice names and language details.</p></section>
+    </div>
+    <div class="decisions">
+      <div><h3>Use what’s available</h3><p>Show individual device voices matching the book’s language. Show every device voice when the language is unknown.</p></div>
+      <div><h3>Keep the choice simple</h3><p>Device and Bokheim voices share one picker. Show each voice’s language and connection needs; expose only the controls the voice supports.</p></div>
+      <div><h3>A clear way to continue</h3><p>If native speech is unavailable or interrupted, explain why and offer Bokheim voices. A change of voice keeps the current passage.</p></div>
+    </div>
+    <footer class="board-footer"><span>Interactive UI proposal · Example voice inventory · Playback and previews are simulated</span><span>Shared app fonts, icons &amp; warm palettes · No native speech integration yet</span></footer>
+  </main>
+  <script>
+    // Mock inventory only. A future platform adapter supplies voices, language,
+    // network requirements and supported controls; this page does not probe TTS.
+    const voices = {
+      device: [
+        { id: 'uk', name: 'English (United Kingdom)', lang: 'en-GB', detail: 'On device' },
+        { id: 'us', name: 'English (United States)', lang: 'en-US', detail: 'May use internet' },
+        { id: 'sv', name: 'Svenska (Sverige)', lang: 'sv-SE', detail: 'Swedish · On device' }
+      ],
+      bokheim: [
+        { id: 'alba', name: 'Alba', lang: 'en-GB', detail: 'Scottish English' },
+        { id: 'george', name: 'George', lang: 'en-GB', detail: 'British English' }
+      ]
+    };
+    const state = { scenario: 'available', bookLanguage: 'en', source: 'device', voice: 'uk', playing: false, preview: null, speed: 1, open: { desktop: true, mobile: true } };
+    let previewTimer;
+    const icon = name => `<svg class="icon" aria-hidden="true"><use href="#icon-${name}"></use></svg>`;
+    const iconButton = (name, label, extra = '') => `<button class="icon-button" aria-label="${label}" ${extra}>${icon(name)}</button>`;
+    const selectedVoice = () => Object.values(voices).flat().find(voice => voice.id === state.voice);
+    // Regional variants remain usable: an English book can use en-GB or en-US.
+    // Unknown book language leaves the inventory unfiltered.
+    const baseLanguage = language => language.toLowerCase().replaceAll('_', '-').split('-')[0];
+    const matchingVoices = source => voices[source].filter(voice => state.bookLanguage === 'und' || baseLanguage(voice.lang) === baseLanguage(state.bookLanguage));
+    const bookLanguageName = () => document.getElementById('book-language').selectedOptions[0].textContent;
+    function chooseMatchingVoice() {
+      const matches = matchingVoices(state.source);
+      if (!matches.some(voice => voice.id === state.voice)) state.voice = matches[0]?.id ?? null;
+    }
+    function pickerBody(id) {
+      if (state.source === 'device' && state.scenario !== 'available') {
+        if (state.scenario === 'unavailable') return '<p class="notice" role="status">Device speech unavailable</p>';
+        if (state.scenario === 'language') return `<p class="notice" role="status">No device voice for ${bookLanguageName()}</p>`;
+        const notices = {
+          loading: ['circle-notch', 'Finding device voices…', 'Checking which voices can read this book. You can choose a Bokheim voice while you wait.'],
+          error: ['info', 'The device voice stopped', 'Your place is saved. Retry the device voice or choose a Bokheim voice.']
+        };
+        const [symbol, title, description] = notices[state.scenario];
+        return `<div class="notice" role="status">${icon(symbol)}<strong>${title}</strong><p>${description}</p>${state.scenario === 'error' ? '<button class="action" data-action="retry">Try again</button> ' : ''}<button class="action" data-action="fallback">Use Bokheim voices</button></div>`;
+      }
+      const matches = matchingVoices(state.source);
+      if (!matches.length) return `<p class="notice" role="status">No ${state.source === 'device' ? 'device' : 'Bokheim'} voice for ${bookLanguageName()}</p>`;
+      return `<div role="group" aria-label="${state.source === 'device' ? 'Device' : 'Bokheim'} voices">${matches.map(voice => `<div class="voice-row"><label class="voice-choice"><input type="radio" name="${id}-voice" value="${voice.id}" ${state.voice === voice.id ? 'checked' : ''}><span class="choice-check">${icon('check')}</span><span class="voice-label"><span class="voice-name">${voice.name}</span><span class="voice-detail">${voice.detail}</span></span></label><button class="icon-button preview" data-preview="${voice.id}" aria-label="${state.preview === voice.id ? 'Stop preview of' : 'Preview'} ${voice.name}" aria-pressed="${state.preview === voice.id}">${icon(state.preview === voice.id ? 'pause' : 'play')}</button></div>`).join('')}</div>`;
+    }
+    function renderScreen(id) {
+      const screen = document.getElementById(id);
+      const voice = selectedVoice() ?? { name: 'Choose voice' };
+      const deviceBlocked = !voice.id || (voices.device.some(item => item.id === voice.id) && state.scenario !== 'available');
+      screen.innerHTML = `${id === 'mobile' ? '<div class="statusbar"><span>9:41</span><span>▰ &nbsp; 100%</span></div>' : ''}
+        <header class="topbar">${iconButton('arrow-left', 'Return to library', 'data-action="library"')}<span class="title">The Wind in the Willows</span>${iconButton('dots-three', 'Reader options', 'data-action="options"')}</header>
+        <div class="workarea"><nav class="rail" aria-label="Reader tools">${iconButton('list', 'Contents', 'data-action="contents"')}${iconButton('magnifying-glass', 'Search in book', 'data-action="search"')}<div class="last">${iconButton('sliders-horizontal', 'Reader settings', 'data-action="settings"')}</div></nav>
+          <div class="pages"><article class="page"><p class="running">Kenneth Grahame</p><h3>I. The River Bank</h3><p class="copy">The Mole had been working very hard all the morning, spring-cleaning his little home. First with brooms, then with dusters; then on ladders and steps and chairs, with a brush and a pail of whitewash.</p><p class="copy"><mark>Spring was moving in the air above and in the earth below and around him, penetrating even his dark and lowly little house with its spirit of divine discontent and longing.</mark></p><div class="folio">7</div></article>
+          <article class="page second"><p class="running">The River Bank</p><p class="copy">It was small wonder, then, that he suddenly flung down his brush on the floor, said “Bother!” and “O blow!” and also “Hang spring-cleaning!” and bolted out of the house.</p><p class="copy">Something up above was calling him imperiously, and he made for the steep little tunnel which answered in his case to the gravelled carriage-drive owned by animals whose residences are nearer to the sun and air.</p><div class="folio">8</div></article></div>
+        </div>
+        <footer class="dock"><span class="read-status" data-status>${deviceBlocked ? 'Choose a voice' : state.playing ? 'Reading' : 'Ready to read'}</span><div class="dock-group">${iconButton('arrow-counter-clockwise', 'Previous passage', 'data-action="previous"')}${iconButton(state.playing ? 'pause' : 'play', state.playing ? 'Pause reading' : 'Start reading', `data-action="play" ${deviceBlocked ? 'disabled' : ''}`)}${iconButton('arrow-clockwise', 'Next passage', 'data-action="next"')}</div><div class="dock-group"><button data-action="speed" aria-label="Reading speed: ${state.speed} times" ${deviceBlocked ? 'disabled' : ''}>${state.speed}×</button>${voices.bokheim.some(item => item.id === state.voice) ? iconButton('hourglass-medium', 'Sentence pauses: Natural', 'data-action="pauses"') : ''}<button class="voice-trigger" data-action="picker" title="${voice.name}" aria-label="Narration voice: ${voice.name}" aria-expanded="${state.open[id]}" aria-controls="${id}-picker"><span>${voice.name}</span>${icon('caret-up')}</button>${iconButton('alarm', 'Sleep timer', 'data-action="sleep"')}</div></footer>
+        <button class="shade" aria-label="Dismiss voice picker" data-action="dismiss"></button>
+        <aside class="picker" id="${id}-picker" aria-label="Narration voice" ${state.open[id] ? '' : 'hidden'}><div class="source-tabs" role="group" aria-label="Voice source"><button data-source="device" aria-pressed="${state.source === 'device'}">Device</button><button data-source="bokheim" aria-pressed="${state.source === 'bokheim'}">Bokheim</button>${iconButton('x', 'Close voice picker', 'data-action="dismiss"')}</div><div class="picker-body">${pickerBody(id)}</div></aside>
+        ${id === 'mobile' ? '<div class="home"></div>' : ''}`;
+      screen.querySelector('[data-action="play"]').classList.add('play');
+    }
+    function render() {
+      const focus = document.activeElement;
+      const screenId = focus.closest?.('.reader')?.id;
+      // Preserve keyboard position when the two mockups refresh together.
+      const selector = focus.matches?.('input') ? `input[value="${focus.value}"]` : focus.dataset?.source ? `[data-source="${focus.dataset.source}"]` : focus.dataset?.preview ? `[data-preview="${focus.dataset.preview}"]` : focus.dataset?.action ? `[data-action="${focus.dataset.action}"]` : null;
+      renderScreen('desktop'); renderScreen('mobile');
+      if (screenId && selector) document.getElementById(screenId).querySelector(selector)?.focus({ preventScroll: true });
+    }
+    function stopPreview() { clearTimeout(previewTimer); state.preview = null; }
+    document.getElementById('book-language').addEventListener('change', event => {
+      stopPreview(); state.bookLanguage = event.target.value; state.playing = false;
+      chooseMatchingVoice(); render();
+    });
+    document.getElementById('scenario').addEventListener('change', event => {
+      stopPreview(); state.scenario = event.target.value; state.source = 'device'; state.voice = null; state.playing = false; state.open = { desktop: true, mobile: true }; chooseMatchingVoice(); render();
+    });
+    document.getElementById('theme').addEventListener('click', event => {
+      const dark = document.documentElement.dataset.theme !== 'dark';
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      event.currentTarget.setAttribute('aria-pressed', dark);
+    });
+    document.querySelector('.gallery').addEventListener('change', event => {
+      if (event.target.matches('input[type="radio"]')) { stopPreview(); state.voice = event.target.value; state.playing = false; render(); }
+    });
+    document.querySelector('.gallery').addEventListener('click', event => {
+      const button = event.target.closest('button');
+      if (!button || button.disabled) return;
+      const screen = button.closest('.reader');
+      if (button.dataset.source) { stopPreview(); state.source = button.dataset.source; render(); return; }
+      if (button.dataset.preview) {
+        const previous = state.preview; stopPreview();
+        state.preview = previous === button.dataset.preview ? null : button.dataset.preview;
+        state.playing = false; render();
+        if (state.preview) previewTimer = setTimeout(() => { state.preview = null; render(); }, 1800);
+        return;
+      }
+      switch (button.dataset.action) {
+        case 'picker': state.open[screen.id] = !state.open[screen.id]; render(); if (state.open[screen.id]) screen.querySelector('.source-tabs button[aria-pressed="true"]').focus(); return;
+        case 'dismiss': stopPreview(); state.open[screen.id] = false; render(); screen.querySelector('[data-action="picker"]').focus(); return;
+        case 'fallback': stopPreview(); state.source = 'bokheim'; state.voice = null; state.playing = false; chooseMatchingVoice(); render(); (screen.querySelector('input:checked') ?? screen.querySelector('[data-source="bokheim"]')).focus(); return;
+        case 'retry': state.scenario = 'available'; document.getElementById('scenario').value = 'available'; state.playing = false; render(); screen.querySelector('input:checked')?.focus(); return;
+        case 'play': stopPreview(); state.playing = !state.playing; render(); return;
+        case 'speed': state.speed = state.speed === 2 ? 0.75 : state.speed === 0.75 ? 1 : state.speed + 0.25; render(); return;
+        default: screen.querySelector('[data-status]').textContent = 'UI preview';
+      }
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      const screen = event.target.closest('.reader');
+      if (screen && state.open[screen.id]) { stopPreview(); state.open[screen.id] = false; render(); screen.querySelector('[data-action="picker"]').focus(); }
+    });
+    document.addEventListener('pointerdown', event => {
+      const screen = event.target.closest('.reader');
+      if (screen && state.open[screen.id] && !event.target.closest('.picker, [data-action="picker"], .shade')) { stopPreview(); state.open[screen.id] = false; screen.querySelector('.picker').hidden = true; screen.querySelector('[data-action="picker"]').setAttribute('aria-expanded', 'false'); }
+    });
+    const parameters = new URLSearchParams(location.search);
+    if (['en', 'en-GB', 'sv', 'fr', 'und'].includes(parameters.get('language'))) { state.bookLanguage = parameters.get('language'); document.getElementById('book-language').value = state.bookLanguage; chooseMatchingVoice(); }
+    if (['available', 'unavailable', 'language', 'loading', 'error'].includes(parameters.get('scenario'))) { state.scenario = parameters.get('scenario'); document.getElementById('scenario').value = state.scenario; }
+    if (parameters.get('theme') === 'dark') { document.documentElement.dataset.theme = 'dark'; document.getElementById('theme').setAttribute('aria-pressed', 'true'); }
+    render();
+  </script>
+</body>
+</html>

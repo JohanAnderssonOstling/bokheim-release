@@ -111,7 +111,13 @@ impl Profile {
     /// when present, and reject contradictory evidence rather than guessing.
     pub fn detect(product: &str, version: &str) -> Result<&'static Self, DetectionError> {
         if let Some(field) = version.trim().split(',').nth(5).filter(|field| !field.is_empty()) {
-            let id = field.parse::<u16>().map_err(|_| DetectionError::InvalidMarker)?;
+            // Firmware also writes the model as a decimal suffix in a UUID-shaped identifier.
+            let model = match field.strip_prefix("00000000-0000-0000-0000-") {
+                Some(suffix) if suffix.len() == 12 && suffix.bytes().all(|byte| byte.is_ascii_digit()) => suffix,
+                Some(_) => return Err(DetectionError::InvalidMarker),
+                None => field,
+            };
+            let id = model.parse::<u16>().map_err(|_| DetectionError::InvalidMarker)?;
             let profile = Self::from_id(id).ok_or(DetectionError::UnknownModel(id))?;
             if !product.is_empty() && product != profile.product {
                 return Err(DetectionError::ConflictingIdentity);
@@ -158,9 +164,12 @@ impl Profile {
         matches!(self.model, Model::GloHd | Model::AuraH2o)
     }
 
-    /// Raw panel translation in FBInk's canonical rotation space. These flags
-    /// match FBInk's finger_trace implementation at the pinned source revision.
+    /// Raw panel translation in FBInk's canonical rotation space.
     pub fn touch_transform(self, canonical: u8) -> TouchTransform {
+        // The Libra 2 panel's quarter-turns run opposite to FBInk's display
+        // rotations. A physical tap at the landscape right edge has raw X
+        // near zero; mirror X there, rather than mirroring Y.
+        let canonical = if self.model == Model::Libra2 { (4 - canonical % 4) % 4 } else { canonical % 4 };
         let mut transform =
             TouchTransform { swap_axes: true, invert_x: !matches!(self.model, Model::AuraH2oEdition2 | Model::Libra2 | Model::Elipsa2e | Model::LibraColour), invert_y: matches!(self.model, Model::Elipsa2e | Model::LibraColour) };
         match canonical % 4 {
@@ -237,9 +246,22 @@ mod tests {
     #[test]
     fn usb_and_runtime_detection_agree_for_every_profile() {
         for profile in PROFILES {
-            let marker = format!("serial,4.1.15,4.38.23828,unused,unused,{:013}", profile.id);
-            assert_eq!(Profile::detect("", &marker).unwrap(), profile);
-            assert_eq!(Profile::detect(profile.product, &marker).unwrap(), profile);
+            for identifier in [format!("{:013}", profile.id), format!("00000000-0000-0000-0000-{:012}", profile.id)] {
+                let marker = format!("serial,4.1.15,4.38.23828,unused,unused,{identifier}");
+                assert_eq!(Profile::detect("", &marker).unwrap(), profile);
+                assert_eq!(Profile::detect(profile.product, &marker).unwrap(), profile);
+            }
+        }
+    }
+
+    #[test]
+    fn uuid_markers_preserve_model_and_identity_checks() {
+        let marker = |identifier| format!("serial,4.1.15,4.38.23828,4.1.15,4.1.15,{identifier}");
+        assert_eq!(Profile::detect("", &marker("00000000-0000-0000-0000-000000000388")).unwrap().model, Model::Libra2);
+        assert_eq!(Profile::detect("", &marker("00000000-0000-0000-0000-000000000999")), Err(DetectionError::UnknownModel(999)));
+        assert_eq!(Profile::detect("io", &marker("00000000-0000-0000-0000-000000000376")), Err(DetectionError::ConflictingIdentity));
+        for identifier in ["broken-388", "00000001-0000-0000-0000-000000000388", "00000000-0000-0000-0000-388", "00000000-0000-0000-0000-00000000038x"] {
+            assert_eq!(Profile::detect("io", &marker(identifier)), Err(DetectionError::InvalidMarker));
         }
     }
 
@@ -264,6 +286,30 @@ mod tests {
         assert_eq!(Profile::from_id(373).unwrap().frontlight(), Frontlight::NaturalThreeChannel);
         assert_eq!(Profile::from_id(374).unwrap().frontlight(), Frontlight::NaturalTwoChannel);
         assert_eq!(Profile::from_id(383).unwrap().frontlight(), Frontlight::Premixed { inverted_warmth: false });
+    }
+
+    #[test]
+    fn libra2_landscape_close_button_matches_recorded_panel_tap() {
+        let libra = Profile::from_id(388).unwrap();
+        let map = |rotation, raw_x, raw_y| {
+            let transform = libra.touch_transform(rotation);
+            let (mut x, mut y) = (raw_x, raw_y);
+            if transform.swap_axes { std::mem::swap(&mut x, &mut y); }
+            let (width, height) = if rotation % 2 == 0 { (1264, 1680) } else { (1680, 1264) };
+            if transform.invert_x { x = width - 1 - x; }
+            if transform.invert_y { y = height - 1 - y; }
+            (x, y)
+        };
+        // Physical taps on the visible close button at (1640, 517), with
+        // FBInk canonical rotation 1, arrived near raw (61, 509).
+        let close = map(1, 61, 509);
+        assert!((1608..1672).contains(&close.0) && (485..549).contains(&close.1), "recorded close-button tap landed at {close:?}");
+        assert_eq!(map(1, 259, 1178), (1420, 1178)); // Settings in the bottom bar.
+        assert_eq!(map(1, 344, 816), (1335, 816)); // Sans-serif tile in the panel.
+        assert_eq!(map(3, 1618, 754), close);
+        // Both portrait mappings keep their original panel orientation.
+        assert_eq!(map(0, 657, 1199), (1199, 657));
+        assert_eq!(map(2, 657, 1199), (64, 1022));
     }
 
     #[test]

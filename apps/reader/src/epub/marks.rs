@@ -7,7 +7,7 @@
 //! reader has.
 
 use book_model::AnnotationStyle;
-use html_view_core::{AnnotationStyle as RendererAnnotationStyle, RendererAnnotation};
+use skrift_column_paginator::{AnnotationStyle as RendererAnnotationStyle, RendererAnnotation};
 use library_backend::Annotation;
 
 use crate::epub::Selection;

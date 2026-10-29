@@ -128,9 +128,18 @@ impl AppWorker {
 
 impl Transport {
     pub(crate) async fn library_handle(&self, library_id: LibraryId) -> Result<LibraryHandle, BackendError> {
+        let mut profile = StartupProfile::new("book_lookup_transport");
         self.wait_for_library_startup().await?;
+        profile.mark("startup_wait");
         let libraries = self.libraries.clone();
-        storage_queue::run(Priority::Interactive, move || libraries.get(&library_id)).await.map_err(BackendError::message)?
+        let (handle, mut profile) = storage_queue::run(Priority::Interactive, move || {
+            profile.mark("storage_dispatch");
+            let handle = libraries.get(&library_id);
+            profile.mark("directory_get");
+            (handle, profile)
+        }).await.map_err(BackendError::message)?;
+        profile.mark("storage_return");
+        handle
     }
 
     async fn wait_for_library_startup(&self) -> Result<(), BackendError> {

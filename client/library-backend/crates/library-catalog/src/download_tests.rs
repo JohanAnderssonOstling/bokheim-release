@@ -69,3 +69,66 @@ async fn interrupted_download_returns_an_error_without_reporting_completion() {
     server.join().unwrap();
     assert!(!observations.borrow().iter().any(|progress| matches!(progress, CatalogImportProgress::Downloading { downloaded_bytes: 4096, .. } | CatalogImportProgress::Importing)));
 }
+
+#[tokio::test]
+async fn server_card_variants_and_legacy_fallbacks_preserve_finished_jpegs() {
+    use std::ffi::OsString;
+    use std::io::{BufRead, BufReader};
+
+    struct RestoreOrigin(Option<OsString>);
+    impl Drop for RestoreOrigin {
+        fn drop(&mut self) {
+            match &self.0 {
+                Some(value) => std::env::set_var("BOKHEIM_CATALOG_ORIGIN", value),
+                None => std::env::remove_var("BOKHEIM_CATALOG_ORIGIN"),
+            }
+        }
+    }
+
+    let listener = TcpListener::bind("127.0.0.1:0").unwrap();
+    let _restore = RestoreOrigin(std::env::var_os("BOKHEIM_CATALOG_ORIGIN"));
+    std::env::set_var("BOKHEIM_CATALOG_ORIGIN", format!("http://{}", listener.local_addr().unwrap()));
+    let mut cases = Vec::new();
+    let mut replies = Vec::new();
+    for (index, (width, available)) in [(300, "versioned"), (600, "versioned"), (300, "card"), (600, "detail"), (300, "detail")].into_iter().enumerate() {
+        let key = CardKey::from(BookId::from_bytes([index as u8 + 150; 32]));
+        let mut expected = b"\xff\xd8\xff".to_vec();
+        expected.extend_from_slice(format!("finished server image {index}").as_bytes());
+        let versioned = thumbnail::card_thumbnail_suffix(width);
+        replies.push((format!("/covers/{key}-{versioned}.jpg"), (available == "versioned").then(|| expected.clone())));
+        if available != "versioned" {
+            let legacy = if width == 300 { "card" } else { "detail" };
+            replies.push((format!("/covers/{key}-{legacy}.jpg"), (available == legacy).then(|| expected.clone())));
+            if available != legacy {
+                replies.push((format!("/covers/{key}-detail.jpg"), Some(expected.clone())));
+            }
+        }
+        cases.push((key, width, expected));
+    }
+    let server = thread::spawn(move || {
+        for (path, reply) in replies {
+            let (socket, _) = listener.accept().unwrap();
+            socket.set_read_timeout(Some(Duration::from_secs(5))).unwrap();
+            let mut socket = BufReader::new(socket);
+            let mut line = String::new();
+            socket.read_line(&mut line).unwrap();
+            assert_eq!(line, format!("GET {path} HTTP/1.1\r\n"));
+            loop {
+                line.clear();
+                socket.read_line(&mut line).unwrap();
+                if line == "\r\n" {
+                    break;
+                }
+            }
+            let status = if reply.is_some() { "200 OK" } else { "404 Not Found" };
+            let bytes = reply.unwrap_or_default();
+            write!(socket.get_mut(), "HTTP/1.1 {status}\r\nContent-Length: {}\r\nConnection: close\r\n\r\n", bytes.len()).unwrap();
+            socket.get_mut().write_all(&bytes).unwrap();
+        }
+    });
+    for (key, width, expected) in &cases {
+        assert_eq!(card_cover(*key, *width).await.as_deref(), Some(expected.as_slice()));
+        assert_eq!(card_cover(*key, *width).await.as_deref(), Some(expected.as_slice()), "cached artwork must not be downloaded again");
+    }
+    server.join().unwrap();
+}

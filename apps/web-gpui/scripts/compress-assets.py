@@ -10,7 +10,7 @@ import shutil
 import subprocess
 import tempfile
 
-SUFFIXES = {".wasm", ".js", ".mjs", ".css", ".html", ".svg", ".json"}
+SUFFIXES = {".wasm", ".js", ".mjs", ".css", ".html", ".svg", ".json", ".sqlite3", ".ttf"}
 
 
 def digest(stream):

@@ -123,8 +123,8 @@ svg { width: 100%; height: 100%; display: block; }
 .section-title { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }.section-title h3 { font: 1.6875rem var(--display-font); }.section-title span { color: var(--muted); font-size: .875rem; }
 .book-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 16px; }.book-card { min-width: 0; }.book-card h3 { font: 1rem/1.25 var(--display-font); margin-top: 8px; }.book-card p { font-size: .875rem; color: var(--muted); margin-top: 4px; }
 .cover-other { display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 16px; gap: 16px; background: #a8b2a1; color: #293d35; font: 20px/1.05 Bodoni, Georgia, serif; }.cover-other small { font: 8px Raleway, sans-serif; letter-spacing: .12em; }.cover-other.gold { background: #bc9b62; color: #302a20; }.cover-other.blue { background: #889aa2; color: #20383f; }
-.mini-dock { height: 5rem; box-sizing: content-box; position: relative; flex: none; border-top: 1px solid var(--rule); display: flex; align-items: center; gap: .5rem; padding: 0 .5rem; }
-.mini-dock:before { content: ''; position: absolute; left: 0; top: 0; height: 3px; width: var(--progress,36%); background: var(--accent); z-index: 2; }.mini-dock .cover { width: 5rem; height: 5rem; }
+.mini-dock { height: 4rem; box-sizing: content-box; position: relative; flex: none; border-top: 1px solid var(--rule); display: flex; align-items: center; gap: .5rem; padding: 0 .5rem; }
+.mini-dock:before { content: ''; position: absolute; left: 0; top: 0; height: 3px; width: var(--progress,36%); background: var(--accent); z-index: 2; }.mini-dock .cover { width: 4rem; height: 4rem; margin-block: 0; padding-block: 0; }
 .dock-summary { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: start; justify-content: center; padding: 0; text-align: left; height: 100%; }.dock-summary strong { font-size: 1rem; font-weight: 400; max-width: 100%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 1.25; }.dock-summary small { font-size: .75rem; color: var(--muted); max-width: 100%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 1.25; }
 .mini-dock .play-button { width: 3rem; height: 3rem; border-radius: 0; background: transparent; color: var(--accent); }.mini-dock .play-button .icon { width: 1.5rem; height: 1.5rem; }
 .mini-dock .play-button:hover { background: var(--hover); }
@@ -146,8 +146,17 @@ svg { width: 100%; height: 100%; display: block; }
 .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 10px 18px; font-size: 12px; z-index: 99; pointer-events: none; }
 @media(max-width: 760px) { .board { padding: 20px 12px; }.board-header { gap: 16px; }.board-controls { gap: 8px; }.gallery { display: flex; flex-direction: column; overflow-x: auto; align-items: center; }.screen { flex: none; }.board-footer { display: block; }.board-footer span { display: block; margin-top: 5px; } }
 
+.mini-dock .quick-skip { width: 2.5rem; height: 2.5rem; flex: none; padding: 0; display: inline-flex; align-items: center; justify-content: center; }.mini-dock .quick-skip .icon { width: 1.625rem; height: 1.625rem; }
 </style>
-</head>
+<style>
+.preset-scroll { overflow-x: auto; padding: 16px; }
+.preset-strip { display: flex; align-items: center; justify-content: space-evenly; width: 100%; min-width: calc(var(--preset-count) * 2.75rem + .25rem); gap: 0; }
+.preset-choice { width: 2.5rem; height: 2.5rem; padding: 0; flex: none; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--rule); font-size: .875rem; white-space: nowrap; }
+.preset-choice[aria-checked=true] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.popup:has(.preset-strip) { width: calc(100% - 16px); min-width: 0; }
+.chapter-duration { flex: none; white-space: nowrap; font-size: .875rem; color: var(--muted); }
+.sheet-choice[aria-checked=true] .chapter-duration { color: var(--accent-ink); }
+</style></head>
 <body>
 <main class="board">
 <header class="board-header">
@@ -252,7 +261,7 @@ function navigation(reader=false) {
   const items = reader ? [['chapters','Contents'],['notes','Notes'],['text','Settings'],['headphones','TTS']] : [['house','Home'],['read','Library'],['catalog','Catalog'],['settings','Settings'],['books','My library']];
   return `<nav class="bottom-nav ${reader?'reader-nav':''}" aria-label="${reader?'Reader':'Library'} navigation">${items.map(([key,label],i) => `<button class="${reader ? (i===3&&tts.playing?'speaking-action':'') : (i===1?'active':'')}" data-action="${reader&&i===3?'toggle-tts':'nav'}" aria-label="${reader&&i===3?'Read aloud':label}">${icon(key)}<span>${label}</span></button>`).join('')}</nav>`;
 }
-function mini() { return `<div class="mini-dock">${cover()}<button class="dock-summary" data-action="expand"><strong>The Secret Garden</strong><small data-current-chapter></small></button>${play()}</div>`; }
+function mini() { return `<div class="mini-dock">${cover()}<button class="dock-summary" data-action="expand"><strong>The Secret Garden</strong><small data-current-chapter></small></button>${play()}${button('forward','Forward 30 seconds','skipforward','quick-skip')}</div>`; }
 function library(id) {
   return `<div class="app"><header class="topbar"><span class="heading">My library</span>${button('nav','Search library','search')}</header><div class="library-body"><div class="section-title"><h3>Continue listening</h3><span>4 books</span></div><div class="book-grid"><article class="book-card"><button data-action="expand" aria-label="Open The Secret Garden" style="display:block;padding:0;width:100%">${cover()}</button><h3>The Secret Garden</h3><p>Frances Hodgson Burnett</p><p>34% · Audiobook</p></article><article class="book-card">${cover('','green')}<h3>A Room of One’s Own</h3><p>Virginia Woolf</p><p>Audiobook</p></article><article class="book-card">${cover('','gold')}<h3>The Art of Noticing</h3><p>Rob Walker</p></article><article class="book-card">${cover('','blue')}<h3>The Sea Around Us</h3><p>Rachel Carson</p></article></div></div>${views[id].closed?'':mini()}${navigation()}</div>`;
 }
@@ -260,7 +269,7 @@ function detail(id) {
   const v = views[id];
   const speed = `<button class="inline-tool ${audio.rate!==1?'active':''}" data-action="sheet-speed" aria-label="Playback speed"><span data-rate="audio">${rateLabel(audio.rate)}</span></button>`;
   const sleep = `<button class="inline-tool ${audio.sleep?'active':''}" data-action="sheet-sleep" aria-label="Sleep timer">${audio.sleep?`<span data-sleep="audio">${sleepLabel(audio.sleep)}</span>`:icon('sleep')}</button>`;
-  return `<div class="app"><div class="detail-body">${platform==='web'?`<button class="detail-back" data-action="collapse">${icon('back')}Library</button>`:''}${cover('detail-cover')}<div class="detail-meta"><h3>The Secret Garden</h3><p class="author">Frances Hodgson Burnett</p><p class="narrator">Narrated by Karen Savage</p></div><div class="inline-player">${progress(true)}<div class="inline-controls">${speed}${transportButtons()}${sleep}</div></div><section class="detail-section"><button class="detail-section-heading" data-action="toggle-contents" aria-expanded="${v.contentsOpen}"><h3>Chapters</h3><small>${shortTime(bookDuration())} · ${chapters.length} chapters</small>${icon(v.contentsOpen?'down':'right')}</button>${v.contentsOpen?chapters.map(([title,duration],i)=>`<button class="detail-chapter ${i===audio.chapter?'active':''}" data-action="chapter" data-value="${i}"><span>${escapeHTML(title)}</span><small>${shortTime(duration)}</small></button>`).join(''):''}</section><section class="detail-section description"><button class="detail-section-heading" data-action="toggle-description" aria-expanded="${v.descriptionOpen}"><h3>Description</h3>${icon(v.descriptionOpen?'down':'right')}</button>${v.descriptionOpen?'<p>A locked garden, a curious robin, and a key that opens the way to a different life. Mary discovers what can grow with a little care.</p>':''}</section></div>${navigation()}</div>`;
+  return `<div class="app"><div class="detail-body">${platform==='web'?`<button class="detail-back" data-action="collapse">${icon('back')}Library</button>`:''}${cover('detail-cover')}<div class="detail-meta"><h3>The Secret Garden</h3><p class="author">Frances Hodgson Burnett</p><p class="narrator">Narrated by Karen Savage</p></div><div class="inline-player">${progress(true)}<div class="inline-controls">${speed}${transportButtons()}${sleep}</div></div><section class="detail-section"><button class="detail-section-heading" data-action="toggle-contents" aria-expanded="${v.contentsOpen}"><h3>Chapters</h3><small>${shortTime(bookDuration())} · ${chapters.length} chapters</small>${icon(v.contentsOpen?'down':'right')}</button>${v.contentsOpen?chapters.map(([title,duration],i)=>`<button class="detail-chapter ${i===audio.chapter?'active':''}" data-action="chapter" data-value="${i}"><span>${i+1}. ${escapeHTML(title)}</span><small>${shortTime(duration)}</small></button>`).join(''):''}</section><section class="detail-section description"><button class="detail-section-heading" data-action="toggle-description" aria-expanded="${v.descriptionOpen}"><h3>Description</h3>${icon(v.descriptionOpen?'down':'right')}</button>${v.descriptionOpen?'<p>A locked garden, a curious robin, and a key that opens the way to a different life. Mary discovers what can grow with a little care.</p>':''}</section></div>${navigation()}</div>`;
 }
 function narration() {
   const dock = `<div class="tts-dock">${platform==='web'?`<button class="voice" data-action="sheet-voice" aria-label="Narration voice">${tts.voice}</button>`:''}<button class="text-control" data-action="sheet-speed" aria-label="Reading speed"><span data-rate="tts">${rateLabel(tts.rate)}</span></button>${button('sheet-pauses','Pauses between sentences and paragraphs','pauses')}${button('back','Previous passage','undo','icon-button passage',tts.playing?'':'disabled')}${play('tts')}${button('forward','Next passage','redo','icon-button passage',tts.playing?'':'disabled')}${tts.sleep?`<button class="sleep-value" data-action="sheet-sleep" aria-label="Sleep timer" data-sleep="tts">${sleepLabel(tts.sleep)}</button>`:button('sheet-sleep','Sleep timer','sleep')}${button('close-tts','Close player','close')}</div>`;
@@ -269,7 +278,8 @@ function narration() {
 function menu(name,kind,popup=false) {
   const state = kind==='audio'?audio:tts;
   let title='',statusline='',choices='';
-  const choice = (label,action,value,checked=false) => `<button class="sheet-choice" data-action="${action}" data-value="${escapeHTML(value)}" role="menuitemradio" aria-checked="${checked}"><span class="choice-main">${label}</span>${checked?icon('check'):''}</button>`;
+  const presets=name==='speed'||name==='sleep';
+  const choice = (label,action,value,checked=false,shortLabel=null) => `<button class="${presets?'preset-choice':'sheet-choice'}" data-action="${action}" data-value="${escapeHTML(value)}" role="menuitemradio" aria-checked="${checked}" aria-label="${escapeHTML(label)}" title="${escapeHTML(label)}">${presets?(shortLabel||label):`<span class="choice-main">${label}</span>${checked?icon('check'):''}`}</button>`;
   if (name==='speed') {
     title=kind==='tts'?'Reading speed':'Playback speed';
     choices=[.75,1,1.25,1.5,1.75,2].map(rate=>choice(rateLabel(rate),'rate',rate,rate===state.rate)).join('');
@@ -277,11 +287,11 @@ function menu(name,kind,popup=false) {
   if (name==='sleep') {
     title='Sleep timer';
     if (state.sleep) statusline=state.sleep==='chapter'?'Until end of chapter':`${sleepLabel(state.sleep)} remaining`;
-    choices=[5,15,30,45,60].map(minutes=>choice(`${minutes} minutes`,'sleep',minutes)).join('')+choice('End of chapter','sleep','chapter')+(state.sleep?choice('Off','sleep','off'):'');
+    choices=[5,15,30,45,60].map(minutes=>choice(`${minutes} minutes`,'sleep',minutes,false,`${minutes}m`)).join('')+choice('End of chapter','sleep','chapter',state.sleep==='chapter','End')+(state.sleep?choice('Off','sleep','off'):'');
   }
   if (name==='chapters') {
     title='Chapters';
-    choices=chapters.map(([label],i)=>`<div class="sheet-choice" data-action="chapter" data-value="${i}" role="menuitemradio" tabindex="0" aria-checked="${i===audio.chapter}"><span class="choice-main">${escapeHTML(label)}</span>${i===audio.chapter?icon('check'):''}${audio.completed.has(i)?button('reset-chapter','Mark chapter as unread','check','read-reset',`data-value="${i}"`):''}</div>`).join('')+'<button class="sheet-choice reset-read" data-action="reset-read"><span class="choice-main">Reset read status</span></button>';
+    choices=chapters.map(([label],i)=>`<div class="sheet-choice" data-action="chapter" data-value="${i}" role="menuitemradio" tabindex="0" aria-checked="${i===audio.chapter}"><span class="choice-main">${i+1}. ${escapeHTML(label)}</span><small class="chapter-duration">${shortTime(chapters[i][1])}</small>${i===audio.chapter?icon('check'):''}${audio.completed.has(i)?button('reset-chapter','Mark chapter as unread','check','read-reset',`data-value="${i}"`):''}</div>`).join('')+'<button class="sheet-choice reset-read" data-action="reset-read"><span class="choice-main">Reset read status</span></button>';
   }
   if (name==='voice') {
     title='Narration voice';
@@ -290,6 +300,7 @@ function menu(name,kind,popup=false) {
   if (name==='pauses') {
     title='Pauses'; choices=['Short pauses','Natural pauses','Long pauses','Longer pauses'].map(pauses=>choice(pauses,'pauses',pauses,pauses===tts.pauses)).join('');
   }
+  if(presets){const count=name==='speed'?6:(state.sleep?7:6);choices=`<div class="preset-scroll"><div class="preset-strip" style="--preset-count:${count}">${choices}</div></div>`;statusline='';}
   return `<button class="${popup?'popup-shade':'sheet-shade'}" data-action="dismiss" aria-label="Dismiss ${title}"></button><section class="${popup?'popup':'sheet'} ${kind==='tts'?'tts-sheet':''}" role="dialog" aria-label="${title}">${popup?'':`<header class="sheet-header"><h3>${title}</h3>${kind==='tts'?button('dismiss',`Close ${title}`,'close','sheet-close'):''}</header>`}${statusline?`<div class="sheet-status">${statusline}</div>`:''}<div class="sheet-options" role="menu">${choices}</div></section>`;
 }
 function positionMenus() {

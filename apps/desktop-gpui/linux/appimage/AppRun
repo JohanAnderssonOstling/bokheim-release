@@ -2,4 +2,7 @@
 set -eu
 
 APPDIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+if ! "$APPDIR/usr/libexec/bokheim-register-desktop" "$APPDIR" "$@"; then
+  printf 'Bokheim desktop registration failed; continuing from the current location.\n' >&2
+fi
 exec "$APPDIR/usr/libexec/bokheim-launch" "$APPDIR" bokheim "$@"

@@ -1,8 +1,9 @@
 //! Dedicated WASM entry point: deliberately does not initialize the backend.
 #![cfg(target_arch = "wasm32")]
 
-use library_backend::library::web_reader::{connect, Reader};
+use library_backend::library::web_reader::{Reader, connect};
 use wasm_bindgen::prelude::*;
+use wasm_callback::future_to_promise_aborting;
 
 #[wasm_bindgen(module = "/pdfium.js")]
 extern "C" {
@@ -32,7 +33,14 @@ fn execute_with_source(bytes: &[u8], source: JsValue) -> Result<Vec<u8>, JsValue
 }
 
 #[wasm_bindgen(js_name = startCpuWorker)]
-pub async fn start() -> Result<(), JsValue> {
+pub fn start() -> js_sys::Promise {
+    future_to_promise_aborting(async {
+        initialize().await?;
+        Ok(JsValue::UNDEFINED)
+    })
+}
+
+async fn initialize() -> Result<(), JsValue> {
     client_platform_web::sqlite::initialize_reference_storage().await.map_err(|error| JsValue::from_str(&error))?;
     app::host::cpu::initialize_bisac_reference().await.map_err(|error| JsValue::from_str(&error))?;
     let scope = client_platform_web::transport::scope::Scope::current();
@@ -62,12 +70,17 @@ pub async fn start() -> Result<(), JsValue> {
                     initialize_pdfium().await?;
                 }
                 // Inspection checks subject codes against the taxonomy. This
-                // module bundles none, so it loads the database worker's
-                // snapshot, usually from the HTTP cache, on first use.
-                if let Ok(app::host::cpu::CpuRequest::Book { taxonomy: Some(artifact), .. }) = rmp_serde::from_slice::<app::host::cpu::CpuRequest>(&bytes) {
+                // worker loads the same app asset or published snapshot as the
+                // database worker, usually from the HTTP cache, on first use.
+                if let Ok(app::host::cpu::CpuRequest::Book { task: app::host::cpu::BookTask::Inspect { .. }, taxonomy }) = rmp_serde::from_slice::<app::host::cpu::CpuRequest>(&bytes) {
                     if subject_projection::loaded_unified_taxonomy_revision_id().is_none() {
-                        let snapshot = update_client::fetch::download(&artifact).await.map_err(|error| JsValue::from_str(&error))?;
-                        subject_projection::installed::install_snapshot(&snapshot).map_err(|error| JsValue::from_str(&error))?;
+                        match taxonomy {
+                            Some(artifact) => {
+                                let snapshot = update_client::fetch::download(&artifact).await.map_err(|error| JsValue::from_str(&error))?;
+                                subject_projection::installed::install_snapshot(&snapshot).map_err(|error| JsValue::from_str(&error))?;
+                            }
+                            None => app::host::cpu::initialize_bundled_taxonomy().await.map_err(|error| JsValue::from_str(&error))?,
+                        }
                     }
                 }
                 execute_with_source(&bytes, source)

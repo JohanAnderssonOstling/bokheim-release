@@ -4,7 +4,7 @@ use gpui::prelude::*;
 use gpui::{AnyElement, App, Context, Div, ElementId, Entity, Focusable, FontWeight, HighlightStyle, Stateful, StyledText, Window, div, px};
 use gpui_component::input::{Input, InputState};
 use gpui_component::{Disableable, IconName};
-use html_view_core::SearchOptions;
+use skrift_column_paginator::SearchOptions;
 use std::ops::Range;
 use ui_components as components;
 use unicode_normalization::{UnicodeNormalization, char::is_combining_mark};
@@ -31,14 +31,14 @@ pub(crate) fn header_controls<C: SearchBarTarget>(owner: &C, target: &Entity<C>,
         .gap(px(components::SPACE_XXS))
         .child(components::reader_match_count(format!("{current} of {total}"), theme))
         .child(
-            components::outlined_icon_button("reader-search-previous", "Previous match", IconName::ChevronLeft, theme)
+            components::outlined_icon_button("reader-search-previous", "Previous match", IconName::ChevronLeft)
                 .disabled(total == 0)
                 .tooltip(components::shortcut_tooltip_with_alternatives("Previous match", &["shift-enter", "up"]))
                 .on_click(move |_, _, cx| {
                     previous_target.update(cx, |this, cx| this.search_navigate(-1, cx));
                 }),
         )
-        .child(components::outlined_icon_button("reader-search-next", "Next match", IconName::ChevronRight, theme).disabled(total == 0).tooltip(components::shortcut_tooltip_with_alternatives("Next match", &["enter", "down"])).on_click(
+        .child(components::outlined_icon_button("reader-search-next", "Next match", IconName::ChevronRight).disabled(total == 0).tooltip(components::shortcut_tooltip_with_alternatives("Next match", &["enter", "down"])).on_click(
             move |_, _, cx| {
                 next_target.update(cx, |this, cx| this.search_navigate(1, cx));
             },
@@ -57,6 +57,7 @@ pub(crate) fn search_bar(input: &Entity<InputState>, theme: components::BrowserT
 }
 
 /// The query stays visible while the excerpts scroll below it.
+#[cfg(test)]
 pub(crate) fn panel(bar: AnyElement, rows: Vec<AnyElement>, theme: components::BrowserTheme) -> AnyElement {
     div().size_full().min_h_0().min_w_0().flex().flex_col().child(bar).child(components::reader_state_panel(theme).children(rows)).into_any_element()
 }

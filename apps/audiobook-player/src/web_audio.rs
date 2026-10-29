@@ -8,7 +8,7 @@ use wasm_bindgen::{closure::Closure, prelude::*};
 extern "C" {
     type BrowserAudio;
     #[wasm_bindgen(constructor, catch)]
-    fn new(url: &str, artwork: &[u8], metadata: &JsValue, initial: f64, save: &js_sys::Function, direct: &JsValue, renew: &JsValue) -> Result<BrowserAudio, JsValue>;
+    fn new(url: &str, artwork: &[u8], metadata: &JsValue, initial: f64, save: &js_sys::Function, direct: &JsValue, renew: &JsValue, stream_control: &JsValue) -> Result<BrowserAudio, JsValue>;
     #[wasm_bindgen(method)]
     fn play(this: &BrowserAudio);
     #[wasm_bindgen(method)]
@@ -45,6 +45,7 @@ pub(crate) struct AudioEngine {
     browser: BrowserAudio,
     // Keep the callback valid until dispose has detached browser event handlers.
     _save: Closure<dyn FnMut(f64, f64)>,
+    _stream_control: Option<Closure<dyn FnMut(bool)>>,
     _source: BrowserAudiobook,
 }
 
@@ -59,10 +60,12 @@ impl AudioEngine {
                 let _ = updates.try_send(position);
             }
         });
+        let stream_control = source.pause_control();
+        let control = stream_control.as_ref().map(|callback| callback.as_ref().clone()).unwrap_or(JsValue::UNDEFINED);
         let browser =
-            BrowserAudio::new(&source.url, book.cover.as_ref().map(|cover| cover.bytes()).unwrap_or_default(), &metadata, initial.min(book.duration).as_secs_f64(), save.as_ref().unchecked_ref(), &source.direct_config()?, &source.renewal())
+            BrowserAudio::new(&source.url, book.cover.as_ref().map(|cover| cover.bytes()).unwrap_or_default(), &metadata, initial.min(book.duration).as_secs_f64(), save.as_ref().unchecked_ref(), &source.direct_config()?, &source.renewal(), &control)
                 .map_err(|e| format!("Could not initialize browser audio: {e:?}"))?;
-        Ok(Self { browser, _save: save, _source: source })
+        Ok(Self { browser, _save: save, _stream_control: stream_control, _source: source })
     }
     pub fn play(&self) {
         self.browser.play();

@@ -1,91 +1,105 @@
 //! Native book readers, filesystem availability, and playback resources.
 
 use super::*;
-use crate::DownloadState;
 use crate::library::DocumentBook;
 use crate::library::ResolvedBook;
+use crate::DownloadState;
 use book_access::{FetchFuture, RemoteFileError};
 pub(crate) type Opened = ResolvedBook;
 
-pub(super) async fn local(library: &LibrarySession, hash: BookId, info: &BookInfo) -> Result<Option<Opened>, BackendError> {
-    if !matches!(library.persistent_download_state(hash)?, DownloadState::Downloaded) {
+pub(super) async fn local(library: &LibrarySession, hash: BookId, info: &LocalBookInfo) -> Result<Option<Opened>, BackendError> {
+    let mut profile = StartupProfile::new("book_lookup_local");
+    let state = library.persistent_download_state(hash)?;
+    profile.mark("download_state");
+    if !matches!(state, DownloadState::Downloaded) {
         return Ok(None);
     }
-    (async |library: &LibrarySession, content_hash: BookId, info: &BookInfo| -> Result<Opened, BackendError> {
-        if info.format == BookFormat::Mp3Folder {
-            return library.prepare_audiobook_track(content_hash, 0).await;
-        }
-        let mut path = info.path.clone().ok_or_else(|| BackendError::message("book placement not found"))?;
-        let format = info.format;
-        if !matches!(format, BookFormat::Epub | BookFormat::Pdf | BookFormat::Mobi | BookFormat::M4b | BookFormat::Fb2 | BookFormat::Cbz) {
-            return Err(format!("the {} format is no longer supported", format.canonical_extension()).into());
-        }
-        if matches!(format, BookFormat::Epub | BookFormat::Mobi | BookFormat::Fb2 | BookFormat::Cbz) {
-            let mut source = library.assets.open_async_book_at_path(path.clone()).await.map_err(BackendError::operation)?;
-            if source.is_none() {
-                if let Some(fresh) = refresh_local_path(library, content_hash).await? {
-                    path = fresh;
-                    source = library.assets.open_async_book_at_path(path.clone()).await.map_err(BackendError::operation)?;
-                }
-            }
-            let source = source.ok_or_else(|| "book content is not downloaded")?;
-            return Ok(ResolvedBook::Document(DocumentBook::from_async_source(path.to_string(), format, source)));
-        }
-        #[cfg(target_os = "android")]
-        let playback_file = if format == BookFormat::M4b { library.assets.open_playback_file(&path)? } else { None };
-        #[cfg(target_os = "android")]
-        let reader = if let Some(file) = &playback_file { Some(Box::new(file.try_clone()?) as crate::BoxedBookReader) } else { library.assets.open_book_at_path(path.clone()).await? };
-        #[cfg(not(target_os = "android"))]
-        let mut reader = library.assets.open_book_at_path(path.clone()).await.map_err(BackendError::operation)?;
-        #[cfg(not(target_os = "android"))]
-        if reader.is_none() {
-            if let Some(fresh) = refresh_local_path(library, content_hash).await? {
+    if info.format == BookFormat::Mp3Folder {
+        return library.prepare_audiobook_track(hash, 0).await.map(Some);
+    }
+    let mut path = info.path.clone().ok_or_else(|| BackendError::message("book placement not found"))?;
+    let format = info.format;
+    if !matches!(format, BookFormat::Epub | BookFormat::Pdf | BookFormat::Mobi | BookFormat::M4b | BookFormat::Fb2 | BookFormat::Cbz) {
+        return Err(format!("the {} format is no longer supported", format.canonical_extension()).into());
+    }
+    if matches!(format, BookFormat::Epub | BookFormat::Mobi | BookFormat::Fb2 | BookFormat::Cbz) {
+        profile.mark("format_and_path");
+        let mut source = library.assets.open_async_book_at_path(path.clone()).await.map_err(BackendError::operation)?;
+        profile.mark("open_async_source");
+        if source.is_none() {
+            if let Some(fresh) = refresh_local_path(library, hash).await? {
                 path = fresh;
-                reader = library.assets.open_book_at_path(path.clone()).await.map_err(BackendError::operation)?;
+                source = library.assets.open_async_book_at_path(path.clone()).await.map_err(BackendError::operation)?;
             }
         }
-        let reader = reader.ok_or_else(|| "book content is not downloaded")?;
-        if format == BookFormat::M4b {
-            Ok(ResolvedBook::Audiobook(crate::library::AudiobookBook {
-                format,
-                path: path.to_string(),
-                reader,
-                stream_control: None,
-                #[cfg(target_os = "android")]
-                playback_file,
-            }))
-        } else {
-            let metadata = if format == BookFormat::Pdf { library.db.local_pdf_metadata(&content_hash, path.as_str())? } else { None };
-            let mut document = DocumentBook::new(path.to_string(), format, reader);
-            document.pdf_metadata = metadata;
-            Ok(ResolvedBook::Document(document))
+        let source = source.ok_or_else(|| "book content is not downloaded")?;
+        return Ok(Some(ResolvedBook::Document(DocumentBook::from_async_source(path.to_string(), format, source))));
+    }
+    #[cfg(target_os = "android")]
+    let playback_file = if format == BookFormat::M4b { library.assets.open_playback_file(&path)? } else { None };
+    #[cfg(target_os = "android")]
+    let reader = if let Some(file) = &playback_file { Some(Box::new(file.try_clone()?) as crate::BoxedBookReader) } else { library.assets.open_book_at_path(path.clone()).await? };
+    #[cfg(not(target_os = "android"))]
+    let mut reader = library.assets.open_book_at_path(path.clone()).await.map_err(BackendError::operation)?;
+    #[cfg(not(target_os = "android"))]
+    if reader.is_none() {
+        if let Some(fresh) = refresh_local_path(library, hash).await? {
+            path = fresh;
+            reader = library.assets.open_book_at_path(path.clone()).await.map_err(BackendError::operation)?;
         }
-    })(library, hash, info)
-    .await
-    .map(Some)
+    }
+    let reader = reader.ok_or_else(|| "book content is not downloaded")?;
+    let book = if format == BookFormat::M4b {
+        ResolvedBook::Audiobook(crate::library::AudiobookBook {
+            format,
+            path: path.to_string(),
+            reader,
+            stream_control: None,
+            #[cfg(target_os = "android")]
+            playback_file,
+        })
+    } else {
+        let metadata = if format == BookFormat::Pdf { library.db.local_pdf_metadata(&hash, path.as_str())? } else { None };
+        let mut document = DocumentBook::new(path.to_string(), format, reader);
+        document.pdf_metadata = metadata;
+        ResolvedBook::Document(document)
+    };
+    Ok(Some(book))
 }
 
 // A placement move can land between reading `info.path` and opening it.
 // Drain this hash's pending work and retry once against the fresh path.
 async fn refresh_local_path(library: &LibrarySession, content_hash: BookId) -> Result<Option<library_model::RelativeBookPath>, BackendError> {
     let _ = library_placement::run_file_jobs_for(&library.assets, &library.db, &content_hash).await;
-    Ok(book_info(library, content_hash).await?.path)
+    Ok(library.db.local_book_info(&content_hash)?.path)
 }
 
-pub(super) async fn remote(library: &LibrarySession, hash: BookId, info: &BookInfo) -> Result<Opened, BackendError> {
+pub(super) async fn remote(library: &LibrarySession, hash: BookId, info: &LocalBookInfo) -> Result<Opened, BackendError> {
     if info.format == BookFormat::Mp3Folder {
         return library.prepare_audiobook_track(hash, 0).await;
     }
     let path = info.path.clone().ok_or_else(|| BackendError::message("book placement not found"))?;
+    if matches!(info.format, BookFormat::Epub | BookFormat::Cbz) && library.db.storage_policy()?.external().is_none() {
+        return super::remote_archive::open(library, hash, path.to_string(), info.format).await;
+    }
     let RemoteDocument { source, prefix, pdf_metadata } = remote_document(library, hash).await?;
     let length = source.length;
     let access = library.remote_book_access(&source)?;
-    if info.format == BookFormat::M4b {
-        let fetch = move |offset, length| {
-            let access = access.clone();
-            Box::pin(async move { access.read(offset, length).await }) as FetchFuture<'static, Result<Vec<u8>, RemoteFileError>>
+    if info.format == BookFormat::Pdf && library.db.storage_policy()?.external().is_none() {
+        let fetch = book_access::remote_file::native_bundle_fetch(access.batch_fetch()).map_err(BackendError::operation)?;
+        let (reader, page_source) = if let Some(index) = super::remote_pdf::index(pdf_metadata.as_ref(), hash, length) {
+            let (reader, source) = book_access::pdf_bundle::open(index, prefix, fetch).map_err(BackendError::operation)?;
+            (reader, Some(source))
+        } else {
+            (book_access::pdf_bundle::open_unindexed(length, prefix, fetch).map_err(BackendError::operation)?, None)
         };
-        let (reader, stream_control) = book_access::remote_file::native_audio_reader(length, prefix, fetch).map_err(BackendError::operation)?;
+        let mut book = DocumentBook::new(path.to_string(), info.format, reader);
+        book.pdf_page_source = page_source;
+        book.pdf_metadata = pdf_metadata;
+        return Ok(ResolvedBook::Document(book));
+    }
+    if info.format == BookFormat::M4b {
+        let (reader, stream_control) = book_access::remote_file::native_audio_reader(length, prefix, access.fetch()).map_err(BackendError::operation)?;
         return Ok(ResolvedBook::Audiobook(AudiobookBook {
             format: info.format,
             path: path.to_string(),
@@ -95,28 +109,23 @@ pub(super) async fn remote(library: &LibrarySession, hash: BookId, info: &BookIn
             playback_file: None,
         }));
     }
-    let fetch = move |offset, length| {
-        let access = access.clone();
-        Box::pin(async move { access.read(offset, length).await }) as FetchFuture<'static, Result<Vec<u8>, RemoteFileError>>
-    };
     if matches!(info.format, BookFormat::Epub | BookFormat::Mobi | BookFormat::Fb2 | BookFormat::Cbz) {
-        let source = book_access::AsyncBookSource::remote(length, prefix, fetch).map_err(BackendError::operation)?;
+        let source = access.async_source(length, prefix)?;
         return Ok(ResolvedBook::Document(DocumentBook::from_async_source(path.to_string(), info.format, source)));
     }
-    let reader = book_access::remote_file::native_reader(length, prefix, fetch).map_err(BackendError::operation)?;
-    let mut document = ResolvedBook::Document(DocumentBook::new(path.to_string(), info.format, reader));
-    if let ResolvedBook::Document(book) = &mut document {
-        book.pdf_metadata = pdf_metadata;
-    }
-    Ok(document)
+    let reader = book_access::remote_file::native_reader(length, prefix, access.fetch()).map_err(BackendError::operation)?;
+    let mut document = DocumentBook::new(path.to_string(), info.format, reader);
+    document.pdf_metadata = pdf_metadata;
+    Ok(ResolvedBook::Document(document))
 }
 
 impl LibrarySession {
     pub(crate) async fn prepare_audiobook_track(&self, hash: BookId, index: usize) -> Result<ResolvedBook, BackendError> {
-        let info = book_info(self, hash).await?;
+        let info = self.db.local_book_info(&hash)?;
         if info.format != BookFormat::Mp3Folder {
             return Err(BackendError::message("book is not an MP3 folder"));
         }
+        let provider_file = self.db.provider_file(&hash)?;
         let track = self.db.audiobook_tracks(&hash)?.into_iter().nth(index).ok_or_else(|| BackendError::message("audiobook track is unavailable"))?;
         if !track.valid() {
             return Err(BackendError::message("audiobook track index is invalid"));
@@ -141,7 +150,10 @@ impl LibrarySession {
                 }));
             }
         }
-        let (source, _) = self.describe_remote_file(hash).await.map_err(BackendError::operation)?;
+        let source = match provider_file {
+            Some(file) => crate::library::RemoteFile { hash, length: file.size_bytes, revision: Some(file.revision.as_str().to_owned()) },
+            None => self.describe_remote_file(hash).await.map_err(BackendError::operation)?.0,
+        };
         if track.archive_hash != Some(source.hash) {
             return Err(BackendError::message("audiobook track index does not match the remote archive; sync the book metadata and retry"));
         }

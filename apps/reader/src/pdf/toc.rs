@@ -78,11 +78,31 @@ impl PdfTocState {
         pages
     }
 
+    #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
+    pub(crate) fn narration_chapter_label(&self, page: usize) -> String {
+        let start = self.chapter_at(page);
+        let number = self.chapter_pages().iter().position(|page| *page == start).unwrap_or(0) + 1;
+        fn chapter_title(entries: &[BookTocEntry], start: usize) -> Option<&str> {
+            for entry in entries {
+                if let Some(page) = pdf_toc_page(&entry.target) {
+                    if page == start {
+                        return Some(entry.title.as_str());
+                    }
+                } else if let Some(title) = chapter_title(&entry.children, start) {
+                    return Some(title);
+                }
+            }
+            None
+        }
+        let title = chapter_title(&self.entries, start).filter(|title| !title.trim().is_empty());
+        title.map_or_else(|| format!("Chapter {number}"), |title| format!("Chapter {number} · {title}"))
+    }
+
     pub(crate) fn chapter_at(&self, page: usize) -> usize {
         self.chapter_pages().into_iter().rev().find(|start| *start <= page).unwrap_or(0)
     }
 
-    #[cfg(any(test, all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32"))))]
+    #[cfg(any(test, all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo"))))]
     pub(crate) fn narration_start_page(&self, page: usize, page_count: usize) -> Option<usize> {
         (page..page_count).find(|page| {
             let entry = self.ordinal_at(*page).and_then(|ordinal| entry_in_order(&self.entries, ordinal, &mut 0));

@@ -1,6 +1,7 @@
 //! Small cache of immutable page assignments. Moving a page does not change
 //! its packing; data, typography and viewport changes do.
 
+use super::slots::Slots;
 use std::collections::VecDeque;
 use std::rc::Rc;
 
@@ -14,11 +15,10 @@ const CAPACITY: usize = 6;
 #[derive(Clone)]
 pub(super) struct LayoutKey {
     pub data: Rc<PaginatorData>,
-    pub widths: Rc<Vec<Pixels>>,
+    pub widths: Rc<Slots<Pixels>>,
     pub width: Pixels,
     pub height: Pixels,
     pub rem_size: Pixels,
-    pub maximum_rows: Option<usize>,
     pub child_offset: usize,
     pub direction: AssignmentDirection,
     pub forced_page: Option<VisiblePage>,
@@ -31,7 +31,6 @@ impl LayoutKey {
             && self.width == other.width
             && self.height == other.height
             && self.rem_size == other.rem_size
-            && self.maximum_rows == other.maximum_rows
             && self.child_offset == other.child_offset
             && self.direction == other.direction
             && self.forced_page == other.forced_page
@@ -71,9 +70,13 @@ impl LayoutCache {
         }
         let geometries = geometry::group_geometries(&key.data, key.width, key.rem_size);
         let rows = if let Some(page) = key.forced_page {
-            geometry::forward_rows_in_range(&key.data, &key.widths, &geometries, page.first_child, page.last_child.saturating_add(1))
+            if key.data.groups.iter().any(|group| group.policy.column_fraction.is_some()) {
+                geometry::strip_rows(&key.data, &geometries, page.first_child, page.last_child.saturating_add(1), key.height, key.rem_size)
+            } else {
+                geometry::forward_rows_in_range(&key.data, &key.widths, &geometries, page.first_child, page.last_child.saturating_add(1))
+            }
         } else {
-            geometry::page_rows(&key.data, &key.widths, &geometries, key.direction, key.child_offset, key.maximum_rows, key.height, key.rem_size)
+            geometry::page_rows(&key.data, &key.widths, &geometries, key.direction, key.child_offset, key.height, key.rem_size)
         };
         let page = rows.first().zip(rows.last()).and_then(|(first, last)| Some(VisiblePage { first_child: first.items.first()?.child_index, last_child: last.items.last()?.child_index }));
         let entry = Rc::new(PageLayout { key, geometries, rows, page });
@@ -92,7 +95,7 @@ mod tests {
     fn key() -> LayoutKey {
         let policy = PaginatorGroupPolicy::new(PaginatorWidthPolicy::pixels(px(100.0)), PaginatorSizing::pixels(px(40.0)), px(0.0)).with_gap(px(0.0)).flush_edges();
         let data = Rc::new(PaginatorData::new([PaginatorGroup::new(policy, (0..100).map(|_| PaginatorChild::new(|_, _, _| unreachable!())))]));
-        LayoutKey { data, widths: Rc::new(vec![Pixels::ZERO; 100]), width: px(400.0), height: px(80.0), rem_size: px(16.0), maximum_rows: None, child_offset: 0, direction: AssignmentDirection::Forward, forced_page: None }
+        LayoutKey { data, widths: Rc::new(vec![Pixels::ZERO; 100].into()), width: px(400.0), height: px(80.0), rem_size: px(16.0), child_offset: 0, direction: AssignmentDirection::Forward, forced_page: None }
     }
 
     #[test]
@@ -107,7 +110,7 @@ mod tests {
         assert_eq!(cache.misses, 1);
         let resized = cache.resolve(LayoutKey { width: px(200.0), ..key.clone() });
         assert_eq!(resized.page, Some(VisiblePage { first_child: 0, last_child: 3 }));
-        let remeasured = cache.resolve(LayoutKey { widths: Rc::new(vec![Pixels::ZERO; 100]), ..key.clone() });
+        let remeasured = cache.resolve(LayoutKey { widths: Rc::new(vec![Pixels::ZERO; 100].into()), ..key.clone() });
         assert!(!Rc::ptr_eq(&original, &remeasured));
         assert_eq!(cache.misses, 3);
         for child_offset in 0..100 {

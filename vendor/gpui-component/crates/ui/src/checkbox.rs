@@ -7,7 +7,7 @@ use crate::{
 use gpui::{
     Animation, AnimationExt, AnyElement, App, Div, ElementId, InteractiveElement, IntoElement,
     ParentElement, RenderOnce, Role, SharedString, StatefulInteractiveElement, StyleRefinement,
-    Styled, Toggled, Window, div, prelude::FluentBuilder as _, px, relative, rems, svg,
+    Styled, Toggled, Window, div, prelude::FluentBuilder as _, px, rems, svg,
 };
 
 /// A Checkbox element.
@@ -241,7 +241,7 @@ impl RenderOnce for Checkbox {
             .h_flex()
             .gap_2()
             .items_start()
-            .line_height(relative(1.))
+            .line_height_auto()
             .text_color(cx.theme().foreground)
             .map(|this| match self.size {
                 Size::XSmall => this.text_xs(),
@@ -289,18 +289,16 @@ impl RenderOnce for Checkbox {
                     v_flex()
                         .flex_1()
                         .overflow_hidden()
-                        .line_height(relative(1.2))
                         .gap_1()
                         .map(|this| {
                             if let Some(label) = self.label {
                                 this.child(
                                     div()
-                                        .size_full()
+                                        .w_full()
                                         .text_color(cx.theme().foreground)
                                         .when(self.disabled, |this| {
                                             this.text_color(cx.theme().muted_foreground)
                                         })
-                                        .line_height(relative(1.))
                                         .child(label),
                                 )
                             } else {

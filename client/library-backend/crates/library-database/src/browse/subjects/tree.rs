@@ -248,7 +248,6 @@ mod tests {
             chip_sort: Default::default(),
             book_sort: Default::default(),
             hide_finished: false,
-            include_direct_child_books: false,
         };
         db.browse(&query, false).unwrap();
         assert!(Arc::ptr_eq(&library, &db.subject_tree_for(Books::Library).unwrap()));
@@ -337,7 +336,6 @@ mod tests {
             chip_sort: library_model::BrowseChipSort::Alphabetical,
             book_sort: library_model::BrowseBookSort::Alphabetical,
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let writes = db.connection.total_changes();
         let root = db.browse_contents(&query(0), false).unwrap();
@@ -402,7 +400,6 @@ mod tests {
             chip_sort: library_model::BrowseChipSort::Alphabetical,
             book_sort: library_model::BrowseBookSort::Alphabetical,
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let contents = db.browse_contents(&query, false).unwrap();
         assert_eq!(contents.children.iter().map(|child| child.name.as_str()).collect::<Vec<_>>(), ["Optics", "Quantum"]);
@@ -438,7 +435,6 @@ mod tests {
             chip_sort: Default::default(),
             book_sort: Default::default(),
             hide_finished: false,
-            include_direct_child_books: false,
         };
         db.connection.pragma_update(None, "query_only", true).unwrap();
         let root = db.browse(&query, false).unwrap();

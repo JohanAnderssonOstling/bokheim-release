@@ -204,35 +204,21 @@ fn commit_one_with_transfer(tx: &rusqlite::Transaction<'_>, import: ImportCommit
         |row| row.get::<_, bool>(0),
     )?;
     if let Some(source) = transfer {
-        if source.content_hash != content_hash || source.addition.facts.format != format {
+        let BookTransferState { content_hash: source_hash, addition, reading, chapter_read, annotations, .. } = source;
+        if source_hash != content_hash || addition.facts.format != format {
             return Err(DatabaseError::message("transferred book identity does not match its bytes"));
         }
         let has_facts: bool = tx.query_row("SELECT EXISTS(SELECT 1 FROM local_book_draft WHERE content_hash=?1) OR EXISTS(SELECT 1 FROM sync_book_record WHERE state_kind='book_add' AND content_hash=?1)", [hash], |row| row.get(0))?;
         tx.ingestion_ensure_book(hash)?;
         record_local(tx, LibraryStateEntry::BookLifecycle { content_hash, value: library_replica::BookLifecycleState::Present })?;
         if !has_facts {
-            if source.addition.enrichment.is_some() {
-                record_local(tx, LibraryStateEntry::BookAdd { content_hash, value: source.addition })?;
+            if addition.enrichment.is_some() {
+                record_local(tx, LibraryStateEntry::BookAdd { content_hash, value: addition })?;
             } else {
-                crate::sync::apply::records::stage(tx, hash, source.addition)?;
+                crate::sync::apply::records::stage(tx, hash, addition)?;
             }
         }
-        if let Some(reading) = source.reading {
-            if reading.book() != Some(content_hash) || reading.kind() != "reading_position" {
-                return Err(DatabaseError::message("invalid transferred reading position"));
-            }
-            if canonical_body(tx, "reading_position", &StateKey::Book(content_hash), "")?.is_none() {
-                record_local(tx, reading)?;
-            }
-        }
-        for annotation in source.annotations {
-            if annotation.content_hash != content_hash {
-                return Err(DatabaseError::message("invalid transferred annotation"));
-            }
-            if canonical_body(tx, "annotation", &StateKey::Text(annotation.id.clone()), "")?.is_none() {
-                record_local(tx, LibraryStateEntry::Annotation { value: annotation })?;
-            }
-        }
+        crate::transfer::merge_transfer_progress(tx, content_hash, reading, chapter_read, annotations)?;
     }
     if let Some(prepared) = prepared {
         // The first inspection supplies the draft. Projection owns all

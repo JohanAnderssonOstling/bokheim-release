@@ -48,11 +48,21 @@ default toolchain. All builds/tests use optimized release profiles.
   `pkg-config`, `file` and `binutils` on the build host. SDK files are cached in
   `.linux-toolchain/` (override with `BOKHEIM_LINUX_SDK`). The AppImage runtime
   and every bundled core library must pass the 2.17 audit. The Linux Kobo
-  installer workflow uses the same SDK and checks. Only the optional browser executable has a separate
-  GLIBC 2.39 ceiling and can be built on Ubuntu 24.04. Set `OPDS_BROWSER` to that
-  separately built executable to skip its local build and include it in the
-  AppImage. Set `BOKHEIM_BROWSER=disabled` to skip both building and packaging
+  installer workflow uses the same SDK and checks. The optional browser helper
+  also targets glibc 2.17, using system GTK/WebKit development libraries through
+  an isolated linker search directory. Build it separately with
+  `python3 scripts/linux/browser-toolchain.py`, or let the desktop build include
+  it. Set `OPDS_BROWSER` to a separately built executable to skip its local build
+  and include it in the AppImage. A compatible system GTK 3/WebKitGTK 4.1/libsoup 3
+  runtime is still needed. Set `BOKHEIM_BROWSER=disabled` to skip both building and packaging
   the browser, or `BOKHEIM_BROWSER=required` to require it during packaging.
+  Linux packaging also stages `install.sh` for per-user AppImage installation
+  from the command line. Normal AppImage launches automatically register their
+  current path for KDE/GNOME without the script or an additional AppImage copy.
+  Launching a moved AppImage repairs its menu entry and command link.
+  New Linux build receipts use protocol 2 and verify
+  the installer alongside the AppImage; protocol 1 remains valid for existing
+  releases without an installer.
 - Android: Java 21, Gradle 8.14.3, Android SDK 36/build-tools 36.0.0, NDK
   29.0.13599879 and Rust target `aarch64-linux-android`. Configure production
   signing in private Gradle user properties or `BOKHEIM_ANDROID_*` environment
@@ -114,7 +124,16 @@ gh workflow run desktop-release.yml --repo JohanAnderssonOstling/bokheim-release
 ```
 
 Windows runs its platform checks, builds the optimized executable, packages the
-installer and update ZIP, probes runtime metadata and records artifact hashes.
+installer, single-file standalone EXE, portable ZIP and update ZIP, probes the extracted portable executable's
+runtime metadata and records artifact hashes. The portable ZIP contains the same
+complete runtime as the update ZIP; extract it into a writable folder and launch
+`Bokheim.exe` without running an installer. Its accompanying helper, taxonomy and
+speech models must stay together. Libraries and settings use normal per-user storage.
+The standalone EXE embeds the portable runtime and extracts it automatically under
+`%LOCALAPPDATA%\Bokheim\Standalone` on first launch. CI tests the launcher and
+verifies both first and cached launches against the packaged app's metadata.
+New Windows build receipts use protocol 2 and require both standalone downloads
+and their checksums; existing protocol 1 receipts remain valid for earlier releases.
 `publish=true` uploads to the version's existing tag draft after checking that
 tag exists and matches the package version. The actual build commit is recorded separately. Windows platform checks also run on relevant
 pull requests and pushes. No Linux, Android or web jobs are scheduled by these

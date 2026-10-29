@@ -9,18 +9,18 @@ use library_files::AssetStore;
 use library_placement::LibraryPlacement;
 use library_replica::LibraryStateEntry;
 use library_runtime::{events::LibraryEventRouter, scheduler::SyncScheduler};
-use serde_json::{json, Value};
+use serde_json::{Value, json};
 use std::{
     io::Cursor,
     path::Path,
     sync::{
-        atomic::{AtomicU64, Ordering},
         Arc, Mutex,
+        atomic::{AtomicU64, Ordering},
     },
 };
 use sync_common::{
-    storage::{CloudProvider, LibraryStorage, ProviderScope},
     ROOT_DIR_ID,
+    storage::{CloudProvider, LibraryStorage, ProviderScope},
 };
 use tokio::{
     io::AsyncWriteExt,
@@ -71,7 +71,8 @@ async fn queued(importer: &LibraryImport, bytes: &[u8], parent: DirId) -> Provid
         format: BookFormat::M4b,
         checksum,
         size_bytes: bytes.len() as u64,
-        inspection: InspectedBook { pdf: None, metadata: BookRecord { metadata: BookDetails { title: "Book".into(), ..Default::default() }, description: String::new() }, audiobook: None, toc: Vec::new() },
+        inspection: Some(InspectedBook { pdf: None, metadata: BookRecord { metadata: BookDetails { title: "Book".into(), ..Default::default() }, description: String::new() }, audiobook: None, toc: Vec::new() }),
+        transfer: None,
     };
     copied.into_staged(checksum, bytes.len() as u64).retain_provider_upload(importer.assets.clone(), draft.id, serde_json::to_vec(&draft).unwrap()).await.unwrap();
     importer.database.queue_provider_upload(&draft).unwrap();
@@ -96,6 +97,7 @@ enum Failure {
     FirstChunk,
     FinalResponse,
     ExpiredFinalSession,
+    StorageQuota,
 }
 
 #[derive(Clone)]
@@ -144,8 +146,8 @@ async fn reply(socket: &mut TcpStream, status: u16, headers: &[(&str, String)], 
     socket.write_all(body).await.unwrap();
 }
 
-fn metadata(size: usize, parent: &str, revision: u64) -> Vec<u8> {
-    serde_json::to_vec(&json!({"id":"reserved", "name":"Book.m4b", "mimeType":"audio/mp4", "parents":[parent], "size":size.to_string(), "version":revision.to_string()})).unwrap()
+fn metadata(size: usize, parent: &str, revision: u64, name: &str) -> Vec<u8> {
+    serde_json::to_vec(&json!({"id":"reserved", "name":name, "mimeType":"application/octet-stream", "parents":[parent], "size":size.to_string(), "version":revision.to_string()})).unwrap()
 }
 
 async fn drive(size: usize, failure: Failure) -> (ConnectedDrive, Arc<Mutex<Vec<Request>>>, JoinHandle<()>, Arc<AtomicU64>) {
@@ -160,6 +162,7 @@ async fn drive(size: usize, failure: Failure) -> (ConnectedDrive, Arc<Mutex<Vec<
     let task = tokio::spawn(async move {
         let mut uploaded = Vec::new();
         let mut failed = false;
+        let mut uploaded_name = "Book.m4b".to_owned();
         let mut nested: Option<Value> = None;
         loop {
             let (mut socket, _) = listener.accept().await.unwrap();
@@ -187,13 +190,18 @@ async fn drive(size: usize, failure: Failure) -> (ConnectedDrive, Arc<Mutex<Vec<
                         let end: usize = end.parse().unwrap();
                         (206, vec![("Content-Range", format!("bytes {start}-{end}/{size}"))], uploaded[start..=end].to_vec())
                     } else {
-                        (200, Vec::new(), metadata(size, parent, revision))
+                        (200, Vec::new(), metadata(size, parent, revision, &uploaded_name))
                     }
+                }
+                ("POST", "/upload/drive/v3/files") if matches!(failure, Failure::StorageQuota) && !failed => {
+                    failed = true;
+                    (403, Vec::new(), serde_json::to_vec(&json!({"error":{"code":403,"errors":[{"reason":"storageQuotaExceeded"}]}})).unwrap())
                 }
                 ("POST", "/upload/drive/v3/files") => {
                     let metadata: Value = serde_json::from_slice(&request.body).unwrap();
                     assert_eq!(metadata["id"], "reserved");
                     assert_eq!(metadata["parents"], json!([parent]));
+                    uploaded_name = metadata["name"].as_str().unwrap().to_owned();
                     (200, vec![("Location", url.join("upload/drive/v3/session").unwrap().to_string())], Vec::new())
                 }
                 ("PUT", "/upload/drive/v3/session") => {
@@ -202,7 +210,7 @@ async fn drive(size: usize, failure: Failure) -> (ConnectedDrive, Arc<Mutex<Vec<
                         if uploaded.len() == size && matches!(failure, Failure::ExpiredFinalSession) {
                             (404, Vec::new(), Vec::new())
                         } else if uploaded.len() == size {
-                            (200, Vec::new(), metadata(size, parent, revision))
+                            (200, Vec::new(), metadata(size, parent, revision, &uploaded_name))
                         } else {
                             (308, vec![("Range", format!("bytes=0-{}", uploaded.len() - 1))], Vec::new())
                         }
@@ -215,12 +223,13 @@ async fn drive(size: usize, failure: Failure) -> (ConnectedDrive, Arc<Mutex<Vec<
                             && match failure {
                                 Failure::FirstChunk => uploaded.len() < size,
                                 Failure::FinalResponse | Failure::ExpiredFinalSession => uploaded.len() == size,
+                                Failure::StorageQuota => false,
                             };
                         if should_fail {
                             failed = true;
                             (503, Vec::new(), Vec::new())
                         } else if uploaded.len() == size {
-                            (200, Vec::new(), metadata(size, parent, revision))
+                            (200, Vec::new(), metadata(size, parent, revision, &uploaded_name))
                         } else {
                             (308, vec![("Range", format!("bytes=0-{}", uploaded.len() - 1))], Vec::new())
                         }
@@ -265,12 +274,14 @@ async fn interruption(failure: Failure, nested: bool) {
     assert!(importer.database.provider_upload(draft.id).unwrap().is_none());
     assert!(importer.assets.retained_provider_uploads().unwrap().is_empty());
     assert!(importer.database.pending_book_uploads(0, 100).unwrap().is_empty());
-    assert!(importer
-        .database
-        .sync_publishable_mutations()
-        .unwrap()
-        .iter()
-        .any(|publication| matches!(&publication.state.value, LibraryStateEntry::ExternalBook { content_hash, value } if *content_hash == id && value.file.content_hash == draft.checksum.content_hash())));
+    assert!(
+        importer
+            .database
+            .sync_publishable_mutations()
+            .unwrap()
+            .iter()
+            .any(|publication| matches!(&publication.state.value, LibraryStateEntry::ExternalBook { content_hash, value } if *content_hash == id && value.file.content_hash == draft.checksum.content_hash()))
+    );
     let capture = requests.lock().unwrap();
     assert_eq!(capture.iter().filter(|request| request.method == "POST" && request.path.starts_with("/upload/")).count(), 1, "resuming must retain the original provider object/session");
     if nested {
@@ -283,6 +294,124 @@ async fn interruption(failure: Failure, nested: bool) {
     assert_eq!(capture.iter().filter(|request| request.path.contains("generateIds")).count(), 1);
     let chunks = capture.iter().filter(|request| request.range.as_ref().is_some_and(|range| range.starts_with("bytes ") && !range.starts_with("bytes */"))).map(|request| request.body.clone()).flatten().collect::<Vec<_>>();
     assert_eq!(chunks, bytes);
+    server.abort();
+}
+
+#[tokio::test]
+async fn provider_quota_preserves_the_pending_book_across_reopen_and_retry() {
+    let directory = tempfile::tempdir().unwrap();
+    let library = Uuid::new_v4();
+    let bytes = b"retained audiobook source";
+    let importer = importer(directory.path(), library);
+    let draft = queued(&importer, bytes, ROOT_DIR_ID).await;
+    let (connection, _, server, _) = drive(bytes.len(), Failure::StorageQuota).await;
+    let upload = importer.database.provider_upload(draft.id).unwrap().unwrap();
+    let error = importer.run_provider_upload_connected(upload, &connection).await.unwrap_err();
+    assert_eq!(error.failure(), Some(client_runtime::Failure::CloudStorageFull));
+    assert!(importer.database.provider_remote_books().unwrap().is_empty());
+    assert!(importer.database.pending_book_uploads(0, 10).unwrap().is_empty());
+    assert!(!importer.database.sync_publishable_mutations().unwrap().iter().any(|publication| publication.state.value.book().is_some()));
+    let mut retained = importer.assets.open_provider_upload(draft.id).unwrap();
+    let mut actual = Vec::new();
+    std::io::Read::read_to_end(&mut retained, &mut actual).unwrap();
+    assert_eq!(actual, bytes);
+    drop(retained);
+    drop(importer);
+    let importer = self::importer(directory.path(), library);
+    let upload = importer.database.provider_upload(draft.id).unwrap().unwrap();
+    let id = importer.run_provider_upload_connected(upload, &connection).await.unwrap();
+    assert!(importer.database.is_book_downloaded(&id).unwrap());
+    assert!(importer.database.provider_upload(draft.id).unwrap().is_none());
+    assert!(importer.assets.retained_provider_uploads().unwrap().is_empty());
+    server.abort();
+}
+
+#[tokio::test]
+async fn transfer_retry_refreshes_reader_state_and_recovers_the_existing_upload_session() {
+    use book_model::{Annotation, AnnotationAnchor, AnnotationStyle, ChapterReadStatus, ReadingPosition};
+    use library_database::transfer::BookTransferState;
+    use library_replica::{BookAddition, BookFacts, EnrichmentResult, ReadingPositionState};
+
+    let directory = tempfile::tempdir().unwrap();
+    let library = Uuid::new_v4();
+    let importer = importer(directory.path(), library);
+    let bytes = vec![7; MAX_RANGE_BYTES + 17];
+    let checksum = BookId::from(blake3::hash(&bytes));
+    let reading = |progress| LibraryStateEntry::ReadingPosition { content_hash: checksum, value: ReadingPositionState { location: ReadingPosition::start(BookFormat::M4b), progress } };
+    let mut state = BookTransferState {
+        content_hash: checksum,
+        byte_checksum: checksum.content_hash(),
+        provider_file: None,
+        addition: BookAddition {
+            facts: BookFacts { added_at: 1, format: BookFormat::M4b },
+            record: BookRecord { metadata: BookDetails { title: "Book".into(), ..Default::default() }, description: String::new() },
+            navigation: None,
+            pdf: None,
+            recording: None,
+            enrichment: Some(EnrichmentResult::NoMatch),
+        },
+        reading: Some(reading(10.0)),
+        chapter_read: None,
+        annotations: Vec::new(),
+    };
+    let first = importer.import_transferred_book(ROOT_DIR_ID, "Book.m4b".into(), Box::new(Cursor::new(bytes.clone())), state.clone()).await.unwrap_err();
+    assert!(first.to_string().contains("saved locally"), "{first}");
+    let draft_id = ProviderUploadDraft::identity(ROOT_DIR_ID, "Book.m4b", checksum);
+    let original = importer.database.provider_upload(draft_id).unwrap().unwrap().draft;
+    let (connection, requests, server, _) = drive(bytes.len(), Failure::FirstChunk).await;
+    let upload = importer.database.provider_upload(draft_id).unwrap().unwrap();
+    assert!(importer.run_provider_upload_connected(upload, &connection).await.is_err());
+    let pending = importer.database.provider_upload(draft_id).unwrap().unwrap();
+    assert!(pending.session.is_some());
+
+    state.reading = Some(reading(50.0));
+    state.chapter_read = Some(LibraryStateEntry::ChapterReadStatus { content_hash: checksum, value: ChapterReadStatus::default() });
+    state.annotations.push(Annotation {
+        id: "new-note".into(),
+        content_hash: checksum,
+        anchor: AnnotationAnchor::epub_cfi("epubcfi(/6/2)"),
+        exact_text: "Text".into(),
+        style: AnnotationStyle::Underline,
+        color: 0xffffff,
+        note: "Added while waiting".into(),
+        created_at: 7,
+        toc_ordinal: None,
+        progress: Some(50.0),
+        modified_at: 9,
+        deleted: false,
+    });
+    // No configured connection: requeue succeeds, but network access still fails.
+    let retry = importer.import_transferred_book(ROOT_DIR_ID, "Book.m4b".into(), Box::new(Cursor::new(bytes.clone())), state.clone()).await.unwrap_err();
+    assert!(retry.to_string().contains("saved locally"), "{retry}");
+    let refreshed = importer.database.provider_upload(draft_id).unwrap().unwrap();
+    assert_eq!(refreshed.file_id, pending.file_id);
+    assert_eq!(refreshed.session, pending.session);
+    assert_eq!(refreshed.draft.transfer.as_ref().unwrap().reading, state.reading);
+    assert_eq!(refreshed.draft.transfer.as_ref().unwrap().chapter_read, state.chapter_read);
+    assert_eq!(refreshed.draft.transfer.as_ref().unwrap().annotations, state.annotations);
+
+    let mut changed = state.clone();
+    changed.addition.record.description = "Different source metadata".into();
+    let error = importer.import_transferred_book(ROOT_DIR_ID, "Book.m4b".into(), Box::new(Cursor::new(bytes)), changed).await.unwrap_err();
+    assert!(error.to_string().contains("differs from its retained source"), "{error}");
+
+    // Simulate a crash after refreshing the manifest, before updating SQLite.
+    importer.database.queue_provider_upload(&original).unwrap();
+    drop(importer);
+    let importer = self::importer(directory.path(), library);
+    assert!(importer.run_provider_uploads().await.is_err());
+    let upload = importer.database.provider_upload(draft_id).unwrap().unwrap();
+    assert_eq!(upload.session, pending.session);
+    assert_eq!(upload.draft.transfer.as_ref().unwrap().reading, state.reading);
+    let id = importer.run_provider_upload_connected(upload, &connection).await.unwrap();
+    let expected = state.retarget(id).unwrap();
+    let actual = importer.database.book_transfer_state(id).unwrap();
+    assert_eq!(actual.reading, expected.reading);
+    assert_eq!(actual.chapter_read, expected.chapter_read);
+    assert_eq!(actual.annotations, expected.annotations);
+    assert!(importer.database.provider_upload(draft_id).unwrap().is_none());
+    assert!(importer.assets.retained_provider_uploads().unwrap().is_empty());
+    assert_eq!(requests.lock().unwrap().iter().filter(|request| request.path.contains("generateIds")).count(), 1);
     server.abort();
 }
 
@@ -314,10 +443,56 @@ async fn imported_book_is_retained_without_bokheim_metadata_when_cloud_is_signed
     let bytes = include_bytes!("../../../book-inspection/tests/fixtures/back-matter-evidence.epub");
     let error = importer.import_downloaded_book(ROOT_DIR_ID, "Book.epub", bytes.to_vec()).await.unwrap_err();
     assert!(error.to_string().contains("saved locally for cloud upload"));
+    let before = importer.assets.retained_provider_uploads().unwrap();
+    assert_eq!(before.len(), 1);
+    let draft: ProviderUploadDraft = serde_json::from_slice(&before[0].1).unwrap();
+    assert!(!draft.inspection.as_ref().unwrap().metadata.metadata.contributors.is_empty());
+    let retry = importer.import_downloaded_book(ROOT_DIR_ID, "Book.epub", bytes.to_vec()).await.unwrap_err();
+    assert!(retry.to_string().contains("saved locally for cloud upload"), "reinspection must retain the previous contributor IDs: {retry}");
+    assert_eq!(importer.assets.retained_provider_uploads().unwrap(), before);
     assert!(importer.database.provider_remote_books().unwrap().is_empty());
     assert_eq!(importer.database.provider_upload_ids().unwrap().len(), 1);
     assert_eq!(importer.assets.retained_provider_uploads().unwrap().len(), 1);
     assert!(!importer.database.sync_publishable_mutations().unwrap().iter().any(|publication| publication.state.value.book().is_some()));
+}
+
+#[tokio::test]
+async fn dropped_mp3_folder_uploads_an_archive_and_retains_local_track_playback() {
+    use std::io::Read;
+    let path = tempfile::tempdir().unwrap();
+    let original = tempfile::tempdir().unwrap();
+    let source = original.path().join("Audio");
+    std::fs::create_dir(&source).unwrap();
+    let mp3 = include_bytes!("../../../book-inspection/tests/fixtures/silence.mp3");
+    std::fs::write(source.join("01.mp3"), mp3).unwrap();
+    std::fs::write(source.join("02.mp3"), mp3).unwrap();
+    std::fs::write(source.join("book.nfo"), b"<audiobook><title>Cloud audio</title></audiobook>").unwrap();
+    let importer = importer(path.path(), Uuid::new_v4());
+    let failures = importer.import_paths(ROOT_DIR_ID, vec![source.clone()], false).await.unwrap();
+    assert_eq!(failures.len(), 1, "signed-out imports remain queued locally");
+    let queued = importer.database.provider_upload_ids().unwrap();
+    assert_eq!(queued.len(), 1);
+    let upload = importer.database.provider_upload(queued[0]).unwrap().unwrap();
+    assert_eq!(upload.draft.format, BookFormat::Mp3Folder);
+    let (connection, requests, task, _) = drive(upload.draft.size_bytes as usize, Failure::FinalResponse).await;
+    assert!(importer.run_provider_upload_connected(upload, &connection).await.is_err());
+    let upload = importer.database.provider_upload(queued[0]).unwrap().unwrap();
+    let id = importer.run_provider_upload_connected(upload, &connection).await.unwrap();
+    let tracks = importer.database.audiobook_tracks(&id).unwrap();
+    assert_eq!(tracks.len(), 2);
+    assert!(tracks.iter().all(|track| track.archive_hash == Some(id)));
+    let local = importer.database.book_paths(&id).unwrap().remove(0);
+    assert_eq!(local.file_name(), "Audio");
+    let mut reader = importer.assets.open_audiobook_track(local.clone(), tracks[1].name.clone()).await.unwrap().unwrap();
+    let mut bytes = Vec::new();
+    reader.read_to_end(&mut bytes).unwrap();
+    assert_eq!(bytes, mp3);
+    drop(reader);
+    let creation = requests.lock().unwrap().iter().find(|request| request.method == "POST" && request.path.starts_with("/upload/")).unwrap().body.clone();
+    assert_eq!(serde_json::from_slice::<Value>(&creation).unwrap()["name"], "Audio.mp3folder");
+    importer.assets.evict_book_files(&[local], &id).unwrap();
+    assert_eq!(std::fs::read(source.join("01.mp3")).unwrap(), mp3);
+    task.abort();
 }
 
 #[tokio::test]
@@ -339,7 +514,7 @@ async fn completed_upload_retry_preserves_a_newer_scanned_provider_revision() {
     importer.database.confirm_provider_upload(draft.id, &file).unwrap();
     revision.store(2, Ordering::SeqCst);
     file.revision = ProviderId::new("2").unwrap();
-    let mut new_inspection = draft.inspection.clone();
+    let mut new_inspection = draft.inspection.clone().unwrap();
     new_inspection.metadata.metadata.title = "New provider edition".into();
     let id = importer.database.admit_inspected_provider_book(ROOT_DIR_ID, file.clone(), draft.format, new_inspection).unwrap();
     let upload = importer.database.provider_upload(draft.id).unwrap().unwrap();

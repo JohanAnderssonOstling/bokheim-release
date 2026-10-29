@@ -14,9 +14,12 @@ ROOT = Path(__file__).resolve().parents[2]
 TARGETS = {'linux': 'linux-x86_64-appimage', 'android': 'android-aarch64-apk',
            'windows': 'windows-x86_64-zip', 'web': 'web'}
 FILES = {
-    'linux': ['Bokheim-x86_64.AppImage', 'Bokheim-x86_64.AppImage.sha256', 'update-info-linux-x86_64-appimage.json'],
+    'linux': ['Bokheim-x86_64.AppImage', 'Bokheim-x86_64.AppImage.sha256', 'install.sh',
+              'update-info-linux-x86_64-appimage.json'],
     'android': ['Bokheim-Android-arm64.apk', 'update-info-android-aarch64-apk.json'],
     'windows': ['Bokheim-Windows-x86_64-Setup.exe', 'Bokheim-Windows-x86_64-Setup.exe.sha256',
+                'Bokheim-Windows-x86_64-Portable.zip', 'Bokheim-Windows-x86_64-Portable.zip.sha256',
+                'Bokheim-Windows-x86_64-Standalone.exe', 'Bokheim-Windows-x86_64-Standalone.exe.sha256',
                 'Bokheim-Windows-x86_64-Update.zip', 'update-info-windows-x86_64-zip.json'],
 }
 
@@ -57,7 +60,7 @@ def record(platform, directory, sha, repository, workflow_run=None):
         names = sorted(str(p.relative_to(directory)) for p in directory.rglob('*') if p.is_file()
                        and p.name != receipt_name(platform))
         require('index.html' in names and any(n.endswith('.wasm') for n in names), 'Incomplete web bundle')
-    receipt = dict(protocol_version=1, platform=TARGETS[platform], source_commit=sha,
+    receipt = dict(protocol_version=2 if platform in ('linux', 'windows') else 1, platform=TARGETS[platform], source_commit=sha,
                    source_repository=repository, builder='github-actions' if workflow_run else 'local',
                    files={name: fingerprint(directory / name) for name in names})
     if workflow_run:
@@ -68,7 +71,9 @@ def record(platform, directory, sha, repository, workflow_run=None):
 
 
 def validate(receipt, platform, sha, repository, directory=None):
-    require(receipt.get('protocol_version') == 1 and receipt.get('platform') == TARGETS[platform], 'Wrong receipt platform/protocol')
+    protocol = receipt.get('protocol_version')
+    require(protocol in ((1, 2) if platform in ('linux', 'windows') else (1,))
+            and receipt.get('platform') == TARGETS[platform], 'Wrong receipt platform/protocol')
     require(receipt.get('source_commit') == sha and receipt.get('source_repository') == repository, 'Receipt source mismatch')
     require(receipt.get('builder') == ('github-actions' if platform == 'windows' else 'local'), 'Unexpected platform builder')
     if platform == 'windows':
@@ -76,7 +81,16 @@ def validate(receipt, platform, sha, repository, directory=None):
     files = receipt.get('files', {})
     require(bool(files), 'Empty build receipt')
     if platform in FILES:
-        require(set(files) == set(FILES[platform]), 'Incomplete package receipt')
+        expected = set(FILES[platform])
+        if platform == 'linux' and protocol == 1:
+            # Older published Linux releases predate the generic installer.
+            expected -= {'install.sh'}
+        if platform == 'windows' and protocol == 1:
+            # Published receipts predate the standalone download. New receipts
+            # require it, while existing releases retain their original contract.
+            expected -= {'Bokheim-Windows-x86_64-Portable.zip', 'Bokheim-Windows-x86_64-Portable.zip.sha256',
+                         'Bokheim-Windows-x86_64-Standalone.exe', 'Bokheim-Windows-x86_64-Standalone.exe.sha256'}
+        require(set(files) == expected, 'Incomplete package receipt')
     if platform == 'web':
         require('index.html' in files and any(n.endswith('.wasm') for n in files), 'Incomplete web receipt')
         if directory:
@@ -118,7 +132,7 @@ def upload(platform, directory, repository, tag):
             require(source.read_text().strip() == sha, 'Draft already contains a different source commit')
         source.write_text(sha + '\n')
         command('gh', 'release', 'upload', tag, '--repo', repository, '--clobber',
-                *[str(directory / name) for name in FILES[platform]], str(directory / receipt_name(platform)), str(source))
+                *[str(directory / name) for name in receipt['files']], str(directory / receipt_name(platform)), str(source))
 
 
 def main():

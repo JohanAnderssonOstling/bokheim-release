@@ -11,6 +11,3 @@ impl crate::library::web_reader::BookTransport for super::LibraryClient {
         self.transport.subscribe_book(content_hash).await
     }
 }
-
-
-impl super::LibraryClient {}

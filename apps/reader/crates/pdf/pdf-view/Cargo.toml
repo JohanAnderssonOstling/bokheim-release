@@ -5,9 +5,10 @@ edition = "2024"
 publish = false
 
 [dependencies]
+serde = { version = "1", features = ["derive"] }
 ui-components = { path = "../../../../components" }
 gpui.workspace = true
-gpui-image-eviction = { path = "../../../../../shared/gpui-image-eviction" }
+gpui-image-eviction = { path = "../../../../../../HtmlEngine/adapters/gpui-image-eviction" }
 gpui-component.workspace = true
 image = { version = "0.25", default-features = false }
 log = "0.4"
@@ -17,4 +18,5 @@ smallvec = "1"
 web-time = "1"
 
 [dev-dependencies]
+pdf-view-common = { path = "../../../../../shared/pdf-view-common" }
 gpui = { workspace = true, features = ["test-support"] }

@@ -1,10 +1,9 @@
 //! Owner-committed pages for the storage-independent sync engine.
+use crate::engine::PreparedSync;
 #[cfg(not(target_arch = "wasm32"))]
 use crate::engine::{StoreError, StoreFuture};
 use library_database::{Database, DatabaseError, OutboxScan};
 use sync_common::{PullStateResponse, ReplicaSeq, MAX_PUSH_MUTATIONS};
-#[cfg(not(target_arch = "wasm32"))]
-use sync_common::SyncCursor;
 
 use library_replica::{LibraryStateEntry, StatePublication};
 use library_runtime::events::{LibraryEvent, LibraryEventRouter};
@@ -14,6 +13,23 @@ use library_runtime::reading_positions::ReadingPositionPolicy;
 pub(crate) struct PublicationOutbox {
     scan: OutboxScan,
     positions: ReadingPositionPolicy,
+}
+
+/// Native and browser storage owners prepare the same bounded first page.
+pub(crate) fn prepare_sync(database: &Database, events: Option<&LibraryEventRouter>) -> Result<PreparedSync<PublicationOutbox>, DatabaseError> {
+    let mut trace = sync_transport::PerformanceTrace::new("sync_prepare", "check_recovery");
+    if database.sync_cursor_recovery_pending()? {
+        trace.finish(true);
+        return Ok(PreparedSync::RecoveryPending);
+    }
+    trace.phase("read_cursor");
+    let cursor = database.sync_pull_cursor()?;
+    trace.phase("prepare_outbox");
+    let mut outbox = prepare_outbox(database, events)?;
+    trace.phase("first_outbox_page");
+    let mutations = next_outbox_page(database, events, &mut outbox)?;
+    trace.finish(true);
+    Ok(PreparedSync::Ready { cursor, outbox, mutations })
 }
 
 pub(crate) fn prepare_outbox(database: &Database, events: Option<&LibraryEventRouter>) -> Result<PublicationOutbox, DatabaseError> {
@@ -85,6 +101,9 @@ pub(crate) fn apply_response(database: &Database, events: Option<&LibraryEventRo
 impl crate::engine::SyncStore for AccountStore<'_> {
     type Outbox = PublicationOutbox;
 
+    fn prepare_sync(&self) -> StoreFuture<'_, PreparedSync<Self::Outbox>> {
+        store_result(prepare_sync(&self.sync.database, self.sync.events.as_ref()))
+    }
     fn prepare_outbox(&self) -> StoreFuture<'_, Self::Outbox> {
         store_result(prepare_outbox(&self.sync.database, self.sync.events.as_ref()))
     }
@@ -97,32 +116,11 @@ impl crate::engine::SyncStore for AccountStore<'_> {
         }
         store_result(result)
     }
-    fn cursor_recovery_pending(&self) -> StoreFuture<'_, bool> {
-        store_result(self.sync.database.sync_cursor_recovery_pending())
-    }
     fn begin_cursor_recovery(&self) -> StoreFuture<'_, ()> {
         store_result(self.sync.database.sync_begin_cursor_recovery())
     }
     fn complete_cursor_recovery(&self) -> StoreFuture<'_, usize> {
-        // Bounded transactions per page, driven synchronously.
-        let mut after = None;
-        let mut inserted = 0;
-        let recovered: Result<usize, DatabaseError> = loop {
-            match self.sync.database.sync_recover_state_page(after.as_ref()) {
-                Ok((next, count)) => {
-                    inserted += count;
-                    if next.is_none() {
-                        break Ok(inserted);
-                    }
-                    after = next;
-                }
-                Err(error) => break Err(error),
-            }
-        };
-        store_result(recovered)
-    }
-    fn pull_cursor(&self) -> StoreFuture<'_, SyncCursor> {
-        store_result(self.sync.database.sync_pull_cursor())
+        Box::pin(async { crate::recovery::complete(&self.sync.database).await.map_err(Into::into) })
     }
     fn pending_mutations<'a>(&'a self, scan: &'a mut Self::Outbox) -> StoreFuture<'a, Vec<library_replica::StatePublication>> {
         store_result(next_outbox_page(&self.sync.database, self.sync.events.as_ref(), scan))
@@ -145,6 +143,65 @@ mod tests {
     use super::*;
     use library_replica::LibraryStateEntry;
     use sync_common::{Delivery, DirId, LibraryRevision, ReplicaId, SyncCursor, SyncGeneration, ROOT_DIR_ID};
+
+    #[test]
+    fn preparation_keeps_the_cursor_and_pages_the_outbox_without_skipping_rows() {
+        let directory = tempfile::tempdir().unwrap();
+        let database = Database::open(directory.path().join("prepare.sqlite3")).unwrap();
+        database.initialize_library().unwrap();
+        for index in 1..=350 {
+            database.create_directory_with_id(&DirId::from_u128(index), &ROOT_DIR_ID, &format!("Shelf {index}")).unwrap();
+        }
+        let cursor = SyncCursor { generation: Some(SyncGeneration::from_u128(77)), ..Default::default() };
+        database.set_sync_pull_cursor(&cursor).unwrap();
+        let expected = database.sync_publishable_mutations().unwrap();
+        let PreparedSync::Ready { cursor: prepared_cursor, mut outbox, mut mutations } = prepare_sync(&database, None).unwrap() else {
+            panic!("no recovery is pending");
+        };
+        assert_eq!(prepared_cursor, cursor);
+        assert!(!mutations.is_empty());
+        assert!(mutations.len() < expected.len(), "preparation must retain bounded paging");
+        let bytes = rmp_serde::to_vec_named(&PreparedSync::Ready { cursor, outbox: (), mutations: mutations.clone() }).unwrap();
+        let decoded: PreparedSync<()> = rmp_serde::from_slice(&bytes).unwrap();
+        assert!(matches!(decoded, PreparedSync::Ready { cursor: decoded_cursor, mutations: decoded, .. } if decoded_cursor == cursor && decoded == mutations));
+        loop {
+            let page = next_outbox_page(&database, None, &mut outbox).unwrap();
+            if page.is_empty() { break; }
+            mutations.extend(page);
+        }
+        assert_eq!(mutations, expected);
+        assert_eq!(database.sync_pull_cursor().unwrap(), cursor);
+        assert_eq!(database.sync_publishable_mutations().unwrap(), expected, "preparation must not acknowledge changes");
+    }
+
+    #[test]
+    fn pending_recovery_does_not_freeze_or_select_the_outbox() {
+        let directory = tempfile::tempdir().unwrap();
+        let path = directory.path().join("recover.sqlite3");
+        let database = Database::open(&path).unwrap();
+        database.initialize_library().unwrap();
+        database.create_directory_with_id(&DirId::from_u128(1), &ROOT_DIR_ID, &"Shelf".to_owned()).unwrap();
+        database.sync_begin_cursor_recovery().unwrap();
+        let probe = rusqlite::Connection::open(&path).unwrap();
+        // Normal preparation freezes pending rows with UPDATE before reading them.
+        probe.execute_batch("CREATE TRIGGER reject_freeze_before_recovery BEFORE UPDATE ON sync_outbox BEGIN SELECT RAISE(ABORT, 'recovery must finish before outbox preparation'); END;").unwrap();
+        assert!(matches!(prepare_sync(&database, None).unwrap(), PreparedSync::RecoveryPending));
+        assert!(database.sync_cursor_recovery_pending().unwrap());
+    }
+
+    #[test]
+    fn an_empty_preparation_roundtrips_through_the_worker_codec() {
+        let directory = tempfile::tempdir().unwrap();
+        let database = Database::open(directory.path().join("empty.sqlite3")).unwrap();
+        database.initialize_library().unwrap();
+        let PreparedSync::Ready { cursor, mutations, .. } = prepare_sync(&database, None).unwrap() else {
+            panic!("no recovery is pending");
+        };
+        assert!(mutations.is_empty());
+        let bytes = rmp_serde::to_vec_named(&PreparedSync::Ready { cursor, outbox: (), mutations }).unwrap();
+        let prepared: PreparedSync<()> = rmp_serde::from_slice(&bytes).unwrap();
+        assert!(matches!(prepared, PreparedSync::Ready { cursor: decoded, mutations, .. } if decoded == cursor && mutations.is_empty()));
+    }
 
     #[test]
     fn a_full_exchange_commits_acknowledgements_and_cursor_together() {

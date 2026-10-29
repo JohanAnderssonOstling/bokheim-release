@@ -49,6 +49,8 @@ impl<R: AsyncBufRead + Unpin> ZipFileReader<R> {
     /// the compressed size, uncompressed size, and ZIP64 extended information extra field
     /// would have been copied over from the central directory, and so no longer reflects
     /// the values stored in the actual local file header.
+    /// When `prefer_central_directory` is enabled, the checksum and sizes are
+    /// copied for every entry, along with its compression method and flags.
     pub fn lf(&self) -> &LF {
         &self.lf
     }

@@ -120,6 +120,9 @@ fn main() -> Result<(), String> {
     };
     let auto_rotate = profile.has_gyroscope() && !args.iter().any(|argument| argument == "--no-rotation");
     println!("KOBO_DEVICE model={} product={} name={:?} touch={:?}", profile.id, profile.product, profile.name, profile.touch);
+    if args.iter().any(|argument| argument == "--check-device") {
+        return Ok(());
+    }
     let data_dir = std::env::var_os("BOKHEIM_KOBO_DATA_DIR").map(PathBuf::from).unwrap_or_else(default_data_dir);
     let backend_context = BackendLaunch::initialize(AppDataLocation::native_path(data_dir)).map_err(|error| format!("failed to initialize Kobo app-data directory: {error}"))?;
     println!("KOBO_APP_STARTUP phase=backend_ready elapsed_ms={}", startup_started.elapsed().as_millis());
@@ -153,7 +156,7 @@ fn main() -> Result<(), String> {
         // browse lists and reader content.
         page_buttons: PageButtonBehavior::Scroll,
         power_button_handler: Some(kobo_power::suspend_kernel),
-        power_button_opens_menu: true,
+        power_button_opens_menu: false,
         power: KoboPowerOptions {
             prepare_sleep: Some(kobo_power::prepare_sleep),
             finish_sleep: Some(kobo_power::finish_sleep),
@@ -161,8 +164,8 @@ fn main() -> Result<(), String> {
             power_off: Some(kobo_power::power_off),
             prepare_delay: Duration::from_secs(3),
             settle_delay: Duration::from_secs(15),
-            wake_confirmation_timeout: Duration::from_secs(15),
-            idle_timeout: Some(Duration::from_secs(30 * 60)),
+            wake_confirmation_timeout: Duration::from_secs(2),
+            idle_timeout: kobo_device::settings::idle_timeout(),
             sleep_cover: true,
         },
         wake_ui_ready_handler: Some(kobo_device::wifi::resume_after_ui),

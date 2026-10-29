@@ -591,7 +591,7 @@ impl Render for Browser {
             .p(px(components::SPACE_SM))
             .capture_any_mouse_down(cx.listener(|browser, _, _, _| browser.send("focus_controls", json!({}))))
             .child(components::browser_address_control(&self.address, self.editing, self.page.display_name().to_owned(), self.page.icon.as_deref(), theme).debug_selector(|| "android-browser-address".into()))
-            .child(components::outlined_icon_button("browser-close", "Close browser", IconName::Close, theme).debug_selector(|| "android-browser-close".into()).on_click(cx.listener(|_, _, _, cx| cx.emit(Closed))));
+            .child(components::outlined_icon_button("browser-close", "Close browser", IconName::Close).debug_selector(|| "android-browser-close".into()).on_click(cx.listener(|_, _, _, cx| cx.emit(Closed))));
         div()
             .size_full()
             .flex()

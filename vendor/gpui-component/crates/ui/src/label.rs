@@ -2,7 +2,7 @@ use std::ops::Range;
 
 use gpui::{
     App, HighlightStyle, IntoElement, ParentElement, RenderOnce, SharedString, StyleRefinement,
-    Styled, StyledText, Window, div, prelude::FluentBuilder, rems,
+    Styled, StyledText, Window, div, prelude::FluentBuilder,
 };
 
 use crate::{ActiveTheme, StyledExt};
@@ -203,7 +203,7 @@ impl RenderOnce for Label {
         let highlights = self.measure_highlights(text.len(), cx);
 
         div()
-            .line_height(rems(1.25))
+            .line_height_auto()
             .text_color(cx.theme().foreground)
             .refine_style(&self.style)
             .child(

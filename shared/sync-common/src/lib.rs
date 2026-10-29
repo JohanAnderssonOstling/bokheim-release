@@ -13,6 +13,7 @@ pub mod storage;
 pub use protobuf_wire as transport;
 pub use wire;
 mod protocol;
+mod transport_fields;
 pub use protocol::{validate_pull_batch, validate_push_response, MutationIssue, PullBatchError, PushBatcher, PushResponseError, ValidatedPushResponse};
 
 pub use content_address::BookId;
@@ -41,10 +42,10 @@ pub const ROOT_DIR_ID: DirId = uuid::Uuid::nil();
 
 /// Maximum encoded size of a synchronized JPEG cover.
 pub const MAX_THUMBNAIL_BYTES: u64 = 4 * 1024 * 1024;
-pub const MAX_PULL_CHANGES: usize = 1_000;
-/// Conservative wire budget for a pull page. One historical cell larger than
-/// this target is delivered alone, subject to the hard response limit.
-pub const MAX_PULL_BATCH_BYTES: usize = 4 * 1024 * 1024;
+/// Decoded-byte budget for a pull page, without a separate change-count cap.
+/// Reserve 512 KiB below the hard response limit for the outer envelope and
+/// push rejections. HTTP compression determines the transferred byte count.
+pub const MAX_PULL_BATCH_BYTES: usize = transport::MAX_DECODED_RESPONSE_BYTES - 512 * 1024;
 /// Fixed protobuf wrapper allowance; variable-length fields are counted too.
 pub const STATE_DELIVERY_OVERHEAD_BYTES: usize = 1_024;
 pub const MAX_PUSH_MUTATIONS: usize = 1_000;
@@ -259,10 +260,10 @@ pub trait StatePayload: Serialize + serde::de::DeserializeOwned + Sized {
 
 impl StatePayload for OpaqueStateEntry {
     fn serialize_entry<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
-        self.serialize(serializer)
+        transport_fields::opaque::serialize(self, serializer)
     }
     fn deserialize_entry<'de, D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
-        Self::deserialize(deserializer)
+        transport_fields::opaque::deserialize(deserializer)
     }
 }
 
@@ -309,7 +310,7 @@ impl<T: StatePayload> Serialize for Versioned<T> {
         }
         let mut fields = serializer.serialize_struct("Versioned", 2)?;
         fields.serialize_field("value", &Entry(&self.value))?;
-        fields.serialize_field("version", &self.version)?;
+        fields.serialize_field("version", &transport_fields::VersionRef(&self.version))?;
         fields.end()
     }
 }
@@ -320,6 +321,7 @@ impl<'de, T: StatePayload> Deserialize<'de> for Versioned<T> {
         struct Fields<T> {
             #[serde(deserialize_with = "state_encoding::deserialize")]
             value: T,
+            #[serde(with = "transport_fields::version")]
             version: VersionKey,
         }
         let fields = Fields::<T>::deserialize(deserializer)?;

@@ -1,14 +1,15 @@
 //! Public handle for operations scoped to one concrete library.
 
 use crate::executor::BackendExecutor;
-use client_platform_runtime::startup_profile::StartupProfile;
-#[cfg(not(target_arch = "wasm32"))]
-use client_platform_runtime::pending::OnDrop;
 use crate::library::ResolvedBook;
 use crate::{DirectoryImport, ImportFailure, LibrarySyncState, LibrarySyncStatus};
+#[cfg(not(target_arch = "wasm32"))]
+use client_platform_runtime::pending::OnDrop;
+use client_platform_runtime::startup_profile::StartupProfile;
 use std::cell::Cell;
 use std::path::PathBuf;
 use std::rc::Rc;
+use std::{future::Future, pin::Pin};
 pub(crate) use std::sync::Arc;
 
 use super::subscriptions::LibraryUpdates;
@@ -17,6 +18,7 @@ pub(crate) use crate::library::commands::LibraryCommand;
 pub(crate) use crate::library::discovery::LibraryScanner;
 pub(crate) use crate::library::events::{LibraryEvent, LibraryEventRouter, LibraryEventState};
 pub(crate) use crate::{BookId, DirId, DownloadState, LibraryId};
+use library_database::ContributorNameMatcher;
 pub(crate) use library_database::Database;
 
 pub(crate) use super::commands::PreparedRequest;
@@ -46,12 +48,15 @@ pub struct LibrarySession {
     pub(crate) runtime: Rc<crate::library::session::LibraryRuntime>,
     pub(crate) account: crate::integration::LibraryAccount,
     pub(crate) cloud: cloud_storage::connections::CloudConnections,
+    #[cfg(not(target_arch = "wasm32"))]
+    pub(crate) root_failures: Option<async_channel::Sender<LibraryId>>,
     /// Kept only for library-owned accounting. The app registry never opens a
     /// library path merely to calculate a settings total.
     // Its Drop implementation stops and joins the scanner threads.
     pub(crate) _scanner: Arc<LibraryScanner>,
     pub(crate) cpu: std::sync::Arc<dyn cpu_host::CpuHost>,
-    pub(crate) filesystem_scanning: std::cell::Cell<bool>,
+    /// Filesystem or provider discovery, including inspection and admission.
+    pub(crate) scanning: Cell<bool>,
     #[cfg(not(target_arch = "wasm32"))]
     pub(crate) torrents: super::torrents::TorrentService,
 }
@@ -63,6 +68,12 @@ pub(crate) enum OperationCompletion {
         reply: PendingReply<(client_runtime::reply::Reply, u64)>,
         result: Result<super::book::Opened, BackendError>,
     },
+}
+
+#[cfg(not(target_arch = "wasm32"))]
+pub(crate) enum FolderScan {
+    Complete,
+    Deferred,
 }
 
 #[cfg(all(feature = "watcher", not(target_arch = "wasm32")))]
@@ -105,6 +116,8 @@ pub(crate) struct LibraryActor {
     pub(crate) operations: PendingOperations<OperationCompletion>,
     pub(crate) session: Rc<LibrarySession>,
     requests: Option<super::workers::WorkerRequests>,
+    #[cfg(not(target_arch = "wasm32"))]
+    restart: Option<(super::LibraryOpenConfig, async_channel::Sender<Result<(), BackendError>>)>,
     /// Browser book readers and Blob URLs are thread-local resources.
     /// The actor retains them for the lifetime of the page subscription; only
     /// a Send cancellation guard leaves the actor.
@@ -129,6 +142,8 @@ impl LibraryActor {
             session: Rc::new(session),
             operations: Default::default(),
             requests,
+            #[cfg(not(target_arch = "wasm32"))]
+            restart: None,
             #[cfg(target_arch = "wasm32")]
             books: Default::default(),
         }
@@ -136,18 +151,54 @@ impl LibraryActor {
 
     /// The library's root future: commands and every worker. When the
     /// command loop ends, the workers are dropped with it.
-    pub(crate) async fn run(mut self, commands: async_channel::Receiver<LibraryActorCommand>, observers: impl std::future::Future<Output = ()>) {
-        let workers = super::workers::run_workers(self.session.clone(), self.requests.take().expect("an actor runs once"), observers);
-        tokio::select! {
-            () = workers => {}
-            () = self.serve(commands) => {}
+    pub(crate) async fn run(mut self, commands: async_channel::Receiver<LibraryActorCommand>, observers: impl Future<Output = ()> + 'static) {
+        let commands = Inbox(commands);
+        let mut observers: Pin<Box<dyn Future<Output = ()>>> = Box::pin(observers);
+        loop {
+            {
+                let workers = super::workers::run_workers(self.session.clone(), self.requests.as_ref().expect("actor worker requests").clone(), &mut observers);
+                tokio::select! {
+                    () = workers => {}
+                    () = self.serve_inbox(&commands) => {}
+                }
+            }
+            #[cfg(target_arch = "wasm32")]
+            break;
+            #[cfg(not(target_arch = "wasm32"))]
+            {
+                let Some((config, reply)) = self.restart.take() else { break };
+                // Drop workers and old requests before rebuilding storage. Keep
+                // this actor's command channel and UI subscriptions alive.
+                self.operations = Default::default();
+                let spec = super::LibraryRuntimeSpec {
+                    config,
+                    account: self.session.account.clone(),
+                    cloud: self.session.cloud.clone(),
+                    notification_interest: self.session.sync.notification_interest.clone(),
+                    root_failures: self.session.root_failures.clone(),
+                };
+                let result = LibrarySession::recover(spec).map(|mut session| {
+                    self.coordination.restart(session.initial_coordination.take().expect("new session coordination"));
+                    self.requests = session.requests.take();
+                    observers = Box::pin(super::workers::observe_account(session.account.clone(), session.events.clone()));
+                    session.events.sync.request_remote_refresh();
+                    session.events.assets.wake();
+                    session.events.files.wake();
+                    self.session = Rc::new(session);
+                });
+                let _ = reply.try_send(result);
+            }
         }
     }
 
     // Commands never suspend this loop. It owns pending operations and polls
     // their completions beside commands.
+    #[cfg(test)]
     async fn serve(&mut self, commands: async_channel::Receiver<LibraryActorCommand>) {
-        let commands = Inbox(commands);
+        self.serve_inbox(&Inbox(commands)).await;
+    }
+
+    async fn serve_inbox(&mut self, commands: &Inbox<LibraryActorCommand>) {
         let events = self.coordination.receiver();
         loop {
             // Retirement closes admission immediately; do not execute a
@@ -177,6 +228,11 @@ impl LibraryActor {
     fn handle_command(&mut self, command: LibraryActorCommand) -> bool {
         self.coordination.drain(&self.session.events);
         match command {
+            #[cfg(not(target_arch = "wasm32"))]
+            LibraryActorCommand::RecoverRoot { config, reply } => {
+                self.restart = Some((config, reply));
+                return false;
+            }
             LibraryActorCommand::SubscribeUpdates { reply } => {
                 if !reply.is_closed() {
                     // Registration and the initial snapshot are one synchronous
@@ -204,29 +260,34 @@ impl LibraryActor {
             }
             #[cfg(target_arch = "wasm32")]
             LibraryActorCommand::ReleaseBook { id } => {
-                self.books.release(id);
+                drop(self.books.take(id));
             }
             #[cfg(not(target_arch = "wasm32"))]
             LibraryActorCommand::ResolveBook { content_hash, reply } => {
                 let session = self.session.clone();
-                self.submit(OperationKind::Read, PendingReply::new(reply), async move { session.prepare_book_for_reader(content_hash).await });
+                let mut profile = StartupProfile::new("book_lookup_actor");
+                profile.mark("received");
+                self.submit(OperationKind::Read, PendingReply::new(reply), async move {
+                    profile.mark("operation_start");
+                    let result = session.prepare_book_for_reader(content_hash).await;
+                    profile.mark("operation_complete");
+                    result
+                });
             }
             #[cfg(not(target_arch = "wasm32"))]
             LibraryActorCommand::ResolveAudiobookTrack { content_hash, index, reply } => {
                 let session = self.session.clone();
                 self.submit(OperationKind::Read, PendingReply::new(reply), async move { session.prepare_audiobook_track(content_hash, index).await });
             }
-            #[cfg(not(target_arch = "wasm32"))]
             LibraryActorCommand::ExportTransferBook { content_hash, reply } => {
                 let session = self.session.clone();
                 self.submit(OperationKind::Read, PendingReply::new(reply), async move { session.export_transfer_book(content_hash).await });
             }
-            #[cfg(not(target_arch = "wasm32"))]
             LibraryActorCommand::ImportTransferBook { parent_id, file_name, resource, reply } => {
                 let session = self.session.clone();
                 self.submit(OperationKind::Import, PendingReply::new(reply), async move {
                     let _activity = session.directory_import_activity();
-                    session.import.import_transferred_book(parent_id, file_name, resource.reader, resource.state).await
+                    session.import_transfer_resource(parent_id, file_name, resource).await
                 });
             }
             #[cfg(not(target_arch = "wasm32"))]
@@ -252,6 +313,22 @@ impl LibraryActor {
                 }
             }
             LibraryActorCommand::Control(LibraryControl::RefreshRemote) => self.session.events.sync.request_remote_refresh(),
+            LibraryActorCommand::Control(LibraryControl::CloudConnectionChanged) => self.session.events.assets.wake(),
+            #[cfg(not(target_arch = "wasm32"))]
+            LibraryActorCommand::Control(LibraryControl::RootUnavailable) => {
+                if !self.session.assets.root_available() {
+                    match self.session.db.reset_local_storage() {
+                        Ok(hashes) => {
+                            for hash in hashes {
+                                self.coordination.reset_download(&hash);
+                                self.session.events.emit(LibraryEvent::DownloadStatusChanged { content_hash: hash, state: DownloadState::NotDownloaded });
+                            }
+                            self.session.events.publish_update(library_model::LibraryUpdate::Contents);
+                        }
+                        Err(error) => log::warn!("could not clear unavailable folder state: {error}"),
+                    }
+                }
+            }
             LibraryActorCommand::Control(LibraryControl::RefreshCatalog) => self.session.events.publish_update(library_model::LibraryUpdate::Contents),
             LibraryActorCommand::Control(LibraryControl::Shutdown) => return false,
         }
@@ -267,15 +344,13 @@ impl LibraryActor {
                 if reply.is_closed() {
                     return;
                 }
-                match result {
-                    Ok((book, lease)) => {
-                        // Both registration and reply occur synchronously on the
-                        // browser thread, so cancellation cannot interleave.
-                        let id = self.books.retain(lease);
-                        reply.finish(Ok((client_runtime::reply::Reply::new(book), id)));
-                    }
-                    Err(error) => reply.finish(Err(error)),
-                }
+                // Both registration and reply occur synchronously on the
+                // browser thread, so cancellation cannot interleave.
+                reply.finish(result.and_then(|(book, lease)| {
+                    let id = self.books.next_id().map_err(BackendError::message)?;
+                    self.books.insert(id, lease);
+                    Ok((client_runtime::reply::Reply::new(book), id))
+                }));
             }
         }
     }
@@ -295,14 +370,22 @@ pub struct LibraryHandle {
 
 #[derive(Clone, Debug)]
 pub enum LibraryControl {
+    #[cfg(not(target_arch = "wasm32"))]
+    RootUnavailable,
     SetAssetStorage { enabled: bool, reset_cloud_presence: bool },
     Rename { name: String, refresh_remote: bool },
     RefreshRemote,
     RefreshCatalog,
     Shutdown,
+    CloudConnectionChanged,
 }
 
 pub enum LibraryActorCommand {
+    #[cfg(not(target_arch = "wasm32"))]
+    RecoverRoot {
+        config: super::LibraryOpenConfig,
+        reply: async_channel::Sender<Result<(), BackendError>>,
+    },
     SubscribeUpdates {
         reply: async_channel::Sender<Result<(async_channel::Receiver<library_model::LibraryUpdate>, bool), BackendError>>,
     },
@@ -334,17 +417,15 @@ pub enum LibraryActorCommand {
         index: usize,
         reply: async_channel::Sender<Result<ResolvedBook, BackendError>>,
     },
-    #[cfg(not(target_arch = "wasm32"))]
     ExportTransferBook {
         content_hash: BookId,
         reply: async_channel::Sender<Result<super::transfer::TransferResource, BackendError>>,
     },
-    #[cfg(not(target_arch = "wasm32"))]
     ImportTransferBook {
         parent_id: DirId,
         file_name: String,
         resource: super::transfer::TransferResource,
-        reply: async_channel::Sender<Result<bool, BackendError>>,
+        reply: async_channel::Sender<Result<library_database::transfer::ImportedBook, BackendError>>,
     },
     #[cfg(not(target_arch = "wasm32"))]
     ImportDirectory {
@@ -384,6 +465,16 @@ impl LibraryHandle {
     /// return.
     #[cfg(not(target_arch = "wasm32"))]
     pub fn open(spec: super::LibraryRuntimeSpec, _executor: &BackendExecutor) -> Result<Self, BackendError> {
+        Self::open_with(spec, LibrarySession::open)
+    }
+
+    #[cfg(not(target_arch = "wasm32"))]
+    pub fn open_recovered(spec: super::LibraryRuntimeSpec, _executor: &BackendExecutor) -> Result<Self, BackendError> {
+        Self::open_with(spec, LibrarySession::recover)
+    }
+
+    #[cfg(not(target_arch = "wasm32"))]
+    fn open_with(spec: super::LibraryRuntimeSpec, open: fn(super::LibraryRuntimeSpec) -> Result<LibrarySession, BackendError>) -> Result<Self, BackendError> {
         let mut profile = StartupProfile::for_library("library_handle", spec.config.id);
         let library_executor = crate::executor::LibraryExecutor::new().map_err(BackendError::operation)?;
         profile.mark("thread_spawn");
@@ -391,7 +482,7 @@ impl LibraryHandle {
         let handle = library_executor
             .run_blocking(move || -> Result<LibraryHandle, BackendError> {
                 profile.mark("thread_ready");
-                let session = LibrarySession::open(spec)?;
+                let session = open(spec)?;
                 profile.mark("session_open");
                 session.events.sync.request_remote_refresh();
                 session.events.assets.wake();
@@ -417,6 +508,10 @@ impl LibraryHandle {
     /// Ask this library's actor to schedule a remote sync pass.
     pub fn request_remote_refresh(&self) {
         let _ = self.commands.try_send(LibraryActorCommand::Control(LibraryControl::RefreshRemote));
+    }
+
+    pub fn cloud_connection_changed(&self) {
+        let _ = self.commands.try_send(LibraryActorCommand::Control(LibraryControl::CloudConnectionChanged));
     }
 
     pub fn refresh_catalog(&self) {
@@ -463,9 +558,14 @@ impl LibraryHandle {
 
     #[cfg(not(target_arch = "wasm32"))]
     pub async fn resolve_book(&self, content_hash: BookId) -> Result<ResolvedBook, BackendError> {
+        let mut profile = StartupProfile::new("book_lookup_handle");
         let (reply, result) = async_channel::bounded(1);
+        profile.mark("request_ready");
         self.commands.send(LibraryActorCommand::ResolveBook { content_hash, reply }).await.map_err(|_| BackendError::message("library actor is no longer running"))?;
-        result.recv().await.map_err(|_| BackendError::message("library actor stopped before replying"))?
+        profile.mark("command_send");
+        let result = result.recv().await.map_err(|_| BackendError::message("library actor stopped before replying"))?;
+        profile.mark("reply_wait");
+        result
     }
 
     #[cfg(not(target_arch = "wasm32"))]
@@ -475,14 +575,12 @@ impl LibraryHandle {
         result.recv().await.map_err(|_| BackendError::message("library actor stopped before replying"))?
     }
 
-    #[cfg(not(target_arch = "wasm32"))]
     pub(crate) async fn export_transfer_book(&self, content_hash: BookId) -> Result<super::transfer::TransferResource, BackendError> {
         let (reply, result) = async_channel::bounded(1);
         self.commands.send(LibraryActorCommand::ExportTransferBook { content_hash, reply }).await.map_err(|_| BackendError::message("source library is no longer running"))?;
         result.recv().await.map_err(|_| BackendError::message("source library stopped before replying"))?
     }
-    #[cfg(not(target_arch = "wasm32"))]
-    pub(crate) async fn import_transfer_book(&self, parent_id: DirId, file_name: String, resource: super::transfer::TransferResource) -> Result<bool, BackendError> {
+    pub(crate) async fn import_transfer_book(&self, parent_id: DirId, file_name: String, resource: super::transfer::TransferResource) -> Result<library_database::transfer::ImportedBook, BackendError> {
         let (reply, result) = async_channel::bounded(1);
         self.commands.send(LibraryActorCommand::ImportTransferBook { parent_id, file_name, resource, reply }).await.map_err(|_| BackendError::message("destination library is no longer running"))?;
         result.recv().await.map_err(|_| BackendError::message("destination library stopped before replying"))?
@@ -506,7 +604,11 @@ impl LibrarySession {
                 if remote_present == Some(false) {
                     LibrarySyncState::RemoteMissing
                 } else if !sync_details.has_unsynced_changes && sync_details.last_synced_at.is_none() {
-                    if remote_present.is_some() { LibrarySyncState::Receiving } else { LibrarySyncState::Checking }
+                    if remote_present.is_some() {
+                        LibrarySyncState::Receiving
+                    } else {
+                        LibrarySyncState::Checking
+                    }
                 } else if sync_details.has_unsynced_changes {
                     LibrarySyncState::SyncPending
                 } else {
@@ -586,40 +688,46 @@ impl LibrarySession {
     }
 
     pub fn scanner_running(&self) -> bool {
-        self.filesystem_scanning.get() || self.directory_imports_active()
+        self.scanning.get() || self.directory_imports_active()
     }
 
     /// Walks the library folder and applies what it finds, walking again while
     /// the database changed underneath. Errors and cancellation release the
     /// scanning flag too, so file replay can continue between scan attempts.
     #[cfg(not(target_arch = "wasm32"))]
-    pub(crate) async fn scan_folder(&self) -> Result<(), BackendError> {
-        if self.db.storage_policy()?.external().is_some() { return Ok(()); }
-        if !self.assets.local_access_enabled() || !self._scanner.enabled() {
-            self.filesystem_scanning.set(false);
-            return Ok(());
+    pub(crate) async fn scan_folder(&self) -> Result<FolderScan, BackendError> {
+        if self.db.storage_policy()?.external().is_some() {
+            return Ok(FolderScan::Complete);
         }
-        self.filesystem_scanning.set(true);
+        if !self.assets.local_access_enabled() || !self._scanner.enabled() {
+            self.scanning.set(false);
+            return Ok(FolderScan::Complete);
+        }
+        if !self.assets.root_available() {
+            return Err(BackendError::classified(client_runtime::Failure::LibraryFolderUnavailable, "library folder identity is unavailable"));
+        }
+        self.scanning.set(true);
         let scanning = OnDrop::new(|| {
-            self.filesystem_scanning.set(false);
+            self.scanning.set(false);
             self.emit(LibraryEvent::ScanComplete { busy: self.scanner_running() });
         });
-        loop {
+        let outcome = loop {
             let snapshot = self.db.scan_snapshot()?;
+            let outcome = if snapshot.excluded_paths.is_empty() { FolderScan::Complete } else { FolderScan::Deferred };
             self.emit(LibraryEvent::ScanStarted);
             match futures_util::FutureExt::catch_unwind(std::panic::AssertUnwindSafe(self.scan_once(snapshot))).await.unwrap_or_else(|_| Err(BackendError::message("library scan panicked")))? {
-                library_database::ScanApplyResult::Applied => break,
+                library_database::ScanApplyResult::Applied => break outcome,
                 // Coalesce changes while the actor keeps serving requests.
                 library_database::ScanApplyResult::Stale => crate::executor::sleep(std::time::Duration::from_millis(250)).await.map_err(BackendError::operation)?,
             }
-        }
+        };
         self.emit(LibraryEvent::ContentsChanged);
         drop(scanning);
         self.db.bind_torrent_books()?;
         // A completed scan can leave lifecycle and metadata mutations
         // that need a sync pass before dependent asset work is ready.
         self.events.sync.wake();
-        Ok(())
+        Ok(outcome)
     }
 
     #[cfg(not(target_arch = "wasm32"))]
@@ -639,9 +747,12 @@ impl LibrarySession {
         for files in discovery.files.chunks(filesystem_scanner::filesystem_scan::PUBLISH_BATCH_SIZE) {
             let chunk = library_database::FilesystemScan { files: files.to_vec(), readable: discovery.readable, ..Default::default() };
             let inspected = self._scanner.inspect(&chunk, &snapshot, &self.cpu).await;
+            if !self.assets.root_available() {
+                return Err(BackendError::message("library folder changed during scanning"));
+            }
             readable &= inspected.readable;
             if !inspected.books.is_empty() {
-                let result = self.db.apply_filesystem_scan_batch(&mut snapshot, &discovery, &inspected, false, Some(metadata_contract::matching::same_author)).map_err(BackendError::operation)?;
+                let result = self.db.apply_filesystem_scan_batch(&mut snapshot, &discovery, &inspected, false, Some(ContributorNameMatcher::Normalized)).map_err(BackendError::operation)?;
                 if result == library_database::ScanApplyResult::Stale {
                     return Ok(result);
                 }
@@ -652,8 +763,11 @@ impl LibrarySession {
             // Deliver queries and partial contents before inspecting another batch.
             tokio::task::yield_now().await;
         }
+        if !self.assets.root_available() {
+            return Err(BackendError::message("library folder changed during scanning"));
+        }
         let result =
-            self.db.apply_filesystem_scan_batch(&mut snapshot, &discovery, &library_database::InspectedFilesystemScan { readable, books: vec![] }, true, Some(metadata_contract::matching::same_author)).map_err(BackendError::operation)?;
+            self.db.apply_filesystem_scan_batch(&mut snapshot, &discovery, &library_database::InspectedFilesystemScan { readable, books: vec![] }, true, Some(ContributorNameMatcher::Normalized)).map_err(BackendError::operation)?;
         if result == library_database::ScanApplyResult::Applied && !discovery.readable {
             return Err(BackendError::message("filesystem scan was incomplete"));
         }
@@ -668,14 +782,13 @@ impl LibrarySession {
         })
     }
 
-    #[cfg(not(target_arch = "wasm32"))]
     pub(crate) fn queue_download(&self, coordination: &mut LibraryEventState, content_hash: BookId) -> Result<DownloadState, BackendError> {
         let state = self.download_state(coordination, content_hash)?;
         if matches!(state, DownloadState::Downloaded | DownloadState::Downloading(_)) {
             return Ok(state);
         }
         let sync = self.sync.clone();
-        if !sync.is_signed_in() {
+        if self.db.storage_policy()?.external().is_none() && !sync.is_signed_in() {
             return Err(BackendError::message("sign in before downloading this book"));
         }
         {
@@ -685,10 +798,17 @@ impl LibrarySession {
         Ok(DownloadState::Queued)
     }
 
-    #[cfg(not(target_arch = "wasm32"))]
     pub(crate) fn request_downloads(&self, hashes: &[BookId]) -> Result<(), BackendError> {
         if hashes.is_empty() {
             return Ok(());
+        }
+        #[cfg(target_os = "android")]
+        if self.db.storage_policy()?.external().is_some_and(|root| root.scope.provider == sync_common::storage::CloudProvider::GoogleDrive) {
+            cloud_storage::require_google_drive().map_err(BackendError::operation)?;
+        }
+        #[cfg(target_arch = "wasm32")]
+        if self.db.storage_policy()?.external().is_none() {
+            return Err(BackendError::message("this library streams books in the browser"));
         }
         self.sync.clone().request_downloads(hashes).map_err(BackendError::operation)?;
         self.events.assets.wake();
@@ -703,6 +823,10 @@ pub(super) mod concurrency_tests;
 #[cfg(all(test, not(target_arch = "wasm32")))]
 #[path = "transfer_tests.rs"]
 mod transfer_tests;
+
+#[cfg(all(test, feature = "google-drive", not(target_arch = "wasm32")))]
+#[path = "cloud/transfer_tests.rs"]
+mod provider_transfer_tests;
 
 #[cfg(all(test, feature = "watcher", not(target_arch = "wasm32")))]
 mod watcher_recovery_tests {

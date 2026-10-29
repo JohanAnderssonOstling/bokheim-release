@@ -1,0 +1,32 @@
+{
+  "sherpa_version": "1.13.8",
+  "sherpa_commit": "11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf",
+  "source_url": "https://codeload.github.com/k2-fsa/sherpa-onnx/tar.gz/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf",
+  "source_sha256": "0a8db6c55dd318f4a688faba85f7760b99a6c92e8ef8864479d418531bee1ac2",
+  "onnxruntime_coordinate": "com.microsoft.onnxruntime:onnxruntime-android:1.28.0",
+  "onnxruntime_url": "https://repo.maven.apache.org/maven2/com/microsoft/onnxruntime/onnxruntime-android/1.28.0/onnxruntime-android-1.28.0.aar",
+  "onnxruntime_sha256": "f351a0638696f54b35184290dbc001d66daae17281ad0b548d2c70347d53b8a9",
+  "target": "aarch64-linux-android",
+  "abi": "arm64-v8a",
+  "android_api": 26,
+  "licenses": {
+    "alba-model-card.txt": {
+      "url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/alba/medium/MODEL_CARD",
+      "sha256": "fa166b1779404c470b0b6b4ba0238bc4a35bf89d2cd130c6788f697188b737d6"
+    },
+    "CC-BY-4.0.txt": {
+      "url": "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+    },
+    "onnxruntime-LICENSE.txt": {
+      "url": "https://raw.githubusercontent.com/microsoft/onnxruntime/v1.28.0/LICENSE",
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    "onnxruntime-ThirdPartyNotices.txt": {
+      "url": "https://raw.githubusercontent.com/microsoft/onnxruntime/v1.28.0/ThirdPartyNotices.txt",
+      "sha256": "0e07b95f3a8d6230037707c5c4a2b554d12c4cb67369669ac255635528ffcee2"
+    }
+  },
+  "ndk_version": "29.0.14206865",
+  "dependencies_manifest_sha256": "e1341e3b0d42fd2698788844d33ba654888e34f03f10e12eae1e57e1a03231bf"
+}

@@ -19,6 +19,7 @@ pub struct BookFacts {
     pub key: String,
     /// `description` is sent empty: the file's own description always wins,
     /// so the server only needs to report what it found.
+    #[serde(with = "book_model::record_transport")]
     pub record: book_model::BookRecord,
     pub audiobook: bool,
     /// Resolve artwork only when the caller still needs a cover. Older clients
@@ -59,9 +60,10 @@ pub struct BookEnrichment {
     /// The file facts with everything the server resolved merged in. Present
     /// when `status` is `Found`. `description` is the server's description,
     /// empty when none was found.
+    #[serde(default, with = "book_model::record_transport::optional")]
     pub record: Option<book_model::BookRecord>,
     /// An audiobook's chapters from its matched recording.
-    #[serde(default)]
+    #[serde(default, with = "book_model::toc_transport::optional")]
     pub toc: Option<Vec<book_model::BookTocEntry>>,
     #[serde(default)]
     pub cover: Option<CoverSource>,

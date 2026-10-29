@@ -1,0 +1,8 @@
+#!/bin/sh
+# SPDX-License-Identifier: 0BSD
+set -eu
+
+# Application binaries belong to pacman. Compatible taxonomy updates remain enabled.
+export BOKHEIM_DISABLE_SELF_UPDATE=1
+unset APPIMAGE APPDIR ARGV0
+exec /opt/bokheim/AppRun "$@"

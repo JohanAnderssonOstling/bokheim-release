@@ -9,6 +9,8 @@ use super::LibrarySession;
 use super::events::{LibraryEvent, LibraryEventRouter};
 use crate::BackendError;
 use client_platform_runtime::transfers;
+#[cfg(all(feature = "kobo", target_os = "linux"))]
+use client_platform_kobo::device::wifi::{self, Phase as WifiPhase};
 #[cfg(not(target_arch = "wasm32"))]
 use client_platform_runtime::startup_profile::StartupProfile;
 use futures_util::FutureExt;
@@ -19,6 +21,7 @@ use std::panic::AssertUnwindSafe;
 use std::rc::Rc;
 
 /// Wake receivers, one per worker; the router holds the senders.
+#[derive(Clone)]
 pub(crate) struct WorkerRequests {
     pub(crate) sync: async_channel::Receiver<SyncRequest>,
     pub(crate) assets: async_channel::Receiver<SyncRequest>,
@@ -52,6 +55,7 @@ pub(super) async fn run_workers(session: Rc<LibrarySession>, requests: WorkerReq
     // Keep each scoped worker on the heap: their state machines contain large
     // parser/network futures, and the owning root must fit a normal thread stack.
     let observers = Box::pin(observers);
+    let network = Box::pin(observe_network(session.events.clone()));
     let mut transfer_changes = transfers::POLICY.subscribe();
     let transfer_policy = async move {
         while transfer_changes.changed().await.is_ok() {
@@ -73,12 +77,38 @@ pub(super) async fn run_workers(session: Rc<LibrarySession>, requests: WorkerReq
     let torrents = Box::pin(session.torrents.run(session));
     #[cfg(target_arch = "wasm32")]
     let torrents = async {};
-    futures_util::join!(observers, transfer_policy, sync, assets, files, enrichment, scan, torrents);
+    futures_util::join!(observers, network, transfer_policy, sync, assets, files, enrichment, scan, torrents);
 }
 
-/// Every worker retries a failed pass after 30 s; wakes within 100 ms coalesce.
+async fn observe_network(_events: LibraryEventRouter) {
+    #[cfg(all(feature = "kobo", target_os = "linux"))]
+    {
+        let Ok(mut changes) = wifi::subscribe() else { return; };
+        let mut was_connected = false;
+        loop {
+            let connected = changes.borrow_and_update().phase == WifiPhase::Connected;
+            if connected && !was_connected {
+                _events.sync.request_remote_refresh();
+                _events.assets.request_remote_refresh();
+            }
+            was_connected = connected;
+            if changes.changed().await.is_err() { break; }
+        }
+    }
+}
+
+/// Wakes within 100 ms coalesce. Kobo backs repeated failures off to 15 minutes.
 async fn run_timed<F: Future<Output = Result<(), ()>>>(name: &str, mut pass: impl FnMut(CycleInput) -> F, requests: async_channel::Receiver<SyncRequest>) {
+    #[cfg(feature = "kobo")]
+    library_runtime::scheduler::run_timed_with_backoff(async move |input| recover_pass(name, async { pass(input).await }).await, requests, Duration::from_secs(30), Duration::from_secs(15 * 60), Duration::from_millis(100)).await;
+    #[cfg(not(feature = "kobo"))]
     library_runtime::scheduler::run_timed(async move |input| recover_pass(name, async { pass(input).await }).await, requests, Duration::from_secs(30), Duration::from_millis(100)).await;
+}
+
+async fn wait_for_network() -> Result<(), ()> {
+    #[cfg(all(feature = "kobo", target_os = "linux"))]
+    wifi::wait_for_connection().await.map_err(|error| log::warn!("could not observe network availability: {error}"))?;
+    Ok(())
 }
 
 /// These passes reconstruct their work from committed database state. Drop
@@ -106,6 +136,7 @@ async fn ensure_remote_library(sync: &LibrarySync, database: &Database) -> Resul
 }
 
 async fn sync_pass(session: &LibrarySession, input: CycleInput) -> Result<(), ()> {
+    wait_for_network().await?;
     let sync = &session.sync;
     let result = async {
         if !sync.bind_current_account().map_err(crate::BackendError::operation)? {
@@ -152,7 +183,7 @@ async fn sync_pass(session: &LibrarySession, input: CycleInput) -> Result<(), ()
 }
 
 async fn asset_pass(session: &LibrarySession) -> Result<(), ()> {
-    #[cfg(not(target_arch = "wasm32"))]
+    wait_for_network().await?;
     if session.db.storage_policy().map_err(|error| log::warn!("could not read storage provider: {error}"))?.external().is_some() {
         return session.run_cloud_pass().await.map_err(|error| log::warn!("cloud library pass will retry: {error}"));
     }
@@ -229,13 +260,19 @@ async fn scan_and_watch(session: &LibrarySession, wake: &library_runtime::schedu
     if session.directory_imports_active() {
         return Ok(());
     }
-    if let Err(error) = session.scan_folder().await {
-        log::warn!("filesystem scan failed; retrying in 30 seconds: {error}");
-        #[cfg(feature = "watcher")]
-        if !std::path::Path::new(session._scanner.root()).is_dir() {
-            *watcher = None;
+    match session.scan_folder().await {
+        Ok(super::handle::FolderScan::Complete) => {},
+        // File replay owns excluded paths. Release the scan's busy state so
+        // replay can finish, then verify those files even without a watch event.
+        Ok(super::handle::FolderScan::Deferred) => wake.wake_after(Duration::from_secs(1)),
+        Err(error) => {
+            log::warn!("filesystem scan failed; retrying in 30 seconds: {error}");
+            #[cfg(feature = "watcher")]
+            if !std::path::Path::new(session._scanner.root()).is_dir() {
+                *watcher = None;
+            }
+            return Err(());
         }
-        return Err(());
     }
     session.torrents.wake();
     #[cfg(feature = "watcher")]

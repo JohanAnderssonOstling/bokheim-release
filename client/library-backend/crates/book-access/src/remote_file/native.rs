@@ -2,7 +2,7 @@
 
 use super::{RemoteFileError, REQUEST_TIMEOUT};
 use crate::range_reader::{validate_prefix, RangeFetcher, RangeReader};
-use crate::{BoxedBookReader, FetchFuture};
+use crate::{BoxedBookReader, BundleFetch, BundleFetcher, FetchFuture};
 use std::{
     io::{self, Read, Seek, SeekFrom},
     time::Duration,
@@ -41,6 +41,32 @@ where
     F: FnMut(u64, usize) -> FetchFuture<'static, Result<Vec<u8>, RemoteFileError>> + Send + 'static,
 {
     open(length, prefix, Box::new(fetch), REQUEST_TIMEOUT)
+}
+
+/// Construct on the I/O runtime, then invoke only from a parser thread.
+pub fn native_bundle_fetch<F>(fetch: F) -> io::Result<BundleFetch>
+where
+    F: Fn(Vec<(u64, usize)>) -> FetchFuture<'static, Result<Vec<u8>, RemoteFileError>> + Send + Sync + 'static,
+{
+    let handle = Handle::try_current().map_err(io::Error::other)?;
+    let fetch = crate::batch_fetch::native(fetch)?;
+    Ok(Box::new(NativeBundleFetch { handle, fetch }))
+}
+
+struct NativeBundleFetch {
+    handle: Handle,
+    fetch: crate::batch_fetch::BatchFetch,
+}
+
+impl BundleFetcher for NativeBundleFetch {
+    fn fetch(&mut self, ranges: Vec<(u64, usize)>) -> io::Result<Vec<u8>> {
+        self.handle.block_on((self.fetch)(ranges))
+    }
+
+    #[cfg(feature = "pdf")]
+    fn fetch_cancellable(&mut self, ranges: Vec<(u64, usize)>, cancellation: &pdf_view_common::PdfPrefetchCancellation) -> io::Result<Vec<u8>> {
+        self.handle.block_on(crate::batch_fetch::cancellable(&self.fetch, ranges, cancellation))
+    }
 }
 
 fn open(length: u64, prefix: Vec<u8>, mut fetch: AsyncFetch, timeout: Duration) -> io::Result<BoxedBookReader> {
@@ -147,5 +173,39 @@ mod tests {
     async fn construction_and_drop_are_safe_inside_async_context() {
         let reader = native_reader(BLOCK_BYTES as u64, vec![0; BLOCK_BYTES], |_, _| Box::pin(async { panic!("prefix should be cached") })).unwrap();
         drop(reader);
+    }
+
+    #[cfg(feature = "pdf")]
+    #[tokio::test]
+    async fn cancelling_a_bundle_wakes_the_parser_and_drops_a_stalled_transport() {
+        use pdf_view_common::PdfPrefetchCancellation;
+        use tokio::sync::Notify;
+
+        struct TransportLifetime(Arc<Notify>);
+        impl Drop for TransportLifetime {
+            fn drop(&mut self) {
+                self.0.notify_one();
+            }
+        }
+        let started = Arc::new(Notify::new());
+        let dropped = Arc::new(Notify::new());
+        let (transport_started, transport_dropped) = (started.clone(), dropped.clone());
+        let mut fetch = native_bundle_fetch(move |_| {
+            let (started, dropped) = (transport_started.clone(), transport_dropped.clone());
+            Box::pin(async move {
+                let _owner = TransportLifetime(dropped);
+                started.notify_one();
+                std::future::pending().await
+            })
+        })
+        .unwrap();
+        let cancellation = PdfPrefetchCancellation::default();
+        let pending = cancellation.clone();
+        let parser = tokio::task::spawn_blocking(move || fetch.fetch_cancellable(vec![(0, 64)], &pending));
+        tokio::time::timeout(Duration::from_secs(3), started.notified()).await.unwrap();
+        cancellation.cancel();
+        let error = tokio::time::timeout(Duration::from_secs(3), parser).await.unwrap().unwrap().unwrap_err();
+        assert_eq!(error.kind(), io::ErrorKind::Interrupted);
+        tokio::time::timeout(Duration::from_secs(3), dropped.notified()).await.expect("the I/O task must drop its stalled transport after the parser releases the response");
     }
 }

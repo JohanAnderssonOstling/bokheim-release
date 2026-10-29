@@ -3,7 +3,7 @@ use gpui::prelude::FluentBuilder as _;
 use gpui::{
     Animation, AnimationExt as _, AnyElement, App, ElementId, Hsla, InteractiveElement as _,
     IntoElement, ParentElement, Pixels, RenderOnce, StyleRefinement, Styled, Window, canvas,
-    ease_in_out, px, relative,
+    ease_in_out, px,
 };
 use gpui::{Bounds, div};
 use instant::Duration;
@@ -160,7 +160,7 @@ impl RenderOnce for ProgressCircle {
             .flex()
             .items_center()
             .justify_center()
-            .line_height(relative(1.))
+            .line_height_auto()
             .map(|this| match self.size {
                 Size::XSmall => this.size_2(),
                 Size::Small => this.size_3(),

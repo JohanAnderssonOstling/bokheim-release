@@ -1,5 +1,7 @@
 //! Read the kernel's battery gauge without depending on a Kobo model name.
 use std::{fs, io, path::Path};
+use std::sync::OnceLock;
+use tokio::sync::watch;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct BatteryStatus {
@@ -7,8 +9,30 @@ pub struct BatteryStatus {
     pub status: String,
 }
 
+pub type BatteryReading = Result<BatteryStatus, String>;
+static READINGS: OnceLock<watch::Sender<Option<BatteryReading>>> = OnceLock::new();
+
+fn readings() -> &'static watch::Sender<Option<BatteryReading>> {
+    READINGS.get_or_init(|| watch::channel(None).0)
+}
+
+/// The power manager owns periodic sampling. UI subscribers reuse those reads.
+pub fn subscribe() -> watch::Receiver<Option<BatteryReading>> {
+    readings().subscribe()
+}
+
+fn publish(sender: &watch::Sender<Option<BatteryReading>>, reading: BatteryReading) {
+    sender.send_if_modified(|previous| {
+        if previous.as_ref() == Some(&reading) { return false; }
+        *previous = Some(reading);
+        true
+    });
+}
+
 pub fn read() -> io::Result<BatteryStatus> {
-    read_from(Path::new("/sys/class/power_supply"))
+    let reading = read_from(Path::new("/sys/class/power_supply"));
+    publish(readings(), reading.as_ref().cloned().map_err(ToString::to_string));
+    reading
 }
 
 fn read_from(root: &Path) -> io::Result<BatteryStatus> {
@@ -40,6 +64,24 @@ fn read_gauge(path: &Path) -> io::Result<BatteryStatus> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn shared_samples_replay_current_state_and_only_notify_changes() {
+        let (sender, mut changes) = watch::channel(None);
+        let status = BatteryStatus { percent: 73, status: "Discharging".into() };
+        publish(&sender, Ok(status.clone()));
+        assert!(changes.has_changed().unwrap());
+        assert_eq!(*changes.borrow_and_update(), Some(Ok(status.clone())));
+        publish(&sender, Ok(status.clone()));
+        assert!(!changes.has_changed().unwrap());
+        let mut late_ui = sender.subscribe();
+        assert_eq!(*late_ui.borrow_and_update(), Some(Ok(status)));
+        publish(&sender, Err("Battery gauge unavailable".into()));
+        assert!(changes.has_changed().unwrap());
+        assert!(late_ui.has_changed().unwrap());
+        changes.borrow_and_update();
+        publish(&sender, Err("Battery gauge unavailable".into()));
+        assert!(!changes.has_changed().unwrap());
+    }
     #[test]
     fn plato_interfaces_work_without_battery_type() {
         for name in ["bd71827_bat", "mc13892_bat", "battery"] {

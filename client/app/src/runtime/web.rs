@@ -9,7 +9,7 @@ use tokio::sync::watch;
 
 use super::web_state::{Reply, WebState};
 use super::*;
-use client_platform_web::transport::session::{Session, SessionMessage, SessionSender};
+use client_platform_web::transport::{error_message, field, session::{Session, SessionMessage, SessionSender}};
 
 #[derive(Clone)]
 pub(crate) struct Transport {
@@ -103,11 +103,20 @@ async fn serve_connection(connection: WebConnection, commands: Receiver<Command>
 
 impl Transport {
     pub(crate) async fn connect_web_transport(config: crate::web::WebConfiguration) -> Result<(Self, AppStartupState), BackendError> {
-        let connection = WebConnection::connect(config).await?;
+        let connection = WebConnection::connect_prestarted(config).await?;
         Self::finish_web_connection(connection).await
     }
 
     async fn finish_web_connection(connection: WebConnection) -> Result<(Self, AppStartupState), BackendError> {
+        let failure = connection.startup_failure();
+        if !failure.is_undefined() {
+            let error = error_message(&field(&failure, "error"));
+            return Err(if field(&failure, "storageBusy").as_bool() == Some(true) {
+                BackendError::classified(crate::Failure::StorageBusy, error)
+            } else {
+                BackendError::message(error)
+            });
+        }
         let (commands, incoming) = unbounded();
         let (startup_sender, startup_receiver) = oneshot::channel();
         let callbacks = commands.downgrade();

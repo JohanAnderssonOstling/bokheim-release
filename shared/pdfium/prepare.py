@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import os
+import runpy
 from pathlib import Path
 import shutil
 import sys
@@ -52,7 +53,12 @@ def fetch(spec, cache, override, offline):
     return path
 
 
-def prepare(target, *, cache=None, destination=None, archive=None, offline=False):
+def prepare(target, *, cache=None, destination=None, archive=None, offline=False, from_source=False, source_work=None, jobs=2):
+    if from_source:
+        if target != "aarch64-linux-android" or archive is not None:
+            raise RuntimeError("Source builds support Android ARM64 and cannot use a binary archive")
+        prepare_source = runpy.run_path(str(Path(__file__).with_name("build_android_source.py")))["prepare_source"]
+        return prepare_source(destination or ROOT / ".pdfium/fdroid" / target, source_work, jobs, offline)
     manifest = tomllib.loads(MANIFEST.read_text())
     if manifest["schema"] != 1 or target not in manifest["targets"]:
         raise RuntimeError(f"Unsupported PDFium target: {target}")
@@ -118,9 +124,15 @@ def main():
     parser.add_argument("--dest", type=Path)
     parser.add_argument("--archive", type=Path, help="Use a local archive (still checksum verified)")
     parser.add_argument("--offline", action="store_true")
+    parser.add_argument("--from-source", action="store_true")
+    parser.add_argument("--source-work", type=Path)
+    parser.add_argument("--jobs", type=int, default=2)
     args = parser.parse_args()
     try:
-        print(prepare(args.target, cache=args.cache, destination=args.dest, archive=args.archive, offline=args.offline))
+        if args.jobs < 1:
+            parser.error("--jobs must be positive")
+        print(prepare(args.target, cache=args.cache, destination=args.dest, archive=args.archive, offline=args.offline,
+            from_source=args.from_source, source_work=args.source_work, jobs=args.jobs))
     except (OSError, RuntimeError, tarfile.TarError, KeyError) as error:
         sys.exit(str(error))
 

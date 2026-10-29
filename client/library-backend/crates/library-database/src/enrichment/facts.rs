@@ -96,7 +96,6 @@ impl Database {
                     return Ok(());
                 }
                 BookEnrichmentStatus::Found => EnrichmentResult::Found {
-                    record: result.record.clone().ok_or_else(|| DatabaseError::message("found enrichment has no record"))?,
                     toc: result.toc.clone(),
                     cover_id: result.cover.as_ref().map(|cover| cover.id.clone()),
                     popularity: result.popularity.clone(),
@@ -106,7 +105,12 @@ impl Database {
             let LibraryStateEntry::BookAdd { value: mut addition, .. } = sync_common::wire::decode::<LibraryStateEntry>(&body, sync_common::wire::MAX_DECODED_REQUEST_BYTES).map_err(DatabaseError::operation)? else {
                 return Err(DatabaseError::message("invalid local book draft"));
             };
-            addition.enrichment = Some(value);
+            if result.status == BookEnrichmentStatus::Found {
+                let record = result.record.clone().ok_or_else(|| DatabaseError::message("found enrichment has no record"))?;
+                addition.apply_enrichment(record, value);
+            } else {
+                addition.enrichment = Some(value);
+            }
             record_local(transaction, LibraryStateEntry::BookAdd { content_hash: *hash, value: addition })?;
             Ok(())
         })
@@ -138,7 +142,7 @@ impl Database {
         })
     }
 
-    /// File title with the enriched attributes used by the library projection.
+    /// The finalized record used by the library projection.
     /// A definitive metadata miss still permits a direct cover-provider lookup.
     pub fn enrichment_cover_record(&self, hash: &BookId) -> Result<Option<BookRecord>, DatabaseError> {
         let Some((bytes, _)) = canonical_body(&self.connection, "book_add", &StateKey::Book(*hash), "")? else { return Ok(None) };
@@ -146,10 +150,6 @@ impl Database {
             return Err(DatabaseError::message("invalid stored book addition"));
         };
         let mut record = value.record;
-        if let Some(EnrichmentResult::Found { record: enriched, .. }) = value.enrichment {
-            record.metadata.book = enriched.metadata.book;
-            record.metadata.contributors = enriched.metadata.contributors;
-        }
         record.description.clear();
         Ok(Some(record))
     }
@@ -184,7 +184,7 @@ pub(crate) fn record_catalog_answer(transaction: &rusqlite::Transaction<'_>, has
     let LibraryStateEntry::BookAdd { value: mut addition, .. } = sync_common::wire::decode::<LibraryStateEntry>(&body, sync_common::wire::MAX_DECODED_REQUEST_BYTES).map_err(DatabaseError::operation)? else {
         return Err(DatabaseError::message("invalid local book draft"));
     };
-    addition.enrichment = Some(EnrichmentResult::Found { record, toc: None, cover_id: None, popularity: None });
+    addition.apply_enrichment(record, EnrichmentResult::Found { toc: None, cover_id: None, popularity: None });
     record_local(transaction, LibraryStateEntry::BookAdd { content_hash: *hash, value: addition })?;
     Ok(())
 }

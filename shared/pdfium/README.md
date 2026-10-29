@@ -1,8 +1,15 @@
 # PDFium dependency and packaging
 
 `artifacts.toml` is the source of truth for supported targets, revisions, archive
-URLs, checksums, and extracted files. Python 3.11+ is required. PDFium is never
-compiled as part of the application build.
+URLs, checksums, and extracted files. Python 3.11+ is required. Default builds
+use prebuilt libraries; Android F-Droid builds compile pinned C++ source.
+
+For Android source preparation, run
+`python3 shared/pdfium/prepare.py --target aarch64-linux-android --from-source`.
+This uses `source.json`, verified upstream patches, GN/Ninja, and a separate
+`.pdfium/fdroid/aarch64-linux-android/` directory. The schema-2 receipt records
+source provenance and output hashes; it does not claim a binary archive origin.
+`PDFIUM_REQUIRE_SOURCE=1` makes the Rust build reject prebuilt receipts.
 
 ## Preparation
 

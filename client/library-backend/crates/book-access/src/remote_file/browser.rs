@@ -1,12 +1,10 @@
 //! Synchronous parser adapters over the shared async range reader. JS futures
 //! stay on their event loop; parser workers wait using shared-memory wakeups.
 
-use crate::async_source::send_response;
 use crate::range_reader::{RangeFetcher, RangeReader};
-use crate::{AsyncBookSource, BoxedAsyncBookReader, BoxedBookReader, BundleFetch, FetchFuture};
+use crate::{AsyncBookSource, BoxedAsyncBookReader, BoxedBookReader, BundleFetch, BundleFetcher, FetchFuture};
 use client_platform_web::signal::Signal;
 use client_platform_web::transport::range::Source;
-use futures_channel::oneshot;
 use futures_util::io::{AsyncReadExt, AsyncSeekExt, BufReader};
 use std::future::Future;
 use std::io::{self, Read, Seek, SeekFrom};
@@ -87,28 +85,24 @@ where
     Ok(Box::new(BrowserReader { reader: SyncWrapper::new(source.reader()), source: None }))
 }
 
-struct Request {
-    ranges: Vec<(u64, usize)>,
-    reply: oneshot::Sender<io::Result<Vec<u8>>>,
-}
-
-pub fn browser_bundle_fetch<F>(mut fetch: F) -> io::Result<BundleFetch>
+pub fn browser_bundle_fetch<F>(fetch: F) -> io::Result<BundleFetch>
 where
     F: FnMut(Vec<(u64, usize)>) -> FetchFuture<'static, Result<Vec<u8>, String>> + 'static,
 {
     Signal::check().map_err(io::Error::other)?;
-    let (sender, receiver) = async_channel::unbounded::<Request>();
-    wasm_bindgen_futures::spawn_local(async move {
-        while let Ok(request) = receiver.recv().await {
-            if request.reply.is_canceled() {
-                continue;
-            }
-            send_response(fetch(request.ranges), request.reply).await;
-        }
-    });
-    Ok(Box::new(move |ranges| {
-        let (reply, response) = oneshot::channel();
-        sender.try_send(Request { ranges, reply }).map_err(io::Error::other)?;
-        wait_on_worker(async move { response.await.map_err(|_| io::Error::other("remote file service stopped"))? })
-    }))
+    let fetch = crate::batch_fetch::browser(fetch);
+    Ok(Box::new(BrowserBundleFetch(fetch)))
+}
+
+struct BrowserBundleFetch(crate::batch_fetch::BatchFetch);
+
+impl BundleFetcher for BrowserBundleFetch {
+    fn fetch(&mut self, ranges: Vec<(u64, usize)>) -> io::Result<Vec<u8>> {
+        wait_on_worker((self.0)(ranges))
+    }
+
+    #[cfg(feature = "pdf")]
+    fn fetch_cancellable(&mut self, ranges: Vec<(u64, usize)>, cancellation: &pdf_view_common::PdfPrefetchCancellation) -> io::Result<Vec<u8>> {
+        wait_on_worker(crate::batch_fetch::cancellable(&self.0, ranges, cancellation))
+    }
 }

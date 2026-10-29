@@ -126,6 +126,27 @@ function setup(media = true) {
     return {player, actions, session, saves};
 }
 
+test('range streaming follows media-session pause, page exit and disposal without requesting a direct grant', t => {
+    const {player: previous, actions} = setup();
+    previous.dispose();
+    t.mock.method(globalThis, 'fetch', () => { throw Error('range playback must not request a direct playback grant'); });
+    const paused = [];
+    const player = new BrowserAudio('/.bokheim-audio/source', new Uint8Array(), {title: 'Drive book'}, 0, () => {}, null, null, value => paused.push(value));
+    assert.equal(paused.at(-1), true);
+    player.audio.dispatchEvent(new Event('loadedmetadata'));
+    actions.get('play')();
+    assert.equal(paused.at(-1), false);
+    actions.get('pause')();
+    assert.equal(paused.at(-1), true);
+    actions.get('play')();
+    player.pagehide();
+    assert.equal(player.playing(), false);
+    assert.equal(paused.at(-1), true);
+    player.play();
+    player.dispose();
+    assert.equal(paused.at(-1), true);
+});
+
 test('media errors under direct recovery do not discard the session', async t => {
     const {player, config} = directPlayer(t, async () => ({...config, url: 'https://audio.invalid/api/playback/new'}));
     player.validUntil = Infinity;

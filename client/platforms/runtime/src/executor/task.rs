@@ -1,10 +1,10 @@
 //! Task ownership and cancellation are identical on every executor.
 
-use std::panic::AssertUnwindSafe;
-use super::{BackendExecutorError, BackendFuture, BackendOutput};
+use super::BackendExecutorError;
 use futures_util::future::{AbortHandle, Abortable};
 use futures_util::FutureExt;
 use std::future::Future;
+use std::panic::AssertUnwindSafe;
 use std::pin::Pin;
 use std::task::{Context, Poll};
 use tokio::sync::oneshot;
@@ -31,7 +31,9 @@ impl<T> Drop for BackendTask<T> {
     }
 }
 
-pub(super) fn owned_task<T: BackendOutput>(future: impl BackendFuture<T>) -> (BackendTask<T>, impl BackendFuture<()>) {
+// Send requirements belong to the spawning executor. The returned future is
+// Send whenever its input and output are, so local tasks use the same runner.
+pub(super) fn owned_task<T: 'static>(future: impl Future<Output = T> + 'static) -> (BackendTask<T>, impl Future<Output = ()> + 'static) {
     let (sender, receiver) = oneshot::channel();
     let (abort, registration) = AbortHandle::new_pair();
     let runner = async move {
@@ -42,17 +44,48 @@ pub(super) fn owned_task<T: BackendOutput>(future: impl BackendFuture<T>) -> (Ba
     (BackendTask { receiver, abort }, runner)
 }
 
-/// Same handle and cancel-on-drop semantics as [`owned_task`], but the future
-/// need not be `Send` — for work confined to one dedicated thread, such as a
-/// library's owned database connection.
-#[cfg(not(target_arch = "wasm32"))]
-pub(super) fn owned_local_task<T: 'static>(future: impl Future<Output = T> + 'static) -> (BackendTask<T>, impl Future<Output = ()> + 'static) {
-    let (sender, receiver) = oneshot::channel();
-    let (abort, registration) = AbortHandle::new_pair();
-    let runner = async move {
-        if let Ok(result) = Abortable::new(AssertUnwindSafe(future).catch_unwind(), registration).await {
-            let _ = sender.send(result.map_err(|_| BackendExecutorError("backend task panicked".to_owned())));
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::{cell::Cell, future::pending, rc::Rc};
+
+    #[tokio::test]
+    async fn local_tasks_can_hold_and_return_non_send_values() {
+        let value = Rc::new(42);
+        let owned = value.clone();
+        let (task, runner) = owned_task(async move {
+            tokio::task::yield_now().await;
+            owned
+        });
+        runner.await;
+        assert!(Rc::ptr_eq(&task.await.unwrap(), &value));
+    }
+
+    #[tokio::test]
+    async fn panics_settle_the_owned_task_with_an_error() {
+        let (task, runner) = owned_task(async { panic!("failed task") });
+        runner.await;
+        assert_eq!(task.await.unwrap_err().to_string(), "backend task panicked");
+    }
+
+    #[tokio::test]
+    async fn dropping_the_handle_releases_unstarted_and_active_work() {
+        for start in [false, true] {
+            let started = Rc::new(Cell::new(false));
+            let owned = started.clone();
+            let (task, runner) = owned_task(async move {
+                owned.set(true);
+                pending::<()>().await;
+                drop(owned);
+            });
+            let mut runner = Box::pin(runner);
+            if start {
+                assert!(futures_util::poll!(&mut runner).is_pending());
+            }
+            drop(task);
+            runner.await;
+            assert_eq!(started.get(), start);
+            assert_eq!(Rc::strong_count(&started), 1);
         }
-    };
-    (BackendTask { receiver, abort }, runner)
+    }
 }

@@ -75,11 +75,14 @@ public final class AudiobookService extends MediaSessionService {
     static final SessionCommand SKIP_BACK = new SessionCommand("bokheim.skip_back", Bundle.EMPTY);
     static final SessionCommand SKIP_FORWARD = new SessionCommand("bokheim.skip_forward", Bundle.EMPTY);
 
+    static final SessionCommand PREVIOUS_CHAPTER = new SessionCommand("bokheim.previous_chapter", Bundle.EMPTY);
+    static final SessionCommand NEXT_CHAPTER = new SessionCommand("bokheim.next_chapter", Bundle.EMPTY);
+
     static final class PlaybackControls implements MediaSession.Callback {
         @Override public MediaSession.ConnectionResult onConnect(MediaSession session, MediaSession.ControllerInfo controller) {
             MediaSession.ConnectionResult defaults = MediaSession.Callback.super.onConnect(session, controller);
             return new MediaSession.ConnectionResult.AcceptedResultBuilder(session)
-                .setAvailableSessionCommands(defaults.availableSessionCommands.buildUpon().add(SKIP_BACK).add(SKIP_FORWARD).build())
+                .setAvailableSessionCommands(defaults.availableSessionCommands.buildUpon().add(SKIP_BACK).add(SKIP_FORWARD).add(PREVIOUS_CHAPTER).add(NEXT_CHAPTER).build())
                 .setAvailablePlayerCommands(defaults.availablePlayerCommands.buildUpon()
                     .remove(Player.COMMAND_SEEK_TO_PREVIOUS).remove(Player.COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM)
                     .remove(Player.COMMAND_SEEK_TO_NEXT).remove(Player.COMMAND_SEEK_TO_NEXT_MEDIA_ITEM).build())
@@ -87,8 +90,11 @@ public final class AudiobookService extends MediaSessionService {
         }
 
         @Override public ListenableFuture<SessionResult> onCustomCommand(MediaSession session, MediaSession.ControllerInfo controller, SessionCommand command, Bundle args) {
-            if (SKIP_BACK.equals(command)) session.getPlayer().seekBack();
-            else if (SKIP_FORWARD.equals(command)) session.getPlayer().seekForward();
+            ChapterPlayer player = (ChapterPlayer) session.getPlayer();
+            if (SKIP_BACK.equals(command)) player.skip(-15_000);
+            else if (SKIP_FORWARD.equals(command)) player.skip(30_000);
+            else if (PREVIOUS_CHAPTER.equals(command)) player.previousChapter();
+            else if (NEXT_CHAPTER.equals(command)) player.nextChapter();
             else return Futures.immediateFuture(new SessionResult(SessionResult.RESULT_ERROR_NOT_SUPPORTED));
             return Futures.immediateFuture(new SessionResult(SessionResult.RESULT_SUCCESS));
         }
@@ -99,9 +105,11 @@ public final class AudiobookService extends MediaSessionService {
     private static AudiobookService instance;
     private ExoPlayer player;
     private MediaSession session;
+    private ChapterPlayer sessionPlayer;
     private long bookId;
     private long sequence;
     private boolean releasing;
+    private boolean stopping;
     private long sleepDeadline = -1;
     private long sleepChapterEnd = -1;
     private boolean sleepFinished;
@@ -130,7 +138,7 @@ public final class AudiobookService extends MediaSessionService {
         MAIN.post(() -> {
             try {
                 JSONObject data = new JSONObject(command);
-                if (instance != null) {
+                if (instance != null && !instance.stopping) {
                     instance.execute(data);
                 } else if ("load".equals(data.getString("command")) || !pendingCommands.isEmpty()) {
                     // User-initiated opening from the activity. Media3 promotes
@@ -164,13 +172,21 @@ public final class AudiobookService extends MediaSessionService {
             .setSeekForwardIncrementMs(30_000)
             .build();
         Intent open = new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        session = new MediaSession.Builder(this, player)
+        sessionPlayer = new ChapterPlayer(player, position -> {
+            try { stateListener.accept(new JSONObject().put("id", bookId).put("sequence", sequence).put("seekTarget", position).toString()); }
+            catch (org.json.JSONException error) { Log.e("Bokheim", "Could not request chapter seek", error); }
+        });
+        session = new MediaSession.Builder(this, sessionPlayer)
             .setCallback(new PlaybackControls())
             .setMediaButtonPreferences(java.util.Arrays.asList(
                 new CommandButton.Builder(CommandButton.ICON_SKIP_BACK_15).setDisplayName("Back 15 seconds")
                     .setSessionCommand(SKIP_BACK).setSlots(CommandButton.SLOT_BACK).build(),
                 new CommandButton.Builder(CommandButton.ICON_SKIP_FORWARD_30).setDisplayName("Forward 30 seconds")
-                    .setSessionCommand(SKIP_FORWARD).setSlots(CommandButton.SLOT_FORWARD).build()))
+                    .setSessionCommand(SKIP_FORWARD).setSlots(CommandButton.SLOT_FORWARD).build(),
+                new CommandButton.Builder(CommandButton.ICON_PREVIOUS).setDisplayName("Previous chapter")
+                    .setSessionCommand(PREVIOUS_CHAPTER).setSlots(CommandButton.SLOT_OVERFLOW).build(),
+                new CommandButton.Builder(CommandButton.ICON_NEXT).setDisplayName("Next chapter")
+                    .setSessionCommand(NEXT_CHAPTER).setSlots(CommandButton.SLOT_OVERFLOW).build()))
             .setSessionActivity(PendingIntent.getActivity(this, 0, open, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE))
             .build();
         // Rust dispatches directly instead of binding a MediaController, so
@@ -210,26 +226,30 @@ public final class AudiobookService extends MediaSessionService {
         String action = command.getString("command");
         long id = command.getLong("id");
         if ("load".equals(action)) {
+            stopping = false;
             publish(true, null);
             bookId = 0;
             clearSleepTimer();
             player.stop();
             player.clearMediaItems();
             bookId = id;
-            sequence = 0;
+            sequence = command.optLong("sequence");
             org.json.JSONArray ends = command.optJSONArray("chapterEnds");
             chapterEnds = new long[ends == null ? 0 : ends.length()];
             for (int i = 0; i < chapterEnds.length; i++) chapterEnds[i] = ends.getLong(i);
             MediaMetadata.Builder metadata = new MediaMetadata.Builder().setTitle(command.getString("title"));
             if (!command.isNull("author")) metadata.setArtist(command.getString("author"));
+            byte[] cover = MediaArtwork.bytes(command);
+            if (cover != null) metadata.setArtworkData(cover, MediaMetadata.PICTURE_TYPE_FRONT_COVER);
+            sessionPlayer.configure(command, metadata.build());
             MediaItem item = new MediaItem.Builder()
                 .setMediaId(Long.toString(id))
                 .setUri(command.isNull("path") ? Uri.parse("bokheim-audio://" + id + "/" + command.getLong("length")) : Uri.fromFile(new File(command.getString("path"))))
                 .setMimeType("audio/mp4").setMediaMetadata(metadata.build()).build();
             player.setPlaybackSpeed((float) command.optDouble("speed", 1.0));
             player.setMediaItem(item, command.optLong("position"));
+            player.setPlayWhenReady(command.optBoolean("playWhenReady", true));
             player.prepare();
-            player.play();
         } else if (id == bookId) {
             switch (action) {
                 case "pause":
@@ -245,7 +265,16 @@ public final class AudiobookService extends MediaSessionService {
                     break;
                 case "seek":
                     sequence = command.getLong("sequence");
+                    sessionPlayer.clearPendingSeek();
                     player.seekTo(command.getLong("position"));
+                    break;
+                case "artwork":
+                    MediaItem current = player.getCurrentMediaItem();
+                    if (current != null) {
+                        MediaMetadata updated = current.mediaMetadata.buildUpon().setArtworkData(MediaArtwork.bytes(command), MediaMetadata.PICTURE_TYPE_FRONT_COVER).build();
+                        sessionPlayer.setArtwork(updated);
+                        player.replaceMediaItem(0, current.buildUpon().setMediaMetadata(updated).build());
+                    }
                     break;
                 case "speed": player.setPlaybackSpeed((float) command.getDouble("speed")); break;
                 case "sleep":
@@ -258,13 +287,15 @@ public final class AudiobookService extends MediaSessionService {
                     startShakeListening();
                     updateSleepTimer(android.os.SystemClock.elapsedRealtime());
                     break;
+                case "detach":
                 case "stop":
+                    stopping = "stop".equals(action);
                     clearSleepTimer();
                     publish(true, null);
                     bookId = 0;
                     player.stop();
                     player.clearMediaItems();
-                    stopSelf();
+                    if (stopping) stopSelf();
                     break;
                 default: throw new IllegalArgumentException("Unknown audiobook command: " + action);
             }
@@ -345,7 +376,7 @@ public final class AudiobookService extends MediaSessionService {
     }
 
     private final Runnable tick = new Runnable() {
-        @Override public void run() { updateSleepTimer(android.os.SystemClock.elapsedRealtime()); publish(false, null); MAIN.postDelayed(this, 250); }
+        @Override public void run() { updateSleepTimer(android.os.SystemClock.elapsedRealtime()); sessionPlayer.refresh(); publish(false, null); MAIN.postDelayed(this, 250); }
     };
 
     private void publish(boolean released, String error) { publish(released, error, false); }
@@ -386,7 +417,8 @@ public final class AudiobookService extends MediaSessionService {
         MAIN.removeCallbacks(tick);
         stopShakeListening();
         if (session != null) session.release();
-        if (player != null) player.release();
+        if (sessionPlayer != null) sessionPlayer.release();
+        else if (player != null) player.release();
         super.onDestroy();
     }
 }

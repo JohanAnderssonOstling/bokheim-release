@@ -140,6 +140,18 @@ impl LibraryRegistry {
         self.run(move |registry| registry.entry(&id))
     }
 
+    #[cfg(not(target_arch = "wasm32"))]
+    pub fn recover_library_root(&self, id: &LibraryId) -> RegistryResult<super::LibraryRootRecovery> {
+        let id = *id;
+        self.run(move |registry| registry.recover_library_root(&id))
+    }
+
+    #[cfg(not(target_arch = "wasm32"))]
+    pub fn remember_library_root(&self, id: &LibraryId) -> RegistryResult<()> {
+        let id = *id;
+        self.run(move |registry| registry.remember_library_root(&id))
+    }
+
     pub fn asset_storage_enabled(&self, id: &LibraryId) -> RegistryResult<bool> {
         let id = *id;
         self.run(move |registry| registry.asset_storage_enabled(&id))

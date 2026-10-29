@@ -1,11 +1,9 @@
 //! Pure folder destination selection for folder-scoped browse actions.
 
 use std::collections::HashSet;
-use std::rc::Rc;
 
 use gpui::prelude::*;
 use gpui::{Context, EventEmitter, FocusHandle, Focusable, IntoElement, KeyDownEvent, MouseButton, Render, Window, div, px};
-use gpui_component::button::ButtonVariants;
 use gpui_component::scroll::ScrollableElement;
 use gpui_component::{Disableable, IconName, Sizable};
 use library_model::LibraryFolderDestination;
@@ -22,7 +20,7 @@ pub(crate) enum FolderPickerEvent {
 /// Browses the folder tree from a current directory and returns one directory
 /// ID. It deliberately has no knowledge of the action using that destination.
 pub(crate) struct FolderPicker {
-    destinations: Rc<Vec<LibraryFolderDestination>>,
+    destinations: Vec<LibraryFolderDestination>,
     selected_id: DirId,
     disabled_ids: HashSet<DirId>,
     /// The picker holds the keyboard for as long as it is up: it is a modal,
@@ -46,28 +44,6 @@ fn selected_path_of(destinations: &[LibraryFolderDestination], selected_id: DirI
     reversed
 }
 
-/// One column per level, from Library down to the children of the selection.
-fn columns_of(destinations: &[LibraryFolderDestination], selected_id: DirId) -> Vec<Vec<LibraryFolderDestination>> {
-    let selected_path = selected_path_of(destinations, selected_id);
-    let mut columns = Vec::new();
-    if let Some(root) = destinations.iter().find(|destination| destination.id == ROOT_DIR_ID) {
-        columns.push(vec![root.clone()]);
-    }
-    let mut parent_id = ROOT_DIR_ID;
-    let mut depth = 0;
-    loop {
-        let children = destinations.iter().filter(|destination| destination.parent_id == Some(parent_id)).cloned().collect::<Vec<_>>();
-        if children.is_empty() {
-            break;
-        }
-        columns.push(children);
-        let Some(next) = selected_path.get(depth).copied() else { break };
-        parent_id = next;
-        depth += 1;
-    }
-    columns
-}
-
 impl EventEmitter<FolderPickerEvent> for FolderPicker {}
 
 impl Focusable for FolderPicker {
@@ -79,7 +55,7 @@ impl Focusable for FolderPicker {
 impl FolderPicker {
     pub(crate) fn new(current_dir: DirId, destinations: Vec<LibraryFolderDestination>, cx: &mut Context<Self>) -> Self {
         let selected_id = if destinations.iter().any(|destination| destination.id == current_dir) { current_dir } else { ROOT_DIR_ID };
-        Self { destinations: Rc::new(destinations), selected_id, disabled_ids: HashSet::new(), focus: cx.focus_handle(), focus_taken: false }
+        Self { destinations, selected_id, disabled_ids: HashSet::new(), focus: cx.focus_handle(), focus_taken: false }
     }
 
     /// Walks the tree with the arrows: up and down within a column, right into
@@ -100,28 +76,29 @@ impl FolderPicker {
         cx.stop_propagation();
     }
 
-    fn children_of(&self, parent_id: DirId) -> Vec<LibraryFolderDestination> {
-        self.destinations.iter().filter(|destination| destination.parent_id == Some(parent_id)).cloned().collect()
-    }
-
-    /// The folders drawn beside the selected one, and where it sits among them.
-    fn selected_row(&self) -> Option<(Vec<LibraryFolderDestination>, usize)> {
-        let parent = self.destination(self.selected_id)?.parent_id?;
-        let siblings = self.children_of(parent);
-        let index = siblings.iter().position(|destination| destination.id == self.selected_id)?;
-        Some((siblings, index))
+    fn children_of(&self, parent_id: DirId) -> impl Iterator<Item = &LibraryFolderDestination> {
+        self.destinations.iter().filter(move |destination| destination.parent_id == Some(parent_id))
     }
 
     fn step_within_column(&mut self, delta: isize, cx: &mut Context<Self>) {
-        let Some((siblings, index)) = self.selected_row() else { return };
-        let last = siblings.len().saturating_sub(1) as isize;
-        let next = (index as isize + delta).clamp(0, last) as usize;
-        self.select(siblings[next].id, cx);
+        let Some(parent) = self.destination(self.selected_id).and_then(|destination| destination.parent_id) else { return };
+        let siblings = self.children_of(parent);
+        let next = if delta < 0 {
+            siblings.take_while(|destination| destination.id != self.selected_id).last()
+        } else {
+            siblings.skip_while(|destination| destination.id != self.selected_id).nth(1)
+        }
+        .map(|destination| destination.id);
+        if let Some(next) = next {
+            self.select(next, cx);
+        }
     }
 
     fn step_to_child(&mut self, cx: &mut Context<Self>) {
-        let Some(first) = self.children_of(self.selected_id).first().cloned() else { return };
-        self.select(first.id, cx);
+        let first = self.children_of(self.selected_id).next().map(|destination| destination.id);
+        if let Some(first) = first {
+            self.select(first, cx);
+        }
     }
 
     fn step_to_parent(&mut self, cx: &mut Context<Self>) {
@@ -149,12 +126,11 @@ impl FolderPicker {
         self.destinations.iter().find(|destination| destination.id == id)
     }
 
-    fn selected_path(&self) -> Vec<DirId> {
-        selected_path_of(&self.destinations, self.selected_id)
-    }
-
-    fn columns(&self) -> Vec<Vec<LibraryFolderDestination>> {
-        columns_of(&self.destinations, self.selected_id)
+    /// One column per level, from Library down to the children of the selection.
+    fn columns(&self, selected_path: &[DirId]) -> Vec<Vec<&LibraryFolderDestination>> {
+        let root = self.destination(ROOT_DIR_ID).map(|root| vec![root]);
+        let children = std::iter::once(ROOT_DIR_ID).chain(selected_path.iter().copied()).map(|parent| self.children_of(parent).collect::<Vec<_>>()).take_while(|children| !children.is_empty());
+        root.into_iter().chain(children).collect()
     }
 
     fn confirm(&self, cx: &mut Context<Self>) {
@@ -179,9 +155,8 @@ impl Render for FolderPicker {
             self.focus_taken = true;
             self.focus.focus(window, cx);
         }
-        let picker = cx.entity();
-        let selected_path = self.selected_path();
-        let columns = self.columns();
+        let selected_path = selected_path_of(&self.destinations, self.selected_id);
+        let columns = self.columns(&selected_path);
         // Flex can size a `flex_1` child against a parent's own resolved
         // height, but not against one that is itself only a `max_h` with no
         // explicit height to grow into — that left the column strip at zero
@@ -198,16 +173,10 @@ impl Render for FolderPicker {
                 let on_path = destination.id == self.selected_id || selected_path.contains(&destination.id);
                 let disabled = self.disabled_ids.contains(&destination.id);
                 let destination_id = destination.id;
-                let select_picker = picker.clone();
                 contents = contents.child(
                     components::selectable_button(components::base_button(format!("folder-picker-{destination_id}")).ghost().small().disabled(disabled).w_full().h(px(36.0)).justify_start().icon(IconName::Folder), on_path, theme)
-                        .label(destination.label)
-                        .on_click(move |_, _, cx| {
-                            select_picker.update(cx, |picker, cx| {
-                                picker.selected_id = destination_id;
-                                cx.notify();
-                            });
-                        }),
+                        .label(destination.label.clone())
+                        .on_click(cx.listener(move |picker, _, _, cx| picker.select(destination_id, cx))),
                 );
             }
             let column = div()
@@ -222,8 +191,6 @@ impl Render for FolderPicker {
         }
 
         let can_select = self.destination(self.selected_id).is_some() && !self.disabled_ids.contains(&self.selected_id);
-        let cancel_picker = picker.clone();
-        let confirm_picker = picker.clone();
         // Sized to its content rather than stretched full-height: the picker
         // is a handful of folder columns, not a page, and a nearly-empty
         // library left it a mostly-blank pane. Capped the way the library
@@ -248,28 +215,59 @@ impl Render for FolderPicker {
                     .border_b_1()
                     .border_color(theme.rule)
                     .child(div().flex_1())
-                    .child(components::dialog_cancel_button("cancel-folder-picker", "Cancel").on_click(move |_, _, cx| cancel_picker.update(cx, |picker, cx| picker.cancel(cx))))
+                    .child(components::dialog_cancel_button("cancel-folder-picker", "Cancel").on_click(cx.listener(|picker, _, _, cx| picker.cancel(cx))))
                     .child(
                         components::base_button("confirm-folder-picker")
                             .primary()
                             .disabled(!can_select)
                             .label("Choose")
                             .tooltip(components::shortcut_tooltip("Choose", "enter"))
-                            .on_click(move |_, _, cx| confirm_picker.update(cx, |picker, cx| picker.confirm(cx))),
+                            .on_click(cx.listener(|picker, _, _, cx| picker.confirm(cx))),
                     ),
             )
             .child(column_strip);
-        let dismiss_picker = picker;
-        gpui::deferred(components::anchor_to_window(
-            components::modal_overlay()
-                .occlude()
-                .child(components::modal_scrim("folder-picker-scrim", theme).on_mouse_down(MouseButton::Left, |_, _, cx| cx.stop_propagation()).on_click(move |_, _, cx| {
-                    cx.stop_propagation();
-                    dismiss_picker.update(cx, |picker, cx| picker.cancel(cx));
-                }))
-                .child(panel),
-            window,
-        ))
-        .with_priority(2)
+        let scrim = components::modal_scrim("folder-picker-scrim", theme).on_mouse_down(MouseButton::Left, |_, _, cx| cx.stop_propagation()).on_click(cx.listener(|picker, _, _, cx| {
+            cx.stop_propagation();
+            picker.cancel(cx);
+        }));
+        gpui::deferred(components::centered_modal(scrim, panel, window)).with_priority(2)
+    }
+}
+
+#[cfg(all(test, not(target_arch = "wasm32"), not(feature = "kobo")))]
+mod tests {
+    use super::*;
+    use gpui::{TestAppContext, VisualTestContext};
+    use std::{cell::RefCell, rc::Rc};
+
+    #[gpui::test]
+    fn keyboard_follows_columns_and_disabled_folders_cannot_be_confirmed(cx: &mut TestAppContext) {
+        cx.update(gpui_component::init);
+        let [first, second, child, disabled] = [1, 2, 3, 4].map(DirId::from_u128);
+        let destinations = [(ROOT_DIR_ID, None), (first, Some(ROOT_DIR_ID)), (second, Some(ROOT_DIR_ID)), (child, Some(first)), (disabled, Some(first))]
+            .into_iter()
+            .map(|(id, parent_id)| LibraryFolderDestination { id, parent_id, label: id.to_string(), path: String::new() })
+            .collect();
+        let picker = cx.new(|cx| FolderPicker::new(child, destinations, cx).disabling(disabled));
+        let received = Rc::new(RefCell::new(Vec::new()));
+        let events = received.clone();
+        let _subscription = cx.update(|cx| cx.subscribe(&picker, move |_, event: &FolderPickerEvent, _| events.borrow_mut().push(*event)));
+        let window = cx.add_window(|window, cx| gpui_component::Root::new(picker.clone(), window, cx));
+        let mut visual = VisualTestContext::from_window(window.into(), cx);
+        visual.run_until_parked();
+        visual.read_entity(&picker, |picker, _| {
+            let path = selected_path_of(&picker.destinations, picker.selected_id);
+            assert_eq!(path, [first, child]);
+            assert_eq!(picker.columns(&path).into_iter().map(|column| column.into_iter().map(|destination| destination.id).collect::<Vec<_>>()).collect::<Vec<_>>(), vec![vec![ROOT_DIR_ID], vec![first, second], vec![child, disabled]]);
+        });
+        visual.simulate_keystrokes("down down enter");
+        visual.read_entity(&picker, |picker, _| assert_eq!(picker.selected_id, disabled));
+        assert!(received.borrow().is_empty());
+        visual.simulate_keystrokes("left down right");
+        visual.read_entity(&picker, |picker, _| assert_eq!(picker.selected_id, second));
+        visual.simulate_keystrokes("left left up down");
+        visual.read_entity(&picker, |picker, _| assert_eq!(picker.selected_id, ROOT_DIR_ID));
+        visual.simulate_keystrokes("right right up enter escape");
+        assert_eq!(*received.borrow(), [FolderPickerEvent::Selected(child), FolderPickerEvent::Cancelled]);
     }
 }

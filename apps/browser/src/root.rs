@@ -60,6 +60,7 @@ impl PaletteSelectionService for PalettePreferences {
 pub struct BrowserRoot {
     preferences: Entity<Preferences>,
     shell: Entity<BrowserShell>,
+    split_enabled: bool,
     focus: FocusHandle,
     _shell_subscription: Subscription,
     _preference_subscription: Subscription,
@@ -68,6 +69,22 @@ pub struct BrowserRoot {
 }
 
 impl BrowserRoot {
+    pub fn restore_navigation(&mut self, saved: NavigationSession, window: &mut Window, cx: &mut Context<Self>) {
+        self.shell.update(cx, |shell, cx| shell.restore_navigation(saved, window, cx));
+    }
+
+    pub fn set_now_playing(&self, book: Option<NowPlayingBook>, cx: &mut App) {
+        self.shell.update(cx, |shell, cx| shell.set_now_playing(book, cx));
+    }
+
+    pub fn set_reader_surface(&mut self, surface: Option<gpui::AnyView>, cx: &mut Context<Self>) {
+        self.shell.update(cx, |shell, cx| shell.set_reader_surface(surface, cx));
+    }
+
+    pub fn set_split_close_enabled(&mut self, enabled: bool, cx: &mut Context<Self>) {
+        self.split_enabled = enabled;
+        self.shell.update(cx, |shell, cx| shell.set_split_close_enabled(enabled, cx));
+    }
     #[cfg(target_arch = "wasm32")]
     pub fn apply_sync_event(&mut self, event: crate::SyncEvent, cx: &mut Context<Self>) {
         self.shell.update(cx, |shell, cx| shell.apply_sync_event(event, cx));
@@ -114,6 +131,7 @@ impl BrowserRoot {
             let _ = browser.update(cx, |_, cx| cx.emit(OpenBookRequested { locator, title, initial_target }));
         });
         let shell = cx.new(|cx| BrowserShell::new(services.clone(), saved, sync_state, open_book, preferences.clone(), window, cx));
+        cx.subscribe(&shell, |_, _, request: &crate::PaneRequest, cx| cx.emit(request.clone())).detach();
         let shell_subscription = cx.observe(&shell, |_, _, cx| cx.notify());
 
         let updates = services.updates.clone();
@@ -125,7 +143,7 @@ impl BrowserRoot {
 
         let focus = cx.focus_handle();
         focus.focus(window, cx);
-        Self { preferences, shell, focus, _shell_subscription: shell_subscription, _preference_subscription: preference_subscription, updates, _update_subscription: update_subscription }
+        Self { preferences, shell, split_enabled: false, focus, _shell_subscription: shell_subscription, _preference_subscription: preference_subscription, updates, _update_subscription: update_subscription }
     }
 
     fn prompt_for_update(&mut self, window: &mut Window, cx: &mut Context<Self>) {
@@ -213,6 +231,7 @@ impl BrowserRoot {
 }
 
 impl EventEmitter<OpenBookRequested> for BrowserRoot {}
+impl EventEmitter<crate::PaneRequest> for BrowserRoot {}
 
 impl Focusable for BrowserRoot {
     fn focus_handle(&self, _: &App) -> FocusHandle {
@@ -228,7 +247,7 @@ impl Render for BrowserRoot {
         let ui_font_size = preferences.ui_font_size_px();
         window.set_rem_size(px(ui_font_size as f32));
 
-        ui_components::app_page(preferences.interface_font_name(), ui_font_size, theme)
+        ui_components::app_page(preferences.interface_font_name(cx), ui_font_size, theme)
             .key_context("Browser")
             .track_focus(&self.focus)
             .capture_action(cx.listener(Self::capture_dismiss))
@@ -253,7 +272,7 @@ impl Render for BrowserRoot {
                 root.shell.update(cx, |shell, cx| shell.navigate(GlobalRoute::Settings.into(), window, cx));
             }))
             .child(self.shell.clone())
-            .children(Root::render_dialog_layer(window, cx))
+            .when(!self.split_enabled, |root| root.children(Root::render_dialog_layer(window, cx)))
             .into_any_element()
     }
 }
@@ -275,6 +294,9 @@ mod session_tests {
         let first = backend.create_library_with_asset_storage("First".into(), true).await.unwrap();
         let second = backend.create_library_with_asset_storage("Second".into(), true).await.unwrap();
         let startup = AppStartup { libraries: backend.libraries().await.unwrap(), browsing_preferences: startup.browsing_preferences, account_status: startup.account_status };
+        // Leave this library out of the startup list so its first navigation
+        // request waits for asynchronous discovery.
+        let third = backend.create_library_with_asset_storage("Discovered later".into(), true).await.unwrap();
         let saved = NavigationSession { library_id: Some(*second.library_id()), route: Route::Library(LibraryRoute::Authors), ..Default::default() };
         let services = AppServices::new(backend, startup);
         cx.update(|cx| {
@@ -286,6 +308,26 @@ mod session_tests {
         let snapshot = window.update(cx, |root, _, cx| root.navigation_session(cx)).unwrap();
         assert_eq!(snapshot.library_id, saved.library_id);
         assert_eq!(snapshot.route, saved.route);
+
+        window
+            .update(cx, |root, window, cx| {
+                root.shell.update(cx, |shell, cx| {
+                    shell.open_folder(*third.library_id(), ROOT_DIR_ID, "Stale folder request".into(), window, cx);
+                    shell.open_subject(*first.library_id(), library_model::BrowseLocation::Subject(0), "Subjects".into(), window, cx);
+                })
+            })
+            .unwrap();
+        cx.run_until_parked();
+        let snapshot = window.update(cx, |root, _, cx| root.navigation_session(cx)).unwrap();
+        assert_eq!(snapshot.library_id, Some(*first.library_id()));
+        assert_eq!(snapshot.route, Route::Library(LibraryRoute::Subjects));
+        let restored = NavigationSession { library_id: Some(*third.library_id()), route: GlobalRoute::Settings.into(), ..Default::default() };
+        window.update(cx, |root, window, cx| root.shell.update(cx, |shell, cx| shell.restore_navigation(restored.clone(), window, cx))).unwrap();
+        let shell = window.update(cx, |root, _, _| root.shell.clone()).unwrap();
+        cx.condition(&shell, |shell, cx| shell.navigation_session(cx).library_id == restored.library_id).await;
+        let snapshot = window.update(cx, |root, _, cx| root.navigation_session(cx)).unwrap();
+        assert_eq!(snapshot.library_id, restored.library_id);
+        assert_eq!(snapshot.route, restored.route, "a superseded folder request must not reopen when its library is selected later");
 
         window.update(cx, |root, window, cx| root.open_folder(*first.library_id(), ROOT_DIR_ID, "Folders".into(), window, cx)).unwrap();
         cx.run_until_parked();

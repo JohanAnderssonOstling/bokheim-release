@@ -1,11 +1,31 @@
 #!/bin/sh
-# Kobo radio adapter. Interface/driver hints are captured by run.sh from Nickel.
+# Kobo radio adapter. Nickel does not export driver hints on every firmware.
 set -eu
 step='validate hardware hints'
 trap 'status=$?; if [ "$status" -ne 0 ]; then printf "Wi-Fi helper failed at %s (status=%s)\n" "$step" "$status" >&2; fi' 0
+loaded() { awk -v module="$1" '$1 == module { found=1 } END { exit !found }' /proc/modules; }
+module_state="$(dirname "$0")/wifi-module"
+if [ -z "${WIFI_MODULE:-}" ]; then
+    # Prefer the running kernel over a saved hint. Do not guess from installed
+    # .ko files: Kobo firmware can ship several different Wi-Fi drivers.
+    for candidate in dhd 8189fs 8189es 8723bs 8723ds 8821cs moal; do
+        if loaded "$candidate"; then
+            [ -z "${WIFI_MODULE:-}" ] || { printf 'Multiple Wi-Fi drivers are loaded\n' >&2; exit 2; }
+            WIFI_MODULE=$candidate
+        fi
+    done
+    # Shutdown unloads the driver. Retain its name for subsequent wake cycles
+    # even when the application was launched without WIFI_MODULE.
+    if [ -z "${WIFI_MODULE:-}" ] && [ -r "$module_state" ]; then
+        IFS= read -r WIFI_MODULE < "$module_state" || true
+    fi
+fi
+case "${WIFI_MODULE:-}" in dhd|8189fs|8189es|8723bs|8723ds|8821cs|moal) ;; *) printf 'Missing or unsupported Wi-Fi driver: %s\n' "${WIFI_MODULE:-unset}" >&2; exit 2 ;; esac
+if [ "${1:-}" = detect ]; then printf '%s\n' "$WIFI_MODULE"; exit 0; fi
 case "${INTERFACE:-}" in ''|-*|.*|*[!a-zA-Z0-9_.-]*) printf 'Missing or invalid Wi-Fi interface\n' >&2; exit 2 ;; esac
 case "${PLATFORM:-}" in -*|.*|*[!a-zA-Z0-9_.-]*) printf 'Invalid Wi-Fi platform\n' >&2; exit 2 ;; esac
-case "${WIFI_MODULE:-}" in dhd|8189fs|8189es|8723bs|8723ds|8821cs|moal) ;; *) printf 'Missing or unsupported Wi-Fi driver: %s\n' "${WIFI_MODULE:-unset}" >&2; exit 2 ;; esac
+case "${1:-}" in on|off) ;; *) exit 2 ;; esac
+printf '%s\n' "$WIFI_MODULE" > "$module_state"
 resolve_module() {
     # PLATFORM is not exported by every Nickel launcher. Shutdown does not
     # need it; startup can locate a unique installed driver instead.
@@ -25,7 +45,6 @@ resolve_module() {
     module_dir=$(dirname "$module_file")
     [ ! -d "$module_dir/wifi" ] || module_dir="$module_dir/wifi"
 }
-loaded() { awk -v module="$1" '$1 == module { found=1 } END { exit !found }' /proc/modules; }
 remove_module() {
     # Supplicant termination is asynchronous; the driver can remain busy briefly.
     remaining=20

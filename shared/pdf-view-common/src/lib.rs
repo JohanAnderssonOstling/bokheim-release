@@ -1,7 +1,9 @@
 //! Framework-independent PDF crop, coordinate, and text-selection geometry.
 
 mod metadata;
+mod prefetch;
 pub use metadata::{PdfByteRange, PdfDependencyIndex, PdfPageSource, PdfReaderMetadata, PdfStoredAnnotation, PdfStoredAnnotationKind, PdfStoredPage};
+pub use prefetch::PdfPrefetchCancellation;
 use std::collections::HashSet;
 
 const DEFAULT_CONTENT_DIFFERENCE_THRESHOLD: u8 = 24;

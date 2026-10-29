@@ -1,7 +1,6 @@
 use super::{AccountActivity, SyncPage};
 use gpui::prelude::*;
 use gpui::{AnyElement, Context, Div, Entity, Focusable, Window};
-use gpui_component::button::ButtonVariants;
 use gpui_component::input::{Input, InputState};
 use ui_components as components;
 
@@ -86,7 +85,6 @@ impl SyncPage {
             // Keep the irreversible operation alive if Settings is closed.
             cx.spawn(async move |page, cx| {
                 let result = backend.delete_account(email, password).await;
-                super::after_browser_callback(cx).await;
                 let _ = page.update(cx, |page, cx| match result {
                     Ok(snapshot) => page.apply_snapshot(snapshot, Some("Your account has been deleted. Books saved on this device have been kept."), cx),
                     Err(error) => page.apply_error(error, cx),

@@ -4,7 +4,7 @@ use crate::core::AuthError;
 impl PostgresAccountService {
     /// Permanently removes the identity and all rows owned through cascading
     /// foreign keys, including sessions, libraries, sync state and blob claims.
-    /// Physical files remain in the asset store, as with library deletion.
+    /// Wakes asset cleanup after the ownership records have been committed.
     pub async fn delete_account(&self, email: &str, password: &str) -> Result<(), AuthError> {
         let email = normalized_email(email).ok().filter(|_| valid_password_size(password));
         let Some(email) = email else {
@@ -32,6 +32,7 @@ impl PostgresAccountService {
         sqlx::query("DELETE FROM pending_registration WHERE email=$1").bind(&email).execute(&mut *transaction).await.map_err(internal)?;
         transaction.commit().await.map_err(internal)?;
         self.identity_cache.invalidate_user(&user_id);
+        self.cleanup.notify_one();
         Ok(())
     }
 }

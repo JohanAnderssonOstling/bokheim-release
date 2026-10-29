@@ -3,13 +3,16 @@
 //! The application registry decides *which* location and account policy to
 //! use.  Everything opened from that location belongs to the library session.
 
-use crate::BackendError;
+#[cfg(not(target_arch = "wasm32"))]
 use crate::asset_store::AssetStore;
-use client_platform_runtime::startup_profile::StartupProfile;
-#[cfg(target_arch = "wasm32")]
 use crate::library::discovery::LibraryScanner;
 use crate::notification_interest::NotificationInterest;
+use crate::BackendError;
+use client_platform_runtime::startup_profile::StartupProfile;
+use cpu_host::CpuHost;
 use library_database::Database;
+#[cfg(not(target_arch = "wasm32"))]
+use library_model::{BookDownloadStatus, DownloadState, LibraryUpdate};
 use library_sync::{LibrarySync, LibrarySyncConfig};
 use std::sync::Arc;
 use std::{cell::Cell, rc::Rc};
@@ -21,9 +24,20 @@ pub struct LibraryRuntimeSpec {
     pub account: crate::integration::LibraryAccount,
     pub notification_interest: NotificationInterest,
     pub cloud: cloud_storage::connections::CloudConnections,
+    #[cfg(not(target_arch = "wasm32"))]
+    pub root_failures: Option<async_channel::Sender<sync_common::LibraryId>>,
 }
 
 impl LibrarySession {
+    #[cfg(not(target_arch = "wasm32"))]
+    pub(crate) fn recover(spec: LibraryRuntimeSpec) -> Result<Self, BackendError> {
+        let session = Self::open(spec)?;
+        for hash in session.db.reset_local_storage()? {
+            session.events.publish_update(LibraryUpdate::Download(BookDownloadStatus::new(hash, DownloadState::NotDownloaded)));
+        }
+        Ok(session)
+    }
+
     pub(crate) fn open(spec: LibraryRuntimeSpec) -> Result<Self, BackendError> {
         let mut profile = StartupProfile::for_library("library_resources", spec.config.id);
         let default_sync_server_url = spec.config.default_sync_server_url.clone();
@@ -33,22 +47,28 @@ impl LibrarySession {
         // local to their tasks, so no sharing primitive is needed.
         let database = Arc::new(Database::open(&spec.config.database_locator)?);
         profile.mark("database_open");
-        let cpu = {
-            cpu_host::HOST
-                .get_or_init(|| -> std::sync::Arc<dyn cpu_host::CpuHost> {
-                    #[cfg(target_arch = "wasm32")]
-                    {
-                        std::sync::Arc::new(client_platform_web::cpu_host::WebHost::default())
-                    }
-                    #[cfg(not(target_arch = "wasm32"))]
-                    {
-                        std::sync::Arc::new(client_platform_native::cpu_host::NativeHost::default())
-                    }
-                })
-                .clone()
-        };
+        let cpu = cpu_host::HOST
+            .get_or_init(|| -> Arc<dyn CpuHost> {
+                #[cfg(target_arch = "wasm32")]
+                {
+                    Arc::new(client_platform_web::cpu_host::WebHost::default())
+                }
+                #[cfg(not(target_arch = "wasm32"))]
+                {
+                    Arc::new(client_platform_native::cpu_host::NativeHost::default())
+                }
+            })
+            .clone();
         profile.mark("cpu_host");
-        let assets = open_assets(&spec.config.root, &spec.config.database_locator, &cpu)?;
+        #[cfg(not(target_arch = "wasm32"))]
+        let assets = AssetStore::open(&spec.config.root).map_err(BackendError::operation)?;
+        #[cfg(target_arch = "wasm32")]
+        let assets = crate::asset_store::open(&spec.config.root, cpu.clone()).map_err(BackendError::operation)?;
+        #[cfg(not(target_arch = "wasm32"))]
+        if let Some(failures) = spec.root_failures.clone() {
+            let id = spec.config.id;
+            assets.on_root_unavailable(move || { let _ = failures.try_send(id); });
+        }
         profile.mark("asset_store");
         // `Database::open` already configured the connection (pragmas, sync
         // functions) internally.
@@ -61,12 +81,7 @@ impl LibrarySession {
         let (file_wake, file_requests) = library_runtime::scheduler::SyncScheduler::new();
         let (enrichment_wake, enrichment_requests) = library_runtime::scheduler::SyncScheduler::new();
         let (events, coordination) = library_runtime::events::LibraryEventRouter::new(sync_wake, asset_wake, file_wake, enrichment_wake);
-        let scanner = {
-            use crate::library::discovery::*;
-            let root: &str = &spec.config.root;
-
-            LibraryScanner { root: root.to_owned() }
-        };
+        let scanner = LibraryScanner { root: spec.config.root.clone() };
         profile.mark("events_and_scanner");
         database.set_storage_policy(&spec.config.storage, spec.config.reset_cloud_presence)?;
         profile.mark("storage_policy");
@@ -88,7 +103,7 @@ impl LibrarySession {
         profile.mark("sync_construct");
         let client = library_enrichment::MetadataClient::new(&metadata_server_url).map_err(BackendError::operation)?;
         profile.mark("metadata_client");
-        let covers = library_enrichment::CoverClient::new(spec.config.google_books_api_key.clone());
+        let covers = library_enrichment::CoverClient::default();
         profile.mark("cover_client");
         let enrichment = library_enrichment::LibraryEnrichment {
             database: database.clone(),
@@ -103,7 +118,6 @@ impl LibrarySession {
         let import = library_import::LibraryImport {
             library_id: spec.config.id,
             cloud: spec.cloud.clone(),
-            #[cfg(not(target_arch = "wasm32"))]
             provider_upload_lock: Default::default(),
             database: database.clone(),
             assets: assets.clone(),
@@ -128,23 +142,15 @@ impl LibrarySession {
             runtime: Rc::new(crate::library::session::LibraryRuntime::default()),
             account: spec.account,
             cloud: spec.cloud,
+            #[cfg(not(target_arch = "wasm32"))]
+            root_failures: spec.root_failures,
             _scanner: Arc::new(scanner),
             cpu,
-            filesystem_scanning: std::cell::Cell::new(false),
+            scanning: Cell::new(false),
             #[cfg(not(target_arch = "wasm32"))]
             torrents: super::torrents::TorrentService::default(),
         };
         profile.mark("remaining_resources");
         Ok(library)
     }
-}
-
-#[cfg(not(target_arch = "wasm32"))]
-fn open_assets(root: &str, _database_locator: &str, _cpu: &std::sync::Arc<dyn cpu_host::CpuHost>) -> Result<AssetStore, BackendError> {
-    crate::asset_store::open(root).map_err(BackendError::operation)
-}
-
-#[cfg(target_arch = "wasm32")]
-fn open_assets(root: &str, _database_locator: &str, cpu: &std::sync::Arc<dyn cpu_host::CpuHost>) -> Result<AssetStore, BackendError> {
-    Ok(crate::asset_store::open(root, cpu.clone()).map_err(BackendError::operation)?)
 }

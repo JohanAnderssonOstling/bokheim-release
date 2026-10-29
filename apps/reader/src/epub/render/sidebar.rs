@@ -2,7 +2,7 @@
 
 use crate::invalidation::notify;
 use gpui::prelude::*;
-use gpui::{AnyElement, App, Context, Entity, IntoElement, Window};
+use gpui::{AnyElement, App, Context, Entity, IntoElement, Window, div};
 use gpui_component::input::Input;
 use library_backend::Annotation;
 use std::rc::Rc;
@@ -10,7 +10,8 @@ use ui_components as components;
 
 use crate::epub::ReaderView;
 use crate::invalidation::Component;
-use crate::shell::annotation_tree::{self, AnnotationTreeTarget};
+use crate::shell::annotation_tree::AnnotationTreeTarget;
+use crate::shell::sidebar_list;
 use crate::shell::state_panel::{self, AnnotationSidebarTarget, SidebarTab, TocActivation};
 use crate::shell::toolbar::SidebarTarget;
 
@@ -88,10 +89,13 @@ impl ReaderView {
         let selected_index = self.marks.annotations().iter().position(|annotation| Some(annotation.id.as_str()) == selected_id);
         self.annotation_tree.reveal_selected(&tree, selected_id, selected_index);
         let empty_message = if self.marks.annotations().is_empty() { "No notes yet. Select text, then choose Annotation to add a note." } else { "No annotations match your filter." };
-        let rows = annotation_tree::annotation_tree_rows(&cx.entity(), &tree, &self.annotation_tree, self.marks.annotations(), selected_id, empty_message, theme);
+        self.annotation_tree.prepare_list(&tree, self.marks.annotations(), selected_id, empty_message);
+        let rows = sidebar_list::panel("epub-annotation-list", &cx.entity(), &self.annotation_tree.list.state, theme, |this, row, target, theme, _| {
+            this.annotation_tree.render_row(target, row, this.marks.annotations(), this.marks.selected_id(), theme)
+        });
         let filter = components::reader_search_bar(theme)
             .child(components::reader_search_box(theme).debug_selector(|| "reader-annotation-filter".into()).child(Input::new(&self.annotation_filter_input).appearance(false).cleanable(true).size_full()));
-        crate::shell::search::panel(filter.into_any_element(), rows, theme)
+        div().size_full().min_h_0().min_w_0().flex().flex_col().child(div().flex_none().child(filter)).child(rows).into_any_element()
     }
 
     /// The selected panel's body; the shell supplies its rail and header.

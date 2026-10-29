@@ -31,25 +31,10 @@ impl<T, F: FnOnce()> Drop for OwnedReply<T, F> {
     }
 }
 
-/// Stale replies cannot settle a newer request. Closing the channel stops an
-/// active cycle even when an earlier success is still buffered.
-pub async fn matching<T>(replies: &Receiver<(u32, T)>, id: u32) -> Option<T> {
-    while !replies.is_closed() {
-        let (reply_id, value) = replies.recv().await.ok()?;
-        if replies.is_closed() {
-            return None;
-        }
-        if reply_id == id {
-            return Some(value);
-        }
-    }
-    None
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
-    use async_channel::{bounded, unbounded};
+    use async_channel::bounded;
     use futures_util::future::pending;
     use std::cell::Cell;
 
@@ -72,26 +57,6 @@ mod tests {
         cancel.close();
         assert!(wait.await.is_err());
         cancel.close();
-    }
-
-    #[tokio::test]
-    async fn matching_ignores_old_ids_and_stopping_wins_over_buffered_success() {
-        let (reply, responses) = unbounded();
-        reply.try_send((1, false)).unwrap();
-        reply.try_send((2, true)).unwrap();
-        assert_eq!(matching(&responses, 2).await, Some(true));
-        reply.try_send((3, true)).unwrap();
-        reply.close();
-        assert_eq!(matching(&responses, 3).await, None);
-    }
-
-    #[tokio::test]
-    async fn closing_replies_wakes_an_active_cycle() {
-        let (reply, responses) = unbounded::<(u32, bool)>();
-        let mut wait = Box::pin(matching(&responses, 1));
-        assert!(futures_util::poll!(&mut wait).is_pending());
-        reply.close();
-        assert_eq!(wait.await, None);
     }
 
     #[tokio::test]

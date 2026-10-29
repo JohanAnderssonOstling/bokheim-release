@@ -143,7 +143,10 @@ impl<B: Backend> ser::Serializer for Serializer<B> {
         B::text(variant)
     }
     fn serialize_newtype_struct<T: Serialize + ?Sized>(self, name: &'static str, value: &T) -> Result<B::Output, SerializerError> {
-        if matches!(name, "ContentHash" | "BookId") {
+        // Opt-in transport payloads choose compact bytes in binary mode while
+        // JSON serializers keep their ordinary, human-readable representation.
+        // All three backends (encoding, counting, representation) share this.
+        if matches!(name, "ContentHash" | "BookId" | "BokheimTransportBytes") {
             value.serialize(Self::new(true))
         } else {
             B::newtype(value.serialize(self)?)

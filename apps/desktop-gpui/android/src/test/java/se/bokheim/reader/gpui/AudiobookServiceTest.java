@@ -44,6 +44,159 @@ public class AudiobookServiceTest {
     @After public void tearDown() { controller.destroy(); }
 
 
+    private ChapterPlayer sessionPlayer() throws Exception {
+        java.lang.reflect.Field field = AudiobookService.class.getDeclaredField("sessionPlayer");
+        field.setAccessible(true);
+        return (ChapterPlayer) field.get(service);
+    }
+
+    private void chapterBook() {
+        send("{\"command\":\"load\",\"id\":1,\"path\":\"/missing-test-book.m4b\",\"title\":\"Book\",\"author\":\"Author\",\"position\":75000,\"duration\":180000,\"chapters\":[{\"title\":\"First\",\"start\":0,\"end\":60000},{\"title\":\"Second\",\"start\":60000,\"end\":180000}]}");
+    }
+
+    @Test public void systemTimelineAndSeekingAreChapterRelativeWhilePersistenceKeepsFilePositions() throws Exception {
+        chapterBook();
+        ChapterPlayer system = sessionPlayer();
+        assertEquals(120000, system.getDuration());
+        assertEquals(15000, system.getCurrentPosition());
+        assertEquals("Book", system.getMediaMetadata().title.toString());
+        assertEquals("Author · Chapter 2 · Second", system.getMediaMetadata().artist.toString());
+        assertEquals("Chapter 2 · Second", system.getMediaMetadata().description.toString());
+        system.seekTo(30000);
+        shadowOf(Looper.getMainLooper()).idle();
+        assertEquals(90000, player.getCurrentPosition());
+        assertEquals(30000, system.getCurrentPosition());
+        assertEquals(90000, events.get(events.size() - 1).getLong("position"));
+        system.previousChapter(); // More than three seconds in: restart this chapter.
+        assertEquals(60000, player.getCurrentPosition());
+        system.previousChapter();
+        assertEquals(0, player.getCurrentPosition());
+        system.refresh();
+        assertEquals(60000, system.getDuration());
+        system.nextChapter();
+        assertEquals(60000, player.getCurrentPosition());
+    }
+
+    @Test public void seekingToTheEndOfAChapterShowsTheNextChaptersTimeline() throws Exception {
+        chapterBook();
+        ChapterPlayer system = sessionPlayer();
+        system.previousChapter();
+        system.previousChapter();
+        system.refresh();
+        system.seekTo(60000);
+        shadowOf(Looper.getMainLooper()).idle();
+        system.refresh();
+        assertEquals(60000, player.getCurrentPosition());
+        assertEquals(0, system.getCurrentPosition());
+        assertEquals(120000, system.getDuration());
+        assertTrue(system.getMediaMetadata().description.toString().contains("Chapter 2"));
+    }
+
+    @Test public void artworkUpdatesRetainTheCurrentChapterPositionAndPlaybackState() throws Exception {
+        chapterBook();
+        player.pause();
+        send("{\"command\":\"artwork\",\"id\":1,\"cover\":[1,2,3]}");
+        ChapterPlayer system = sessionPlayer();
+        assertArrayEquals(new byte[] {1,2,3}, system.getMediaMetadata().artworkData);
+        assertEquals(75000, player.getCurrentPosition());
+        assertEquals(15000, system.getCurrentPosition());
+        assertFalse(player.getPlayWhenReady());
+    }
+
+    @Test public void timedSkipsCrossChapterBoundariesAndKeepTheirFullIncrement() throws Exception {
+        chapterBook();
+        ChapterPlayer system = sessionPlayer();
+        player.seekTo(55000);
+        system.skip(30000);
+        assertEquals(85000, player.getCurrentPosition());
+        assertEquals(25000, system.getCurrentPosition());
+        system.skip(-15000);
+        system.skip(-15000);
+        assertEquals(55000, player.getCurrentPosition());
+        system.refresh();
+        assertEquals(60000, system.getDuration());
+    }
+
+    @Test public void chapterSeekOutsideCurrentFileRequestsTheOwningRustSession() throws Exception {
+        send("{\"command\":\"load\",\"id\":1,\"path\":\"/missing-test-book.m4b\",\"title\":\"Book\",\"position\":10000,\"offset\":60000,\"duration\":120000,\"chapters\":[{\"title\":\"First\",\"start\":0,\"end\":60000},{\"title\":\"Second\",\"start\":60000,\"end\":180000}]}");
+        ChapterPlayer system = sessionPlayer();
+        system.previousChapter();
+        system.previousChapter();
+        assertEquals(0, events.get(events.size() - 1).getLong("seekTarget"));
+    }
+
+    private void shortFirstFile() {
+        send("{\"command\":\"load\",\"id\":1,\"path\":\"/missing-test-book.m4b\",\"title\":\"Book\",\"duration\":60000,\"position\":55000,\"chapters\":[{\"title\":\"One\",\"start\":0,\"end\":60000},{\"title\":\"Two\",\"start\":60000,\"end\":120000},{\"title\":\"Three\",\"start\":120000,\"end\":180000}]}");
+    }
+
+    @Test public void rapidCrossFileSkipsAccumulateFromThePendingDestination() throws Exception {
+        shortFirstFile();
+        ChapterPlayer system = sessionPlayer();
+        system.skip(30000);
+        system.skip(30000);
+        assertEquals(115000, events.get(events.size() - 1).getLong("seekTarget"));
+        system.skip(-15000);
+        assertEquals(100000, events.get(events.size() - 1).getLong("seekTarget"));
+        system.nextChapter();
+        assertEquals(120000, events.get(events.size() - 1).getLong("seekTarget"));
+    }
+
+    @Test public void reversingAPendingCrossFileSeekReplacesTheQueuedDestination() throws Exception {
+        shortFirstFile();
+        ChapterPlayer system = sessionPlayer();
+        system.skip(30000);
+        system.skip(-30000);
+        assertEquals(55000, events.get(events.size() - 1).getLong("seekTarget"));
+        // Rust acknowledges the target; later skips resume from the decoder.
+        send("{\"command\":\"seek\",\"id\":1,\"sequence\":1,\"position\":55000}");
+        system.skip(-15000);
+        assertEquals(40000, player.getCurrentPosition());
+    }
+
+    @Test public void crossFileHandoffKeepsTheServiceAliveForAPausedReplacement() {
+        shortFirstFile();
+        send("{\"command\":\"detach\",\"id\":1}");
+        assertFalse(shadowOf(service).isStoppedBySelf());
+        assertNull(player.getCurrentMediaItem());
+        send("{\"command\":\"load\",\"id\":2,\"path\":\"/missing-second-file.m4b\",\"title\":\"Book\",\"position\":15000,\"playWhenReady\":false}");
+        assertEquals("2", player.getCurrentMediaItem().mediaId);
+        assertFalse(player.getPlayWhenReady());
+        assertEquals(15000, player.getCurrentPosition());
+    }
+
+    @Test public void cancellingAnIdleHandoffStopsTheServiceWithoutStoppingANewerBook() {
+        shortFirstFile();
+        send("{\"command\":\"detach\",\"id\":1}");
+        send("{\"command\":\"stop\",\"id\":0}");
+        assertTrue(shadowOf(service).isStoppedBySelf());
+        send("{\"command\":\"load\",\"id\":2,\"path\":\"/missing-second-file.m4b\",\"title\":\"Book\",\"position\":15000,\"playWhenReady\":false}");
+        service.onStartCommand(null, 0, 2);
+        send("{\"command\":\"stop\",\"id\":0}");
+        assertEquals("2", player.getCurrentMediaItem().mediaId);
+    }
+
+    @Test public void replacementQueuedWhileTheOldServiceStopsIsLoadedPausedOnRestart() throws Exception {
+        shortFirstFile();
+        send("{\"command\":\"stop\",\"id\":1}");
+        send("{\"command\":\"load\",\"id\":2,\"path\":\"/missing-second-file.m4b\",\"title\":\"Book\",\"position\":15000,\"playWhenReady\":false}");
+        service.onStartCommand(null, 0, 2);
+        assertEquals("2", player.getCurrentMediaItem().mediaId);
+        assertFalse(player.getPlayWhenReady());
+        assertEquals(15000, player.getCurrentPosition());
+    }
+
+    @Test public void replacementFileCanBePreparedPausedAndResumedFromSystemControls() throws Exception {
+        shortFirstFile();
+        player.pause();
+        send("{\"command\":\"load\",\"id\":2,\"path\":\"/missing-second-file.m4b\",\"title\":\"Book\",\"offset\":60000,\"duration\":120000,\"position\":15000,\"playWhenReady\":false,\"chapters\":[{\"title\":\"One\",\"start\":0,\"end\":60000},{\"title\":\"Two\",\"start\":60000,\"end\":180000}]}");
+        assertFalse(player.getPlayWhenReady());
+        assertEquals(15000, player.getCurrentPosition());
+        assertNotNull(sessionPlayer().getCurrentMediaItem());
+        assertTrue(sessionPlayer().getMediaMetadata().description.toString().contains("Chapter 2"));
+        sessionPlayer().play();
+        assertTrue(player.getPlayWhenReady());
+    }
+
     @Test public void streamingSourceReadsOnlyRequestedRangesAndSupportsReopening() throws Exception {
         List<Long> offsets = new ArrayList<>();
         AudiobookService.AudioSource source = new AudiobookService.AudioSource((id, offset, length) -> {

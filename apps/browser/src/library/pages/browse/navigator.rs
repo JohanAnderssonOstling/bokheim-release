@@ -5,13 +5,13 @@
 
 use ui_components::user_facing_error;
 
-use gpui::{Context, EventEmitter, SharedString, Task};
-use library_backend::{DownloadState, LibraryBrowseData};
-use library_model::{BrowseLocation, BrowsePageRequest, LibraryBrowseQuery};
-use std::ops::Range;
+use gpui::{Context, EventEmitter, SharedString, Subscription, Task};
+use library_backend::{BackendError, LibraryBrowseData};
+use library_model::{BrowseBookPage, BrowseLocation, BrowsePageRequest, BrowsePathSegment, LibraryBrowseQuery};
+use std::{future::Future, ops::Range};
 
 use super::controls::{BrowseOptionsEvent, BrowseOptionsSelection};
-use super::listing::{BrowseCrumb, BrowseDestination, BrowseItem, BrowseKind, BrowseListing, chip_id};
+use super::listing::{BrowseDestination, BrowseItem, BrowseKind, BrowseListing, chip_id};
 use super::profile::Stage;
 use crate::library::services::{LibraryContentsChanged, LibraryContext, LibraryDownloadChanged};
 
@@ -39,7 +39,7 @@ pub(super) struct BrowseNavigator {
     page_failed: bool,
     loaded_query: Option<LibraryBrowseQuery>,
     refresh_pending: bool,
-    _subscriptions: Vec<gpui::Subscription>,
+    _subscriptions: [Subscription; 2],
 }
 
 impl EventEmitter<Loaded> for BrowseNavigator {}
@@ -49,21 +49,20 @@ impl BrowseNavigator {
         *self.ui.backend().id()
     }
 
-    pub(super) fn context(&self) -> LibraryContext {
-        self.ui.clone()
-    }
-
     /// A displayed section belongs to the installed response, even while a
     /// different filter or sort is still being loaded in the background.
-    pub(super) fn section_query(&self, location: BrowseLocation) -> Option<LibraryBrowseQuery> {
-        self.loaded_query.clone().map(|mut query| {
-            query.location = location;
-            query
+    pub(super) fn section_request(&self, section: BrowseLocation, offset: usize, limit: usize) -> Option<impl Future<Output = Result<Option<BrowseBookPage>, BackendError>> + use<>> {
+        let mut query = self.loaded_query.clone()?;
+        let revision = self.listing.page.as_ref().and_then(|page| page.result_revision.clone());
+        let library = self.ui.backend().clone();
+        Some(async move {
+            if let Some(revision) = revision {
+                library.browse_result_books(query, revision, section, offset, limit).await
+            } else {
+                query.location = section;
+                library.browse_section_books(query, offset, limit).await.map(Some)
+            }
         })
-    }
-
-    pub(super) fn result_query(&self) -> Option<(LibraryBrowseQuery, String)> {
-        Some((self.loaded_query.clone()?, self.listing.page.as_ref()?.result_revision.clone()?))
     }
 
     pub(super) fn new(ui: LibraryContext, kind: BrowseKind, listing: BrowseListing, cx: &mut Context<Self>) -> Self {
@@ -78,13 +77,9 @@ impl BrowseNavigator {
             }
         }
         let updates = ui.updates();
-        let subscriptions = vec![
+        let subscriptions = [
             cx.subscribe(&updates, |navigator, _, _: &LibraryContentsChanged, cx| navigator.invalidate(cx)),
-            cx.subscribe(&updates, |navigator, _, event: &LibraryDownloadChanged, cx| {
-                if matches!(event.status.state, DownloadState::Downloaded | DownloadState::NotDownloaded) {
-                    navigator.invalidate(cx);
-                }
-            }),
+            cx.subscribe(&updates, |navigator, _, _: &LibraryDownloadChanged, cx| navigator.invalidate(cx)),
         ];
         let root = if selection.by_author { BrowseLocation::CatalogAuthor(None) } else { kind.root_location() };
         let mut navigator = Self {
@@ -137,7 +132,7 @@ impl BrowseNavigator {
         }
     }
 
-    pub(super) fn open_path(&mut self, path: Vec<BrowseCrumb>, cx: &mut Context<Self>) {
+    pub(super) fn open_path(&mut self, path: Vec<BrowsePathSegment>, cx: &mut Context<Self>) {
         self.load(BrowseDestination::from_path(self.root(), path), false, cx);
     }
 
@@ -158,7 +153,7 @@ impl BrowseNavigator {
         if let BrowseOptionsEvent::OpenFeedPage(location) = event {
             let mut path = self.destination.path.clone();
             if let Some(crumb) = path.last_mut() {
-                crumb.location = location;
+                crumb.id = location;
             }
             self.open_path(path, cx);
             return;
@@ -261,15 +256,15 @@ impl BrowseNavigator {
     /// The trail to the child `child_id`: under the current path, through its
     /// group where the group is a real folder. The backend supplies the full
     /// displayed breadcrumb trail after the destination loads.
-    pub(super) fn child_path(&self, child_id: BrowseLocation) -> Option<Vec<BrowseCrumb>> {
+    pub(super) fn child_path(&self, child_id: BrowseLocation) -> Option<Vec<BrowsePathSegment>> {
         let item = self.listing.item(&chip_id(child_id))?;
         let child = item.child()?;
         let mut path = self.destination.path.clone();
         if let BrowseItem::Child { parent: Some(parent), .. } = item {
             let parent = self.listing.child(BrowseLocation::Folder(*parent))?;
-            path.push(BrowseCrumb { location: parent.id, label: parent.name.clone() });
+            path.push(BrowsePathSegment { id: parent.id, name: parent.name.clone() });
         }
-        path.push(BrowseCrumb { location: child.id, label: child.name.clone() });
+        path.push(BrowsePathSegment { id: child.id, name: child.name.clone() });
         Some(path)
     }
 
@@ -327,7 +322,7 @@ impl BrowseNavigator {
         }));
     }
 
-    fn finish_request(&mut self, mut destination: BrowseDestination, refresh: bool, searched: bool, query: LibraryBrowseQuery, result: Result<LibraryBrowseData, library_backend::BackendError>, cx: &mut Context<Self>) {
+    fn finish_request(&mut self, mut destination: BrowseDestination, refresh: bool, searched: bool, query: LibraryBrowseQuery, result: Result<LibraryBrowseData, BackendError>, cx: &mut Context<Self>) {
         self.request = None;
         match result {
             Ok(data) => {
@@ -360,7 +355,7 @@ impl BrowseNavigator {
 /// A page from where it lives: a feed page from the feed, through the app,
 /// and anything else from the library. The catalog's root also lists the
 /// account's OPDS feeds, each as a chip without a section.
-async fn fetch(ui: &LibraryContext, query: LibraryBrowseQuery) -> Result<LibraryBrowseData, library_backend::BackendError> {
+async fn fetch(ui: &LibraryContext, query: LibraryBrowseQuery) -> Result<LibraryBrowseData, BackendError> {
     if matches!(query.location, BrowseLocation::Opds { .. }) {
         return ui.app().browse_opds(query).await;
     }
@@ -389,9 +384,47 @@ async fn fetch(ui: &LibraryContext, query: LibraryBrowseQuery) -> Result<Library
 #[cfg(all(test, not(target_arch = "wasm32"), not(feature = "kobo")))]
 mod tests {
     use super::*;
+    use super::super::controls::BrowseControls;
     use crate::navigation::LibrarySession;
     use gpui::{AppContext, TestAppContext};
     use std::{cell::Cell, rc::Rc};
+
+    #[gpui::test]
+    async fn section_requests_capture_the_installed_query_and_outlive_the_navigator(cx: &mut TestAppContext) {
+        let _backend = crate::test_support::BACKEND.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
+        let (_directory, _session, library) = LibrarySession::test_context(cx).await;
+        let updates = library.updates();
+        cx.condition(&updates, |updates, _| !updates.loading() && !updates.scanning()).await;
+        let root = sync_common::ROOT_DIR_ID;
+        let fixture = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../client/library-backend/crates/book-inspection/tests/fixtures/back-matter-evidence.epub");
+        assert!(library.backend().import_paths(root, vec![fixture], false).await.unwrap().is_empty());
+        let query = BrowseOptionsSelection::for_controls(&BrowseControls::library()).backend_query(BrowseLocation::Books, true);
+        let hash = library.backend().browse_section_books(query, 0, 1).await.unwrap().books[0].library_file().unwrap();
+        library.backend().create_directory(root, "Section".into()).await.unwrap();
+        let folder = library.backend().folder_destinations().await.unwrap().into_iter().find(|folder| folder.label == "Section").unwrap().id;
+        library.backend().move_book_placement(hash, root, folder).await.unwrap();
+        let section = BrowseLocation::Folder(folder);
+        let listing = BrowseListing::new(library.clone(), BrowseKind::Folder, Rc::new(|_, _, _| {}), false);
+        let navigator = cx.new(|cx| BrowseNavigator::new(library, BrowseKind::Folder, listing, cx));
+        assert!(navigator.read_with(cx, |navigator, _| navigator.section_request(section, 0, 10).is_none()));
+        cx.condition(&navigator, |navigator, _| navigator.request.is_none()).await;
+        let (snapshot, direct) = navigator.update(cx, |navigator, _| {
+            assert!(navigator.listing.page.as_ref().unwrap().result_revision.is_some());
+            // Editing controls must not change the query of the installed listing.
+            navigator.selection.search = "Nothing should match these pending controls".into();
+            let snapshot = navigator.section_request(section, 0, 10).unwrap();
+            navigator.listing.page.as_mut().unwrap().result_revision = None;
+            let direct = navigator.section_request(section, 0, 10).unwrap();
+            navigator.loaded_query = None;
+            assert!(navigator.section_request(section, 0, 10).is_none());
+            (snapshot, direct)
+        });
+        drop(navigator);
+        for page in [snapshot.await.unwrap().unwrap(), direct.await.unwrap().unwrap()] {
+            assert_eq!(page.total, 1);
+            assert_eq!(page.books[0].library_file(), Some(hash));
+        }
+    }
 
     #[gpui::test]
     async fn hidden_pages_defer_and_coalesce_refreshes_without_losing_inflight_changes(cx: &mut TestAppContext) {

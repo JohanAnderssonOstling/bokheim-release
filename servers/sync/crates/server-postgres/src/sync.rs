@@ -1,4 +1,7 @@
 use std::time::Instant;
+use std::sync::Arc;
+use tokio::sync::Notify;
+use sync_common::ConflictRank;
 use crate::{PostgresDatabase, assets, sync_store};
 use sqlx::{PgPool, Postgres, Transaction};
 use std::collections::HashSet;
@@ -40,11 +43,12 @@ pub struct LibraryNameOutcome {
 #[derive(Clone)]
 pub struct PostgresSyncRepository {
     pub(super) pool: PgPool,
+    pub(super) cleanup: Arc<Notify>,
 }
 
 impl PostgresSyncRepository {
     pub fn new(database: PostgresDatabase) -> Self {
-        Self { pool: database.pool().clone() }
+        Self { pool: database.pool().clone(), cleanup: database.asset_cleanup_signal() }
     }
 
     async fn authorize_owned_library(&self, transaction: &mut Transaction<'_, Postgres>, user_id: &str, library_id: &sync_common::LibraryId) -> Result<bool, SyncError> {
@@ -95,8 +99,7 @@ impl PostgresSyncRepository {
         sync_store::rename_library(&self.pool, user_id, &LibraryNameRequest { library_name: name.to_owned(), ..request.clone() }).await.map_err(internal)
     }
 
-    /// Deletes server-side library and synchronization state while retaining
-    /// physical book and thumbnail objects in the asset store.
+    /// Deletes library state and requests cleanup of unused physical assets.
     pub async fn delete_library(&self, user_id: &str, library_id: &sync_common::LibraryId) -> Result<bool, SyncError> {
         let phase_started = Instant::now();
         let mut transaction = self.pool.begin().await.map_err(internal)?;
@@ -138,6 +141,7 @@ impl PostgresSyncRepository {
         sqlx::query("DELETE FROM sync_state WHERE library_id=$1").bind(&library_id).execute(&mut *transaction).await.map_err(internal)?;
         sqlx::query("DELETE FROM sync_library_revision WHERE library_id=$1").bind(&library_id).execute(&mut *transaction).await.map_err(internal)?;
         transaction.commit().await.map_err(internal)?;
+        self.cleanup.notify_one();
         Ok(true)
     }
 
@@ -182,6 +186,9 @@ impl PostgresSyncRepository {
         let phase_started = Instant::now();
         transaction.commit().await.map_err(internal)?;
         tracing::debug!(target: "sync_performance", phase = "commit", elapsed_ms = phase_started.elapsed().as_secs_f64() * 1000.0);
+        if request.mutations.iter().any(|mutation| mutation.state.value.address.kind == "book_lifecycle" && mutation.state.version.conflict_rank == ConflictRank::Purge) {
+            self.cleanup.notify_one();
+        }
         return Ok(SyncExchangeResponse { push: PushMutationsResponse { rejected: inserted.rejected }, pull: pull_response(page) });
     }
 }

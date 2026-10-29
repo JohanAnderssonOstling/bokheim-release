@@ -26,44 +26,6 @@ impl LibraryPlacement {
         Ok(created)
     }
 
-    /// Duplicates a folder and its contents under another folder. The books it
-    /// holds gain a second placement; their bytes are not duplicated. Returns
-    /// the copy's directory ID, which is what an undo of this acts on.
-    pub fn copy_directory(&self, directory_id: &DirId, destination_parent_id: &DirId) -> Result<DirId, BackendError> {
-        let copy = self.database.copy_directory(directory_id, destination_parent_id)?;
-        self.events.notify_contents_changed();
-        Ok(copy)
-    }
-
-    /// Puts a book back in a folder it was removed from.
-    pub fn restore_book_placement(&self, content_hash: &BookId, directory_id: &DirId) -> Result<(), BackendError> {
-        self.database.restore_book_placement(content_hash, directory_id)?;
-        self.events.notify_contents_changed();
-        Ok(())
-    }
-
-    /// The logical mutation is ordered; physical replay is durable background
-    /// work and must not hold up later commands or reader events.
-    pub fn queue_directory_move(&self, directory_id: &DirId, requested_parent: Option<&DirId>, requested_name: Option<&str>) -> Result<String, BackendError> {
-        let requested_name = requested_name.map(filenames::validate_component).transpose()?;
-        let name = self.database.move_directory(directory_id, requested_parent, requested_name.as_deref())?;
-        self.events.notify_contents_changed();
-        Ok(name)
-    }
-
-    /// Returns false for an existing assignment so callers retain it when undoing.
-    pub fn copy_book_to_directory(&self, hash: &BookId, source: Option<&DirId>, destination: &DirId) -> Result<bool, BackendError> {
-        let created = self.database.copy_book_to_directory(hash, source, destination)?;
-        if created { self.events.notify_contents_changed(); }
-        Ok(created)
-    }
-
-    pub fn transfer_book_placement(&self, hash: &BookId, source: &DirId, destination: &DirId, moving: bool) -> Result<String, BackendError> {
-        let name = self.database.transfer_book_placement(hash, source, destination, moving)?;
-        self.events.notify_contents_changed();
-        Ok(name)
-    }
-
     /// Removes one placement. Returns `true` when the final placement
     /// is removed and the book consequently moves to Trash.
     pub fn remove_book_from_directory(&self, content_hash: &BookId, source_id: &DirId) -> Result<bool, BackendError> {
@@ -112,5 +74,40 @@ impl LibraryPlacement {
         let name = self.database.restore_directory(directory_id, requested_parent)?;
         self.events.notify_contents_changed();
         Ok(name)
+    }
+
+    /// Copies placements into a second directory without duplicating book bytes.
+    pub fn copy_directory_metadata(&self, directory_id: &DirId, destination_parent_id: &DirId) -> Result<DirId, BackendError> {
+        let copy = self.database.copy_directory(directory_id, destination_parent_id)?;
+        self.events.notify_contents_changed();
+        Ok(copy)
+    }
+
+    pub fn restore_book_placement_metadata(&self, content_hash: &BookId, directory_id: &DirId) -> Result<(), BackendError> {
+        self.database.restore_book_placement(content_hash, directory_id)?;
+        self.events.notify_contents_changed();
+        Ok(())
+    }
+
+    pub fn queue_directory_move_metadata(&self, directory_id: &DirId, requested_parent: Option<&DirId>, requested_name: Option<&str>) -> Result<String, BackendError> {
+        let requested_name = requested_name.map(filenames::validate_component).transpose()?;
+        let name = self.database.move_directory(directory_id, requested_parent, requested_name.as_deref())?;
+        self.events.notify_contents_changed();
+        Ok(name)
+    }
+
+    /// Returns false for an existing assignment so callers retain it when undoing.
+    pub fn copy_book_to_directory_metadata(&self, hash: &BookId, source: Option<&DirId>, destination: &DirId) -> Result<bool, BackendError> {
+        let created = self.database.copy_book_to_directory(hash, source, destination)?;
+        if created {
+            self.events.notify_contents_changed();
+        }
+        Ok(created)
+    }
+
+    pub fn move_book_placement_metadata(&self, hash: &BookId, source: &DirId, destination: &DirId) -> Result<bool, BackendError> {
+        let created = self.database.move_book_placement(hash, source, destination)?;
+        self.events.notify_contents_changed();
+        Ok(created)
     }
 }

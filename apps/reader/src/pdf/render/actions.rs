@@ -29,12 +29,12 @@ impl PdfReaderView {
 
 impl SidebarTarget for PdfReaderView {
     #[cfg(feature = "kobo")]
-    fn brightness_controls(&self) -> gpui::Entity<crate::shell::brightness::BrightnessControls> {
-        self.brightness.clone()
+    fn device_controls(&self) -> Option<gpui::AnyView> {
+        self.device_controls.clone()
     }
 
     fn close_reader(&mut self, window: &mut Window, cx: &mut Context<Self>) {
-        #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+        #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
         self.tts.close();
         (self.close_reader)(window, cx);
     }
@@ -114,12 +114,12 @@ impl SidebarTarget for PdfReaderView {
         self.handle_settings_key(key, window, cx)
     }
 
-    #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+    #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
     fn tts_mark(&self) -> Option<ui_components::ReaderRailMark> {
-        Some(self.tts.button_mark())
+        self.tts.available().then(|| self.tts.button_mark())
     }
 
-    #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+    #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
     fn press_tts(&mut self, _: &mut Window, cx: &mut Context<Self>) {
         crate::shell::tts::TtsReader::press_tts(self, cx);
     }

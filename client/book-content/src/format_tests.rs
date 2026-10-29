@@ -145,6 +145,16 @@ fn malformed_optional_comicinfo_does_not_hide_readable_pages() {
 }
 
 #[test]
+fn failed_comic_prefetch_retains_ordinary_page_reads() {
+    use futures_util::io::{AllowStdIo, BufReader};
+    let bytes = zip(&[("1.png", b"first"), ("2.png", b"second"), ("ComicInfo.xml", b"<ComicInfo><Title>Fallback</Title></ComicInfo>")]).into_inner();
+    let book = block_on(ComicBook::open_with_prefetch(move || BufReader::new(AllowStdIo::new(Cursor::new(bytes.clone()))), 1, |_| async { Err(std::io::Error::other("prefetch unavailable")) })).unwrap();
+    assert_eq!(book.metadata.title, "Fallback");
+    let reader = block_on(book.into_reader()).unwrap();
+    assert_eq!(block_on(reader.read_page(1)).unwrap(), b"second");
+}
+
+#[test]
 fn comicinfo_deleted_pages_do_not_shift_cover_and_bookmark_references() {
     let info = br#"<ComicInfo><Pages><Page Image="0" Type="Deleted"/><Page Image="1" Type="FrontCover" Bookmark="Start"/></Pages></ComicInfo>"#;
     let mut book = ComicBook::open_reader(zip(&[("1.png", b"deleted"), ("2.png", b"cover"), ("ComicInfo.xml", info)])).unwrap();

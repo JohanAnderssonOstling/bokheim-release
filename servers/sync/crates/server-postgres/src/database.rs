@@ -3,6 +3,8 @@
 use sqlx::postgres::PgPoolOptions;
 use sqlx::PgPool;
 use std::time::Duration;
+use std::sync::Arc;
+use tokio::sync::Notify;
 use sync_common::SyncGeneration;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -47,12 +49,16 @@ fn parse_bounded_u64(raw: Option<String>, default: u64, minimum: u64, maximum: u
 #[derive(Clone)]
 pub struct PostgresDatabase {
     pool: PgPool,
+    cleanup: Arc<Notify>,
 }
 
 impl PostgresDatabase {
     pub fn from_pool(pool: PgPool) -> Self {
-        Self { pool }
+        Self { pool, cleanup: Arc::new(Notify::new()) }
     }
+
+    /// Shared by the account, sync and asset services within this server.
+    pub fn asset_cleanup_signal(&self) -> Arc<Notify> { self.cleanup.clone() }
 
     pub fn pool(&self) -> &PgPool {
         &self.pool

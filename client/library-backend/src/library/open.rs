@@ -16,7 +16,6 @@ pub struct LibraryOpenConfig {
     pub database_locator: String,
     pub default_sync_server_url: Url,
     pub metadata_server_url: String,
-    pub google_books_api_key: Option<String>,
     pub storage: sync_common::storage::LibraryStorage,
     pub reset_cloud_presence: bool,
 }

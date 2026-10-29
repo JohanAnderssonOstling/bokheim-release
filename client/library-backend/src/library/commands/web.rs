@@ -1,11 +1,6 @@
-use crate::BackendError;
-pub(crate) use crate::library::LibrarySession;
 pub(crate) use crate::library::book::browser;
-pub(crate) use crate::library::browser_audiobook;
-
-pub(crate) async fn open_remote_audio(library: &LibrarySession, content_hash: crate::BookId) -> Result<Option<crate::library::PlaybackSource>, BackendError> {
-    browser_audiobook::open_remote_audio(library, content_hash).await
-}
+pub(crate) use crate::library::LibrarySession;
+use crate::BackendError;
 
 pub(crate) fn read_book_range(library: &LibrarySession, capability: &str, offset: u64, length: usize) -> Result<serde_bytes::ByteBuf, BackendError> {
     browser::SOURCES

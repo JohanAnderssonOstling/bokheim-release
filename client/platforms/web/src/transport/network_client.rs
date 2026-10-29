@@ -1,5 +1,5 @@
 //! Fetch-compatible client for HTTP requests executed by the coordinator.
-use super::{Port, field, object};
+use super::{field, object, Port};
 use futures_channel::oneshot;
 use js_sys::{Array, Function, Promise, Reflect, Uint8Array};
 use std::{
@@ -7,9 +7,10 @@ use std::{
     rc::Rc,
 };
 use wasm_bindgen::prelude::*;
-use wasm_bindgen_futures::{JsFuture, future_to_promise};
+use wasm_bindgen_futures::JsFuture;
 use web_sys::{AbortSignal, DedicatedWorkerGlobalScope, MessageChannel, ReadableStreamDefaultController, Request};
 
+use wasm_callback::future_to_promise_aborting;
 thread_local! {
     static ACTIVE: super::pending::Pending<Rc<Pending>> = Default::default();
     static ROUTE: RefCell<Option<Rc<Route>>> = const { RefCell::new(None) };
@@ -119,7 +120,7 @@ impl Pending {
             if let Err(error) = state.send("pull") {
                 state.fail(error);
             }
-            future_to_promise(async move {
+            future_to_promise_aborting(async move {
                 let _ = waiting.await;
                 Ok(JsValue::UNDEFINED)
             })
@@ -141,7 +142,11 @@ fn construct(name: &str, args: &Array) -> Result<JsValue, JsValue> {
     Reflect::construct(&constructor, args).map(Into::into)
 }
 fn check_abort(signal: &AbortSignal) -> Result<(), JsValue> {
-    if signal.aborted() { Err(signal.reason()) } else { Ok(()) }
+    if signal.aborted() {
+        Err(signal.reason())
+    } else {
+        Ok(())
+    }
 }
 async fn fetch(input: JsValue, init: JsValue) -> Result<JsValue, JsValue> {
     let request: Request = construct("Request", &Array::of2(&input, &init))?.unchecked_into();
@@ -229,7 +234,7 @@ pub fn install() -> Result<(), JsValue> {
         return Ok(());
     }
     let native = Reflect::get(&js_sys::global(), &"fetch".into())?.dyn_into::<Function>()?;
-    let fetch = Closure::<dyn FnMut(JsValue, JsValue) -> Promise>::own_aborting(|input, init| future_to_promise(fetch(input, init)));
+    let fetch = Closure::<dyn FnMut(JsValue, JsValue) -> Promise>::own_aborting(|input, init| future_to_promise_aborting(fetch(input, init)));
     if !Reflect::set(&js_sys::global(), &"fetch".into(), fetch.as_ref())? {
         return Err(js_sys::Error::new("Could not install backend fetch bridge").into());
     }

@@ -18,6 +18,12 @@ pub enum BookSource {
         #[serde(with = "serde_bytes")]
         prefix: Vec<u8>,
     },
+    /// Bokheim ZIP-based books start with the tail; the reader plans entry ranges.
+    RemoteArchive {
+        source: crate::library::RemoteFile,
+        #[serde(with = "serde_bytes")]
+        tail: Vec<u8>,
+    },
     Audiobook(crate::library::PlaybackSource),
     /// Native wire adapters can still return owned bytes; browsers use capabilities.
     Inline(#[serde(with = "serde_bytes")] Vec<u8>),

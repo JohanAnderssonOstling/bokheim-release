@@ -92,8 +92,11 @@ fn opds2_home_flattens_groups_into_the_page() {
     // the 2 links of "More Navigation".
     assert_eq!(feed.navigation.len(), 11);
     assert!(feed.navigation.iter().any(|link| link.title == "French Classics" && link.href == url("https://test.opds.io/2.0/publications.json")));
-    // 2 of its own and the 5 and 3 of its groups.
-    assert_eq!(feed.publications.len(), 10);
+    // The groups repeat two root entries; each book still has one card.
+    assert_eq!(
+        feed.publications.iter().map(|publication| publication.title.as_str()).collect::<Vec<_>>(),
+        ["Moby-Dick", "Le Mystère de la chambre jaune", "Voyage au centre de la Terre", "Le Rouge et le Noir", "Madame Bovary", "Du côté de chez Swann", "Romeo and Juliet", "Jane Eyre"]
+    );
 }
 
 #[test]
@@ -106,4 +109,92 @@ fn opds2_publication_reads_contributors_and_open_download() {
     assert_eq!(verne.authors, ["Jules Verne"]);
     assert!(verne.description.starts_with("Le professeur Lidenbrock"));
     assert_eq!(verne.download.as_ref().unwrap().href, url("https://test.opds.io/assets/centredelaterre/file.epub"));
+}
+
+#[test]
+fn opds2_filters_drm_acquisitions_but_retains_open_and_unprotected_offers() {
+    use serde_json::{json, Value};
+
+    let license = "Application/Vnd.Readium.Lcp.License.V1.0+Json; charset=utf-8";
+    let protected = json!({"type": "application/epub+zip", "child": [
+        {"type": "application/pdf"},
+        {"child": [{"type": license}]}
+    ]});
+    let buy = |properties: Value| {
+        json!({
+            "rel": ["alternate", "http://opds-spec.org/acquisition/buy"],
+            "href": "shop", "type": "text/html", "properties": properties
+        })
+    };
+    let cases = [
+        ("Direct Adobe license", json!([{"rel": "http://opds-spec.org/acquisition/borrow", "href": "loan", "type": "application/vnd.adobe.adept+xml"}]), false),
+        ("Nested LCP license", json!([buy(json!({"indirectAcquisition": [protected]}))]), false),
+        ("Later protected sibling", json!([buy(json!({"indirectAcquisition": [{"type": "application/pdf"}, {"type": license}]}))]), false),
+        ("Unprotected offer", json!([buy(json!({"indirectAcquisition": [{"type": "application/pdf", "child": [{"type": "application/epub+zip"}]}]}))]), true),
+        ("Missing optional types", json!([buy(json!({"indirectAcquisition": [null, {}, {"type": 42, "child": "not an array"}]}))]), true),
+        ("Non-acquisition license", json!([{"rel": "alternate", "href": "license", "type": license}]), true),
+        (
+            "Open alternative",
+            json!([
+                buy(json!({"indirectAcquisition": [protected]})),
+                {"rel": "http://opds-spec.org/acquisition/open-access", "href": "book.epub", "type": "application/epub+zip"}
+            ]),
+            true,
+        ),
+    ];
+    for (title, links, listed) in cases {
+        let bytes = serde_json::to_vec(&json!({"publications": [{"metadata": {"title": title}, "links": links}]})).unwrap();
+        let feed = parse(&bytes, Some("application/opds+json"), &url("https://catalog.example/feed")).unwrap();
+        assert_eq!(feed.publications.len(), usize::from(listed), "{title}");
+        if title == "Open alternative" {
+            assert_eq!(feed.publications[0].download.as_ref().unwrap().href, url("https://catalog.example/book.epub"));
+            assert_eq!(feed.publications[0].buy, Some(url("https://catalog.example/shop")));
+        }
+    }
+}
+
+fn acquisition_publication(version: u8, links: &[(&str, &str)]) -> library_opds::Publication {
+    let bytes = if version == 1 {
+        let links = links.iter().map(|(href, kind)| format!(r#"<link rel="http://opds-spec.org/acquisition" href="{href}" type="{kind}" length="42"/>"#)).collect::<String>();
+        format!(r#"<feed xmlns="http://www.w3.org/2005/Atom"><entry><title>Book</title>{links}</entry></feed>"#).into_bytes()
+    } else {
+        use serde_json::json;
+        let links = links.iter().map(|(href, kind)| json!({"rel": "http://opds-spec.org/acquisition/open-access", "href": href, "type": kind})).collect::<Vec<_>>();
+        serde_json::to_vec(&json!({"publications": [{"metadata": {"title": "Book"}, "links": links}]})).unwrap()
+    };
+    parse(&bytes, None, &url("https://catalog.example/feed")).unwrap().publications.remove(0)
+}
+
+#[test]
+fn acquisition_downloads_prefer_supported_formats_in_both_versions() {
+    use library_opds::{CBZ, CBZ_LEGACY, FB2, FB2_ZIP, PDF};
+    let formats = [EPUB, FB2, FB2_ZIP, PDF, CBZ, CBZ_LEGACY];
+    for first in 0..formats.len() {
+        let links = formats[first..].iter().rev().map(|kind| ("download", *kind)).collect::<Vec<_>>();
+        for version in [1, 2] {
+            let download = acquisition_publication(version, &links).download.unwrap();
+            assert_eq!(download.media_type, formats[first], "OPDS {version}");
+            assert_eq!(download.length, if version == 1 { Some(42) } else { None });
+        }
+    }
+}
+
+#[test]
+fn acquisition_downloads_keep_the_first_link_for_a_matching_format() {
+    for version in [1, 2] {
+        let publication = acquisition_publication(version, &[("first.epub", " Application/EPUB+ZIP ; charset=utf-8"), ("second.epub", EPUB)]);
+        let download = publication.download.unwrap();
+        assert_eq!(download.media_type, EPUB);
+        assert_eq!(download.href, url("https://catalog.example/first.epub"));
+    }
+}
+
+#[test]
+fn acquisition_downloads_skip_unsupported_types_and_invalid_urls() {
+    for version in [1, 2] {
+        let unsupported = acquisition_publication(version, &[("archive.zip", "application/zip"), ("missing", ""), ("partial", "application/epub+zip-extra")]);
+        assert_eq!(unsupported.download, None);
+        let fallback = acquisition_publication(version, &[("http://[", EPUB), ("book.pdf", "application/pdf")]);
+        assert_eq!(fallback.download.unwrap().href, url("https://catalog.example/book.pdf"));
+    }
 }

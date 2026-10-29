@@ -10,13 +10,14 @@
 //! as something *a library* is doing, and a list beneath the libraries made the
 //! reader match names between two lists to find that out.
 
-use ui_components::user_facing_error;
 use super::*;
 use crate::services::format_storage_bytes;
-use gpui_component::Disableable;
 #[cfg(not(any(target_arch = "wasm32", target_os = "android")))]
-use gpui_component::button::Button;
+use ui_components::Button;
 use gpui_component::checkbox::Checkbox;
+use gpui_component::Disableable;
+use gpui_component::{menu::DropdownMenu as _, Icon};
+#[cfg(all(feature = "filesystem-libraries", not(target_arch = "wasm32")))]
 use std::path::Path;
 
 const LEGEND_LIBRARY_LIMIT: usize = 4;
@@ -56,16 +57,16 @@ impl Render for AccountIdentityView {
         #[cfg(not(any(target_arch = "wasm32", target_os = "android")))]
         {
             let password = self.page.clone();
-            actions.push(components::link_button("account-change-password", "Change password", theme, false).on_click(move |_, window, cx| {
-                password.update(cx, |page, cx| page.open_password_change(window, cx));
+            actions.push(components::link_button("account-change-password", "Change password", false).on_click(move |_, _, cx| {
+                password.update(cx, |page, cx| page.open_password_change(cx));
             }));
         }
         let logout = self.page.clone();
-        actions.push(components::link_button("account-log-out", "Log out", theme, false).on_click(move |_, _, cx| {
+        actions.push(components::link_button("account-log-out", "Log out", false).on_click(move |_, _, cx| {
             logout.update(cx, |page, cx| page.start_logout(cx));
         }));
         let delete = self.page.clone();
-        actions.push(components::link_button("account-delete", "Delete account", theme, false).on_click(move |_, window, cx| {
+        actions.push(components::link_button("account-delete", "Delete account", false).on_click(move |_, window, cx| {
             delete.update(cx, |page, cx| page.open_account_deletion(window, cx));
         }));
         components::account_identity(account_initial(&email), email, actions, theme)
@@ -97,7 +98,7 @@ impl Render for LibrariesView {
         let compact = components::WindowWidthClass::for_window(window).is_compact();
         let page = self.page.clone();
         let rows = page.read(cx).library_rows(cx);
-        SyncPage::libraries_section(page.read(cx), &page, &rows, compact, theme)
+        SyncPage::libraries_section(page.read(cx), &page, &rows, compact, theme, cx)
     }
 }
 
@@ -159,7 +160,7 @@ impl SyncPage {
                     server_bytes,
                     local_bytes,
                     #[cfg(all(feature = "filesystem-libraries", any(target_os = "linux", target_os = "macos", target_os = "windows")))]
-                    local_path: library.local_path().map(str::to_owned),
+                    local_path: Some(library.storage_locator().to_owned()),
                 }
             })
             .collect();
@@ -169,25 +170,6 @@ impl SyncPage {
         rows
     }
 
-    /// A password field whose reveal stays on until it is pressed again.
-    ///
-    /// The input's own `mask_toggle` unmasks only while the mouse button is
-    /// held, which cannot be used to check a password as it is typed and does
-    /// not survive a touch at all.
-    #[cfg(not(any(target_arch = "wasm32", target_os = "android")))]
-    fn password_input(&self, state: &Entity<InputState>, id: &'static str, entity: &Entity<Self>) -> Input {
-        let revealed = self.password_revealed;
-        let toggle = entity.clone();
-        let toggled_state = state.clone();
-        Input::new(state).suffix(components::base_button(id).icon(if revealed { IconName::EyeOff } else { IconName::Eye }).xsmall().ghost().tooltip(if revealed { "Hide password" } else { "Show password" }).on_click(move |_, window, cx| {
-            toggled_state.update(cx, |state, cx| state.set_masked(revealed, window, cx));
-            toggle.update(cx, |page, cx| {
-                page.password_revealed = !revealed;
-                cx.notify();
-            });
-        }))
-    }
-
     #[cfg(not(any(target_arch = "wasm32", target_os = "android")))]
     fn access_action(&self, entity: &Entity<Self>, id: &'static str, label: &'static str, icon: IconName, action: fn(&mut Self, &mut Context<Self>)) -> Button {
         let page = entity.clone();
@@ -195,9 +177,9 @@ impl SyncPage {
     }
 
     #[cfg(not(any(target_arch = "wasm32", target_os = "android")))]
-    fn access_link(&self, entity: &Entity<Self>, id: &'static str, label: &'static str, flow: AccountFlow, theme: components::BrowserTheme) -> Button {
+    fn access_link(&self, entity: &Entity<Self>, id: &'static str, label: &'static str, flow: AccountFlow) -> Button {
         let page = entity.clone();
-        components::link_button(id, label, theme, self.is_busy()).on_click(move |_, window, cx| page.update(cx, |page, cx| page.set_flow(flow, window, cx)))
+        components::link_button(id, label, self.is_busy()).on_click(move |_, _, cx| page.update(cx, |page, cx| page.set_flow(flow, cx)))
     }
 
     /// The sign-in, registration, verification and password-reset forms.
@@ -219,20 +201,20 @@ impl SyncPage {
             AccountFlow::SignIn => {
                 let register = entity.clone();
                 let mut actions = components::action_row().child(self.access_action(entity, "account-sign-in", "Sign in", IconName::Globe, Self::start_login));
-                actions = actions.child(components::secondary_action_button("account-register", "Create account", IconName::User, self.is_busy()).on_click(move |_, window, cx| {
-                    register.update(cx, |page, cx| page.set_flow(AccountFlow::Register, window, cx));
+                actions = actions.child(components::secondary_action_button("account-register", "Create account", IconName::User, self.is_busy()).on_click(move |_, _, cx| {
+                    register.update(cx, |page, cx| page.set_flow(AccountFlow::Register, cx));
                 }));
                 let mut form = form
                     .child(components::section_header("Sign in", "", theme))
                     .children(feedback)
                     .child(Input::new(&self.authentication.login_email))
-                    .child(self.password_input(&self.authentication.password, "toggle-sign-in-password", entity))
+                    .child(Input::new(&self.authentication.password).mask_toggle())
                     .child(actions);
                 // Recovery is offered once a sign-in has actually failed, so
                 // the screen a returning user sees carries one action, not
                 // three. It stays a link: it is the way out, not the way on.
                 if self.login_failed {
-                    form = form.child(self.access_link(entity, "account-request-reset", "Forgot your password?", AccountFlow::RequestPasswordReset, theme));
+                    form = form.child(self.access_link(entity, "account-request-reset", "Forgot your password?", AccountFlow::RequestPasswordReset));
                 }
                 form
             }
@@ -240,10 +222,10 @@ impl SyncPage {
                 .child(components::section_header("Create account", "", theme))
                 .children(feedback)
                 .child(Input::new(&self.authentication.email))
-                .child(self.password_input(&self.authentication.registration_password, "toggle-registration-password", entity))
+                .child(Input::new(&self.authentication.registration_password).mask_toggle())
                 .child(components::form_hint(format!("At least {} characters.", account_contract::PASSWORD_MIN_CHARACTERS), theme))
                 .child(components::action_row().child(self.access_action(entity, "account-register", "Create account", IconName::User, Self::start_registration)))
-                .child(self.access_link(entity, "account-sign-in", "Already have an account? Sign in", AccountFlow::SignIn, theme)),
+                .child(self.access_link(entity, "account-sign-in", "Already have an account? Sign in", AccountFlow::SignIn)),
             AccountFlow::VerifyEmail => {
                 let resend = entity.clone();
                 let mut actions = components::action_row().child(self.access_action(entity, "account-verify", "Verify email", IconName::ArrowRight, Self::start_verify_email));
@@ -255,23 +237,17 @@ impl SyncPage {
                 form.child(components::section_header("Check your email", "", theme))
                     .children(feedback)
                     .child(OtpInput::new(&self.authentication.verification_pin))
-                    .child(self.password_input(&self.authentication.registration_password, "toggle-verification-password", entity))
+                    .child(Input::new(&self.authentication.registration_password).mask_toggle())
                     .child(components::form_hint("The password you chose for this account.", theme))
                     .child(actions)
-                    .child(self.access_link(
-                    entity,
-                    "account-restart-registration",
-                    "Wrong address? Start over",
-                    AccountFlow::Register,
-                    theme,
-                ))
+                    .child(self.access_link(entity, "account-restart-registration", "Wrong address? Start over", AccountFlow::Register))
             }
             AccountFlow::RequestPasswordReset => form
                 .child(components::section_header("Reset your password", "", theme))
                 .children(feedback)
                 .child(Input::new(&self.authentication.email))
                 .child(components::action_row().child(self.access_action(entity, "account-request-reset", "Email me a reset code", IconName::Redo2, Self::start_password_reset_request)))
-                .child(self.access_link(entity, "account-sign-in", "Back to sign in", AccountFlow::SignIn, theme)),
+                .child(self.access_link(entity, "account-sign-in", "Back to sign in", AccountFlow::SignIn)),
             AccountFlow::ResetPassword => {
                 // The token is a pasted string, not the six-digit PIN, so it is
                 // a plain input rather than the OTP boxes — drawing them alike
@@ -279,10 +255,10 @@ impl SyncPage {
                 form.child(components::section_header("Set a new password", "Paste the full reset code from your email. This is different from the six-digit verification PIN.", theme))
                     .children(feedback)
                     .child(Input::new(&self.authentication.reset_token))
-                    .child(self.password_input(&self.authentication.new_password, "toggle-new-password", entity))
+                    .child(Input::new(&self.authentication.new_password).mask_toggle())
                     .child(components::form_hint(format!("At least {} characters.", account_contract::PASSWORD_MIN_CHARACTERS), theme))
                     .child(components::action_row().child(self.access_action(entity, "account-reset-password", "Set new password", IconName::Redo2, Self::start_password_reset)))
-                    .child(self.access_link(entity, "account-sign-in", "Back to sign in", AccountFlow::SignIn, theme))
+                    .child(self.access_link(entity, "account-sign-in", "Back to sign in", AccountFlow::SignIn))
             }
         }
     }
@@ -350,10 +326,10 @@ impl SyncPage {
 
         let signed_in = self.state.read(cx).account_status.signed_in();
         if signed_in && self.deletion.is_some() {
-            return components::browser_settings_fieldset("Account", theme).child(components::browser_settings_block(theme).child(self.account_deletion_form(&entity, feedback, theme)));
+            return components::browser_settings_fieldset("Account", theme).child(components::browser_settings_block().child(self.account_deletion_form(&entity, feedback, theme)));
         }
         let account = if signed_in {
-            components::browser_settings_fieldset("Account", theme).child(components::browser_settings_block(theme).child(self.identity.clone()).child(self.storage_body(theme, cx)))
+            components::browser_settings_fieldset("Account", theme).child(components::browser_settings_block().child(self.identity.clone()).child(self.storage_body(theme, cx)))
         } else {
             components::browser_settings_fieldset_with_actions("Account", self.account_access_actions(&entity, theme), theme)
         };
@@ -367,13 +343,13 @@ impl SyncPage {
             // it is finished with there is no other way back to the account the
             // group is about.
             let close = entity.clone();
-            let form = self.account_access_form(&entity, feedback, theme).child(components::link_button("account-close", "Close", theme, self.is_busy()).on_click(move |_, _, cx| {
+            let form = self.account_access_form(&entity, feedback, theme).child(components::link_button("account-close", "Close", self.is_busy()).on_click(move |_, _, cx| {
                 close.update(cx, |page, cx| page.close_account_access(cx));
             }));
-            return account.child(components::browser_settings_block(theme).child(form));
+            return account.child(components::browser_settings_block().child(form));
         }
 
-        account.children(feedback.map(|feedback| components::browser_settings_block(theme).child(feedback)))
+        account.children(feedback.map(|feedback| components::browser_settings_block().child(feedback)))
     }
 
     /// The quota as a line and a shape, and what each library holds of it.
@@ -416,11 +392,11 @@ impl SyncPage {
             .flex_row()
             .items_center()
             .gap(px(components::SPACE_SM))
-            .child(components::browser_settings_header_button("account-open-register", "Create account", false, theme).on_click(move |_, window, cx| {
-                register.update(cx, |page, cx| page.open_account_access(true, window, cx));
+            .child(components::browser_settings_header_button("account-open-register", "Create account", false, theme).on_click(move |_, _, cx| {
+                register.update(cx, |page, cx| page.open_account_access(true, cx));
             }))
-            .child(components::browser_settings_header_button("account-open-sign-in", "Log in", true, theme).on_click(move |_, window, cx| {
-                login.update(cx, |page, cx| page.open_account_access(false, window, cx));
+            .child(components::browser_settings_header_button("account-open-sign-in", "Log in", true, theme).on_click(move |_, _, cx| {
+                login.update(cx, |page, cx| page.open_account_access(false, cx));
             }))
     }
 
@@ -430,8 +406,8 @@ impl SyncPage {
     /// account picker there is no form to reveal, so the same press opens that
     /// instead — the header reads the same everywhere, and what it opens is the
     /// platform's business.
-    pub(super) fn open_account_access(&mut self, register: bool, window: &mut Window, cx: &mut Context<Self>) {
-        let _ = (register, &window);
+    pub(super) fn open_account_access(&mut self, register: bool, cx: &mut Context<Self>) {
+        let _ = register;
         #[cfg(target_arch = "wasm32")]
         self.open_web_authentication(cx);
         #[cfg(target_os = "android")]
@@ -439,7 +415,7 @@ impl SyncPage {
         #[cfg(not(any(target_arch = "wasm32", target_os = "android")))]
         {
             self.access_open = true;
-            self.set_flow(if register { AccountFlow::Register } else { AccountFlow::SignIn }, window, cx);
+            self.set_flow(if register { AccountFlow::Register } else { AccountFlow::SignIn }, cx);
         }
         cx.notify();
     }
@@ -450,9 +426,9 @@ impl SyncPage {
     /// reset is the only one the server offers — so this is that flow, reached
     /// from the account menu instead of from a failed sign-in.
     #[cfg(not(any(target_arch = "wasm32", target_os = "android")))]
-    pub(super) fn open_password_change(&mut self, window: &mut Window, cx: &mut Context<Self>) {
+    pub(super) fn open_password_change(&mut self, cx: &mut Context<Self>) {
         self.access_open = true;
-        self.set_flow(AccountFlow::RequestPasswordReset, window, cx);
+        self.set_flow(AccountFlow::RequestPasswordReset, cx);
         cx.notify();
     }
 
@@ -472,7 +448,7 @@ impl SyncPage {
     /// is about this list — it decides where the next row in it will live — and
     /// a "Library storage" group of its own separated it from the only thing it
     /// refers to.
-    fn libraries_section(&self, page: &Entity<Self>, rows: &[LibraryRow], compact: bool, theme: components::BrowserTheme) -> Div {
+    fn libraries_section(&self, page: &Entity<Self>, rows: &[LibraryRow], compact: bool, theme: components::BrowserTheme, cx: &gpui::App) -> Div {
         let mut libraries = components::browser_settings_fieldset("Libraries", theme);
         let mut has_rows = false;
 
@@ -501,21 +477,26 @@ impl SyncPage {
                 ("Some changes are too large to sync", theme.warning)
             } else if row.status.issues.retryable != 0 {
                 ("Waiting to retry changes", theme.warning)
-            } else { match row.status.state {
-                LibrarySyncState::Checking => ("Loading status…", theme.text_muted),
-                LibrarySyncState::Unavailable => ("Unavailable", theme.warning),
-                LibrarySyncState::Receiving => ("Receiving library…", theme.accent),
-                LibrarySyncState::Synced => ("Up to date", theme.accent),
-                LibrarySyncState::SyncPending if row.status.last_synced_at.is_none() => ("Sync pending", theme.warning),
-                LibrarySyncState::SyncPending => ("Changes pending", theme.warning),
-                LibrarySyncState::RemoteMissing => ("Not on server", theme.warning),
-                LibrarySyncState::LocalOnly => ("On this device", theme.text_muted),
-            }};
+            } else {
+                match row.status.state {
+                    LibrarySyncState::Checking => ("Loading status…", theme.text_muted),
+                    LibrarySyncState::Unavailable => ("Unavailable", theme.warning),
+                    LibrarySyncState::Receiving => ("Receiving library…", theme.accent),
+                    LibrarySyncState::Synced => ("Up to date", theme.accent),
+                    LibrarySyncState::SyncPending if row.status.last_synced_at.is_none() => ("Sync pending", theme.warning),
+                    LibrarySyncState::SyncPending => ("Changes pending", theme.warning),
+                    LibrarySyncState::RemoteMissing => ("Not on server", theme.warning),
+                    LibrarySyncState::LocalOnly => ("On this device", theme.text_muted),
+                }
+            };
             let (status, status_color) = if row.status.pending_provider_uploads != 0 && !row.status.issues.has_issues() {
                 let count = row.status.pending_provider_uploads;
                 (format!("{count} {} waiting for upload", if count == 1 { "book" } else { "books" }), theme.warning)
-            } else { (status.to_owned(), status_color) };
+            } else {
+                (status.to_owned(), status_color)
+            };
             let library_id = row.status.library_id;
+            let (status, status_color) = if self.storage_copy_pending.contains(&library_id) { ("Copying library…".to_owned(), theme.accent) } else { (status, status_color) };
             // The folder is the button that opens it, labelled with its path.
             #[cfg(all(feature = "filesystem-libraries", any(target_os = "linux", target_os = "macos", target_os = "windows")))]
             let path = row.local_path.as_ref().map(|path| {
@@ -532,21 +513,40 @@ impl SyncPage {
             // The column heading names the switch; stacked, with no heading,
             // the switch names itself.
             let cloud_page = page.clone();
-            let cloud = if let Some(root) = row.status.storage.external() {
-                let provider = match root.scope.provider {
-                    app::CloudProvider::GoogleDrive => "Google Drive",
-                    app::CloudProvider::Dropbox => "Dropbox",
-                    app::CloudProvider::OneDrive => "OneDrive",
-                    app::CloudProvider::WebDav => "WebDAV",
-                    app::CloudProvider::S3 => "S3",
+            let cloud = if row.status.storage.external().is_some() && !app::google_drive_available() {
+                gpui::div().into_any_element()
+            } else if row.status.storage.external().is_some() || row.status.asset_storage_enabled {
+                let provider = match row.status.storage.external().map(|root| root.scope.provider) {
+                    Some(app::CloudProvider::GoogleDrive) => "Google Drive",
+                    Some(app::CloudProvider::Dropbox) => "Dropbox",
+                    Some(app::CloudProvider::OneDrive) => "OneDrive",
+                    Some(app::CloudProvider::WebDav) => "WebDAV",
+                    Some(app::CloudProvider::S3) => "S3",
+                    None => "Bokheim cloud",
                 };
-                div().text_color(theme.text_muted).child(provider).into_any_element()
+                let bokheim = self.state.read(cx).account_status.signed_in() && row.status.storage.external().is_some();
+                let trigger = components::outlined_icon_button(SharedString::from(format!("library-storage-{library_id}")), format!("{provider} · Library storage"), Icon::empty().path("icons/cloud.svg"))
+                    .disabled(self.storage_copy_pending.contains(&library_id));
+                trigger
+                    .dropdown_menu_with_anchor(gpui::Anchor::TopRight, move |menu, _, _| {
+                        let local = cloud_page.clone();
+                        let mut menu = menu
+                            .touch_friendly(compact || components::touch_ui())
+                            .item(components::menu_item_with_icon("Copy to local storage", IconName::HardDrive, move |_, _, cx| local.update(cx, |page, cx| page.copy_storage(library_id, false, cx))));
+                        if bokheim {
+                            let cloud = cloud_page.clone();
+                            menu = menu.item(components::menu_item_with_icon("Copy to Bokheim cloud", Icon::empty().path("icons/cloud.svg"), move |_, _, cx| cloud.update(cx, |page, cx| page.copy_storage(library_id, true, cx))));
+                        }
+                        menu
+                    })
+                    .into_any_element()
             } else {
                 Checkbox::new(SharedString::from(format!("asset-storage-{library_id}")))
                     .when(compact, |checkbox| checkbox.label("Bokheim"))
-                    .checked(row.status.asset_storage_enabled)
+                    .checked(false)
                     .disabled(self.asset_storage_pending.contains(&library_id))
-                    .on_click(move |enabled, _, cx| cloud_page.update(cx, |page, cx| page.change_asset_storage(library_id, *enabled, cx))).into_any_element()
+                    .on_click(move |enabled, _, cx| cloud_page.update(cx, |page, cx| page.change_asset_storage(library_id, *enabled, cx)))
+                    .into_any_element()
             };
             libraries = libraries.child(components::library_table_row(row.name.clone(), path, local_bytes, (status, status_color), cloud, compact, theme).when(!has_rows, |row| row.border_t_0()));
             has_rows = true;

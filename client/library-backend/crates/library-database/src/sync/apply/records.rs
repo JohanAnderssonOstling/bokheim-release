@@ -1,6 +1,6 @@
 //! Completed immutable book additions. The server accepts the
 //! first publication; its deliveries are authoritative, regardless of clocks.
-use super::registers::{next_sequence, schedule};
+use super::registers::{next_sequence, read_merge_state, schedule};
 use crate::DatabaseError;
 use crate::SqlParam;
 use library_replica::LibraryStateEntry;
@@ -58,11 +58,12 @@ pub(crate) fn confirm(conn: &Connection, state: &Versioned<LibraryStateEntry>) -
         return Err(DatabaseError::message("immutable publication has an invalid transport rank"));
     }
     let hash = body.book().ok_or_else(|| DatabaseError::message("immutable record has no book"))?;
-    if !conn.records_book_exists(&hash, |r| r.get::<_, bool>(0))? || !store(conn, body, &state.version)? {
+    let address = body.address();
+    let current = read_merge_state(conn, &address.kind, &address.entity_key, "", Some(&hash))?;
+    if !current.can_merge || !store(conn, body, &state.version)? {
         return Ok(false);
     }
-    let address = body.address();
-    if conn.records_queued(&address.kind, &address.entity_key, |r| r.get::<_, bool>(0))? {
+    if current.queued {
         schedule(conn, &address.kind, &address.entity_key, "", None)?;
     }
     Ok(true)

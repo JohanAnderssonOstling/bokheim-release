@@ -1,7 +1,7 @@
 //! Database policy for native file replay and interrupted directory moves.
 
-use std::collections::{HashMap, HashSet};
 use super::{AssetStore, BackendError, BookId, Database, DirId};
+use std::collections::{HashMap, HashSet};
 use sync_common::ROOT_DIR_ID;
 
 pub(super) fn reconcile_file_jobs(assets: &AssetStore, database: &Database, jobs: Vec<library_database::NativeFileWork>) -> Result<(), BackendError> {
@@ -22,13 +22,23 @@ pub(super) fn reconcile_file_jobs(assets: &AssetStore, database: &Database, jobs
 /// Does nothing when the job is obsolete or another operation holds the book.
 fn apply_file_work(assets: &AssetStore, database: &Database, movable: &HashMap<BookId, Vec<library_model::RelativeBookPath>>, work: library_database::NativeFileWork) -> Result<(), BackendError> {
     let Some(snapshot) = database.native_file_work_snapshot(work)? else { return Ok(()) };
+    // Keep a staged source's cleanup pending until its live placement has
+    // been restored. A failed restore must never delete the remaining bytes.
+    if snapshot.work.operation == "remove" && snapshot.live && snapshot.resolved_path != snapshot.work.original_path {
+        return Ok(());
+    }
     let hash = snapshot.work.content_hash;
     let Some(_lease) = assets.try_exclusive_lease(&hash)? else { return Ok(()) };
     let mut path = snapshot.resolved_path.clone();
     let mut renamed = None;
     let prepared = match snapshot.work.operation.as_str() {
         "remove" if snapshot.live && snapshot.placement.is_some() => None,
-        "remove" => Some(assets.prepare_removal(&hash, &path)?),
+        "remove" => {
+            if !snapshot.live_book_paths.is_empty() && !assets.verified_placement_exists(&hash, &snapshot.live_book_paths)? {
+                return Err(BackendError::message("destination copy is not ready; the source file has been kept"));
+            }
+            Some(assets.prepare_removal(&hash, &path)?)
+        }
         "materialize" => {
             if let Some((dir, name)) = snapshot.placement.clone() {
                 let mut alternatives = library_replica::file_name_candidates(&name, snapshot.occupied_names.iter().map(String::as_str).chain(std::iter::once(name.as_str())));

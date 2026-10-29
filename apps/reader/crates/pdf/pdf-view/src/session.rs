@@ -26,6 +26,10 @@ mod native {
             self.0.info()
         }
 
+        pub async fn prefetch_pages(&self, pages: Vec<usize>) -> PdfResult<()> {
+            self.0.prefetch_pages(pages).await
+        }
+
         pub async fn page_geometry(&self, page_index: usize, trim_margins: bool) -> PdfResult<pdf_reader_core::PdfPageGeometry> {
             self.0.page_geometry(page_index, trim_margins).await
         }

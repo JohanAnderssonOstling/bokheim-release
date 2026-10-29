@@ -58,16 +58,7 @@ impl Database {
                         }
                     }
                 }
-                let mut current = route;
-                while current != 0 {
-                    let Some(node) = nodes.get(&current) else {
-                        metadata.path.clear();
-                        break;
-                    };
-                    metadata.path.push(BrowsePathSegment { id: source.location(current), name: node.label.clone() });
-                    current = node.parent;
-                }
-                metadata.path.reverse();
+                metadata.path = crate::browse::subjects::subject_path(source, route, &nodes);
                 if let Some((_, above)) = metadata.path.split_last() {
                     let unsearched = BrowseOptions { search: String::new(), ..options.clone() };
                     let root_matching = self.result_matching(catalog, nodes.get(&0).map_or(&empty, |node| &node.members), &unsearched)?;

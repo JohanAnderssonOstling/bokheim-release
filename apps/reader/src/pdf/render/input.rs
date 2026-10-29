@@ -33,14 +33,18 @@ impl CommandTarget<NextPage> for PdfReaderView {
 impl CommandTarget<PreviousLine> for PdfReaderView {
     fn execute(&mut self, _: &PreviousLine, window: &mut Window, cx: &mut Context<Self>) {
         self.chrome.hide_for_motion(window, cx);
-        self.pdf.update(cx, |pdf, cx| pdf.previous_item(cx));
+        self.pdf.update(cx, |pdf, cx| {
+            if !pdf.step_reading_ruler(false, cx) { pdf.previous_item(cx); }
+        });
     }
 }
 
 impl CommandTarget<NextLine> for PdfReaderView {
     fn execute(&mut self, _: &NextLine, window: &mut Window, cx: &mut Context<Self>) {
         self.chrome.hide_for_motion(window, cx);
-        self.pdf.update(cx, |pdf, cx| pdf.next_item(cx));
+        self.pdf.update(cx, |pdf, cx| {
+            if !pdf.step_reading_ruler(true, cx) { pdf.next_item(cx); }
+        });
     }
 }
 

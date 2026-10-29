@@ -1,7 +1,21 @@
-// Request the regular WASM URL. The server negotiates Brotli, gzip, or identity
-// through Accept-Encoding; the browser decodes Content-Encoding before handing
-// the streaming application/wasm response to wasm-bindgen.
+let cacheReady;
+
+// Fetch through the existing service worker. A CacheStorage response delivered
+// through fetch retains Chrome's compiled-WASM caching; direct cache.match does not.
+async function prepareCache() {
+    if (!globalThis.document || !globalThis.navigator?.serviceWorker) return;
+    return cacheReady ??= (async () => {
+        const workers = navigator.serviceWorker;
+        await workers.register(new URL('../../audiobook_service_worker.js', import.meta.url));
+        await workers.ready;
+        if (!workers.controller) {
+            await new Promise(resolve => workers.addEventListener('controllerchange', resolve, {once: true}));
+        }
+    })().catch(() => {});
+}
+
 export async function compressedWasm(url) {
+    await prepareCache();
     let response;
     try {
         response = await fetch(url, {cache: 'force-cache'});

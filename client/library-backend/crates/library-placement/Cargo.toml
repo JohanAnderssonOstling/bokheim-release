@@ -18,3 +18,4 @@ blake3.workspace = true
 book-model = { path = "../../../../shared/book-model" }
 book-inspection = { path = "../book-inspection" }
 tempfile = "3"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

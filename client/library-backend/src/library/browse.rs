@@ -1,34 +1,13 @@
-//! Native library-handle wrappers for shared browse queries.
+//! Browse-driven downloads and eviction over shared database queries.
 
-use std::collections::HashSet;
 use super::events::LibraryEvent;
 use crate::library::LibrarySession;
-use crate::BackendError;
-use crate::DirId;
-use library_model::BrowseContents;
+use crate::{BookId, DirId};
+use library_model::{BookCardRow, BrowseLocation, BrowseRow, LibraryBrowseQuery};
+use std::collections::HashSet;
 
 impl LibrarySession {
-    pub fn book_count(&self) -> Result<usize, BackendError> {
-        self.db.book_count().map_err(BackendError::operation)
-    }
-
-    pub fn browse_contents(&self, query: &library_model::LibraryBrowseQuery, downloaded_only: bool) -> Result<BrowseContents, BackendError> {
-        self.db.browse_contents(query, downloaded_only).map_err(BackendError::operation)
-    }
-
-    pub fn directory_path(&self, directory_id: &DirId) -> Result<Vec<library_model::BrowsePathSegment>, BackendError> {
-        self.db.browse_directory_path(directory_id).map_err(BackendError::operation)
-    }
-
-    pub(crate) fn browse(&self, query: &library_model::LibraryBrowseQuery) -> Result<crate::LibraryBrowseData, BackendError> {
-        self.db.browse(query, self.downloaded_books_only()?).map_err(BackendError::operation)
-    }
-}
-
-impl LibrarySession {
-    #[cfg(not(target_arch = "wasm32"))]
-    pub(crate) fn queue_browse_downloads(&self, query: library_model::LibraryBrowseQuery) -> Result<(), String> {
-        let mut query = query;
+    fn browse_hashes(&self, mut query: LibraryBrowseQuery, include_book: impl Fn(&BookCardRow) -> bool, descend: impl Fn(&BrowseRow) -> bool) -> Result<HashSet<BookId>, String> {
         let mut locations = vec![query.location];
         let mut visited = HashSet::new();
         let mut hashes = HashSet::new();
@@ -38,39 +17,24 @@ impl LibrarySession {
             }
             query.location = location;
             let page = self.db.browse_contents(&query, false).map_err(|error| error.to_string())?;
-            hashes.extend(page.books.into_iter().filter(|book| !book.downloaded && !book.download_requested).filter_map(|book| book.content_hash()));
-            locations.extend(page.children.into_iter().filter(|child| child.downloaded_book_count < child.book_count).map(|child| child.id));
+            hashes.extend(page.books.into_iter().filter(&include_book).filter_map(|book| book.content_hash()));
+            locations.extend(page.children.into_iter().filter(&descend).map(|child| child.id));
         }
-        let hashes = hashes.into_iter().collect::<Vec<_>>();
-        self.request_downloads(&hashes).map_err(|error| error.to_string())
+        Ok(hashes)
+    }
+
+    pub(crate) fn queue_browse_downloads(&self, query: LibraryBrowseQuery) -> Result<(), String> {
+        let hashes = self.browse_hashes(query, |book| !book.downloaded && !book.download_requested, |child| child.downloaded_book_count < child.book_count)?;
+        self.request_downloads(&hashes.into_iter().collect::<Vec<_>>()).map_err(|error| error.to_string())
     }
 
     /// Evicts the downloaded copies under one folder without deleting any
     /// entry. Only books the server also holds are evicted, so a local-only
     /// book keeps its bytes. Returns how many copies were evicted.
     pub(crate) fn evict_folder_downloads(&self, directory_id: &DirId) -> Result<usize, String> {
-        let mut query = library_model::LibraryBrowseQuery {
-            location: library_model::BrowseLocation::Folder(*directory_id),
-            search: String::new(),
-            file_types: Vec::new(),
-            chip_sort: Default::default(),
-            book_sort: Default::default(),
-            languages: Vec::new(),
-            hide_finished: false,
-            include_direct_child_books: false,
-        };
-        let mut locations = vec![query.location];
-        let mut visited = HashSet::new();
-        let mut hashes = HashSet::new();
-        while let Some(location) = locations.pop() {
-            if !visited.insert(location) {
-                continue;
-            }
-            query.location = location;
-            let page = self.db.browse_contents(&query, false).map_err(|error| error.to_string())?;
-            hashes.extend(page.books.into_iter().filter(|book| book.downloaded).filter_map(|book| book.content_hash()));
-            locations.extend(page.children.into_iter().filter(|child| child.downloaded_book_count > 0).map(|child| child.id));
-        }
+        let query =
+            LibraryBrowseQuery { location: BrowseLocation::Folder(*directory_id), search: String::new(), file_types: Vec::new(), chip_sort: Default::default(), book_sort: Default::default(), languages: Vec::new(), hide_finished: false };
+        let hashes = self.browse_hashes(query, |book| book.downloaded, |child| child.downloaded_book_count > 0)?;
         let remote = self.db.remote_asset_hashes(library_model::BlobKind::Book).map_err(|error| error.to_string())?;
         let mut evicted = 0;
         for content_hash in hashes {
@@ -88,3 +52,6 @@ impl LibrarySession {
         Ok(evicted)
     }
 }
+
+#[cfg(all(test, not(target_arch = "wasm32")))]
+mod tests;

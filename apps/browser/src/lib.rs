@@ -17,7 +17,7 @@ mod universal;
 
 pub(crate) const BOOK_IMPORT_EXTENSIONS: [&str; 10] = ["epub", "pdf", "mobi", "azw", "azw3", "m4b", "fb2", "fbz", "zip", "cbz"];
 
-use gpui::{App, KeyBinding, actions};
+use gpui::{App, KeyBinding, Window, actions};
 pub use gpui_component::menu::OpenContextMenu;
 use library::CursorMove;
 use library_backend::{DirectoryImport, DirectoryImportFile, ImportSource};
@@ -59,6 +59,14 @@ pub struct OpenAuthor {
     pub name: String,
 }
 
+/// Opens a subject page — the library's or the catalog's, by the location
+/// its crumbs carry — at the end of `path`, which runs from the root down.
+#[derive(Clone, Debug, PartialEq, gpui::Action)]
+#[action(no_json)]
+pub struct OpenSubject {
+    pub path: Vec<library_model::BrowsePathSegment>,
+}
+
 fn directory_import(selected: gpui::SelectedDirectory) -> DirectoryImport {
     DirectoryImport {
         name: selected.name,
@@ -92,7 +100,7 @@ pub use services::SaveKoboAutoRotate;
 pub use services::bind_update_worker;
 pub use services::{AppServices, AppStartup, PublishUpdate, UpdateAction, UpdateActionHandler, UpdateControls, UpdateEvent, UpdateView};
 pub use services::{LibraryRemovalHook, LibraryRemovalPreparation, LibraryRemovalService, library_is_being_removed};
-pub use session::{BrowsePageSession, NavigationSession, ReaderSession, SaveNavigationSession, WindowSession};
+pub use session::{BrowsePageSession, NavigationSession, PaneRequest, ReaderSession, SaveNavigationSession, WindowSession};
 #[cfg(target_arch = "wasm32")]
 pub use universal::sync::SyncEvent;
 /// Switches the selected library to one of its browse views, from the menu in
@@ -101,22 +109,42 @@ pub use universal::sync::SyncEvent;
 #[action(no_json)]
 pub(crate) struct OpenLibraryView(pub(crate) LibraryRoute);
 
-pub use universal::sync::SyncState;
 pub use universal::sync::AuthenticationRequest;
+pub use universal::sync::SyncState;
 
-/// Release retained library cover images before displaying a reader. Cached
-/// pages preserve navigation and reload their artwork when rendered again.
-pub fn evict_covers(cx: &mut App) {
-    library::evict_covers(cx);
+/// Release hidden library cover images after displaying a reader. Other
+/// windows and panes keep their displayed artwork and in-flight cover loads.
+pub fn evict_covers(window: &Window) {
+    window.on_next_frame(|window, _| window.on_next_frame(|_, cx| library::evict_covers(cx)));
 }
 
-actions!(bokheim_browser, [DismissSettings, OpenTrash, ShowSettings, DecreaseUiFontSize, IncreaseUiFontSize, PreviousDestination, NextDestination, OpenLibrarySwitcher, FocusNextSetting, FocusPreviousSetting, UndoLibraryAction]);
+actions!(
+    bokheim_browser,
+    [
+        DismissSettings,
+        CloseSplitPane,
+        OpenTrash,
+        ShowSettings,
+        DecreaseUiFontSize,
+        IncreaseUiFontSize,
+        PreviousDestination,
+        NextDestination,
+        OpenLibrarySwitcher,
+        FocusNextSetting,
+        FocusPreviousSetting,
+        UndoLibraryAction,
+        CopyBooks,
+        CutBooks,
+        PasteBooks
+    ]
+);
 
 #[derive(Clone, Debug, PartialEq, gpui::Action)]
 #[action(no_json)]
 pub(crate) struct ToggleGridSelection(pub(crate) CursorMove);
 
 const GRID_SELECTION_KEY_CONTEXT: &str = "BrowseSelection && !BrowseItem && !Input && !PopupMenu && !Dialog";
+const BOOK_CLIPBOARD_KEY_CONTEXT: &str = "BrowseClipboard && !Input && !PopupMenu && !Dialog";
 
 pub fn bind_keys(cx: &mut App) {
     use ui_components::{ShortcutPage::Browse, bind_shortcut};
@@ -132,6 +160,9 @@ pub fn bind_keys(cx: &mut App) {
     bind_shortcut(cx, Browse, "browse.select_down", "Toggle selection below", &["secondary-down"], ToggleGridSelection(CursorMove::Down), GRID_SELECTION_KEY_CONTEXT);
     bind_shortcut(cx, Browse, "browse.undo", "Undo library action", &["secondary-z"], UndoLibraryAction, "Browser");
     cx.bind_keys([
+        KeyBinding::new("secondary-c", CopyBooks, Some(BOOK_CLIPBOARD_KEY_CONTEXT)),
+        KeyBinding::new("secondary-x", CutBooks, Some(BOOK_CLIPBOARD_KEY_CONTEXT)),
+        KeyBinding::new("secondary-v", PasteBooks, Some(BOOK_CLIPBOARD_KEY_CONTEXT)),
         #[cfg(not(target_os = "android"))]
         KeyBinding::new("back", DismissSettings, Some("Browser")),
         // Settings is a form rather than a grid, so it is walked control by
@@ -147,7 +178,7 @@ pub fn bind_keys(cx: &mut App) {
 
 #[cfg(test)]
 mod tests {
-    use super::GRID_SELECTION_KEY_CONTEXT;
+    use super::{BOOK_CLIPBOARD_KEY_CONTEXT, GRID_SELECTION_KEY_CONTEXT};
     use gpui::{KeyBindingContextPredicate, KeyContext};
 
     #[test]
@@ -156,6 +187,20 @@ mod tests {
         let mut contexts = vec![KeyContext::parse("Browser").unwrap()];
         assert_eq!(predicate.depth_of(&contexts), None);
         contexts.push(KeyContext::parse("BrowseSelection").unwrap());
+        assert!(predicate.depth_of(&contexts).is_some());
+        for child in ["Input", "PopupMenu", "Dialog"] {
+            contexts.push(KeyContext::parse(child).unwrap());
+            assert_eq!(predicate.depth_of(&contexts), None);
+            contexts.pop();
+        }
+    }
+
+    #[test]
+    fn book_clipboard_context_keeps_text_editing_and_other_surfaces_separate() {
+        let predicate = KeyBindingContextPredicate::parse(BOOK_CLIPBOARD_KEY_CONTEXT).unwrap();
+        let mut contexts = vec![KeyContext::parse("Browser").unwrap()];
+        assert_eq!(predicate.depth_of(&contexts), None);
+        contexts.push(KeyContext::parse("BrowseSelection BrowseClipboard").unwrap());
         assert!(predicate.depth_of(&contexts).is_some());
         for child in ["Input", "PopupMenu", "Dialog"] {
             contexts.push(KeyContext::parse(child).unwrap());

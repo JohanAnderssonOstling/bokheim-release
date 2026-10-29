@@ -1,0 +1,81 @@
+--- a/crates/html-view-core/src/session.rs
++++ b/crates/html-view-core/src/session.rs
+@@ -4,7 +4,7 @@
+ use web_time::Instant;
+ 
+ use html_view_paginate::PaginationScratch;
+-use kurbo::{Point, Size};
++use kurbo::{Point, Rect, Size};
+ 
+ use crate::{
+     FrameDisplayCacheKeys, GlyphShaper, InteractionPalette, LaidOutDocument, Painter,
+@@ -163,6 +163,69 @@
+     /// Where an annotation sits on screen, for the same reason.
+     pub fn annotation_bounds(&self, id: &str) -> Option<kurbo::Rect> {
+         self.core.annotation_bounds(id)
++    }
++
++    /// Visible rendered lines in document order, retaining table-cell and
++    /// page-column boundaries. Each line counts separately even if it overlaps
++    /// another line vertically. Bands follow the cell or text block's width.
++    pub fn visible_reading_lines(&self) -> Vec<(Range<u32>, Rect)> {
++        if self.reading_document().is_none() {
++            return Vec::new();
++        }
++        let view = &self.core.page.view;
++        let rendered = view.document.render_view();
++        let text = rendered.text();
++        let boxes = rendered.boxes();
++        let geometry = self.core.text_geometry();
++        let mut lines: Vec<(i32, Range<u32>, Rect)> = view.frame.page().line_positions().iter().filter_map(|(index, screen)| {
++            let line = text.line(index)?;
++            if line.height() <= 0.0 {
++                return None;
++            }
++            // Project the formatting context's clip exactly as the painter
++            // does, including pagination's translation into another column.
++            let clip = text.line_overflow_clip(index).map(|clip| {
++                let rect = clip.rect() + (screen.point - line.point());
++                Rect::new(
++                    if clip.clips_x() { rect.x0 } else { f64::NEG_INFINITY },
++                    if clip.clips_y() { rect.y0 } else { f64::NEG_INFINITY },
++                    if clip.clips_x() { rect.x1 } else { f64::INFINITY },
++                    if clip.clips_y() { rect.y1 } else { f64::INFINITY },
++                )
++            });
++            let clipped = |rect: Rect| clip.map_or(rect, |clip| rect.intersect(clip));
++            // Hidden text still contributes layout lines. Only painted text
++            // should consume ruler steps, and anchors must start in visible ink.
++            let glyphs = text.line_text_fragments(index)?.filter(|fragment| fragment.visible())
++                .map(|fragment| fragment.glyphs()).filter(|range| !range.is_empty())
++                .filter(|range| {
++                    if clip.is_none() {
++                        return true;
++                    }
++                    let (x0, x1) = geometry.glyph_x_span_in_line(&line, range.start, range.end);
++                    let bounds = clipped(Rect::new(screen.point.x + x0, screen.point.y, screen.point.x + x1, screen.point.y + line.height()));
++                    bounds.width() > 0.0 && bounds.height() > 0.0
++                })
++                .reduce(|a, b| a.start.min(b.start)..a.end.max(b.end))?;
++            let owner = line.owner_box_idx();
++            let cell = std::iter::once(owner).chain(boxes.ancestors(owner)).find(|&index| boxes.is_table_cell(index));
++            let region = cell.unwrap_or(owner);
++            let (x, width) = boxes.point(region).zip(boxes.size(region))
++                .filter(|(_, size)| size.width > 0.0)
++                .map(|(point, size)| (screen.point.x + point.x - line.point().x, size.width))
++                .unwrap_or_else(|| (view.layout.col_x(f64::from(screen.col_index), 0.0), view.layout.col_width));
++            let bounds = clipped(Rect::new(x, screen.point.y, x + width, screen.point.y + line.height()));
++            if bounds.width() <= 0.0 || bounds.height() <= 0.0 {
++                return None;
++            }
++            let start = self.core.from_layout_point(Point::new(bounds.x0, bounds.y0));
++            let end = self.core.from_layout_point(Point::new(bounds.x1, bounds.y1));
++            Some((screen.col_index, glyphs, Rect::new(start.x, start.y, end.x, end.y)))
++        }).collect();
++        // Spatial line indexes interleave adjacent table cells. Source glyph
++        // order completes each cell/block while retaining page-column order.
++        lines.sort_by_key(|(column, glyphs, _)| (*column, glyphs.start));
++        lines.into_iter().map(|(_, glyphs, bounds)| (glyphs, bounds)).collect()
+     }
+ 
+     pub fn document(&self) -> &LaidOutDocument {

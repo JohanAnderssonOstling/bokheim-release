@@ -22,6 +22,8 @@ const ACCENT: u32 = 0x486754;
 const BORDER: u32 = 0x8b7e5b;
 const DANGER: u32 = 0x9b312a;
 const PROGRESS: u32 = 0xe1e6d8;
+const WINDOW_HEIGHT: f32 = 144.0;
+const DETAIL_WINDOW_HEIGHT: f32 = 208.0;
 
 enum InstallerStatus {
     Monitoring,
@@ -43,6 +45,7 @@ struct Installer {
     install_task: Option<Task<()>>,
     package: KoboPackage,
     checking_for_update: bool,
+    showing_detail: bool,
     progress: Arc<SharedInstallProgress>,
 }
 
@@ -139,7 +142,7 @@ impl Installer {
             });
         });
 
-        Self { devices: Vec::new(), mount_error: None, status: InstallerStatus::Monitoring, _monitor: monitor, _update_check: update_check, install_task: None, package: KoboPackage::Embedded, checking_for_update: true, progress: Arc::default() }
+        Self { devices: Vec::new(), mount_error: None, status: InstallerStatus::Monitoring, _monitor: monitor, _update_check: update_check, install_task: None, package: KoboPackage::Embedded, checking_for_update: true, showing_detail: false, progress: Arc::default() }
     }
 
     fn detected_status(&self) -> InstallerStatus {
@@ -241,7 +244,13 @@ impl Installer {
 }
 
 impl gpui::Render for Installer {
-    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+    fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+        let detail = self.status_detail();
+        if self.showing_detail != detail.is_some() {
+            self.showing_detail = detail.is_some();
+            let height = if self.showing_detail { DETAIL_WINDOW_HEIGHT } else { WINDOW_HEIGHT };
+            window.resize(size(window.viewport_size().width, px(height)));
+        }
         let can_install = !PREVIEW_ONLY && !self.devices.is_empty() && !self.checking_for_update && !matches!(self.status, InstallerStatus::Installing | InstallerStatus::Unsupported(_));
         let status_color = match self.status {
             InstallerStatus::Failed(_) | InstallerStatus::MountFailed(_) | InstallerStatus::Unsupported(_) => rgb(DANGER),
@@ -284,12 +293,13 @@ impl gpui::Render for Installer {
             .min_w_0()
             .flex()
             .flex_col()
-            .p_6()
+            .px_6()
+            .py_4()
             .justify_center()
             .bg(rgb(SURFACE))
             .text_color(rgb(TEXT))
             .font_family("NV Garamond")
-            .child(div().mb_4().text_size(px(21.0)).font_weight(FontWeight::BOLD).child("Bokheim Kobo Installation"))
+            .child(div().mb_3().text_size(px(21.0)).font_weight(FontWeight::BOLD).child("Bokheim Kobo Installation"))
             .child(
                 div()
                     .flex()
@@ -313,13 +323,13 @@ impl gpui::Render for Installer {
                     )
                     .child(install_button.flex_none()),
             )
-            .when_some(self.status_detail(), |view, detail| view.child(div().mt_3().text_size(px(13.0)).text_color(status_color).child(detail)))
+            .when_some(detail, |view, detail| view.child(div().mt_3().text_size(px(13.0)).text_color(status_color).child(detail)))
     }
 }
 
 fn main() {
     gpui_platform::application().run(|cx: &mut App| {
-        let bounds = Bounds::centered(None, size(px(520.0), px(260.0)), cx);
+        let bounds = Bounds::centered(None, size(px(520.0), px(WINDOW_HEIGHT)), cx);
         cx.text_system()
             .add_fonts(vec![
                 Cow::Borrowed(include_bytes!("../../desktop-gpui/assets/fonts/NV_Garamond-Regular.ttf")),

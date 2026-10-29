@@ -3,13 +3,13 @@ set -euo pipefail
 
 APPDIR=${1:?Usage: verify-appdir-compatibility.sh APPDIR [CORE_MAX_GLIBC] [BROWSER_MAX_GLIBC]}
 CORE_MAX_GLIBC=${2:-2.17}
-BROWSER_MAX_GLIBC=${3:-2.39}
+BROWSER_MAX_GLIBC=${3:-2.17}
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 BROWSER="$APPDIR/usr/bin/bokheim-opds-webview"
 
 test -x "$APPDIR/usr/bin/bokheim"
-# Only the isolated browser executable gets a newer baseline. Every library
-# bundled for the main app must still run on the core baseline.
+# Audit the optional system-WebKit executable separately. Its default ceiling
+# matches the main app and every bundled library.
 bash "$SCRIPT_DIR/verify-glibc-compatibility.sh" "$APPDIR" "$CORE_MAX_GLIBC" --exclude "$BROWSER"
 if test -e "$BROWSER"; then
   test -x "$BROWSER"

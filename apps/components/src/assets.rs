@@ -10,11 +10,13 @@ const WIFI_ICON: &[u8] = include_bytes!("../../ui/design-tokens/assets/icon/wifi
 
 const APP_ICON_PATH: &str = "icons/bokheim.svg";
 const APP_ICON: &[u8] = include_bytes!("../../ui/design-tokens/assets/icon/bokheim.svg");
+const CLOUD_ICON_PATH: &str = "icons/cloud.svg";
+const CLOUD_ICON: &[u8] = include_bytes!("../../ui/design-tokens/assets/icon/cloud.svg");
 /// The player's own transport glyphs. Seconds skips with their seconds written
 /// inside the arrow, drawn to match the phosphor light set (which has no such
 /// icons); the figures are paths, not text, so they need no font to render.
-/// Play and pause are phosphor's fill weight: they sit on the accent-filled
-/// play button, where a light outline read as a hollow shape.
+/// Play and pause are phosphor's fill weight so the main transport action
+/// remains distinct from the outlined skip controls.
 const TRANSPORT_ICONS: [(&str, &[u8]); 4] = [
     ("icons/skip-back-15.svg", include_bytes!("../../ui/design-tokens/assets/icon/skip-back-15.svg")),
     ("icons/skip-forward-30.svg", include_bytes!("../../ui/design-tokens/assets/icon/skip-forward-30.svg")),
@@ -189,6 +191,7 @@ pub use standard_assets::Assets;
 
 impl AssetSource for Assets {
     fn load(&self, path: &str) -> Result<Option<Cow<'static, [u8]>>> {
+        if path == CLOUD_ICON_PATH { return Ok(Some(Cow::Borrowed(CLOUD_ICON))); }
         if let Some((_, bytes)) = PHOSPHOR_LIGHT_ICONS.iter().chain(&TRANSPORT_ICONS).chain(&READER_SETTINGS_ICONS).find(|(icon_path, _)| *icon_path == path) {
             return Ok(Some(Cow::Borrowed(bytes)));
         }
@@ -206,6 +209,7 @@ impl AssetSource for Assets {
 
     fn list(&self, path: &str) -> Result<Vec<SharedString>> {
         let mut assets = standard_assets::list(self, path)?;
+        if CLOUD_ICON_PATH.starts_with(path) { assets.push(CLOUD_ICON_PATH.into()); }
         assets.extend(PHOSPHOR_LIGHT_ICONS.iter().chain(&TRANSPORT_ICONS).filter(|(icon_path, _)| icon_path.starts_with(path)).map(|(icon_path, _)| SharedString::from(*icon_path)));
         if WIFI_OFF_ICON_PATH.starts_with(path) {
             assets.push(WIFI_OFF_ICON_PATH.into());

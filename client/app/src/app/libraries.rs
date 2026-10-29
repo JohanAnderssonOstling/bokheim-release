@@ -143,6 +143,7 @@ impl AppBackend {
                 }
                 continue;
             }
+            #[cfg(not(target_arch = "wasm32"))]
             if let Err(error) = library_registry::read_library_manifest(&canonical_path) {
                 errors.push(failure(LibraryFolderStep::ReadLibraryInfo, BackendError::operation(error)));
                 continue;
@@ -269,19 +270,32 @@ impl AppBackend {
         let library_id = *library_id;
         let result = self.with_storage(move |this| {
             profile.mark("storage_queue_wait");
+            #[cfg(not(target_arch = "wasm32"))]
+            let recovery = this.state.registry.recover_library_root(&library_id).map_err(BackendError::operation)?;
             let entry = this.library_entry(&library_id)?;
             let (spec, reset_token) = this.library_runtime_spec(entry.storage_locator(), library_id)?;
             profile.mark("registry_and_spec");
-            if this.state.library_directory.open(spec, &this.state.executor)? {
+            #[cfg(not(target_arch = "wasm32"))]
+            let opened = match recovery {
+                library_registry::LibraryRootRecovery::Recovered(_) => this.state.library_directory.open_recovered(spec, &this.state.executor)?,
+                library_registry::LibraryRootRecovery::Unchanged(_) => this.state.library_directory.open(spec, &this.state.executor)?,
+            };
+            #[cfg(target_arch = "wasm32")]
+            let opened = this.state.library_directory.open(spec, &this.state.executor)?;
+            if opened {
                 profile.mark("directory_open");
                 if let Some(token) = reset_token {
                     let reset_key = format!("cloud-storage-reset:{library_id}");
                     this.state.registry.clear_value_if_current(&reset_key, &token).map_err(BackendError::operation)?;
                 }
+                #[cfg(not(target_arch = "wasm32"))]
+                this.state.registry.remember_library_root(&library_id).map_err(BackendError::operation)?;
             }
             profile.mark("registry_finalize");
             Ok(())
         });
+        #[cfg(not(target_arch = "wasm32"))]
+        if result.is_err() { let _ = self.state.root_failures.try_send(library_id); }
         result
     }
 
@@ -304,7 +318,7 @@ impl AppBackend {
     /// Converts app-owned registry/account policy into the input for a
     /// library-owned runtime open.  App supplies policy only; the library
     /// creates resources, installs observers, and starts its own workers.
-    fn library_runtime_spec(&self, library_path: &str, library_id: LibraryId) -> Result<(LibraryRuntimeSpec, Option<Vec<u8>>), BackendError> {
+    pub(super) fn library_runtime_spec(&self, library_path: &str, library_id: LibraryId) -> Result<(LibraryRuntimeSpec, Option<Vec<u8>>), BackendError> {
         let reset_key = format!("cloud-storage-reset:{library_id}");
         let reset_token = self.state.registry.read_value(&reset_key).map_err(BackendError::operation)?;
         let storage = self.state.registry.storage(&library_id).map_err(BackendError::operation)?;
@@ -318,13 +332,14 @@ impl AppBackend {
                     database_locator: self.state.registry.library_database_locator(&library_id, library_path),
                     default_sync_server_url: crate::api_server_url(),
                     metadata_server_url: crate::METADATA_SERVER_ORIGIN.to_owned(),
-                    google_books_api_key: super::google_books_api_key(),
                     storage,
                     reset_cloud_presence: reset_token.is_some(),
                 },
                 account: self.state.account.library_account(),
                 cloud: self.state.cloud.clone(),
                 notification_interest: self.state.notification_interest.clone(),
+                #[cfg(not(target_arch = "wasm32"))]
+                root_failures: Some(self.state.root_failures.clone()),
             },
             reset_token,
         ))

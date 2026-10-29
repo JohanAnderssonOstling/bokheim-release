@@ -32,14 +32,14 @@ pub fn validate_archive(ceocdr: &CEOCDR, opts: &ZipOptions) -> Result<()> {
     let not_start_disk = ceocdr.disk_num()? != ceocdr.disk_num_start()?;
     let not_matching_disk_entries = ceocdr.num_entries()? != ceocdr.num_entries_on_disk()?;
 
-    if multiple_disks || not_start_disk || not_matching_disk_entries {
+    if multiple_disks || not_start_disk || (opts.validate_num_cd_files && not_matching_disk_entries) {
         return Err(crate::error::ZipError::FeatureNotSupported("disk spanning archives"));
     }
 
-    if ceocdr.cd_size()? > opts.max_cd_size_in_bytes {
+    if !opts.prefer_central_directory && ceocdr.cd_size()? > opts.max_cd_size_in_bytes {
         return Err(crate::error::ZipError::CDSizeAboveMax(opts.max_cd_size_in_bytes));
     }
-    if ceocdr.num_entries()? > opts.max_cd_num_files {
+    if opts.validate_num_cd_files && ceocdr.num_entries()? > opts.max_cd_num_files {
         return Err(crate::error::ZipError::NumFilesAboveMax(opts.max_cd_num_files));
     }
 
@@ -60,17 +60,19 @@ pub fn validate_file(lf: &LF, cdr: &CDR, options: &ZipOptions) -> Result<()> {
         return Err(crate::error::ZipError::CrcHeaderMismatch);
     }
 
-    if options.validate_file_name_header_match && lf.insecure_file_name != cdr.insecure_file_name {
+    if options.validate_file_name_header_match && lf.insecure_file_name.as_bytes() != cdr.insecure_file_name.as_bytes() {
         return Err(crate::error::ZipError::FileNameHeaderMismatch);
     }
     if options.validate_compression_header_match && lf.lfh.compression != cdr.cdrh.compression {
         return Err(crate::error::ZipError::CompressionHeaderMismatch);
     }
-    if options.validate_gpf_header_match && lf.lfh.gpf != cdr.cdrh.gpf {
+    if options.validate_gpf_header_match && lf.lfh.gpf != cdr.cdrh.gpf
+        && !(options.allow_utf8_flag_mismatch && lf.lfh.gpf.matches_ignoring_language_encoding_flag(&cdr.cdrh.gpf))
+    {
         return Err(crate::error::ZipError::GPFHeaderMismatch);
     }
 
-    if cdr.uncompressed_size()? > options.max_uncompressed_size_per_file {
+    if options.validate_uncompressed_size_match_against_read && cdr.uncompressed_size()? > options.max_uncompressed_size_per_file {
         return Err(crate::error::ZipError::UncompressedSizeAboveMax(options.max_uncompressed_size_per_file));
     }
     if cdr.compressed_size()? > options.max_compressed_size_per_file {

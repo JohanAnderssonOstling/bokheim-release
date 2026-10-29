@@ -142,14 +142,11 @@ pub fn activate_path(path: &Path) -> Result<Option<u64>, DatabaseError> {
 }
 
 fn prepare_path(path: &Path) -> Result<Option<(u64, Connection)>, DatabaseError> {
-    let Some(probe) = crate::sqlite::open_existing(path).map_err(DatabaseError::message)? else { return Ok(None) };
-    let Ok((release_id, format)) = release(&probe) else { return Ok(None) };
+    let Some(mut connection) = open_existing_catalog(path)? else { return Ok(None) };
+    let Ok((release_id, format)) = release(&connection) else { return Ok(None) };
     if format != FORMAT_VERSION {
         return Ok(None);
     }
-    drop(probe);
-    make_private(path)?;
-    let mut connection = Connection::open(path)?;
     connection.pragma_update(None, "cache_size", -2048)?;
     attach_taxonomy(&connection)?;
     let revision = taxonomy_update::revision(&connection)?;
@@ -163,6 +160,19 @@ fn prepare_path(path: &Path) -> Result<Option<(u64, Connection)>, DatabaseError>
         build_projection(&mut connection, &revision)?;
     }
     Ok(Some((release_id, connection)))
+}
+
+/// Catalog reads may first need rollback recovery. Detach a published hard link
+/// before opening it writable, then let SQLite recover before probing its schema.
+fn open_existing_catalog(path: &Path) -> Result<Option<Connection>, DatabaseError> {
+    #[cfg(unix)]
+    {
+        if !path.try_exists().map_err(DatabaseError::operation)? {
+            return Ok(None);
+        }
+        make_private(path)?;
+    }
+    crate::sqlite::open_existing_writable(path).map_err(DatabaseError::message)
 }
 
 /// Published snapshots can be hard-linked into the app-data directory. Detach
@@ -216,7 +226,7 @@ pub(super) fn store_snapshot(source: &Connection, path: &Path) -> Result<(), Dat
     let (ids, generation) = match active_ids {
         Some((ids, generation)) => (ids, Some(generation)),
         None => {
-            let ids = match crate::sqlite::open_existing(path).map_err(DatabaseError::message)? {
+            let ids = match open_existing_catalog(path)? {
                 Some(connection) => previous_ids(&connection)?,
                 None => StableIds::default(),
             };
@@ -246,8 +256,10 @@ pub(super) fn store_snapshot(source: &Connection, path: &Path) -> Result<(), Dat
             return result;
         }
     }
-    make_private_if_existing(path)?;
-    let mut destination = Connection::open(path)?;
+    let mut destination = match open_existing_catalog(path)? {
+        Some(connection) => connection,
+        None => Connection::open(path)?,
+    };
     destination.pragma_update(None, "cache_size", -2048)?;
     publish_snapshot(&prepared, &mut destination)
 }
@@ -267,13 +279,6 @@ fn publish_snapshot(source: &Connection, destination: &mut Connection) -> Result
         }
         _ => Err(DatabaseError::message("catalog is busy; its update was not published")),
     }
-}
-
-fn make_private_if_existing(path: &Path) -> Result<(), DatabaseError> {
-    if crate::sqlite::open_existing(path).map_err(DatabaseError::message)?.is_some() {
-        make_private(path)?;
-    }
-    Ok(())
 }
 
 fn quote_identifier(name: &str) -> String {
@@ -523,6 +528,12 @@ pub fn audiobook_url(key: CardKey) -> Result<Option<String>, DatabaseError> {
 /// Loads one catalog record. Chapters come from the added book's own files.
 pub fn entry(key: CardKey) -> Result<Option<CatalogBook>, DatabaseError> {
     read(|db| load_entry(db, key))
+}
+
+/// The entry's row in the browse projection, which is what the catalog's
+/// subject tree lists books by.
+pub(crate) fn browse_row(key: CardKey) -> Result<Option<i64>, DatabaseError> {
+    read(|db| Ok(db.query_row("SELECT row_id FROM catalog_browse_book WHERE key=?1", [&key.0[..]], |row| row.get(0)).optional()?))
 }
 
 pub(super) fn load_entry(db: &Connection, key: CardKey) -> Result<Option<CatalogBook>, DatabaseError> {

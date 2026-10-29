@@ -1,13 +1,17 @@
+use crate::Button;
 use crate::{
     BOOK_CARD_SUBTITLE_SIZE, BOOK_COVER_BADGE_INSET, BOOK_COVER_RADIUS, COMPACT_HIERARCHY_ITEM_CONTENT_GAP, COMPACT_HIERARCHY_ITEM_HORIZONTAL_PADDING, COMPACT_HIERARCHY_ITEM_TEXT_SIZE_REM, CONTENT_INSET, DOWNLOAD_ACTION_SIZE_REM,
     NavigationIcon, SPACE_MD, TEXT_LG, TEXT_MD,
 };
 use gpui::prelude::*;
-use gpui::{AnyElement, App, AvailableSpace, BoxShadow, Div, ElementId, ImageSource, ObjectFit, Pixels, SharedString, Stateful, StyledImage, Window, black, canvas, div, img, px, size};
-use gpui_component::breadcrumb::{Breadcrumb, BreadcrumbItem};
-use gpui_component::button::{Button, ButtonVariants};
+use gpui::{
+    AnyElement, App, AvailableSpace, Bounds, BoxShadow, ClickEvent, ContentMask, Corners, Div, ElementId, ImageSource, ObjectFit, Pixels, RenderImage, SharedString, Stateful, StyledImage, Window, black, canvas, div, fill, img,
+    linear_color_stop, linear_gradient, point, px, size,
+};
 use gpui_component::spinner::Spinner;
 use gpui_component::{Icon, IconName, Selectable, Sizable, box_shadow};
+use library_model::FINISHED_PROGRESS_THRESHOLD;
+use std::sync::Arc;
 use unicode_normalization::UnicodeNormalization;
 
 use crate::{
@@ -19,27 +23,17 @@ use crate::{
 /// separates the art from the words, `SPACE_XS` separates the words from each
 /// other. Previously the wider first gap was a margin on the title fighting the
 /// column's own gap, which meant two spacing mechanisms in one component.
-/// Selected cards draw an accent tint. The keyboard cursor gets a contrasting
-/// outline around the entire card, independently of selection.
+/// Selected cards use the accent with its contrasting text colour. The
+/// keyboard cursor gets an accent outline around the entire card,
+/// independently of selection.
 ///
-/// It used to invert: `accent` with `accent_text` over it. An inversion has to
-/// reach the edges of its cell or it reads as a hole in the fill, which is why
-/// the grid ran at a zero gap and the card carried the spacing as its own
-/// padding. A tint does not — so the gap came back (`BOOK_GRID_BOOK_GAP`) and
-/// the padding became the tile's inset instead of the spacer between cards.
-///
-/// Hover depends on whether the card is already selected, because gpui's hover
-/// style *replaces* `background` rather than painting over it. On a plain card
-/// the translucent `hover` composites against the page, which is what it is
-/// for; on a tinted one it would composite against the page too and throw the
-/// tile away, so the card would stop looking selected exactly when the pointer
-/// reached it. A selected card hovers to `accent_wash_hover` instead — the same
-/// tint, lifted.
+/// Selected cards hover to `accent_hover` so the highlight remains visible
+/// under the pointer. Plain cards use the translucent hover wash.
 ///
 /// Disable hover while selecting a band or when a section's outer keyboard
 /// frame already paints hover for the whole cell.
 pub fn book_card(id: impl Into<ElementId>, focused: bool, selected: bool, hover_enabled: bool, theme: BrowserTheme) -> Stateful<Div> {
-    let hovered = if selected { theme.accent_wash_hover } else { theme.hover };
+    let hovered = if selected { theme.accent_hover } else { theme.hover };
     div()
         .id(id)
         .relative()
@@ -51,17 +45,11 @@ pub fn book_card(id: impl Into<ElementId>, focused: bool, selected: bool, hover_
         // Reserve the outline inside the existing padding so moving the
         // cursor does not resize covers or alter pagination.
         .border_2()
-        .border_color(if focused {
-            theme.accent
-        } else if selected {
-            theme.border
-        } else {
-            gpui::transparent_black()
-        })
+        .border_color(if focused || selected { theme.accent } else { gpui::transparent_black() })
         .p(px((crate::BOOK_CARD_PADDING - 2.0).max(0.0)))
         .gap(px(BOOK_CARD_COVER_CONTENT_GAP))
         .rounded(px(RADIUS_MD))
-        .when(selected, |card| card.bg(theme.accent_wash))
+        .when(selected, |card| card.bg(theme.accent).text_color(theme.accent_text))
         .when(hover_enabled, |card| card.hover(move |style| style.bg(hovered)))
 }
 
@@ -76,19 +64,11 @@ pub fn book_card_cell() -> Div {
     div().relative().w_full().h_full().min_w_0().flex().flex_col().justify_end()
 }
 
-/// The text block under a card's cover — see `book_card_title_row`. Reserves
-/// the title budget the paginator's row height is computed from, so a title
-/// without a subtitle carries its slack below itself rather than shortening
-/// the card.
-pub fn book_card_text_title_only() -> Div {
-    div().w_full().min_w_0().flex_none().flex().flex_col().h(gpui::rems(BOOK_CARD_TITLE_HEIGHT_REM))
-}
-
 /// `aspect_ratio` is the cover's own width-over-height once its art is
 /// decoded, so the box takes the real cover's proportions instead of every
 /// book being forced into the same frame. Callers without a decoded image yet
 /// pass `BOOK_COVER_ASPECT_RATIO` as a placeholder.
-pub fn book_cover(_theme: BrowserTheme, aspect_ratio: f32) -> Div {
+pub fn book_cover( aspect_ratio: f32) -> Div {
     div().relative().w_full().min_w_0().aspect_ratio(aspect_ratio)
 }
 
@@ -112,7 +92,7 @@ pub fn book_cover_play_button(id: impl Into<ElementId>, theme: BrowserTheme) -> 
         .cursor_pointer()
         .invisible()
         .group_hover(BOOK_COVER_GROUP, |style| style.visible())
-        .hover(move |style| style.bg(theme.accent_wash_hover))
+        .hover(move |style| style.bg(theme.page_bg.blend(theme.hover)))
         .child(Icon::empty().path("icons/play-fill.svg").size(gpui::rems(1.25)).text_color(theme.text))
 }
 
@@ -164,25 +144,65 @@ pub fn book_cover_audiobook_length(duration_ms: Option<u64>, theme: BrowserTheme
 /// the pages, not a curve, so rounding it along with the outer corners would
 /// contradict the spine shade and hinge sitting right next to it.
 pub fn book_cover_image(id: impl Into<SharedString>, source: impl Into<ImageSource>, opacity: f32, focused: bool, theme: BrowserTheme) -> AnyElement {
-    let id = id.into();
-    div()
-        .id(ElementId::from(id.clone()))
-        .relative()
-        .size_full()
+    cover_with_art(div().relative().size_full(), source.into(), opacity, focused, None, theme).id(ElementId::from(id.into())).into_any_element()
+}
+
+/// Loaded library cover: the clickable frame also owns the artwork and its
+/// decoration, so no additional aspect-ratio or artwork div is needed.
+pub fn book_cover_with_image(image: Arc<RenderImage>, aspect_ratio: f32, opacity: f32, progress: Option<f32>, theme: BrowserTheme) -> Div {
+    cover_with_art(book_cover_frame(theme, aspect_ratio), image.into(), opacity, false, progress, theme)
+}
+
+fn cover_with_art(frame: Div, source: ImageSource, opacity: f32, focused: bool, progress: Option<f32>, theme: BrowserTheme) -> Div {
+    let retained = match &source {
+        ImageSource::Render(image) => Some(image.clone()),
+        _ => None,
+    };
+    frame
         .overflow_hidden()
         .rounded_r(px(BOOK_COVER_RADIUS))
-        .border_1()
-        .border_color(if focused { theme.accent } else { gpui::transparent_black() })
         .shadow(book_cover_shadow(theme, false))
         .hover(move |style| style.shadow(book_cover_shadow(theme, true)))
-        // Focus lifts the cover as a supporting cue to the selected card.
         .when(focused, |cover| cover.shadow(book_cover_shadow(theme, true)))
-        // `overflow_hidden` on the wrapping div clips with a rectangular
-        // mask regardless of its own corner radius — an image paints its
-        // corners from its own style, so the rounding has to be set here too.
+        // Padding keeps the old artwork's 1px inset without changing the
+        // containing block used to anchor the frame's absolute controls.
+        .p(px(1.0))
         .child(img(source).size_full().object_fit(ObjectFit::Contain).opacity(opacity).rounded_r(px(BOOK_COVER_RADIUS)))
-        .when(!cfg!(feature = "kobo"), |cover| cover.child(book_cover_spine()).child(book_cover_hinge()))
-        .into_any_element()
+        .child(
+            canvas(
+                |_, _, _| (),
+                move |bounds, _, window, _| {
+                    if !bounds.intersects(&window.content_mask().bounds) {
+                        return;
+                    }
+                    if let Some(image) = retained {
+                        // Cached cards must keep their visible pixels alive even
+                        // when the shared browse cache drops its reference.
+                        window.with_global_id("visible-cover-pixels".into(), |id, window| {
+                            window.with_element_state(id, |_: Option<Arc<RenderImage>>, _| ((), image));
+                        });
+                    }
+                    if !cfg!(feature = "kobo") {
+                        paint_cover_binding(bounds.inset(px(1.0)), window);
+                    }
+                    if focused {
+                        window.paint_quad(gpui::outline(bounds, theme.accent, gpui::BorderStyle::default()).corner_radii(Corners {
+                            top_left: px(0.0),
+                            top_right: px(BOOK_COVER_RADIUS),
+                            bottom_right: px(BOOK_COVER_RADIUS),
+                            bottom_left: px(0.0),
+                        }));
+                    }
+                    if let Some(progress) = progress.filter(|progress| *progress < FINISHED_PROGRESS_THRESHOLD) {
+                        paint_cover_progress(bounds, progress, theme, window);
+                    }
+                },
+            )
+            .absolute()
+            .inset_0()
+            .size_full(),
+        )
+        .when_some(progress.filter(|progress| *progress >= FINISHED_PROGRESS_THRESHOLD), |cover, progress| cover.children(book_cover_progress(progress, theme)))
 }
 
 /// The palette's general overlay shadow can be gold in dark mode. Covers
@@ -195,76 +215,57 @@ fn book_cover_shadow(theme: BrowserTheme, lifted: bool) -> Vec<BoxShadow> {
     vec![box_shadow(px(0.0), px(offset), px(blur), px(0.0), color)]
 }
 
-/// The gradient strip `book_cover_image` shades its leading edge with.
-///
-/// Painted as the image's last child so it lands above the art rather than
-/// under it — an opaque cover would otherwise hide anything drawn first.
-fn book_cover_spine() -> gpui::Div {
-    div().absolute().left_0().top_0().bottom_0().w(px(crate::BOOK_COVER_SPINE_WIDTH)).bg(gpui::linear_gradient(90.0, gpui::linear_color_stop(gpui::black().opacity(0.35), 0.0), gpui::linear_color_stop(gpui::transparent_black(), 1.0)))
-}
-
-/// The shallow hinge groove just inside the spine shade. Its recessed line is
-/// centered at 12 px; a faint catchlight on the board side keeps it legible on
-/// dark jacket artwork without drawing a full bright outline.
-fn book_cover_hinge() -> gpui::Div {
-    // Four two-stop bands reconstruct the original five-point curve exactly —
-    // `linear_gradient` here takes only one `from` and one `to`.
+/// Paint the spine and recessed hinge above the art without decorative divs.
+fn paint_cover_binding(bounds: Bounds<Pixels>, window: &mut Window) {
+    window.paint_quad(fill(Bounds::new(bounds.origin, size(px(crate::BOOK_COVER_SPINE_WIDTH), bounds.size.height)), linear_gradient(90.0, linear_color_stop(black().opacity(0.35), 0.0), linear_color_stop(gpui::transparent_black(), 1.0))));
+    // Four adjacent bands retain the original five-stop hinge gradient.
     let stops = [gpui::transparent_black(), gpui::black().opacity(0.12), gpui::black().opacity(0.28), gpui::white().opacity(0.14), gpui::transparent_black()];
-    let band = |left: f32, from: gpui::Hsla, to: gpui::Hsla| div().absolute().left(px(left)).top_0().bottom_0().w(px(1.0)).bg(gpui::linear_gradient(90.0, gpui::linear_color_stop(from, 0.0), gpui::linear_color_stop(to, 1.0)));
-    div().absolute().left(px(10.0)).top_0().bottom_0().w(px(4.0)).children((0..4).map(|index| band(index as f32, stops[index], stops[index + 1])))
+    for (index, pair) in stops.windows(2).enumerate() {
+        let band = Bounds::new(bounds.origin + point(px(10.0 + index as f32), px(0.0)), size(px(1.0), bounds.size.height));
+        window.paint_quad(fill(band, linear_gradient(90.0, linear_color_stop(pair[0], 0.0), linear_color_stop(pair[1], 1.0))));
+    }
 }
 
-/// The reader's place in the book, drawn on the cover's own bottom edge.
+fn paint_cover_progress(bounds: Bounds<Pixels>, progress: f32, theme: BrowserTheme, window: &mut Window) {
+    let fraction = (progress / 100.0).clamp(0.0, 1.0);
+    if fraction <= 0.0 {
+        return;
+    }
+    let scrim = Bounds::new(point(bounds.left(), bounds.bottom() - px(crate::BOOK_COVER_PROGRESS_SCRIM_HEIGHT)), size(bounds.size.width, px(crate::BOOK_COVER_PROGRESS_SCRIM_HEIGHT)));
+    if !cfg!(feature = "kobo") {
+        window.paint_quad(fill(scrim, linear_gradient(0.0, linear_color_stop(black().opacity(0.6), 0.0), linear_color_stop(gpui::transparent_black(), 1.0))));
+    }
+    let track = Bounds::new(point(bounds.left(), bounds.bottom() - px(crate::BOOK_COVER_PROGRESS_HEIGHT)), size(bounds.size.width, px(crate::BOOK_COVER_PROGRESS_HEIGHT)));
+    if cfg!(feature = "kobo") {
+        window.paint_quad(fill(track, theme.page_bg));
+    }
+    window.paint_quad(fill(Bounds::new(track.origin, size(track.size.width * fraction, track.size.height)), theme.accent));
+}
+
+/// The reader's place on the cover: a checkmark when finished, otherwise a
+/// progress bar along the bottom edge after reading has started.
 ///
-/// Laid over the artwork rather than in the gap below it, on a scrim dark
-/// enough to keep the mark legible against art of any colour — without it,
-/// an accent-coloured bar disappears into a cover already carrying warm or
-/// saturated tones there. Length is the entire signal: nothing at zero, full
-/// at the end. There is no separate finished treatment — a finished book is
-/// one whose rule is full, and hiding those is the filter's business, not the
-/// card's. Because length rather than colour carries it, the mark survives
-/// greyscale — but e-ink's accent is black, which the scrim swallows, so there
-/// the bar runs on a page-coloured track.
+/// The bar's scrim keeps it legible over artwork. E-ink uses a page-coloured
+/// track because its black accent would disappear into the scrim.
 pub fn book_cover_progress(progress: f32, theme: BrowserTheme) -> Option<AnyElement> {
+    if progress >= FINISHED_PROGRESS_THRESHOLD {
+        return Some(
+            book_cover_badge_plate(theme)
+                .absolute()
+                .right(px(BOOK_COVER_BADGE_INSET))
+                .bottom(px(BOOK_COVER_BADGE_INSET))
+                .border_color(theme.accent)
+                .bg(theme.accent)
+                .text_color(theme.accent_text)
+                .child(Icon::new(IconName::Check).size(gpui::rems(crate::DOWNLOAD_ICON_SIZE_REM)))
+                .into_any_element(),
+        );
+    }
     let fraction = (progress / 100.0).clamp(0.0, 1.0);
     if fraction <= 0.0 {
         return None;
     }
-    Some(
-        div()
-            .absolute()
-            .left_0()
-            .right_0()
-            .bottom_0()
-            .h(px(crate::BOOK_COVER_PROGRESS_SCRIM_HEIGHT))
-            .flex()
-            .flex_col()
-            .justify_end()
-            .when(!cfg!(feature = "kobo"), |cover| cover.child(div().absolute().inset_0().bg(gpui::linear_gradient(0.0, gpui::linear_color_stop(gpui::black().opacity(0.6), 0.0), gpui::linear_color_stop(gpui::transparent_black(), 1.0)))))
-            .child(div().relative().h(px(crate::BOOK_COVER_PROGRESS_HEIGHT)).flex().flex_row().when(cfg!(feature = "kobo"), |track| track.bg(theme.page_bg)).child(div().w(gpui::relative(fraction)).h_full().bg(theme.accent)))
-            .into_any_element(),
-    )
-}
-
-/// Stand-in for a book with no cover art.
-///
-/// The label was previously an unstyled raw string at inherited body size,
-/// which read as loud as a real title. Muted and small: it is an absence, not
-/// a thing to look at.
-pub fn missing_book_cover(label: impl Into<SharedString>, theme: BrowserTheme) -> Div {
-    book_cover(theme, BOOK_COVER_ASPECT_RATIO)
-        .flex()
-        .flex_col()
-        .items_center()
-        .justify_center()
-        .overflow_hidden()
-        .rounded_r(px(BOOK_COVER_RADIUS))
-        .border_1()
-        .border_color(theme.rule)
-        .bg(theme.page_bg)
-        .gap(px(SPACE_XS))
-        .child(Icon::new(IconName::BookOpen).large().text_color(theme.text_muted))
-        .child(div().text_size(gpui::rems(TEXT_XS)).text_color(theme.text_muted).child(label.into()))
+    Some(canvas(|_, _, _| (), move |bounds, _, window, _| paint_cover_progress(bounds, progress, theme, window)).absolute().inset_0().size_full().into_any_element())
 }
 
 /// Fixed book-cloth colours shared by generated covers and section headings.
@@ -686,17 +687,28 @@ fn paint_generated_cover(design: CoverDesign, bounds: gpui::Bounds<Pixels>, lett
 /// The generated jacket: one element whose canvas paints the whole design at
 /// the cover's real size, so the type scales with the card. Always 1.6 times
 /// as tall as it is wide, audiobooks included.
-fn generated_cover(design: CoverDesign, lettering: Option<CoverLettering>, theme: BrowserTheme) -> Div {
-    book_cover(theme, BOOK_COVER_ASPECT_RATIO)
-        .overflow_hidden()
-        .rounded_r(px(BOOK_COVER_RADIUS))
-        .bg(gpui::rgb(design.ground))
-        .child(canvas(|_, _, _| {}, move |bounds, _, window, cx| paint_generated_cover(design, bounds, lettering.as_ref(), window, cx)).absolute().size_full())
+fn generated_cover(frame: Div, design: CoverDesign, lettering: Option<CoverLettering>) -> Div {
+    frame.child(
+        canvas(
+            |_, _, _| {},
+            move |bounds, _, window, cx| {
+                // Clip only the art; controls attached to the frame retain
+                // their own hit areas, including the larger touch targets.
+                window.with_content_mask(Some(ContentMask { bounds }), |window| {
+                    window.paint_quad(fill(bounds, gpui::rgb(design.ground)).corner_radii(Corners { top_left: px(0.0), top_right: px(BOOK_COVER_RADIUS), bottom_right: px(BOOK_COVER_RADIUS), bottom_left: px(0.0) }));
+                    paint_generated_cover(design, bounds, lettering.as_ref(), window, cx);
+                });
+            },
+        )
+        .absolute()
+        .inset_0()
+        .size_full(),
+    )
 }
 
 /// The generated jacket without its text, for a cover too small to letter.
-pub fn book_thumbnail_generated(variant: u64, theme: BrowserTheme) -> Div {
-    generated_cover(CoverDesign::new(variant), None, theme)
+pub fn book_thumbnail_generated(variant: u64) -> Div {
+    generated_cover(book_cover( BOOK_COVER_ASPECT_RATIO).overflow_hidden().rounded_r(px(BOOK_COVER_RADIUS)), CoverDesign::new(variant), None)
 }
 
 /// A cover for a book with no available image, also shown while its image loads.
@@ -706,18 +718,27 @@ pub fn book_thumbnail_generated(variant: u64, theme: BrowserTheme) -> Div {
 /// hash or source-entry identity) so the same book always generates the same
 /// cover. Painted directly from quads, shaped text and paths, nothing
 /// rasterized, so no cover keeps a bitmap in memory.
-pub fn book_cover_generated(title: impl Into<SharedString>, subtitle: Option<&str>, author: &str, variant: u64, theme: BrowserTheme) -> Div {
+pub fn book_cover_generated(title: impl Into<SharedString>, subtitle: Option<&str>, author: &str, variant: u64) -> Div {
+    generated_cover(book_cover( BOOK_COVER_ASPECT_RATIO).overflow_hidden().rounded_r(px(BOOK_COVER_RADIUS)), CoverDesign::new(variant), Some(cover_lettering(title, subtitle, author)))
+}
+
+/// A clickable generated cover, with its art painted directly in the frame.
+pub fn book_cover_with_generated_art(title: impl Into<SharedString>, subtitle: Option<&str>, author: &str, variant: u64, theme: BrowserTheme) -> Div {
+    generated_cover(book_cover_frame(theme, BOOK_COVER_ASPECT_RATIO), CoverDesign::new(variant), Some(cover_lettering(title, subtitle, author)))
+}
+
+fn cover_lettering(title: impl Into<SharedString>, subtitle: Option<&str>, author: &str) -> CoverLettering {
     let subtitle = subtitle.map(str::trim).filter(|value| !value.is_empty()).map(SharedString::from);
     let author = SharedString::from(author.trim().to_uppercase());
-    generated_cover(CoverDesign::new(variant), Some(CoverLettering { title: title.into(), subtitle, author }), theme)
+    CoverLettering { title: title.into(), subtitle, author }
 }
 
 /// No colour of its own: the title inherits from the card, which is what turns
 /// it to `accent_text` when the cell fills with the accent.
 ///
 /// Takes only the lines it needs rather than reserving the full
-/// title-and-subtitle height itself — see `book_card_text_title_only`, which
-/// reserves that budget as one box around the title.
+/// title-and-subtitle height itself — `book_card_title_row` reserves that
+/// budget on this same container when used below a cover.
 pub fn book_card_title() -> Div {
     div().w_full().min_w_0().flex_none().text_size(gpui::rems(BOOK_CARD_TITLE_SIZE)).line_height(gpui::relative(BOOK_CARD_TITLE_LINE_HEIGHT_EM)).font_weight(BOOK_CARD_TITLE_WEIGHT)
 }
@@ -725,21 +746,19 @@ pub fn book_card_title() -> Div {
 /// Share three lines, giving the title priority while reserving one subtitle
 /// line. Measure at the actual card width so a one-line title leaves two
 /// subtitle lines, including after a font or window-size change.
-pub fn book_title_lines(title: impl Into<SharedString>, subtitle: Option<&str>) -> Div {
+pub fn book_title_lines(title: impl Into<SharedString>, subtitle: Option<&str>) -> impl IntoElement {
     let title = title.into();
     let subtitle = subtitle.map(str::trim).filter(|value| !value.is_empty()).map(SharedString::from);
-    div().w_full().min_w_0().child(
-        canvas(
-            move |bounds, window, cx| {
-                let mut content = book_title_content(title, subtitle, bounds.size.width, window, cx).into_any_element();
-                content.prepaint_as_root(bounds.origin, size(AvailableSpace::Definite(bounds.size.width), AvailableSpace::MaxContent), window, cx);
-                content
-            },
-            |_, mut content, window, cx| content.paint(window, cx),
-        )
-        .w_full()
-        .h(gpui::rems(BOOK_CARD_TITLE_HEIGHT_REM)),
+    canvas(
+        move |bounds, window, cx| {
+            let mut content = book_title_content(title, subtitle, bounds.size.width, window, cx).into_any_element();
+            content.prepaint_as_root(bounds.origin, size(AvailableSpace::Definite(bounds.size.width), AvailableSpace::MaxContent), window, cx);
+            content
+        },
+        |_, mut content, window, cx| content.paint(window, cx),
     )
+    .w_full()
+    .h(gpui::rems(BOOK_CARD_TITLE_HEIGHT_REM))
 }
 
 fn book_title_content(title: SharedString, subtitle: Option<SharedString>, width: Pixels, window: &mut Window, cx: &mut App) -> Div {
@@ -801,6 +820,9 @@ mod book_title_tests {
                                 let mut content = book_title_content(title.into(), subtitle.map(SharedString::from), width, window, cx).into_any_element();
                                 let measured = content.layout_as_root(size(AvailableSpace::Definite(width), AvailableSpace::MaxContent), window, cx);
                                 assert_eq!(measured.height, title_height * title_lines as f32 + subtitle_height * subtitle_lines as f32, "title={title:?}, subtitle={subtitle:?}, width={width:?}, rem={rem}");
+                                let mut row = book_card_title_row(title, subtitle).into_any_element();
+                                let measured = row.layout_as_root(size(AvailableSpace::Definite(width), AvailableSpace::MaxContent), window, cx);
+                                assert_eq!(measured, size(width, px(rem * BOOK_CARD_TITLE_HEIGHT_REM)), "short or blank titles must retain the full cell budget");
                             }
                         }
                     }
@@ -825,8 +847,9 @@ mod book_title_tests {
 /// the cards whose books were not on the device — so titles in one row wrapped
 /// at different places. It is on the cover now; see
 /// [`book_cover_download_badge`].
+/// Reserves the paginator's full title budget even when the text is shorter.
 pub fn book_card_title_row(title: impl Into<SharedString>, subtitle: Option<&str>) -> Div {
-    div().w_full().min_w_0().flex_none().child(book_card_title().child(book_title_lines(title, subtitle)))
+    book_card_title().h(gpui::rems(BOOK_CARD_TITLE_HEIGHT_REM)).child(book_title_lines(title, subtitle))
 }
 
 /// The mark of a book that is not on this device, in its cover's top-right
@@ -843,7 +866,7 @@ pub fn book_cover_download_badge(id: impl Into<ElementId>, pending: bool, theme:
 
 /// Waiting for transfer policy or another download requires no animation.
 pub fn book_cover_queued_badge(id: impl Into<ElementId>, theme: BrowserTheme) -> Stateful<Div> {
-    book_cover_badge_hit_area(id).child(book_cover_badge_plate(theme).child(Icon::empty().path("icons/hourglass.svg").size(gpui::rems(crate::DOWNLOAD_ICON_SIZE_REM)).text_color(theme.text)))
+    book_cover_badge(id, Icon::empty().path("icons/hourglass.svg").size(gpui::rems(crate::DOWNLOAD_ICON_SIZE_REM)).text_color(theme.text), false, theme)
 }
 
 /// The same corner for a catalog book: adding it to the library, which
@@ -860,30 +883,38 @@ pub fn book_cover_buy_badge(id: impl Into<ElementId>, theme: BrowserTheme) -> St
 /// The same corner for a catalog book the library already holds: a mark,
 /// not an action.
 pub fn book_cover_in_library_badge(id: impl Into<ElementId>, theme: BrowserTheme) -> Stateful<Div> {
-    book_cover_badge_hit_area(id).child(book_cover_badge_plate(theme).child(Icon::new(IconName::Check).size(gpui::rems(crate::DOWNLOAD_ICON_SIZE_REM)).text_color(theme.text)))
+    book_cover_badge(id, Icon::new(IconName::Check).size(gpui::rems(crate::DOWNLOAD_ICON_SIZE_REM)).text_color(theme.text), false, theme)
 }
 
 fn book_cover_action_badge(id: impl Into<ElementId>, pending: bool, glyph: Icon, theme: BrowserTheme) -> Stateful<Div> {
-    let plate_hover = theme.accent_wash_hover;
-    book_cover_badge_hit_area(id).when(!pending, |badge| badge.cursor_pointer()).child(
-        book_cover_badge_plate(theme)
-            .when(pending, |plate| plate.child(Spinner::new().icon(IconName::LoaderCircle).xsmall().color(theme.text)))
-            .when(!pending, |plate| plate.group_hover(BOOK_COVER_BADGE_GROUP, move |style| style.bg(plate_hover)).child(glyph.text_color(theme.text))),
-    )
+    let content = if pending { Spinner::new().icon(IconName::LoaderCircle).xsmall().color(theme.text).into_any_element() } else { glyph.text_color(theme.text).into_any_element() };
+    book_cover_badge(id, content, !pending, theme)
 }
 
 const BOOK_COVER_BADGE_GROUP: &str = "book-cover-badge";
 
-/// The badge's hit area, which takes the clicks and the tooltip. With a
-/// pointer it is the plate itself, at `BOOK_COVER_BADGE_INSET`. On a phone it
-/// is a touch target reaching in from the cover's corner, holding the plate at
-/// the same inset, so the badge keeps its size on a small cover.
-fn book_cover_badge_hit_area(id: impl Into<ElementId>) -> Stateful<Div> {
-    let area = div().id(id).group(BOOK_COVER_BADGE_GROUP).absolute().flex().items_start().justify_end();
+/// The pointer target is the plate itself. Touch keeps a larger transparent
+/// target around the same inset plate, so it needs its own layout container.
+fn book_cover_badge(id: impl Into<ElementId>, content: impl IntoElement, hover_enabled: bool, theme: BrowserTheme) -> Stateful<Div> {
+    let plate = book_cover_badge_plate(theme).child(content);
+    let plate_hover = theme.page_bg.blend(theme.hover);
     if crate::touch_ui() {
-        area.top_0().right_0().min_w(gpui::rems(crate::TOUCH_TARGET_REM)).min_h(gpui::rems(crate::TOUCH_TARGET_REM)).p(px(BOOK_COVER_BADGE_INSET))
+        div()
+            .id(id)
+            .group(BOOK_COVER_BADGE_GROUP)
+            .absolute()
+            .flex()
+            .items_start()
+            .justify_end()
+            .top_0()
+            .right_0()
+            .min_w(gpui::rems(crate::TOUCH_TARGET_REM))
+            .min_h(gpui::rems(crate::TOUCH_TARGET_REM))
+            .p(px(BOOK_COVER_BADGE_INSET))
+            .when(hover_enabled, |badge| badge.cursor_pointer())
+            .child(plate.when(hover_enabled, |plate| plate.group_hover(BOOK_COVER_BADGE_GROUP, move |style| style.bg(plate_hover))))
     } else {
-        area.top(px(BOOK_COVER_BADGE_INSET)).right(px(BOOK_COVER_BADGE_INSET))
+        plate.id(id).group(BOOK_COVER_BADGE_GROUP).absolute().top(px(BOOK_COVER_BADGE_INSET)).right(px(BOOK_COVER_BADGE_INSET)).when(hover_enabled, |badge| badge.cursor_pointer().hover(move |style| style.bg(plate_hover)))
     }
 }
 
@@ -909,36 +940,39 @@ pub fn drag_preview(label: SharedString, theme: BrowserTheme) -> Div {
     div().px(px(SPACE_SM)).h(px(28.0)).flex().items_center().rounded(px(RADIUS_SM)).bg(theme.accent).text_color(theme.accent_text).text_size(gpui::rems(TEXT_XS)).child(label)
 }
 
-/// Breadcrumbs use regular text at the medium body size. Items own the vertical
-/// padding so the trail stays aligned with the action buttons in the topbar.
+/// The folder trail in the topbar: the root, then the path, on one line, folded
+/// to the width the topbar leaves it — whole crumbs into one "…", from the
+/// middle out, the current folder never (see [`fold_trail`](crate::fold_trail)).
+/// Names are never cut: a cut name named nothing.
 ///
-/// The gap is zeroed against the toolkit's `gap_1p5`, which would otherwise add
-/// 6px to the padding each crumb already carries — a chevron only 3.5 units
-/// wide, floating in more air than it separates. Crumb padding is then the
-/// single owner of the trail's rhythm: change it in [`folder_breadcrumb_item`]
-/// and the label, its hit area and its distance from the separator all move
-/// together.
-pub fn folder_breadcrumb() -> Breadcrumb {
-    Breadcrumb::new().text_size(gpui::rems(TEXT_MD)).gap_0()
+/// Should even "… › current" not fit, the start is clipped under the topbar's
+/// edge rather than the folder the trail is for.
+///
+/// `labels` are the crumbs' names, root first, for the fold's tooltip.
+/// Crumb padding is the only space in the trail — there is no gap — so the
+/// label, its hit area and its distance from the chevron move together: change
+/// it in [`folder_breadcrumb_item`].
+pub fn folder_breadcrumb(crumbs: Vec<Stateful<Div>>, labels: Vec<SharedString>, theme: BrowserTheme) -> crate::FoldedTrail {
+    let crumbs = crumbs.into_iter().map(IntoElement::into_any_element).collect();
+    crate::folded_trail("folder-breadcrumb", crumbs, move || folder_breadcrumb_separator(theme).into_any_element(), move |folded| folder_breadcrumb_fold(&labels, folded, theme).into_any_element()).keep_end().w_full()
 }
 
-/// Holds the trail in a topbar too narrow for it, and decides which end of the
-/// trail survives that.
-///
-/// The current folder is what the trail is *for*, so it is the crumb that must
-/// stay on screen; the root is the one the reader already knows. A left-anchored
-/// row (which is what a horizontal scroll surface gives you, parked at offset 0)
-/// keeps the wrong end and pushes the leaf out of sight, so overflow is taken
-/// off the start instead: the row is clipped and justified to the end, and the
-/// crumbs slide left under the topbar's edge as the path deepens.
-///
-/// The spacer is what keeps that from right-aligning a trail that fits. It
-/// absorbs the free space while there is any, leaving justification nothing to
-/// do; once the trail overflows it collapses and the end-justification takes
-/// over. The trail itself never shrinks — crumbs are elided by character count
-/// in [`folder_breadcrumb_item`], not squeezed.
-pub fn folder_breadcrumb_trail(breadcrumb: Breadcrumb) -> Div {
-    div().w_full().min_w_0().overflow_x_hidden().flex().items_center().justify_end().child(breadcrumb.flex_none()).child(div().flex_1().min_w_0())
+/// The chevron between two crumbs, at the size and colour the toolkit's
+/// breadcrumb drew it.
+fn folder_breadcrumb_separator(theme: BrowserTheme) -> Icon {
+    Icon::new(IconName::ChevronRight).text_color(theme.text_muted).size_3p5()
+}
+
+/// The folded crumbs, as one "…" that names them when the pointer rests on it.
+/// When the root is among them it takes the root's inset.
+fn folder_breadcrumb_fold(labels: &[SharedString], folded: std::ops::Range<usize>, theme: BrowserTheme) -> Stateful<Div> {
+    let hidden = SharedString::from(labels[folded.clone()].iter().map(|label| label.as_ref()).collect::<Vec<&str>>().join(" › "));
+    let fold =
+        div().id("folder-breadcrumb-fold").flex_none().whitespace_nowrap().text_size(gpui::rems(TEXT_MD)).px(px(SPACE_XS)).py(px(SPACE_XS)).text_color(theme.text_muted).when(folded.start == 0, |fold| fold.pl(px(CONTENT_INSET))).child("…");
+    if hidden.is_empty() {
+        return fold;
+    }
+    fold.tooltip(move |window, cx| gpui_component::tooltip::Tooltip::new(hidden.clone()).build(window, cx))
 }
 
 /// The trail recedes and the current folder does not: ancestors are muted, the
@@ -947,19 +981,26 @@ pub fn folder_breadcrumb_trail(breadcrumb: Breadcrumb) -> Div {
 ///
 /// The horizontal padding is `SPACE_XS` rather than the `CONTENT_INSET` the
 /// rest of the browser is inset by, and it is the only thing between a label
-/// and its chevron — see [`folder_breadcrumb`], which zeroes the toolkit's gap.
-/// A chevron is a separator, not a neighbour: it belongs to the pair of crumbs
-/// around it, and at the inset it reads as an item of its own.
-pub fn folder_breadcrumb_item(label: impl Into<SharedString>, current: bool, theme: BrowserTheme) -> BreadcrumbItem {
-    let label = label.into();
-    let max_characters = 24;
-    let mut characters = label.chars();
-    let visible = characters.by_ref().take(max_characters).collect::<String>();
-    let visible = if characters.next().is_some() { format!("{}…", visible.chars().take(max_characters.saturating_sub(1)).collect::<String>()) } else { visible };
+/// and its chevron — the trail has no gap. A chevron is a separator, not a
+/// neighbour: it belongs to the pair of crumbs around it, and at the inset it
+/// reads as an item of its own.
+///
+/// `index` is the crumb's place in the trail, root first. Every crumb but
+/// the current one leads somewhere, which the page attaches.
+pub fn folder_breadcrumb_item(index: usize, label: impl Into<SharedString>, current: bool, theme: BrowserTheme) -> Stateful<Div> {
     // One face for the whole trail: the display face at this size read thinner
     // than the interface face beside it, so the current folder looked lighter
     // than its ancestors. Ink against muted carries "current" on its own.
-    BreadcrumbItem::new(visible).px(px(SPACE_XS)).py(px(SPACE_XS)).text_color(if current { theme.text } else { theme.text_muted })
+    div()
+        .id(("folder-breadcrumb-crumb", index))
+        .flex_none()
+        .whitespace_nowrap()
+        .text_size(gpui::rems(TEXT_MD))
+        .px(px(SPACE_XS))
+        .py(px(SPACE_XS))
+        .text_color(if current { theme.text } else { theme.text_muted })
+        .when(!current, |crumb| crumb.cursor_pointer())
+        .child(label.into())
 }
 
 /// The first crumb, set on the left edge of the covers below it.
@@ -971,8 +1012,8 @@ pub fn folder_breadcrumb_item(label: impl Into<SharedString>, current: bool, the
 /// `BOOK_CARD_PADDING` inside its card. The two are the same token for exactly
 /// this reason. Only the leading edge takes it; the trailing edge keeps the
 /// tighter padding the chevrons are spaced on.
-pub fn folder_breadcrumb_root_item(label: impl Into<SharedString>, current: bool, theme: BrowserTheme) -> BreadcrumbItem {
-    folder_breadcrumb_item(label, current, theme).pl(px(CONTENT_INSET))
+pub fn folder_breadcrumb_root_item(label: impl Into<SharedString>, current: bool, theme: BrowserTheme) -> Stateful<Div> {
+    folder_breadcrumb_item(0, label, current, theme).pl(px(CONTENT_INSET))
 }
 
 /// The content that determines a hierarchy item's natural width.
@@ -1012,47 +1053,107 @@ pub fn compact_hierarchy_item(
     id: impl Into<ElementId>, icon: NavigationIcon, label: impl Into<SharedString>, path: Option<SharedString>, count: Option<usize>, download: Option<AnyElement>, selected: bool, cursor: bool, marquee: bool, theme: BrowserTheme,
 ) -> Button {
     let label = label.into();
-    let text =
-        div().relative().flex_1().min_w_0().h_full().child(div().size_full().min_w_0().flex().items_center().child(div().w_full().min_w_0().overflow_hidden().whitespace_nowrap().text_ellipsis().child(label))).children(path.map(|path| {
-            div()
-                .absolute()
-                .top_0()
-                .left_0()
-                .right_0()
-                .h(gpui::relative(0.5))
-                .min_w_0()
-                .flex()
-                .items_center()
-                .child(div().w_full().min_w_0().overflow_hidden().whitespace_nowrap().text_ellipsis_start().text_size(gpui::rems(0.5)).text_color(theme.text_muted).child(path))
-        }));
+    let text = hierarchy_item_text(label, path, theme);
     // A selected chip and the chip under the keyboard cursor are both the
     // keyboard's tier, `accent_wash`, and keep every foreground they had; see
     // the ladder in `tokens.rs`. The pointer lifts a washed chip to
     // `accent_wash_hover` and a plain one to the light `hover`.
-    //
-    // `selected(true)` is what makes the hover reachable at all: a `Button`
-    // writes its own hover slot unless it is selected, and gpui allows that slot
-    // to be written once. Claiming it is the only way to say that a tinted chip
-    // lifts rather than darkens, and the only way for `marquee` to say nothing
-    // at all. See `selectable_button`, which takes the same state for the same
-    // reason.
     let washed = selected || cursor;
     let hovered = if washed { theme.accent_wash_hover } else { theme.hover };
     let base = if washed { theme.accent_wash } else { theme.page_bg };
-    let button = crate::base_button(id).ghost().selected(true).bg(base).hover(move |style| if marquee { style.bg(base) } else { style.bg(hovered) });
-    button.w_full().max_w_full().h_full().p_0().px(px(COMPACT_HIERARCHY_ITEM_HORIZONTAL_PADDING)).rounded(px(0.0)).border_1().border_color(theme.rule).child(
-        div()
-            .size_full()
-            .min_w_0()
-            .text_size(gpui::rems(COMPACT_HIERARCHY_ITEM_TEXT_SIZE_REM))
-            .flex()
-            .items_center()
-            .gap(px(COMPACT_HIERARCHY_ITEM_CONTENT_GAP))
-            .child(crate::navigation_icon(icon).text_color(theme.text_accent))
-            .child(text)
-            .children(count.map(|count| div().flex_none().text_color(theme.text_muted).child(count.to_string())))
-            .when_some(download, |content, download| content.child(div().size(gpui::rems(DOWNLOAD_ACTION_SIZE_REM)).flex_none().flex().items_center().justify_center().child(download))),
-    )
+    let button = crate::base_button(id).ghost().selected(selected).bg(base).text_color(theme.text).hover(move |style| if marquee { style.bg(base) } else { style.bg(hovered) });
+    button
+        .w_full()
+        .max_w_full()
+        .min_w_0()
+        .h_full()
+        .p_0()
+        .px(px(COMPACT_HIERARCHY_ITEM_HORIZONTAL_PADDING))
+        .text_size(gpui::rems(COMPACT_HIERARCHY_ITEM_TEXT_SIZE_REM))
+        .gap(px(COMPACT_HIERARCHY_ITEM_CONTENT_GAP))
+        .rounded(px(0.0))
+        .border_1()
+        .border_color(theme.rule)
+        .child(crate::navigation_icon(icon).text_color(theme.text_accent))
+        .child(text)
+        .children(count.map(|count| div().flex_none().text_color(theme.text_muted).child(count.to_string())))
+        .when_some(download, |content, download| content.child(div().size(gpui::rems(DOWNLOAD_ACTION_SIZE_REM)).flex_none().flex().items_center().justify_center().child(download)))
+}
+
+fn hierarchy_item_text(label: SharedString, path: Option<SharedString>, theme: BrowserTheme) -> Div {
+    // Stretch text across a column so it receives a definite truncation width;
+    // a row can keep the text's intrinsic width even when its parent shrinks.
+    div()
+        .relative()
+        .flex_1()
+        .min_w_0()
+        .h_full()
+        .flex()
+        .flex_col()
+        .justify_center()
+        .overflow_hidden()
+        .whitespace_nowrap()
+        .text_ellipsis()
+        .child(label)
+        .children(path.map(|path| div().absolute().top_0().left_0().right_0().h(gpui::relative(0.5)).min_w_0().flex().flex_col().justify_center().text_ellipsis_start().text_size(gpui::rems(0.5)).text_color(theme.text_muted).child(path)))
+}
+
+#[cfg(test)]
+mod hierarchy_item_tests {
+    use super::*;
+    use gpui::{Context, Render, TestAppContext, rems};
+    use std::{cell::RefCell, rc::Rc};
+
+    type MeasuredBounds = Rc<RefCell<Vec<Bounds<Pixels>>>>;
+
+    struct TextFixture {
+        width: f32,
+        rem: f32,
+        path: Option<SharedString>,
+        regions: MeasuredBounds,
+        text: MeasuredBounds,
+    }
+
+    impl Render for TextFixture {
+        fn render(&mut self, window: &mut Window, _: &mut Context<Self>) -> impl IntoElement {
+            window.set_rem_size(px(self.rem));
+            let regions = self.regions.clone();
+            let text = self.text.clone();
+            div()
+                .w(px(self.width))
+                .h(px(40.0))
+                .flex()
+                .text_size(rems(COMPACT_HIERARCHY_ITEM_TEXT_SIZE_REM))
+                .on_children_prepainted(move |bounds, _, _| *regions.borrow_mut() = bounds)
+                .child(hierarchy_item_text("A very long folder label".into(), self.path.clone(), BrowserTheme::default()).on_children_prepainted(move |bounds, _, _| *text.borrow_mut() = bounds))
+                .child(div().w(px(30.0)).h_full().flex_none())
+        }
+    }
+
+    #[gpui::test]
+    fn narrow_hierarchy_text_preserves_clipping_alignment_and_action_space(cx: &mut TestAppContext) {
+        for width in [70.0, 180.0] {
+            for rem in [16.0, 24.0] {
+                for path in [None, Some(SharedString::from("A library/a parent folder/a long path"))] {
+                    let regions: MeasuredBounds = Default::default();
+                    let text: MeasuredBounds = Default::default();
+                    let has_path = path.is_some();
+                    let _window = cx.open_window(size(px(width), px(40.0)), |_, _| TextFixture { width, rem, path, regions: regions.clone(), text: text.clone() });
+                    let regions = regions.borrow();
+                    let text = text.borrow();
+                    let region = regions[0];
+                    assert_eq!(regions[1].size.width, px(30.0), "the action slot must not shrink");
+                    assert_eq!(region.right(), regions[1].left());
+                    assert!(text[0].right() <= region.right(), "the label must truncate inside its allotted width");
+                    assert!((f32::from(text[0].center().y - region.center().y)).abs() <= 0.5, "the label stays centered even when a path is shown");
+                    if has_path {
+                        assert_eq!(text[1].origin, region.origin);
+                        assert_eq!(text[1].size, size(region.size.width, region.size.height * 0.5));
+                    }
+                }
+            }
+        }
+    }
 }
 
 /// A gentle shadow for a container card. Its outer grid cell paints this
@@ -1068,18 +1169,17 @@ pub fn section_card_shadow(theme: BrowserTheme) -> Vec<BoxShadow> {
 /// keyboard's `accent_wash`, the same mark a folder chip takes; see the ladder
 /// in `tokens.rs`.
 pub fn section_card_frame(washed: bool, theme: BrowserTheme) -> Div {
-    div().absolute().inset_0().min_w_0().flex().flex_col().bg(if washed { theme.accent_wash } else { theme.page_bg })
+    div().absolute().inset_0().min_w_0().flex().flex_col().bg(if washed { theme.accent_wash } else { theme.page_bg }).when(cfg!(feature = "kobo"), |frame| frame.border_1().border_color(gpui::black()))
 }
 
 /// Full-width colour behind a section card's heading. On Kobo it is not
-/// filled: the page shows through, ruled in black above and at the sides, and
-/// the content box's own border closes it below.
+/// filled: the outer frame encloses it, and a black rule closes it below.
 pub fn section_card_band(index: usize, heading: impl IntoElement) -> Div {
     let band = div().flex_none().min_w_0().py(gpui::rems(crate::SECTION_CARD_HEADING_PADDING_REM)).px(px(SPACE_MD));
     #[cfg(feature = "kobo")]
     {
         let _ = index;
-        band.bg(gpui::white()).border_t_1().border_x_1().border_color(gpui::black()).child(heading)
+        band.bg(gpui::white()).border_b_1().border_color(gpui::black()).child(heading)
     }
     #[cfg(not(feature = "kobo"))]
     {
@@ -1088,24 +1188,21 @@ pub fn section_card_band(index: usize, heading: impl IntoElement) -> Div {
     }
 }
 
-/// The area below a section card's heading, enclosed by its own square border.
+/// The area below a section card's heading. Kobo uses the card's outer border.
 pub fn section_card_content(theme: BrowserTheme) -> Div {
-    div().flex_1().min_h_0().min_w_0().flex().flex_col().px(px(SPACE_MD - 1.0)).border_1().border_color(theme.accent)
+    div().flex_1().min_h_0().min_w_0().flex().flex_col().px(px(SPACE_MD - 1.0)).border_1().border_color(theme.rule).when(cfg!(feature = "kobo"), |content| content.border_0())
 }
 
 /// A section card's title, total and paging controls on a shared colour band.
-/// The existing heading layout and pointer behavior stay the same.
-///
-/// Hover underlines carry an id on the text itself: the underline is shaped
-/// with the text at layout, when only an element with its own state can know
-/// that its group is hovered.
+/// Only the title's text area points, underlines and opens the section.
 ///
 /// A heading that `opens` nothing — a shelf of Home — neither points nor
 /// underlines.
-pub fn section_card_heading(id: impl Into<ElementId>, title: impl Into<SharedString>, count: Option<usize>, pager: Option<AnyElement>, opens: bool, focused: bool, marquee: bool, theme: BrowserTheme) -> Stateful<Div> {
+pub fn section_card_heading(
+    id: impl Into<ElementId>, title: impl Into<SharedString>, count: Option<usize>, pager: Option<AnyElement>, opens: bool, focused: bool, marquee: bool, theme: BrowserTheme, on_open: impl Fn(&ClickEvent, &mut Window, &mut App) + 'static,
+) -> Stateful<Div> {
     div()
         .id(id)
-        .group("section-card-heading")
         .flex_none()
         .h(gpui::rems(crate::SECTION_CARD_HEADING_HEIGHT_REM))
         .min_w_0()
@@ -1114,20 +1211,20 @@ pub fn section_card_heading(id: impl Into<ElementId>, title: impl Into<SharedStr
         .gap(px(SPACE_SM))
         // Light on the colour band; black on Kobo's unfilled one.
         .text_color(if cfg!(feature = "kobo") { theme.text } else { gpui::rgb(0xf2efe8).into() })
-        .when(opens, |heading| heading.cursor_pointer())
         .child(
-            div()
-                .id("title")
-                .flex_1()
-                .min_w_0()
-                .overflow_hidden()
-                .whitespace_nowrap()
-                .text_ellipsis()
-                .font_family(theme.display_font_family())
-                .text_size(gpui::rems(TEXT_LG))
-                .when(focused && !cfg!(feature = "kobo"), |title| title.text_color(gpui::white()))
-                .when(opens && !marquee, |title| title.group_hover("section-card-heading", |style| style.underline()))
-                .child(title.into()),
+            div().flex_1().min_w_0().flex().child(
+                div()
+                    .id("title")
+                    .min_w_0()
+                    .overflow_hidden()
+                    .whitespace_nowrap()
+                    .text_ellipsis()
+                    .when_some(theme.display_font_family(), |text, family| text.font_family(family))
+                    .text_size(gpui::rems(TEXT_LG))
+                    .when(focused && !cfg!(feature = "kobo"), |title| title.text_color(gpui::white()))
+                    .when(opens && !marquee, |title| title.cursor_pointer().hover(|style| style.underline()).on_click(on_open))
+                    .child(title.into()),
+            ),
         )
         .children(count.map(|count| div().flex_none().child(count.to_string())))
         .children(pager)
@@ -1139,7 +1236,7 @@ pub fn section_card_subject(id: impl Into<ElementId>, icon: NavigationIcon, labe
     div()
         .id(id)
         .group("section-card-subject")
-        .h(gpui::rems(crate::SECTION_CARD_SUBJECT_ROW_HEIGHT_REM))
+        .min_h(gpui::rems(crate::SECTION_CARD_SUBJECT_ROW_HEIGHT_REM))
         .min_w_0()
         .flex()
         .items_center()
@@ -1147,23 +1244,20 @@ pub fn section_card_subject(id: impl Into<ElementId>, icon: NavigationIcon, labe
         .mx(px(-SPACE_XS))
         .px(px(SPACE_XS))
         .cursor_pointer()
-        .text_size(gpui::rems(TEXT_SM))
+        .text_size(gpui::rems(TEXT_MD))
+        .line_height_auto()
         .hover(move |style| style.bg(theme.hover))
         .child(crate::navigation_icon(icon).size(gpui::rems(0.8)).text_color(theme.text_accent))
         .child(div().id("label").flex_1().min_w_0().overflow_hidden().whitespace_nowrap().text_ellipsis().child(label.into()))
-        .children(count.map(|count| div().flex_none().min_w(gpui::rems(1.6)).px(px(SPACE_XS)).text_center().text_size(gpui::rems(0.8)).text_color(theme.text_muted).bg(theme.hover).child(count.to_string())))
+        .children(count.map(|count| div().flex_none().min_w(gpui::rems(1.6)).px(px(SPACE_XS)).text_center().text_size(gpui::rems(TEXT_XS)).text_color(theme.text_muted).bg(theme.hover).child(count.to_string())))
 }
 
 /// The body shared by container cards and book shelves.
 pub fn section_card_body() -> Div {
     // Cells provide the full vertical inset. Offset the content border so it
-    // does not add another pixel above or below their padding.
-    div().flex_1().min_h_0().min_w_0().my(px(-1.0)).flex().gap(px(crate::SECTION_CARD_COLUMN_GAP))
-}
-
-/// One column of a container card's child entries.
-pub fn section_card_subject_rows(rows: Vec<AnyElement>) -> Div {
-    div().flex_none().h_full().w_full().min_w_0().py(px(crate::BOOK_CARD_PADDING)).flex().flex_col().children(rows)
+    // does not add another pixel above or below their padding. Kobo's body
+    // stays inside the frame so it cannot paint over the black outline.
+    div().flex_1().min_h_0().min_w_0().my(px(if cfg!(feature = "kobo") { 0.0 } else { -1.0 })).flex().gap(px(crate::SECTION_CARD_COLUMN_GAP))
 }
 
 /// Paging control in a container or book shelf heading.

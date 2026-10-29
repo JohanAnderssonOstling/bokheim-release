@@ -19,7 +19,10 @@ pub struct ProviderUploadDraft {
     pub format: BookFormat,
     pub checksum: BookId,
     pub size_bytes: u64,
-    pub inspection: InspectedBook,
+    #[serde(default)]
+    pub inspection: Option<InspectedBook>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub transfer: Option<crate::transfer::BookTransferState>,
 }
 
 impl ProviderUploadDraft {
@@ -34,11 +37,35 @@ impl ProviderUploadDraft {
         if self.id != Self::identity(self.parent, &self.file_name, self.checksum) {
             return Err(DatabaseError::message("pending provider upload identity differs from its source"));
         }
+        if self.inspection.is_none() && self.transfer.is_none() {
+            return Err(DatabaseError::message("pending provider upload has no inspected metadata"));
+        }
+        if let Some(source) = &self.transfer {
+            source.validate_source()?;
+            if source.addition.facts.format != self.format
+                || source.expected_checksum().is_some_and(|checksum| self.checksum.content_hash() != Some(checksum))
+                || source.provider_file.as_ref().is_some_and(|file| file.size_bytes != self.size_bytes)
+            {
+                return Err(DatabaseError::message("pending provider transfer does not match its verified source"));
+            }
+        }
         Ok(())
     }
 
     pub fn identity(parent: DirId, name: &str, checksum: BookId) -> Uuid {
         Uuid::new_v5(&parent, format!("provider-upload/{checksum}/{name}").as_bytes())
+    }
+
+    /// Reader edits may advance while an upload is pending. They do not change
+    /// the verified source bytes, destination, or resumable upload capability.
+    pub fn same_source(&self, other: &Self) -> Result<bool, DatabaseError> {
+        let mut previous = self.clone();
+        if let (Some(previous), Some(current)) = (&mut previous.transfer, &other.transfer) {
+            previous.reading = current.reading.clone();
+            previous.chapter_read = current.chapter_read.clone();
+            previous.annotations = current.annotations.clone();
+        }
+        Ok(serde_json::to_vec(&previous).map_err(DatabaseError::operation)? == serde_json::to_vec(other).map_err(DatabaseError::operation)?)
     }
 }
 
@@ -66,7 +93,11 @@ impl Database {
             let previous: Option<String> = tx.query_row("SELECT draft FROM provider_upload WHERE id=?1", [draft.id.to_string()], |row| row.get(0)).optional()?;
             if let Some(previous) = previous {
                 if previous != json {
-                    return Err(DatabaseError::message("pending upload was already queued with different source metadata"));
+                    let previous: ProviderUploadDraft = serde_json::from_str(&previous).map_err(DatabaseError::operation)?;
+                    if !previous.same_source(draft)? {
+                        return Err(DatabaseError::message("pending upload was already queued with different source metadata"));
+                    }
+                    tx.execute("UPDATE provider_upload SET draft=?1 WHERE id=?2", params![json, draft.id.to_string()])?;
                 }
                 return Ok(());
             }

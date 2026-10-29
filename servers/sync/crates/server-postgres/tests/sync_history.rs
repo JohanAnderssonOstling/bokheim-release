@@ -67,7 +67,7 @@ async fn restored_history_rejects_old_cursors_even_after_passing_their_revision(
     sqlx::raw_sql("DELETE FROM sync_state; DELETE FROM sync_library_revision; SELECT setval('sync_server_sequence', 800);").execute(database.pool()).await.unwrap();
     let generation = rotate_sync_generation(&database).await.unwrap();
     assert_ne!(Some(generation), old.generation);
-    // More than one pull page, including new cells below the old checkpoint.
+    // More than the old 1,000-cell pull cap, including cells below the checkpoint.
     let new_count = 1_201;
     for start in (0..new_count).step_by(MAX_PUSH_MUTATIONS) {
         request.mutations = (start..(start + MAX_PUSH_MUTATIONS).min(new_count)).map(|index| publication(replica, index as u64 + 2, format!("new-{index:04}"))).collect();
@@ -93,17 +93,20 @@ async fn restored_history_rejects_old_cursors_even_after_passing_their_revision(
     request.cursor = SyncCursor::default();
     request.mutations.clear();
     let mut delivered = Vec::new();
+    let mut pages = 0;
     loop {
         let response = repository.exchange(user, &request).await.unwrap();
         sync_common::validate_pull_batch(&response.pull, request.cursor).unwrap();
         assert_eq!(response.pull.next_cursor.generation, Some(generation));
         request.cursor = response.pull.next_cursor;
         delivered.extend(response.pull.mutations);
+        pages += 1;
         if !response.pull.has_more {
             break;
         }
     }
     assert_eq!(delivered.len(), new_count);
+    assert_eq!(pages, 1, "small states must not split at an arbitrary change count");
     assert!(delivered.iter().any(|row| row.revision.get() <= old.field_revision.unwrap().get()), "recovery must include cells hidden behind the old checkpoint");
     assert!(delivered.iter().all(|row| row.state.version.changed_at == 1 && row.state.version.replica_id == replica));
     cleanup(database, admin, schema).await;

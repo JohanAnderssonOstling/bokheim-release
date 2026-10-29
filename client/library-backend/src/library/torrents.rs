@@ -3,6 +3,7 @@
 use super::LibrarySession;
 use crate::BackendError;
 use client_platform_runtime::transfers::{self, TransferPolicy};
+use client_platform_runtime::connectivity::Connectivity;
 use library_database::{torrents::TorrentRecord, Database};
 use library_model::{TorrentInput, TorrentStatus};
 use librqbit::api::TorrentIdOrHash;
@@ -22,6 +23,7 @@ pub(crate) struct TorrentService {
     requests: Arc<StdMutex<HashMap<String, (watch::Sender<bool>, Option<String>)>>>,
     wake: Notify,
     active_adds: AtomicUsize,
+    connectivity: StdMutex<Option<watch::Receiver<bool>>>,
 }
 
 struct AddingTorrent<'a>(&'a TorrentService);
@@ -72,6 +74,20 @@ fn folder_name(name: &str) -> String {
 }
 
 impl TorrentService {
+    fn network(&self) -> Result<Connectivity, BackendError> {
+        let mut source = self.connectivity.lock().unwrap_or_else(PoisonError::into_inner);
+        #[cfg(all(feature = "kobo", target_os = "linux"))]
+        if source.is_none() {
+            *source = Some(client_platform_kobo::device::wifi::subscribe_connectivity().map_err(failure)?);
+        }
+        Ok(source.as_ref().map_or_else(Connectivity::unrestricted, |changes| Connectivity::new(changes.clone())))
+    }
+
+    #[cfg(test)]
+    pub(in crate::library) fn set_connectivity(&self, changes: watch::Receiver<bool>) {
+        *self.connectivity.lock().unwrap_or_else(PoisonError::into_inner) = Some(changes);
+    }
+
     pub(crate) fn wake(&self) {
         self.wake.notify_one();
     }
@@ -123,10 +139,6 @@ impl TorrentService {
     }
 
     async fn add_allowed(&self, db: &Database, root: &Path, input: TorrentInput, request: Option<&str>) -> Result<String, BackendError> {
-        // Keep the session alive while a magnet is resolving, before its
-        // durable database record exists. Cancellation also wakes cleanup.
-        self.active_adds.fetch_add(1, Ordering::AcqRel);
-        let _adding = AddingTorrent(self);
         if !root.is_dir() {
             return Err(BackendError::classified(client_runtime::Failure::LibraryFolderUnavailable, "this library's folder is unavailable"));
         }
@@ -144,6 +156,12 @@ impl TorrentService {
                 (AddTorrent::from_bytes(bytes.into_vec()), None)
             }
         };
+        let mut network = self.network()?;
+        network.wait_online().await;
+        // Keep the session alive while a magnet is resolving, before its
+        // durable database record exists. Cancellation also wakes cleanup.
+        self.active_adds.fetch_add(1, Ordering::AcqRel);
+        let _adding = AddingTorrent(self);
         let engine = {
             let mut slot = self.engine.lock().await;
             Self::engine(&mut slot, root, db).await?
@@ -151,7 +169,10 @@ impl TorrentService {
         // Resolve metadata before accepting the job. Re-add the metadata bytes
         // rather than the magnet so its optional file-selection hint cannot
         // override the application's policy of downloading every file.
-        let response = tokio::time::timeout(Duration::from_secs(120), engine.add_torrent(torrent, Some(AddTorrentOptions { list_only: true, ..Default::default() }))).await.map_err(failure)?.map_err(failure)?;
+        let response = tokio::select! {
+            _ = network.changed() => return Err(failure("Connection lost while resolving torrent metadata; try again when connected")),
+            response = tokio::time::timeout(Duration::from_secs(120), engine.add_torrent(torrent, Some(AddTorrentOptions { list_only: true, ..Default::default() }))) => response.map_err(failure)?.map_err(failure)?,
+        };
         let list = match response {
             AddTorrentResponse::ListOnly(list) => list,
             AddTorrentResponse::AlreadyManaged(_, handle) | AddTorrentResponse::Added(_, handle) => return Ok(handle.info_hash().as_string()),
@@ -282,7 +303,7 @@ impl TorrentService {
         let records = library.db.torrents()?;
         // Pending torrents are explicit downloads, retained across restarts.
         // Only completed torrents' automatic seeding follows network cost.
-        if !policy.allowed() && records.iter().all(|record| record.imported) && self.active_adds.load(Ordering::Acquire) == 0 {
+        if !policy.seeding_allowed() && records.iter().all(|record| record.imported) && self.active_adds.load(Ordering::Acquire) == 0 {
             if let Some(engine) = self.engine.lock().await.take() {
                 engine.stop().await;
             }
@@ -324,7 +345,7 @@ impl TorrentService {
                 continue;
             }
             let id = torrent_id(&record.info_hash)?;
-            if record.imported && (!record.keep_seeding || !policy.allowed()) {
+            if record.imported && (!record.keep_seeding || !policy.seeding_allowed()) {
                 if engine.get(id).is_some() {
                     engine.delete(torrent_id(&record.info_hash)?, false).await.map_err(failure)?;
                 }
@@ -367,18 +388,60 @@ impl TorrentService {
     }
 
     async fn run_with_policy(&self, library: &LibrarySession, policy: &TransferPolicy) {
+        let network = match self.network() {
+            Ok(network) => network,
+            Err(error) => { log::warn!("Could not observe torrent connectivity: {error}"); return; }
+        };
+        self.run_with_network(library, policy, network).await;
+    }
+
+    async fn run_with_network(&self, library: &LibrarySession, policy: &TransferPolicy, mut network: Connectivity) {
         let mut changes = policy.subscribe();
+        let mut retry = Duration::from_secs(30);
+        let mut previous_progress = 0;
         loop {
-            let next = match self.pass_with_policy(library, policy).await.and_then(|()| self.next_check(library, policy)) {
-                Ok(next) => next,
+            if !network.online() {
+                // No peer discovery, trackers or progress timer while offline.
+                if self.active_adds.load(Ordering::Acquire) == 0 {
+                    if let Some(engine) = self.engine.lock().await.take() { engine.stop().await; }
+                }
+                tokio::select! {
+                    _ = network.changed() => {},
+                    _ = self.wake.notified() => {},
+                }
+                retry = Duration::from_secs(30);
+                continue;
+            }
+            let pass = tokio::select! {
+                _ = network.changed() => continue,
+                result = self.pass_with_policy(library, policy) => result,
+            };
+            let progress = self.engine.lock().await.as_ref().map_or(0, |engine| {
+                engine.with_torrents(|torrents| torrents.map(|(_, torrent)| torrent.stats().progress_bytes).sum::<u64>())
+            });
+            if progress > previous_progress { retry = Duration::from_secs(30); }
+            previous_progress = previous_progress.max(progress);
+            let next = match pass.and_then(|()| self.next_wake(library, policy, retry)) {
+                Ok((next, failed)) => {
+                    if failed {
+                        retry = retry.saturating_mul(2).min(Duration::from_secs(15 * 60));
+                        if self.active_adds.load(Ordering::Acquire) == 0 {
+                            if let Some(engine) = self.engine.lock().await.take() { engine.stop().await; }
+                        }
+                    }
+                    next
+                },
                 Err(error) => {
                     log::warn!("torrent transfer will retry: {error}");
-                    Some(Duration::from_secs(30))
+                    let next = Some(retry);
+                    retry = retry.saturating_mul(2).min(Duration::from_secs(15 * 60));
+                    next
                 }
             };
             tokio::select! {
-                _ = self.wake.notified() => {},
-                _ = changes.changed() => {},
+                _ = network.changed() => { retry = Duration::from_secs(30); },
+                _ = self.wake.notified() => { retry = Duration::from_secs(30); },
+                _ = changes.changed() => { retry = Duration::from_secs(30); },
                 elapsed = async {
                     match next {
                         Some(delay) => crate::executor::sleep(delay).await,
@@ -394,16 +457,23 @@ impl TorrentService {
         }
     }
 
+    #[cfg(test)]
     fn next_check(&self, library: &LibrarySession, policy: &TransferPolicy) -> Result<Option<Duration>, BackendError> {
+        self.next_wake(library, policy, Duration::from_secs(30)).map(|(next, _)| next)
+    }
+
+    fn next_wake(&self, library: &LibrarySession, policy: &TransferPolicy, retry: Duration) -> Result<(Option<Duration>, bool), BackendError> {
         let records = library.db.torrents()?;
-        Ok(if records.iter().any(|record| !record.imported) {
-            Some(Duration::from_secs(2))
-        } else if policy.allowed() && records.iter().any(|record| record.keep_seeding) {
+        Ok(if records.iter().any(|record| !record.imported && record.error.is_none()) {
+            (Some(Duration::from_secs(2)), false)
+        } else if records.iter().any(|record| !record.imported) {
+            (Some(retry), true)
+        } else if policy.seeding_allowed() && records.iter().any(|record| record.keep_seeding) {
             // Peer traffic belongs to librqbit. Reconcile stable seeds less
             // often; user actions, moves and scans wake us immediately.
-            Some(Duration::from_secs(30))
+            (Some(Duration::from_secs(30)), false)
         } else {
-            None
+            (None, false)
         })
     }
 }

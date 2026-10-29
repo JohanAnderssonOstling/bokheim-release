@@ -13,6 +13,7 @@
 //! stays inside the page instead of escaping into the navigation rail, which
 //! has no way back. Moving focus scrolls the section it landed in into view.
 
+mod font_picker;
 mod keyboard;
 #[cfg(feature = "kobo")]
 mod kobo_updates;
@@ -25,10 +26,10 @@ use std::rc::Rc;
 
 use app_preferences::{BrowsingPreferencePatch, CoverText, UI_FONT_SIZE_MAX, UI_FONT_SIZE_MIN, UiFontFamily};
 use gpui::prelude::*;
-use gpui::{Bounds, Context, Entity, FocusHandle, Focusable, IntoElement, Pixels, Render, ScrollHandle, SharedString, Window, px};
-use gpui_component::button::Button;
+use gpui::{Bounds, Context, Entity, FocusHandle, Focusable, IntoElement, KeyDownEvent, Pixels, Render, ScrollHandle, SharedString, Window, div, px};
+use ui_components::Button;
 #[cfg(feature = "kobo")]
-use gpui_component::{Disableable, WindowExt, button::ButtonVariants};
+use gpui_component::WindowExt;
 use ui_components as components;
 
 use crate::stores::Preferences;
@@ -70,8 +71,6 @@ enum Section {
     FontFamily,
     FontSize,
     #[cfg(feature = "kobo")]
-    KeyboardLayouts,
-    #[cfg(feature = "kobo")]
     KoboUninstall,
     Transfers,
     Account,
@@ -92,6 +91,8 @@ struct SettingsSection {
 pub(crate) struct SettingsPage {
     keyboard: Entity<components::KeyboardShortcutEditor>,
     keyboard_tab: bool,
+    font_picker: Option<Entity<font_picker::FontPicker>>,
+    font_choice_focus: [FocusHandle; 2],
     updates: Option<Entity<UpdateControls>>,
     _update_changes: Option<gpui::Subscription>,
     _preference_changes: gpui::Subscription,
@@ -129,6 +130,8 @@ impl SettingsPage {
         Self {
             keyboard,
             keyboard_tab: false,
+            font_picker: None,
+            font_choice_focus: std::array::from_fn(|_| cx.focus_handle().tab_stop(true)),
             updates,
             _update_changes: update_changes,
             _preference_changes: preference_changes,
@@ -219,7 +222,7 @@ impl SettingsPage {
                 ("Application theme", components::theme_choice_label(showing.theme(), appearance))
             }
             BrowsingPreferencePatch::UiFontSizePx(_) => ("UI font size", format!("{}px", showing.ui_font_size_px())),
-            BrowsingPreferencePatch::UiFontFamily(_) => ("UI typeface", showing.ui_font_family().label().to_owned()),
+            BrowsingPreferencePatch::UiFontFamily(_) | BrowsingPreferencePatch::CustomUiFontFamily(_) => ("UI typeface", showing.ui_font_name().to_owned()),
             BrowsingPreferencePatch::CoverText(_) => ("Cover text", showing.cover_text().label().to_owned()),
             BrowsingPreferencePatch::GeneratedCoversOnly(_) => ("Covers", if showing.generated_covers_only() { "Generated" } else { "Book art" }.to_owned()),
             BrowsingPreferencePatch::CatalogGrouping(_) => ("Catalog grouping", showing.catalog_grouping().label().to_owned()),
@@ -331,26 +334,57 @@ impl Render for SettingsPage {
             ("decrease-ui-font-size", "−", components::configured_shortcut_tooltip("Decrease interface font size", "browse.font_decrease", cx), current_font_size.saturating_sub(1).max(UI_FONT_SIZE_MIN), UI_FONT_SIZE_MIN),
             ("increase-ui-font-size", "+", components::configured_shortcut_tooltip("Increase interface font size", "browse.font_increase", cx), current_font_size.saturating_add(1).min(UI_FONT_SIZE_MAX), UI_FONT_SIZE_MAX),
         ]
-        .map(|(id, label, tooltip, value, limit)| Self::preference_button(components::settings_stepper_button(id, label, current_font_size == limit, theme).tooltip(tooltip), BrowsingPreferencePatch::UiFontSizePx(value), cx));
+        .map(|(id, label, tooltip, value, limit)| Self::preference_button(components::settings_stepper_button(id, label, current_font_size == limit).tooltip(tooltip), BrowsingPreferencePatch::UiFontSizePx(value), cx));
         let font_size = components::settings_stepper(decrease, format!("{current_font_size}px"), increase, theme);
 
         let font_families = {
-            let mut choices = components::browser_settings_button_group(theme);
+            let labels = if cfg!(any(target_arch = "wasm32", feature = "kobo")) { vec!["Serif", "Sans serif"] } else { vec!["Serif", "Sans serif", preferences.custom_ui_font_family().unwrap_or("Custom")] };
+            let width = (window.rem_size() * components::THEME_PICKER_WIDTH_REM).max(components::equal_choice_group_width(&labels, components::TEXT_XS, 2.0, components::SPACE_SM, window, cx));
+            let mut choices = components::reader_tile_group("ui-font-families").w(width).max_w_full().flex_none();
             for (index, value) in [UiFontFamily::Serif, UiFontFamily::SansSerif].into_iter().enumerate() {
-                choices = choices.child(Self::preference_button(
-                    components::browser_settings_choice_button(format!("ui-font-family-{index}"), value.label(), value == preferences.ui_font_family(), theme),
-                    BrowsingPreferencePatch::UiFontFamily(value),
-                    cx,
-                ));
+                choices = choices.child(
+                    components::reader_picture_tile(
+                        format!("ui-font-family-{index}"),
+                        components::reader_typeface_sample(Some(value.family_name())),
+                        value.label(),
+                        !preferences.custom_ui_font_active() && value == preferences.ui_font_family(),
+                        theme,
+                    )
+                    .track_focus(&self.font_choice_focus[index])
+                    .on_click(cx.listener(move |page, _, _, cx| page.update_browsing(BrowsingPreferencePatch::UiFontFamily(value), cx)))
+                    .on_key_down(cx.listener(move |page, event: &KeyDownEvent, _, cx| {
+                        if matches!(event.keystroke.key.as_str(), "enter" | "space") {
+                            page.update_browsing(BrowsingPreferencePatch::UiFontFamily(value), cx);
+                            cx.stop_propagation();
+                        }
+                    })),
+                );
+            }
+            if !cfg!(any(target_arch = "wasm32", feature = "kobo")) {
+                let picker = self.font_picker.get_or_insert_with(|| {
+                    let picker = cx.new(|cx| font_picker::FontPicker::new(window, cx));
+                    cx.subscribe(&picker, |page, _, event: &font_picker::FontSelected, cx| {
+                        page.update_browsing(BrowsingPreferencePatch::CustomUiFontFamily(event.0.clone()), cx);
+                    })
+                    .detach();
+                    picker
+                });
+                picker.update(cx, |picker, _| {
+                    picker.set_selected(preferences.custom_ui_font_family().map(str::to_owned));
+                    picker.set_active(preferences.custom_ui_font_active());
+                });
+                choices = choices.child(div().flex_1().min_w_0().overflow_hidden().child(picker.clone()));
             }
             choices
         };
 
         let current_cover_text = preferences.cover_text();
         let cover_texts = {
-            let mut choices = components::browser_settings_button_group(theme);
+            let width = (window.rem_size() * components::THEME_PICKER_WIDTH_REM)
+                .max(components::equal_choice_group_width(&["Always", "Cover only"], components::TEXT_SM, 2.0 * components::SPACE_SM, components::SETTINGS_CONTROL_GAP, window, cx) + px(2.0));
+            let mut choices = components::browser_settings_button_group(theme).w(width).flex_none();
             for (index, value) in [CoverText::Always, CoverText::CoverOnly].into_iter().enumerate() {
-                choices = choices.child(Self::preference_button(components::browser_settings_choice_button(format!("cover-text-{index}"), value.label(), value == current_cover_text, theme), BrowsingPreferencePatch::CoverText(value), cx));
+                choices = choices.child(Self::preference_button(components::settings_choice_button(format!("cover-text-{index}"), value.label(), value == current_cover_text, theme), BrowsingPreferencePatch::CoverText(value), cx));
             }
             choices
         };
@@ -365,34 +399,20 @@ impl Render for SettingsPage {
         let appearance_settings = {
             let generated = preferences.generated_covers_only();
             let choices = components::browser_settings_button_group(theme)
-                .child(Self::preference_button(components::browser_settings_choice_button("covers-book-art", "Book art", !generated, theme), BrowsingPreferencePatch::GeneratedCoversOnly(false), cx))
-                .child(Self::preference_button(components::browser_settings_choice_button("covers-generated", "Generated", generated, theme), BrowsingPreferencePatch::GeneratedCoversOnly(true), cx));
+                .child(Self::preference_button(components::settings_choice_button("covers-book-art", "Book art", !generated, theme), BrowsingPreferencePatch::GeneratedCoversOnly(false), cx))
+                .child(Self::preference_button(components::settings_choice_button("covers-generated", "Generated", generated, theme), BrowsingPreferencePatch::GeneratedCoversOnly(true), cx));
             appearance_settings.child(self.section(Section::GeneratedCovers, components::browser_settings_compact_row("Covers", choices, theme)))
         };
         let appearance_settings = appearance_settings.child(self.section(Section::FontFamily, components::browser_settings_compact_row("UI typeface", font_families, theme)));
         let appearance_settings = appearance_settings.child(self.section(Section::FontSize, components::browser_settings_compact_row("UI font size", font_size, theme)));
-        #[cfg(feature = "kobo")]
-        let appearance_settings = {
-            // Turning a layout on appends it to the switching order; the last
-            // enabled layout cannot be turned off.
-            let enabled = preferences.keyboard_layouts();
-            let mut layouts = components::settings_choice_button_grid(3, theme);
-            for layout in gpui_kobo::KOBO_KEYBOARD_LAYOUTS {
-                let on = enabled.iter().any(|code| code.as_str() == layout.code);
-                let next: Vec<String> = if on { enabled.iter().filter(|code| code.as_str() != layout.code).cloned().collect() } else { enabled.iter().cloned().chain([layout.code.to_owned()]).collect() };
-                let button = components::browser_settings_choice_button(format!("keyboard-layout-{}", layout.code), layout.name, on, theme).disabled(on && next.is_empty());
-                layouts = layouts.child(Self::preference_button(button, BrowsingPreferencePatch::KeyboardLayouts(next), cx));
-            }
-            appearance_settings.child(self.section(Section::KeyboardLayouts, components::browser_settings_compact_row("Keyboard layouts", layouts, theme)))
-        };
         // Every preference on this page lives in this group, so this is where a
         // preference that would not save reports.
         let appearance_settings = appearance_settings.children(self.error.clone().map(|error| components::browser_settings_group_error(error, theme)));
 
         let metered = preferences.allow_metered_transfers();
         let transfer_choices = components::browser_settings_button_group(theme)
-            .child(Self::preference_button(components::browser_settings_choice_button("transfers-unmetered", "Off", !metered, theme), BrowsingPreferencePatch::AllowMeteredTransfers(false), cx))
-            .child(Self::preference_button(components::browser_settings_choice_button("transfers-metered", "On", metered, theme), BrowsingPreferencePatch::AllowMeteredTransfers(true), cx));
+            .child(Self::preference_button(components::settings_choice_button("transfers-unmetered", "Off", !metered, theme), BrowsingPreferencePatch::AllowMeteredTransfers(false), cx))
+            .child(Self::preference_button(components::settings_choice_button("transfers-metered", "On", metered, theme), BrowsingPreferencePatch::AllowMeteredTransfers(true), cx));
         let transfers = components::browser_settings_fieldset("Transfers", theme)
             .child(components::browser_settings_compact_row("Allow automatic transfers on metered connections", transfer_choices, theme).border_t_0())
             .children(self.transfer_save_error.clone().map(|error| components::browser_settings_group_error(error, theme)));

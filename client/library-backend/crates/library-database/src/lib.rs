@@ -24,7 +24,7 @@ pub mod torrents;
 mod transactions;
 pub mod transfer;
 
-pub const LIBRARY_SCHEMA_VERSION: i64 = 42;
+pub const LIBRARY_SCHEMA_VERSION: i64 = 44;
 
 pub use client_platform_runtime::executor;
 pub use client_platform_runtime::storage_queue;
@@ -107,9 +107,9 @@ fn configure_library_connection(connection: &rusqlite::Connection) -> rusqlite::
     attach_taxonomy(connection).map_err(|error| rusqlite::Error::ToSqlConversionFailure(Box::new(error)))?;
     profile.mark("taxonomy_attach");
     // Each schema has its own page cache. Set the KiB target after attaching
-    // or deserializing the taxonomy so every storage path gets the same policy.
+    // the taxonomy so every storage path gets the same policy.
     for schema in ["main", "curated"] {
-        connection.pragma_update(Some(schema), "cache_size", -512)?;
+        connection.pragma_update(Some(schema), "cache_size", -subject_projection::installed::PAGE_CACHE_KIB)?;
     }
     profile.mark("cache_policy");
     Ok(())
@@ -124,33 +124,9 @@ fn attach_taxonomy(connection: &rusqlite::Connection) -> Result<(), DatabaseErro
     if attached {
         return Ok(());
     }
-    #[cfg(not(target_arch = "wasm32"))]
-    {
-        let path = subject_projection::installed::active_path().map(PathBuf::from).map(Ok).unwrap_or_else(subject_projection::bundled::path).map_err(DatabaseError::message)?;
-        let path = path.to_str().ok_or_else(|| DatabaseError::message("taxonomy path is not UTF-8"))?;
-        let mut encoded = String::with_capacity(path.len());
-        const HEX: &[u8; 16] = b"0123456789ABCDEF";
-        for byte in path.bytes() {
-            if byte.is_ascii_alphanumeric() || b"/-_.".contains(&byte) {
-                encoded.push(char::from(byte));
-            } else {
-                encoded.push('%');
-                encoded.push(char::from(HEX[usize::from(byte >> 4)]));
-                encoded.push(char::from(HEX[usize::from(byte & 15)]));
-            }
-        }
-        connection.taxonomy_attach(&format!("file:{encoded}?mode=ro&immutable=1"))?;
-    }
-    #[cfg(target_arch = "wasm32")]
-    {
-        // The browser host activates a downloaded image before opening libraries.
-        let image = subject_projection::installed::active_image().ok_or_else(|| DatabaseError::message("no taxonomy has been installed"))?;
-        connection.taxonomy_attach(":memory:")?;
-        // SAFETY: this non-owning wrapper is confined to connection configuration;
-        // no statement is active and it cannot outlive or close the original handle.
-        let mut borrowed = unsafe { rusqlite::Connection::from_handle(connection.handle())? };
-        borrowed.deserialize_bytes("curated", image)?;
-    }
+    let path = subject_projection::installed::path().map_err(DatabaseError::message)?;
+    let uri = subject_projection::installed::read_only_uri(&path).map_err(DatabaseError::message)?;
+    connection.taxonomy_attach(&uri)?;
     Ok(())
 }
 
@@ -190,6 +166,10 @@ impl Database {
                 projection::backfill_popularity(&transaction)?;
             }
             if version < 41 { browse::revision::install(&transaction)?; }
+            if version < 44 {
+                transaction.execute_batch(include_str!("sync/sql/schema/contributor_names.sql"))?;
+                contributors::backfill_name_keys(&transaction)?;
+            }
             transaction.execute_batch(include_str!("provider/schema.sql"))?;
             transaction.execute_batch(include_str!("torrents.sql"))?;
             profile.mark("schema_and_migrations");
@@ -224,6 +204,7 @@ impl Database {
         profile.mark("wal_initialize");
         let transaction = self.connection.unchecked_transaction()?;
         transaction.schema_sync_tables()?;
+        transaction.execute_batch(include_str!("sync/sql/schema/contributor_names.sql"))?;
         transaction.execute_batch(include_str!("sync/sql/schema/mutation_issues.sql"))?;
         transaction.schema_native_tables()?;
         transaction.execute_batch(include_str!("torrents.sql"))?;
@@ -352,6 +333,7 @@ impl Database {
 include_sql!("src/sql/owner.sql");
 
 mod annotations;
+mod stored_document;
 pub mod assets;
 pub(crate) mod books;
 pub mod browse;

@@ -159,18 +159,18 @@ impl Render for LightControl {
     }
 }
 
-pub fn popover(panel: Entity<BrightnessControls>, document_focus: Option<&FocusHandle>, theme: components::BrowserTheme, window: &Window) -> Popover {
-    popover_with_height(panel, document_focus, theme, None, window)
+pub fn popover(panel: Entity<BrightnessControls>, document_focus: Option<&FocusHandle>, window: &Window) -> Popover {
+    popover_with_height(panel, document_focus, None, window)
 }
 
-pub fn popover_with_height(panel: Entity<BrightnessControls>, document_focus: Option<&FocusHandle>, theme: components::BrowserTheme, height: Option<Pixels>, window: &Window) -> Popover {
+pub fn popover_with_height(panel: Entity<BrightnessControls>, document_focus: Option<&FocusHandle>, height: Option<Pixels>, window: &Window) -> Popover {
     let refresh = panel.clone();
     let mut popover = Popover::new("reader-brightness")
         .anchor(gpui::Anchor::TopRight)
         .top(gpui::px(components::reader_toolbar_size_px(window) + 4.0))
         .p_0()
         .when_some(document_focus, |popover, focus| popover.track_focus(focus))
-        .trigger(components::outlined_icon_button("reader-brightness-button", "Brightness", IconName::Sun, theme))
+        .trigger(components::outlined_icon_button("reader-brightness-button", "Brightness", IconName::Sun))
         .on_open_change(move |open, window, cx: &mut App| {
             if *open {
                 refresh.update(cx, |panel, cx| panel.refresh(window, cx));

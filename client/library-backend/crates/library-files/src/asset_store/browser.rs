@@ -1,8 +1,10 @@
 //! Browser OPFS stores book bytes; folder and trash changes are metadata-only.
 
 pub(crate) use super::AssetStoreError;
-use crate::hashing::HashService;
+use crate::hashing::{HashService, HashSession};
 pub(crate) use book_access::BoxedBookReader;
+use client_platform_web::web_storage::{self, FileWriter};
+use content_address::ContentHash;
 use std::cell::RefCell;
 use std::collections::HashMap;
 use std::sync::Arc;
@@ -65,44 +67,63 @@ pub(crate) fn name(handle: &Handle, asset_name: String) -> String {
 }
 
 pub(crate) struct StagedBook {
-    pub(crate) writer: client_platform_web::web_storage::FileWriter,
+    pub(crate) writer: FileWriter,
     pub(crate) content_hash: BookId,
     pub(crate) size_bytes: u64,
     pub(crate) destination: String,
 }
 
-pub(crate) fn finish_staged_write(handle: &Handle, writer: client_platform_web::web_storage::FileWriter, content_hash: BookId) -> Result<StagedBook, AssetStoreError> {
-    let size_bytes = std::io::Seek::seek(&mut writer.open_reader(), std::io::SeekFrom::End(0))?;
-    let destination = name(handle, format!("book/{content_hash}"));
-    Ok(StagedBook { writer, content_hash, size_bytes, destination })
+/// One owner for staged import bytes and their incremental checksum. Sources
+/// supply chunks; only finishing a nonempty, verified write yields a staged book.
+pub(crate) struct StagingWriter {
+    writer: FileWriter,
+    hasher: Box<dyn HashSession>,
+}
+
+impl StagingWriter {
+    pub(crate) async fn new(handle: &Handle) -> Result<Self, AssetStoreError> {
+        let writer = web_storage::begin_write(&name(handle, "book/staged".into())).await.map_err(AssetStoreError::operation)?;
+        let hasher = handle.hash_service.start().await?;
+        Ok(Self { writer, hasher })
+    }
+
+    pub(crate) async fn write_all(&mut self, bytes: &[u8]) -> Result<(), AssetStoreError> {
+        self.writer.write_all(bytes).map_err(AssetStoreError::operation)?;
+        self.hasher.update(bytes).await
+    }
+
+    pub(crate) async fn finish(self, handle: &Handle, expected: Option<ContentHash>) -> Result<StagedBook, AssetStoreError> {
+        if self.writer.length() == 0 {
+            return Err(AssetStoreError::operation("book is empty"));
+        }
+        let checksum = self.hasher.finish().await?;
+        if expected.is_some_and(|expected| checksum.content_hash() != Some(expected)) {
+            return Err(AssetStoreError::operation("transferred book failed content verification"));
+        }
+        let size_bytes = self.writer.length();
+        let destination = name(handle, format!("book/{checksum}"));
+        Ok(StagedBook { writer: self.writer, content_hash: checksum, size_bytes, destination })
+    }
 }
 
 pub(crate) async fn stage_book(handle: &Handle, source: &mut (dyn std::io::Read + Send)) -> Result<StagedBook, AssetStoreError> {
-    let mut writer = client_platform_web::web_storage::begin_write(&name(handle, "book/staged".into())).await.map_err(AssetStoreError::operation)?;
-    let mut hasher = handle.hash_service.start().await.map_err(AssetStoreError::operation)?;
-    let mut buffer = [0_u8; 64 * 1024];
-    let mut length = 0_u64;
+    let mut writer = StagingWriter::new(handle).await?;
+    // Keep chunk storage out of nested async frames on the WASM stack.
+    let mut buffer = vec![0_u8; 64 * 1024];
     loop {
         let read = source.read(&mut buffer)?;
         if read == 0 {
             break;
         }
-        writer.write_all(&buffer[..read]).map_err(AssetStoreError::operation)?;
-        hasher.update(&buffer[..read]).await.map_err(AssetStoreError::operation)?;
-        length += read as u64;
+        writer.write_all(&buffer[..read]).await?;
     }
-    if length == 0 {
-        return Err(AssetStoreError::operation("book is empty"));
-    }
-    let content_hash = hasher.finish().await.map_err(AssetStoreError::operation)?;
-    finish_staged_write(handle, writer, content_hash)
+    writer.finish(handle, None).await
 }
 
 /// Copies a picked browser file into book storage, hashing it on the way.
 pub(crate) async fn stage_browser_file(handle: &Handle, file: &web_sys::File) -> Result<StagedBook, AssetStoreError> {
     const CHUNK: u64 = 1024 * 1024;
-    let mut writer = client_platform_web::web_storage::begin_write(&name(handle, "book/staged".into())).await.map_err(AssetStoreError::operation)?;
-    let mut hasher = handle.hash_service.start().await.map_err(AssetStoreError::operation)?;
+    let mut writer = StagingWriter::new(handle).await?;
     let size = file.size() as u64;
     let mut copied = 0_u64;
     while copied < size {
@@ -113,15 +134,10 @@ pub(crate) async fn stage_browser_file(handle: &Handle, file: &web_sys::File) ->
         if bytes.is_empty() {
             return Err(AssetStoreError::operation("the selected file ended unexpectedly"));
         }
-        writer.write_all(&bytes).map_err(AssetStoreError::operation)?;
-        hasher.update(&bytes).await.map_err(AssetStoreError::operation)?;
+        writer.write_all(&bytes).await?;
         copied += bytes.len() as u64;
     }
-    if copied == 0 {
-        return Err(AssetStoreError::operation("book is empty"));
-    }
-    let content_hash = hasher.finish().await.map_err(AssetStoreError::operation)?;
-    finish_staged_write(handle, writer, content_hash)
+    writer.finish(handle, None).await
 }
 
 impl StagedBook {

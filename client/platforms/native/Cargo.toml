@@ -10,7 +10,6 @@ websocket = ["dep:tokio-tungstenite", "dep:rustls", "dep:tokio", "dep:futures-ut
 book-inspection = { path = "../../library-backend/crates/book-inspection" }
 cpu-host = { path = "../../library-backend/crates/cpu-host" }
 client-platform-runtime = { path = "../runtime" }
-thumbnail = { path = "../../library-backend/crates/thumbnail" }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 tokio-tungstenite = { version = "0.28", features = ["rustls-tls-webpki-roots"], optional = true }

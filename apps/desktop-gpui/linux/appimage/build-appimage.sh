@@ -34,6 +34,8 @@ DESKTOP_FILE="$REPOSITORY_ROOT/apps/desktop-gpui/linux/se.bokheim.Bokheim.deskto
 ICON_DIRECTORY="$REPOSITORY_ROOT/apps/ui/design-tokens/assets/icon"
 
 install -Dm644 "$(dirname "$DESKTOP_BINARY")/taxonomy.sqlite3" "$APPDIR/usr/bin/taxonomy.sqlite3"
+install -Dm644 "$REPOSITORY_ROOT/LICENSE" "$APPDIR/usr/share/licenses/bokheim/LICENSE"
+install -Dm644 "$REPOSITORY_ROOT/COPYRIGHT" "$APPDIR/usr/share/licenses/bokheim/COPYRIGHT"
 install -Dm644 "$ICON_DIRECTORY/bokheim-512.png" "$STAGED_ICON"
 python3 "$REPOSITORY_ROOT/shared/pdfium/prepare.py" --target x86_64-unknown-linux-gnu --dest "$APPDIR/usr/bin/pdfium"
 python3 "$REPOSITORY_ROOT/shared/reader-speech/prepare.py" --voice all --dest "$APPDIR/usr/bin/tts"
@@ -48,6 +50,7 @@ source "$REPOSITORY_ROOT/scripts/linux/package-libraries.sh"
   "${LINUX_LIBRARY_OPTIONS[@]}" \
   --custom-apprun "$SCRIPT_DIR/AppRun"
 python3 "$REPOSITORY_ROOT/scripts/linux/stage-runtime.py" "$APPDIR"
+install -Dm755 "$SCRIPT_DIR/register-desktop.sh" "$APPDIR/usr/libexec/bokheim-register-desktop"
 # Give the staged libraries their own relative rpaths, without exporting the
 # AppDir library directory to browsers and other external programs.
 "$LINUXDEPLOY" --appdir "$APPDIR" --deploy-deps-only "$APPDIR/usr/lib" "${LINUX_LIBRARY_OPTIONS[@]}"
@@ -85,6 +88,8 @@ test -s "$OUTPUT_FILE" || { printf 'AppImage was not created: %s\n' "$OUTPUT_FIL
 chmod +x "$OUTPUT_FILE"
 bash "$SCRIPT_DIR/verify-glibc-compatibility.sh" "$OUTPUT_FILE" 2.17
 (cd "$RELEASE_DIRECTORY" && sha256sum "$(basename "$OUTPUT_FILE")" > "$(basename "$OUTPUT_FILE").sha256")
+install -m755 "$SCRIPT_DIR/../install.sh" "$RELEASE_DIRECTORY/install.sh"
 
 printf 'Created %s\n' "$OUTPUT_FILE"
 printf 'Created %s\n' "$OUTPUT_FILE.sha256"
+printf 'Created %s/install.sh\n' "$RELEASE_DIRECTORY"

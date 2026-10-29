@@ -69,6 +69,14 @@ pub struct ZipOptions {
     /// Whether to validate that the GPF in the LFH matches the CDR.
     pub validate_gpf_header_match: bool,
 
+    /// Allow the UTF-8 filename/comment flag to differ between local and central
+    /// headers while still checking every other general purpose flag.
+    pub allow_utf8_flag_mismatch: bool,
+
+    /// Use the central directory's sizes, checksum, compression and flags when
+    /// opening seekable entries. Local headers still determine the data offset.
+    pub prefer_central_directory: bool,
+
     // LIMITS
 
     /// Enforces a maximum uncompressed size per file. Attempts to open the file for reading will
@@ -120,6 +128,8 @@ impl Default for ZipOptions {
             validate_uncompressed_size_match_against_read: true,
             validate_file_on_eof: true,
             validate_gpf_header_match: true,
+            allow_utf8_flag_mismatch: false,
+            prefer_central_directory: false,
             // validate_sor_is_soa: true,
             validate_eor_is_eoa: true,
             max_uncompressed_size_per_file: u64::MAX,

@@ -25,7 +25,7 @@ pub(crate) fn with_keyboard_settings<C: 'static>(general: AnyElement, window: &m
     let general_target = state.clone();
     let keyboard_target = state;
     let tabs = components::settings_choice_button_group(theme).w_full()
-        .child(components::browser_settings_choice_button("reader-settings-general-tab", "General", !keyboard, theme).on_click(move |_, window, cx| {
+        .child(components::settings_choice_button("reader-settings-general-tab", "General", !keyboard, theme).on_click(move |_, window, cx| {
             general_target.update(cx, |state, cx| {
                 state.keyboard = false;
                 state.editor.update(cx, |editor, cx| editor.cancel_capture(cx));
@@ -33,7 +33,7 @@ pub(crate) fn with_keyboard_settings<C: 'static>(general: AnyElement, window: &m
             });
             window.focus_next(cx);
         }))
-        .child(components::browser_settings_choice_button("reader-settings-keyboard-tab", "Keyboard", keyboard, theme).on_click(move |_, window, cx| {
+        .child(components::settings_choice_button("reader-settings-keyboard-tab", "Keyboard", keyboard, theme).on_click(move |_, window, cx| {
             keyboard_target.update(cx, |state, cx| {
                 state.keyboard = true;
                 state.editor.update(cx, |editor, cx| editor.cancel_capture(cx));

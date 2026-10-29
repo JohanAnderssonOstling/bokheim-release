@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bokheim · Reader font selection</title>
+  <title>Bokheim · Font settings</title>
   <style>
     @font-face { font-family: "NV Garamond"; src: url("../../desktop-gpui/assets/fonts/NV_Garamond-Regular.ttf"); font-weight: 400; }
     @font-face { font-family: "NV Garamond"; src: url("../../desktop-gpui/assets/fonts/NV_Garamond-Italic.ttf"); font-style: italic; }
@@ -14,11 +14,21 @@
       --canvas: #eae5dc; --paper: #f6f2eb; --ink: #22201d; --muted: #6b675f;
       --rule: #c5bdac; --accent: #466853; --wash: #d9e8de; --hover: #4668530d;
       --book-font: "NV Garamond", Georgia, serif; --book-size: 22px;
+      --book-sans: Raleway, sans-serif; --book-mono: monospace;
+      --settings-width: 352px; --nav-width: 200px; --choice-width: 240px;
     }
     [data-theme="dark"] {
       color-scheme: dark;
       --canvas: #1c1a16; --paper: #11100d; --ink: #efe6d0; --muted: #a69c86;
       --rule: #4e4334; --accent: #d3b271; --wash: #3c3423; --hover: #d3b27114;
+    }
+    [data-palette="cool"][data-theme="light"] {
+      --canvas: #e5e7e9; --paper: #fafafa; --ink: #262627; --muted: #65686a;
+      --rule: #bcbfc3; --accent: #42566d; --wash: #e1e5e9; --hover: #42566d14;
+    }
+    [data-palette="cool"][data-theme="dark"] {
+      --canvas: #232527; --paper: #121212; --ink: #e7e8ea; --muted: #999da2;
+      --rule: #41454a; --accent: #a7b3c2; --wash: #33363b; --hover: #a7b3c214;
     }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--canvas); color: var(--ink); font: 15px/1.45 Raleway, sans-serif; }
@@ -33,22 +43,24 @@
     .brand { font: 32px "Bodoni Moda", serif; }
     h1 { margin: 0; border-left: 1px solid var(--rule); padding-left: 18px; font-size: 14px; font-weight: 400; }
     .board-controls { display: flex; gap: 12px; }
-    .segmented { display: flex; border: 1px solid var(--rule); }
-    .segmented button { padding: 7px 12px; font-size: 12px; }
+    .segmented { display: flex; flex-wrap: wrap; max-width: 100%; border: 1px solid var(--rule); }
+    .segmented button { min-width: 0; overflow-wrap: anywhere; padding: 7px 12px; font-size: 12px; }
     .segmented button + button { border-left: 1px solid var(--rule); }
-    .segmented [aria-pressed="true"] { background: var(--wash); color: var(--accent); }
-    .reader { position: relative; background: var(--paper); border: 1px solid var(--rule); min-height: 760px; font: 17px/1.4 "NV Garamond", serif; }
+    .segmented [aria-pressed="true"], .segmented [aria-expanded="true"] { background: var(--wash); color: var(--accent); }
+    .reader { position: relative; background: var(--paper); border: 1px solid var(--rule); min-height: 760px; font: 17px/1.4 var(--ui-font, "NV Garamond"), serif; }
     .reader-header { height: 64px; display: flex; align-items: center; gap: 16px; padding: 0 22px; border-bottom: 1px solid var(--rule); }
     .back { font: 24px/1 Raleway, sans-serif; width: 32px; height: 36px; }
     .book-title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .reader-header small { color: var(--muted); font-size: 14px; white-space: nowrap; }
-    .reader-body { display: grid; grid-template-columns: minmax(0, 1fr) 352px; min-height: 694px; }
+    .reader-body { display: grid; grid-template-columns: minmax(0, 1fr) var(--settings-width); min-height: 694px; }
     .book { display: flex; flex-direction: column; padding: 56px clamp(30px, 5vw, 78px) 22px; }
     .chapter-kicker { color: var(--muted); text-align: center; font: 11px Raleway, sans-serif; letter-spacing: .16em; text-transform: uppercase; }
     .book h2 { font: 400 36px/1.2 "Bodoni Moda", serif; text-align: center; margin: 18px 0 30px; }
     .passage { font-family: var(--book-font); font-size: var(--book-size); line-height: 1.6; }
     .passage p { margin: 0 0 18px; }
     .passage p + p { text-indent: 1.3em; }
+    .passage .sans-text { font-family: var(--book-sans); font-size: .85em; }
+    .passage code { font-family: var(--book-mono); font-size: .75em; }
     .page-number { margin-top: auto; padding-top: 34px; color: var(--muted); text-align: center; font-size: 14px; }
     .settings { border-left: 1px solid var(--rule); padding: 0 22px 24px; min-width: 0; }
     .settings-header { display: flex; align-items: center; justify-content: space-between; height: 66px; border-bottom: 1px solid var(--rule); }
@@ -61,27 +73,41 @@
     .stepper { display: flex; align-items: center; border: 1px solid var(--rule); border-radius: 3px; }
     .stepper button { width: 36px; height: 36px; font-size: 22px; }
     .stepper output { text-align: center; width: 54px; font-size: 15px; }
+    .theme-setting { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+    .theme-swatches { display: flex; width: 240px; max-width: 100%; justify-content: space-between; }
+    .theme-swatch { position: relative; flex: none; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--swatch-rule); background: var(--swatch-paper); color: var(--swatch-ink); font-size: 24px; }
+    .theme-swatch:hover { background: var(--swatch-paper); border-color: var(--swatch-accent); }
+    .theme-swatch::before { content: ''; position: absolute; bottom: 6px; left: 14px; width: 18px; height: 3px; background: var(--swatch-accent); }
+    .theme-swatch[aria-pressed="true"] { border-color: var(--swatch-accent); }
+    .theme-swatch[aria-pressed="true"]::after { content: '✓'; position: absolute; top: 2px; right: 2px; width: 14px; height: 14px; background: var(--swatch-accent); color: var(--swatch-paper); font: 10px/14px Raleway, sans-serif; }
     .typeface-group { position: relative; margin-top: 22px; }
     .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
     .tile { min-width: 0; border: 1px solid var(--rule); border-radius: 3px; padding: 8px 2px 6px; color: var(--muted); }
     .tile[aria-pressed="true"], .tile[aria-expanded="true"] { border-color: var(--accent); background: var(--wash); color: var(--ink); }
     .tile .sample { display: flex; align-items: center; justify-content: center; height: 36px; font-size: 25px; }
-    .tile .tile-label { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 12px; margin-top: 4px; }
+    .tile .tile-label { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: .875em; margin-top: 4px; }
     .sans { font-family: Raleway, sans-serif; }
-    .font-picker { position: absolute; z-index: 5; right: 0; top: 116px; width: 300px; max-width: calc(100vw - 48px); background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 14px; box-shadow: 0 8px 28px #22201d25; }
-    .picker-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-    .picker-header h3 { font-size: 18px; font-weight: 400; margin: 0; }
-    .picker-header button { font-size: 20px; color: var(--muted); width: 28px; height: 28px; }
-    .search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--rule); border-radius: 3px; padding: 0 10px; height: 40px; margin-bottom: 10px; }
+    .font-overlay { position: fixed; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 16px; background: #1119; }
+    .font-picker { width: min(640px, 100%); height: min(720px, calc((100dvh - 32px) * .9)); max-height: calc(100dvh - 32px); display: flex; flex-direction: column; gap: 12px; min-height: 0; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 16px; box-shadow: 0 8px 28px #22201d25; }
+
+    .picker-search { display: flex; align-items: center; flex: none; gap: 12px; }
+    .picker-search .search { flex: 1; }
+    .picker-search > button { font-size: 24px; color: var(--muted); width: 32px; height: 40px; flex: none; }
+    .font-roles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+    .font-role .role-family { display: block; width: 100%; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .setting-button { padding: 7px 12px; border: 1px solid var(--rule); border-radius: 3px; background: var(--paper); }
+    .search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--rule); border-radius: 3px; padding: 0 10px; height: 40px; flex: none; }
     .search svg { width: 16px; height: 16px; stroke: var(--muted); fill: none; flex: none; }
     .search input { border: 0; outline: none; min-width: 0; width: 100%; background: transparent; font-size: 15px; }
     .search:focus-within { border-color: var(--accent); }
-    .font-list { max-height: 280px; overflow-y: auto; scrollbar-width: thin; display: grid; gap: 4px; }
-    .font-option { width: 100%; min-width: 0; text-align: left; padding: 10px; border: 1px solid var(--rule); border-radius: 3px; }
+    .font-list { flex: 1; min-height: 0; overflow-y: scroll; scrollbar-width: auto; scrollbar-color: var(--muted) var(--paper); scrollbar-gutter: stable; overscroll-behavior: contain; display: flex; flex-direction: column; gap: 4px; }
+    .font-list::-webkit-scrollbar { width: 14px; }
+    .font-list::-webkit-scrollbar-track { background: var(--paper); }
+    .font-list::-webkit-scrollbar-thumb { background: var(--muted); border: 3px solid var(--paper); border-radius: 8px; min-height: 28px; }
+    .font-option { width: 100%; min-width: 0; height: 44px; flex: none; text-align: left; padding: 10px; border: 1px solid var(--rule); border-radius: 3px; content-visibility: auto; contain-intrinsic-size: auto 44px; }
     .font-option[aria-selected="true"] { background: var(--wash); border-color: var(--accent); }
-    .font-option .name { display: flex; justify-content: space-between; gap: 8px; font: 14px/1.3 "NV Garamond", serif; }
+    .font-option .name { display: flex; justify-content: space-between; gap: 8px; font-size: 17px; line-height: 22px; }
     .font-option .name span:first-child { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-    .font-option .preview { display: block; margin-top: 5px; font-size: 19px; line-height: 1.4; }
     .check { color: var(--accent); }
     .empty { padding: 20px 8px; margin: 0; color: var(--muted); font-size: 15px; }
     .three-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -91,6 +117,23 @@
     .alignment.justified i { width: 100%; }
     .spacing { font: 22px/36px "NV Garamond", serif; }
     .settings-footer { color: var(--muted); font-size: 14px; margin-top: 24px; }
+    .browse-preview { font-family: var(--ui-font, "NV Garamond"), serif; }
+    .browse-body { display: grid; grid-template-columns: var(--nav-width) minmax(0, 1fr); min-height: 694px; }
+    .browse-nav { border-right: 1px solid var(--rule); padding: 24px 18px; }
+    .browse-nav div { padding: 12px; }
+    .browse-nav [aria-current] { background: var(--wash); color: var(--accent); }
+    .browse-settings { padding: 36px clamp(24px, 6vw, 80px); }
+    .browse-settings h2, .ui-sample h3 { font-family: var(--display-font, "Bodoni Moda"), serif; }
+    .browse-settings h2 { font-size: 30px; font-weight: 400; margin: 0 0 22px; }
+    .browse-setting { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 16px 0; border-top: 1px solid var(--rule); }
+    .ui-font-tiles { width: var(--choice-width); max-width: 100%; flex: none; }
+    .browse-setting .segmented button { font-size: 15px; }
+    .ui-selection { color: var(--muted); font-size: 15px; margin-top: 16px; }
+    .ui-sample { margin-top: 36px; border-top: 1px solid var(--rule); padding-top: 16px; }
+    .ui-sample h3 { font-size: 24px; font-weight: 400; }
+    .reader.phone .browse-body { display: block; }
+    .reader.phone .browse-nav { display: none; }
+    .reader.phone .browse-settings { padding: 24px; }
     .board-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; color: var(--muted); font-size: 12px; }
     .reader.phone { width: 390px; max-width: 100%; margin: auto; }
     .reader.phone .reader-body { display: block; }
@@ -99,7 +142,8 @@
     .reader.phone .reader-header small { display: none; }
     @media (max-width: 760px) {
       .board { padding: 16px; }
-      .reader-body { display: block; }
+      .reader-body, .browse-body { display: block; }
+      .browse-nav { display: none; }
       .book { display: none; }
       .settings { border-left: 0; }
       .reader-header small { display: none; }
@@ -111,13 +155,14 @@
 <body>
   <main class="board">
     <header class="board-header">
-      <div class="board-title"><span class="brand">Bokheim</span><h1>Reader font selection</h1></div>
+      <div class="board-title"><span class="brand">Bokheim</span><h1>Font settings</h1></div>
       <div class="board-controls">
+        <div class="segmented" aria-label="Settings preview"><button type="button" data-view="reader" aria-pressed="true">Reader</button><button type="button" data-view="browse" aria-pressed="false">Browse</button></div>
         <div class="segmented" aria-label="Preview size"><button type="button" data-size="desktop" aria-pressed="true">Desktop</button><button type="button" data-size="phone" aria-pressed="false">Phone</button></div>
         <div class="segmented" aria-label="Theme"><button type="button" data-theme="light" aria-pressed="true">Light</button><button type="button" data-theme="dark" aria-pressed="false">Dark</button></div>
       </div>
     </header>
-    <section class="reader" aria-label="EPUB reader preview">
+    <section class="reader" id="reader-preview" aria-label="EPUB reader preview">
       <header class="reader-header"><span class="back" aria-hidden="true">‹</span><span class="book-title">The Garden Beyond the Wall</span><small>Chapter 3 of 12</small></header>
       <div class="reader-body">
         <article class="book">
@@ -125,28 +170,30 @@
           <h2>A quiet morning</h2>
           <div class="passage" id="reading-sample">
             <p>The garden was still when she arrived. Along the low stone wall, the last of the rain gathered on the leaves, catching the morning light before falling into the grass.</p>
-            <p>She set her book on the wooden bench and listened. Somewhere beyond the apple trees, a bird was trying the same small phrase, pausing each time as though waiting for an answer.</p>
+            <p class="sans-text">She set her book on the wooden bench and listened. Somewhere beyond the apple trees, a bird was trying the same small phrase, pausing each time as though waiting for an answer.</p>
             <p>There was nothing to hurry towards. The path curved between the flower beds and disappeared behind an old gate. For the first time in weeks, she was content to leave it unexplored.</p>
+            <p><code>Field notes · 08:45 · The old garden</code></p>
           </div>
           <div class="page-number">42</div>
         </article>
         <aside class="settings" aria-label="Reader settings">
           <header class="settings-header"><h2>Reader settings</h2><span class="close" aria-hidden="true">×</span></header>
+          <section class="group theme-setting"><span>Theme</span><div class="theme-swatches" data-theme-picker role="group" aria-label="Reader theme"></div></section>
           <section class="group">
             <div class="row"><p class="label">Font size</p><div class="stepper"><button type="button" id="smaller" aria-label="Decrease font size">−</button><output id="font-size">22px</output><button type="button" id="larger" aria-label="Increase font size">+</button></div></div>
             <div class="typeface-group">
               <p class="label">Typeface</p>
               <div class="tiles" role="group" aria-label="Typeface">
-                <button class="tile" type="button" data-preset="book" aria-pressed="false"><span class="sample">Ag</span><span class="tile-label">Book</span></button>
-                <button class="tile" type="button" data-preset="serif" aria-pressed="true"><span class="sample">Ag</span><span class="tile-label">Serif</span></button>
-                <button class="tile" type="button" data-preset="sans" aria-pressed="false"><span class="sample sans">Ag</span><span class="tile-label">Sans serif</span></button>
-                <button class="tile" type="button" id="system-font" aria-pressed="false" aria-expanded="true" aria-controls="font-picker"><span class="sample" id="system-sample">Ag</span><span class="tile-label" id="system-label">Custom</span></button>
+                <button class="tile" type="button" data-preset="book" aria-pressed="false"><span class="sample">Aa</span><span class="tile-label">Book</span></button>
+                <button class="tile" type="button" data-preset="serif" aria-pressed="false"><span class="sample">Aa</span><span class="tile-label">Serif</span></button>
+                <button class="tile" type="button" data-preset="sans" aria-pressed="false"><span class="sample sans">Aa</span><span class="tile-label">Sans serif</span></button>
+                <button class="tile" type="button" id="system-font" aria-pressed="true" aria-expanded="true" aria-controls="font-role-choices"><span class="sample" id="system-sample">Aa</span><span class="tile-label">Custom</span></button>
               </div>
-              <section class="font-picker" id="font-picker" role="dialog" aria-labelledby="picker-title">
-                <div class="picker-header"><h3 id="picker-title">Custom font</h3><button type="button" id="close-picker" aria-label="Close font picker">×</button></div>
-                <label class="search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><path d="m12 12 5 5"/></svg><input id="font-search" type="search" placeholder="Search fonts" aria-label="Search fonts" autocomplete="off" value="serif"></label>
-                <div class="font-list" id="font-list" role="listbox" aria-label="Available fonts"></div>
-              </section>
+              <div class="font-roles" id="font-role-choices">
+                <button class="tile font-role" type="button" data-font-role="serif" aria-haspopup="dialog" aria-expanded="false"><span class="tile-label">Serif</span><span class="role-family" id="role-serif-name">Book default</span></button>
+                <button class="tile font-role" type="button" data-font-role="sans" aria-haspopup="dialog" aria-expanded="false"><span class="tile-label">Sans serif</span><span class="role-family" id="role-sans-name">Book default</span></button>
+                <button class="tile font-role" type="button" data-font-role="mono" aria-haspopup="dialog" aria-expanded="false"><span class="tile-label">Monospace</span><span class="role-family" id="role-mono-name">Book default</span></button>
+              </div>
             </div>
           </section>
           <section class="group">
@@ -158,34 +205,121 @@
             </div>
           </section>
           <section class="group"><p class="label">Line spacing</p><div class="tiles three-tiles"><div class="tile"><span class="sample spacing">↕</span><span class="tile-label">Small</span></div><div class="tile" aria-pressed="true"><span class="sample spacing">↕</span><span class="tile-label">Normal</span></div><div class="tile"><span class="sample spacing">↕</span><span class="tile-label">Large</span></div></div></section>
-          <p class="settings-footer" id="selection-status" role="status">Serif · NV Garamond</p>
+          <p class="settings-footer" id="selection-status" role="status">Custom fonts</p>
         </aside>
       </div>
     </section>
+    <section class="reader browse-preview" id="browse-preview" aria-label="Browse settings preview" hidden>
+      <header class="reader-header"><span class="back" aria-hidden="true">‹</span><span class="book-title">Settings</span><small>Bokheim</small></header>
+      <div class="browse-body">
+        <nav class="browse-nav" aria-label="Browse navigation"><div>Library</div><div>Collections</div><div>Downloads</div><div aria-current="page">Settings</div></nav>
+        <article class="browse-settings">
+          <h2>Appearance</h2>
+          <div class="browse-setting"><span>Application theme</span><div class="theme-swatches" data-theme-picker role="group" aria-label="Application theme"></div></div>
+          <div class="browse-setting"><span>Cover text</span><div class="segmented"><button type="button" aria-pressed="true">Always</button><button type="button">Cover only</button></div></div>
+          <div class="browse-setting"><span>UI typeface</span><div class="tiles three-tiles ui-font-tiles" role="group" aria-label="UI typeface"><button class="tile" type="button" data-ui-preset="serif" aria-pressed="true"><span class="sample" style='font-family: "NV Garamond", serif'>Aa</span><span class="tile-label">Serif</span></button><button class="tile" type="button" data-ui-preset="sans" aria-pressed="false"><span class="sample sans">Aa</span><span class="tile-label">Sans serif</span></button><button class="tile" type="button" id="ui-custom" aria-pressed="false" aria-haspopup="dialog"><span class="sample" id="ui-custom-sample">Aa</span><span class="tile-label">Custom</span></button></div></div>
+          <div class="browse-setting"><span>UI font size</span><span>17px</span></div>
+          <p class="ui-selection" id="ui-selection" role="status">NV Garamond</p>
+          <div class="ui-sample"><h3>Your library, your way</h3><p>Continue reading, find a favourite, or discover something new.</p><button class="setting-button" type="button">Browse books</button></div>
+        </article>
+      </div>
+    </section>
+    <div class="font-overlay" id="font-overlay" hidden>
+    <section class="font-picker" id="font-picker" role="dialog" aria-modal="true" aria-label="Choose a font" hidden>
+      <div class="picker-search"><label class="search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><path d="m12 12 5 5"/></svg><input id="font-search" type="search" placeholder="Search fonts" aria-label="Search fonts" autocomplete="off"></label><button type="button" id="close-picker" aria-label="Close font picker">×</button></div>
+      <div class="font-list" id="font-list" role="listbox" aria-label="Available fonts"></div>
+    </section>
+    </div>
     <footer class="board-footer"><span>Search and select a font to update the reading sample.</span><span>Interactive preview · Fonts from this computer</span></footer>
   </main>
   <script id="available-fonts" type="application/json">["Adwaita Mono", "Adwaita Sans", "all-the-icons", "Bitstream Vera Sans", "Bitstream Vera Sans Mono", "Bitstream Vera Serif", "C059", "Cantarell", "Cascadia Code", "Cascadia Code NF", "Cascadia Code PL", "Cascadia Mono", "Cascadia Mono NF", "Cascadia Mono PL", "D050000L", "DejaVu Math TeX Gyre", "DejaVu Sans", "DejaVu Sans Mono", "DejaVu Serif", "Droid Sans Fallback", "file-icons", "Fira Code", "Fira Mono", "Fira Sans", "Fira Sans Compressed", "Fira Sans Condensed", "FontAwesome", "github-octicons", "Hack", "Liberation Mono", "Liberation Sans", "Liberation Serif", "Libertinus Keyboard", "Libertinus Math", "Libertinus Mono", "Libertinus Sans", "Libertinus Serif", "Libertinus Serif Display", "Libertinus Serif Initials", "Material Icons", "Nimbus Mono PS", "Nimbus Roman", "Nimbus Sans", "Nimbus Sans Narrow", "Noto Color Emoji", "Noto Fangsong KSS Rotated", "Noto Fangsong KSS Vertical", "Noto Kufi Arabic", "Noto Music", "Noto Naskh Arabic", "Noto Naskh Arabic UI", "Noto Nastaliq Urdu", "Noto Rashi Hebrew", "Noto Sans", "Noto Sans Adlam", "Noto Sans Adlam Unjoined", "Noto Sans Anatolian Hieroglyphs", "Noto Sans Arabic", "Noto Sans Arabic UI", "Noto Sans Armenian", "Noto Sans Avestan", "Noto Sans Balinese", "Noto Sans Bamum", "Noto Sans Bassa Vah", "Noto Sans Batak", "Noto Sans Bengali", "Noto Sans Bengali UI", "Noto Sans Bhaiksuki", "Noto Sans Brahmi", "Noto Sans Buginese", "Noto Sans Buhid", "Noto Sans Canadian Aboriginal", "Noto Sans Carian", "Noto Sans Caucasian Albanian", "Noto Sans Chakma", "Noto Sans Cham", "Noto Sans Cherokee", "Noto Sans Chorasmian", "Noto Sans Coptic", "Noto Sans Cuneiform", "Noto Sans Cypriot", "Noto Sans Cypro Minoan", "Noto Sans Deseret", "Noto Sans Devanagari", "Noto Sans Devanagari UI", "Noto Sans Duployan", "Noto Sans Egyptian Hieroglyphs", "Noto Sans Elbasan", "Noto Sans Elymaic", "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Glagolitic", "Noto Sans Gothic", "Noto Sans Grantha", "Noto Sans Gujarati", "Noto Sans Gujarati UI", "Noto Sans Gunjala Gondi", "Noto Sans Gurmukhi", "Noto Sans Gurmukhi UI", "Noto Sans Hanifi Rohingya", "Noto Sans Hanunoo", "Noto Sans Hatran", "Noto Sans Hebrew", "Noto Sans Imperial Aramaic", "Noto Sans Indic Siyaq Numbers", "Noto Sans Inscriptional Pahlavi", "Noto Sans Inscriptional Parthian", "Noto Sans Javanese", "Noto Sans Kaithi", "Noto Sans Kannada", "Noto Sans Kannada UI", "Noto Sans Kawi", "Noto Sans Kayah Li", "Noto Sans Kharoshthi", "Noto Sans Khmer", "Noto Sans Khmer UI", "Noto Sans Khojki", "Noto Sans Khudawadi", "Noto Sans Lao", "Noto Sans Lao Looped", "Noto Sans Lao UI", "Noto Sans Lepcha", "Noto Sans Limbu", "Noto Sans Linear A", "Noto Sans Linear B", "Noto Sans Lisu", "Noto Sans Lycian", "Noto Sans Lydian", "Noto Sans Mahajani", "Noto Sans Malayalam", "Noto Sans Malayalam UI", "Noto Sans Mandaic", "Noto Sans Manichaean", "Noto Sans Marchen", "Noto Sans Masaram Gondi", "Noto Sans Math", "Noto Sans Mayan Numerals", "Noto Sans Medefaidrin", "Noto Sans Meetei Mayek", "Noto Sans Mende Kikakui", "Noto Sans Meroitic", "Noto Sans Miao", "Noto Sans Modi", "Noto Sans Mongolian", "Noto Sans Mono", "Noto Sans Mro", "Noto Sans Multani", "Noto Sans Myanmar", "Noto Sans Myanmar UI", "Noto Sans Nabataean", "Noto Sans Nag Mundari", "Noto Sans Nandinagari", "Noto Sans New Tai Lue", "Noto Sans Newa", "Noto Sans NKo", "Noto Sans NKo Unjoined", "Noto Sans Nushu", "Noto Sans Ogham", "Noto Sans Ol Chiki", "Noto Sans Old Hungarian", "Noto Sans Old Italic", "Noto Sans Old North Arabian", "Noto Sans Old Permic", "Noto Sans Old Persian", "Noto Sans Old Sogdian", "Noto Sans Old South Arabian", "Noto Sans Old Turkic", "Noto Sans Oriya", "Noto Sans Oriya UI", "Noto Sans Osage", "Noto Sans Osmanya", "Noto Sans Pahawh Hmong", "Noto Sans Palmyrene", "Noto Sans Pau Cin Hau", "Noto Sans PhagsPa", "Noto Sans Phoenician", "Noto Sans Psalter Pahlavi", "Noto Sans Rejang", "Noto Sans Runic", "Noto Sans Samaritan", "Noto Sans Saurashtra", "Noto Sans Sharada", "Noto Sans Shavian", "Noto Sans Siddham", "Noto Sans SignWriting", "Noto Sans Sinhala", "Noto Sans Sinhala UI", "Noto Sans Sogdian", "Noto Sans Sora Sompeng", "Noto Sans Soyombo", "Noto Sans Sundanese", "Noto Sans Sunuwar", "Noto Sans Syloti Nagri", "Noto Sans Symbols", "Noto Sans Symbols 2", "Noto Sans Syriac", "Noto Sans Syriac Eastern", "Noto Sans Syriac Western", "Noto Sans Tagalog", "Noto Sans Tagbanwa", "Noto Sans Tai Le", "Noto Sans Tai Tham", "Noto Sans Tai Viet", "Noto Sans Takri", "Noto Sans Tamil", "Noto Sans Tamil Supplement", "Noto Sans Tamil UI", "Noto Sans Tangsa", "Noto Sans Telugu", "Noto Sans Telugu UI", "Noto Sans Test", "Noto Sans Thaana", "Noto Sans Thai", "Noto Sans Thai Looped", "Noto Sans Thai UI", "Noto Sans Tibetan", "Noto Sans Tifinagh", "Noto Sans Tifinagh Adrar", "Noto Sans Tifinagh Agraw Imazighen", "Noto Sans Tifinagh Ahaggar", "Noto Sans Tifinagh Air", "Noto Sans Tifinagh APT", "Noto Sans Tifinagh Azawagh", "Noto Sans Tifinagh Ghat", "Noto Sans Tifinagh Hawad", "Noto Sans Tifinagh Rhissa Ixa", "Noto Sans Tifinagh SIL", "Noto Sans Tifinagh Tawellemmet", "Noto Sans Tirhuta", "Noto Sans Ugaritic", "Noto Sans UI", "Noto Sans Vai", "Noto Sans Vithkuqi", "Noto Sans Wancho", "Noto Sans Warang Citi", "Noto Sans Yi", "Noto Sans Zanabazar Square", "Noto Serif", "Noto Serif Ahom", "Noto Serif Armenian", "Noto Serif Balinese", "Noto Serif Bengali", "Noto Serif Devanagari", "Noto Serif Display", "Noto Serif Dives Akuru", "Noto Serif Dogra", "Noto Serif Ethiopic", "Noto Serif Georgian", "Noto Serif Grantha", "Noto Serif Gujarati", "Noto Serif Gurmukhi", "Noto Serif Hebrew", "Noto Serif Hentaigana", "Noto Serif Kannada", "Noto Serif Khitan Small Script", "Noto Serif Khmer", "Noto Serif Khojki", "Noto Serif Lao", "Noto Serif Makasar", "Noto Serif Malayalam", "Noto Serif Myanmar", "Noto Serif NP Hmong", "Noto Serif Old Uyghur", "Noto Serif Oriya", "Noto Serif Ottoman Siyaq", "Noto Serif Sinhala", "Noto Serif Tamil", "Noto Serif Tangut", "Noto Serif Telugu", "Noto Serif Test", "Noto Serif Thai", "Noto Serif Tibetan", "Noto Serif Todhri", "Noto Serif Toto", "Noto Serif Vithkuqi", "Noto Serif Yezidi", "Noto Traditional Nushu", "Noto Znamenny Musical Notation", "Open Sans", "P052", "Standard Symbols PS", "TeX Gyre Adventor", "TeX Gyre Bonum", "TeX Gyre Chorus", "TeX Gyre Cursor", "TeX Gyre Heros", "TeX Gyre HerosCn", "TeX Gyre Pagella", "TeX Gyre Schola", "TeX Gyre Termes", "URW Bookman", "URW Gothic", "Weather Icons", "Z003"]</script>
   <script>
     const fonts = JSON.parse(document.getElementById('available-fonts').textContent);
     const picker = document.getElementById('font-picker');
+    const overlay = document.getElementById('font-overlay');
     const trigger = document.getElementById('system-font');
     const search = document.getElementById('font-search');
     const list = document.getElementById('font-list');
     let selected = null;
+    let activeRole = null;
+    let customUiFont = null;
+    let pickerAnchor = null;
+    const customFonts = { serif: null, sans: null, mono: null };
+    const roleNames = { serif: 'Serif', sans: 'Sans serif', mono: 'Monospace' };
+    const defaultFonts = { serif: '"NV Garamond", serif', sans: 'Raleway, sans-serif', mono: 'monospace' };
+    const genericNames = { serif: 'serif', sans: 'sans-serif', mono: 'monospace' };
     let size = 22;
+    // Resolve typefaces only as their names approach the visible viewport.
+    const visibleFonts = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.style.fontFamily = familyCSS(entry.target.dataset.font);
+        visibleFonts.unobserve(entry.target);
+      }
+    }, { root: list, rootMargin: '88px' });
 
     function setOpen(open, focus = true) {
       picker.hidden = !open;
+      overlay.hidden = !open;
+      document.body.style.overflow = open ? 'hidden' : '';
+      for (const child of document.querySelector('.board').children) {
+        if (child !== overlay) child.inert = open;
+      }
+      if (!open) {
+        if (focus) pickerAnchor?.focus();
+        activeRole = null;
+        document.getElementById('ui-custom').setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('[data-font-role]').forEach(button => button.setAttribute('aria-expanded', 'false'));
+      }
+    }
+
+    function setCustomOpen(open) {
+      document.getElementById('font-role-choices').hidden = !open;
       trigger.setAttribute('aria-expanded', String(open));
-      if (focus) {
-        if (open) { search.focus(); search.select(); }
-        else trigger.focus();
+      setOpen(false, false);
+      if (open) {
+        trigger.setAttribute('aria-pressed', 'true');
+        document.querySelectorAll('[data-preset]').forEach(button => button.setAttribute('aria-pressed', 'false'));
+        applyCustomFonts();
+        document.getElementById('selection-status').textContent = 'Custom fonts';
+        document.querySelector('[data-font-role="serif"]').focus();
+      }
+    }
+
+    function chooseRole(role) {
+      activeRole = role;
+      if (role === 'ui') document.getElementById('ui-custom').setAttribute('aria-expanded', 'true');
+      selected = role === 'ui' ? customUiFont : customFonts[role];
+      pickerAnchor = role === 'ui' ? document.getElementById('ui-custom') : document.querySelector(`[data-font-role="${role}"]`);
+      picker.setAttribute('aria-label', role === 'ui' ? 'Choose a UI font' : 'Choose a font for ' + roleNames[role]);
+      search.value = '';
+      document.querySelectorAll('[data-font-role]').forEach(button => button.setAttribute('aria-expanded', String(button.dataset.fontRole === role)));
+      setOpen(true, false);
+      renderFonts();
+      search.focus();
+    }
+
+    function updateRoleLabels() {
+      for (const role of Object.keys(customFonts)) {
+        const label = document.getElementById(`role-${role}-name`);
+        label.textContent = customFonts[role] || 'Book default';
+        label.style.fontFamily = customFonts[role] ? familyCSS(customFonts[role]) : '';
+      }
+    }
+
+    function applyCustomFonts() {
+      const properties = { serif: '--book-font', sans: '--book-sans', mono: '--book-mono' };
+      for (const role of Object.keys(customFonts)) {
+        document.documentElement.style.setProperty(properties[role], customFonts[role] ? JSON.stringify(customFonts[role]) + ', ' + genericNames[role] : defaultFonts[role]);
       }
     }
 
     function familyCSS(name) { return JSON.stringify(name) + ', "NV Garamond", serif'; }
 
-    function renderFonts() {
+    function renderFonts(resetScroll = true) {
+      const previousScroll = list.scrollTop;
+      const focusedFont = document.activeElement.closest('.font-option')?.dataset.font;
+      visibleFonts.disconnect();
       list.replaceChildren();
       const query = search.value.trim().toLocaleLowerCase();
       const matches = fonts.filter(font => font.toLocaleLowerCase().includes(query));
@@ -193,6 +327,7 @@
         const option = document.createElement('button');
         option.type = 'button';
         option.className = 'font-option';
+        option.dataset.font = font;
         option.setAttribute('role', 'option');
         option.setAttribute('aria-selected', String(font === selected));
         const name = document.createElement('span');
@@ -207,13 +342,10 @@
           check.setAttribute('aria-hidden', 'true');
           name.append(check);
         }
-        const preview = document.createElement('span');
-        preview.className = 'preview';
-        preview.style.fontFamily = familyCSS(font);
-        preview.textContent = 'Aa Bb Cc 123';
-        option.append(name, preview);
+        option.append(name);
         option.addEventListener('click', () => selectFont(font));
         list.append(option);
+        visibleFonts.observe(option);
       }
       if (!matches.length) {
         const empty = document.createElement('p');
@@ -221,32 +353,61 @@
         empty.textContent = 'No matching fonts';
         list.append(empty);
       }
-      list.scrollTop = 0;
+      list.scrollTop = resetScroll ? 0 : previousScroll;
+      if (!resetScroll && focusedFont) [...list.querySelectorAll('button')].find(button => button.dataset.font === focusedFont)?.focus({ preventScroll: true });
     }
 
     function selectFont(font) {
+      if (!activeRole) return;
+      const role = activeRole;
+      if (role === 'ui') {
+        customUiFont = font;
+        document.documentElement.style.setProperty('--ui-font', JSON.stringify(font));
+        document.documentElement.style.setProperty('--display-font', JSON.stringify(font));
+        document.getElementById('ui-selection').textContent = font;
+        document.getElementById('ui-custom-sample').style.fontFamily = familyCSS(font);
+        document.querySelector('#ui-custom .tile-label').textContent = font;
+        document.getElementById('ui-custom').title = font;
+        document.getElementById('ui-custom').setAttribute('aria-pressed', 'true');
+        fitFontControls();
+        document.querySelectorAll('[data-ui-preset]').forEach(button => button.setAttribute('aria-pressed', 'false'));
+        selected = font;
+        renderFonts(false);
+        return;
+      }
+      customFonts[role] = font;
       selected = font;
-      document.documentElement.style.setProperty('--book-font', familyCSS(font));
-      document.getElementById('system-sample').style.fontFamily = familyCSS(font);
-      document.getElementById('system-label').textContent = font;
-      trigger.title = font;
+      applyCustomFonts();
+      updateRoleLabels();
+      document.getElementById('system-sample').style.fontFamily = familyCSS(customFonts.serif || customFonts.sans || customFonts.mono);
+      trigger.title = Object.keys(customFonts).filter(role => customFonts[role]).map(role => roleNames[role] + ': ' + customFonts[role]).join('\n');
       trigger.setAttribute('aria-pressed', 'true');
       document.querySelectorAll('[data-preset]').forEach(button => button.setAttribute('aria-pressed', 'false'));
-      document.getElementById('selection-status').textContent = font + ' · Custom font';
-      search.value = '';
-      renderFonts();
-      setOpen(false);
+      document.getElementById('selection-status').textContent = 'Custom fonts';
+      renderFonts(false);
+      fitFontControls();
     }
 
-    trigger.addEventListener('click', () => setOpen(picker.hidden));
+    trigger.addEventListener('click', () => setCustomOpen(true));
     document.getElementById('close-picker').addEventListener('click', () => setOpen(false));
-    search.addEventListener('input', renderFonts);
+    document.querySelectorAll('[data-font-role]').forEach(button => button.addEventListener('click', () => chooseRole(button.dataset.fontRole)));
+    search.addEventListener('input', () => renderFonts());
+    list.addEventListener('wheel', event => event.stopPropagation(), { passive: true });
     search.addEventListener('keydown', event => {
       if (event.key === 'Enter') { event.preventDefault(); list.querySelector('button')?.click(); }
       if (event.key === 'ArrowDown') { event.preventDefault(); list.querySelector('button')?.focus(); }
     });
     picker.addEventListener('keydown', event => {
-      if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); setOpen(false); }
+      if (event.key === 'Tab') {
+        const targets = [...picker.querySelectorAll('button, input')];
+        const first = targets[0], last = targets[targets.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+      if (event.key === 'Escape') {
+        event.preventDefault(); event.stopPropagation();
+        setOpen(false);
+      }
       if (event.target.closest('.font-option') && ['ArrowDown', 'ArrowUp'].includes(event.key)) {
         event.preventDefault();
         const options = [...list.querySelectorAll('button')];
@@ -256,30 +417,91 @@
         else options[Math.min(next, options.length - 1)]?.focus();
       }
     });
-    document.addEventListener('pointerdown', event => {
-      if (!picker.hidden && !event.target.closest('.typeface-group')) setOpen(false, false);
-    });
+    overlay.addEventListener('click', event => { if (event.target === overlay) setOpen(false); });
     document.querySelectorAll('[data-preset]').forEach(button => button.addEventListener('click', () => {
       selected = null;
       document.querySelectorAll('[data-preset]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
       trigger.setAttribute('aria-pressed', 'false');
       trigger.removeAttribute('title');
-      document.getElementById('system-label').textContent = 'Custom';
-      document.getElementById('system-sample').style.fontFamily = '';
       const sans = button.dataset.preset === 'sans';
       document.documentElement.style.setProperty('--book-font', sans ? 'Raleway, sans-serif' : '"NV Garamond", serif');
+      document.documentElement.style.setProperty('--book-sans', button.dataset.preset === 'book' ? defaultFonts.sans : sans ? defaultFonts.sans : defaultFonts.serif);
+      document.documentElement.style.setProperty('--book-mono', button.dataset.preset === 'book' ? defaultFonts.mono : sans ? defaultFonts.sans : defaultFonts.serif);
       document.getElementById('selection-status').textContent = button.dataset.preset === 'book' ? 'Book typography' : sans ? 'Sans serif · Raleway' : 'Serif · NV Garamond';
-      renderFonts();
+      setCustomOpen(false);
+    }));
+    document.getElementById('ui-custom').addEventListener('click', () => {
+      chooseRole('ui');
+      if (customUiFont) selectFont(customUiFont);
+    });
+    document.querySelectorAll('[data-ui-preset]').forEach(button => button.addEventListener('click', () => {
+      document.documentElement.style.setProperty('--ui-font', button.dataset.uiPreset === 'serif' ? '"NV Garamond"' : 'Raleway');
+      document.documentElement.style.setProperty('--display-font', button.dataset.uiPreset === 'serif' ? '"Bodoni Moda"' : 'Raleway');
+      document.getElementById('ui-selection').textContent = button.dataset.uiPreset === 'serif' ? 'NV Garamond' : 'Raleway';
+      document.getElementById('ui-custom').setAttribute('aria-pressed', 'false');
+      document.querySelectorAll('[data-ui-preset]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      setOpen(false, false);
+      fitFontControls();
+    }));
+    document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
+      document.getElementById('reader-preview').hidden = button.dataset.view !== 'reader';
+      document.getElementById('browse-preview').hidden = button.dataset.view !== 'browse';
+      document.querySelectorAll('[data-view]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
       setOpen(false, false);
     }));
     document.querySelectorAll('button[data-theme]').forEach(button => button.addEventListener('click', () => {
-      document.documentElement.dataset.theme = button.dataset.theme;
-      document.querySelectorAll('button[data-theme]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      applyTheme(document.documentElement.dataset.palette || 'warm', button.dataset.theme);
     }));
     document.querySelectorAll('[data-size]').forEach(button => button.addEventListener('click', () => {
-      document.querySelector('.reader').classList.toggle('phone', button.dataset.size === 'phone');
+      document.querySelectorAll('.reader').forEach(preview => preview.classList.toggle('phone', button.dataset.size === 'phone'));
+      setOpen(false, false);
       document.querySelectorAll('[data-size]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      fitFontControls();
     }));
+    const fontMeasure = document.createElement('canvas').getContext('2d');
+    function textWidth(element) {
+      const style = getComputedStyle(element);
+      fontMeasure.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+      return fontMeasure.measureText(element.textContent).width;
+    }
+    function fitFontControls() {
+      const uiLabels = [...document.querySelectorAll('.ui-font-tiles .tile-label')];
+      const width = Math.max(240, Math.ceil(Math.max(...uiLabels.map(textWidth)) + 6) * uiLabels.length + 8 * (uiLabels.length - 1));
+      document.documentElement.style.setProperty('--choice-width', width + 'px');
+      const readerLabels = [...document.querySelectorAll('[aria-label="Typeface"] .tile-label')];
+      const readerWidth = Math.max(352, Math.ceil(Math.max(...readerLabels.map(textWidth)) + 6) * readerLabels.length + 8 * (readerLabels.length - 1) + 44);
+      document.documentElement.style.setProperty('--settings-width', Math.min(520, readerWidth) + 'px');
+      const navLabels = [...document.querySelectorAll('.browse-nav div')];
+      const navWidth = Math.max(200, Math.ceil(Math.max(...navLabels.map(textWidth))) + 60);
+      document.documentElement.style.setProperty('--nav-width', Math.min(320, navWidth) + 'px');
+    }
+    document.fonts.ready.then(fitFontControls);
+    window.addEventListener('resize', fitFontControls);
+    const palettes = [
+      { palette: 'warm', appearance: 'light', paper: '#f6f2eb', ink: '#22201d', rule: '#c5bdac', accent: '#466853' },
+      { palette: 'cool', appearance: 'light', paper: '#fafafa', ink: '#262627', rule: '#bcbfc3', accent: '#42566d' },
+      { palette: 'warm', appearance: 'dark', paper: '#11100d', ink: '#efe6d0', rule: '#4e4334', accent: '#d3b271' },
+      { palette: 'cool', appearance: 'dark', paper: '#121212', ink: '#e7e8ea', rule: '#41454a', accent: '#a7b3c2' }
+    ];
+    function applyTheme(palette, appearance) {
+      document.documentElement.dataset.palette = palette;
+      document.documentElement.dataset.theme = appearance;
+      document.querySelectorAll('button[data-theme]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.theme === appearance)));
+      document.querySelectorAll('[data-palette-choice]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.paletteChoice === palette && button.dataset.appearanceChoice === appearance)));
+    }
+    for (const group of document.querySelectorAll('[data-theme-picker]')) {
+      for (const colors of palettes) {
+        const button = document.createElement('button');
+        button.type = 'button'; button.className = 'theme-swatch'; button.textContent = 'Aa';
+        button.dataset.paletteChoice = colors.palette; button.dataset.appearanceChoice = colors.appearance;
+        button.title = colors.palette + ' ' + colors.appearance;
+        button.setAttribute('aria-label', button.title);
+        for (const token of ['paper', 'ink', 'rule', 'accent']) button.style.setProperty('--swatch-' + token, colors[token]);
+        button.addEventListener('click', () => applyTheme(colors.palette, colors.appearance));
+        group.append(button);
+      }
+    }
+    applyTheme('warm', 'light');
     for (const [id, delta] of [['smaller', -1], ['larger', 1]]) {
       document.getElementById(id).addEventListener('click', () => {
         size = Math.min(36, Math.max(14, size + delta));
@@ -287,7 +509,6 @@
         document.getElementById('font-size').textContent = size + 'px';
       });
     }
-    renderFonts();
   </script>
 </body>
 </html>

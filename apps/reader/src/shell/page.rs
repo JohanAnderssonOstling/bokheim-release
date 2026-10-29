@@ -6,8 +6,8 @@ use ui_components as components;
 
 use crate::shell::input::{self, CommonReaderCommands};
 use crate::shell::state_panel::SidebarTab;
-use crate::shell::toolbar::{SidebarTarget, reader_bottom_bar, reader_top_bar};
-use crate::{CloseSearch, DecreaseScale, FocusReaderSearch, IncreaseScale, NextLine, NextPage, NextSidebarTab, PreviousLine, PreviousPage, PreviousSidebarTab, ReturnToLibrary, ToggleSearch, ToggleSidebar, ToggleToc};
+use crate::shell::toolbar::{SidebarTarget, reader_bottom_bar, reader_rail, reader_top_bar};
+use crate::{CloseSearch, DecreaseScale, FocusReaderSearch, IncreaseScale, NextLine, NextPage, NextSidebarTab, OpenReaderSettings, PreviousLine, PreviousPage, PreviousSidebarTab, ReturnToLibrary, ToggleSearch, ToggleSidebar, ToggleToc};
 
 /// The phone's chrome around the page.
 pub(crate) struct MobileChrome {
@@ -35,6 +35,8 @@ pub(crate) struct ReaderSurface {
     pub(crate) title: String,
     pub(crate) chapter: String,
     pub(crate) progress_label: String,
+    pub(crate) progress_fraction: f32,
+    pub(crate) progress_detail: String,
     pub(crate) bottom_bar_id: &'static str,
 }
 
@@ -47,13 +49,12 @@ struct ReaderPage {
 }
 
 pub(crate) fn reader_surface<C: CommonReaderCommands + SidebarTarget>(owner: &C, surface: ReaderSurface, theme: components::BrowserTheme, window: &mut Window, cx: &mut Context<C>) -> Div {
-    let ReaderSurface { document, dock, sidebar, active_tab, chrome_visible, document_ready, loading_focus, title, chapter, progress_label, bottom_bar_id } = surface;
+    let ReaderSurface { document, dock, sidebar, active_tab, chrome_visible, document_ready, loading_focus, title, chapter, progress_label, progress_fraction, progress_detail, bottom_bar_id } = surface;
+    let document = if window.supports_region_capture() { super::screenshot::document(document, cx.entity_id(), theme) } else { document };
     if !components::uses_mobile_reader_controls(window) {
+        let rail = reader_rail(owner, &cx.entity(), active_tab.filter(|_| sidebar.is_some()), progress_fraction, progress_label, progress_detail, theme, window, cx);
         let document = div().size_full().min_h_0().min_w_0().flex().flex_col().child(document).children(dock).into_any_element();
-        let content = match sidebar {
-            Some(sidebar) => super::chrome::with_sidebar(sidebar, document, false, window, cx),
-            None => document,
-        };
+        let content = super::chrome::desktop_content(rail.into_any_element(), sidebar, document, window, cx);
         let no_bars = MobileChrome { top_bar: None, bottom_bar: None, dock: None, sheet: None, partial_sheet: false };
         return reader_page(ReaderPage { document_ready, loading_focus, chrome_visible, mobile_chrome: no_bars, content }, theme, window, cx);
     }
@@ -73,7 +74,7 @@ fn reader_page<C: CommonReaderCommands>(page: ReaderPage, theme: components::Bro
     let page = components::reader_app_page(window, cx, theme)
         .relative()
         .key_context("Reader")
-        .when(chrome_visible && !mobile, |page| page.pt(safe_area.top))
+        .when(!mobile, |page| page.pt(safe_area.top))
         .when(!document_ready, |page| page.track_focus(&loading_focus))
         .on_action(cx.listener(input::dispatch::<C, PreviousPage>))
         .on_action(cx.listener(input::dispatch::<C, NextPage>))
@@ -84,6 +85,7 @@ fn reader_page<C: CommonReaderCommands>(page: ReaderPage, theme: components::Bro
         .on_action(cx.listener(input::dispatch::<C, ToggleSidebar>))
         .on_action(cx.listener(input::dispatch::<C, ToggleToc>))
         .on_action(cx.listener(input::dispatch::<C, FocusReaderSearch>))
+        .on_action(cx.listener(input::dispatch::<C, OpenReaderSettings>))
         .on_action(cx.listener(input::dispatch::<C, ToggleSearch>))
         .on_action(cx.listener(input::dispatch::<C, CloseSearch>))
         .on_action(cx.listener(input::dispatch::<C, IncreaseScale>))
@@ -106,7 +108,17 @@ fn reader_page<C: CommonReaderCommands>(page: ReaderPage, theme: components::Bro
     let (page_dock, bar_dock) = if docked_in_bars { (None, dock.filter(|_| !sheet_open)) } else { (dock, None) };
     let document =
         div().flex_1().min_h_0().flex().flex_col().child(components::reader_content().child(content)).children(page_dock).when(docked_in_bars, |document| document.child(div().flex_none().h(px(components::player_dock_height_px(window)))));
-    let page = page.child(document).children(sheet.map(|sheet| super::chrome::sidebar_sheet(sheet, partial_sheet, window)));
+    let page = page.child(document).when(sheet_open && partial_sheet, |page| {
+        // Keep the exposed page visible, but let the first tap only dismiss
+        // the sheet instead of also following a link or turning a page.
+        page.child(div().id("reader-sheet-dismiss").absolute().inset_0().occlude().on_scroll_wheel(|_, _, cx| cx.stop_propagation()).on_click(cx.listener(|reader, event, window, cx| {
+            cx.stop_propagation();
+            if super::chrome::is_page_tap(event) {
+                input::dispatch(reader, &CloseSearch, window, cx);
+            }
+        })))
+    });
+    let page = page.children(sheet.map(|sheet| super::chrome::sidebar_sheet(sheet, partial_sheet, window)));
     let page = match top_bar.filter(|_| chrome_visible && !sheet_open) {
         Some(top_bar) => page.child(div().absolute().top_0().left_0().right_0().pt(safe_area.top).pl(safe_area.left).pr(safe_area.right).bg(theme.page_bg).occlude().child(top_bar)),
         None => page,
@@ -136,9 +148,11 @@ fn reader_page<C: CommonReaderCommands>(page: ReaderPage, theme: components::Bro
 
 #[cfg(all(test, feature = "mobile"))]
 mod tests {
+    use std::any::Any;
+
     use super::*;
     use crate::shell::input::CommandTarget;
-    use gpui::{AppContext, Entity, Render, TestAppContext, VisualTestContext};
+    use gpui::{AppContext, Entity, Render, TestAppContext, VisualTestContext, point, size};
 
     struct LayoutTest {
         focus: FocusHandle,
@@ -146,10 +160,18 @@ mod tests {
         dock: bool,
         sheet: bool,
         partial: bool,
+        document_downs: usize,
+        document_clicks: usize,
     }
 
-    impl<A> CommandTarget<A> for LayoutTest {
-        fn execute(&mut self, _: &A, _: &mut Window, _: &mut Context<Self>) {}
+    impl<A: 'static> CommandTarget<A> for LayoutTest {
+        fn execute(&mut self, action: &A, window: &mut Window, cx: &mut Context<Self>) {
+            if (action as &dyn Any).is::<CloseSearch>() {
+                self.sheet = false;
+                self.focus.focus(window, cx);
+                cx.notify();
+            }
+        }
     }
 
     impl Render for LayoutTest {
@@ -159,7 +181,12 @@ mod tests {
             let bottom_bar = self.chrome.then(|| components::bottom_navigation(theme).debug_selector(|| "test-bottom-bar".into()).into_any_element());
             let dock = self.dock.then(|| components::player_dock(div(), div(), div(), theme).debug_selector(|| "test-dock".into()).into_any_element());
             let sheet = self.sheet.then(|| div().size_full().debug_selector(|| "test-sheet".into()).bg(theme.page_bg).into_any_element());
-            let content = components::reader_document_body().debug_selector(|| "test-document".into()).into_any_element();
+            let content = components::reader_document_body()
+                .id("test-document")
+                .debug_selector(|| "test-document".into())
+                .on_any_mouse_down(cx.listener(|view, _, _, _| view.document_downs += 1))
+                .on_click(cx.listener(|view, _, _, _| view.document_clicks += 1))
+                .into_any_element();
             reader_page(
                 ReaderPage { document_ready: true, loading_focus: self.focus.clone(), chrome_visible: self.chrome, mobile_chrome: MobileChrome { top_bar, bottom_bar, dock, sheet, partial_sheet: self.partial }, content },
                 theme,
@@ -173,7 +200,7 @@ mod tests {
         cx.update(gpui_component::init);
         cx.update(|cx| gpui_component::Theme::global_mut(cx).font_size = px(rem_size));
         let (root, cx) = cx.add_window_view(|window, cx| {
-            let view = cx.new(|cx| LayoutTest { focus: cx.focus_handle(), chrome: false, dock: true, sheet: false, partial: false });
+            let view = cx.new(|cx| LayoutTest { focus: cx.focus_handle(), chrome: false, dock: true, sheet: false, partial: false, document_downs: 0, document_clicks: 0 });
             gpui_component::Root::new(view, window, cx)
         });
         let view = cx.update(|_, cx| root.read(cx).view().clone().downcast::<LayoutTest>().ok().unwrap());
@@ -215,6 +242,41 @@ mod tests {
             let partial = cx.debug_bounds("test-sheet").unwrap();
             assert!(partial.top() > sheet.top());
             assert_eq!(partial.bottom(), sheet.bottom());
+        }
+    }
+
+    #[gpui::test]
+    fn tapping_exposed_page_dismisses_sheet_without_activating_document(cx: &mut TestAppContext) {
+        for viewport in [size(px(632.0), px(840.0)), size(px(840.0), px(632.0))] {
+            for fraction in [0.1, 0.5, 0.9] {
+                let (view, cx) = setup(cx, 16.0);
+                cx.simulate_resize(viewport);
+                view.update(cx, |view, cx| {
+                    view.chrome = true;
+                    view.sheet = true;
+                    view.partial = true;
+                    cx.notify();
+                });
+                cx.run_until_parked();
+                let document = cx.debug_bounds("test-document").unwrap();
+                let sheet = cx.debug_bounds("test-sheet").unwrap();
+                cx.simulate_click(sheet.center(), Default::default());
+                view.read_with(cx, |view, _| assert!(view.sheet, "tapping inside the sheet must keep it open"));
+
+                let exposed = point(viewport.width * fraction, sheet.top() / 2.0);
+                cx.simulate_click(exposed, Default::default());
+                cx.run_until_parked();
+                assert!(cx.debug_bounds("test-sheet").is_none());
+                assert_eq!(cx.debug_bounds("test-document").unwrap(), document, "dismissing the sheet must not reflow the book");
+                view.read_with(cx, |view, _| {
+                    assert!(!view.sheet);
+                    assert!(view.chrome, "dismissing the sheet keeps navigation visible");
+                    assert_eq!((view.document_downs, view.document_clicks), (0, 0), "the dismissal tap must not reach the book");
+                });
+
+                cx.simulate_click(exposed, Default::default());
+                view.read_with(cx, |view, _| assert_eq!((view.document_downs, view.document_clicks), (1, 1), "the next tap reaches the book again"));
+            }
         }
     }
 }

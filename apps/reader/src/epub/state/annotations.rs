@@ -3,7 +3,7 @@
 use crate::invalidation::notify;
 use book_model::{AnnotationAnchor, AnnotationStyle};
 use gpui::{Context, Window};
-use html_view_core::RendererCommand;
+use skrift_column_paginator::RendererCommand;
 use library_backend::Annotation;
 
 use crate::epub::{ReaderView, Selection, marks};

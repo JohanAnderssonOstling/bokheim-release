@@ -1,6 +1,6 @@
 #![cfg(not(target_arch = "wasm32"))]
 use std::collections::BTreeMap;
-use subject_projection::{bisac_code_for_path, install_bisac_reference, match_bisac_subjects, match_bisac_subjects_with_minimum_adjacent, BookSubject};
+use subject_projection::{bisac_code_for_path, match_bisac_subjects, match_bisac_subjects_with_minimum_adjacent, BookSubject};
 use subject_taxonomy::compact_whitespace;
 
 fn subject(name: &str, authority: Option<&str>, code: Option<&str>) -> BookSubject {
@@ -61,7 +61,6 @@ fn explicit_codes_bypass_heading_depth_and_manual_codes_survive_lcc_precedence()
 }
 
 #[test]
-fn unrecognized_codes_and_untrusted_reference_images_are_rejected() {
+fn unrecognized_codes_are_rejected() {
     assert!(match_bisac_subjects(&[subject("SCI999999", Some("bisac"), Some("SCI999999"))]).is_empty());
-    assert!(install_bisac_reference(b"not the bundled reference").unwrap_err().contains("differs from the deployed bundle"));
 }

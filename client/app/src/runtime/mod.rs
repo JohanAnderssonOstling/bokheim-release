@@ -31,7 +31,7 @@ pub use protocol::*;
 #[cfg(target_arch = "wasm32")]
 mod host;
 #[cfg(target_arch = "wasm32")]
-mod taxonomy;
+pub(crate) mod taxonomy;
 #[cfg(target_arch = "wasm32")]
 pub use host::BackendWorkerHost;
 

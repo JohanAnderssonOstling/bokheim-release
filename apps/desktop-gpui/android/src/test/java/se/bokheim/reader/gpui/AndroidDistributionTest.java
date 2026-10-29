@@ -26,12 +26,12 @@ public class AndroidDistributionTest {
         android.content.Context context = RuntimeEnvironment.getApplication();
         PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_PERMISSIONS);
         List<String> permissions = info.requestedPermissions == null ? Collections.emptyList() : Arrays.asList(info.requestedPermissions);
-        assertEquals(!BuildConfig.PLAY_STORE, permissions.contains("android.permission.REQUEST_INSTALL_PACKAGES"));
+        assertEquals(MainActivity.isSelfUpdateEnabled(), permissions.contains("android.permission.REQUEST_INSTALL_PACKAGES"));
         assertEquals(!BuildConfig.PLAY_STORE, permissions.contains("android.permission.MANAGE_EXTERNAL_STORAGE"));
     }
 
     @Test public void playManifestDoesNotExposeTheApkUpdateComponents() throws Exception {
-        assumeTrue(BuildConfig.PLAY_STORE);
+        assumeTrue(!MainActivity.isSelfUpdateEnabled());
         android.content.Context context = RuntimeEnvironment.getApplication();
         PackageManager manager = context.getPackageManager();
         assertThrows(PackageManager.NameNotFoundException.class,
@@ -56,8 +56,7 @@ public class AndroidDistributionTest {
     }
 
     @Test public void playRejectsEveryNativeUpdaterCommandBeforeDoingAnyWork() {
-        assumeTrue(BuildConfig.PLAY_STORE);
-        assertTrue(MainActivity.isPlayStoreBuild());
+        assumeTrue(!MainActivity.isSelfUpdateEnabled());
         for (String action : new String[]{"prepare", "permission", "install", "grantPermission", "restart"}) {
             assertThrows(UnsupportedOperationException.class,
                     () -> MainActivity.updateCommand(RuntimeEnvironment.getApplication(), "{\"action\":\"" + action + "\"}"));

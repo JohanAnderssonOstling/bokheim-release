@@ -5,21 +5,34 @@ use segment_rules::{LexicalKind, lexemes};
 use std::borrow::Cow;
 use std::ops::Range;
 
+#[path = "speech_text/months.rs"]
 mod months;
 use months::normalize_months;
+#[path = "speech_text/semantics.rs"]
 mod semantics;
 use semantics::{normalize_number_words, normalize_semantics};
+#[path = "speech_text/calendar.rs"]
 mod calendar;
+#[path = "speech_text/decimals.rs"]
 mod decimals;
+#[path = "speech_text/dimensions.rs"]
 mod dimensions;
+#[path = "speech_text/entities.rs"]
 mod entities;
+#[path = "speech_text/fractions.rs"]
 mod fractions;
+#[path = "speech_text/numbers.rs"]
 mod numbers;
+#[path = "speech_text/quantity_abbreviations.rs"]
 mod quantity_abbreviations;
+#[path = "speech_text/ratios.rs"]
 mod ratios;
+#[path = "speech_text/scientific.rs"]
 mod scientific;
 #[cfg(test)]
+#[path = "speech_text/tests.rs"]
 mod tests;
+#[path = "speech_text/times.rs"]
 mod times;
 
 const ROMAN_DIGITS: [(&str, u16); 13] = [("M", 1000), ("CM", 900), ("D", 500), ("CD", 400), ("C", 100), ("XC", 90), ("L", 50), ("XL", 40), ("X", 10), ("IX", 9), ("V", 5), ("IV", 4), ("I", 1)];

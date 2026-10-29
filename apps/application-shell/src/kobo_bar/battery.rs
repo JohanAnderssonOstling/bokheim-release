@@ -1,7 +1,6 @@
-use app::{AppClient, BatteryStatus};
+use app::{AppClient, BatteryReading, BatteryStatus};
 use gpui::{Context, Entity, Render, Window, prelude::*, px};
 use gpui_component::{IconName, popover::Popover};
-use std::time::Duration;
 
 pub(super) struct BatteryPanel {
     backend: AppClient,
@@ -11,16 +10,31 @@ pub(super) struct BatteryPanel {
 }
 impl BatteryPanel {
     pub(super) fn new(backend: AppClient, cx: &mut Context<Self>) -> Self {
+        let mut readings = backend.subscribe_kobo_battery();
         cx.spawn(async move |panel, cx| {
             loop {
-                if panel.update(cx, |panel, cx| panel.refresh(cx)).is_err() {
-                    break;
+                let reading = readings.borrow_and_update().clone();
+                if let Some(reading) = reading {
+                    if panel.update(cx, |panel, cx| panel.apply_reading(reading, cx)).is_err() { break; }
                 }
-                cx.background_executor().timer(Duration::from_secs(60)).await;
+                if readings.changed().await.is_err() { break; }
             }
         })
         .detach();
         Self { backend, status: None, error: None, busy: false }
+    }
+
+    fn apply_reading(&mut self, reading: BatteryReading, cx: &mut Context<Self>) {
+        let previous = (self.status.clone(), self.error.clone());
+        match reading {
+            Ok(status) => { self.status = Some(status); self.error = None; }
+            Err(error) => {
+                self.status = None;
+                log::warn!("Device control failed: {error}");
+                self.error = Some("Could not read the battery level. Try reopening this panel.".into());
+            }
+        }
+        if previous != (self.status.clone(), self.error.clone()) { cx.notify(); }
     }
     fn refresh(&mut self, cx: &mut Context<Self>) {
         if self.busy {
@@ -31,21 +45,15 @@ impl BatteryPanel {
         cx.spawn(async move |panel, cx| {
             let result = backend.kobo_battery().await;
             let _ = panel.update(cx, |panel, cx| {
-                let previous = (panel.status.clone(), panel.error.clone());
                 panel.busy = false;
                 match result {
-                    Ok(status) => {
-                        panel.status = Some(status);
-                        panel.error = None;
-                    }
+                    Ok(_) => {},
                     Err(error) => {
                         panel.status = None;
                         log::warn!("Device control failed: {error}");
                         panel.error = Some("Could not read the battery level. Try reopening this panel.".into());
+                        cx.notify();
                     }
-                }
-                if previous != (panel.status.clone(), panel.error.clone()) {
-                    cx.notify();
                 }
             });
         })

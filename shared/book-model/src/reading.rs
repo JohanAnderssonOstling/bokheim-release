@@ -116,6 +116,18 @@ impl ReadingPosition {
         Self::Audiobook(millis)
     }
 
+    /// The beginning of a book in `format`: where a book never opened is
+    /// placed when it is marked read. MOBI and FB2 open in the EPUB reader and keep its CFIs, whose
+    /// spine is the package's third child, so `/6/2` is its first item.
+    pub fn start(format: crate::BookFormat) -> Self {
+        match format {
+            crate::BookFormat::Epub | crate::BookFormat::Mobi | crate::BookFormat::Fb2 => Self::Epub(ReadingEpubCfi("epubcfi(/6/2)".to_owned())),
+            crate::BookFormat::Pdf => Self::Pdf(0),
+            crate::BookFormat::M4b | crate::BookFormat::Mp3Folder => Self::Audiobook(0),
+            crate::BookFormat::Cbz => Self::Cbz { page: 0, full_page_position: 0.0 },
+        }
+    }
+
     pub fn as_str(&self) -> String {
         match self {
             Self::Epub(cfi) => cfi.0.clone(),

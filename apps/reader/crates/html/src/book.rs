@@ -14,14 +14,20 @@ pub struct BookSource {
     content: Arc<ReadingBook>,
 }
 
-struct Provider(Arc<ReadingBook>);
+struct Provider(Arc<ReadingBook>, Option<String>);
 
 impl ResourceProvider for Provider {
     fn read_bytes(&self, uri: &str) -> io::Result<Vec<u8>> {
         self.0.resources.read_bytes(uri)
     }
+    fn read_bytes_async<'a>(&'a self, uri: &'a str) -> Pin<Box<dyn Future<Output = io::Result<Vec<u8>>> + Send + 'a>> {
+        Box::pin(self.0.read_resource(uri.to_owned()))
+    }
     fn metadata(&self, uri: &str) -> io::Result<ResourceMetadata> {
         Ok(ResourceMetadata { media_type: self.0.resources.media_type(uri)?, charset: None })
+    }
+    fn primary_language(&self) -> Option<String> {
+        self.1.clone()
     }
     fn exists(&self, uri: &str) -> bool {
         self.0.resources.exists(uri)
@@ -66,7 +72,8 @@ impl ImageLoader for BookImageLoader {
 impl BookSource {
     pub fn new(content: ReadingBook) -> Self {
         let content = Arc::new(content);
-        Self { provider: Arc::new(Provider(content.clone())), content }
+        let language = content.languages().into_iter().map(|language| language.trim().to_owned()).find(|language| !language.is_empty());
+        Self { provider: Arc::new(Provider(content.clone(), language)), content }
     }
     pub fn languages(&self) -> Vec<String> {
         self.content.languages()
@@ -92,10 +99,50 @@ impl BookSource {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use html::pipeline::{DocumentFactory, ResourceContext};
     use html::resources::{ImagePipeline, ImageService, InlineJobSpawner};
     use std::collections::HashSet;
     use std::io::{Cursor, Write};
     use std::time::{Duration, Instant};
+
+    #[test]
+    fn epub_primary_language_uses_metadata_order_for_multilingual_books() {
+        for languages in [vec![], vec!["sv"], vec!["fr", "en-US"], vec!["en-US", "fr"]] {
+            let mut archive = zip::ZipWriter::new(Cursor::new(Vec::new()));
+            let metadata = languages.iter().map(|language| format!("<dc:language>{language}</dc:language>")).collect::<String>();
+            let package = format!("<package xmlns:dc='http://purl.org/dc/elements/1.1/'><metadata>{metadata}</metadata><manifest><item id='chapter' href='chapter.xhtml' media-type='application/xhtml+xml'/></manifest><spine><itemref idref='chapter'/></spine></package>");
+            for (name, source) in [
+                ("META-INF/container.xml", "<container><rootfiles><rootfile full-path='book.opf'/></rootfiles></container>"),
+                ("book.opf", package.as_str()),
+                ("chapter.xhtml", "<html lang='sv'><body>Text</body></html>"),
+            ] {
+                archive.start_file(name, zip::write::SimpleFileOptions::default()).unwrap();
+                archive.write_all(source.as_bytes()).unwrap();
+            }
+            let book = BookSource::from_reader(BookSourceFormat::Epub, archive.finish().unwrap()).unwrap();
+            assert_eq!(book.provider.primary_language().as_deref(), languages.first().copied());
+            assert!(book.provider.read_string("chapter.xhtml").unwrap().contains("lang='sv'"), "publication fallback must not rewrite explicit content language");
+        }
+    }
+
+    #[test]
+    fn epub_publication_fonts_load_on_demand_without_eager_text_reads() {
+        let mut archive = zip::ZipWriter::new(Cursor::new(Vec::new()));
+        let options = zip::write::SimpleFileOptions::default();
+        for (name, bytes) in [
+            ("META-INF/container.xml", r#"<container><rootfiles><rootfile full-path="OEBPS/content.opf"/></rootfiles></container>"#),
+            ("OEBPS/content.opf", r#"<package><manifest><item id="chapter" href="chapter.xhtml" media-type="application/xhtml+xml"/><item id="font" href="book.ttf" media-type="font/ttf"/></manifest><spine><itemref idref="chapter"/></spine></package>"#),
+            ("OEBPS/chapter.xhtml", "<html><body>Mixed Latin and CJK</body></html>"),
+            ("OEBPS/book.ttf", "deferred publication font bytes"),
+        ] {
+            archive.start_file(name, options).unwrap();
+            archive.write_all(bytes.as_bytes()).unwrap();
+        }
+        let book = BookSource::from_reader(BookSourceFormat::Epub, archive.finish().unwrap()).unwrap();
+        assert_eq!(book.provider.read_bytes("OEBPS/book.ttf").unwrap_err().kind(), io::ErrorKind::NotFound);
+        assert_eq!(block_on(book.provider.read_bytes_async("OEBPS/book.ttf")).unwrap(), b"deferred publication font bytes");
+        assert_eq!(book.provider.read_bytes("OEBPS/book.ttf").unwrap_err().kind(), io::ErrorKind::NotFound);
+    }
 
     #[test]
     fn epub_adapter_resolves_inline_svg_image_resources() {
@@ -123,9 +170,8 @@ mod tests {
         let source = provider.read_string(document_uri).unwrap();
         assert!(source.contains(r#"xlink:href="../Images/cover.jpeg""#), "adapter must return unmodified book bytes");
 
-        let mut factory = html::pipeline::DocumentFactory::new();
-        factory.set_resource_context(provider.clone(), document_uri);
-        let document = factory.parse_to_dom(&source);
+        let mut factory = DocumentFactory::new();
+        let document = factory.with_resources(ResourceContext::new(provider.as_ref(), document_uri)).parse_to_dom(&source);
         let (image_idx, image) = document.images().iter().enumerate().find(|(_, image)| matches!(&image.source, html::document::ImageSource::InlineSvg { .. })).expect("inline SVG image resource");
         assert!(matches!(&image.source, html::document::ImageSource::InlineSvg { base_uri, .. } if base_uri == document_uri));
 
@@ -133,8 +179,8 @@ mod tests {
             std::thread::spawn(move || block_on(task));
         });
         let service = ImageService::with_loader(loader, Arc::new(InlineJobSpawner), ImageService::DEFAULT_BYTE_BUDGET);
-        let mut pipeline = ImagePipeline::with_service(Arc::new(document.images().to_vec()), service);
-        pipeline.ensure_window(&HashSet::from([image_idx as u32]));
+        let mut pipeline = ImagePipeline::with_service(service);
+        pipeline.ensure_window(document.images(), &HashSet::from([image_idx as u32]));
         let deadline = Instant::now() + Duration::from_secs(2);
         while pipeline.get_decoded(image_idx as u32).is_none() && Instant::now() < deadline {
             pipeline.poll();

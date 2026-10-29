@@ -75,8 +75,9 @@ impl<'de> de::Deserializer<'de> for Deserializer {
             _ => visitor.visit_some(self),
         }
     }
-    fn deserialize_newtype_struct<V: Visitor<'de>>(self, _: &'static str, visitor: V) -> Result<V::Value, Error> {
+    fn deserialize_newtype_struct<V: Visitor<'de>>(self, name: &'static str, visitor: V) -> Result<V::Value, Error> {
         match self.value.kind {
+            Some(Kind::BytesValue(value)) if name == "BokheimTransportBytes" => visitor.visit_newtype_struct(de::value::BytesDeserializer::<Error>::new(&value)),
             Some(Kind::NewtypeValue(value)) => visitor.visit_newtype_struct(Self { value: *value, byte_fields: self.byte_fields }),
             _ => visitor.visit_newtype_struct(self),
         }

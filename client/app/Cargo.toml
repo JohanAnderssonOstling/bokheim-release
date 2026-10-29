@@ -11,7 +11,9 @@ autotests = false
 crate-type = ["rlib"]
 
 [features]
-kobo = ["client-platform-kobo/device"]
+# Experimental provider integration; excluded from default and release builds.
+google-drive = ["cloud-storage/google-drive", "library-backend/google-drive", "client-platform-web/google-drive"]
+kobo = ["client-platform-kobo/device", "library-backend/kobo"]
 
 [dependencies]
 client-runtime = { path = "../client-runtime", features = ["http"] }
@@ -67,6 +69,8 @@ tokio = { version = "1.0", features = ["fs", "io-util", "macros", "net", "rt", "
 
 [dev-dependencies]
 tempfile = "3"
+book-content = { path = "../book-content" }
+futures-lite = "2"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
 tokio = { version = "1.0", features = ["test-util"] }

@@ -6,14 +6,13 @@ use gpui::prelude::*;
 use gpui::{Context, Entity, Render, Window, px};
 use gpui_component::{
     Disableable, Icon,
-    button::{Button, ButtonVariants},
     input::{Input, InputState},
     popover::Popover,
     scroll::ScrollableElement,
     switch::Switch,
 };
-use std::time::Duration;
 use ui_components as components;
+use ui_components::Button;
 
 // `.top()` is relative to the trigger's top edge. The shared Popover adds a
 // 4px top inset for top anchors, so subtract that inset when placing the
@@ -46,9 +45,20 @@ impl KoboDeviceBar {
         cx.observe(&panel, |_, _, cx| cx.notify()).detach();
         let bluetooth = cx.new(|cx| BluetoothPanel::new(backend.clone(), cx));
         cx.observe(&bluetooth, |_, _, cx| cx.notify()).detach();
+        let app = cx.to_async();
+        let idle_app = app.clone();
+        gpui_kobo::on_idle_sleep_check(move || {
+            idle_app.update(|cx| crate::playback::kobo_idle_sleep_allowed(cx))
+        });
+        gpui_kobo::on_prepare_sleep(move || {
+            let _ = app.update(crate::playback::prepare_kobo_sleep);
+        });
+        let (power_events, pending_power_events) = async_channel::bounded(1);
+        gpui_kobo::on_power_event(move || {
+            let _ = power_events.try_send(());
+        });
         cx.spawn(async move |bar, cx| {
-            loop {
-                cx.background_executor().timer(Duration::from_millis(150)).await;
+            while pending_power_events.recv().await.is_ok() {
                 if bar
                     .update(cx, |bar, cx| {
                         if gpui_kobo::take_power_menu_request() {
@@ -149,13 +159,20 @@ impl Render for KoboDeviceBar {
                     ),
             )
             .child(gpui::div().flex_1())
-            .when(has_frontlight, |bar| bar.child(reader_ui::brightness_popover(self.brightness.clone(), None, theme, window).top(popup_top).trigger(device_button("kobo-brightness-button", "Brightness", gpui_component::IconName::Sun))))
+            .when(has_frontlight, |bar| bar.child(reader_ui::brightness_popover(self.brightness.clone(), None, window).top(popup_top).trigger(device_button("kobo-brightness-button", "Brightness", gpui_component::IconName::Sun))))
             .when(has_gyroscope, |bar| bar.child(device_button("kobo-auto-rotate-button", rotate_label, Icon::empty().path(rotate_icon)).on_click(cx.listener(move |bar, _, _, cx| {
                 bar.auto_rotate = !bar.auto_rotate;
                 rotate_services.save_kobo_auto_rotate(bar.auto_rotate, cx);
                 cx.notify();
             }))))
-            .when(has_bluetooth, |bar| bar.child(Popover::new("kobo-bluetooth-popup").anchor(gpui::Anchor::TopRight).top(popup_top).p_0().trigger(device_button("kobo-bluetooth-button", bluetooth_label, Icon::empty().path(bluetooth_icon))).child(bluetooth)))
+            .when(has_bluetooth, |bar| bar.child(Popover::new("kobo-bluetooth-popup").anchor(gpui::Anchor::TopRight).top(popup_top).p_0().trigger(device_button("kobo-bluetooth-button", bluetooth_label, Icon::empty().path(bluetooth_icon))).on_open_change({
+                let bluetooth = bluetooth.clone();
+                move |open, _, cx| {
+                    if *open {
+                        bluetooth.update(cx, |panel, cx| panel.run(BluetoothRequest::Status, cx));
+                    }
+                }
+            }).child(bluetooth)))
             .child(battery::popover(&self.battery, popup_top, cx))
             .child(
                 Popover::new("kobo-wifi-popup")
@@ -189,13 +206,12 @@ struct BluetoothPanel {
 
 impl BluetoothPanel {
     fn new(backend: AppClient, cx: &mut Context<Self>) -> Self {
-        cx.spawn(async move |panel, cx| {
-            loop {
-                let Ok(()) = panel.update(cx, |panel, cx| panel.run(BluetoothRequest::Status, cx)) else { break };
-                cx.background_executor().timer(Duration::from_secs(15)).await;
-            }
-        })
-        .detach();
+        if components::kobo::has_bluetooth(cx) {
+            cx.spawn(async move |panel, cx| {
+                let _ = panel.update(cx, |panel, cx| panel.run(BluetoothRequest::Status, cx));
+            })
+            .detach();
+        }
         Self { backend, status: BluetoothStatus::default(), busy: false, error: None }
     }
 
@@ -204,10 +220,12 @@ impl BluetoothPanel {
             return;
         }
         self.busy = true;
+        let is_status = matches!(request, BluetoothRequest::Status);
         let backend = self.backend.clone();
         cx.spawn(async move |panel, cx| {
             let result = backend.kobo_bluetooth(request).await;
             let _ = panel.update(cx, |panel, cx| {
+                let previous = (panel.status.clone(), panel.error.clone());
                 panel.busy = false;
                 match result {
                     Ok(status) => {
@@ -219,10 +237,15 @@ impl BluetoothPanel {
                         panel.error = Some("Could not change Bluetooth. Try again, or restart Bokheim if the problem continues.".into());
                     }
                 }
-                cx.notify();
+                if !is_status || previous != (panel.status.clone(), panel.error.clone()) {
+                    cx.notify();
+                }
             });
         })
         .detach();
+        if !is_status {
+            cx.notify();
+        }
     }
 }
 
@@ -301,19 +324,28 @@ struct WifiPanel {
 impl WifiPanel {
     fn new(backend: AppClient, window: &mut Window, cx: &mut Context<Self>) -> Self {
         let password = cx.new(|cx| InputState::new(window, cx).placeholder("Network password").masked(true));
-        cx.spawn(async move |panel, cx| {
-            loop {
-                let Ok(delay) = panel.update(cx, |panel, cx| {
-                    panel.run(WifiRequest::Status, cx);
-                    if panel.open || matches!(panel.snapshot.phase, WifiPhase::Connecting | WifiPhase::ObtainingAddress) { 2 } else { 30 }
-                }) else {
-                    break;
-                };
-                cx.background_executor().timer(Duration::from_secs(delay)).await;
+        match backend.subscribe_kobo_wifi() {
+            Ok(mut changes) => {
+                cx.spawn(async move |panel, cx| {
+                    loop {
+                        let snapshot = changes.borrow_and_update().clone();
+                        if panel.update(cx, |panel, cx| panel.apply_snapshot(snapshot, cx)).is_err() { break; }
+                        if changes.changed().await.is_err() { break; }
+                    }
+                }).detach();
             }
-        })
-        .detach();
+            Err(error) => log::warn!("Could not observe Kobo Wi-Fi: {error}"),
+        }
         Self { backend, snapshot: WifiSnapshot::default(), busy: false, open: false, error: None, selected: None, password }
+    }
+
+    fn apply_snapshot(&mut self, snapshot: WifiSnapshot, cx: &mut Context<Self>) {
+        let previous = (self.snapshot.clone(), self.error.clone());
+        if self.snapshot.error != snapshot.error || snapshot.error.is_none() {
+            self.error = snapshot.error.as_ref().map(|error| components::wifi_error_message(error).to_owned());
+        }
+        self.snapshot = snapshot;
+        if previous != (self.snapshot.clone(), self.error.clone()) { cx.notify(); }
     }
     fn label(&self) -> &'static str {
         if self.snapshot.phase == WifiPhase::Off && self.error.is_some() && !self.snapshot.power_available {
@@ -349,19 +381,16 @@ impl WifiPanel {
             let result = backend.kobo_wifi(request).await;
             let _ = panel.update(cx, |panel, cx| {
                 panel.busy = false;
-                let previous = (panel.snapshot.clone(), panel.error.clone());
                 match result {
-                    Ok(snapshot) => {
-                        if panel.snapshot.error != snapshot.error || snapshot.error.is_none() {
-                            panel.error = snapshot.error.as_ref().map(|error| components::wifi_error_message(error).to_owned());
-                        }
-                        panel.snapshot = snapshot;
+                    // The subscription is authoritative: a delayed reply must
+                    // not overwrite a newer radio state received in the meantime.
+                    Ok(_) => {},
+                    Err(error) => {
+                        panel.error = Some(components::wifi_error_message(&error).to_owned());
+                        cx.notify();
                     }
-                    Err(error) => panel.error = Some(components::wifi_error_message(&error).to_owned()),
                 }
-                if !is_status || previous != (panel.snapshot.clone(), panel.error.clone()) {
-                    cx.notify();
-                }
+                if !is_status { cx.notify(); }
             });
         })
         .detach();

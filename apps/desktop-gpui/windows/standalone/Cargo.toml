@@ -1,0 +1,23 @@
+[package]
+name = "bokheim-standalone"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+
+# Build this small launcher independently of the desktop dependency graph.
+[workspace]
+
+[dependencies]
+sha2 = "0.10.9"
+zip = { version = "8.6", default-features = false, features = ["deflate-flate2-zlib-rs"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_UI_WindowsAndMessaging"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+lto = true
+strip = true
+panic = "abort"

@@ -3,6 +3,7 @@ pub mod bridge;
 pub mod cpu;
 pub mod cpu_client;
 pub mod endpoint;
+pub mod media;
 pub mod network_client;
 pub mod network_server;
 pub mod pending;

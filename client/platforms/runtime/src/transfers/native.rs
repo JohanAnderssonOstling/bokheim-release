@@ -24,6 +24,36 @@ pub fn initialize(directory: &Path, allow: bool) -> io::Result<()> {
     Ok(())
 }
 
+/// Devices without an OS network-cost service update preferences in-process.
+/// Do not start the desktop polling thread on these hosts.
+pub fn initialize_device(directory: &Path, allow: bool) -> io::Result<()> {
+    *FILE.lock().unwrap_or_else(PoisonError::into_inner) = Some(directory.join("transfer-policy.json"));
+    save_allow_metered(allow)?;
+    POLICY.set_allow_seeding(false);
+    POLICY.set_network_cost(super::NetworkCost::Unknown);
+    Ok(())
+}
+
+#[cfg(all(test, not(target_os = "android")))]
+mod device_tests {
+    use super::*;
+
+    #[test]
+    fn device_preferences_update_without_starting_the_desktop_monitor() {
+        let directory = tempfile::tempdir().unwrap();
+        initialize_device(directory.path(), false).unwrap();
+        assert!(!START.is_completed());
+        assert_eq!(fs::read_to_string(directory.path().join("transfer-policy.json")).unwrap(), "false");
+        save_allow_metered(true).unwrap();
+        assert_eq!(fs::read_to_string(directory.path().join("transfer-policy.json")).unwrap(), "true");
+        assert!(POLICY.allowed());
+        assert!(!START.is_completed());
+        assert!(!POLICY.seeding_allowed());
+        POLICY.set_allow_seeding(true);
+        *FILE.lock().unwrap() = None;
+    }
+}
+
 pub fn configure_reader(path: PathBuf) {
     *FILE.lock().unwrap_or_else(PoisonError::into_inner) = Some(path);
     refresh();

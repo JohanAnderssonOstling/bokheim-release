@@ -10,9 +10,9 @@ use crate::{
 };
 use gpui::{
     AnyElement, App, Background, ClickEvent, Corners, Div, Edges, ElementId, Hsla,
-    InteractiveElement, Interactivity, IntoElement, MouseButton, ParentElement, Pixels, RenderOnce,
+    InteractiveElement, Interactivity, IntoElement, Length, MouseButton, ParentElement, Pixels, RenderOnce,
     Role, SharedString, Stateful, StatefulInteractiveElement as _, StyleRefinement, Styled, Window,
-    div, prelude::FluentBuilder as _, px, relative, transparent_white,
+    div, prelude::FluentBuilder as _, px, transparent_white,
 };
 
 #[derive(Default, Clone, Copy)]
@@ -484,6 +484,7 @@ impl RenderOnce for Button {
             .flex_shrink_0()
             .items_center()
             .justify_center()
+            .line_height_auto()
             .cursor_default()
             .when(
                 !self.disabled && (self.variant.is_link() || self.variant.is_text()),
@@ -505,17 +506,17 @@ impl RenderOnce for Button {
                     // Normal Button
                     match self.size {
                         Size::Size(size) => this.px(size * 0.2),
-                        Size::XSmall => this.h_5().px_1().when(self.compact, |this| this.min_w_5()),
+                        Size::XSmall => this.min_h_5().px_1().when(self.compact, |this| this.min_w_5()),
                         Size::Small => this
-                            .h_6()
+                            .min_h_6()
                             .px_2()
                             .when(self.compact, |this| this.min_w_6().px_1p5()),
                         Size::Medium => this
-                            .h_8()
+                            .min_h_8()
                             .px_2p5()
                             .when(self.compact, |this| this.min_w_8().px_2()),
                         Size::Large => this
-                            .h_8()
+                            .min_h_8()
                             .px_3()
                             .when(self.compact, |this| this.min_w_8().px_2()),
                     }
@@ -563,14 +564,19 @@ impl RenderOnce for Button {
                             .text_color(active_style.fg)
                     })
             })
-            .when(self.disabled, |this| {
-                let disabled_style = style.disabled(self.outline, cx);
-                this.bg(disabled_style.bg)
-                    .text_color(disabled_style.fg)
-                    .border_color(disabled_style.border)
-                    .shadow_none()
-            })
+            .when(self.style.size.height.is_some(), |this| this.min_h_0())
             .refine_style(&self.style)
+            .when(self.disabled, |this| {
+                this.when(self.selected, |this| this.opacity(0.5))
+                    .when(!self.selected, |this| {
+                        let disabled_style = style.disabled(self.outline, cx);
+                        this.bg(disabled_style.bg)
+                            .text_color(disabled_style.fg)
+                            .border_color(disabled_style.border)
+                    })
+                    .shadow_none()
+                    .cursor_default()
+            })
             .on_mouse_down(MouseButton::Left, move |_, window, cx| {
                 // Stop handle any click event when disabled.
                 // To avoid handle dropdown menu open when button is disabled.
@@ -605,7 +611,8 @@ impl RenderOnce for Button {
             .child({
                 h_flex()
                     .id("label")
-                    .size_full()
+                    .w_full()
+                    .when(self.style.size.height.is_some_and(|height| height != Length::Auto), |this| this.h_full())
                     .items_center()
                     .justify_center()
                     .button_text_size(self.size)
@@ -622,7 +629,7 @@ impl RenderOnce for Button {
                         )
                     })
                     .when_some(self.label, |this, label| {
-                        this.child(div().flex_none().line_height(relative(1.)).child(label))
+                        this.child(div().flex_none().child(label))
                     })
                     .children(self.children)
                     .when(self.dropdown_caret, |this| {

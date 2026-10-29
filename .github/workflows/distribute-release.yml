@@ -93,7 +93,7 @@ jobs:
                   assert receipt['workflow_run'] == int(run_id), 'Receipt belongs to a different build'
                   info = json.loads((directory / 'update-info-windows-x86_64-zip.json').read_text())
                   assert info['application'] == version, 'Package version differs from release tag'
-                  names = [*artifacts.FILES[platform], artifacts.receipt_name(platform)]
+                  names = [*receipt['files'], artifacts.receipt_name(platform)]
               elif platform == 'kobo':
                   packages = ['Bokheim-Kobo-Installer-Windows-x86_64.exe', 'Bokheim-Kobo-Installer-Linux-x86_64.AppImage',
                               'Bokheim-Kobo-armv7.tar.gz', 'Bokheim-Kobo-Libra2-armv7.tar.gz']

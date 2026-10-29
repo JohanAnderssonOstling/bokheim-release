@@ -4,6 +4,10 @@ use crate::placements::FolderPaths;
 use crate::placements::stored_book_path;
 use crate::transactions::WriteOutcome::{Commit, Rollback};
 pub(crate) mod observations;
+#[cfg(not(target_arch = "wasm32"))]
+mod placement_edit;
+#[cfg(not(target_arch = "wasm32"))]
+pub use placement_edit::{NativeMoveSource, NativePlacementEdit, NativePlacementPlan, NativePlacementResult};
 
 pub(crate) use crate::shared_sql::SharedSql;
 pub(crate) use rusqlite::OptionalExtension;
@@ -12,6 +16,7 @@ pub(crate) use rusqlite::OptionalExtension;
 
 pub(crate) use crate::{Database, DatabaseError};
 pub(crate) use include_sqlite_sql::include_sql;
+use sync_common::storage::ProviderFile;
 pub(crate) use sync_common::{BookId, DirId};
 
 #[derive(Clone, Debug)]
@@ -30,6 +35,8 @@ pub struct NativeBookCompletion {
     pub snapshot: NativeBookSnapshot,
     pub publication: library_model::PublishedStagedBook,
     pub size_bytes: u64,
+    /// Captured provider revision, checked again in the completion transaction.
+    pub provider_file: Option<ProviderFile>,
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -39,6 +46,35 @@ pub enum NativeBookAcknowledgement {
 }
 
 impl Database {
+    /// A replacement content folder has no verified local bytes. Keep canonical
+    /// membership, reading state, and remote presence; discard old file work so
+    /// recovery itself never materializes missing books.
+    pub fn reset_local_storage(&self) -> Result<Vec<BookId>, DatabaseError> {
+        self.write(|tx| {
+            let affected = tx
+                .prepare(
+                    "SELECT content_hash FROM book WHERE row_id IN (
+                    SELECT book_row_id FROM library_book_presence WHERE downloaded
+                 ) OR content_hash IN (SELECT content_hash FROM book_transfer WHERE book_download IS NOT NULL)",
+                )?
+                .query_map([], |row| row.get(0))?
+                .collect::<Result<Vec<BookId>, _>>()?;
+            tx.execute_batch(
+                "UPDATE book_dir SET is_downloaded=0,local_hash='',size_bytes=NULL;
+                 DELETE FROM local_file_projection;
+                 DELETE FROM local_directory_projection;
+                 DELETE FROM local_file_work;
+                 DELETE FROM local_directory_work;
+                 DELETE FROM local_book_work;
+                 DELETE FROM provider_cover_cache;
+                 UPDATE book_transfer SET book_download=NULL,book_download_at=NULL,
+                     upload_id=NULL,upload_size=NULL,upload_prepared=NULL,
+                     cover_state=NULL,cover_checked=0;",
+            )?;
+            Ok(affected)
+        })
+    }
+
     /// Finalize a downloaded book after the caller has published the
     /// verified bytes. This keeps all durable transfer state in one guarded
     /// transaction and never exposes SQLite to the transfer executor.
@@ -49,7 +85,15 @@ impl Database {
     pub(crate) fn complete_downloaded_book_in_transaction(connection: &rusqlite::Connection, completion: &NativeBookCompletion, thumbnail_set_exists: bool) -> Result<NativeBookAcknowledgement, DatabaseError> {
         let current = crate::placements::book_at_path(connection, completion.snapshot.relative_path.as_str())?;
         let directory = completion.snapshot.directory;
-        let placement_current = current.is_some_and(|(hash, dir, name)| hash == completion.snapshot.content_hash && dir == directory && name == completion.snapshot.name);
+        let revision_current = match &completion.provider_file {
+            Some(expected) if expected.identity.book_id() == completion.snapshot.content_hash => {
+                let file: Option<String> = connection.query_row("SELECT file FROM provider_book WHERE book_id=?1", [&completion.snapshot.content_hash], |row| row.get(0)).optional()?;
+                file.map(|json| serde_json::from_str::<ProviderFile>(&json).map_err(DatabaseError::operation)).transpose()?.as_ref() == Some(expected)
+            }
+            None => !completion.snapshot.content_hash.is_external(),
+            _ => false,
+        };
+        let placement_current = revision_current && current.is_some_and(|(hash, dir, name)| hash == completion.snapshot.content_hash && dir == directory && name == completion.snapshot.name);
         let mut conflict = false;
         if placement_current {
             connection.shared_book_name_conflict(&directory.to_string(), &library_replica::portable_name_key(&completion.publication.name), &completion.snapshot.content_hash, |row| {
@@ -77,7 +121,9 @@ impl Database {
             completion.publication.fingerprint.as_deref(),
             observations::Revision::Remote { size: i64::try_from(completion.size_bytes).map_err(DatabaseError::operation)? },
         )?;
-        if !completion.snapshot.content_hash.is_external() { connection.native_record_remote_book(&completion.snapshot.content_hash)?; }
+        if !completion.snapshot.content_hash.is_external() {
+            connection.native_record_remote_book(&completion.snapshot.content_hash)?;
+        }
         connection.shared_transfer_complete_download(&completion.snapshot.content_hash)?;
         connection.native_queue_book_work(&completion.snapshot.content_hash)?;
         if !thumbnail_set_exists {
@@ -110,6 +156,7 @@ pub struct NativeFileWorkSnapshot {
     pub placement: Option<(String, String)>,
     pub occupied_names: Vec<String>,
     pub book_paths: Vec<library_model::RelativeBookPath>,
+    pub live_book_paths: Vec<library_model::RelativeBookPath>,
 }
 
 #[derive(Clone, Debug)]
@@ -183,7 +230,8 @@ impl Database {
                 Ok(())
             })?;
         }
-        Ok(Some(NativeFileWorkSnapshot { work, resolved_path, live, placement, occupied_names, book_paths: projections.into_iter().map(|(_, relative)| relative).collect() }))
+        let live_book_paths = live_places.into_iter().map(|(_, _, path)| path).collect();
+        Ok(Some(NativeFileWorkSnapshot { work, resolved_path, live, placement, occupied_names, book_paths: projections.into_iter().map(|(_, relative)| relative).collect(), live_book_paths }))
     }
 
     pub fn acknowledge_native_file_work(&self, completion: NativeFileWorkCompletion) -> Result<(), DatabaseError> {

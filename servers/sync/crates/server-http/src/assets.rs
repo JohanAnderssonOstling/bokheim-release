@@ -20,31 +20,15 @@ use tokio_util::io::{ReaderStream, StreamReader};
 const STREAM_CHUNK_BYTES: usize = 64 * 1024;
 const THUMBNAIL_BATCH_READ_CONCURRENCY: usize = 8;
 
+mod ranges;
+use ranges::{parse_range, response_headers};
+pub(crate) use ranges::stream_asset;
+
 fn required_content_length(headers: &HeaderMap) -> Result<u64, StatusCode> {
     headers.get(header::CONTENT_LENGTH).ok_or(StatusCode::LENGTH_REQUIRED)?.to_str().ok().and_then(|value| value.parse::<u64>().ok()).ok_or(StatusCode::BAD_REQUEST)
 }
 
 
-
-fn response_headers(kind: AssetKind, hash: &BookId) -> HeaderMap {
-    let mut headers = HeaderMap::new();
-    headers.insert(header::ACCEPT_RANGES, header::HeaderValue::from_static("bytes"));
-    if kind == AssetKind::Book {
-        headers.insert(header::ETAG, header::HeaderValue::from_str(&format!("\"{hash}\"")).expect("validated content hashes produce valid ETags"));
-    }
-    headers.insert(header::X_CONTENT_TYPE_OPTIONS, header::HeaderValue::from_static("nosniff"));
-    headers.insert(
-        header::CONTENT_TYPE,
-        header::HeaderValue::from_static(match kind {
-            AssetKind::Book => "application/octet-stream",
-            AssetKind::Thumbnail | AssetKind::ThumbnailBrowse => "image/jpeg",
-        }),
-    );
-    if matches!(kind, AssetKind::Thumbnail | AssetKind::ThumbnailBrowse) {
-        headers.insert(header::CACHE_CONTROL, header::HeaderValue::from_static("private, no-store, no-transform"));
-    }
-    headers
-}
 
 async fn head(state: &AppState, user_id: &str, library_id: &LibraryId, kind: AssetKind, hash: &BookId) -> Result<Response, StatusCode> {
     let Some(asset) = state.assets.open_from(user_id, library_id, kind, hash, 0).await.map_err(asset_error)? else {
@@ -61,41 +45,6 @@ async fn get(state: &AppState, user_id: &str, library_id: &LibraryId, kind: Asse
         return Err(StatusCode::NOT_FOUND);
     };
     stream_asset(asset, kind, request_headers, state.transfer_governor.clone(), user_id.to_owned()).await
-}
-
-pub(crate) async fn stream_asset(mut asset: server_asset_store::StoredAsset, kind: AssetKind, request_headers: &HeaderMap, governor: TransferGovernor, user_id: String) -> Result<Response, StatusCode> {
-    let headers = response_headers(kind, &asset.content_hash);
-    let if_range_matches = request_headers.get(header::IF_RANGE).is_none_or(|value| Some(value) == headers.get(header::ETAG));
-    let requested_range = if if_range_matches { request_headers.get(header::RANGE).map(|value| parse_range(value, asset.total_len)).transpose()? } else { None };
-    let offset = requested_range.map(|range| range.start).unwrap_or(0);
-    if requested_range.is_some() && asset.total_len == 0 {
-        return Err(StatusCode::RANGE_NOT_SATISFIABLE);
-    }
-    let throttled_user = user_id.to_string();
-    let response_end = requested_range.and_then(|range| range.end).unwrap_or_else(|| asset.total_len.saturating_sub(1));
-    if offset >= asset.total_len || response_end < offset {
-        return Err(StatusCode::RANGE_NOT_SATISFIABLE);
-    }
-    asset.reader.seek(SeekFrom::Start(offset)).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-    let response_len = response_end.min(asset.total_len.saturating_sub(1)) - offset + 1;
-    let stream = ReaderStream::with_capacity(asset.reader.take(response_len), STREAM_CHUNK_BYTES).and_then(move |chunk| {
-        let governor = governor.clone();
-        let user_id = throttled_user.clone();
-        async move {
-            governor.download(&user_id, chunk.len()).await?;
-            Ok(chunk)
-        }
-    });
-    let mut response = Response::new(Body::from_stream(stream));
-    *response.status_mut() = if requested_range.is_some() { StatusCode::PARTIAL_CONTENT } else { StatusCode::OK };
-    *response.headers_mut() = response_headers(kind, &asset.content_hash);
-    response.headers_mut().insert(header::CONTENT_LENGTH, response_len.into());
-    if requested_range.is_some() {
-        let end = offset + response_len - 1;
-        let value = format!("bytes {offset}-{end}/{}", asset.total_len);
-        response.headers_mut().insert(header::CONTENT_RANGE, header::HeaderValue::from_str(&value).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?);
-    }
-    Ok(response)
 }
 
 pub(crate) async fn stream_audio_track(mut asset: server_asset_store::StoredAsset, base: u64, length: u64, request_headers: &HeaderMap, governor: TransferGovernor, user_id: String) -> Result<Response, StatusCode> {
@@ -132,34 +81,6 @@ pub(crate) async fn stream_audio_track(mut asset: server_asset_store::StoredAsse
         headers.insert(header::CONTENT_RANGE, header::HeaderValue::from_str(&format!("bytes {start}-{end}/{length}")).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?);
     }
     Ok(response)
-}
-
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
-struct ByteRange {
-    start: u64,
-    end: Option<u64>,
-}
-
-fn parse_range(value: &header::HeaderValue, total_len: u64) -> Result<ByteRange, StatusCode> {
-    let value = value.to_str().map_err(|_| StatusCode::RANGE_NOT_SATISFIABLE)?;
-    let Some(raw) = value.strip_prefix("bytes=") else { return Err(StatusCode::RANGE_NOT_SATISFIABLE) };
-    if raw.contains(',') {
-        return Err(StatusCode::RANGE_NOT_SATISFIABLE);
-    }
-    let Some((start, end)) = raw.split_once('-') else { return Err(StatusCode::RANGE_NOT_SATISFIABLE) };
-    if start.is_empty() {
-        let suffix = end.parse::<u64>().map_err(|_| StatusCode::RANGE_NOT_SATISFIABLE)?;
-        if suffix == 0 || total_len == 0 {
-            return Err(StatusCode::RANGE_NOT_SATISFIABLE);
-        }
-        return Ok(ByteRange { start: total_len.saturating_sub(suffix), end: None });
-    }
-    let start = start.parse::<u64>().map_err(|_| StatusCode::RANGE_NOT_SATISFIABLE)?;
-    let end = (!end.is_empty()).then(|| end.parse::<u64>().map_err(|_| StatusCode::RANGE_NOT_SATISFIABLE)).transpose()?;
-    if end.is_some_and(|end| end < start) {
-        return Err(StatusCode::RANGE_NOT_SATISFIABLE);
-    }
-    Ok(ByteRange { start, end })
 }
 
 async fn put(state: &AppState, user_id: &str, library_id: &LibraryId, kind: AssetKind, hash: &BookId, headers: &HeaderMap, body: Body) -> Result<StatusCode, StatusCode> {
@@ -339,7 +260,8 @@ pub(super) async fn post_thumbnail_presence(State(state): State<AppState>, user:
 mod tests {
     use std::io::Cursor;
     use crate::bandwidth::TransferGovernor;
-    use super::{parse_range, response_headers, ByteRange};
+    use super::{parse_range, response_headers};
+    use super::ranges::ByteRange;
     use axum::http::{header, StatusCode};
     use server_asset_store::AssetKind;
     use sync_common::BookId;

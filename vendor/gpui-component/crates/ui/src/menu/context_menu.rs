@@ -4,7 +4,7 @@ use gpui::{
     Anchor, AnyElement, App, Context, DismissEvent, Element, ElementId, Entity, Focusable,
     GlobalElementId, Hitbox, HitboxBehavior, InspectorElementId, InteractiveElement, IntoElement,
     KeyBinding, LongPressEvent, MouseButton, MouseDownEvent, ParentElement, Pixels, Point, StyleRefinement, Styled,
-    Subscription, Window, actions, anchored, deferred, div, prelude::FluentBuilder, px,
+    Subscription, Window, actions, anchored, deferred, div, px,
 };
 
 use crate::menu::PopupMenu;
@@ -241,6 +241,20 @@ impl<E: InteractiveElement + ParentElement + Styled + IntoElement + 'static> Ele
                         .unwrap_or(false);
 
                     if has_menu_item {
+                        if let Some(menu) = &menu_view {
+                            if !menu.focus_handle(cx).contains_focused(window, cx) {
+                                menu.focus_handle(cx).focus(window, cx);
+                            }
+                        }
+                        let overlay = if cx.supports_touch_input() {
+                            crate::popover::centered_overlay(div().children(menu_view), window, cx)
+                        } else {
+                            anchored()
+                                .position(position)
+                                .snap_to_window_with_margin(px(8.))
+                                .anchor(anchor)
+                                .children(menu_view)
+                        };
                         menu_element = Some(
                             deferred(
                                 anchored().child(
@@ -250,23 +264,7 @@ impl<E: InteractiveElement + ParentElement + Styled + IntoElement + 'static> Ele
                                         .on_scroll_wheel(|_, _, cx| {
                                             cx.stop_propagation();
                                         })
-                                        .child(
-                                            anchored()
-                                                .position(position)
-                                                .snap_to_window_with_margin(px(8.))
-                                                .anchor(anchor)
-                                                .when_some(menu_view, |this, menu| {
-                                                    // Focus the menu, so that can be handle the action.
-                                                    if !menu
-                                                        .focus_handle(cx)
-                                                        .contains_focused(window, cx)
-                                                    {
-                                                        menu.focus_handle(cx).focus(window, cx);
-                                                    }
-
-                                                    this.child(menu.clone())
-                                                }),
-                                        ),
+                                        .child(overlay),
                                 ),
                             )
                             .with_priority(1)

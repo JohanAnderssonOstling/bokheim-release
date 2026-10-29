@@ -13,6 +13,7 @@ serde_json = "1"
 book-model = { path = "../../shared/book-model", default-features = false }
 mobi.workspace = true
 encoding_rs = "0.8"
+percent-encoding = "2"
 regex = "1"
 scraper.workspace = true
 base64 = "0.22"

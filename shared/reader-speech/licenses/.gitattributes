@@ -1,0 +1,2 @@
+# Preserve upstream license/model-card text verbatim for SHA-256 verification.
+*.txt -whitespace

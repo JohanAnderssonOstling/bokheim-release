@@ -1,7 +1,7 @@
 //! Native CPU execution over the shared blocking executor.
 
 use client_platform_runtime::executor;
-use cpu_host::{BackendError, BookTask, BoxedCpuReader, CpuHost, CpuRequest, CpuResponse, ThumbnailBytes};
+use cpu_host::{BackendError, BookTask, BoxedCpuReader, CpuHost, CpuRequest, CpuResponse};
 
 #[derive(Default)]
 pub struct NativeHost;
@@ -15,12 +15,5 @@ impl CpuHost for NativeHost {
     }
     fn request(&self, request: CpuRequest) -> executor::BoxedBackendFuture<'_, Result<CpuResponse, BackendError>> {
         Box::pin(async move { executor::run_blocking(move || cpu_host::execute(request)).await.map_err(BackendError::operation)? })
-    }
-    fn generate_thumbnail(&self, extension: String, reader: BoxedCpuReader) -> executor::BoxedBackendFuture<'_, Result<Option<ThumbnailBytes>, BackendError>> {
-        Box::pin(async move {
-            executor::run_blocking(move || thumbnail::generate_thumbnail_versions_with_pdf_renderer(&extension, reader, thumbnail::render_pdf_cover).map(|versions| versions.map(ThumbnailBytes::from)).map_err(BackendError::operation))
-                .await
-                .map_err(BackendError::operation)?
-        })
     }
 }

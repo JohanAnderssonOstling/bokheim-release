@@ -47,8 +47,9 @@ class CrossOriginIsolatedHandler(SimpleHTTPRequestHandler):
         return super().send_head()
 
     def end_headers(self) -> None:
-        self.send_header("Cross-Origin-Opener-Policy", "same-origin")
-        self.send_header("Cross-Origin-Embedder-Policy", "require-corp")
+        google_login = urlsplit(self.path).path.endswith("/google_cloud_login.html")
+        self.send_header("Cross-Origin-Opener-Policy", "same-origin-allow-popups" if google_login else "same-origin")
+        self.send_header("Cross-Origin-Embedder-Policy", "unsafe-none" if google_login else "require-corp")
         self.send_header("Cache-Control", "no-store")
         self.send_header("Vary", "Accept-Encoding")
         super().end_headers()

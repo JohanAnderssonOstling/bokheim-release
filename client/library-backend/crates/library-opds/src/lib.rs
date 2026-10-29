@@ -105,8 +105,17 @@ pub struct Download {
 
 /// The open-access link to download among `links` (href, media type,
 /// length), preferring reflowable books before fixed-page formats.
-fn choose_download(links: Vec<(Url, String, Option<u64>)>) -> Option<Download> {
-    [EPUB, FB2, FB2_ZIP, PDF, CBZ, CBZ_LEGACY].into_iter().find_map(|media_type| links.iter().find(|(_, kind, _)| bare_media_type(kind) == media_type).map(|(href, _, length)| Download { href: href.clone(), media_type, length: *length }))
+fn choose_download<'a>(links: impl IntoIterator<Item = (Url, &'a str, Option<u64>)>) -> Option<Download> {
+    let formats = [EPUB, FB2, FB2_ZIP, PDF, CBZ, CBZ_LEGACY];
+    links
+        .into_iter()
+        .filter_map(|(href, kind, length)| {
+            let kind = bare_media_type(kind);
+            let preference = formats.iter().position(|media_type| *media_type == kind)?;
+            Some((preference, Download { href, media_type: formats[preference], length }))
+        })
+        .min_by_key(|(preference, _)| *preference)
+        .map(|(_, download)| download)
 }
 
 /// How a feed is searched: a URL template with `{searchTerms}`, or an

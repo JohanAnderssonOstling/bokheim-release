@@ -20,7 +20,7 @@ pub use source_headings::{reviewed_source_heading_path, reviewed_source_heading_
 use std::collections::{BTreeMap, BTreeSet};
 
 pub use bisac::{bisac_code_for_path, match_bisac_subjects, match_bisac_subjects_with_minimum_adjacent, SubjectAssignment};
-pub use bisac_database::{install_bisac_reference, open_bisac_reference, BISAC_REFERENCE_DIGEST, BISAC_REFERENCE_GZIP_DIGEST};
+pub use bisac_database::{bisac_reference_filename, install_bisac_reference, open_bisac_reference, BISAC_REFERENCE_DIGEST, BISAC_REFERENCE_GZIP_DIGEST};
 pub use lcc::{canonical_lcc_notation, lcc_subject_path};
 #[cfg(not(target_arch = "wasm32"))]
 pub mod bundled;

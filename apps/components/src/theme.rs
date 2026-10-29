@@ -26,6 +26,7 @@ use std::rc::Rc;
 
 use app_preferences::{ApplicationTheme, BrowsingPreferences, ResolvedAppearance, UiFontFamily};
 use gpui::{App, Hsla, px};
+use gpui_component::menu::ChoiceRowColors;
 use gpui_component::{Theme, ThemeTokens};
 
 /// One theme at one appearance.
@@ -141,6 +142,8 @@ fn platform_palette(theme: ApplicationTheme, appearance: ResolvedAppearance) -> 
 pub struct BrowserTheme {
     /// Interface typography, shared by text and prominent display headings.
     pub ui_font_family: UiFontFamily,
+    /// Display headings inherit the interface face when a custom font is active.
+    pub custom_ui_font: bool,
     /// The surface. Every region — the page, a card, a popover, a panel — is
     /// this colour by default, and is told apart by its `rule` edge and, if it
     /// floats, by `overlay_shadow`.
@@ -187,9 +190,7 @@ pub struct BrowserTheme {
     /// The accent under the pointer. Held on the theme because a filled accent
     /// cannot hover with `accent_wash`.
     pub accent_hover: Hsla,
-    /// The accent while pressed. Only the vendored widgets reach for it today;
-    /// it is on the theme because the palette distinguishes it and dropping it
-    /// here would mean a control could never acknowledge a press.
+    /// The accent while a selected or primary control is pressed.
     pub accent_active: Hsla,
     /// The light wash under the pointer — the accent at a low alpha.
     /// Translucent: composited over whichever surface it lands on. Solid hover
@@ -216,6 +217,12 @@ pub struct BrowserTheme {
 
 impl gpui::Global for BrowserTheme {}
 
+impl From<BrowserTheme> for ChoiceRowColors {
+    fn from(theme: BrowserTheme) -> Self {
+        Self { foreground: theme.text, disabled_foreground: theme.text_muted, selected_background: theme.accent, selected_foreground: theme.accent_text, hover_background: theme.hover }
+    }
+}
+
 impl BrowserTheme {
     /// Derives every colour from the palette, with the default interface face.
     pub fn from_palette(palette: ApplicationPalette) -> Self {
@@ -226,6 +233,7 @@ impl BrowserTheme {
         overlay_scrim.a = 0.5;
         Self {
             ui_font_family: UiFontFamily::default(),
+            custom_ui_font: false,
             page_bg: colour(palette.surface_bg),
             raised_bg: colour(palette.raised_bg),
             border: colour(palette.border),
@@ -250,11 +258,14 @@ impl BrowserTheme {
         }
     }
 
-    pub const fn display_font_family(self) -> &'static str {
-        match self.ui_font_family {
+    pub const fn display_font_family(self) -> Option<&'static str> {
+        if self.custom_ui_font {
+            return None;
+        }
+        Some(match self.ui_font_family {
             UiFontFamily::Serif => crate::DISPLAY_FONT_FAMILY,
             UiFontFamily::SansSerif => self.ui_font_family.family_name(),
-        }
+        })
     }
 }
 
@@ -296,9 +307,11 @@ pub fn apply_appearance(preferences: &BrowsingPreferences, cx: &mut App) {
     let resolved = preferences.appearance_override().unwrap_or_else(|| resolved_appearance(cx));
     let mut theme = BrowserTheme::from_palette(platform_palette(preferences.theme(), resolved));
     theme.ui_font_family = preferences.ui_font_family();
+    theme.custom_ui_font = preferences.custom_ui_font_active();
     cx.set_global(SelectedPalette(preferences.theme(), resolved));
     cx.set_global(theme);
 
+    let font_family = crate::configured_ui_font_name(preferences, cx).to_owned();
     let application_theme = Theme::global_mut(cx);
     application_theme.notification.placement = gpui::Anchor::BottomRight;
     #[cfg(not(feature = "kobo"))]
@@ -315,7 +328,7 @@ pub fn apply_appearance(preferences: &BrowsingPreferences, cx: &mut App) {
         application_theme.scrollbar_show = gpui_component::scroll::ScrollbarShow::Always;
         application_theme.colors = kobo::widget_colours(theme);
     }
-    application_theme.font_family = preferences.ui_font_family().family_name().into();
+    application_theme.font_family = font_family.into();
     application_theme.font_size = px(preferences.ui_font_size_px() as f32);
     application_theme.radius = px(0.0);
     application_theme.radius_lg = px(0.0);
@@ -328,15 +341,14 @@ pub fn apply_appearance(preferences: &BrowsingPreferences, cx: &mut App) {
 ///
 /// One-way. `gpui-component` speaks the shadcn vocabulary, where `primary` is
 /// the brand colour and `accent` is the muted highlight behind a hovered or
-/// selected row — which is why `accent` here receives `accent_wash` and not
-/// `accent`. That mapping was always right; what was wrong was reading it back
-/// out afterwards under our own names.
+/// selected row. Its `accent` receives our shared neutral `hover`, while
+/// its `primary` receives our solid `accent` for current choices.
 fn apply_widget_colours(theme: BrowserTheme, application: &mut Theme) {
     let colors = &mut application.colors;
     colors.background = theme.page_bg;
     colors.foreground = theme.text;
     colors.border = theme.border;
-    colors.accent = theme.accent_wash;
+    colors.accent = theme.hover;
     colors.accent_foreground = theme.text;
     colors.group_box = theme.page_bg;
     colors.group_box_foreground = theme.text;
@@ -473,6 +485,44 @@ impl InteractionHighlights {
 mod tests {
     use super::*;
     use gpui::TestAppContext;
+
+    #[test]
+    fn popup_and_sheet_choice_colors_match_every_palette() {
+        for theme in ApplicationTheme::ALL {
+            for appearance in [ResolvedAppearance::Light, ResolvedAppearance::Dark] {
+                let sheet = BrowserTheme::from_palette(palette(theme, appearance));
+                let mut popup = Theme::default();
+                apply_widget_colours(sheet, &mut popup);
+                popup.tokens = ThemeTokens::from(popup.colors);
+                assert_eq!(ChoiceRowColors::from(sheet), ChoiceRowColors::from(&popup), "choice styling diverged for {theme:?} / {appearance:?}");
+            }
+        }
+    }
+
+    #[test]
+    fn selected_button_families_keep_heavy_accent() {
+        use gpui::{Fill, Styled};
+        use gpui_component::IconName;
+
+        for palette in ApplicationTheme::ALL {
+            for appearance in [ResolvedAppearance::Light, ResolvedAppearance::Dark] {
+                let theme = BrowserTheme::from_palette(crate::theme::palette(palette, appearance));
+                let buttons = [
+                    crate::settings_choice_button("choice", "Choice", true, theme),
+                    crate::browser_settings_header_button("action", "Action", true, theme),
+                    crate::nav_rail_item("rail", IconName::Settings, "Settings", true, theme),
+                    crate::bottom_navigation_item("bottom", IconName::Settings, "Settings", true, theme),
+                    crate::library_switcher_item("library", "Library", true, false, theme),
+                    crate::reader_annotation_action_button("annotation", "Edit", true, theme),
+                ];
+                for mut button in buttons {
+                    let style = button.style();
+                    assert_eq!(style.background, Some(Fill::from(if cfg!(feature = "kobo") { theme.page_bg } else { theme.accent })));
+                    assert_eq!(style.text.color, Some(if cfg!(feature = "kobo") { theme.text } else { theme.accent_text }));
+                }
+            }
+        }
+    }
 
     #[gpui::test]
     fn text_selection_highlight_stays_translucent(cx: &mut TestAppContext) {

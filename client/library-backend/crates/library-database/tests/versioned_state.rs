@@ -279,6 +279,9 @@ fn offline_addition_waits_for_enrichment_then_publishes_one_complete_document() 
     assert!(source.sync_publishable_mutations().unwrap().is_empty());
     let candidate = source.enrichment_candidates(&[hash], 0).unwrap().pop().unwrap();
     let mut record = candidate.record;
+    record.title = "Provider title".into();
+    record.description = "Provider description".into();
+    record.book.year = Some(2005);
     record.contributors = vec![Contributor::new("Enriched author", AUTHOR_MARC_RELATOR_CODE).unwrap()];
     let answer = BookEnrichment {
         key: String::new(),
@@ -291,10 +294,23 @@ fn offline_addition_waits_for_enrichment_then_publishes_one_complete_document() 
     };
     source.record_enrichment(&hash, &candidate.request_key, &answer, 0).unwrap();
     let additions = source.sync_publishable_mutations().unwrap();
+    let finalized = additions
+        .iter()
+        .find_map(|publication| match &publication.state.value {
+            LibraryStateEntry::BookAdd { value, .. } => Some(value),
+            _ => None,
+        })
+        .unwrap();
+    assert_eq!(finalized.record.title, "Book 7");
+    assert_eq!(finalized.record.description, "Description");
+    assert_eq!(finalized.record.contributors[0].name(), "Enriched author");
+    assert_eq!(finalized.record.book.year, Some(2005));
     assert_eq!(additions.iter().filter(|p| matches!(p.state.value, LibraryStateEntry::BookAdd { .. })).count(), 1);
     assert!(additions.iter().any(|p| matches!(p.state.value, LibraryStateEntry::ReadingPosition { .. })));
     pull(&target, additions.iter().map(delivery).collect());
     assert_eq!(target.browse_book_detail(&hash).unwrap().book.author, "Enriched author");
+    assert_eq!(target.browse_book_detail(&hash).unwrap().book.title, "Book 7");
+    assert_eq!(target.browse_book_detail(&hash).unwrap().year, Some(2005));
     assert_eq!(target.reading_position(&hash).unwrap().as_deref(), Some("epubcfi(/6/2)"));
     assert!(target.enrichment_candidates(&[hash], i64::MAX).unwrap().is_empty());
     assert_eq!(target.enrichment_cover_source(&hash).unwrap().unwrap().id, "cover-7");
@@ -373,6 +389,7 @@ fn verified_audio_download_reuses_complete_synced_metadata_without_local_inspect
                         snapshot: NativeBookSnapshot { content_hash: hash, directory: ROOT_DIR_ID, name: name.clone(), relative_path: relative_path.clone(), occupied_names: vec![], format, audiobook_track_titles: vec![] },
                         publication: PublishedStagedBook { name, relative_path: relative_path.to_string(), published: true, fingerprint: Some("42".into()) },
                         size_bytes: 100,
+                        provider_file: None,
                     },
                     true
                 )

@@ -29,6 +29,7 @@ pub(crate) struct AppState {
     pub(super) executor: BackendExecutor,
     pub(super) registry: LibraryRegistry,
     pub(super) cloud: cloud_storage::connections::CloudConnections,
+    pub(super) storage_copy_lock: tokio::sync::Mutex<()>,
     #[cfg(not(target_arch = "wasm32"))]
     pub(super) cloud_logins: std::sync::Mutex<std::collections::HashMap<uuid::Uuid, super::cloud::CloudLoginReceiver>>,
     /// Durable registry/account policy remain app-owned. The library module
@@ -39,12 +40,18 @@ pub(crate) struct AppState {
     /// Coalesces requests for a full account-maintenance pass.
     pub(super) account_wake: watch::Sender<()>,
     account_task: Option<BackendTask<()>>,
+    #[cfg(not(target_arch = "wasm32"))]
+    root_task: Option<BackendTask<()>>,
+    #[cfg(not(target_arch = "wasm32"))]
+    pub(super) root_failures: async_channel::Sender<LibraryId>,
     pub(super) notification_interest: crate::notification_interest::NotificationInterest,
 }
 
 impl Drop for AppState {
     fn drop(&mut self) {
         self.account_task.take();
+        #[cfg(not(target_arch = "wasm32"))]
+        self.root_task.take();
         self.library_directory.shutdown();
     }
 }
@@ -95,11 +102,18 @@ impl AppBackend {
         let account = DeviceAccountSession::load(context.clone(), api_server).map_err(BackendError::operation)?;
         profile.mark("account_load");
         let cloud = super::cloud::connections(context.registry.clone())?;
+        #[cfg(not(target_arch = "wasm32"))]
+        let (root_failures, root_requests) = async_channel::unbounded();
         let state = Arc::new_cyclic(|weak| AppState {
             account_task: Some(super::account::start(&executor, weak, account.clone(), account_wake.clone(), account_requests, notification_interest.clone(), library_directory.clone())),
+            #[cfg(not(target_arch = "wasm32"))]
+            root_task: Some(super::root_recovery::start(&executor, weak.clone(), root_requests)),
+            #[cfg(not(target_arch = "wasm32"))]
+            root_failures,
             executor: executor.clone(),
             registry: context.registry,
             cloud,
+            storage_copy_lock: Default::default(),
             #[cfg(not(target_arch = "wasm32"))]
             cloud_logins: Default::default(),
             library_directory,
@@ -111,8 +125,10 @@ impl AppBackend {
         let core = Self { state };
         profile.mark("state_and_account_task");
         let allow_metered = core.browsing_preferences()?.allow_metered_transfers();
-        #[cfg(not(target_arch = "wasm32"))]
+        #[cfg(all(not(target_arch = "wasm32"), not(feature = "kobo")))]
         transfers::initialize(&context.app_data_dir, allow_metered).map_err(BackendError::operation)?;
+        #[cfg(all(not(target_arch = "wasm32"), feature = "kobo"))]
+        transfers::initialize_device(&context.app_data_dir, allow_metered).map_err(BackendError::operation)?;
         #[cfg(target_arch = "wasm32")]
         transfers::POLICY.set_allow_metered(allow_metered);
         profile.mark("transfer_policy");

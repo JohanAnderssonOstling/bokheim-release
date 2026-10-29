@@ -11,6 +11,7 @@ kobo-profile = { path = "../../shared/kobo-profile" }
 libc = "0.2"
 operation-failure = { path = "../../client/operation-failure" }
 async-channel = "2"
+tokio = { version = "1", features = ["sync"] }
 pbkdf2 = "0.12"
 sha1 = "0.10"
 

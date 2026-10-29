@@ -103,7 +103,7 @@ fn measure<T: Rows>(case: String, profile: bool, mut run: impl FnMut() -> T) -> 
 }
 
 fn query(location: BrowseLocation) -> LibraryBrowseQuery {
-    LibraryBrowseQuery { location, search: String::new(), file_types: vec![], languages: vec![], chip_sort: BrowseChipSort::DefaultOrder, book_sort: BrowseBookSort::DefaultOrder, hide_finished: false, include_direct_child_books: false }
+    LibraryBrowseQuery { location, search: String::new(), file_types: vec![], languages: vec![], chip_sort: BrowseChipSort::DefaultOrder, book_sort: BrowseBookSort::DefaultOrder, hide_finished: false }
 }
 
 fn main() {

@@ -1,4 +1,5 @@
-use crate::{ActiveTheme, Disableable, StyledExt, h_flex};
+use super::{choice_row, ChoiceRowColors};
+use crate::{ActiveTheme, Disableable, StyledExt};
 use gpui::{
     AnyElement, App, ClickEvent, ElementId, InteractiveElement, IntoElement, MouseButton,
     ParentElement, RenderOnce, Role, SharedString, StatefulInteractiveElement as _,
@@ -14,6 +15,7 @@ pub(crate) struct MenuItemElement {
     style: StyleRefinement,
     disabled: bool,
     selected: bool,
+    checked: bool,
     on_click: Option<Box<dyn Fn(&ClickEvent, &mut Window, &mut App) + 'static>>,
     on_hover: Option<Box<dyn Fn(&bool, &mut Window, &mut App) + 'static>>,
     children: SmallVec<[AnyElement; 2]>,
@@ -30,6 +32,7 @@ impl MenuItemElement {
             style: StyleRefinement::default(),
             disabled: false,
             selected: false,
+            checked: false,
             on_click: None,
             on_hover: None,
             children: SmallVec::new(),
@@ -39,6 +42,11 @@ impl MenuItemElement {
     /// Set ListItem as the selected item style.
     pub(crate) fn selected(mut self, selected: bool) -> Self {
         self.selected = selected;
+        self
+    }
+
+    pub(crate) fn checked(mut self, checked: bool) -> Self {
+        self.checked = checked;
         self
     }
 
@@ -92,7 +100,7 @@ impl ParentElement for MenuItemElement {
 
 impl RenderOnce for MenuItemElement {
     fn render(self, _: &mut Window, cx: &mut App) -> impl IntoElement {
-        h_flex()
+        choice_row(self.checked, self.selected, self.disabled, ChoiceRowColors::from(cx.theme()))
             .id(self.id)
             .role(Role::MenuItem)
             .when_some(self.aria_label, |this, label| this.aria_label(label))
@@ -102,7 +110,6 @@ impl RenderOnce for MenuItemElement {
             .py_1()
             .px_2()
             .text_base()
-            .text_color(cx.theme().foreground)
             .relative()
             .items_center()
             .justify_between()
@@ -111,23 +118,12 @@ impl RenderOnce for MenuItemElement {
                 this.on_hover(move |hovered, window, cx| (on_hover)(hovered, window, cx))
             })
             .when(!self.disabled, |this| {
-                this.group_hover(self.group_name, |this| {
-                    this.bg(cx.theme().tokens.accent)
-                        .text_color(cx.theme().accent_foreground)
-                })
-                .when(self.selected, |this| {
-                    this.bg(cx.theme().tokens.accent)
-                        .text_color(cx.theme().accent_foreground)
-                })
-                .when_some(self.on_click, |this, on_click| {
+                this.when_some(self.on_click, |this, on_click| {
                     this.on_mouse_down(MouseButton::Left, move |_, _, cx| {
                         cx.stop_propagation();
                     })
                     .on_click(on_click)
                 })
-            })
-            .when(self.disabled, |this| {
-                this.text_color(cx.theme().muted_foreground)
             })
             .children(self.children)
     }

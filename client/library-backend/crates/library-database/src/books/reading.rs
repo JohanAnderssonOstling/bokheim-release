@@ -29,12 +29,12 @@ impl Database {
     }
 
     fn reading_toc(&self, hash: &BookId) -> Result<Vec<BookTocEntry>, DatabaseError> {
-        let mut toc = String::new();
+        let mut toc = Vec::<u8>::new();
         self.connection.book_toc_select(hash, |row| {
             toc = row.get(0)?;
             Ok(())
         })?;
-        if toc.is_empty() { Ok(Vec::new()) } else { serde_json::from_str(&toc).map_err(DatabaseError::operation) }
+        if toc.is_empty() { Ok(Vec::new()) } else { crate::stored_document::decode(&toc) }
     }
 
     pub fn reset_chapter_read_status_at(&self, hash: &BookId, target: Option<&str>) -> Result<bool, DatabaseError> {
@@ -51,6 +51,32 @@ impl Database {
             }
             record_local(transaction, LibraryStateEntry::ChapterReadStatus { content_hash: *hash, value: status })?;
             Ok(true)
+        })
+    }
+
+    /// Marks the whole book read — at 100%, every chapter read — or unread: at
+    /// 0%, no chapter read. Where the reader left off stays where it is; only a
+    /// book never opened is given a place, its start, to be read at. Returns
+    /// whether anything changed, so its owner can schedule publication.
+    pub fn set_book_read(&self, hash: &BookId, read: bool) -> Result<bool, DatabaseError> {
+        let format = self.book_format(hash)?.ok_or_else(|| DatabaseError::message("book is not in the library"))?;
+        self.write(|transaction| {
+            let previous_chapters = self.chapter_read_status(hash)?;
+            let previous_position = self.stored_reading_position(hash)?;
+            let previous: f32 = transaction.reading_progress(&(&hash), |row| row.get(0)).optional()?.flatten().unwrap_or(0.0);
+            let mut chapters = previous_chapters.clone();
+            chapters.mark_all(&self.reading_toc(hash)?, read);
+            let position = previous_position.clone().unwrap_or_else(|| ReadingPosition::start(format));
+            let progress = if read { 100.0 } else { 0.0 };
+            // An unopened book is unread already; it gets no position for it.
+            let position_changed = (read || previous_position.is_some()) && (previous_position.is_none() || previous != progress);
+            if previous_chapters != chapters {
+                record_local(transaction, LibraryStateEntry::ChapterReadStatus { content_hash: *hash, value: chapters.clone() })?;
+            }
+            if position_changed {
+                record_local(transaction, LibraryStateEntry::ReadingPosition { content_hash: *hash, value: ReadingPositionState { location: position, progress } })?;
+            }
+            Ok(position_changed || previous_chapters != chapters)
         })
     }
 
@@ -123,7 +149,7 @@ mod tests {
         db.connection.fixtures_insert_book_7(&hash).unwrap();
         let leaf = |target: &str| BookTocEntry { title: target.into(), target: target.into(), children: vec![] };
         let toc = vec![BookTocEntry { title: "Part".into(), target: "part".into(), children: vec![leaf("one"), leaf("two")] }, leaf("other"), leaf("after")];
-        db.connection.navigation_upsert(&hash, 5, &serde_json::to_string(&toc).unwrap(), None, None).unwrap();
+        db.connection.navigation_upsert(&hash, 5, &crate::stored_document::encode(&toc).unwrap(), None, None).unwrap();
         for (index, target) in ["one", "two", "other", "after"].into_iter().enumerate() {
             db.update_reading_position(&hash, &format!("epubcfi(/6/{})", (index + 1) * 2), Some(index as f32 * 20.0), Some(target)).unwrap();
         }
@@ -148,7 +174,7 @@ mod tests {
             let db = Database::open(&path).unwrap();
             db.initialize_library().unwrap();
             db.connection.fixtures_insert_book_7(&hash).unwrap();
-            db.connection.navigation_upsert(&hash, 5, &serde_json::to_string(&toc).unwrap(), Some(5000), None).unwrap();
+            db.connection.navigation_upsert(&hash, 5, &crate::stored_document::encode(&toc).unwrap(), Some(5000), None).unwrap();
             db.update_reading_position(&hash, &book_model::audiobook_reading_position(2500), Some(50.0), None).unwrap();
             assert!(db.chapter_read_status(&hash).unwrap().completed.is_empty());
             db.update_reading_position(&hash, &book_model::audiobook_reading_position(4000), Some(80.0), None).unwrap();

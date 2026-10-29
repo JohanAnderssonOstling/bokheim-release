@@ -4,10 +4,42 @@ self.addEventListener('install', event => event.waitUntil(self.skipWaiting()));
 self.addEventListener('activate', event => event.waitUntil(self.clients.claim()));
 self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
+    if (event.request.method === 'GET' && url.origin === self.location.origin &&
+        /^\/pkg\/[a-f0-9]{24}\/[^/]+\/[^/]+_bg\.wasm$/.test(url.pathname)) {
+        event.respondWith(wasmResponse(event));
+        return;
+    }
     const base = new URL('.bokheim-audio/', self.registration.scope);
     if (url.origin !== base.origin || !url.pathname.startsWith(base.pathname)) return;
     event.respondWith(audioResponse(event, url.pathname.slice(base.pathname.length)));
 });
+
+// CacheStorage saves the fetch body's decoded bytes. Return its original
+// Response through fetch so the browser can retain compiled WASM alongside it.
+async function wasmResponse(event) {
+    let cache;
+    try {
+        cache = await caches.open('bokheim-wasm-v1');
+        const saved = await cache.match(event.request);
+        if (saved) return saved;
+    } catch {}
+    const response = await fetch(event.request);
+    if (cache && response.ok && response.body) {
+        event.waitUntil(saveWasm(cache, event.request, response.clone()).catch(() => {}));
+    }
+    return response;
+}
+
+async function saveWasm(cache, request, response) {
+    await cache.put(request, response);
+    const current = new URL(request.url);
+    const name = current.pathname.split('/').pop();
+    const previous = (await cache.keys()).filter(request => {
+        const stored = new URL(request.url);
+        return stored.href !== current.href && stored.pathname.split('/').pop() === name;
+    });
+    await Promise.all(previous.map(request => cache.delete(request)));
+}
 function range(header, size) {
     if (!header) return [0, size - 1, false];
     const match = /^bytes=(\d*)-(\d*)$/.exec(header);
@@ -51,12 +83,13 @@ async function audioResponse(event, id) {
     try {
         const initial = next();
         client.postMessage({type: 'audiobook-range', id}, [channel.port2]);
-        const {length: size} = await initial;
+        const {length: size, contentType = 'audio/mp4'} = await initial;
         if (!Number.isSafeInteger(size) || size <= 0) throw Error('Invalid audiobook length');
+        if (!['audio/mp4', 'audio/mpeg'].includes(contentType)) throw Error('Invalid audiobook media type');
         const bounds = range(event.request.headers.get('Range'), size);
         if (!bounds) { close(); return new Response(null, {status: 416, headers: {'Content-Range': `bytes */${size}`}}); }
         let [position, end, partial] = bounds;
-        const headers = {'Content-Type': 'audio/mp4', 'Accept-Ranges': 'bytes', 'Content-Length': String(end - position + 1), 'Cache-Control': 'no-store', 'Cross-Origin-Resource-Policy': 'same-origin'};
+        const headers = {'Content-Type': contentType, 'Accept-Ranges': 'bytes', 'Content-Length': String(end - position + 1), 'Cache-Control': 'no-store', 'Cross-Origin-Resource-Policy': 'same-origin'};
         if (partial) headers['Content-Range'] = `bytes ${position}-${end}/${size}`;
         if (event.request.method === 'HEAD') { close(); return new Response(null, {status: partial ? 206 : 200, headers}); }
         const body = new ReadableStream({

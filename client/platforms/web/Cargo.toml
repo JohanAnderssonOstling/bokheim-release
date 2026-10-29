@@ -4,8 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [features]
+# Experimental provider integration; excluded from default and release builds.
+google-drive = []
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
+operation-failure = { path = "../../operation-failure" }
 futures-channel = "0.3"
 futures-util = { version = "0.3", features = ["io"] }
 async-channel = "2"
@@ -24,10 +27,12 @@ log = "0.4"
 tokio = { version = "1", features = ["sync"] }
 wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"
+wasm-callback = { path = "../../../shared/wasm-callback" }
 js-sys = "0.3"
 web-sys = { version = "0.3", features = ["WebSocket", "BinaryType", "Url", "File", "RequestInit", "WorkerGlobalScope", "Blob", "MessagePort", "MessageChannel", "MessageEvent", "MessageEventInit", "Event", "EventTarget", "Worker", "SharedWorker", "WorkerOptions", "WorkerType", "DedicatedWorkerGlobalScope", "AbortController", "AbortSignal", "Request", "Response", "Headers", "ReadableStream", "ReadableStreamDefaultReader", "ReadableStreamDefaultController", "Window", "Location", "PageTransitionEvent"] }
 
 [dev-dependencies]
+client-platform-runtime = { path = "../runtime" }
 futures-channel = "0.3"
 async-channel = "2"
 futures-util = "0.3"

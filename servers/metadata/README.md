@@ -458,20 +458,11 @@ artwork is fetched from Audible. Confirmed bytes persist in `demand.sqlite` and
 `books_v5`. Successful client answers are immutable; popularity is captured
 when new book additions are enriched.
 Library clients send `needs_cover: false` for every book and look up/download
-missing artwork directly on the device: Google Books first, Open Library next,
+missing artwork directly on the device: Open Library by ISBN or title/author,
 and Audible by ASIN when recording artwork is needed. Bibliographic, recording
-and popularity enrichment still use `/v3/books`. Google Books artwork lookup
-uses plain title-and-author searches and verifies the returned editions. Open
-Library can still use ISBNs as well as title/author matching. Existing embedded
-or downloaded art is retained. Temporary Google service errors receive up to
-four attempts with increasing delays, within the lookup deadline.
-Native launchers can supply `BOKHEIM_GOOGLE_BOOKS_API_KEY` at runtime; native and
-browser builds can bundle it through the same build-time environment variable.
-The key is not sent to this server or stored in synchronized book metadata.
-Google quota failures permit Open Library fallback and defer another Google
-request for ten minutes. Direct browser image downloads remain subject to the
-provider's CORS headers; the tested Google Books image endpoint supplies no
-allow-origin header, so the browser falls back to Open Library.
+and popularity enrichment still use `/v3/books`. Existing embedded or downloaded
+art is retained. Direct browser image downloads remain subject to the provider's
+CORS headers.
 Older clients and catalog tools can still request server-side covers. Omitted
 `needs_cover` flags default to true for compatibility.
 Cached ISBN artwork is checked before external-download pacing; concurrent

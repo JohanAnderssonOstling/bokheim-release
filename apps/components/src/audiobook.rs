@@ -2,11 +2,11 @@
 //! control; secondary controls share one square size, and speed, sleep and
 //! chapters sit on a quiet tier below.
 use gpui::prelude::*;
-use gpui::{Div, ElementId, Pixels, SharedString, div, px, rems};
-use gpui_component::button::{Button, ButtonVariants};
+use gpui::{Div, ElementId, SharedString, div, px, rems};
+use crate::Button;
 use gpui_component::{Icon, IconName};
 
-use crate::{BrowserTheme, SPACE_LG, SPACE_MD, SPACE_SM, SPACE_XS, TEXT_LG, TEXT_SM, TEXT_XS, touch_ui};
+use crate::{BrowserTheme, SPACE_LG, SPACE_MD, SPACE_SM, SPACE_XS, TEXT_SM, TEXT_XS, touch_ui};
 
 /// The scrub line is drawn a little heavier than the dock's, with a round
 /// thumb — like play, the player's one other circle — inside a hit area a
@@ -90,6 +90,11 @@ pub fn playback_play_button(id: impl Into<ElementId>, playing: bool, layout: Tra
     if layout == TransportLayout::MiniPlayer { button } else { crate::selectable_button(button, true, theme) }
 }
 
+/// The mini-player's quick forward action, sharing the transport's skip styling.
+pub fn playback_skip_forward_button(id: impl Into<ElementId>, layout: TransportLayout, theme: BrowserTheme) -> Button {
+    transport_button(id, "Forward 30 seconds", skip_forward_icon(), TransportControl::Skip, layout, theme)
+}
+
 impl TransportControl {
     /// Button and icon size, in rem.
     fn size(self, layout: TransportLayout) -> (f32, f32) {
@@ -98,7 +103,8 @@ impl TransportControl {
             (TransportControl::Skip, TransportLayout::Player) => (PLAYBACK_SECONDARY_SIZE_REM, 2.0),
             (TransportControl::Chapter | TransportControl::Skip, TransportLayout::Inline) => (PLAYBACK_SECONDARY_SIZE_REM, INLINE_GLYPH_REM),
             (TransportControl::Play, TransportLayout::Player | TransportLayout::Inline) => (4.5, 1.875),
-            (TransportControl::Chapter | TransportControl::Skip, TransportLayout::Dock | TransportLayout::MiniPlayer) => (PLAYBACK_SECONDARY_SIZE_REM, 1.25),
+            (TransportControl::Chapter | TransportControl::Skip, TransportLayout::Dock) => (PLAYBACK_SECONDARY_SIZE_REM, 1.25),
+            (TransportControl::Chapter | TransportControl::Skip, TransportLayout::MiniPlayer) => (PLAYBACK_SECONDARY_SIZE_REM, INLINE_GLYPH_REM),
             (TransportControl::Play, TransportLayout::MiniPlayer) => (3.0, 1.5),
             (TransportControl::Play, TransportLayout::Dock) => (4.0, 2.0),
         };
@@ -137,9 +143,9 @@ pub fn now_playing_inline_times(elapsed: impl Into<SharedString>, chapter: impl 
     crate::row(SPACE_SM).flex_none().child(crate::caption_line(elapsed, theme).flex_none()).child(crate::single_line(chapter).flex_1().text_center().text_size(rems(TEXT_XS))).child(crate::caption_line(remaining, theme).flex_none())
 }
 
-/// A detail-page control row with equal space between controls and at its edges.
+/// A single detail-page control row with space between its controls.
 pub fn now_playing_inline_controls() -> Div {
-    div().w_full().min_w_0().flex().items_center().justify_evenly().mt(rems(SPACE_SM / 16.0))
+    div().w_full().min_w_0().flex().items_center().justify_between().mt(rems(SPACE_SM / 16.0))
 }
 
 /// Speed beside the detail page's transport: the rate set as large as the
@@ -166,17 +172,12 @@ pub fn playback_secondary_button(button: Button) -> Button {
 
 /// A secondary control in the detail page's evenly spaced row.
 fn inline_secondary_button(id: impl Into<ElementId>, tooltip: impl Into<SharedString>, set: bool, theme: BrowserTheme) -> Button {
-    playback_secondary_button(crate::base_button(id).ghost()).text_color(if set { theme.text_accent } else { theme.text }).tooltip(tooltip)
+    playback_secondary_button(crate::base_button(id).ghost()).when(set, |button| button.text_color(theme.text_accent)).tooltip(tooltip)
 }
 
 /// The page itself, covering the window and everything on it.
 pub fn now_playing_page(theme: BrowserTheme) -> Div {
     div().size_full().flex().flex_col().occlude().bg(theme.page_bg).text_color(theme.text)
-}
-
-/// The page's topbar: collapse on the leading side, close on the trailing one.
-pub fn now_playing_top_bar(theme: BrowserTheme) -> Div {
-    crate::topbar(theme).justify_between().px(px(SPACE_SM))
 }
 
 /// Everything under the top bar: the cover and titles at the top, the
@@ -185,33 +186,11 @@ pub fn now_playing_body() -> Div {
     div().flex_1().min_h_0().flex().flex_col().px(px(SPACE_LG)).pb(px(SPACE_MD))
 }
 
-/// The square the cover art fills, centred.
-pub fn now_playing_cover(side: Pixels) -> Div {
-    div().flex_none().self_center().mt(px(SPACE_SM)).size(side)
-}
-
-pub fn now_playing_titles(title: impl Into<SharedString>, author: Option<SharedString>, theme: BrowserTheme) -> Div {
-    div()
-        .flex_none()
-        .mt(px(SPACE_LG))
-        .flex()
-        .flex_col()
-        .items_center()
-        .gap(px(SPACE_XS))
-        .child(crate::single_line(title).max_w_full().font_family(theme.display_font_family()).text_size(rems(TEXT_LG)))
-        .children(author.map(|author| crate::muted_line(author, theme).max_w_full()))
-}
-
-/// Pushes the controls down to the bottom of the body.
-pub fn now_playing_spacer() -> Div {
-    div().flex_1().min_h(px(SPACE_MD))
-}
-
 pub fn now_playing_chapter(chapter: impl Into<SharedString>) -> Div {
     crate::single_line(chapter).flex_none().text_center().text_size(rems(TEXT_XS)).mb(px(SPACE_XS))
 }
 
-/// The chapter's progress as a line with a square thumb where playback is.
+/// The chapter's progress, with the entire round thumb inside the track bounds.
 pub fn now_playing_scrub_track(fraction: f32, theme: BrowserTheme) -> Div {
     let fraction = fraction.clamp(0.0, 1.0);
     div()
@@ -222,14 +201,25 @@ pub fn now_playing_scrub_track(fraction: f32, theme: BrowserTheme) -> Div {
         .flex()
         .items_center()
         .cursor_pointer()
+        .debug_selector(|| "audiobook-scrub-track".into())
         .child(crate::progress_track(theme).h(px(SCRUB_LINE_HEIGHT)).child(crate::progress_fill(fraction, theme)))
-        .child(div().absolute().top(px((SCRUB_HIT_HEIGHT - SCRUB_THUMB_SIZE) / 2.0)).left(gpui::relative(fraction)).ml(px(-SCRUB_THUMB_SIZE / 2.0)).size(px(SCRUB_THUMB_SIZE)).rounded_full().bg(theme.accent))
+        .child(
+            div()
+                .debug_selector(|| "audiobook-scrub-thumb".into())
+                .absolute()
+                .top(px((SCRUB_HIT_HEIGHT - SCRUB_THUMB_SIZE) / 2.0))
+                .left(gpui::relative(fraction))
+                .ml(px(-SCRUB_THUMB_SIZE * fraction))
+                .size(px(SCRUB_THUMB_SIZE))
+                .rounded_full()
+                .bg(theme.accent),
+        )
 }
 
 /// Elapsed at the start, the book's time left in the middle, the chapter's
 /// remaining time at the end.
 pub fn now_playing_times(elapsed: impl Into<SharedString>, book_left: Option<SharedString>, remaining: impl Into<SharedString>, theme: BrowserTheme) -> Div {
-    crate::spread_row(SPACE_SM).flex_none().child(crate::caption_line(elapsed, theme).flex_none()).children(book_left.map(|left| crate::caption_line(left, theme))).child(crate::caption_line(remaining, theme).flex_none())
+    crate::spread_row(SPACE_SM).flex_none().child(crate::caption_line(elapsed, theme).flex_1().text_left()).children(book_left.map(|left| crate::caption_line(left, theme).flex_1().text_center())).child(crate::caption_line(remaining, theme).flex_1().text_right())
 }
 
 /// The phone's player, set apart below the times.
@@ -243,13 +233,13 @@ pub fn now_playing_transport() -> Div {
 fn transport_button(id: impl Into<ElementId>, label: impl Into<SharedString>, icon: impl Into<Icon>, control: TransportControl, layout: TransportLayout, theme: BrowserTheme) -> Button {
     let (size, icon_size) = control.size(layout);
     let color = match (control, layout) {
-        (TransportControl::Play, TransportLayout::MiniPlayer) => theme.accent,
-        (TransportControl::Chapter, TransportLayout::Player) => theme.text_muted,
-        _ => theme.text,
+        (TransportControl::Play, TransportLayout::MiniPlayer) => Some(theme.accent),
+        (TransportControl::Chapter, TransportLayout::Player) => Some(theme.text_muted),
+        _ => None,
     };
     // Set both dimensions and prevent flex shrinking to preserve a square icon.
     let icon = icon.into().size(rems(icon_size)).flex_none();
-    let button = crate::base_button(id).ghost().text_color(color).bg(theme.page_bg).p_0().flex_none().size(rems(size)).tooltip(label).child(icon);
+    let button = crate::base_button(id).ghost().when_some(color, |button, color| button.text_color(color)).p_0().flex_none().size(rems(size)).tooltip(label).child(icon);
     match (control, layout) {
         (TransportControl::Play, TransportLayout::MiniPlayer) => button,
         (TransportControl::Play, _) => button.rounded_full().when(!touch_ui(), |button| button.min_w(px(DESKTOP_PLAY_MIN_SIZE_PX)).min_h(px(DESKTOP_PLAY_MIN_SIZE_PX)).max_w(px(DESKTOP_PLAY_MAX_SIZE_PX)).max_h(px(DESKTOP_PLAY_MAX_SIZE_PX))),
@@ -262,13 +252,43 @@ pub fn now_playing_tools() -> Div {
     crate::row(0.0).w_full().flex_none().justify_evenly().mt(px(SPACE_LG))
 }
 
-/// A quiet text control on the bottom tier: muted at its default, accent once
+/// A text control on the bottom tier: normal text at its default, accent once
 /// it holds a choice of the reader's (a speed other than 1×, a running timer).
 pub fn now_playing_tool_button(id: impl Into<ElementId>, label: impl Into<SharedString>, icon: Option<Icon>, set: bool, theme: BrowserTheme) -> Button {
     let label = label.into();
-    let button = playback_secondary_button(crate::base_button(id).ghost()).text_color(if set { theme.text_accent } else { theme.text_muted }).tooltip(label.clone());
+    let button = playback_secondary_button(crate::base_button(id).ghost()).text_color(if set { theme.text_accent } else { theme.text }).tooltip(label.clone());
     match icon {
         Some(icon) if !set => button.child(icon.size(rems(1.0))),
         _ => button.child(div().text_size(rems(TEXT_SM)).whitespace_nowrap().child(label)),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use gpui::{Context, Render, TestAppContext};
+
+    struct ScrubTrack(f32);
+
+    impl Render for ScrubTrack {
+        fn render(&mut self, _: &mut gpui::Window, _: &mut Context<Self>) -> impl IntoElement {
+            div().w(px(200.0)).overflow_hidden().child(now_playing_scrub_track(self.0, BrowserTheme::default()))
+        }
+    }
+
+    #[gpui::test]
+    fn scrub_thumb_stays_inside_clipping_parent_at_both_ends(cx: &mut TestAppContext) {
+        let (view, cx) = cx.add_window_view(|_, _| ScrubTrack(0.0));
+        for fraction in [0.0, 0.5, 1.0] {
+            view.update(cx, |view, cx| {
+                view.0 = fraction;
+                cx.notify();
+            });
+            cx.run_until_parked();
+            let track = cx.debug_bounds("audiobook-scrub-track").unwrap();
+            let thumb = cx.debug_bounds("audiobook-scrub-thumb").unwrap();
+            assert!(thumb.left() >= track.left() && thumb.right() <= track.right(), "whole thumb must remain visible at {fraction}");
+            assert!(thumb.top() >= track.top() && thumb.bottom() <= track.bottom());
+        }
     }
 }

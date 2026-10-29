@@ -25,6 +25,8 @@ pub enum PlaybackLocation {
     LocalUrl(String),
     LocalTracks(Vec<String>),
     Direct(DirectPlayback),
+    /// Revision-pinned bytes read by the library's external provider adapter.
+    Ranges(super::RemoteFile),
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]

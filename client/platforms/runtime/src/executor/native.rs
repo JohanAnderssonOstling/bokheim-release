@@ -1,13 +1,10 @@
-use super::task::{owned_local_task, owned_task, BackendTask};
+use super::startup::startup_ready;
+use super::task::{owned_task, BackendTask};
 use super::{BackendExecutorError, BackendFuture, BackendOutput, BackendSend, BackendTimeout};
 use std::future::Future;
 use std::panic::{catch_unwind, AssertUnwindSafe};
 use std::sync::{Arc, Mutex, PoisonError};
 use tokio::sync::watch;
-
-// Startup trials may inspect local state, but background sync/import must not
-// publish side effects before the host commits the new generation.
-static STARTUP_GATE: Mutex<Option<watch::Receiver<bool>>> = Mutex::new(None);
 
 // Foreground library commands remain available while the initial UI is built.
 // Only scan/sync/import maintenance waits for the host's first presented frame.
@@ -38,43 +35,7 @@ pub fn defer_library_maintenance() -> LibraryMaintenancePermit {
 pub async fn library_maintenance_ready() {
     let receiver = LIBRARY_MAINTENANCE_GATE.lock().unwrap_or_else(PoisonError::into_inner).clone();
     if let Some(mut receiver) = receiver {
-        loop {
-            if *receiver.borrow_and_update() {
-                break;
-            }
-            if receiver.changed().await.is_err() {
-                break;
-            }
-        }
-    }
-}
-
-pub struct StartupPermit(watch::Sender<bool>);
-impl StartupPermit {
-    pub fn release(self) {
-        *STARTUP_GATE.lock().unwrap_or_else(PoisonError::into_inner) = None;
-        self.0.send_replace(true);
-    }
-}
-pub fn defer_background_work() -> StartupPermit {
-    let (sender, receiver) = watch::channel(false);
-    let mut gate = STARTUP_GATE.lock().unwrap_or_else(PoisonError::into_inner);
-    assert!(gate.is_none(), "startup work is already deferred");
-    *gate = Some(receiver);
-    StartupPermit(sender)
-}
-async fn startup_ready() {
-    let receiver = STARTUP_GATE.lock().unwrap_or_else(PoisonError::into_inner).clone();
-    if let Some(mut receiver) = receiver {
-        loop {
-            let ready = *receiver.borrow_and_update();
-            if ready {
-                break;
-            }
-            if receiver.changed().await.is_err() {
-                std::future::pending::<()>().await;
-            }
-        }
+        let _ = receiver.wait_for(|ready| *ready).await;
     }
 }
 
@@ -193,7 +154,7 @@ impl LibraryExecutor {
     /// for use by code already running on this thread (inside a job passed
     /// to [`Self::run`] or [`Self::run_blocking`]) — it does not hop threads.
     pub fn spawn_local<T: 'static>(future: impl Future<Output = T> + 'static) -> BackendTask<T> {
-        let (task, runner) = owned_local_task(future);
+        let (task, runner) = owned_task(future);
         tokio::task::spawn_local(async move {
             startup_ready().await;
             runner.await
@@ -234,6 +195,7 @@ pub async fn timeout<T>(duration: std::time::Duration, future: impl Future<Outpu
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::executor::defer_background_work;
     use std::sync::atomic::{AtomicBool, Ordering};
     use std::time::Duration;
 

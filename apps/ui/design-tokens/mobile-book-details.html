@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bokheim · Shared mobile book page</title>
+  <style>
+    @font-face { font-family: Garamond; src: url('../../desktop-gpui/assets/fonts/NV_Garamond-Regular.ttf'); }
+    @font-face { font-family: Raleway; src: url('../../desktop-gpui/assets/fonts/Raleway-Regular.ttf'); }
+    @font-face { font-family: Bodoni; src: url('../../desktop-gpui/assets/fonts/BodoniModa-Regular.ttf'); }
+    :root { color-scheme: light; --canvas: #eae5dc; --paper: #f6f2eb; --raised: #fff; --ink: #22201d; --muted: #6b675f; --rule: #c5bdac; --border: #8c7f64; --accent: #466853; --text-accent: #8a6a2b; --on-accent: #fffdfa; --accent-hover: #3d5c49; --hover: #46685314; --wash: #d9e8de; --ui-font: Garamond, Georgia, serif; }
+    [data-theme="dark"] { color-scheme: dark; --canvas: #1c1a16; --paper: #11100d; --raised: #2a2720; --ink: #efe6d0; --muted: #a69c86; --rule: #4e4334; --border: #786644; --accent: #d3b271; --text-accent: #d3b271; --on-accent: #11100d; --accent-hover: #dabd86; --hover: #d3b27114; --wash: #3c3423; }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; background: var(--canvas); color: var(--ink); font: 13px/1.5 Raleway, sans-serif; }
+    button, select { font: inherit; color: inherit; }
+    button { cursor: pointer; border: 0; background: transparent; }
+    button:hover { background: var(--hover); }
+    button:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--text-accent); outline-offset: 3px; }
+    a { color: inherit; }
+    h1, h2, h3, p { margin: 0; }
+    main { max-width: 1520px; margin: auto; padding: 28px 32px; }
+    .board-header, .board-title, .controls, .states { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .board-header { justify-content: space-between; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+    .brand { font: 34px Bodoni, Georgia, serif; }
+    h1 { font-size: 13px; font-weight: 400; border-left: 1px solid var(--rule); padding-left: 16px; }
+    .controls { font-size: 12px; gap: 10px; }
+    .controls label { display: flex; align-items: center; gap: 7px; }
+    .board-button, select { border: 1px solid var(--border); background: var(--paper); min-height: 36px; padding: 6px 10px; }
+    .intro { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin: 26px 0 22px; }
+    .intro h2 { font: 36px/1.15 Bodoni, Georgia, serif; }
+    .intro p { max-width: 480px; color: var(--muted); }
+    .statebar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+    .states { gap: 0; border: 1px solid var(--border); }
+    .states button { padding: 9px 16px; }
+    .states button + button { border-left: 1px solid var(--border); }
+    .states button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+    .sample-status { font-size: 12px; color: var(--muted); }
+    .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-top: 22px; border-top: 1px solid var(--rule); margin: 26px 0 16px; }
+    .section-title h2 { font-size: 14px; font-weight: 400; }
+    .section-title p, .caption { font-size: 11px; color: var(--muted); }
+    .desktop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .desktop-grid .wide { grid-column: 1 / -1; }
+    .mobile-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+    .example { min-width: 0; }
+    .example-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px; font-size: 12px; }
+    .example-heading span { color: var(--muted); font-size: 10px; }
+    .caption { margin-top: 10px; }
+    .surface { background: var(--paper); border: 1px solid var(--border); position: relative; font: 16px/1.4 var(--ui-font); isolation: isolate; }
+    .phone { width: 100%; max-width: 390px; height: 660px; margin-inline: auto; display: flex; flex-direction: column; }
+    .desktop { min-height: 310px; display: flex; flex-direction: column; }
+    .desktop.library { min-height: 250px; }
+    .topbar { display: flex; flex: none; align-items: center; justify-content: space-between; gap: 12px; height: 48px; padding: 0 12px; border-bottom: 1px solid var(--rule); }
+    .topbar .center { flex: 1; text-align: center; }
+    .phone .topbar { height: 56px; }
+    .statusbar { height: 28px; display: flex; flex: none; align-items: center; justify-content: space-between; padding: 0 14px; font: 11px Raleway, sans-serif; }
+    .home { height: 20px; display: grid; place-items: center; flex: none; }
+    .home::after { content: ''; width: 96px; height: 3px; background: var(--ink); border-radius: 2px; }
+    .icon { display: inline-block; flex: none; width: 20px; height: 20px; vertical-align: middle; }
+    .icon svg { display: block; width: 100%; height: 100%; }
+    .timer-value { flex: none; }
+    .square { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; vertical-align: middle; }
+    .square .icon { width: 20px; height: 20px; }
+    .play { background: var(--accent); color: var(--on-accent); border-radius: 50%; width: 48px; height: 48px; }
+    .transport { display: flex; align-items: center; justify-content: center; gap: 4px; }
+    .transport .skip .icon { width: 25px; height: 25px; }
+    .timer { font: 16px/1.2 var(--ui-font); white-space: nowrap; }
+    .timer.active, .timer.menu-open.audio { color: var(--text-accent); }
+    .timer.player .icon { width: 16px; height: 16px; }
+    .timer.inline .icon { width: 26px; height: 26px; }
+    .detail-content { padding: 22px 24px; flex: 1; min-height: 0; }
+    .detail-head { display: flex; align-items: center; gap: 22px; margin-bottom: 20px; }
+    .book-title { font: 26px/1.2 Bodoni, Georgia, serif; margin-bottom: 6px; }
+    .muted { color: var(--muted); }
+    .cover { width: 104px; height: 138px; flex: none; background: #234b3d; color: #e8dcaf; border: 5px solid #234b3d; outline: 1px solid #9a9159; outline-offset: -10px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 18px; font: 18px/1.15 Bodoni, serif; }
+    .cover small { display: block; margin-top: 10px; font: 9px/1.4 Garamond, serif; letter-spacing: .08em; }
+    .times { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 14px; }
+    .times .chapter { text-align: center; flex: 1; color: var(--ink); }
+    .track { height: 24px; display: flex; align-items: center; }
+    .track::before { content: ''; width: 100%; height: 3px; background: linear-gradient(to right, var(--accent) 38%, var(--rule) 38%); }
+    .inline-controls { display: flex; justify-content: space-between; align-items: center; overflow-x: auto; gap: 3px; }
+    .inline-controls .play { width: 64px; height: 64px; }
+    .inline-controls .transport { flex: 1; justify-content: space-evenly; }
+    .chapter-list { border-top: 1px solid var(--rule); padding-top: 14px; margin-top: 24px; }
+    .chapter-list p { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+    .phone .detail-head { flex-direction: column; gap: 16px; text-align: center; }
+    .phone .detail-head .cover { width: 132px; height: 176px; }
+    .phone .detail-content { padding: 20px 16px; overflow-y: auto; }
+    .phone .book-title { font-size: 23px; }
+    .phone .inline-controls .transport { gap: 0; }
+    .phone .inline-controls .square { width: 40px; }
+    .phone .inline-controls .play { width: 72px; height: 72px; }
+    .phone .inline-controls .timer { width: 40px; }
+    .player-body { padding: 18px 24px 16px; display: flex; flex-direction: column; align-items: stretch; flex: 1; min-height: 0; }
+    .player-body .cover { width: 248px; max-width: 100%; height: 248px; align-self: center; font-size: 34px; }
+    .player-body .cover small { font-size: 12px; }
+    .player-titles { text-align: center; margin-top: 20px; }
+    .player-titles .book-title { font-size: 24px; }
+    .player-spacer { flex: 1; min-height: 20px; }
+    .player-chapter { text-align: center; font-size: 16px; }
+    .player-transport { justify-content: space-evenly; margin-top: 18px; }
+    .player-transport .play { width: 72px; height: 72px; }
+    .player-tools { display: flex; justify-content: space-evenly; margin-top: 20px; }
+    .reader-body { flex: 1; min-height: 0; padding: 24px 32px; overflow: hidden; }
+    .running { text-align: center; text-transform: uppercase; letter-spacing: .12em; font-size: 10px; color: var(--muted); margin-bottom: 22px; }
+    .reader-body h3 { font: 24px/1.2 Bodoni, serif; text-align: center; margin-bottom: 20px; }
+    .reader-body p { font: 21px/1.65 Garamond, Georgia, serif; margin-bottom: 16px; }
+    mark { background: var(--wash); color: inherit; }
+    .desktop .reader-body { padding-block: 20px; }
+    .desktop .reader-body p { font-size: 20px; line-height: 1.45; }
+    .dock { position: relative; flex: none; height: 81px; border-top: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-right: 8px; }
+    .progress-edge::before { content: ''; position: absolute; top: -2px; left: 0; width: 38%; height: 3px; background: var(--accent); }
+    .dock-leading, .dock-trailing { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1; }
+    .dock-leading .cover { width: 80px; height: 80px; font-size: 12px; padding: 12px; }
+    .dock-leading .cover small { display: none; }
+    .dock-title { min-width: 0; }
+    .dock-title p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .dock-title .muted, .dock-remaining { font-size: 12px; }
+    .dock-trailing { justify-content: flex-end; }
+    .dock-tools { display: flex; gap: 4px; align-items: center; }
+    .dock-stack { display: flex; flex-direction: column; align-items: flex-end; }
+    .voice { border: 1px solid var(--rule); padding: 5px 9px; font-size: 14px; }
+    .phone .narration { padding: 0; justify-content: space-evenly; gap: 0; overflow-x: auto; }
+    .phone .narration .play { width: 64px; height: 64px; }
+    .library-body { padding: 24px; flex: 1; display: flex; align-items: center; gap: 20px; }
+    .library-body .cover { width: 66px; height: 88px; font-size: 11px; padding: 10px; }
+    .library-body .cover small { display: none; }
+    .library-body h3 { font: 25px Bodoni, serif; margin-bottom: 8px; }
+    .menu-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+    .menu-grid article { min-width: 0; }
+    .menu-specimen { grid-template-columns: minmax(0, 1fr); min-width: 0; padding: 24px; background: var(--canvas); display: grid; place-items: center; min-height: 140px; border: 1px solid var(--rule); }
+    .menu { min-width: 0; background: var(--paper); border: 1px solid var(--border); font: 16px/1.4 var(--ui-font); width: max-content; max-width: 100%; box-shadow: 0 8px 24px #0002; }
+    .preset-scroll { padding: 16px; overflow-x: auto; }
+    .presets { display: flex; justify-content: space-evenly; gap: 4px; min-width: max-content; }
+    .preset { width: 40px; height: 40px; border: 1px solid var(--rule); background: var(--paper); font-size: 14px; flex: none; }
+    .menu-header { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; min-height: 41px; font-size: 18px; border-bottom: 1px solid var(--rule); }
+    .sheet { width: 390px; box-shadow: none; }
+    .sheet .home { height: 24px; }
+    .sheet .home::after { height: 3px; }
+    .preview-overlay { position: absolute; inset: 0; z-index: 3; }
+    .scrim { position: absolute; inset: 0; background: #0005; }
+    .preview-overlay .menu { position: absolute; bottom: 84px; right: 8px; }
+    .preview-overlay .sheet { width: 100%; bottom: 0; right: 0; border-inline: 0; border-bottom: 0; }
+    .preview-overlay.inline-popup .menu { top: 210px; bottom: auto; right: 20px; }
+    .phone .preview-overlay.inline-popup .menu { top: 415px; right: 8px; max-width: calc(100% - 16px); }
+    .preview-overlay .close-sheet { width: 24px; height: 24px; }
+    .preview-overlay .close-sheet .icon { width: 16px; height: 16px; }
+    .mini-context { display: grid; grid-template-columns: minmax(0, 390px) 1fr; align-items: center; gap: 28px; margin-top: 26px; padding: 20px; border: 1px solid var(--rule); }
+    .mini-context > * { min-width: 0; }
+    .mini { height: 65px; display: flex; gap: 8px; align-items: center; padding-inline: 8px; }
+    .mini .cover { width: 64px; height: 64px; font-size: 10px; padding: 8px; }
+    .mini .cover small { display: none; }
+    .mini .dock-title { flex: 1; }
+    .mini .play { background: transparent; color: var(--accent); }
+    .mini-context p { font-size: 12px; color: var(--muted); max-width: 590px; }
+    .matrix-wrap { overflow-x: auto; border: 1px solid var(--rule); }
+    table { width: 100%; border-collapse: collapse; text-align: left; min-width: 540px; }
+    th { font-weight: 400; font-size: 11px; color: var(--muted); }
+    td, th { padding: 12px 18px; border-bottom: 1px solid var(--rule); }
+    tr:last-child td { border-bottom: 0; }
+    td:not(:first-child) { background: var(--paper); text-align: center; }
+    th:not(:first-child) { text-align: center; }
+    td small { display: block; font-size: 10px; color: var(--muted); margin-top: 3px; }
+    footer { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: 11px; color: var(--muted); }
+    details { margin-top: 18px; color: var(--muted); font-size: 12px; }
+    details p { margin-top: 8px; max-width: 960px; }
+    summary { cursor: pointer; }
+    @media (max-width: 1150px) { .desktop-grid { grid-template-columns: 1fr; } .mobile-grid { gap: 16px; } .phone .detail-content { padding-inline: 10px; } .phone .inline-controls { gap: 0; } .player-body { padding-inline: 18px; } .player-body .cover { width: 220px; height: 220px; } }
+    @media (max-width: 970px) { .mobile-grid { grid-template-columns: 1fr; gap: 28px; } .mobile-grid .example { width: 100%; max-width: 390px; margin-inline: auto; } .menu-grid { grid-template-columns: minmax(0, 1fr); } .intro { flex-direction: column; gap: 12px; } }
+    @media (max-width: 620px) { main { padding: 20px 12px; } .board-title { gap: 10px; } h1 { padding-left: 10px; } .brand { font-size: 29px; } .intro h2 { font-size: 31px; } .section-title { align-items: flex-start; flex-direction: column; gap: 4px; } .desktop-example-scroll { overflow-x: auto; } .desktop { min-width: 620px; } .library { min-width: 920px; } .mini-context { grid-template-columns: 1fr; padding: 12px; gap: 14px; } .menu-specimen { padding: 16px 8px; } .states button { padding-inline: 12px; } }
+  </style>
+  <style>
+    main { max-width: 1400px; }
+    .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; align-items: start; }
+    .gallery article { min-width: 0; }
+    .phone { height: 720px; overflow: hidden; }
+    .phone.short { height: 580px; }
+    .entry { display: flex; align-items: center; min-height: 32px; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+    .entry button { font-size: 11px; border: 1px solid var(--rule); padding: 6px 9px; }
+    .entry button[aria-pressed="true"] { color: var(--text-accent); border-color: var(--text-accent); }
+    .mobile-topbar { border: 0; height: 48px; }
+    .mobile-topbar span { font-size: 14px; }
+    .mobile-topbar button { display: flex; align-items: center; gap: 6px; padding: 4px; }
+    .book-body { display: flex; flex: 1; min-height: 0; flex-direction: column; padding: 12px 24px 16px; }
+    .book-summary { flex: 1; min-height: 0; overflow-y: auto; display: flex; align-items: center; flex-direction: column; }
+    .book-summary .cover { width: min(248px, 100%); height: 248px; font-size: 33px; }
+    .book-summary .cover small { font-size: 12px; }
+    .book-summary.ebook .cover { width: 165px; height: 248px; font-size: 26px; }
+    .book-meta { text-align: center; padding: 20px 0 12px; }
+    .book-meta h3 { font: 25px/1.2 Bodoni, Georgia, serif; }
+    .book-meta p { margin-top: 8px; }
+    .book-meta .muted { font-size: 14px; }
+    .book-position { margin-top: 8px; font-size: 14px; }
+    .read-action { margin: 14px auto 0; background: var(--accent); color: var(--on-accent); padding: 10px 30px; display: flex; align-items: center; gap: 8px; }
+    .read-action:hover { background: var(--accent-hover); }
+    .audio-controls { flex: none; }
+    .audio-controls .times { font-size: 12px; }
+    .audio-controls .times > span { flex: 1; min-width: 0; }
+    .audio-controls .times > span:nth-child(2) { text-align: center; }
+    .audio-controls .times > span:last-child { text-align: right; }
+    .book-position { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) 3.5rem; align-items: baseline; gap: 8px; width: 100%; }
+    .book-position .progress-title { grid-column: 2; text-align: center; }
+    .book-position .progress-value { grid-column: 3; text-align: right; }
+    .book-meta { width: 100%; }
+    .text-tool { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .text-tool .icon { width: 16px; height: 16px; }
+    .audio-controls .transport { margin-top: 20px; justify-content: space-evenly; gap: 0; }
+    .audio-controls .transport .timer { width: auto; min-width: 40px; padding-inline: 4px; }
+    .audio-controls .transport .active { color: var(--text-accent); }
+    .audio-controls .transport .play { width: 72px; height: 72px; }
+    .audio-controls .play:hover { background: var(--accent-hover); }
+    .bottom-tools { display: flex; align-items: center; justify-content: space-evenly; gap: 2px; margin-top: 20px; flex: none; min-height: 40px; }
+    .bottom-tools .text-tool { font-size: 16px; padding: 0 5px; height: 40px; }
+    .bottom-tools .square { width: 36px; }
+    .bottom-tools .timer { width: 40px; }
+    .bottom-tools .active { color: var(--text-accent); }
+    .bottom-tools .icon { width: 16px; height: 16px; }
+    .information-overlay { position: absolute; inset: 0; z-index: 3; }
+    .information-overlay .scrim { width: 100%; height: 100%; border: 0; padding: 0; }
+    .information-sheet { position: absolute; inset: auto 0 0; background: var(--paper); border-top: 1px solid var(--border); height: 75%; display: flex; flex-direction: column; }
+    .information-sheet .menu-header { flex: none; padding: 8px 16px; }
+    .information-sheet .menu-header .square { width: 28px; height: 28px; }
+    .sheet-copy { flex: 1; min-height: 0; overflow-y: auto; padding: 16px; overscroll-behavior: contain; }
+    .sheet-copy h3 { font: 24px/1.2 Bodoni, serif; margin-bottom: 8px; }
+    .sheet-copy .byline { color: var(--muted); margin-bottom: 18px; font-size: 14px; }
+    .sheet-copy p { margin-bottom: 16px; line-height: 1.6; }
+    .chapter-choice { width: 100%; text-align: left; padding: 14px 6px; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; gap: 12px; }
+    .chapter-choice.current { color: var(--text-accent); }
+    .chapter-choice small { color: var(--muted); white-space: nowrap; }
+    .small-sheet { height: auto; }
+    .small-sheet .preset-scroll { flex: none; }
+    .reader-preview { flex: 1; min-height: 0; padding: 16px 24px; overflow-y: auto; }
+    .reader-preview h3 { font: 26px Bodoni, serif; text-align: center; margin: 18px 0; }
+    .reader-preview p { font: 21px/1.65 Garamond, serif; margin-bottom: 18px; }
+    .board-note { margin-top: 26px; padding: 16px 20px; border: 1px solid var(--rule); color: var(--muted); font-size: 12px; }
+    .board-note strong { color: var(--ink); font-weight: 400; }
+    .short .book-summary .cover { width: 170px; height: 170px; font-size: 25px; }
+    .short .book-summary.ebook .cover { width: 114px; height: 170px; font-size: 20px; }
+    .short .book-meta { padding-top: 12px; }
+    .short .audio-controls .transport { margin-top: 12px; }
+    .short .bottom-tools { margin-top: 12px; }
+    @media (max-width: 1100px) { .gallery { grid-template-columns: 1fr; gap: 30px; } .gallery article { width: 100%; max-width: 390px; margin: auto; } }
+    @media (max-width: 380px) { .book-body { padding-inline: 16px; } .audio-controls .transport { gap: 0; } .audio-controls .transport .square:not(.play) { width: 32px; } .audio-controls .transport .play { width: 64px; height: 64px; } .bottom-tools .text-tool { padding-inline: 2px; font-size: 14px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="board-header"><div class="board-title"><span class="brand">Bokheim</span><h1>Shared mobile book page</h1></div><div class="controls"><label>Height <select id="height"><option value="regular">Standard phone</option><option value="short">Short phone</option></select></label><button class="board-button" id="theme" aria-pressed="false">Dark appearance</button></div></header>
+    <div class="intro"><h2>One book page. Less scrolling.</h2><p>The audiobook mini-player and the book card lead to the same page. Contents and Description sit in the bottom row; long text scrolls inside a sheet.</p></div>
+    <div class="gallery">
+      <article><div class="example-heading">Audiobook <span>Shared detail & expanded player</span></div><div class="entry" role="group" aria-label="Audiobook entry point"><button data-entry="card" aria-pressed="true">From book card</button><button data-entry="mini" aria-pressed="false">From mini-player</button></div><div id="audio"></div><p class="caption">Playback controls stay visible. Speed and sleep sit beside playback. Contents and Description have icons and labels below; close is at the top right. The active timer uses highlighted text without a fill.</p></article>
+      <article><div class="example-heading">EPUB / other books <span>No player controls</span></div><div class="entry"><span class="sample-status">Cover, title, reading position, and Read</span></div><div id="ebook"></div><p class="caption">The same page structure, with a Read action and labelled Contents / Description buttons with icons at the bottom. No playback, speed, or timer controls.</p></article>
+      <article><div class="example-heading">Description <span>Shared bottom sheet</span></div><div class="entry" role="group" aria-label="Description example"><button data-inspect="audio" aria-pressed="true">Audiobook</button><button data-inspect="ebook" aria-pressed="false">EPUB</button></div><div id="description"></div><p class="caption">The description has its own scroll area. Close it to return to the same book page and playback position.</p></article>
+    </div>
+    <p class="board-note"><strong>Try it:</strong> open Description or Contents in either book page. The audiobook’s playback, speed, and sleep timer controls are interactive examples. Its × button closes the player and restores Listen. Use the short-phone option to inspect the compact layout.</p>
+    <footer><span>Mobile appearance preview · Sample book content and playback state</span><a href="sleep-timer-active.html">Sleep timer appearances →</a></footer>
+  </main>
+  <script type="application/json" id="icon-assets">{"phosphor-light/alarm.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"128\" cy=\"136\" r=\"80\"/><path d=\"M128 96v40l28 16M32 56l24-24M200 32l24 24M72 202l-16 22M184 202l16 22\"/></svg>", "phosphor-light/caret-left.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M164.24,203.76a6,6,0,1,1-8.48,8.48l-80-80a6,6,0,0,1,0-8.48l80-80a6,6,0,0,1,8.48,8.48L88.49,128Z\"/></svg>", "phosphor-light/caret-right.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M180.24,132.24l-80,80a6,6,0,0,1-8.48-8.48L167.51,128,91.76,52.24a6,6,0,0,1,8.48-8.48l80,80A6,6,0,0,1,180.24,132.24Z\"/></svg>", "phosphor-light/caret-down.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M212.24,100.24l-80,80a6,6,0,0,1-8.48,0l-80-80a6,6,0,0,1,8.48-8.48L128,167.51l75.76-75.75a6,6,0,0,1,8.48,8.48Z\"/></svg>", "phosphor-light/x.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M204.24,195.76a6,6,0,1,1-8.48,8.48L128,136.49,60.24,204.24a6,6,0,0,1-8.48-8.48L119.51,128,51.76,60.24a6,6,0,0,1,8.48-8.48L128,119.51l67.76-67.75a6,6,0,0,1,8.48,8.48L136.49,128Z\"/></svg>", "phosphor-light/list.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128ZM40,70H216a6,6,0,0,0,0-12H40a6,6,0,0,0,0,12ZM216,186H40a6,6,0,0,0,0,12H216a6,6,0,0,0,0-12Z\"/></svg>", "phosphor-light/magnifying-glass.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M228.24,219.76l-51.38-51.38a86.15,86.15,0,1,0-8.48,8.48l51.38,51.38a6,6,0,0,0,8.48-8.48ZM38,112a74,74,0,1,1,74,74A74.09,74.09,0,0,1,38,112Z\"/></svg>", "phosphor-light/gear.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M128,82a46,46,0,1,0,46,46A46.06,46.06,0,0,0,128,82Zm0,80a34,34,0,1,1,34-34A34,34,0,0,1,128,162ZM214,130.84c.06-1.89.06-3.79,0-5.68L229.33,106a6,6,0,0,0,1.11-5.29A105.34,105.34,0,0,0,219.76,74.9a6,6,0,0,0-4.53-3l-24.45-2.71q-1.93-2.07-4-4l-2.72-24.46a6,6,0,0,0-3-4.53,105.65,105.65,0,0,0-25.77-10.66A6,6,0,0,0,150,26.68l-19.2,15.37c-1.89-.06-3.79-.06-5.68,0L106,26.67a6,6,0,0,0-5.29-1.11A105.34,105.34,0,0,0,74.9,36.24a6,6,0,0,0-3,4.53L69.23,65.22q-2.07,1.94-4,4L40.76,72a6,6,0,0,0-4.53,3,105.65,105.65,0,0,0-10.66,25.77A6,6,0,0,0,26.68,106l15.37,19.2c-.06,1.89-.06,3.79,0,5.68L26.67,150.05a6,6,0,0,0-1.11,5.29A105.34,105.34,0,0,0,36.24,181.1a6,6,0,0,0,4.53,3l24.45,2.71q1.94,2.07,4,4L72,215.24a6,6,0,0,0,3,4.53,105.65,105.65,0,0,0,25.77,10.66,6,6,0,0,0,5.29-1.11L125.16,214c1.89.06,3.79.06,5.68,0l19.21,15.38a6,6,0,0,0,3.75,1.31,6.2,6.2,0,0,0,1.54-.2,105.34,105.34,0,0,0,25.76-10.68,6,6,0,0,0,3-4.53l2.71-24.45q2.07-1.93,4-4l24.46-2.72a6,6,0,0,0,4.53-3,105.49,105.49,0,0,0,10.66-25.77,6,6,0,0,0-1.11-5.29Zm-3.1,41.63-23.64,2.63a6,6,0,0,0-3.82,2,75.14,75.14,0,0,1-6.31,6.31,6,6,0,0,0-2,3.82l-2.63,23.63A94.28,94.28,0,0,1,155.14,218l-18.57-14.86a6,6,0,0,0-3.75-1.31h-.36a78.07,78.07,0,0,1-8.92,0,6,6,0,0,0-4.11,1.3L100.87,218a94.13,94.13,0,0,1-17.34-7.17L80.9,187.21a6,6,0,0,0-2-3.82,75.14,75.14,0,0,1-6.31-6.31,6,6,0,0,0-3.82-2l-23.63-2.63A94.28,94.28,0,0,1,38,155.14l14.86-18.57a6,6,0,0,0,1.3-4.11,78.07,78.07,0,0,1,0-8.92,6,6,0,0,0-1.3-4.11L38,100.87a94.13,94.13,0,0,1,7.17-17.34L68.79,80.9a6,6,0,0,0,3.82-2,75.14,75.14,0,0,1,6.31-6.31,6,6,0,0,0,2-3.82l2.63-23.63A94.28,94.28,0,0,1,100.86,38l18.57,14.86a6,6,0,0,0,4.11,1.3,78.07,78.07,0,0,1,8.92,0,6,6,0,0,0,4.11-1.3L155.13,38a94.13,94.13,0,0,1,17.34,7.17l2.63,23.64a6,6,0,0,0,2,3.82,75.14,75.14,0,0,1,6.31,6.31,6,6,0,0,0,3.82,2l23.63,2.63A94.28,94.28,0,0,1,218,100.86l-14.86,18.57a6,6,0,0,0-1.3,4.11,78.07,78.07,0,0,1,0,8.92,6,6,0,0,0,1.3,4.11L218,155.13A94.13,94.13,0,0,1,210.85,172.47Z\"/></svg>", "phosphor-light/book-open.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M232,50H160a38,38,0,0,0-32,17.55A38,38,0,0,0,96,50H24a6,6,0,0,0-6,6V200a6,6,0,0,0,6,6H96a26,26,0,0,1,26,26,6,6,0,0,0,12,0,26,26,0,0,1,26-26h72a6,6,0,0,0,6-6V56A6,6,0,0,0,232,50ZM96,194H30V62H96a26,26,0,0,1,26,26V204.31A37.86,37.86,0,0,0,96,194Zm130,0H160a37.87,37.87,0,0,0-26,10.32V88a26,26,0,0,1,26-26h66Z\"/></svg>", "icon/pause-fill.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z\"/></svg>", "icon/skip-back-15.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12.5a9 9 0 1 0 2.64-6.36\" stroke-width=\"1.125\"/><path d=\"M3.2 2.8v4h4\" stroke-width=\"1.125\"/><path d=\"M8.7 10.4 10.1 9.5v6\" stroke-width=\"1\"/><path d=\"M15.3 9.5h-3l-.3 2.7c.6-.4 1.3-.5 1.9-.4 1 .2 1.6 1 1.6 2 0 1.1-.8 1.9-2 1.9-.6 0-1.2-.2-1.6-.6\" stroke-width=\"1\"/></svg>", "icon/skip-forward-30.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.5a9 9 0 1 1-2.64-6.36\" stroke-width=\"1.125\"/><path d=\"M20.8 2.8v4h-4\" stroke-width=\"1.125\"/><path d=\"M8.4 10c.4-.4 1-.6 1.6-.5.9.1 1.5.7 1.5 1.4 0 .8-.7 1.4-1.6 1.4.9 0 1.8.6 1.8 1.6 0 1-.8 1.7-1.9 1.7-.6 0-1.2-.2-1.6-.6\" stroke-width=\"1\"/><ellipse cx=\"14.7\" cy=\"12.5\" rx=\"1.6\" ry=\"3\" stroke-width=\"1\"/></svg>", "phosphor-light/arrow-counter-clockwise.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M222,128a94,94,0,0,1-92.74,94H128a93.43,93.43,0,0,1-64.5-25.65,6,6,0,1,1,8.24-8.72A82,82,0,1,0,70,70l-.19.19L39.44,98H72a6,6,0,0,1,0,12H24a6,6,0,0,1-6-6V56a6,6,0,0,1,12,0V90.34L61.63,61.4A94,94,0,0,1,222,128Z\"/></svg>", "phosphor-light/arrow-clockwise.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M238,56v48a6,6,0,0,1-6,6H184a6,6,0,0,1,0-12h32.55l-30.38-27.8c-.06-.06-.12-.13-.19-.19a82,82,0,1,0-1.7,117.65,6,6,0,0,1,8.24,8.73A93.46,93.46,0,0,1,128,222h-1.28A94,94,0,1,1,194.37,61.4L226,90.35V56a6,6,0,1,1,12,0Z\"/></svg>", "phosphor-light/hourglass-medium.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M198,75.64V40a14,14,0,0,0-14-14H72A14,14,0,0,0,58,40V76a14.06,14.06,0,0,0,5.6,11.2L118,128,63.6,168.8A14.06,14.06,0,0,0,58,180v36a14,14,0,0,0,14,14H184a14,14,0,0,0,14-14V180.36a14.08,14.08,0,0,0-5.56-11.17L138,128l54.49-41.19A14.08,14.08,0,0,0,198,75.64ZM70,40a2,2,0,0,1,2-2H184a2,2,0,0,1,2,2V75.64a2,2,0,0,1-.79,1.6L178.9,82H76.67L70.8,77.6A2,2,0,0,1,70,76Zm58,80.49L92.67,94H163Zm58,59.87V216a2,2,0,0,1-2,2H72a2,2,0,0,1-2-2V180a2,2,0,0,1,.8-1.6L122,140v28a6,6,0,0,0,12,0V140.06l51.21,38.7A2,2,0,0,1,186,180.36Z\"/></svg>", "phosphor-light/info.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M142,176a6,6,0,0,1-6,6,14,14,0,0,1-14-14V128a2,2,0,0,0-2-2,6,6,0,0,1,0-12,14,14,0,0,1,14,14v40a2,2,0,0,0,2,2A6,6,0,0,1,142,176ZM124,94a10,10,0,1,0-10-10A10,10,0,0,0,124,94Zm106,34A102,102,0,1,1,128,26,102.12,102.12,0,0,1,230,128Zm-12,0a90,90,0,1,0-90,90A90.1,90.1,0,0,0,218,128Z\"/></svg>"}</script>
+  <script>
+    const assets = JSON.parse(document.getElementById('icon-assets').textContent);
+    const names = { book:'phosphor-light/book-open.svg', list:'phosphor-light/list.svg', info:'phosphor-light/info.svg', alarm:'phosphor-light/alarm.svg', back:'phosphor-light/caret-left.svg', next:'phosphor-light/caret-right.svg', close:'phosphor-light/x.svg', pause:'icon/pause-fill.svg', skipback:'icon/skip-back-15.svg', skipforward:'icon/skip-forward-30.svg' };
+    const icon = name => `<span class="icon" aria-hidden="true">${name==='play'?'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3v18l14-9z"/></svg>':assets[names[name]]}</span>`;
+    const decoration = name => `<span class="square" aria-hidden="true">${icon(name)}</span>`;
+    const cover = () => '<div class="cover" aria-hidden="true">The<br>Secret<br>Garden<small>FRANCES HODGSON<br>BURNETT</small></div>';
+    const home = '<div class="home" aria-hidden="true"></div>';
+    const description = '<p>When Mary Lennox arrives at her uncle’s lonely house on the Yorkshire moors, she finds locked rooms, unfamiliar sounds, and a garden that has been closed for years.</p><p>A small key and a robin lead her towards a hidden door. With Dickon and Colin, Mary begins to bring the garden back to life—and discovers how friendship and care can change people too.</p><p>Frances Hodgson Burnett’s story follows three children as they learn to trust each other, explore the natural world, and find a place where they belong.</p><p>This edition presents the complete story, from Mary’s arrival at Misselthwaite Manor to the garden’s return to bloom.</p>';
+    const chapters = ['There Is No One Left','Mistress Mary Quite Contrary','Across the Moor','Martha','The Cry in the Corridor','There Was Someone Crying','The Key of the Garden','The Robin Who Showed the Way','The Strangest House Anyone Ever Lived In','Dickon','The Nest of the Missel Thrush','Might I Have a Bit of Earth?','I Am Colin','A Young Rajah','Nest Building','I Won’t! Said Mary','A Tantrum','Tha’ Munnot Waste No Time','It Has Come!','I Shall Live Forever—and Ever—and Ever!','Ben Weatherstaff','When the Sun Went Down','Magic','Let Them Laugh','The Curtain','It’s Mother!','In the Garden'];
+    let entry = 'card';
+    let inspect = 'audio';
+    let playing = true;
+    let closed = false;
+    let timer = '15';
+    let speed = '1';
+    let chapter = 6;
+    let ebookChapter = 6;
+    let reading = false;
+    const sheets = {audio:null, ebook:null, description:'description'};
+    const kind = id => id==='description'?inspect:id;
+    const timerLabel = () => timer==='chapter'?'Chapter':timer==='off'?'':`${timer} min`;
+    let restore = null;
+
+    function sheet(id) {
+      const type = sheets[id];
+      if (!type) return '';
+      const title = type==='description'?'Description':type==='contents'?(kind(id)==='audio'?'Chapters':'Contents'):type==='timer'?'Sleep timer':'Playback speed';
+      let content;
+      if (type==='description') content=`<div class="sheet-copy"><h3>The Secret Garden</h3><p class="byline">Frances Hodgson Burnett${kind(id)==='audio'?'<br>Narrated by Karen Savage':''}</p>${description}</div>`;
+      if (type==='contents') content=`<div class="sheet-copy">${chapters.map((title,index)=>`<button class="chapter-choice ${index===(kind(id)==='audio'?chapter:ebookChapter)?'current':''}" data-chapter="${index}"><span>${index+1}. ${title}</span>${kind(id)==='audio'?'<small>28 min</small>':''}</button>`).join('')}</div>`;
+      if (type==='timer') content=`<div class="preset-scroll"><div class="presets">${['5','15','30','45','60','chapter',...(timer==='off'?[]:['off'])].map(value=>`<button class="preset" data-timer="${value}" title="${value==='chapter'?'End of chapter':value==='off'?'Off':value+' minutes'}">${value==='chapter'?'End':value==='off'?'Off':value+'m'}</button>`).join('')}</div></div>`;
+      if (type==='speed') content=`<div class="preset-scroll"><div class="presets">${['0.75','1','1.25','1.5','1.75','2'].map(value=>`<button class="preset" data-speed="${value}">${value}×</button>`).join('')}</div></div>`;
+      return `<div class="information-overlay"><button class="scrim" data-close aria-label="Close ${title}"></button><section role="dialog" aria-modal="true" aria-label="${title}" class="information-sheet ${['timer','speed'].includes(type)?'small-sheet':''}"><div class="menu-header"><span>${title}</span><button class="square" data-close aria-label="Close ${title}">${icon('close')}</button></div>${content}${home}</section></div>`;
+    }
+    function book(id, bookKind) {
+      const audio = bookKind==='audio';
+      const hasPlayer = audio && !closed;
+      const speedControl = `<button class="square ${speed!=='1'?'active':''}" data-sheet="speed" aria-label="Playback speed">${speed}×</button>`;
+      const timerControl = `<button class="square timer ${timer!=='off'?'active':''}" data-sheet="timer" aria-label="Sleep timer${timer==='off'?': off':': '+timerLabel()}">${timer==='off'?icon('alarm'):timerLabel()}</button>`;
+      const controls = `<div class="audio-controls"><p class="player-chapter">${chapters[chapter]}</p><div class="track"></div><div class="times muted"><span>14:11</span><span>5h 12m left</span><span>−22:40</span></div><div class="transport">${speedControl}${decoration('back')}${decoration('skipback')}<button class="square play" data-play aria-label="${playing?'Pause':'Play'}">${icon(playing?'pause':'play')}</button>${decoration('skipforward')}${decoration('next')}${timerControl}</div></div>`;
+      const tools = `<div class="bottom-tools"><button class="text-tool" data-sheet="contents">${icon('list')}Contents</button><button class="text-tool" data-sheet="description">${icon('info')}Description</button></div>`;
+      return `<div class="surface phone ${document.getElementById('height').value==='short'?'short':''}" data-book="${id}" data-kind="${bookKind}"><div class="statusbar"><span>21:41</span><span>▴ ▴ ▴ &nbsp; 87%</span></div><div class="topbar mobile-topbar"><button data-back aria-label="${reading&&bookKind==='ebook'?'Back to book':'Return to library'}">${icon('back')}<span>${reading&&bookKind==='ebook'?'Book details':'Library'}</span></button>${hasPlayer?`<button class="square" data-stop aria-label="Close player" title="Close player">${icon('close')}</button>`:''}</div>${reading&&bookKind==='ebook'?`<div class="reader-preview"><h3>${chapters[ebookChapter]}</h3>${description}</div>${tools}`:`<div class="book-body"><div class="book-summary ${audio?'':'ebook'}">${cover()}<div class="book-meta"><h3>The Secret Garden</h3><p>Frances Hodgson Burnett</p>${audio?'<p class="muted">Narrated by Karen Savage</p>':'<p class="muted">1911</p>'}${!hasPlayer?`<div class="book-position"><span class="progress-title">${chapters[ebookChapter]}</span><span class="progress-value">25%</span></div><button class="read-action" data-read>${icon(audio?'play':'book')}${audio?'Listen':'Read'}</button>`:''}</div></div>${hasPlayer?controls:''}${tools}</div>`}${home}${sheet(id)}</div>`;
+    }
+    function render() {
+      document.getElementById('audio').innerHTML=book('audio','audio');
+      document.getElementById('ebook').innerHTML=book('ebook','ebook');
+      document.getElementById('description').innerHTML=book('description',inspect);
+      document.querySelectorAll('[data-entry]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.entry===entry)));
+      document.querySelectorAll('[data-inspect]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.inspect===inspect)));
+      if (restore) {
+        const target=restore.type==='sheet'?document.querySelector(`[data-book="${restore.id}"] [role="dialog"] button:last-child`):document.querySelector(`[data-book="${restore.id}"] [data-sheet="${restore.type}"]`);
+        target?.focus({preventScroll:true});
+        restore=null;
+      }
+    }
+    document.addEventListener('click',event=>{
+      const button=event.target.closest('button');
+      if (!button || button.id==='theme') return;
+      const book=button.closest('[data-book]');
+      const id=book?.dataset.book;
+      if (button.dataset.entry) {entry=button.dataset.entry;sheets.audio=null;closed=false;}
+      else if (button.dataset.inspect) {inspect=button.dataset.inspect;sheets.description='description';}
+      else if (button.dataset.sheet) {sheets[id]=button.dataset.sheet;restore={id,type:'sheet'};}
+      else if (button.hasAttribute('data-close')) {restore={id,type:sheets[id]};sheets[id]=null;}
+      else if (button.hasAttribute('data-play')) playing=!playing;
+      else if (button.dataset.timer) {timer=button.dataset.timer;sheets[id]=null;restore={id,type:'timer'};}
+      else if (button.dataset.speed) {speed=button.dataset.speed;sheets[id]=null;restore={id,type:'speed'};}
+      else if (button.dataset.chapter!==undefined) {if(kind(id)==='audio')chapter=Number(button.dataset.chapter);else {ebookChapter=Number(button.dataset.chapter);reading=true;}sheets[id]=null;restore={id,type:'contents'};}
+      else if (button.hasAttribute('data-read')) {if(kind(id)==='audio'){closed=false;playing=true;}else reading=true;}
+      else if (button.hasAttribute('data-stop')) {closed=true;playing=false;}
+      else if (button.hasAttribute('data-back')) {reading=false;sheets[id]=null;}
+      render();
+    });
+    document.addEventListener('keydown',event=>{
+      if(event.key!=='Escape')return;
+      const id=event.target.closest('[data-book]')?.dataset.book;
+      if(id&&sheets[id]){restore={id,type:sheets[id]};sheets[id]=null;render();}
+    });
+    document.getElementById('height').addEventListener('change',render);
+    document.getElementById('theme').addEventListener('click',event=>{
+      const dark=document.documentElement.dataset.theme!=='dark';
+      document.documentElement.dataset.theme=dark?'dark':'light';
+      event.currentTarget.textContent=dark?'Light appearance':'Dark appearance';
+      event.currentTarget.setAttribute('aria-pressed',String(dark));
+    });
+    render();
+  </script>
+</body>
+</html>

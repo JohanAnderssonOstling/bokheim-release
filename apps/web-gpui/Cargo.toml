@@ -11,6 +11,10 @@ crate-type = ["rlib", "cdylib"]
 name = "mobile_probe"
 crate-type = ["cdylib"]
 
+[features]
+# Experimental provider integration; excluded from default and release builds.
+google-drive = ["app/google-drive", "browser-ui/google-drive"]
+
 [dependencies]
 app = { path = "../../client/app", default-features = false }
 application-shell = { path = "../application-shell", default-features = false }

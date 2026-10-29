@@ -145,11 +145,20 @@ impl LibraryDirectory {
     /// Opens at most one actor for this ID. Registry policy and this operation
     /// can share one storage command; nested owner calls execute directly.
     pub fn open(&self, spec: LibraryRuntimeSpec, executor: &BackendExecutor) -> Result<bool, BackendError> {
+        self.open_with(spec, executor, LibraryHandle::open)
+    }
+
+    #[cfg(not(target_arch = "wasm32"))]
+    pub fn open_recovered(&self, spec: LibraryRuntimeSpec, executor: &BackendExecutor) -> Result<bool, BackendError> {
+        self.open_with(spec, executor, LibraryHandle::open_recovered)
+    }
+
+    fn open_with(&self, spec: LibraryRuntimeSpec, executor: &BackendExecutor, open: fn(LibraryRuntimeSpec, &BackendExecutor) -> Result<LibraryHandle, BackendError>) -> Result<bool, BackendError> {
         let executor = executor.clone();
         self.run(move |directory| match directory.handles.entry(spec.config.id) {
             Entry::Occupied(_) => Ok(false),
             Entry::Vacant(entry) => {
-                entry.insert(LibraryHandle::open(spec, &executor)?);
+                entry.insert(open(spec, &executor)?);
                 Ok(true)
             }
         })

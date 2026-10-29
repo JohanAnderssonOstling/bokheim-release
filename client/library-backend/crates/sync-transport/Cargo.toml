@@ -5,6 +5,7 @@ edition = "2021"
 publish = false
 
 [dependencies]
+http-response = { path = "../../../../shared/http-response" }
 log = "0.4"
 web-time = "1"
 uuid = { version = "1", features = ["v4", "js"] }

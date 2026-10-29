@@ -1,15 +1,16 @@
 //! The shape of one book's page.
 //!
-//! Compact pages keep the cover beside the title. Desktop pages place book
-//! details in a sidebar; contents and description sit beside it when space
-//! allows, or stack in one reading column.
+//! Mobile pages keep book actions visible, with contents and description in
+//! sheets. Desktop pages place details in a sidebar; contents and description
+//! sit beside it when space allows, or stack in one reading column.
 //!
 //! These functions style and lay out. What a button does, which entry the reader
 //! is inside, and whether the file is on the device are the page's business.
 
 use gpui::prelude::*;
-use gpui::{Div, ElementId, SharedString, Stateful, div, px, rems, rgba};
+use gpui::{App, Div, ElementId, SharedString, Stateful, div, px, rems, rgba};
 use gpui_component::text::TextView;
+use gpui_component::{IconName, Theme};
 use html::document::plain_text_from_fragment;
 use html_gpui::HtmlFragmentElement;
 
@@ -17,6 +18,41 @@ use crate::{
     BOOK_DETAIL_COLUMN_GAP, BOOK_DETAIL_COLUMN_MAX_WIDTH_REM, BOOK_DETAIL_COVER_FRACTION, BOOK_DETAIL_COVER_WIDTH, BOOK_DETAIL_DESCRIPTION_LINE_HEIGHT_EM, BOOK_DETAIL_DESCRIPTION_SIZE, BOOK_DETAIL_HERO_GAP, BOOK_DETAIL_PAGE_MARGIN,
     BOOK_DETAIL_PAGE_WIDTH_REM, BOOK_DETAIL_SECTION_GAP, BrowserTheme, InteractionHighlights, SPACE_LG, SPACE_SM, SPACE_XS, TEXT_LG, TEXT_MD, TEXT_SM, TEXT_XS, TITLE_MD, topbar_action_height_rem,
 };
+
+gpui::actions!(book_detail, [ShowBookDescription, ShowBookContents, CloseBookPlayer]);
+
+pub fn book_detail_close_player_button() -> crate::Button {
+    crate::playback_secondary_button(crate::outlined_icon_button("book-close-player", "Close player", IconName::Close)).on_click(|_, window, cx| window.dispatch_action(Box::new(CloseBookPlayer), cx))
+}
+
+/// Secondary book information stays one tap away without extending the page.
+pub fn book_detail_description_button(theme: BrowserTheme) -> crate::Button {
+    crate::base_button("book-description")
+        .ghost()
+        .text_color(theme.text)
+        .icon(IconName::Info)
+        .label("Description")
+        .h(rems(2.5))
+        .px(rems(0.25))
+        .debug_selector(|| "book-description".into())
+        .on_click(|_, window, cx| window.dispatch_action(Box::new(ShowBookDescription), cx))
+}
+
+pub fn book_detail_contents_button(theme: BrowserTheme) -> crate::Button {
+    crate::base_button("book-contents")
+        .ghost()
+        .text_color(theme.text)
+        .h(rems(2.5))
+        .px(rems(0.25))
+        .icon(IconName::Menu)
+        .label("Contents")
+        .debug_selector(|| "book-contents".into())
+        .on_click(|_, window, cx| window.dispatch_action(Box::new(ShowBookContents), cx))
+}
+
+pub fn book_detail_mobile_tools(theme: BrowserTheme) -> Div {
+    crate::now_playing_tools().child(book_detail_contents_button(theme)).child(book_detail_description_button(theme))
+}
 
 /// How hard a desktop column grows against a margin or gap. The columns take
 /// all the spare width until each reaches its cap; only then do the margins
@@ -62,7 +98,7 @@ pub fn book_detail_column_gap(theme: BrowserTheme) -> Div {
 }
 
 /// A desktop column that grows with its fellows up to its cap.
-fn book_detail_column() -> Div {
+pub fn book_detail_column() -> Div {
     div().flex_grow(COLUMN_GROWTH).flex_shrink(1.0).flex_basis(px(0.0)).min_w_0().max_w(rems(BOOK_DETAIL_COLUMN_MAX_WIDTH_REM)).min_h_0().flex().flex_col()
 }
 
@@ -71,7 +107,7 @@ pub fn book_detail_sidebar_column() -> Div {
     book_detail_column().min_w(px(BOOK_DETAIL_COVER_WIDTH)).max_w(px(BOOK_DETAIL_COVER_WIDTH))
 }
 
-/// Back, the cover and the headline, inside the sidebar's scroll area.
+/// The cover and the headline, inside the sidebar's scroll area.
 pub fn book_detail_sidebar() -> Div {
     div().w_full().min_w_0().flex().flex_col().gap(px(SPACE_LG)).py(px(SPACE_LG))
 }
@@ -80,27 +116,20 @@ pub fn book_detail_sidebar_cover_slot() -> Div {
     div().relative().w(px(BOOK_DETAIL_COVER_WIDTH)).max_w_full().flex_none().self_center()
 }
 
-pub fn book_detail_contents_column() -> Div {
-    book_detail_column()
-}
-
-pub fn book_detail_description_column() -> Div {
-    book_detail_column()
-}
-
 /// What a contents or description column holds, inside its scroll area. The
 /// trailing padding keeps the scrollbar off the chapters' durations.
 pub fn book_detail_column_body() -> Div {
     div().w_full().min_w_0().flex().flex_col().gap(px(BOOK_DETAIL_SECTION_GAP)).py(px(SPACE_LG)).pr(px(SPACE_SM))
 }
 
-/// Back to the library, at the top of the page. It still returns to wherever
-/// the book was opened from, but it is labelled "Library" rather than with that
-/// page's name: a folder or author name at the top of a book page read as part
-/// of the book.
-pub fn book_detail_back(id: impl Into<ElementId>, theme: BrowserTheme) -> gpui_component::button::Button {
-    use gpui_component::button::ButtonVariants as _;
-    crate::base_button(id).ghost().text_color(theme.text).icon(gpui_component::IconName::ArrowLeft).label("Library").tooltip(crate::shortcut_tooltip("Return to library", "escape")).self_start().h(rems(topbar_action_height_rem())).px_0()
+/// Back to where the book was opened, beside the top of its cover.
+pub fn book_detail_back(id: impl Into<ElementId>, theme: BrowserTheme) -> crate::Button {
+    crate::outlined_icon_button(id, "Return to library", IconName::ArrowLeft).text_color(theme.text).tooltip(crate::shortcut_tooltip("Return to library", "escape")).debug_selector(|| "book-detail-back".into())
+}
+
+/// A centred cover with navigation beside its top edge, without a header row.
+pub fn book_detail_cover_row(back: Option<crate::Button>, cover: impl IntoElement) -> Div {
+    div().relative().w_full().flex().justify_center().items_start().child(cover).children(back.map(|back| div().absolute().top_0().left_0().child(back)))
 }
 
 /// The cover and the words beside it, side by side down to a width where the
@@ -143,7 +172,7 @@ pub fn book_detail_title(title: impl Into<SharedString>, subtitle: Option<&str>,
         .flex()
         .flex_col()
         .gap(px(SPACE_XS))
-        .child(div().font_family(theme.display_font_family()).text_size(rems(if large { TITLE_MD } else { TEXT_LG })).text_color(theme.text).child(book_detail_text("book-detail-title", title)))
+        .child(div().when_some(theme.display_font_family(), |text, family| text.font_family(family)).text_size(rems(if large { TITLE_MD } else { TEXT_LG })).text_color(theme.text).child(book_detail_text("book-detail-title", title)))
         .children(subtitle.filter(|subtitle| !subtitle.trim().is_empty()).map(|subtitle| div().text_size(rems(TEXT_MD)).text_color(theme.text_muted).child(book_detail_text("book-detail-subtitle", subtitle.to_owned()))))
 }
 
@@ -190,6 +219,7 @@ pub fn book_detail_facts(facts: impl IntoIterator<Item = SharedString>, theme: B
 /// wherever it is seen. Drawn here as well it ran the width of the hero, which
 /// at nought per cent is a rule under the byline saying nothing.
 pub fn book_detail_position(entry: Option<SharedString>, detail: Option<SharedString>, theme: BrowserTheme) -> Div {
+    let has_detail = detail.is_some();
     div()
         .w_full()
         .flex()
@@ -199,8 +229,19 @@ pub fn book_detail_position(entry: Option<SharedString>, detail: Option<SharedSt
         .gap(px(SPACE_SM))
         .text_size(rems(TEXT_XS))
         .text_color(theme.text_muted)
-        .child(div().flex_1().min_w_0().overflow_hidden().whitespace_nowrap().text_ellipsis().children(entry.map(|entry| book_detail_text("book-detail-position-entry", entry))))
-        .children(detail.map(|detail| div().flex_none().child(book_detail_text("book-detail-position-detail", detail))))
+        .children(has_detail.then(|| div().flex_none().w(rems(3.5))))
+        .child(
+            div()
+                .debug_selector(|| "book-detail-position-entry-box".into())
+                .flex_1()
+                .min_w_0()
+                .text_center()
+                .overflow_hidden()
+                .whitespace_nowrap()
+                .text_ellipsis()
+                .children(entry.map(|entry| book_detail_text("book-detail-position-entry", entry))),
+        )
+        .children(detail.map(|detail| div().flex_none().w(rems(3.5)).text_right().child(book_detail_text("book-detail-position-detail", detail))))
 }
 
 pub fn book_detail_actions() -> Div {
@@ -217,7 +258,7 @@ pub fn book_detail_section() -> Div {
 }
 
 pub fn book_detail_heading(heading: impl Into<SharedString>, theme: BrowserTheme) -> Div {
-    div().font_family(theme.display_font_family()).text_size(rems(TEXT_LG)).text_color(theme.text).child(book_detail_text("book-detail-heading", heading))
+    div().when_some(theme.display_font_family(), |text, family| text.font_family(family)).text_size(rems(TEXT_LG)).text_color(theme.text).child(book_detail_text("book-detail-heading", heading))
 }
 
 /// A section's heading, with what the section sums up to — "41 chapters ·
@@ -241,18 +282,13 @@ pub fn book_detail_section_heading(heading: impl Into<SharedString>, summary: Op
         })
 }
 
-/// The whole page, measured: the page lays itself out by its own width.
-pub fn book_detail_frame() -> Div {
-    div().relative().size_full().min_w_0().min_h_0()
-}
-
-/// Back over the cover and the title beside it, then the player at full
+/// The cover and the title beside it, then the player at full
 /// width: beside the cover it would have half the row.
 pub fn book_detail_introduction() -> Div {
     div().w_full().min_w_0().flex().flex_col().gap(px(SPACE_SM))
 }
 
-/// Too narrow for anything beside the cover: Back, the cover centred, then
+/// Too narrow for a title beside the cover: the cover centred, then
 /// the title block, player and all, centred under it.
 pub fn book_detail_stacked_introduction() -> Div {
     div().w_full().min_w_0().flex().flex_col().gap(px(SPACE_LG))
@@ -263,19 +299,26 @@ pub fn book_detail_stacked_introduction() -> Div {
 ///
 /// `None` where the markup carries no words, so a page is not given a heading
 /// over nothing.
-pub fn book_detail_description(description: &str, theme: BrowserTheme) -> Option<Div> {
+pub fn book_detail_description(description: &str, theme: BrowserTheme, cx: &App) -> Option<Div> {
     if plain_text_from_fragment(description).is_empty() {
         return None;
     }
-    let family = theme.ui_font_family.family_name();
-    let stylesheet = format!(
+    let stylesheet = description_stylesheet(Theme::global(cx).font_family.as_ref());
+    let selection_color = rgba(u32::from_be_bytes(InteractionHighlights::from_theme(theme).selection)).into();
+    Some(div().w_full().min_w_0().flex_none().child(HtmlFragmentElement::new("book-detail-description-html", description.to_owned()).stylesheet(stylesheet).justify().text_color(theme.text).selectable(selection_color)))
+}
+
+fn description_stylesheet(family: &str) -> String {
+    let family = family.replace('\\', "\\\\").replace('"', "\\\"").replace('\n', "\\a ").replace('\r', "\\d ");
+    // HTML fragments do not inherit GPUI text styles. Use the resolved
+    // interface family throughout the description while retaining emphasis.
+    format!(
         "html, body {{ margin: 0; padding: 0; }}
          :where(body) {{ font-family: \"{family}\"; font-size: {BOOK_DETAIL_DESCRIPTION_SIZE}rem; line-height: {BOOK_DETAIL_DESCRIPTION_LINE_HEIGHT_EM}; }}
          p:first-child {{ margin-top: 0; }}
-         p:last-child {{ margin-bottom: 0; }}"
-    );
-    let selection_color = rgba(u32::from_be_bytes(InteractionHighlights::from_theme(theme).selection)).into();
-    Some(div().w_full().min_w_0().flex_none().child(HtmlFragmentElement::new("book-detail-description-html", description.to_owned()).stylesheet(stylesheet).justify().text_color(theme.text).selectable(selection_color)))
+         p:last-child {{ margin-bottom: 0; }}
+         * {{ font-family: \"{family}\" !important; }}"
+    )
 }
 
 #[cfg(test)]
@@ -292,6 +335,41 @@ mod tests {
 
     struct TitleAndDescription {
         focus: FocusHandle,
+    }
+
+    #[gpui::test]
+    fn description_uses_resolved_interface_font_including_authored_text(cx: &mut TestAppContext) {
+        use html::render::{FragmentRenderOptions, FragmentRenderer};
+        use html_gpui::backend::GpuiTextCache;
+
+        cx.update(gpui_component::init);
+        let window = cx.add_window(|_, _| gpui::EmptyView);
+        window
+            .update(cx, |_, window, cx| {
+                let mut renderer = FragmentRenderer::new();
+                let mut shaper = GpuiTextCache::new(window.text_system().clone());
+                let source = "<p id='plain' style='font-family:Publisher'>Description <strong id='bold'>bold</strong> <em id='italic'>italic</em></p>";
+                for selected in ["Raleway", "NV Garamond", "Example Interface Font"] {
+                    Theme::global_mut(cx).font_family = selected.into();
+                    let options = FragmentRenderOptions::new(300.0, None).unwrap().with_user_styles(vec![description_stylesheet(Theme::global(cx).font_family.as_ref())]);
+                    let rendered = renderer.render(source, &options, &mut shaper).unwrap();
+                    let view = rendered.render_view();
+                    let boxes = view.boxes();
+                    for id in ["plain", "bold", "italic"] {
+                        let index = (0..boxes.len()).find(|&index| boxes.attribute(index, "id") == Some(id)).unwrap();
+                        let format = boxes.text_format(index);
+                        let family = format.font_family.and_then(|family| view.style_string(family)).unwrap();
+                        assert_eq!(family.trim_matches('"'), selected, "{id} must follow the resolved interface font");
+                        if id == "bold" {
+                            assert_eq!(format.font_weight, 700);
+                        }
+                        if id == "italic" {
+                            assert_eq!(format.font_style, html::layout::FontStyle::Italic);
+                        }
+                    }
+                }
+            })
+            .unwrap();
     }
 
     impl Render for LiteralTitle {
@@ -314,7 +392,7 @@ mod tests {
                         .flex()
                         .flex_col()
                         .child(div().h(px(40.)).child(book_detail_text("literal-title", TITLE)))
-                        .child(book_detail_description(&format!("<p>{}</p>", DESCRIPTION.replace('&', "&amp;")), BrowserTheme::default()).unwrap())
+                        .child(book_detail_description(&format!("<p>{}</p>", DESCRIPTION.replace('&', "&amp;")), BrowserTheme::default(), cx).unwrap())
                         .overflow_y_scrollbar()
                         .into_any_element();
                     body.prepaint_as_root(bounds.origin, bounds.size.map(AvailableSpace::Definite), window, cx);

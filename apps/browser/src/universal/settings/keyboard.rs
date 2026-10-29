@@ -10,8 +10,8 @@ impl SettingsPage {
     pub(super) fn settings_container(&self, content: impl IntoElement, desktop: bool, cx: &Context<Self>) -> components::Scrollable<Div> {
         let theme = components::browser_theme(cx);
         let tabs = components::browser_settings_button_group(theme)
-            .child(components::browser_settings_choice_button("settings-general-tab", "General", !self.keyboard_tab, theme).on_click(cx.listener(|page, _, _, cx| page.select_settings_tab(false, cx))))
-            .child(components::browser_settings_choice_button("settings-keyboard-tab", "Keyboard", self.keyboard_tab, theme).on_click(cx.listener(|page, _, _, cx| page.select_settings_tab(true, cx))));
+            .child(components::settings_choice_button("settings-general-tab", "General", !self.keyboard_tab, theme).on_click(cx.listener(|page, _, _, cx| page.select_settings_tab(false, cx))))
+            .child(components::settings_choice_button("settings-keyboard-tab", "Keyboard", self.keyboard_tab, theme).on_click(cx.listener(|page, _, _, cx| page.select_settings_tab(true, cx))));
         components::browser_settings_page_with_scroll(&self.scroll)
             .key_context(SETTINGS_KEY_CONTEXT)
             .track_focus(&self.focus)

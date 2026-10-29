@@ -45,8 +45,9 @@ impl LibraryClient {
     pub async fn copy_book_to_directory(&self, content_hash: BookId, source_id: Option<DirId>, destination_id: DirId) -> Result<bool, BackendError> {
         self.request(LibraryCommand::Ready(ReadyCommand::CopyBookToDirectory { content_hash, source_id, destination_id })).await
     }
-    pub async fn move_book_to_directory(&self, content_hash: BookId, source_id: DirId, destination_id: DirId) -> Result<String, BackendError> {
-        self.request(LibraryCommand::Ready(ReadyCommand::MoveBookToDirectory { content_hash, source_id, destination_id })).await
+    /// Moves a placement and reports whether the destination was created, for undo.
+    pub async fn move_book_placement(&self, content_hash: BookId, source_id: DirId, destination_id: DirId) -> Result<bool, BackendError> {
+        self.request(LibraryCommand::Ready(ReadyCommand::MoveBookPlacement { content_hash, source_id, destination_id })).await
     }
     pub async fn remove_book_from_directory(&self, content_hash: BookId, source_id: DirId) -> Result<bool, BackendError> {
         self.request(LibraryCommand::Ready(ReadyCommand::RemoveBookFromDirectory { content_hash, source_id })).await

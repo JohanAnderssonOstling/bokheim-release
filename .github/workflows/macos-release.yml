@@ -40,9 +40,9 @@ env:
   MACOSX_DEPLOYMENT_TARGET: "13.0"
   BOKHEIM_PACKAGE_SOURCE_ROOT: ${{ github.workspace }}/bokheim
   RELEASE_REPOSITORY: JohanAnderssonOstling/bokheim-release
-  GPUI_FORK_REF: c186a827d40ba6b3f85789138dabe55554e2a4c0
-  HTML_ENGINE_REF: fbdc9748d7ddb339d23b8f3cd65e54c16f371fad
-  HTML_VIEW_CORE_REF: e34aba1f7d91f5e4ce95d5d9141f97c74d42f6a9
+  GPUI_FORK_REF: 6b1ef5fab98df3c62babc7c9245ccffde5a493a2
+  HTML_ENGINE_REF: 90bf31db848ec7ad5c405d37fd6027e532d34403
+  HTML_VIEW_CORE_REF: 60aa193d0381479e06811378decf7f09f0d93f6e
 
 jobs:
   build:
@@ -147,7 +147,7 @@ jobs:
               assert os.environ['GITHUB_REF_NAME'] == 'v' + version, 'Tag differs from app version'
           PY
       - name: Build optimized desktop app
-        run: python3 apps/desktop-gpui/scripts/build.py --target "${{ matrix.target }}"
+        run: python3 apps/desktop-gpui/scripts/build.py --no-google-drive --target "${{ matrix.target }}"
       - name: Verify relocated PDF runtime
         if: inputs.build_only != true
         run: |

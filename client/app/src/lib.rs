@@ -1,6 +1,7 @@
 //! Application clients, account state, and startup configuration.
 //! Platform launchers and worker entry points use [`host`].
 pub mod host;
+pub use cloud_storage::google_drive_available;
 
 mod api;
 mod app;
@@ -18,6 +19,7 @@ pub use app::{AccountSnapshot, AppClient, AppStartupState};
 pub use app::{AccountStatus, AppDataLocation, LibraryEntry, LocalLibraryStorageUsage, ServerLibraryStorageUsage};
 pub use app::{CloudFolderListing, CloudLoginRequest};
 pub use cloud_storage::{CloudEntry, CloudFolder, oauth::GoogleAccount};
+pub use cloud_storage::oauth::GoogleAccessGrant;
 pub use sync_common::storage::{CloudLibraryRoot, CloudProvider, LibraryStorage, ProviderId, ProviderScope};
 pub use client_runtime::{BackendError, Classified, Failure, WifiFailure};
 pub(crate) type DeviceAccountSession = library_backend::integration::LibraryAccountSession<app::BackendContext>;
@@ -52,6 +54,6 @@ pub(crate) use app::BackendContext;
 mod web;
 
 #[cfg(all(feature = "kobo", not(target_arch = "wasm32")))]
-pub use api::app::BatteryStatus;
+pub use api::app::{BatteryReading, BatteryStatus};
 #[cfg(all(feature = "kobo", target_os = "linux"))]
 pub use api::app::{BluetoothDevice, BluetoothRequest, BluetoothStatus, WifiNetwork, WifiPhase, WifiRequest, WifiSecurity, WifiSnapshot};

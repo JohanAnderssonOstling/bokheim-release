@@ -281,6 +281,10 @@ impl Render for AppMenu {
             )
             .on_hover(cx.listener(Self::handle_hover))
             .when(is_selected, |this| {
+                let menu = self.build_popup_menu(window, cx);
+                if cx.supports_touch_input() {
+                    return this.child(deferred(crate::popover::centered_overlay(menu, window, cx)));
+                }
                 this.child(deferred(
                     anchored()
                         .anchor(gpui::Anchor::TopLeft)
@@ -290,7 +294,7 @@ impl Render for AppMenu {
                                 .size_full()
                                 .occlude()
                                 .top_1()
-                                .child(self.build_popup_menu(window, cx)),
+                                .child(menu),
                         ),
                 ))
             })

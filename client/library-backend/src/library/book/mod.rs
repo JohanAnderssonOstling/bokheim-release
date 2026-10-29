@@ -5,6 +5,8 @@ use crate::BackendError;
 use crate::BoxedBookReader;
 use crate::{BookId, LibrarySession};
 use book_model::BookFormat;
+use client_platform_runtime::startup_profile::StartupProfile;
+use library_database::LocalBookInfo;
 
 #[cfg(target_arch = "wasm32")]
 pub(crate) mod browser;
@@ -15,6 +17,8 @@ mod host;
 #[cfg(target_arch = "wasm32")]
 #[path = "web.rs"]
 mod host;
+mod remote_archive;
+mod remote_pdf;
 pub use host::AudiobookBook;
 pub(crate) use host::Opened;
 
@@ -74,33 +78,25 @@ impl DocumentBook {
     }
 }
 
-struct BookInfo {
-    format: BookFormat,
-    path: Option<library_model::RelativeBookPath>,
-}
-async fn book_info(library: &LibrarySession, hash: BookId) -> Result<BookInfo, BackendError> {
-    let info = library.db.local_book_info(&hash)?;
-    Ok(BookInfo { format: info.format, path: info.path })
-}
-
 struct RemoteDocument {
     source: crate::library::RemoteFile,
     prefix: Vec<u8>,
     pdf_metadata: Option<pdf_view_common::PdfReaderMetadata>,
 }
-async fn pdf_metadata(library: &LibrarySession, hash: BookId) -> Result<Option<pdf_view_common::PdfReaderMetadata>, BackendError> {
-    library.db.pdf_metadata(&hash).map_err(Into::into)
-}
 async fn remote_document(library: &LibrarySession, hash: BookId) -> Result<RemoteDocument, BackendError> {
     let (source, prefix) = library.describe_remote_file(hash).await.map_err(BackendError::operation)?;
-    let pdf_metadata = pdf_metadata(library, hash).await?;
+    let pdf_metadata = library.db.pdf_metadata(&hash)?;
+    library.remote_book_access(&source)?;
     Ok(RemoteDocument { source, prefix, pdf_metadata })
 }
 
 impl LibrarySession {
     pub(crate) async fn prepare_book_for_reader(&self, hash: BookId) -> Result<Opened, BackendError> {
-        let info = book_info(self, hash).await?;
+        let mut profile = StartupProfile::new("book_lookup_resolve");
+        let info = self.db.local_book_info(&hash)?;
+        profile.mark("local_book_info");
         if let Some(book) = host::local(self, hash, &info).await? {
+            profile.mark("local_source");
             return Ok(book);
         }
         host::remote(self, hash, &info).await

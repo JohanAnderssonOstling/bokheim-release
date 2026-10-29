@@ -1,6 +1,6 @@
 use gpui::{
     Action, AsKeystroke, FocusHandle, Half, IntoElement, KeyContext, Keystroke, ParentElement as _,
-    RenderOnce, StyleRefinement, Styled, Window, div, prelude::FluentBuilder as _, relative,
+    RenderOnce, StyleRefinement, Styled, Window, div, prelude::FluentBuilder as _,
 };
 
 use crate::{ActiveTheme, StyledExt};
@@ -233,7 +233,7 @@ impl RenderOnce for Kbd {
             .min_w_5()
             .text_center()
             .rounded(cx.theme().radius.half())
-            .line_height(relative(1.))
+            .line_height_auto()
             .text_xs()
             .whitespace_normal()
             .flex_shrink_0()

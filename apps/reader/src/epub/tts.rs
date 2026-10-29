@@ -2,11 +2,23 @@ use crate::epub::{LoadState, ReaderView};
 use crate::shell::persistence::StoredPosition;
 use crate::shell::tts::{self, TtsReader};
 use gpui::{App, Context};
-use html_view_core::cfi::{parse_cfi_spine_only, source_position_cfi};
-use html_view_core::{ReadingTarget, RendererCommand};
-use reader_speech::{SpeechChunk, SpeechControl, SpeechEvent, next_chunk_with_limit};
+use skrift_column_paginator::cfi::{parse_cfi_spine_only, source_position_cfi};
+use skrift_column_paginator::{ReadingTarget, RendererCommand};
+use html_view_gpui::HtmlView;
+use reader_speech::{FIRST_CHUNK_CHARS, SpeechChunk, SpeechControl, SpeechEvent, next_chunk_with_limit};
 use std::time::Duration;
 use ui_components::user_facing_error;
+
+fn speech_chunk(view: &HtmlView, target: &ReadingTarget, glyph_start: u32, max_chars: usize) -> Option<SpeechChunk> {
+    view.reading_chunk(target, glyph_start, max_chars, |text| next_chunk_with_limit(text, 0, max_chars)).map(|(fragment, next_glyph)| SpeechChunk { text: fragment.text, glyph_ranges: fragment.target.glyph_ranges, next_glyph })
+}
+
+/// A paused skip previews exactly the chunk that playback will start with.
+fn follow_passage(view: &mut HtmlView, target: &ReadingTarget, cx: &mut Context<HtmlView>) {
+    if let Some(chunk) = speech_chunk(view, target, 0, FIRST_CHUNK_CHARS) {
+        view.follow_reading_target(ReadingTarget { element: target.element, glyph_ranges: chunk.glyph_ranges }, cx);
+    }
+}
 
 impl ReaderView {
     pub(super) fn tts_document_failed(&mut self, message: &str, cx: &mut Context<Self>) {
@@ -105,6 +117,12 @@ impl TtsReader for ReaderView {
         cfi.and_then(|cfi| self.toc.chapter_for_cfi(cfi)).or_else(|| cfi.and_then(parse_cfi_spine_only)).unwrap_or(self.tts_doc)
     }
 
+    fn chapter_label(&self, cx: &App) -> String {
+        let key = self.chapter_key(cx);
+        let number = self.toc.chapter_ordinals().iter().position(|chapter| *chapter == key).unwrap_or(self.tts_doc) + 1;
+        self.toc.title_for_ordinal(key).filter(|title| !title.trim().is_empty()).map_or_else(|| format!("Chapter {number}"), |title| format!("Chapter {number} · {title}"))
+    }
+
     fn update_tts_chapter_limit(&mut self, cx: &mut Context<Self>) {
         let end = self.tts.sleep.and_then(|plan| plan.chapter()).and_then(|chapter| {
             let LoadState::Ready(view) = &self.load_state else { return None };
@@ -115,6 +133,7 @@ impl TtsReader for ReaderView {
     }
 
     fn skip_tts_element(&mut self, forward: bool, cx: &mut Context<Self>) {
+        self.tts_navigation_changed(cx);
         if !self.tts.playing || self.tts.needs_restart {
             return;
         }
@@ -124,7 +143,7 @@ impl TtsReader for ReaderView {
         }
         self.tts.skip_to(index);
         let target = self.tts_fragments[index].clone();
-        self.with_renderer(cx, |view, cx| view.follow_reading_target(target, cx));
+        self.with_renderer(cx, |view, cx| follow_passage(view, &target, cx));
     }
 
     fn start_tts(&mut self, cx: &mut Context<Self>) {
@@ -160,6 +179,8 @@ impl TtsReader for ReaderView {
             cx.notify();
             return;
         }
+        self.tts.current = Some(start);
+        self.tts.set_chapter(self.chapter_label(cx));
         match self.tts.start_items(self.tts_fragments.len(), start, glyph_start) {
             Ok(Some(events)) => self.tts.events_task = Some(tts::listen(events, cx)),
             Ok(None) => {}
@@ -210,7 +231,7 @@ impl TtsReader for ReaderView {
                 self.remote_control(command, cx);
                 if let Some(index) = item {
                     if let Some(target) = self.tts_fragments.get(index).cloned() {
-                        self.with_renderer(cx, |view, cx| view.follow_reading_target(target, cx));
+                        self.with_renderer(cx, |view, cx| follow_passage(view, &target, cx));
                     }
                 }
             }
@@ -219,11 +240,7 @@ impl TtsReader for ReaderView {
                     && let LoadState::Ready(view) = &self.load_state
                     && let Some(service) = &self.tts.service
                 {
-                    let chunk = view.read(cx).reading_chunk(target, glyph_start, max_chars, |text| next_chunk_with_limit(text, 0, max_chars)).map(|(fragment, next_glyph)| SpeechChunk {
-                        text: fragment.text,
-                        glyph_ranges: fragment.target.glyph_ranges,
-                        next_glyph,
-                    });
+                    let chunk = speech_chunk(view.read(cx), target, glyph_start, max_chars);
                     service.provide_chunk(generation, index, glyph_start, chunk);
                 }
                 return;
@@ -258,5 +275,71 @@ impl TtsReader for ReaderView {
             }
         }
         cx.notify();
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use gpui::{TestAppContext, px, size};
+    use skrift_column_paginator::{RendererInitialConfig, ResourceProvider};
+    use std::{io, sync::Arc};
+
+    struct PassageBook;
+
+    impl ResourceProvider for PassageBook {
+        fn read_bytes(&self, uri: &str) -> io::Result<Vec<u8>> {
+            if !self.exists(uri) {
+                return Err(io::ErrorKind::NotFound.into());
+            }
+            let rest = "The rest of this long passage continues onto later lines and pages. ".repeat(50);
+            Ok(format!("<html><body><p style=\"height: 600px\">Before.</p><p>A café <em>starts</em> this passage. {rest}</p></body></html>").into_bytes())
+        }
+
+        fn exists(&self, uri: &str) -> bool {
+            uri == "book.html"
+        }
+
+        fn resolve(&self, _: &str, href: &str) -> String {
+            href.to_owned()
+        }
+
+        fn list_html_candidates(&self, _: &str) -> io::Result<Vec<String>> {
+            Ok(vec!["book.html".into()])
+        }
+    }
+
+    #[gpui::test]
+    fn passage_skip_and_playback_paint_the_same_opening_highlight(cx: &mut TestAppContext) {
+        let (view, visual) = cx.add_window_view(|window, cx| HtmlView::from_provider(Arc::new(PassageBook), vec!["book.html".into()], 0, None, RendererInitialConfig { max_column_count: Some(1), ..Default::default() }, window, cx));
+        visual.simulate_resize(size(px(600.0), px(400.0)));
+        visual.run_until_parked();
+        let unhighlighted = visual.update(|window, _| window.painted_quads().into_iter().map(|quad| quad.bounds).collect::<Vec<_>>());
+        let (opening, revision) = view.update(visual, |view, cx| {
+            let (_, _, _, items) = view.reading_items().unwrap();
+            let passage = &items[1];
+            let chunk = speech_chunk(view, passage, 0, FIRST_CHUNK_CHARS).unwrap();
+            assert_eq!(chunk.text, "A café starts this passage.");
+            assert!(chunk.next_glyph.is_some(), "the passage must extend beyond the opening chunk");
+            assert_ne!(chunk.glyph_ranges, passage.glyph_ranges);
+            let revision = view.navigation_revision();
+            let position = view.current_cfi();
+            follow_passage(view, passage, cx);
+            assert_ne!(view.current_cfi(), position, "skipping must reveal a passage on a later page");
+            (ReadingTarget { element: passage.element, glyph_ranges: chunk.glyph_ranges }, revision)
+        });
+        visual.run_until_parked();
+        let preview = visual.update(|window, _| window.painted_quads().into_iter().map(|quad| quad.bounds).collect::<Vec<_>>());
+        assert_ne!(preview, unhighlighted, "skipping while paused must visibly highlight the destination");
+        let position = view.update(visual, |view, cx| {
+            assert_eq!(view.navigation_revision(), revision, "following speech must not count as manual navigation");
+            let position = view.current_cfi();
+            view.follow_reading_target(opening, cx);
+            position
+        });
+        visual.run_until_parked();
+        let playing = visual.update(|window, _| window.painted_quads().into_iter().map(|quad| quad.bounds).collect::<Vec<_>>());
+        assert_eq!(preview, playing, "starting audio must preserve the skip preview's highlight geometry");
+        view.read_with(visual, |view, _| assert_eq!(view.current_cfi(), position, "starting audio must not jump to a different page"));
     }
 }

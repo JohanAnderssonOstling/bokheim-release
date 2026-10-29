@@ -1,6 +1,7 @@
 //! Account-scoped wakeups. Reconnect reconciles missed events; no remote polling.
 
 use crate::DeviceAccountSession;
+use client_platform_runtime::connectivity::Connectivity;
 use library_backend::library::{LibraryDirectory, LibraryNotifications};
 use std::sync::Arc;
 use std::time::Duration;
@@ -8,6 +9,14 @@ use sync_common::api::notifications::NotificationMessage;
 use tokio::sync::watch;
 
 pub(super) async fn run(account: DeviceAccountSession, account_wake: watch::Sender<()>, interest: crate::notification_interest::NotificationInterest, libraries: Arc<LibraryDirectory>) {
+    let network = match super::network::observe() {
+        Ok(network) => network,
+        Err(error) => { log::warn!("Could not observe notification connectivity: {error}"); return; }
+    };
+    run_with_network(account, account_wake, interest, libraries, network).await;
+}
+
+async fn run_with_network(account: DeviceAccountSession, account_wake: watch::Sender<()>, interest: crate::notification_interest::NotificationInterest, libraries: Arc<LibraryDirectory>, mut network: Connectivity) {
     let mut activity = interest.subscribe();
     let initial_activity = *activity.borrow_and_update();
     let mut library_notifications = LibraryNotifications::new(libraries, account.library_account(), initial_activity);
@@ -21,8 +30,9 @@ pub(super) async fn run(account: DeviceAccountSession, account_wake: watch::Send
         if library_notifications.observe_activity(policy) {
             account_wake.send_replace(());
         }
+        let online = network.online();
         let attempt = async {
-            if !policy.enabled() {
+            if !policy.enabled() || !online {
                 return std::future::pending().await;
             }
             let session = account.refresh_if_needed().await.map_err(|e| e.to_string())?;
@@ -34,11 +44,13 @@ pub(super) async fn run(account: DeviceAccountSession, account_wake: watch::Send
         };
         tokio::select! {
             biased;
+            _ = network.changed() => { retry = 1; continue; },
             result = activity.changed() => { if result.is_err() { return; } retry = 1; continue; },
             result = changed.changed() => { if result.is_err() { return; } retry = 1; continue; },
             result = attempt => { if let Err(error) = result { log::debug!("Notification connection ended: {error}"); } },
         }
         tokio::select! {
+            _ = network.changed() => { retry = 1; continue; },
             result = activity.changed() => { if result.is_err() { return; } retry = 1; continue; },
             result = changed.changed() => { if result.is_err() { return; } retry = 1; },
             result = crate::executor::sleep(Duration::from_secs(retry)) => {
@@ -80,6 +92,37 @@ mod tests {
     use super::*;
     use crate::notification_interest::InterestState;
     use crate::{AppDataLocation, BackendContext};
+
+    #[tokio::test(start_paused = true)]
+    async fn subscribed_notifications_have_no_retry_timer_while_offline() {
+        use crate::notification_interest::NotificationInterest;
+        use futures_util::task::{waker_ref, ArcWake};
+        use std::future::Future;
+        use std::sync::atomic::{AtomicUsize, Ordering};
+        use std::task::Context;
+        struct Wakes(AtomicUsize);
+        impl ArcWake for Wakes {
+            fn wake_by_ref(waker: &Arc<Self>) { waker.0.fetch_add(1, Ordering::Relaxed); }
+        }
+        let root = tempfile::tempdir().unwrap();
+        let context = BackendContext::initialize(AppDataLocation::native_path(root.path())).unwrap();
+        let server = "http://127.0.0.1:1".parse().unwrap();
+        let account = DeviceAccountSession::load(context, server).unwrap();
+        account.set(account_client::Session::try_new("http://127.0.0.1:1".parse().unwrap(), "user".into(), "reader@example.com".into(), "a".repeat(43)).unwrap()).unwrap();
+        let interest = NotificationInterest::default();
+        let _browsing = interest.view(true);
+        let (wake, _requests) = watch::channel(());
+        let (connection, status) = watch::channel(false);
+        let wakes = Arc::new(Wakes(AtomicUsize::new(0)));
+        let waker = waker_ref(&wakes);
+        let mut cx = Context::from_waker(&waker);
+        let mut notifications = Box::pin(run_with_network(account, wake, interest, Arc::new(LibraryDirectory::default()), Connectivity::new(status)));
+        assert!(notifications.as_mut().poll(&mut cx).is_pending());
+        tokio::time::advance(Duration::from_secs(3600)).await;
+        assert_eq!(wakes.0.load(Ordering::Relaxed), 0);
+        connection.send_replace(true);
+        assert!(wakes.0.load(Ordering::Relaxed) > 0, "reconnect schedules an immediate notification connection");
+    }
 
     #[test]
     fn account_discovery_wakes_for_account_events_without_open_libraries() {

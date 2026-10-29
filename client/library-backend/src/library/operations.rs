@@ -5,11 +5,18 @@ pub(crate) use crate::BackendError;
 use crate::ThumbnailResolution;
 pub(crate) use crate::{BookId, DownloadState};
 pub(crate) use library_model::BlobKind;
+use client_platform_runtime::startup_profile::StartupProfile;
 
 impl LibrarySession {
     pub(crate) fn persistent_download_state(&self, content_hash: BookId) -> Result<DownloadState, BackendError> {
-        let bytes_present = self.assets.book_exists(&content_hash, &self.db.book_paths(&content_hash)?).map_err(BackendError::operation)?;
-        self.db.transfer_download_state(&content_hash, bytes_present).map_err(BackendError::operation)
+        let mut profile = StartupProfile::new("book_lookup_availability");
+        let paths = self.db.book_paths(&content_hash)?;
+        profile.mark("book_paths");
+        let bytes_present = self.assets.book_exists(&content_hash, &paths).map_err(BackendError::operation)?;
+        profile.mark("filesystem_exists");
+        let state = self.db.transfer_download_state(&content_hash, bytes_present).map_err(BackendError::operation);
+        profile.mark("download_flags_sql");
+        state
     }
 
     pub(crate) async fn thumbnail(&self, content_hash: BookId, resolution: ThumbnailResolution) -> Result<Option<Vec<u8>>, BackendError> {
@@ -38,7 +45,7 @@ impl LibrarySession {
         // The origin also addresses cover images directly by hash.
         Ok(match resolution {
             ThumbnailResolution::HighDensity => library_catalog::cover(content_hash, true).await,
-            ThumbnailResolution::Browse | ThumbnailResolution::CardHighDensity => library_catalog::card_cover(library_model::CardKey::from(content_hash), resolution.width(), &*self.cpu).await,
+            ThumbnailResolution::Browse | ThumbnailResolution::CardHighDensity => library_catalog::card_cover(library_model::CardKey::from(content_hash), resolution.width()).await,
         })
     }
 

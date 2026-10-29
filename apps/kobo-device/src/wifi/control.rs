@@ -1,4 +1,5 @@
 use std::fs;
+use std::os::fd::{AsRawFd, RawFd};
 use std::os::unix::net::UnixDatagram;
 use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicU64, Ordering};
@@ -10,6 +11,7 @@ static NEXT_SOCKET: AtomicU64 = AtomicU64::new(0);
 
 pub(super) struct Control {
     controller: WpaController,
+    socket: UnixDatagram,
     directory: PathBuf,
 }
 
@@ -27,7 +29,8 @@ impl Control {
             socket.connect(remote).map_err(|_| "Wi-Fi service is unavailable")?;
             socket.set_read_timeout(Some(timeout)).map_err(|_| "Cannot configure Wi-Fi timeout")?;
             socket.set_write_timeout(Some(timeout)).map_err(|_| "Cannot configure Wi-Fi timeout")?;
-            Ok(Self { controller: WpaController::from_socket(socket, directory.join("client")), directory: directory.clone() })
+            let controller = WpaController::from_socket(socket.try_clone().map_err(|_| "Cannot monitor Wi-Fi socket")?, directory.join("client"));
+            Ok(Self { controller, socket, directory: directory.clone() })
         })();
         if result.is_err() {
             let _ = fs::remove_dir_all(directory);
@@ -72,6 +75,10 @@ impl Control {
             }
         }
         Ok(events)
+    }
+
+    pub(super) fn fd(&self) -> RawFd {
+        self.socket.as_raw_fd()
     }
 }
 

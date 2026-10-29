@@ -296,7 +296,7 @@ fn navigation_on_book_distinguishes_missing_and_empty_and_replaces_playback_fiel
         let mut toc = None;
         db.connection
             .book_toc_select(&hash, |row| {
-                toc = Some(row.get::<_, String>(0)?);
+                toc = Some(row.get::<_, Vec<u8>>(0)?);
                 Ok(())
             })
             .unwrap();
@@ -304,12 +304,12 @@ fn navigation_on_book_distinguishes_missing_and_empty_and_replaces_playback_fiel
     };
     assert_eq!(read_toc(), None);
 
-    db.connection.navigation_upsert(&hash, 0, "[]", Some(1000), Some("[]")).unwrap();
-    assert_eq!(read_toc().as_deref(), Some("[]"));
-    db.connection.navigation_upsert(&hash, 0, "[]", None, None).unwrap();
+    db.connection.navigation_upsert(&hash, 0, b"[]", Some(1000), Some(b"[]")).unwrap();
+    assert_eq!(read_toc().as_deref(), Some(b"[]".as_slice()));
+    db.connection.navigation_upsert(&hash, 0, b"[]", None, None).unwrap();
     let playback: (Option<i64>, Option<String>) = db.connection.fixtures_read_book_duration_ms_tracks_json(&(&hash), |row| Ok((row.get(0)?, row.get(1)?))).unwrap();
     assert_eq!(playback, (None, None));
-    assert_eq!(read_toc().as_deref(), Some("[]"));
+    assert_eq!(read_toc().as_deref(), Some(b"[]".as_slice()));
 }
 
 #[test]
@@ -446,6 +446,30 @@ mod scanner {
 
     fn local_state(db: &Database, hash: BookId, directory: DirId) -> (bool, bool, String, i64) {
         db.connection.fixtures_read_local_file_projection_bd_deleted_at_bd(&(&hash), &(directory.to_string()), |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?))).unwrap()
+    }
+
+    #[test]
+    fn storage_recovery_forgets_only_local_state_and_preserves_remote_and_reading_state() {
+        use library_model::{BlobKind, DownloadState, TransferOrigin};
+        let (db, hash) = fixture();
+        db.record_remote_asset(BlobKind::Book, &hash).unwrap();
+        db.update_reading_position(&hash, "epubcfi(/6/2)", Some(0.5), None).unwrap();
+        db.sync_request_book_downloads(&[hash], TransferOrigin::UserInitiated).unwrap();
+        db.clear_sync_outbox().unwrap();
+        assert!(db.is_book_downloaded(&hash).unwrap());
+        assert_eq!(db.book_count().unwrap(), 1);
+        let before = recovery_payloads(&db);
+
+        db.reset_local_storage().unwrap();
+
+        assert!(!db.is_book_downloaded(&hash).unwrap());
+        assert_eq!(db.transfer_download_state(&hash, false).unwrap(), DownloadState::NotDownloaded);
+        assert!(db.remote_asset_hashes(BlobKind::Book).unwrap().contains(&hash));
+        assert_eq!(db.reading_position(&hash).unwrap().as_deref(), Some("epubcfi(/6/2)"));
+        assert_eq!(db.book_count().unwrap(), 1);
+        assert!(db.native_file_work().unwrap().is_empty());
+        assert!(db.book_download_requests(-1, None, 32).unwrap().is_empty());
+        assert_eq!(recovery_payloads(&db), before, "storage recovery must not publish a deletion");
     }
 
     #[test]
@@ -671,7 +695,6 @@ fn subject_browsing_reads_assignments_without_cached_membership() {
         book_sort: library_model::BrowseBookSort::Alphabetical,
         languages: vec![],
         hide_finished: false,
-        include_direct_child_books: false,
     };
     let parent_contents = db.browse_contents(&query, false).unwrap();
     assert!(parent_contents.children.is_empty());
@@ -698,7 +721,6 @@ fn subject_query(location: library_model::BrowseLocation) -> library_model::Libr
         chip_sort: library_model::BrowseChipSort::Alphabetical,
         book_sort: library_model::BrowseBookSort::Alphabetical,
         hide_finished: false,
-        include_direct_child_books: false,
     }
 }
 
@@ -860,6 +882,67 @@ fn all_books_uses_shared_search_filters_and_book_order() {
 }
 
 #[test]
+fn empty_folders_remain_visible_in_local_and_paged_browsing() {
+    use library_model::{BrowseLocation, BrowsePageRequest};
+
+    let db = database();
+    let empty = db.create_directory(&ROOT_DIR_ID, &"Empty".into()).unwrap().id;
+    let parent = db.create_directory(&ROOT_DIR_ID, &"Projects".into()).unwrap().id;
+    let nested = db.create_directory(&parent, &"Empty nested".into()).unwrap().id;
+    let remote = db.create_directory(&ROOT_DIR_ID, &"Remote books".into()).unwrap().id;
+    import_in_folder(&db, 401, remote);
+    db.connection.fixtures_update_book_dir_is_downloaded_3(&0).unwrap();
+    let local = db.create_directory(&ROOT_DIR_ID, &"Local books".into()).unwrap().id;
+    import_in_folder(&db, 402, local);
+    let query = subject_query(BrowseLocation::Folder(ROOT_DIR_ID));
+
+    for downloaded_only in [false, true] {
+        let views = [db.browse(&query, downloaded_only).unwrap(), db.browse_sections(&query, downloaded_only, 2).unwrap(), db.browse_page(&query, downloaded_only, BrowsePageRequest::default()).unwrap()];
+        for view in views {
+            for id in [empty, parent, local] {
+                assert!(view.contents.children.iter().any(|row| row.id == BrowseLocation::Folder(id)), "folder {id} disappeared with downloaded_only={downloaded_only}");
+            }
+            assert_eq!(view.contents.children.iter().any(|row| row.id == BrowseLocation::Folder(remote)), !downloaded_only);
+            let section = view.sections.iter().find(|section| section.parent.id == BrowseLocation::Folder(empty)).unwrap();
+            assert_eq!(section.parent.book_count, 0);
+            assert!(section.books.is_empty());
+            let container = view.sections.iter().find(|section| section.parent.id == BrowseLocation::Folder(parent)).unwrap();
+            assert_eq!(container.children[0].id, BrowseLocation::Folder(nested));
+        }
+        let contents = db.browse_contents(&query, downloaded_only).unwrap();
+        assert!(contents.children.iter().any(|row| row.id == BrowseLocation::Folder(empty)));
+
+        let nested_view = db.browse(&subject_query(BrowseLocation::Folder(parent)), downloaded_only).unwrap();
+        assert_eq!(nested_view.contents.children[0].id, BrowseLocation::Folder(nested));
+
+        let mut search = query.clone();
+        search.search = "EMPTY".into();
+        let found = db.browse_contents(&search, downloaded_only).unwrap();
+        assert_eq!(found.children.len(), 2);
+        assert_eq!(found.children.iter().find(|row| row.id == BrowseLocation::Folder(nested)).unwrap().path.as_deref(), Some("Projects"));
+    }
+}
+
+#[test]
+fn empty_folders_still_respect_explicit_book_filters() {
+    use library_model::{BrowseLocation, LibraryFileTypeFilter};
+
+    let db = database();
+    let empty = db.create_directory(&ROOT_DIR_ID, &"Empty".into()).unwrap().id;
+    let mut query = subject_query(BrowseLocation::Folder(ROOT_DIR_ID));
+    query.file_types = vec![LibraryFileTypeFilter::Book];
+    assert!(db.browse_contents(&query, true).unwrap().children.is_empty());
+    query.file_types.clear();
+    query.languages = vec!["en".into()];
+    assert!(db.browse_contents(&query, true).unwrap().children.is_empty());
+    query.languages.clear();
+    query.hide_finished = true;
+    assert!(db.browse_contents(&query, true).unwrap().children.is_empty());
+    query.hide_finished = false;
+    assert_eq!(db.browse_contents(&query, true).unwrap().children[0].id, BrowseLocation::Folder(empty));
+}
+
+#[test]
 fn folder_counts_include_all_placements_and_search_sources() {
     let db = database();
     let shelf = db.create_directory(&ROOT_DIR_ID, &"Shelf".into()).unwrap().id;
@@ -970,8 +1053,7 @@ fn folder_sections_use_subtree_counts_and_normalized_languages() {
     assert_eq!(unfiltered.sections[0].parent.id, library_model::BrowseLocation::Folder(shelf));
     assert_eq!(unfiltered.sections[0].children.iter().map(|row| row.id).collect::<Vec<_>>(), [library_model::BrowseLocation::Folder(child), library_model::BrowseLocation::Folder(empty)]);
     let downloaded = db.browse(&query, true).unwrap();
-    assert_eq!(downloaded.sections[0].children.len(), 1);
-    assert_eq!(downloaded.sections[0].children[0].id, library_model::BrowseLocation::Folder(child));
+    assert_eq!(downloaded.sections[0].children.iter().map(|row| row.id).collect::<Vec<_>>(), [library_model::BrowseLocation::Folder(child), library_model::BrowseLocation::Folder(empty)]);
     query.languages = vec!["en".into()];
     let page = db.browse(&query, false).unwrap();
     assert_eq!(page.sections.len(), 1);
@@ -1031,13 +1113,17 @@ fn downloaded_folder_sorting_uses_scoped_counts_and_normalized_names() {
                     query.file_types = vec![library_model::LibraryFileTypeFilter::Book];
                 }
                 let contents = db.browse_contents(&query, true).unwrap();
-                let expected = if !search.is_empty() {
+                let mut expected = if !search.is_empty() {
                     vec![("Écology", 1), ("Zoology", 1)]
                 } else if sort == library_model::BrowseChipSort::BookCount {
                     vec![("Most", 2), ("Écology", 1), ("Zoology", 1)]
                 } else {
                     vec![("Écology", 1), ("Most", 2), ("Zoology", 1)]
                 };
+                if !filtered && search.is_empty() {
+                    let position = if sort == library_model::BrowseChipSort::BookCount { expected.len() } else { 1 };
+                    expected.insert(position, ("Empty", 0));
+                }
                 assert_eq!(contents.children.iter().map(|row| (row.name.as_str(), row.book_count)).collect::<Vec<_>>(), expected);
                 assert!(contents.children.iter().all(|row| row.book_count == row.downloaded_book_count));
             }

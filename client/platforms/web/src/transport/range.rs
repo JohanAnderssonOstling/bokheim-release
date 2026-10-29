@@ -1,9 +1,10 @@
 //! Shared-memory range transport between dedicated browser workers.
 
-use std::cell::Cell;
 use super::{error_message, field};
 use js_sys::{Function, Uint8Array};
+use std::cell::Cell;
 use wasm_bindgen::prelude::*;
+use wasm_callback::future_to_promise_aborting;
 
 #[wasm_bindgen(inline_js = r#"
 export function serveBook(read, length) {
@@ -114,7 +115,7 @@ impl Server {
     {
         let read = Closure::<dyn FnMut(f64, u32) -> js_sys::Promise>::own_aborting(move |offset, length| {
             let future = fetch(offset as u64, length as usize);
-            wasm_bindgen_futures::future_to_promise(async move { future.await.map(|bytes| Uint8Array::from(bytes.as_slice()).into()).map_err(|e| JsValue::from_str(&e)) })
+            future_to_promise_aborting(async move { future.await.map(|bytes| Uint8Array::from(bytes.as_slice()).into()).map_err(|e| JsValue::from_str(&e)) })
         });
         Self::attach(length, read)
     }

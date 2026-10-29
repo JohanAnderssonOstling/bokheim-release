@@ -48,6 +48,8 @@ pub enum LibraryUpdate {
         progress: crate::CatalogImportProgress,
     },
     Scanning(bool),
+    /// Durable sync progress changed after a completed exchange.
+    SyncStatusChanged,
 }
 
 /// Limits hierarchical library browsing to one broad book family.
@@ -346,10 +348,6 @@ pub struct LibraryBrowseQuery {
     /// Facet counts continue to describe the location including finished books.
     #[serde(default)]
     pub hide_finished: bool,
-    /// Also shows books assigned directly to the selected subject's immediate
-    /// children. Grandchildren remain represented by their subject chips.
-    #[serde(default)]
-    pub include_direct_child_books: bool,
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -601,9 +599,15 @@ pub struct BookDetail {
     /// Navigation entry count for an audiobook, when its contents are known.
     #[serde(default)]
     pub audiobook_chapter_count: Option<usize>,
-    /// The publisher's blurb, as stored (HTML). Only the detail page shows it,
-    /// so browse queries never read it.
+    /// The publisher's blurb, as stored (HTML). Only the detail page and the
+    /// book overlay show it, so browse queries never read it.
     pub description: String,
+    /// Where the book sits in the subject tree Browse shows: the path to each
+    /// subject that lists the book itself, root first, every crumb a subject
+    /// page. Curated taxonomy only — never the file's own subject headings.
+    /// Empty for a feed book and for a book with no curated subject.
+    #[serde(default)]
+    pub subjects: Vec<Vec<BrowsePathSegment>>,
     /// Publication year, when known: the file's own, else the metadata server's.
     #[serde(default)]
     pub year: Option<i32>,

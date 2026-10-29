@@ -99,15 +99,18 @@ fn assert_response(decoded: SyncExchangeResponse, expected: &SyncExchangeRespons
 }
 
 #[test]
-fn sync_response_wire_bytes_and_historical_readers_remain_compatible() {
+fn sync_response_compacts_bookkeeping_and_reads_historical_payloads() {
     for payload in [0, 256, 128 * 1024] {
         let expected = response(4, payload);
         let legacy = transport::encode(&LegacyResponse::from(&expected)).unwrap();
         let compact = transport::encode(&expected).unwrap();
         assert_eq!(transport::encoded_len(&expected).unwrap(), compact.len());
-        assert_eq!(compact, legacy);
+        assert!(compact.len() < legacy.len());
         assert_response(transport::decode(&compact, transport::MAX_DECODED_RESPONSE_BYTES).unwrap(), &expected);
         assert_response(transport::decode_byte_fields(&legacy, transport::MAX_DECODED_RESPONSE_BYTES).unwrap(), &expected);
+        let mut historical = legacy;
+        historical[1] = 30;
+        assert_response(transport::decode_state(&historical, transport::MAX_DECODED_RESPONSE_BYTES).unwrap(), &expected);
     }
 }
 

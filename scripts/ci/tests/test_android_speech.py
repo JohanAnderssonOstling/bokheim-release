@@ -43,7 +43,7 @@ class AndroidSpeechTests(unittest.TestCase):
             (george / 'model.onnx').write_bytes(b'stale-george')
             with patch.object(speech, 'SHA256', digest), patch.object(speech, 'prepare', side_effect=voice) as prepare:
                 libraries = speech.prepare_android(root, offline=True)
-            prepare.assert_called_once_with(root / 'assets/tts/alba', offline=True)
+            prepare.assert_called_once_with(root / 'assets/tts/alba', offline=True, archive=None)
             self.assertEqual({path.name for path in libraries.glob('*.so')}, set(speech.REQUIRED))
             self.assertFalse((root / 'jniLibs/x86_64').exists())
             self.assertEqual((root / 'assets/tts/alba/voice.sha256').read_text().strip(), speech.VOICE_SHA256)

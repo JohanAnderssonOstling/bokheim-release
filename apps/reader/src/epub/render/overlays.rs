@@ -52,9 +52,9 @@ impl ReaderView {
         }
         .or_else(|| self.annotation_popup_anchor.map(annotation_editor::Passage::from_point));
         let mobile = components::uses_mobile_reader_controls(window);
-        #[cfg(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32")))]
+        #[cfg(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo")))]
         let dock_height = if mobile && self.tts.dock_open { components::player_dock_height_px(window) } else { 0.0 };
-        #[cfg(not(all(feature = "native-tts", not(feature = "kobo"), not(target_arch = "wasm32"))))]
+        #[cfg(not(all(any(feature = "native-tts", target_arch = "wasm32"), not(feature = "kobo"))))]
         let dock_height = 0.0;
         let mut insets = window.insets().effective();
         insets.bottom = (insets.bottom - px(dock_height)).max(px(0.0));

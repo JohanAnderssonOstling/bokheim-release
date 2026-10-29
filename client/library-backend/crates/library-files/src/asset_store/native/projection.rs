@@ -1,19 +1,23 @@
-use client_platform_native::filesystem::parent_directory;
 pub(crate) use super::*;
+use client_platform_native::filesystem::parent_directory;
 use std::fs::OpenOptions;
 use std::io::ErrorKind;
 pub(crate) use sync_common::DirId;
 // Native asset-store projections. The shared model owns paths;
 // these snapshots remember which physical paths this device has materialized.
 pub(crate) fn readable_path(handle: &Handle, name: String) -> Result<Option<PathBuf>, AssetStoreError> {
-    if !handle.enabled.load(std::sync::atomic::Ordering::Acquire) {
+    if !handle.enabled {
         return Ok(None);
     }
     if name.starts_with("book/") {
         return Err(AssetStoreError::operation("native books require explicit paths"));
     }
     let path = handle.assets_root.join(name);
-    Ok(path.is_file().then_some(path))
+    if path.is_file() {
+        return Ok(Some(path));
+    }
+    root_available(handle);
+    Ok(None)
 }
 
 pub(crate) fn evict_book_files(handle: &Handle, relative_paths: &[RelativeBookPath], hash: &BookId) -> Result<(), AssetStoreError> {
@@ -21,11 +25,15 @@ pub(crate) fn evict_book_files(handle: &Handle, relative_paths: &[RelativeBookPa
         let path = placement_path(handle, relative);
         if (path.is_file() || path.is_dir()) && content_matches(&path, hash)? {
             if path.is_dir() {
+                let sidecars = [audiobook_folder::discover_nfo(&path)?, audiobook_folder::discover_cue(&path)?, audiobook_folder::discover_cover(&path)?].into_iter().flatten().collect::<Vec<_>>();
                 for track in audiobook_folder::discover(&path)? {
                     std::fs::remove_file(&track.path)?;
                     if let Some(parent) = track.path.parent().filter(|parent| *parent != path.as_path()) {
                         let _ = std::fs::remove_dir(parent);
                     }
+                }
+                for sidecar in sidecars {
+                    std::fs::remove_file(sidecar.path)?;
                 }
                 let mapping = path.join(audiobook_folder::PATH_MAPPING_FILE);
                 if mapping.try_exists()? {
@@ -134,7 +142,7 @@ impl PreparedDirectory {
             return Ok(true);
         }
         if let Some(source) = &self.source {
-            std::fs::rename(source, &self.destination)?;
+            crate::filesystem::rename_entry(source, &self.destination)?;
             sync_parent(source)?;
             sync_parent(&self.destination)?;
         } else if !self.exists {

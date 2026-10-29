@@ -7,6 +7,7 @@ pub fn book_transfer_error_message(failure: Option<Failure>) -> &'static str {
     match failure {
         Some(Failure::DrmProtected) => "This file is not supported. Bokheim cannot read DRM-protected downloads.",
         Some(Failure::StorageFull) => "There isn't enough free space to save this book. Free up some space on the device or drive that holds your library, then try again.",
+        Some(Failure::CloudStorageFull) => "Your cloud storage account is full. Free up space in that account, then retry. Your local books have been kept.",
         Some(Failure::ReadOnlyStorage) => "Your library is read-only. Choose a writable library location or allow changes to it, then try again.",
         Some(Failure::PermissionDenied) => "Bokheim can't save files in your library. Check the folder's permissions or choose another library location, then try again.",
         Some(Failure::NotFound) => "This book is no longer available at its download link. Try another edition or check the source website.",

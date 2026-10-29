@@ -1,14 +1,15 @@
 //! Google Drive v3 file storage. Authorization is supplied by the device's
 //! connection owner, independently of the Bokheim metadata sync session.
 
+use crate::REQUEST_TIMEOUT;
 use crate::{ChangesPage, CloudBookFile, CloudChange, CloudEntry, CloudError, CloudFolder, FolderPage, MAX_RANGE_BYTES, bounded_bytes, metadata};
 use crate::{CloudDirectoryIdentity, CloudStorage, StorageFuture};
 use reqwest::{Client, StatusCode, Url, header};
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 use sync_common::storage::{CloudProvider, ProviderFile, ProviderFileIdentity, ProviderId, ProviderScope};
 
 const FOLDER_MIME: &str = "application/vnd.google-apps.folder";
-const FILE_FIELDS: &str = "id,name,mimeType,parents,size,version,trashed,appProperties,capabilities(canDownload)";
+const FILE_FIELDS: &str = "id,name,mimeType,parents,size,version,headRevisionId,trashed,appProperties,capabilities(canDownload)";
 
 #[derive(Clone)]
 pub struct GoogleDrive {
@@ -18,29 +19,10 @@ pub struct GoogleDrive {
     scope: ProviderScope,
 }
 
-/// Persist before transferring bytes. The URL is a capability and deliberately
-/// has no Debug implementation; callers must keep it out of logs and sync.
-#[derive(Clone, Deserialize, Serialize)]
-pub struct DriveUpload {
-    url: Url,
-    scope: ProviderScope,
-    file_id: ProviderId,
-    size_bytes: u64,
-}
-
-impl DriveUpload {
-    pub fn matches_file(&self, scope: &ProviderScope, file: &ProviderId, size_bytes: u64) -> bool {
-        &self.scope == scope && &self.file_id == file && self.size_bytes == size_bytes
-    }
-}
-
-pub enum UploadProgress {
-    Incomplete { confirmed_bytes: u64 },
-    Complete(ProviderFile),
-}
+pub use crate::google_drive_types::{DriveUpload, UploadProgress};
 
 impl GoogleDrive {
-    #[cfg(feature = "test-support")]
+    #[cfg(any(test, feature = "test-support"))]
     pub(crate) fn for_test(scope: ProviderScope, base: Url) -> Result<Self, CloudError> {
         if base.scheme() != "http" || base.host_str() != Some("127.0.0.1") || !base.username().is_empty() || base.password().is_some() || base.query().is_some() || base.fragment().is_some() {
             return Err(CloudError::InvalidRequest("test Drive endpoint must be a local HTTP server".into()));
@@ -55,7 +37,7 @@ impl GoogleDrive {
         if scope.provider != CloudProvider::GoogleDrive {
             return Err(CloudError::InvalidRequest("Expected a Google Drive account".into()));
         }
-        let builder = Client::builder().timeout(std::time::Duration::from_secs(30));
+        let builder = Client::builder();
         #[cfg(not(target_arch = "wasm32"))]
         let builder = builder.redirect(reqwest::redirect::Policy::none());
         Ok(Self {
@@ -93,7 +75,7 @@ impl GoogleDrive {
         if let Some(page) = page {
             request = request.query(&[("pageToken", page)]);
         }
-        let result: FileList = metadata(request.send().await.map_err(CloudError::transport)?).await?;
+        let result: FileList = metadata(request.timeout(REQUEST_TIMEOUT).send().await.map_err(CloudError::transport)?).await?;
         if result.incomplete_search {
             return Err(CloudError::Retryable("Google Drive returned an incomplete folder listing".into()));
         }
@@ -107,7 +89,7 @@ impl GoogleDrive {
     }
 
     pub async fn describe(&self, token: &str, id: &ProviderId) -> Result<CloudEntry, CloudError> {
-        let response = self.client.get(self.endpoint(&["files", id.as_str()])).bearer_auth(token).query(&[("fields", FILE_FIELDS), ("supportsAllDrives", "true")]).send().await.map_err(CloudError::transport)?;
+        let response = self.client.get(self.endpoint(&["files", id.as_str()])).bearer_auth(token).query(&[("fields", FILE_FIELDS), ("supportsAllDrives", "true")]).timeout(REQUEST_TIMEOUT).send().await.map_err(CloudError::transport)?;
         let file: DriveFile = metadata(response).await?;
         file.entry(&self.scope)?.ok_or(CloudError::NotFound)
     }
@@ -126,11 +108,13 @@ impl GoogleDrive {
             .bearer_auth(token)
             .query(&[("alt", "media"), ("supportsAllDrives", "true")])
             .header(header::RANGE, format!("bytes={offset}-{end}"))
+            .timeout(REQUEST_TIMEOUT)
             .send()
             .await
             .map_err(CloudError::transport)?;
         if response.status() != StatusCode::PARTIAL_CONTENT {
-            return Err(CloudError::status(response.status()));
+            // A server ignoring Range must not cause a full-book download.
+            return Err(if response.status().is_success() { CloudError::status(response.status()) } else { CloudError::response(response).await });
         }
         let expected = format!("bytes {offset}-{end}/{}", file.size_bytes);
         if response.headers().get(header::CONTENT_RANGE).and_then(|header| header.to_str().ok()) != Some(expected.as_str()) {
@@ -154,7 +138,7 @@ impl GoogleDrive {
     /// Capture before starting a full listing, then replay changes from this
     /// checkpoint after enumeration to account for concurrent moves/uploads.
     pub async fn start_checkpoint(&self, token: &str) -> Result<String, CloudError> {
-        let response = self.client.get(self.endpoint(&["changes", "startPageToken"])).bearer_auth(token).query(&[("supportsAllDrives", "true")]).send().await.map_err(CloudError::transport)?;
+        let response = self.client.get(self.endpoint(&["changes", "startPageToken"])).bearer_auth(token).query(&[("supportsAllDrives", "true")]).timeout(REQUEST_TIMEOUT).send().await.map_err(CloudError::transport)?;
         #[derive(Deserialize)]
         #[serde(rename_all = "camelCase")]
         struct Checkpoint {
@@ -176,6 +160,7 @@ impl GoogleDrive {
             .bearer_auth(token)
             .query(&[("pageToken", checkpoint), ("pageSize", "1000"), ("supportsAllDrives", "true"), ("includeItemsFromAllDrives", "true")])
             .query(&[("fields", format!("nextPageToken,newStartPageToken,changes(fileId,removed,file({FILE_FIELDS}))"))])
+            .timeout(REQUEST_TIMEOUT)
             .send()
             .await
             .map_err(CloudError::transport)?;
@@ -210,7 +195,8 @@ impl GoogleDrive {
         if let Some(identity) = identity {
             folder_metadata["appProperties"] = serde_json::json!({"bokheimLibrary": identity.library_id.to_string(), "bokheimDirectory": identity.directory_id.to_string()});
         }
-        let response = self.client.post(self.endpoint(&["files"])).bearer_auth(token).query(&[("fields", FILE_FIELDS), ("supportsAllDrives", "true")]).json(&folder_metadata).send().await.map_err(CloudError::transport)?;
+        let response =
+            self.client.post(self.endpoint(&["files"])).bearer_auth(token).query(&[("fields", FILE_FIELDS), ("supportsAllDrives", "true")]).json(&folder_metadata).timeout(REQUEST_TIMEOUT).send().await.map_err(CloudError::transport)?;
         let file: DriveFile = metadata(response).await?;
         match file.entry(&self.scope)? {
             Some(CloudEntry::Folder(folder)) => Ok(folder),
@@ -225,7 +211,7 @@ impl GoogleDrive {
         struct Ids {
             ids: Vec<ProviderId>,
         }
-        let response = self.client.get(self.endpoint(&["files", "generateIds"])).bearer_auth(token).query(&[("count", "1"), ("space", "drive"), ("type", "files")]).send().await.map_err(CloudError::transport)?;
+        let response = self.client.get(self.endpoint(&["files", "generateIds"])).bearer_auth(token).query(&[("count", "1"), ("space", "drive"), ("type", "files")]).timeout(REQUEST_TIMEOUT).send().await.map_err(CloudError::transport)?;
         let mut result: Ids = metadata(response).await?;
         if result.ids.len() != 1 {
             return Err(CloudError::InvalidResponse("Drive did not allocate one file ID".into()));
@@ -247,11 +233,12 @@ impl GoogleDrive {
             .header("X-Upload-Content-Type", "application/octet-stream")
             .header("X-Upload-Content-Length", size_bytes)
             .json(&serde_json::json!({"id": file_id.as_str(), "name": name, "parents": [parent.as_str()]}))
+            .timeout(REQUEST_TIMEOUT)
             .send()
             .await
             .map_err(CloudError::transport)?;
         if !response.status().is_success() {
-            return Err(CloudError::status(response.status()));
+            return Err(CloudError::response(response).await);
         }
         let url = response
             .headers()
@@ -269,7 +256,16 @@ impl GoogleDrive {
         if bytes.is_empty() || bytes.len() > MAX_RANGE_BYTES || (end != upload.size_bytes && bytes.len() % (256 * 1024) != 0) {
             return Err(CloudError::InvalidRequest("Invalid Drive upload chunk size".into()));
         }
-        let response = self.client.put(upload.url.clone()).bearer_auth(token).header(header::CONTENT_RANGE, format!("bytes {offset}-{}/{}", end - 1, upload.size_bytes)).body(bytes).send().await.map_err(CloudError::transport)?;
+        let response = self
+            .client
+            .put(upload.url.clone())
+            .bearer_auth(token)
+            .header(header::CONTENT_RANGE, format!("bytes {offset}-{}/{}", end - 1, upload.size_bytes))
+            .body(bytes)
+            .timeout(REQUEST_TIMEOUT)
+            .send()
+            .await
+            .map_err(CloudError::transport)?;
         self.upload_progress(upload, response).await
     }
 
@@ -277,7 +273,16 @@ impl GoogleDrive {
     /// offset determines which bytes may be skipped on retry.
     pub async fn upload_status(&self, token: &str, upload: &DriveUpload) -> Result<UploadProgress, CloudError> {
         self.validate_upload(upload)?;
-        let response = self.client.put(upload.url.clone()).bearer_auth(token).header(header::CONTENT_RANGE, format!("bytes */{}", upload.size_bytes)).header(header::CONTENT_LENGTH, 0).send().await.map_err(CloudError::transport)?;
+        let response = self
+            .client
+            .put(upload.url.clone())
+            .bearer_auth(token)
+            .header(header::CONTENT_RANGE, format!("bytes */{}", upload.size_bytes))
+            .header(header::CONTENT_LENGTH, 0)
+            .timeout(REQUEST_TIMEOUT)
+            .send()
+            .await
+            .map_err(CloudError::transport)?;
         self.upload_progress(upload, response).await
     }
 
@@ -357,6 +362,7 @@ struct DriveFile {
     parents: Vec<ProviderId>,
     size: Option<String>,
     version: Option<ProviderId>,
+    head_revision_id: Option<ProviderId>,
     #[serde(default)]
     trashed: bool,
     capabilities: Option<Capabilities>,
@@ -392,7 +398,13 @@ impl DriveFile {
         if size_bytes == 0 {
             return Ok(None);
         }
-        let revision = self.version.ok_or_else(|| CloudError::InvalidResponse("Missing Drive file version".into()))?;
+        // Drive's version includes metadata and background server changes.
+        // Binary content revisions remain stable when thumbnails are generated
+        // or a file is renamed, so those changes must not invalidate book bytes.
+        let revision = match self.head_revision_id {
+            Some(head) => ProviderId::new(format!("head:{}", head.as_str())).map_err(|_| CloudError::InvalidResponse("Invalid Drive content revision".into()))?,
+            None => self.version.ok_or_else(|| CloudError::InvalidResponse("Missing Drive file revision".into()))?,
+        };
         Ok(Some(CloudEntry::File(CloudBookFile {
             file: ProviderFile { identity: ProviderFileIdentity { scope: scope.clone(), file_id: self.id }, revision, size_bytes, content_hash: None },
             name: self.name,

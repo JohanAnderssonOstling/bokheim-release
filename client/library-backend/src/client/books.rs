@@ -42,7 +42,13 @@ impl LibraryClient {
     pub async fn resolve_book(&self, content_hash: BookId) -> Result<ResolvedBook, BackendError> {
         #[cfg(not(target_arch = "wasm32"))]
         {
-            self.transport.handle().await?.resolve_book(content_hash).await
+            use client_platform_runtime::startup_profile::StartupProfile;
+            let mut profile = StartupProfile::new("book_lookup_client");
+            let handle = self.transport.handle().await?;
+            profile.mark("transport_handle");
+            let result = handle.resolve_book(content_hash).await;
+            profile.mark("actor_roundtrip");
+            result
         }
         #[cfg(target_arch = "wasm32")]
         {

@@ -1,16 +1,54 @@
 # Windows distribution and updates
 
-The release workflow produces two packages from the same optimized build:
+The release workflow produces four packages from the same optimized build:
 
 - `Bokheim-Windows-x86_64-Setup.exe`: initial per-user installation with shortcuts
   and uninstall registration.
+- `Bokheim-Windows-x86_64-Standalone.exe`: one file to download and run. It embeds
+  the complete portable runtime and extracts it automatically on first launch.
+  Later launches reuse the extracted runtime. No installer, administrator access,
+  Python or .NET runtime is needed.
+- `Bokheim-Windows-x86_64-Portable.zip`: standalone app without an installer.
+  Extract the entire ZIP into a writable folder and double-click `Bokheim.exe`.
+  Keep the helper executable, taxonomy database and `tts` folder beside it.
+  No administrator access, shortcuts or uninstall registration are needed.
 - `Bokheim-Windows-x86_64-Update.zip`: complete runtime payload for the signed
-  update mechanism. Contains `Bokheim.exe` and `Bokheim.ico`.
+  update mechanism. Contains the same files as the portable ZIP.
+
+The portable app uses the normal per-user library and settings storage; its data
+does not travel with the extracted folder. Keep the extracted folder writable for
+automatic updates. The executable needs its accompanying runtime files, so copying
+only `Bokheim.exe` to another folder is insufficient.
+
+The single-file launcher stores its extracted runtime in
+`%LOCALAPPDATA%\Bokheim\Standalone\<payload-sha256>`. It verifies the embedded ZIP
+before extraction, publishes the folder only after every file is written, and
+uses an OS lock to coordinate simultaneous first launches. Interrupted extraction
+is retried. Bokheim's signed updater can replace the extracted application; the
+launcher reuses that updated application rather than restoring its embedded version.
+Arguments, working directory, standard handles and exit codes pass through to
+Bokheim. Libraries and settings still use the normal per-user storage.
+
+Build the single-file app from a prepared portable ZIP on Windows:
+
+```powershell
+python apps/desktop-gpui/windows/package-standalone.py --archive release/Bokheim-Windows-x86_64-Portable.zip --output release/Bokheim-Windows-x86_64-Standalone.exe
+```
+
+The packager builds a small Rust launcher with a static C runtime, then appends
+the ZIP and its length/hash trailer. Its isolated Cargo workspace and lockfile
+live in `windows/standalone`. Linux cross builds can pass
+`--target x86_64-pc-windows-gnu` with the matching Rust target and MinGW installed.
+`--launcher` accepts an already compiled Windows launcher. The resulting EXE has
+its own `.sha256` sidecar. CI tests the launcher and runs the finished EXE twice
+to verify first extraction, cached startup and runtime metadata.
 
 PDFium 8046b and the C runtime are statically linked into the executable.
 There is no PDFium DLL to stage, load, replace or restore separately. Build it
 with `package-update.py`, pointing `--binary` to the optimized release executable,
-`--icon` to the application icon and `--output` to the intended ZIP path. Packaging
+`--icon` to the application icon and `--output` to the update ZIP path. Add
+`--portable-output` to write the standalone ZIP from the same compressed payload.
+Both ZIPs have their own `.sha256` sidecar. Packaging
 requires Windows PE headers for the executable and writes a portable SHA-256 sidecar. The signed feed must authenticate
 the ZIP's full length and hash; the sidecar is not a trust source.
 

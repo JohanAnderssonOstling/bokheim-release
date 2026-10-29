@@ -193,7 +193,7 @@ impl Input {
     }
 
     fn render_toggle_mask_button(state: &Entity<InputState>, cx: &App) -> impl IntoElement {
-        let masked = state.read(cx).masked;
+        let masked = state.read(cx).is_masked();
         Button::new("toggle-mask")
             .icon(if masked {
                 IconName::Eye
@@ -202,12 +202,12 @@ impl Input {
             })
             .xsmall()
             .text()
-            .tab_stop(false)
+            .tooltip(if masked { "Show password" } else { "Hide password" })
             .on_click({
                 let state = state.clone();
-                move |_, window, cx| {
+                move |_, _, cx| {
                     state.update(cx, |state, cx| {
-                        state.set_masked(!state.masked, window, cx);
+                        state.set_masked(!state.is_masked(), cx);
                     })
                 }
             })

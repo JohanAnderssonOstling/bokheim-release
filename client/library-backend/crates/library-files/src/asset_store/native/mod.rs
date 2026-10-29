@@ -1,13 +1,13 @@
 //! Native library-file access and adjacent transfer staging.
 
 use crate::APP_HIDDEN_DIR;
+use crate::filesystem::{copy_entry, rename_entry};
 use client_platform_native::filesystem::parent_directory;
-use content_address::hash_file;
+use content_address::{ContentHash, hash_file};
 use fs2::{FileExt, lock_contended_error};
 use std::fs::{File, OpenOptions};
 use std::io::{Error, ErrorKind};
-use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::{Arc, OnceLock, PoisonError};
+use std::sync::{Arc, Mutex, OnceLock, PoisonError};
 pub(crate) mod projection;
 pub(crate) use projection::readable_path;
 pub(crate) use projection::{create_directory, evict_book_files};
@@ -18,13 +18,15 @@ pub(crate) use library_model::RelativeBookPath;
 pub(crate) use std::collections::HashSet;
 pub(crate) use std::path::{Path, PathBuf};
 pub(crate) const RESERVED_STORAGE_BYTES: u64 = 128 * 1024 * 1024;
+pub(crate) type RootFailure = Box<dyn FnOnce() + Send + 'static>;
 #[derive(Clone)]
 pub(crate) struct Handle {
     pub(crate) library_root: PathBuf,
     pub(crate) assets_root: PathBuf,
     pub(crate) storage_identity: String,
     pub(crate) leases_root: PathBuf,
-    pub(crate) enabled: Arc<AtomicBool>,
+    pub(crate) enabled: bool,
+    pub(crate) root_failure: Arc<Mutex<Option<RootFailure>>>,
 }
 
 impl std::fmt::Debug for Handle {
@@ -57,10 +59,12 @@ pub(crate) struct Lease {
 }
 
 pub(crate) fn lease(handle: &Handle, hash: &str, exclusive: bool) -> Result<Option<Lease>, AssetStoreError> {
-    if !handle.enabled.load(Ordering::Acquire) {
+    if !handle.enabled {
         return Err(AssetStoreError::operation("library storage is unavailable"));
     }
-    let file = OpenOptions::new().read(true).write(true).create(true).truncate(false).open(handle.leases_root.join(hash))?;
+    let file = OpenOptions::new().read(true).write(true).create(true).truncate(false).open(handle.leases_root.join(hash)).inspect_err(|_| {
+        root_available(handle);
+    })?;
     let result = if exclusive { FileExt::try_lock_exclusive(&file) } else { FileExt::try_lock_shared(&file) };
     match result {
         Ok(()) => Ok(Some(Lease { _file: file })),
@@ -111,14 +115,21 @@ pub(crate) fn open(library_locator: &str) -> Result<Handle, AssetStoreError> {
     } else {
         create_child_directory(&leases)?;
     }
-    Ok(Handle { library_root, assets_root: root, storage_identity: identity, leases_root: leases, enabled: Arc::new(AtomicBool::new(true)) })
+    Ok(Handle { library_root, assets_root: root, storage_identity: identity, leases_root: leases, enabled: true, root_failure: Default::default() })
 }
 
 pub(crate) fn root_available(handle: &Handle) -> bool {
-    if !handle.enabled.load(Ordering::Acquire) {
+    if !handle.enabled {
         return false;
     }
-    std::fs::read_to_string(handle.library_root.join(APP_HIDDEN_DIR).join("storage-identity")).is_ok_and(|value| value == handle.storage_identity)
+    let available = std::fs::read_to_string(handle.library_root.join(APP_HIDDEN_DIR).join("storage-identity")).is_ok_and(|value| value == handle.storage_identity);
+    if !available {
+        let callback = handle.root_failure.lock().unwrap_or_else(PoisonError::into_inner).take();
+        if let Some(callback) = callback {
+            callback();
+        }
+    }
+    available
 }
 
 pub(crate) fn placement_path(handle: &Handle, relative: &RelativeBookPath) -> PathBuf {
@@ -150,18 +161,23 @@ pub(crate) fn m4b_sidecar_cover(handle: &Handle, paths: &[RelativeBookPath]) -> 
 }
 
 pub(crate) fn content_matches(path: &Path, hash: &BookId) -> Result<bool, AssetStoreError> {
-    if path.is_dir() {
+    let actual: ContentHash = if path.is_dir() {
         let tracks = audiobook_folder::discover(path)?;
-        return Ok(!tracks.is_empty() && BookId::from(audiobook_folder::folder_hash(path)?) == *hash);
+        if tracks.is_empty() {
+            return Ok(false);
+        }
+        audiobook_folder::folder_hash(path)?.into()
+    } else {
+        hash_file(&mut File::open(path)?)?
+    };
+    if let Some(expected) = hash.content_hash() {
+        return Ok(actual == expected);
     }
-    let mut file = File::open(path)?;
-    let actual = hash_file(&mut file)?;
-    if let Some(expected) = hash.content_hash() { return Ok(actual == expected); }
     for ancestor in path.ancestors().skip(1) {
         let metadata = ancestor.join(APP_HIDDEN_DIR);
         if metadata.join("storage-identity").is_file() {
             let proof = metadata.join("assets").join("provider-proofs").join(hash.to_hex());
-            return Ok(read_provider_proof(&proof)?.lines().take(64).any(|line| line.parse::<content_address::ContentHash>().ok() == Some(actual)));
+            return Ok(read_provider_proof(&proof)?.lines().take(64).any(|line| line.parse::<ContentHash>().ok() == Some(actual)));
         }
     }
     Ok(false)
@@ -176,24 +192,36 @@ fn read_provider_proof(path: &Path) -> Result<String, AssetStoreError> {
     };
     let mut proof = String::new();
     file.take(64 * 65 + 1).read_to_string(&mut proof)?;
-    if proof.len() > 64 * 65 { return Err(AssetStoreError::operation("provider download proof exceeds its size limit")); }
+    if proof.len() > 64 * 65 {
+        return Err(AssetStoreError::operation("provider download proof exceeds its size limit"));
+    }
     Ok(proof)
 }
 
 pub(crate) fn remember_provider_checksum(handle: &Handle, id: &BookId, digest: &BookId) -> Result<(), AssetStoreError> {
     use std::io::Write;
-    if !id.is_external() || digest.is_external() || !root_available(handle) { return Err(AssetStoreError::operation("invalid provider download proof or unavailable library folder")); }
+    if !id.is_external() || digest.is_external() || !root_available(handle) {
+        return Err(AssetStoreError::operation("invalid provider download proof or unavailable library folder"));
+    }
     let directory = handle.assets_root.join("provider-proofs");
     std::fs::create_dir_all(&directory)?;
     let path = directory.join(id.to_hex());
-    let mut known = read_provider_proof(&path)?.lines().filter_map(|line| line.parse::<content_address::ContentHash>().ok()).take(63).collect::<Vec<_>>();
+    let mut known = read_provider_proof(&path)?.lines().filter_map(|line| line.parse::<ContentHash>().ok()).take(63).collect::<Vec<_>>();
     let actual = digest.content_hash().expect("checked content digest");
-    if !known.contains(&actual) { known.insert(0, actual); }
+    known.retain(|digest| *digest != actual);
+    known.insert(0, actual);
     let mut temporary = tempfile::NamedTempFile::new_in(&directory)?;
-    for digest in known { writeln!(temporary, "{digest}")?; }
+    for digest in known {
+        writeln!(temporary, "{digest}")?;
+    }
     temporary.as_file().sync_all()?;
     temporary.persist(&path).map_err(|error| AssetStoreError::operation(error.error))?;
     sync_parent(&path)
+}
+
+pub(crate) fn current_provider_checksum(handle: &Handle, id: &BookId) -> Result<Option<ContentHash>, AssetStoreError> {
+    let proof = handle.assets_root.join("provider-proofs").join(id.to_hex());
+    Ok(read_provider_proof(&proof)?.lines().next().and_then(|line| line.parse().ok()))
 }
 
 pub(crate) fn placement_conflicts(handle: &Handle, hash: &BookId, relative: &RelativeBookPath) -> Result<bool, AssetStoreError> {
@@ -237,8 +265,16 @@ impl VerifiedPath {
     }
 
     pub(crate) fn check(&self) -> Result<(), AssetStoreError> {
+        self.check_metadata()?;
+        if self.directory && !content_matches(&self.path, &self.hash)? {
+            return Err(AssetStoreError::operation("book changed while preparing file work"));
+        }
+        Ok(())
+    }
+
+    fn check_metadata(&self) -> Result<(), AssetStoreError> {
         let metadata = std::fs::symlink_metadata(&self.path)?;
-        if metadata.is_dir() != self.directory || metadata.file_type().is_symlink() || metadata.len() != self.length || metadata.modified()? != self.modified || (self.directory && !content_matches(&self.path, &self.hash)?) {
+        if metadata.is_dir() != self.directory || metadata.file_type().is_symlink() || metadata.len() != self.length || metadata.modified()? != self.modified {
             return Err(AssetStoreError::operation("book changed while preparing file work"));
         }
         Ok(())
@@ -260,7 +296,7 @@ pub(crate) enum PreparedPlacement {
     /// A move whose source is also queued for removal: nothing else can need
     /// it, so relocate instead of copying.
     Renamed {
-        source: PathBuf,
+        source: VerifiedPath,
         destination: PathBuf,
     },
     Removed(VerifiedPath),
@@ -268,9 +304,23 @@ pub(crate) enum PreparedPlacement {
 
 impl PreparedPlacement {
     pub(crate) fn publish(self) -> Result<(), AssetStoreError> {
+        self.publish_with_copy_fallback(true)
+    }
+
+    pub(crate) fn publish_short(self) -> Result<(), AssetStoreError> {
+        self.publish_with_copy_fallback(false)
+    }
+
+    fn publish_with_copy_fallback(self, allow_copy: bool) -> Result<(), AssetStoreError> {
         match self {
             Self::Absent => Ok(()),
-            Self::Existing(file) => file.check(),
+            Self::Existing(file) => {
+                if allow_copy {
+                    file.check()
+                } else {
+                    file.check_metadata()
+                }
+            }
             Self::Copied { output, destination } => {
                 persist_book_noclobber(output.into_temp_path(), &destination).map_err(AssetStoreError::operation)?;
                 sync_parent(&destination)
@@ -279,20 +329,36 @@ impl PreparedPlacement {
                 if destination.exists() {
                     return Err(AssetStoreError::operation("placement destination changed"));
                 }
-                std::fs::rename(output.path(), &destination)?;
+                rename_entry(output.path(), &destination)?;
                 sync_parent(&destination)
             }
             Self::Renamed { source, destination } => {
+                let verified = source;
+                verified.check_metadata()?;
+                let source = verified.path.clone();
                 if destination.exists() {
                     return Err(AssetStoreError::operation("placement destination changed"));
                 }
-                match std::fs::rename(&source, &destination) {
+                match rename_entry(&source, &destination) {
                     Ok(()) => {}
-                    // Cross-device: fall back to copy.
-                    Err(_) => {
-                        std::fs::copy(&source, &destination)?;
-                        std::fs::remove_file(&source)?;
+                    Err(error) if allow_copy && error.kind() == ErrorKind::CrossesDevices => {
+                        // Stage the whole copy before publication. A failed copy
+                        // leaves both the source and destination untouched.
+                        let staging = tempfile::Builder::new().prefix(".bokheim-copy-").tempdir_in(parent_directory(&destination)?)?;
+                        let staged = staging.path().join("contents");
+                        copy_entry(&source, &staged)?;
+                        if !content_matches(&staged, &verified.hash)? {
+                            return Err(AssetStoreError::operation("book changed during copy"));
+                        }
+                        verified.check()?;
+                        rename_entry(&staged, &destination)?;
+                        if source.is_dir() {
+                            std::fs::remove_dir_all(&source)?;
+                        } else {
+                            std::fs::remove_file(&source)?;
+                        }
                     }
+                    Err(error) => return Err(error.into()),
                 }
                 sync_parent(&destination)?;
                 sync_parent(&source)
@@ -435,6 +501,7 @@ pub(crate) fn open_playback_file(handle: &Handle, relative_path: &RelativeBookPa
 pub(crate) fn open_audiobook_track(handle: &Handle, folder: &RelativeBookPath, logical_name: &str) -> Result<Option<BoxedBookReader>, AssetStoreError> {
     let folder = placement_path(handle, folder);
     if !folder.try_exists()? {
+        root_available(handle);
         return Ok(None);
     }
     open_file_reader(&audiobook_folder::resolve_track_path(&folder, logical_name)?)
@@ -452,7 +519,11 @@ pub(crate) fn open_book_at_path(handle: &Handle, relative_path: &RelativeBookPat
         archive.rewind()?;
         return Ok(Some(Box::new(archive)));
     }
-    open_file_reader(&path)
+    let result = open_file_reader(&path);
+    if !matches!(&result, Ok(Some(_))) {
+        root_available(handle);
+    }
+    result
 }
 
 fn open_file_reader(path: &Path) -> Result<Option<BoxedBookReader>, AssetStoreError> {
@@ -515,7 +586,7 @@ async fn write_files(handle: &Handle, files: Vec<(String, Vec<u8>)>, lease: Leas
 }
 
 pub(crate) fn remove(handle: &Handle, name: String) -> Result<bool, AssetStoreError> {
-    if !handle.enabled.load(Ordering::Acquire) {
+    if !handle.enabled {
         return Err(AssetStoreError::operation("library storage is unavailable"));
     }
     if name.starts_with("book/") {
@@ -536,6 +607,51 @@ pub(crate) fn exists(handle: &Handle, name: String) -> Result<bool, AssetStoreEr
 mod lease_location_tests {
     use super::*;
     use std::time::Duration;
+
+    #[test]
+    fn missing_files_report_root_loss_once_and_leave_healthy_roots_alone() {
+        use std::sync::atomic::{AtomicUsize, Ordering};
+        let library = tempfile::tempdir().unwrap();
+        let store = super::super::AssetStore::open(library.path().to_str().unwrap()).unwrap();
+        let failures = Arc::new(AtomicUsize::new(0));
+        let reported = failures.clone();
+        store.on_root_unavailable(move || {
+            reported.fetch_add(1, Ordering::Relaxed);
+        });
+        let hash = BookId::from(blake3::hash(b"missing book"));
+        let paths = [RelativeBookPath::parse("book.epub").unwrap()];
+
+        assert!(!store.book_exists(&hash, &paths).unwrap());
+        assert!(store.read(library_model::BlobKind::Thumbnail, &hash).unwrap().is_none());
+        assert_eq!(failures.load(Ordering::Relaxed), 0, "missing individual files must not trigger root recovery");
+
+        std::fs::remove_dir_all(library.path().join(APP_HIDDEN_DIR)).unwrap();
+        assert!(!store.book_exists(&hash, &paths).unwrap());
+        assert_eq!(failures.load(Ordering::Relaxed), 1);
+        assert!(!store.root_available());
+        assert!(!store.book_exists(&hash, &paths).unwrap());
+        assert_eq!(failures.load(Ordering::Relaxed), 1, "the unavailable store must not flood the recovery queue");
+    }
+
+    #[test]
+    fn a_returning_mount_reports_its_changed_identity_even_when_the_book_exists() {
+        use std::sync::atomic::{AtomicUsize, Ordering};
+        let library = tempfile::tempdir().unwrap();
+        let store = super::super::AssetStore::open(library.path().to_str().unwrap()).unwrap();
+        let failures = Arc::new(AtomicUsize::new(0));
+        let reported = failures.clone();
+        store.on_root_unavailable(move || {
+            reported.fetch_add(1, Ordering::Relaxed);
+        });
+        let hash = BookId::from(blake3::hash(b"book"));
+        let paths = [RelativeBookPath::parse("book.epub").unwrap()];
+        std::fs::write(library.path().join("book.epub"), b"book").unwrap();
+        assert!(store.book_exists(&hash, &paths).unwrap());
+        assert_eq!(failures.load(Ordering::Relaxed), 0);
+        std::fs::write(library.path().join(APP_HIDDEN_DIR).join("storage-identity"), b"returned mount").unwrap();
+        assert!(!store.book_exists(&hash, &paths).unwrap());
+        assert_eq!(failures.load(Ordering::Relaxed), 1);
+    }
 
     #[test]
     fn cancelling_download_creation_does_not_leave_a_temporary_file() {
@@ -659,7 +775,7 @@ pub(crate) fn unavailable(locator: &str) -> Handle {
     let library_root = PathBuf::from(locator);
     let root = library_root.join(APP_HIDDEN_DIR).join("assets");
     let leases = root.join("leases");
-    Handle { library_root, assets_root: root, storage_identity: String::new(), leases_root: leases, enabled: Arc::new(AtomicBool::new(false)) }
+    Handle { library_root, assets_root: root, storage_identity: String::new(), leases_root: leases, enabled: false, root_failure: Default::default() }
 }
 
 pub(crate) fn create_child_directory(path: &Path) -> Result<(), Error> {

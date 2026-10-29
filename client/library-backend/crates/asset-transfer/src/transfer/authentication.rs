@@ -1,31 +1,27 @@
 //! Library account renewal around a transfer operation, with at most one retry.
 use crate::TransferError;
-
-/// The pre-flight half of a refreshable operation: credentials and user are
-/// captured before any work so a refresh for another session cannot silently
-/// adopt the operation.
-pub(super) struct RefreshGuard {
-    credentials: sync_transport::SyncCredentials,
-    user: Option<String>,
-}
+use std::future::Future;
 
 impl super::AssetExecutor {
-    pub(super) fn refresh_guard(&self) -> Result<RefreshGuard, TransferError> {
-        Ok(RefreshGuard { credentials: self.credentials()?, user: self.live_user_id() })
-    }
-
-    /// Renew the same account after an unauthorized request.
-    pub(super) async fn refresh_after_auth(&self, guard: RefreshGuard) -> Result<(), TransferError> {
-        let Some(account) = &self.account else {
-            return Err(TransferError::AuthenticationRequired);
-        };
-        match account.refresh_after_unauthorized(guard.credentials.access_token()).await {
-            Ok(Some(session)) if guard.user.as_deref() == Some(session.user_id()) => {
-                self.check_transfer_account(&guard.credentials)?;
-                Ok(())
-            }
-            Ok(_) => Err(TransferError::AuthenticationRequired),
-            Err(error) => Err(TransferError::retryable(error)),
+    /// Capture credentials and the user before work so a retry cannot adopt
+    /// an account that signed in while the operation was in flight.
+    pub(super) async fn refreshed<T, F, Fut>(&self, mut operation: F) -> Result<T, TransferError>
+    where
+        F: FnMut() -> Fut,
+        Fut: Future<Output = Result<T, TransferError>>,
+    {
+        let credentials = self.credentials()?;
+        let user = self.account.as_ref().and_then(|account| account.current().ok().flatten()).map(|session| session.user_id().to_owned());
+        match operation().await {
+            Err(TransferError::AuthenticationRequired) => {}
+            result => return result,
         }
+        let Some(account) = &self.account else { return Err(TransferError::AuthenticationRequired) };
+        let refreshed = account.refresh_after_unauthorized(credentials.access_token()).await.map_err(TransferError::retryable)?.ok_or(TransferError::AuthenticationRequired)?;
+        if user.as_deref() != Some(refreshed.user_id()) {
+            return Err(TransferError::AuthenticationRequired);
+        }
+        self.check_transfer_account(&credentials)?;
+        operation().await
     }
 }

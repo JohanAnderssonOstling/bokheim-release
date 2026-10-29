@@ -7,12 +7,11 @@ edition = "2024"
 default = ["native-audio"]
 native-audio = ["audiobook-player/native-rodio"]
 native-tts = ["dep:reader-speech"]
-kobo = ["mobile", "dep:gpui_kobo", "app/kobo", "audiobook-player/kobo", "ui-components/kobo"]
+kobo = ["mobile", "dep:gpui_kobo", "app/kobo", "audiobook-player/kobo", "ui-components/kobo", "gpui-image-eviction/kobo"]
 mobile = ["ui-components/mobile"]
 packaged-pdfium = ["pdf-reader-core/packaged-pdfium"]
 
 [dependencies]
-reader-speech = { path = "../../shared/reader-speech", optional = true }
 futures-lite = "2"
 library-backend = { path = "../../client/library-backend" }
 content-address = { path = "../../shared/content-address" }
@@ -21,11 +20,11 @@ app = { path = "../../client/app", default-features = false }
 async-channel = "2"
 ui-components = { path = "../components" }
 audiobook-player = { path = "../audiobook-player", default-features = false }
-gpui.workspace = true
+gpui = { workspace = true, features = ["snapshot"] }
 gpui-component.workspace = true
 gpui_kobo = { workspace = true, optional = true }
-html-view-core.workspace = true
-html-view-gpui = { path = "crates/html/crates/html-view-gpui" }
+skrift-column-paginator.workspace = true
+html-view-gpui = { path = "../../../HtmlViewCore/adapters/html-view-gpui" }
 html.workspace = true
 book-content = { path = "../../client/book-content" }
 library-model = { path = "../../client/library-model" }
@@ -39,14 +38,20 @@ pdf-reader-core = { path = "../../shared/pdf-reader-core" }
 pdf-view-gpui = { path = "crates/pdf/pdf-view" }
 fixed-page = { path = "../../shared/fixed-page", features = ["gpui"] }
 image = { version = "0.25", default-features = false, features = ["bmp", "gif", "jpeg", "png", "webp", "tiff"] }
-gpui-image-eviction = { path = "../../shared/gpui-image-eviction" }
+gpui-image-eviction = { path = "../../../HtmlEngine/adapters/gpui-image-eviction" }
 
 [dev-dependencies]
 base64 = "0.22"
 book-access = { path = "../../client/library-backend/crates/book-access" }
 gpui = { workspace = true, features = ["test-support"] }
-gpui_platform.workspace = true
+gpui_platform = { workspace = true, features = ["snapshot"] }
 html-gpui.workspace = true
 serde_json = "1"
 tokio = { version = "1", features = ["rt-multi-thread"] }
 zip.workspace = true
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+reader-speech = { path = "../../shared/reader-speech", optional = true }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+reader-speech = { path = "../../shared/reader-speech" }

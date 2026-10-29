@@ -4,13 +4,13 @@ use super::*;
 use crate::book::{BookSource, ResolvedBookData};
 pub(crate) type Opened = (ResolvedBookData, BookLease);
 
-pub(super) async fn local(library: &LibrarySession, hash: BookId, info: &BookInfo) -> Result<Option<Opened>, BackendError> {
-    let Some(file) = library.assets.playback_reader(&hash).await.map_err(BackendError::operation)? else { return Ok(None) };
+pub(super) async fn local(library: &LibrarySession, hash: BookId, info: &LocalBookInfo) -> Result<Option<Opened>, BackendError> {
+    let Some(file) = crate::library::browser_audiobook::playback_file(library, hash).await? else { return Ok(None) };
     if matches!(info.format, BookFormat::M4b | BookFormat::Mp3Folder) {
         return audio(library, hash, Some(file)).await.map(Some);
     }
     let pdf_metadata = match file.content_hash().map_err(BackendError::operation)? {
-        Some(_content_hash) => pdf_metadata(library, hash).await?,
+        Some(_content_hash) => library.db.pdf_metadata(&hash)?,
         None => None,
     };
     use crate::library::book::browser::SOURCES;
@@ -21,9 +21,13 @@ pub(super) async fn local(library: &LibrarySession, hash: BookId, info: &BookInf
     let lease = BookLease::Local(capability);
     Ok(Some((ResolvedBookData { pdf_metadata, format: info.format, source }, lease)))
 }
-pub(super) async fn remote(library: &LibrarySession, hash: BookId, info: &BookInfo) -> Result<Opened, BackendError> {
+pub(super) async fn remote(library: &LibrarySession, hash: BookId, info: &LocalBookInfo) -> Result<Opened, BackendError> {
     if matches!(info.format, BookFormat::M4b | BookFormat::Mp3Folder) {
         return audio(library, hash, None).await;
+    }
+    if matches!(info.format, BookFormat::Epub | BookFormat::Cbz) && library.db.storage_policy()?.external().is_none() {
+        let (source, tail) = super::remote_archive::describe(library, hash).await?;
+        return Ok((ResolvedBookData { pdf_metadata: None, format: info.format, source: BookSource::RemoteArchive { source, tail } }, BookLease::None));
     }
     let RemoteDocument { source, prefix, pdf_metadata } = remote_document(library, hash).await?;
     Ok((ResolvedBookData { pdf_metadata, format: info.format, source: BookSource::Remote { source, prefix } }, BookLease::None))

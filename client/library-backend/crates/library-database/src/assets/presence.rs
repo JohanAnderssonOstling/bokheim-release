@@ -32,7 +32,6 @@ impl Database {
     }
 
     /// Requested book downloads, oldest first.
-    #[cfg(not(target_arch = "wasm32"))]
     pub fn book_download_requests(&self, after_at: i64, after_hash: Option<&BookId>, limit: i64) -> Result<Vec<(BookId, i64)>, DatabaseError> {
         let mut rows = Vec::new();
         self.connection.book_download_requests(after_at, after_hash, limit, |row| {
@@ -42,7 +41,6 @@ impl Database {
         Ok(rows)
     }
 
-    #[cfg(not(target_arch = "wasm32"))]
     pub fn book_download_origin(&self, hash: &BookId) -> Result<Option<TransferOrigin>, DatabaseError> {
         let mut origin = None;
         self.connection.book_download_origin(hash, |row| {

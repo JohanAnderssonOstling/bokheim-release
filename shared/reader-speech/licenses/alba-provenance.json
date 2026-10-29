@@ -1,0 +1,16 @@
+{
+  "voice": "en_GB-alba-medium",
+  "model_card": {
+    "url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/alba/medium/MODEL_CARD",
+    "sha256": "fa166b1779404c470b0b6b4ba0238bc4a35bf89d2cd130c6788f697188b737d6"
+  },
+  "piper_voices_revision": "5041a7a49ae5b3a0f30e6837769eb03fdbb231bd",
+  "dataset": "https://datashare.ed.ac.uk/handle/10283/3270",
+  "dataset_license": "CC-BY-4.0",
+  "attribution": "University of Edinburgh Alba corpus; Piper project; Sherpa-ONNX conversion",
+  "archive_sha256": "fcd45962906933eec4431d3688f7d74aaac8713c87c6717f91fd3b23463aa1a1",
+  "license_text": {
+    "url": "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+    "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+  }
+}

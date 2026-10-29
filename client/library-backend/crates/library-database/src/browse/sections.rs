@@ -126,7 +126,6 @@ mod tests {
                             chip_sort: BrowseChipSort::Popularity,
                             book_sort: sort,
                             hide_finished: true,
-                            include_direct_child_books: false,
                         };
                         let full = db.browse(&query, downloaded_only).unwrap();
                         assert_windows(&db, &query, downloaded_only);
@@ -224,7 +223,6 @@ mod tests {
             chip_sort: BrowseChipSort::Alphabetical,
             book_sort: BrowseBookSort::Alphabetical,
             hide_finished: false,
-            include_direct_child_books: false,
         };
         let first = db.browse_page(&query, false, BrowsePageRequest::default()).unwrap();
         assert_eq!(first.contents.children.len(), 24);
@@ -273,7 +271,6 @@ mod tests {
                     chip_sort: BrowseChipSort::Alphabetical,
                     book_sort: BrowseBookSort::Alphabetical,
                     hide_finished: false,
-                    include_direct_child_books: true,
                 };
                 assert_windows(&db, &query, false);
                 let first = db.browse_page(&query, false, BrowsePageRequest { book_limit: 2, ..Default::default() }).unwrap();

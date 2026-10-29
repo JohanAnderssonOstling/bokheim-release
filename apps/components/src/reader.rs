@@ -1,25 +1,19 @@
-use crate::CONTENT_INSET;
+use crate::{CONTENT_INSET, topbar_action_height_rem};
 use std::rc::Rc;
 use std::sync::Arc;
 
+use crate::{Button, Interactive};
 use gpui::prelude::*;
-use gpui::{AnyElement, App, Div, ElementId, Image, ImageSource, Img, MouseButton, ObjectFit, Pixels, RenderOnce, ScrollHandle, SharedString, Size, Stateful, StyledImage, Window, div, img, px};
+use gpui::{AnyElement, App, ClickEvent, Div, ElementId, Image, ImageSource, Img, MouseButton, ObjectFit, Pixels, RenderOnce, Role, ScrollHandle, SharedString, Size, Stateful, StyledImage, Window, div, img, px};
 use gpui_component::IconName;
-use gpui_component::button::Button;
 use gpui_component::checkbox::Checkbox;
 use gpui_component::menu::PopupMenu;
-use gpui_component::popover::Popover;
 
 use crate::{BrowserTheme, RADIUS_MD, RADIUS_SM, SPACE_MD, SPACE_SM, SPACE_XS, SPACE_XXS, ScrollableElement, TEXT_SM, TEXT_XS, browser_theme, menu_item, outlined_text_button, scroll::Scrollable, settings_control_size_rem};
 
-/// The toolbar and its controls grow together with the UI font. The same 2rem
-/// step as `topbar_action_height_rem()`, kept under its own name because the
-/// toolbar's height feeds its own geometry math below.
-pub fn reader_toolbar_size_rem() -> f32 {
-    crate::topbar_action_height_rem()
-}
+/// The toolbar and its controls grow together with the UI font.
 pub fn reader_toolbar_size_px(window: &Window) -> f32 {
-    f32::from(gpui::rems(reader_toolbar_size_rem()).to_pixels(window.rem_size()))
+    f32::from(gpui::rems(topbar_action_height_rem()).to_pixels(window.rem_size()))
 }
 const READER_SETTINGS_POPOVER_GAP: f32 = 4.0;
 const READER_SETTINGS_POPOVER_WINDOW_MARGIN: f32 = 8.0;
@@ -27,15 +21,6 @@ const READER_SETTINGS_MAX_WIDTH: f32 = 400.0;
 const READER_SETTINGS_MAX_HEIGHT: f32 = 620.0;
 const READER_SETTINGS_PADDING: f32 = 16.0;
 const READER_SETTINGS_GAP: f32 = 13.0;
-
-/// Chapter title beside progress, yielding space to the fixed toolbar controls.
-pub fn reader_toolbar_title(title: impl Into<SharedString>) -> Div {
-    div().flex_initial().min_w_0().max_w(px(520.0)).overflow_hidden().whitespace_nowrap().text_ellipsis().text_align(gpui::TextAlign::Left).text_size(gpui::rems(TEXT_SM)).child(title.into())
-}
-
-pub fn reader_choice_button(id: impl Into<ElementId>, label: impl Into<SharedString>, selected: bool, theme: BrowserTheme) -> Button {
-    crate::settings_choice_button(id, label, selected, theme)
-}
 
 pub fn reader_choice_button_group(id: impl Into<ElementId>, buttons: impl IntoIterator<Item = Button>, theme: BrowserTheme) -> Stateful<Div> {
     // Full width so the group's right edge lands on the steppers' right edge
@@ -45,10 +30,6 @@ pub fn reader_choice_button_group(id: impl Into<ElementId>, buttons: impl IntoIt
 
 pub fn reader_match_count(text: impl Into<SharedString>, theme: BrowserTheme) -> Div {
     div().flex_none().min_w(gpui::rems(3.25)).text_align(gpui::TextAlign::Right).text_size(gpui::rems(TEXT_SM)).text_color(theme.text_muted).child(text.into())
-}
-
-fn reader_settings_trigger(theme: BrowserTheme) -> gpui_component::button::Button {
-    crate::outlined_icon_button("reader-settings-trigger", "Aa", IconName::Settings2, theme)
 }
 
 fn reader_document_surface(theme: BrowserTheme) -> Div {
@@ -74,12 +55,8 @@ pub fn reader_toc(theme: BrowserTheme) -> Div {
 pub const READER_SCROLLBAR_GUTTER_PX: f32 = SPACE_MD;
 
 /// Scrollable reader-sidebar panel: full size, themed surface, own scroll.
-fn reader_scroll_panel(theme: BrowserTheme) -> Scrollable<Div> {
-    div().size_full().min_h_0().min_w_0().pr(px(READER_SCROLLBAR_GUTTER_PX)).overflow_y_scrollbar().flex().flex_col().bg(theme.page_bg)
-}
-
 pub fn reader_state_panel(theme: BrowserTheme) -> Scrollable<Div> {
-    reader_scroll_panel(theme)
+    div().size_full().min_h_0().min_w_0().pr(px(READER_SCROLLBAR_GUTTER_PX)).overflow_y_scrollbar().flex().flex_col().bg(theme.page_bg)
 }
 
 /// The reader settings tab body: the same sections `reader_settings_dropdown`
@@ -87,9 +64,9 @@ pub fn reader_state_panel(theme: BrowserTheme) -> Scrollable<Div> {
 /// shadowed panel — it lives inside the sidebar's border, not floating over
 /// it.
 pub fn reader_settings_tab_body(theme: BrowserTheme) -> Scrollable<Div> {
-    // Groups provide SPACE_MD on both sides. Their right padding also leaves
-    // room for the scrollbar, so this panel needs no additional gutter.
-    reader_scroll_panel(theme).pr_0()
+    // Groups provide SPACE_MD on both sides. Settings retain their own scroll
+    // handle and keyboard navigation without drawing a scrollbar or gutter.
+    reader_state_panel(theme).pr_0().hide_scrollbar()
 }
 
 pub fn reader_state_card(id: impl Into<ElementId>, selected: bool, theme: BrowserTheme) -> Stateful<Div> {
@@ -108,7 +85,7 @@ pub fn reader_state_card(id: impl Into<ElementId>, selected: bool, theme: Browse
         .border_b_1()
         .border_color(theme.rule)
         .bg(theme.page_bg)
-        .hover(|style| style.bg(theme.hover))
+        .hover(move |style| style.bg(if selected { theme.accent_wash_hover } else { theme.hover }))
         .when(selected, |card| card.bg(theme.accent_wash))
 }
 
@@ -268,7 +245,7 @@ pub fn reader_annotation_color_swatch(id: impl Into<ElementId>, color: u32, name
 
 /// A compact text action in the annotation editor.
 pub fn reader_annotation_action_button(id: impl Into<ElementId>, label: impl Into<SharedString>, selected: bool, theme: BrowserTheme) -> Button {
-    crate::selectable_button(outlined_text_button(id, label).h(gpui::rems(settings_control_size_rem())).rounded(px(RADIUS_SM)).border_color(theme.rule).bg(theme.page_bg), selected, theme)
+    crate::selectable_button(outlined_text_button(id, label).h(gpui::rems(settings_control_size_rem())).rounded(px(RADIUS_SM)).border_color(theme.rule), selected, theme)
 }
 
 /// Width of the disclosure column. Doubles as the row's left inset and as the
@@ -284,6 +261,7 @@ pub fn reader_settings_dropdown(window: &Window, theme: BrowserTheme) -> Scrolla
         .w(gpui::rems(READER_SETTINGS_MAX_WIDTH / 16.0))
         .max_h(px(max_height))
         .overflow_y_scrollbar()
+        .hide_scrollbar()
         .rounded(px(RADIUS_MD))
         .border_1()
         .border_color(theme.rule)
@@ -354,7 +332,16 @@ impl ReaderDestination {
     /// Settings uses live text so its Aa follows the interface typeface.
     fn glyph(self, size_rem: f32, theme: BrowserTheme) -> AnyElement {
         if self == Self::Settings {
-            div().size(gpui::rems(size_rem)).flex().items_center().justify_center().font_family(theme.ui_font_family.family_name()).text_size(gpui::rems(size_rem)).line_height(gpui::relative(1.0)).child("Aa").into_any_element()
+            div()
+                .size(gpui::rems(size_rem))
+                .flex()
+                .items_center()
+                .justify_center()
+                .when(!theme.custom_ui_font, |text| text.font_family(theme.ui_font_family.family_name()))
+                .text_size(gpui::rems(size_rem))
+                .line_height_auto()
+                .child("Aa")
+                .into_any_element()
         } else {
             self.icon().size(gpui::rems(size_rem)).into_any_element()
         }
@@ -378,7 +365,8 @@ impl ReaderDestination {
             Self::Library => "backspace",
             Self::Contents => return crate::configured_shortcut_tooltip(label, "reader.contents", cx),
             Self::Search => return crate::configured_shortcut_tooltip(label, "reader.search", cx),
-            Self::Notes | Self::Settings | Self::Tts => return label,
+            Self::Settings => return crate::configured_shortcut_tooltip(label, "reader.settings", cx),
+            Self::Notes | Self::Tts => return label,
         };
         crate::shortcut_tooltip(label, shortcut)
     }
@@ -430,7 +418,7 @@ pub fn reader_top_bar_progress(label: impl Into<SharedString>, theme: BrowserThe
 /// A phone bar action below the page: the library's bottom bar item over the
 /// destination's glyph. Reading aloud marks its glyph with the rail's activity
 /// dot, and tints it while it plays.
-pub fn reader_bottom_bar_item(id: impl Into<ElementId>, destination: ReaderDestination, mark: ReaderRailMark, theme: BrowserTheme, cx: &gpui::App) -> gpui_component::button::Button {
+pub fn reader_bottom_bar_item(id: impl Into<ElementId>, destination: ReaderDestination, mark: ReaderRailMark, theme: BrowserTheme, cx: &gpui::App) -> Button {
     let glyph = div()
         .relative()
         .when(mark == ReaderRailMark::Active, |glyph| glyph.text_color(theme.accent))
@@ -439,9 +427,8 @@ pub fn reader_bottom_bar_item(id: impl Into<ElementId>, destination: ReaderDesti
     crate::browser::bottom_navigation_tile(id, glyph, destination.label(), mark == ReaderRailMark::Selected, theme).tooltip(destination.tooltip(destination.label(), cx))
 }
 
-/// Width of the reader sidebar's icon rail. The rail belongs to the sidebar:
-/// it is shown and hidden with the panel, and the panel's resizable width is
-/// measured beside it.
+/// Width of the reader's persistent icon rail. The panel's resizable width
+/// is measured beside it.
 pub const READER_RAIL_WIDTH: f32 = 52.0;
 const READER_RAIL_ITEM_SIZE: f32 = 40.0;
 const READER_PROGRESS_RING_SIZE: f32 = 28.0;
@@ -462,7 +449,7 @@ pub fn reader_rail_spacer() -> Div {
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub enum ReaderRailMark {
     None,
-    /// The panel on show: accent wash and a bar on the rail's inner edge.
+    /// The open panel: solid accent with contrasting text.
     Selected,
     /// Something running: an accent icon with a filled dot.
     Active,
@@ -489,11 +476,9 @@ pub fn reader_rail_item(id: impl Into<ElementId>, destination: ReaderDestination
         .rounded(px(RADIUS_SM))
         .cursor_pointer()
         .text_color(ink)
-        .when(mark == ReaderRailMark::Selected, |item| item.bg(theme.accent_wash))
-        .hover(move |style| style.bg(if mark == ReaderRailMark::Selected { theme.accent_wash_hover } else { theme.hover }).text_color(theme.text))
+        .selectable(mark == ReaderRailMark::Selected, theme)
         .tooltip(move |window, cx| gpui_component::tooltip::Tooltip::new(label.clone()).build(window, cx))
         .child(destination.glyph(1.25, theme))
-        .when(mark == ReaderRailMark::Selected, |item| item.child(div().absolute().left(px(-(READER_RAIL_WIDTH - READER_RAIL_ITEM_SIZE) / 2.0)).top(px(SPACE_SM)).bottom(px(SPACE_SM)).w(px(3.0)).bg(theme.accent)))
         .children(reader_activity_dot(mark, theme).map(|dot| dot.top(px(7.0)).right(px(7.0))))
 }
 
@@ -563,11 +548,9 @@ pub fn reader_tile_group(id: impl Into<ElementId>) -> Stateful<Div> {
     div().id(id).w_full().min_w_0().flex().flex_row().gap(px(SPACE_SM))
 }
 
-/// A choice drawn as a picture of its effect above its name. The selected tile
-/// takes the accent outline and wash, the same marks a selected choice button
-/// carries.
+/// A choice drawn as a picture of its effect above its name, using the shared
+/// selected appearance for interactive controls.
 pub fn reader_picture_tile(id: impl Into<ElementId>, picture: impl IntoElement, label: impl Into<SharedString>, selected: bool, theme: BrowserTheme) -> Stateful<Div> {
-    let hovered = if selected { theme.accent_wash_hover } else { theme.hover };
     div()
         .id(id)
         .flex_1()
@@ -580,13 +563,68 @@ pub fn reader_picture_tile(id: impl Into<ElementId>, picture: impl IntoElement, 
         .pb(px(SPACE_XS))
         .rounded(px(RADIUS_SM))
         .border_1()
-        .border_color(if selected { theme.accent } else { theme.rule })
-        .bg(if selected { theme.accent_wash } else { theme.page_bg })
+        .border_color(theme.rule)
+        .bg(theme.page_bg)
         .text_color(if selected { theme.text } else { theme.text_muted })
         .cursor_pointer()
-        .hover(move |style| style.bg(hovered))
+        .selectable(selected, theme)
         .child(picture)
         .child(div().w_full().min_w_0().overflow_hidden().whitespace_nowrap().text_ellipsis().text_center().text_size(gpui::rems(TEXT_XS)).child(label.into()))
+}
+
+/// Minimum width for two independent stepper targets and a readable value.
+pub fn reader_numeric_tile_width_rem() -> f32 {
+    2.0 * settings_control_size_rem() + 3.25
+}
+
+fn numeric_tile_stepper(button: Button, selected: bool, theme: BrowserTheme) -> Button {
+    // Kobo marks selection with a border and retains the paper background.
+    let filled = selected && !cfg!(feature = "kobo");
+    let foreground = if filled { theme.accent_text } else { theme.text };
+    let hovered = if filled { theme.accent_hover } else { theme.hover };
+    button.text_color(foreground).hover(move |style| style.bg(hovered))
+}
+
+/// A custom choice with its saved value beneath the lines icon. The outer
+/// surface groups three controls; stepper callbacks stop click propagation so
+/// changing a value never also activates the central selection control.
+pub fn reader_numeric_tile(id: &'static str, value: impl Into<SharedString>, selected: bool, decrement: Button, increment: Button, theme: BrowserTheme, select: impl Fn(&ClickEvent, &mut Window, &mut App) + 'static) -> Stateful<Div> {
+    let value = value.into();
+    div()
+        .id(id)
+        .role(Role::Group)
+        .debug_selector(move || id.into())
+        .w_full()
+        .min_w_0()
+        .flex()
+        .items_center()
+        .rounded(px(RADIUS_SM))
+        .border_1()
+        .border_color(theme.rule)
+        .bg(theme.page_bg)
+        .text_color(if selected { theme.text } else { theme.text_muted })
+        .selectable(selected, theme)
+        .child(numeric_tile_stepper(decrement, selected, theme))
+        .child(
+            div()
+                .id((id, 0usize))
+                .role(Role::Button)
+                .debug_selector(move || format!("{id}-value"))
+                .on_click(select)
+                .aria_label(format!("Use custom value: {value}"))
+                .aria_selected(selected)
+                .flex_1()
+                .min_w_0()
+                .flex()
+                .flex_col()
+                .items_center()
+                .gap(px(SPACE_XXS))
+                .py(px(SPACE_XS))
+                .cursor_pointer()
+                .child(reader_tile_picture("icons/reader-settings/line-spacing-normal.svg"))
+                .child(div().text_size(gpui::rems(TEXT_XS)).whitespace_nowrap().child(value)),
+        )
+        .child(numeric_tile_stepper(increment, selected, theme))
 }
 
 /// The drawing on a settings tile, from the `icons/reader-settings/` set.
@@ -594,15 +632,15 @@ pub fn reader_tile_picture(path: &'static str) -> gpui_component::Icon {
     gpui_component::Icon::empty().path(path).size(gpui::rems(2.25))
 }
 
-/// A typeface tile's sample: "Ag" set in the face it selects. `None` is the
+/// A typeface tile's sample: "Aa" set in the face it selects. `None` is the
 /// book's own face, which the panel can only suggest with the interface serif.
 pub fn reader_typeface_sample(family: Option<&'static str>) -> Div {
-    div().h(gpui::rems(2.25)).flex().items_center().text_size(gpui::rems(1.5)).when_some(family, |sample, family| sample.font_family(family)).child("Ag")
+    div().h(gpui::rems(2.25)).flex().items_center().text_size(gpui::rems(1.5)).when_some(family, |sample, family| sample.font_family(family)).child("Aa")
 }
 
 /// The query field fills the space beside the search controls.
 pub fn reader_search_box(theme: BrowserTheme) -> Div {
-    div().flex_1().min_w_0().h(gpui::rems(reader_toolbar_size_rem())).overflow_hidden().rounded(px(RADIUS_SM)).border_1().border_color(theme.border).bg(theme.page_bg)
+    div().flex_1().min_w_0().h(gpui::rems(topbar_action_height_rem())).overflow_hidden().rounded(px(RADIUS_SM)).border_1().border_color(theme.border).bg(theme.page_bg)
 }
 
 /// Search shares the sidebar's inset, with space above and below its controls.
@@ -611,7 +649,7 @@ pub fn reader_search_bar(theme: BrowserTheme) -> Div {
 }
 
 pub fn reader_footnote_panel(theme: BrowserTheme) -> Scrollable<Div> {
-    div().max_h(px(240.0)).flex_none().overflow_y_scrollbar().px(px(SPACE_MD)).py(px(SPACE_MD)).flex().flex_col().gap(px(SPACE_SM)).bg(theme.page_bg).border_t_1().border_color(theme.rule)
+    div().max_h(px(240.0)).flex_none().occlude().overflow_y_scrollbar().px(px(SPACE_MD)).py(px(SPACE_MD)).flex().flex_col().gap(px(SPACE_SM)).bg(theme.page_bg).border_t_1().border_color(theme.rule)
 }
 
 fn reader_image_preview(source: impl Into<ImageSource>) -> Img {
@@ -775,39 +813,9 @@ pub fn reader_document_body() -> Div {
     div().relative().size_full().min_h_0().min_w_0().flex().flex_col().overflow_hidden()
 }
 
-/// Invisible strip along the top edge that brings a hidden toolbar back.
-///
-/// Kept thin so it barely overlaps the document: a reader who is selecting text
-/// near the top of the page should not keep summoning the chrome.
-pub fn reader_chrome_reveal() -> Stateful<Div> {
-    div().id("reader-chrome-reveal").absolute().top_0().left_0().right_0().h(px(SPACE_SM))
-}
-
-/// Invisible strip along the left edge that brings a hidden sidebar back.
-///
-/// The sidebar is now the reader's only chrome and sits on the left, so this
-/// is where a pointer-driven reader reaches to bring it back — `top_0`'s
-/// counterpart for a reader whose chrome no longer lives along the top edge.
-pub fn reader_chrome_reveal_left() -> Stateful<Div> {
-    div().id("reader-chrome-reveal-left").absolute().top_0().bottom_0().left_0().w(px(SPACE_SM))
-}
-
 pub fn reader_content() -> Div {
     div().flex_1().min_h_0()
 }
 
-/// The appearance popover, anchored to the end of the reader toolbar.
-///
-/// `document_focus` is where the popover should put keyboard focus while it is
-/// open. A popover always focuses something on open, and nothing in this panel
-/// takes keyboard input — it is buttons throughout — so pointing it at the
-/// document leaves paging keys working while settings are being adjusted.
-/// Without this the popover focuses itself and the reader's navigation keys go
-/// dead until the document is clicked again.
-pub fn reader_settings_popover(document_focus: Option<&gpui::FocusHandle>, theme: BrowserTheme, window: &Window) -> Popover {
-    // The trigger is vertically centered in the toolbar. Top-anchored GPUI
-    // popovers begin at the trigger's top edge, so move this one past the
-    // trigger and the remainder of the toolbar before drawing the panel.
-    let top_offset = reader_toolbar_size_px(window) + READER_SETTINGS_POPOVER_GAP;
-    Popover::new("reader-settings").anchor(gpui::Anchor::TopRight).top(px(top_offset)).p_0().when_some(document_focus, |popover, focus| popover.track_focus(focus)).trigger(reader_settings_trigger(theme).tooltip("Reader settings"))
-}
+#[cfg(all(test, feature = "mobile"))]
+mod numeric_tile_tests;
