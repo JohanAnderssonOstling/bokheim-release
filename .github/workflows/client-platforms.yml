@@ -1,79 +1,46 @@
-name: Diagnose Windows provider imports
+name: Diagnose cold Linux SDK extraction
 on:
   workflow_dispatch:
-    inputs:
-      standalone_only:
-        type: boolean
-        default: false
 permissions:
   contents: read
 jobs:
-  checks:
-    if: inputs.standalone_only != true
-    name: Windows platform checks
-    runs-on: windows-2025
-    timeout-minutes: 120
-    defaults:
-      run:
-        working-directory: bokheim
-        shell: bash
-    env:
-      RUSTUP_TOOLCHAIN: stable
-      RUSTC_BOOTSTRAP: '1'
-      CARGO_BUILD_JOBS: '1'
-      CARGO_TERM_COLOR: always
+  extract:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-22.04, ubuntu-24.04]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
         with:
-          path: bokheim
-      # Match the pinned sibling sources used by desktop-release.yml.
-      - uses: actions/checkout@v6
-        with:
-          repository: JohanAnderssonOstling/GPUI-Fork
-          ref: 6b1ef5fab98df3c62babc7c9245ccffde5a493a2
-          path: GPUI-Fork
-      - uses: actions/checkout@v6
-        with:
-          repository: JohanAnderssonOstling/HtmlEngine
-          ref: 7df6a448ebce52573922bbef02806235db3499f1
-          path: HtmlEngine
-      - uses: actions/checkout@v6
-        with:
-          repository: JohanAnderssonOstling/HtmlViewCore
-          ref: 60aa193d0381479e06811378decf7f09f0d93f6e
-          path: HtmlViewCore
-      - name: Install Rust and build dependencies
-        run: |
-          rustup toolchain install "$RUSTUP_TOOLCHAIN" --profile minimal --component clippy
-      - name: Restore hosted platform build cache
-        uses: Swatinem/rust-cache@v2
-        with:
-          prefix-key: bokheim-platform-checks-v1
-          key: windows
-          workspaces: bokheim -> target
-          cache-on-failure: true
-          cache-workspace-crates: true
+          ref: 0ad90e96f75242255d06ef58cd9041aeded58fa6
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - name: Prepare native PDFium
+      - name: Check cpio and extract the checksum-pinned RPM
+        shell: bash
         run: |
-          target=$(rustc -vV | sed -n 's/^host: //p')
-          python shared/pdfium/prepare.py --target "$target"
-      - name: Account and protocol compatibility tests
-        if: inputs.fixture_only != true
-        run: cargo test --release --locked -p account-client -p account-contract -p protobuf-wire --lib
-      - name: Verify retained provider imports
-        run: cargo test --release --locked -p library-files --lib asset_store::provider_uploads::tests
-
-  standalone:
-    if: inputs.standalone_only == true
-    runs-on: windows-2025
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v6
-      - name: Test standalone extraction and recovery
-        shell: pwsh
-        run: |
-          cargo +stable test --release --locked --manifest-path apps/desktop-gpui/windows/standalone/Cargo.toml --target-dir target/windows-standalone
-          exit $LASTEXITCODE
+          if ! command -v cpio; then
+            sudo apt-get -o Acquire::Retries=3 update
+            sudo apt-get -o Acquire::Retries=3 install -y cpio
+          fi
+          cpio --version | head -n 1
+          python3 - <<'PY_PROBE'
+          import hashlib, importlib.util, json, tempfile, urllib.request
+          from pathlib import Path
+          spec = importlib.util.spec_from_file_location('sdk', 'scripts/linux/toolchain.py')
+          sdk = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(sdk)
+          item = next(x for x in json.loads(Path('scripts/linux/toolchain.json').read_text())['artifacts'] if x['name'].startswith('libxcb-'))
+          with tempfile.TemporaryDirectory() as directory:
+              root = Path(directory)
+              archive = root / item['name']
+              urllib.request.urlretrieve(item['url'], archive)
+              assert hashlib.sha256(archive.read_bytes()).hexdigest() == item['sha256']
+              native = root / 'native'
+              native.mkdir()
+              sdk.extract_rpm(archive, native)
+              assert (native / 'usr/lib64/libxcb-composite.so.0').is_file()
+              print('Cold extraction with committed tooling succeeded')
+          PY_PROBE
