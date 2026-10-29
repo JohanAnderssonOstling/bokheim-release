@@ -50,7 +50,7 @@ jobs:
           RELEASE_TAG: ${{ inputs.tag }}
         run: |
           python3 - <<'PY_UPLOAD'
-          import base64, json, os, re, subprocess, sys, tempfile, tomllib
+          import base64, hashlib, json, os, re, subprocess, sys, tempfile, tomllib
           from pathlib import Path
           sys.path.insert(0, 'scripts/ci')
           import release_artifacts as artifacts
@@ -73,7 +73,6 @@ jobs:
           run = json.loads(command('gh', 'api', f'repos/{repository}/actions/runs/{run_id}'))
           workflow_sha = os.environ.get('WORKFLOW_COMMIT') or sha
           assert re.fullmatch('[0-9a-f]{40}', workflow_sha)
-          assert workflow_sha == sha or platform in ('windows', 'macos'), 'This platform does not support a separately pinned application source'
           assert run['head_sha'] == workflow_sha and run['conclusion'] == 'success', 'Build workflow or result differs'
           assert run['path'] == '.github/workflows/' + workflow, 'Unexpected packaging workflow'
           release = json.loads(command('gh', 'release', 'view', tag, '--repo', repository, '--json', 'isDraft,assets'))
@@ -95,9 +94,20 @@ jobs:
                   assert info['application'] == version, 'Package version differs from release tag'
                   names = [*receipt['files'], artifacts.receipt_name(platform)]
               elif platform == 'kobo':
+                  for marker in ('kobo-source-commit.txt', 'kobo-windows-source-commit.txt'):
+                      assert (directory / marker).read_text().strip() == sha, 'Installer application source differs: ' + marker
+                  # Bind the packaged ARM payload to the selected source tree as well as its sidecar.
+                  committed = json.loads(command('gh', 'api', f'repos/{repository}/contents/apps/kobo-installer/package/Bokheim-Kobo-armv7.tar.gz?ref={sha}'))
+                  payload = directory / 'Bokheim-Kobo-armv7.tar.gz'
+                  blob = hashlib.sha1()
+                  blob.update(f'blob {payload.stat().st_size}\0'.encode())
+                  with payload.open('rb') as stream:
+                      for chunk in iter(lambda: stream.read(1024 * 1024), b''):
+                          blob.update(chunk)
+                  assert committed['size'] == payload.stat().st_size and committed['sha'] == blob.hexdigest(), 'Packaged ARM payload differs from the selected application source'
                   packages = ['Bokheim-Kobo-Installer-Windows-x86_64.exe', 'Bokheim-Kobo-Installer-Linux-x86_64.AppImage',
                               'Bokheim-Kobo-armv7.tar.gz', 'Bokheim-Kobo-Libra2-armv7.tar.gz']
-                  names = []
+                  names = ['kobo-windows-source-commit.txt']
                   for package in packages:
                       expected = (directory / (package + '.sha256')).read_text().split()
                       assert expected == [artifacts.fingerprint(directory / package)['sha256'], package], 'Installer checksum differs'

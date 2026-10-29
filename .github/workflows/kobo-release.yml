@@ -3,6 +3,10 @@ name: Kobo release
 on:
   workflow_dispatch:
     inputs:
+      source_commit:
+        description: Optional full application source commit for this packaging workflow
+        type: string
+        required: false
       publish:
         description: Upload the installers to the shared draft release for this version
         required: true
@@ -30,6 +34,7 @@ env:
   RUST_VERSION: stable
   LINUXDEPLOY_VERSION: 1-alpha-20251107-1
   APPIMAGETOOL_VERSION: 1.9.1
+  SOURCE_COMMIT: ${{ inputs.source_commit || github.sha }}
 
 jobs:
   shared-tests:
@@ -37,15 +42,18 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
       - name: Require shared tests for this source commit
         env:
           GH_TOKEN: ${{ github.token }}
           BUILD_ONLY: ${{ inputs.build_only || false }}
         run: |
+          [[ "$SOURCE_COMMIT" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::Expected a full application source commit"; exit 1; }
           if [[ "$BUILD_ONLY" == true ]]; then
             echo "Build-only release requested; shared tests are skipped."
           else
-            python3 scripts/ci/require-shared-tests.py "${{ github.repository }}" "$GITHUB_SHA"
+            python3 scripts/ci/require-shared-tests.py "${{ github.repository }}" "$SOURCE_COMMIT"
           fi
 
   version:
@@ -61,6 +69,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           path: bokheim
+          ref: ${{ env.SOURCE_COMMIT }}
 
       - name: Read and check release version
         id: version
@@ -85,6 +94,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           path: bokheim
+          ref: ${{ env.SOURCE_COMMIT }}
 
       - name: Check the committed Kobo package
         working-directory: bokheim
@@ -152,6 +162,7 @@ jobs:
           $name = Split-Path $installer -Leaf
           $hash = (Get-FileHash -Algorithm SHA256 $installer).Hash.ToLowerInvariant()
           "$hash  $name" | Out-File -FilePath "$installer.sha256" -Encoding ascii
+          $env:SOURCE_COMMIT | Set-Content -Encoding ascii "release/kobo-windows-source-commit.txt"
 
       - name: Retain Windows installer artifact
         uses: actions/upload-artifact@v7
@@ -164,7 +175,7 @@ jobs:
   build-linux-installer:
     name: Linux USB installer AppImage
     needs: [version, shared-tests]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
 
     steps:
@@ -172,6 +183,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           path: bokheim
+          ref: ${{ env.SOURCE_COMMIT }}
 
       - name: Install Python
         uses: actions/setup-python@v6
@@ -284,7 +296,7 @@ jobs:
           cp release/Bokheim-Kobo-armv7.tar.gz release/Bokheim-Kobo-Libra2-armv7.tar.gz
           (cd release && sha256sum Bokheim-Kobo-armv7.tar.gz > Bokheim-Kobo-armv7.tar.gz.sha256)
           (cd release && sha256sum Bokheim-Kobo-Libra2-armv7.tar.gz > Bokheim-Kobo-Libra2-armv7.tar.gz.sha256)
-          printf '%s\n' "$GITHUB_SHA" > release/kobo-source-commit.txt
+          printf '%s\n' "$SOURCE_COMMIT" > release/kobo-source-commit.txt
 
       - name: Retain Linux installer artifact
         uses: actions/upload-artifact@v7
@@ -305,6 +317,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
       - name: Require shared tests for the exact source commit
         env:
           GH_TOKEN: ${{ github.token }}
@@ -326,7 +340,7 @@ jobs:
           if ! gh release view "$RELEASE_TAG" --repo "$GH_REPO" >/dev/null 2>&1; then
             gh release create "$RELEASE_TAG" \
               --repo "$GH_REPO" \
-              --target "$GITHUB_SHA" --draft --generate-notes --title "Bokheim ${VERSION}" || \
+              --target "$SOURCE_COMMIT" --draft --generate-notes --title "Bokheim ${VERSION}" || \
               gh release view "$RELEASE_TAG" --repo "$GH_REPO" >/dev/null
           fi
           # Refuse to overwrite assets after a release has become public.
