@@ -69,14 +69,16 @@ class PreparationTests(unittest.TestCase):
         with patch.object(release, 'command', self.command):
             release.prepare(self.args)
 
-    def test_prepares_verified_package_and_preserves_taxonomy(self):
+    def test_prepares_verified_package_and_preserves_taxonomy_and_catalog(self):
         previous = self.args.output.parent / 'previous.json'
         taxonomy = {'release_id': 42, 'artifact': {'url': 'https://taxonomy.example.org/releases/42/snapshot'}}
-        previous.write_text(json.dumps(dict(protocol_version=1, channel='stable', sequence=1, taxonomy=taxonomy)))
+        catalog = {'release_id': 27, 'format_version': 8, 'artifact': {'url': 'https://catalogs.example.org/releases/27/catalog.sqlite3', 'bytes': 7, 'sha256': 'ef' * 32}}
+        previous.write_text(json.dumps(dict(protocol_version=1, channel='stable', sequence=1, taxonomy=taxonomy, catalog=catalog)))
         self.args.previous_manifest = previous
         self.prepare()
         manifest = json.loads((self.args.output / 'manifest.json').read_text())
         self.assertEqual(manifest['taxonomy'], taxonomy)
+        self.assertEqual(manifest['catalog'], catalog)
         self.assertEqual(manifest['application']['schema_version'], 80)
         package = manifest['application']['artifacts']['linux-x86_64-appimage']
         self.assertEqual(package['url'], 'https://updates.example.org/releases/v2.0.0/Bokheim-x86_64.AppImage')

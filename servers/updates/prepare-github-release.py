@@ -195,6 +195,7 @@ def prepare(args):
                 'artifacts': artifacts,
             },
             'taxonomy': previous.get('taxonomy') if previous else None,
+            'catalog': previous.get('catalog') if previous else None,
         }
         receipt = {'source_repository': args.source_repository, 'source_commit': sha,
                    'workflow_run': args.run_id, 'release_repository': args.release_repository,

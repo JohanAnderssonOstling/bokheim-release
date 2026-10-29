@@ -8,6 +8,8 @@ if [[ $# != 2 ]]; then
 fi
 host=$1
 bundle=$(realpath -- "$2")
+remote_config=${BOKHEIM_UPDATES_REMOTE_CONFIG:-/etc/bokheim-updates.json}
+[[ "$remote_config" =~ ^/[a-zA-Z0-9_./-]+$ ]] || { echo "Invalid remote publisher configuration path" >&2; exit 2; }
 [[ "$host" != -* && "$host" =~ ^[a-zA-Z0-9_.@:-]+$ ]] || { echo "Invalid SSH destination" >&2; exit 2; }
 [[ -f "$bundle/manifest.signed.json" ]] || { echo "Missing manifest.signed.json" >&2; exit 2; }
 repo=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)
@@ -19,5 +21,5 @@ scp "$repo/target/release/update-publisher" "$host:$stage/update-publisher"
 scp -r "$bundle" "$host:$stage/bundle"
 # Config contains only independently installed public trust keys. The private
 # release signing key stays on the signing machine or protected CI signer.
-ssh "$host" "umask 022; '$stage/update-publisher' /etc/bokheim-updates.json '$stage/bundle' /srv/bokheim-updates"
+ssh "$host" "umask 022; '$stage/update-publisher' '$remote_config' '$stage/bundle' /srv/bokheim-updates"
 echo "Published. Upload staging directory retained for operator cleanup: $stage"

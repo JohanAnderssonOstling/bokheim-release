@@ -159,7 +159,7 @@ python3 servers/updates/prepare-github-release.py \
 ```
 
 Use `--previous-manifest reviewed-previous-payload.json` instead of `--initial`
-for later releases; this carries forward the taxonomy offer. Input is the reviewed
+for later releases; this carries forward the taxonomy and catalog offers. Input is the reviewed
 plain manifest payload, not the signed envelope. The server still independently
 enforces signatures and increasing publication sequence. Validity defaults to
 14 days and can be set with `--valid-days` (1–90).
@@ -220,12 +220,18 @@ access to the published source release. For remote publication, the command also
 and requires it to match the signed envelope exactly. Signing keys stay local;
 only the signed bundle and publisher binary are transferred.
 
+Remote publication reads `/etc/bokheim-updates.json` by default. Set
+`BOKHEIM_UPDATES_REMOTE_CONFIG` to use another independently provisioned public
+configuration on that server. Its origin mappings must include every retained
+component, including `https://catalogs.bokheim.se` mapped to `catalog` when
+carrying forward the production catalog. Keep the existing trusted signing keys.
+
 Signed output is retained if publication or public verification fails. A network
 error may happen after promotion, so inspect the public feed before retrying.
 Rerunning with the same reviewed inputs and a fresh output directory rechecks
 the gates and recreates the same signed payload; the publisher is idempotent.
 Changes to either reviewed JSON file require a new review digest. This integration
-handles prepared application releases and their carried-forward taxonomy offer;
+handles prepared application releases and their carried-forward taxonomy and catalog offers;
 the generic publisher/signing tools remain available for independent taxonomy
 publication and other artifact providers.
 
