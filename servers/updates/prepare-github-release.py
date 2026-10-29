@@ -182,6 +182,9 @@ def prepare(args):
             require(fingerprint(downloaded / filename) == expected, 'Release package differs from successful build')
             url, _ = hosted_artifact(config, args.tag, filename)
             artifacts[target] = dict(url=url, **expected)
+            # The authenticated release copy is retained in downloaded. Reclaim
+            # the verified build copy before fetching the next platform.
+            shutil.rmtree(built)
         # Downloads may take a while. Recheck the shared gate before producing
         # signable output in case a newer test attempt superseded its success.
         command(sys.executable, str(ROOT / 'scripts/ci/require-shared-tests.py'), args.source_repository, sha)

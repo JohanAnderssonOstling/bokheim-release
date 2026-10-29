@@ -270,7 +270,15 @@ jobs:
           APPIMAGE_EXTRACT_AND_RUN: "1"
           LINUXDEPLOY: ${{ runner.temp }}/linuxdeploy-x86_64.AppImage
           APPIMAGETOOL: ${{ runner.temp }}/appimagetool-x86_64.AppImage
-        run: apps/kobo-installer/linux/build-appimage.sh
+        run: |
+          # libbsd/libmd belong to the distribution's excluded libXdmcp.
+          # Do not let linuxdeploy copy the build host's transitive libraries.
+          cat > "$RUNNER_TEMP/linuxdeploy-compat" <<'SH'
+          #!/bin/sh
+          exec "$RUNNER_TEMP/linuxdeploy-x86_64.AppImage" --exclude-library 'libbsd*' --exclude-library 'libmd*' "$@"
+          SH
+          chmod +x "$RUNNER_TEMP/linuxdeploy-compat"
+          LINUXDEPLOY="$RUNNER_TEMP/linuxdeploy-compat" apps/kobo-installer/linux/build-appimage.sh
 
       - name: Verify Linux installer AppImage
         working-directory: bokheim
