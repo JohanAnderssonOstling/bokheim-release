@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,6 +38,7 @@ public class AccountDialogTest {
     private Activity activity;
     private AccountDialog dialog;
     private final List<JSONObject> requests = new ArrayList<>();
+    private int closedEvents;
 
     @Before public void setUp() {
         controller = Robolectric.buildActivity(Activity.class).setup();
@@ -44,14 +46,27 @@ public class AccountDialogTest {
     }
 
     @After public void tearDown() {
-        if (dialog != null) dialog.dismiss();
+        if (dialog != null) {
+            dialog.dismiss();
+            assertEquals(1, closedEvents);
+        }
         controller.pause().stop().destroy();
     }
 
     private void open(int[] colors) {
         dialog = new AccountDialog(activity, 42, 12, colors, (id, message) -> {
             assertEquals(42, id);
-            try { requests.add(new JSONObject(message)); }
+            try {
+                Object event = new JSONTokener(message).nextValue();
+                if (event instanceof String) {
+                    assertEquals("closed", event);
+                    closedEvents++;
+                } else {
+                    JSONObject envelope = (JSONObject) event;
+                    assertEquals(1, envelope.length());
+                    requests.add(envelope.getJSONObject("submit"));
+                }
+            }
             catch (Exception error) { throw new AssertionError(error); }
         });
         dialog.show();
@@ -159,7 +174,7 @@ public class AccountDialogTest {
         button("Sign in").performClick();
         assertFalse(button("Sign in").isEnabled());
         assertEquals("login", requests.get(0).getString("action"));
-        assertEquals("correct horse battery", requests.get(0).getString("secret"));
+        assertEquals("correct horse battery", requests.get(0).getString("password"));
         dialog.complete("Could not sign in");
         TextView feedback = findText(content(), "Could not sign in");
         assertEquals(View.VISIBLE, feedback.getVisibility());
@@ -179,11 +194,21 @@ public class AccountDialogTest {
         button("Create account").performClick();
         dialog.complete(null);
         assertNotNull(field(R.id.account_pin));
-        assertNull(field(R.id.account_password));
+        assertNotNull(field(R.id.account_password));
+        assertEquals("", field(R.id.account_password).getText().toString());
+        field(R.id.account_password).setText("correct horse battery");
         field(R.id.account_pin).setText("123456");
+        button("Verify email").performClick();
+        JSONObject verification = requests.get(requests.size() - 1);
+        assertEquals("verify", verification.getString("action"));
+        assertEquals("reader@example.com", verification.getString("email"));
+        assertEquals("123456", verification.getString("pin"));
+        assertEquals("correct horse battery", verification.getString("password"));
+        dialog.complete("Check the PIN and try again");
         button("Resend PIN").performClick();
         dialog.complete(null);
         assertEquals("123456", field(R.id.account_pin).getText().toString());
+        assertEquals("correct horse battery", field(R.id.account_password).getText().toString());
         button("Back to sign in").performClick();
         button("Forgot password?").performClick();
         button("Email me a reset code").performClick();
@@ -194,6 +219,8 @@ public class AccountDialogTest {
         JSONObject reset = requests.get(requests.size() - 1);
         assertEquals("reset", reset.getString("action"));
         assertEquals("reset-code", reset.getString("token"));
+        assertEquals("another long password", reset.getString("password"));
+        assertFalse(reset.has("email"));
         dialog.complete(null);
         assertEquals("", field(R.id.account_password).getText().toString());
         assertEquals(LIGHT[2], findText(content(), "Password updated. Sign in with your new password.").getCurrentTextColor());
