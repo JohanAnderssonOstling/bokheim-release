@@ -1,53 +1,62 @@
-name: Diagnose Windows import durability
+name: Diagnose Windows provider imports
 on:
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  probe:
+  checks:
+    name: Windows platform checks
     runs-on: windows-2025
-    timeout-minutes: 5
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: bokheim
+        shell: bash
+    env:
+      RUSTUP_TOOLCHAIN: stable
+      RUSTC_BOOTSTRAP: '1'
+      CARGO_BUILD_JOBS: '1'
+      CARGO_TERM_COLOR: always
     steps:
-      - name: Probe Windows flush and directory rename
-        shell: pwsh
+      - uses: actions/checkout@v6
+        with:
+          path: bokheim
+      # Match the pinned sibling sources used by desktop-release.yml.
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/GPUI-Fork
+          ref: 6b1ef5fab98df3c62babc7c9245ccffde5a493a2
+          path: GPUI-Fork
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/HtmlEngine
+          ref: 7df6a448ebce52573922bbef02806235db3499f1
+          path: HtmlEngine
+      - uses: actions/checkout@v6
+        with:
+          repository: JohanAnderssonOstling/HtmlViewCore
+          ref: 60aa193d0381479e06811378decf7f09f0d93f6e
+          path: HtmlViewCore
+      - name: Install Rust and build dependencies
         run: |
-          @'
-          use std::{env, fs::{self, File, OpenOptions}, io::{self, Write}, path::Path};
-
-          fn rename_probe(source: &Path, destination: &Path, label: &str) -> io::Result<()> {
-              match fs::rename(source, destination) {
-                  Ok(()) => {
-                      println!("{label}: succeeded");
-                      fs::rename(destination, source)?;
-                  }
-                  Err(error) => println!("{label}: {error:?}"),
-              }
-              Ok(())
-          }
-
-          fn main() -> io::Result<()> {
-              let root = env::temp_dir().join(format!("bokheim-import-probe-{}", std::process::id()));
-              let staging = root.join(".preparing");
-              let destination = root.join("retained");
-              fs::create_dir_all(&staging)?;
-              let mut draft = File::create(staging.join("draft.json"))?;
-              draft.write_all(b"manifest")?;
-              draft.sync_all()?;
-              fs::write(staging.join("book"), b"complete book")?;
-              println!("Read-only book sync: {:?}", File::open(staging.join("book"))?.sync_all());
-              let book = OpenOptions::new().write(true).open(staging.join("book"))?;
-              book.sync_all()?;
-              println!("Writable book sync: succeeded");
-              rename_probe(&staging, &destination, "Rename with draft and book handles open")?;
-              drop(book);
-              rename_probe(&staging, &destination, "Rename with only draft handle open")?;
-              drop(draft);
-              fs::rename(&staging, &destination)?;
-              println!("Rename with file handles closed: succeeded");
-              fs::remove_dir_all(root)
-          }
-          '@ | Set-Content -Encoding utf8 "$env:RUNNER_TEMP\import_probe.rs"
-          rustc --edition 2024 "$env:RUNNER_TEMP\import_probe.rs" -o "$env:RUNNER_TEMP\import_probe.exe"
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          & "$env:RUNNER_TEMP\import_probe.exe"
-          exit $LASTEXITCODE
+          rustup toolchain install "$RUSTUP_TOOLCHAIN" --profile minimal --component clippy
+      - name: Restore hosted platform build cache
+        uses: Swatinem/rust-cache@v2
+        with:
+          prefix-key: bokheim-platform-checks-v1
+          key: windows
+          workspaces: bokheim -> target
+          cache-on-failure: true
+          cache-workspace-crates: true
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Prepare native PDFium
+        run: |
+          target=$(rustc -vV | sed -n 's/^host: //p')
+          python shared/pdfium/prepare.py --target "$target"
+      - name: Account and protocol compatibility tests
+        if: inputs.fixture_only != true
+        run: cargo test --release --locked -p account-client -p account-contract -p protobuf-wire --lib
+      - name: Verify retained provider imports
+        run: cargo test --release --locked -p library-files --lib asset_store::provider_uploads::tests
