@@ -160,6 +160,11 @@ jobs:
             throw "The GPUI Windows build must not depend on Tauri or the mobile application."
           }
 
+      - name: Verify live account protocol compatibility
+        working-directory: bokheim
+        shell: bash
+        run: python scripts/ci/check-server-protocol.py "$(git rev-parse HEAD)"
+
       - name: Build GPUI desktop release
         working-directory: bokheim
         shell: pwsh

@@ -87,6 +87,9 @@ jobs:
         run: |
           target=$(rustc -vV | sed -n 's/^host: //p')
           python shared/pdfium/prepare.py --target "$target"
+      - name: Account and protocol compatibility tests
+        if: inputs.fixture_only != true
+        run: cargo test --release --locked -p account-client -p account-contract -p protobuf-wire --lib
       - name: UI panic lint checks
         if: inputs.fixture_only != true
         run: |
