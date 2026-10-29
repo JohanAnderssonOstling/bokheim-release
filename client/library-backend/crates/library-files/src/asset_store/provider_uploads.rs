@@ -56,6 +56,12 @@ impl StagedBook {
             #[cfg(not(windows))]
             let book = File::open(staging.path().join("book"))?;
             book.sync_all()?;
+            // Windows cannot rename a directory while one of its files is open.
+            #[cfg(windows)]
+            {
+                drop(book);
+                drop(file);
+            }
             imp::sync_parent(&staging.path().join("draft.json"))?;
             fs::rename(staging.path(), &destination)?;
             imp::sync_parent(&destination)
