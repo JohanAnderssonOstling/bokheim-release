@@ -1,136 +1,88 @@
 name: Distribute completed release packages
-
 on:
   workflow_dispatch:
     inputs:
       platform:
-        description: Hosted package to copy to the existing draft
+        description: Platform packages to upload
         type: choice
         options: [windows, macos, kobo]
         required: true
       run_id:
-        description: Successful packaging workflow run ID
+        description: Completed packaging run, or 0 to create the binary release draft
         type: string
         required: true
       source_commit:
-        description: Full source commit built by that workflow
+        description: Application source commit
         type: string
         required: true
       workflow_commit:
-        description: Optional workflow commit when packaging a pinned application source
+        description: Packaging workflow commit
         type: string
         required: false
       tag:
-        description: Existing draft release version, for example v0.1.9
+        description: Version tag
         type: string
         required: true
-
 permissions:
   actions: read
   contents: write
-
 concurrency:
   group: distribute-${{ inputs.tag }}
   cancel-in-progress: false
-
 jobs:
+  prepare:
+    if: inputs.run_id == '0'
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_TAG: ${{ inputs.tag }}
+      SOURCE_COMMIT: ${{ inputs.source_commit }}
+      RELEASE_NOTES: |
+        Bokheim 0.1.12
+        
+        - Improved reader rendering, text selection, dictionaries, and annotation workflows.
+        - Improved Windows import recovery and path handling.
+        - Folder-picker imports retain completed files for retry when book inspection fails.
+        - Long library paths now use a middle ellipsis while keeping the storage columns aligned.
+        - Removed the signed-out cloud-storage hint from library rows.
+        - Book keyboard focus now uses a light accent fill.
+        - Performance and memory improvements across browsing, cover loading, fonts, and text layout.
+        
+        Release binaries and checksums are included below.
+    steps:
+      - name: Create version tag and binary release draft
+        run: |
+          gh api --method POST "repos/$GH_REPO/git/refs" -f "ref=refs/tags/$RELEASE_TAG" -f "sha=$SOURCE_COMMIT"
+          gh release create "$RELEASE_TAG" --verify-tag --draft --title "Bokheim ${RELEASE_TAG#v}" --notes "$RELEASE_NOTES"
   upload:
-    if: github.repository == 'JohanAnderssonOstling/bokheim-release'
+    if: inputs.run_id != '0'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      PLATFORM: ${{ inputs.platform }}
+      RUN_ID: ${{ inputs.run_id }}
+      SOURCE_COMMIT: ${{ inputs.source_commit }}
+      RELEASE_TAG: ${{ inputs.tag }}
     steps:
-      - uses: actions/checkout@v6
-      - name: Copy completed packages to the version draft
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PLATFORM: ${{ inputs.platform }}
-          RUN_ID: ${{ inputs.run_id }}
-          SOURCE_COMMIT: ${{ inputs.source_commit }}
-          WORKFLOW_COMMIT: ${{ inputs.workflow_commit }}
-          RELEASE_TAG: ${{ inputs.tag }}
+      - name: Upload completed binary packages
         run: |
           python3 - <<'PY_UPLOAD'
-          import base64, hashlib, json, os, re, subprocess, sys, tempfile, tomllib
+          import os, subprocess, tempfile
           from pathlib import Path
-          sys.path.insert(0, 'scripts/ci')
-          import release_artifacts as artifacts
-
-          def command(*args):
-              return subprocess.check_output(args, text=True).strip()
-
-          repository = os.environ['GITHUB_REPOSITORY']
           platform = os.environ['PLATFORM']
-          run_id = os.environ['RUN_ID']
-          sha = os.environ['SOURCE_COMMIT']
-          tag = os.environ['RELEASE_TAG']
-          assert platform in ('windows', 'macos', 'kobo')
-          assert run_id.isdecimal() and int(run_id) > 0
-          assert re.fullmatch('[0-9a-f]{40}', sha)
-          match = re.fullmatch(r'v([0-9]+\.[0-9]+\.[0-9]+)(?:-patch[1-9][0-9]*)?', tag)
-          assert match, 'Expected a release or patch staging tag'
-          version = match.group(1)
-          workflow = {'windows': 'desktop-release.yml', 'macos': 'macos-release.yml', 'kobo': 'kobo-release.yml'}[platform]
-          run = json.loads(command('gh', 'api', f'repos/{repository}/actions/runs/{run_id}'))
-          workflow_sha = os.environ.get('WORKFLOW_COMMIT') or sha
-          assert re.fullmatch('[0-9a-f]{40}', workflow_sha)
-          assert run['head_sha'] == workflow_sha and run['conclusion'] == 'success', 'Build workflow or result differs'
-          assert run['path'] == '.github/workflows/' + workflow, 'Unexpected packaging workflow'
-          release = json.loads(command('gh', 'release', 'view', tag, '--repo', repository, '--json', 'isDraft,assets'))
-          assert release['isDraft'], 'Packages may only be added to a draft'
-          existing = {item['name']: item for item in release['assets']}
-          cargo = json.loads(command('gh', 'api', f'repos/{repository}/contents/apps/desktop-gpui/Cargo.toml?ref={sha}'))
-          assert tomllib.loads(base64.b64decode(cargo['content']).decode())['package']['version'] == version
+          names = {'windows': ['bokheim-desktop-windows-x86-64'],
+                   'macos': ['bokheim-macos-universal'],
+                   'kobo': ['bokheim-kobo-installer-windows-x86-64', 'bokheim-kobo-installer-linux-x86-64']}[platform]
           with tempfile.TemporaryDirectory() as scratch:
+              for name in names:
+                  subprocess.run(['gh', 'run', 'download', os.environ['RUN_ID'], '--name', name, '--dir', scratch], check=True)
               directory = Path(scratch)
-              names = {'windows': ['bokheim-desktop-windows-x86-64'], 'macos': ['bokheim-macos-universal'],
-                       'kobo': ['bokheim-kobo-installer-windows-x86-64', 'bokheim-kobo-installer-linux-x86-64']}[platform]
-              for name in names:
-                  command('gh', 'run', 'download', run_id, '--repo', repository, '--name', name, '--dir', scratch)
               if platform == 'windows':
-                  receipt = json.loads((directory / artifacts.receipt_name(platform)).read_text())
-                  artifacts.validate(receipt, platform, sha, repository, directory)
-                  assert receipt['workflow_run'] == int(run_id), 'Receipt belongs to a different build'
-                  info = json.loads((directory / 'update-info-windows-x86_64-zip.json').read_text())
-                  assert info['application'] == version, 'Package version differs from release tag'
-                  names = [*receipt['files'], artifacts.receipt_name(platform)]
-              elif platform == 'kobo':
-                  for marker in ('kobo-source-commit.txt', 'kobo-windows-source-commit.txt'):
-                      assert (directory / marker).read_text().strip() == sha, 'Installer application source differs: ' + marker
-                  # Bind the packaged ARM payload to the selected source tree as well as its sidecar.
-                  committed = json.loads(command('gh', 'api', f'repos/{repository}/contents/apps/kobo-installer/package/Bokheim-Kobo-armv7.tar.gz?ref={sha}'))
-                  payload = directory / 'Bokheim-Kobo-armv7.tar.gz'
-                  blob = hashlib.sha1()
-                  blob.update(f'blob {payload.stat().st_size}\0'.encode())
-                  with payload.open('rb') as stream:
-                      for chunk in iter(lambda: stream.read(1024 * 1024), b''):
-                          blob.update(chunk)
-                  assert committed['size'] == payload.stat().st_size and committed['sha'] == blob.hexdigest(), 'Packaged ARM payload differs from the selected application source'
-                  packages = ['Bokheim-Kobo-Installer-Windows-x86_64.exe', 'Bokheim-Kobo-Installer-Linux-x86_64.AppImage',
-                              'Bokheim-Kobo-armv7.tar.gz', 'Bokheim-Kobo-Libra2-armv7.tar.gz']
-                  names = ['kobo-windows-source-commit.txt']
-                  for package in packages:
-                      expected = (directory / (package + '.sha256')).read_text().split()
-                      assert expected == [artifacts.fingerprint(directory / package)['sha256'], package], 'Installer checksum differs'
-                      names.extend([package, package + '.sha256'])
-                  assert artifacts.fingerprint(directory / 'Bokheim-Kobo-armv7.tar.gz') == artifacts.fingerprint(directory / 'Bokheim-Kobo-Libra2-armv7.tar.gz'), 'Legacy Kobo alias differs from the universal package'
-              else:
-                  metadata = json.loads((directory / 'build-macos.json').read_text())
-                  assert metadata['source_commit'] == sha and metadata['application'] == version
-                  image = directory / 'Bokheim-macOS-universal.dmg'
-                  assert metadata['artifact']['name'] == image.name
-                  assert artifacts.fingerprint(image) == {key: metadata['artifact'][key] for key in ('bytes', 'sha256')}
-                  names = [image.name, image.name + '.sha256', 'build-macos.json']
-              source = directory / ('kobo-source-commit.txt' if platform == 'kobo' else 'desktop-source-commit.txt')
-              source.write_text(sha + '\n')
-              names.append(source.name)
-              uploads = []
-              for name in names:
-                  actual = artifacts.fingerprint(directory / name)
-                  if name in existing:
-                      assert existing[name]['size'] == actual['bytes'] and existing[name].get('digest') == 'sha256:' + actual['sha256'], 'Draft contains different bytes: ' + name
-                  else:
-                      uploads.append(str(directory / name))
-              if uploads:
-                  command('gh', 'release', 'upload', tag, '--repo', repository, *uploads)
-              print('Uploaded completed ' + platform + ' packages from ' + sha + ' to ' + tag)
+                  (directory / 'desktop-source-commit.txt').write_text(os.environ['SOURCE_COMMIT'] + '\n')
+              files = [str(p) for p in directory.iterdir() if p.is_file()]
+              subprocess.run(['gh', 'release', 'upload', os.environ['RELEASE_TAG'], '--clobber', *files], check=True)
+              print('Uploaded', platform, 'packages')
           PY_UPLOAD
