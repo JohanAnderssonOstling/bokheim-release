@@ -13,8 +13,15 @@ One library for all your books on all your devices.
 - **Seamless cross device reading**
   - With a free account your books, annotations and reading positions are synced automatically.
 - **All your books**
-  - EPUB, PDF, MOBI, AZW, AZW3, FB2 and CBZ.
-  - M4B and MP3.
+  - EPUB
+  - PDF
+  - MOBI
+  - AZW
+  - AZW3
+  - FB2
+  - CBZ
+  - M4B
+  - MP3
 - **Keep your folder structure**
   - Existing folder structures are preserved and kept up to date.
 - **Automatic categorization**
