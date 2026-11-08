@@ -26,29 +26,23 @@ EPUB, PDF, MOBI, AZW, AZW3, FB2 and CBZ. M4B and MP3.
 
 With a free account your books, annotations and reading positions are synced automatically.
 
-<table>
-<tr>
-<td><img src="screenshots/sync-computer-a.webp" width="620" alt="A book open on a computer."></td>
-<td><img src="screenshots/sync-phone-a.webp" width="180" alt="The same book open on a phone."></td>
-</tr>
-</table>
+<p align="center">
+<img src="screenshots/sync-computer-a.webp" width="75%" alt="A book open on a computer.">
+<img src="screenshots/sync-phone-a.webp" width="22%" alt="The same book open on a phone.">
+</p>
 
-<table>
-<tr>
-<td><img src="screenshots/sync-audiobook-computer.gif" width="620" alt="History of Julius Caesar on a computer, seeking from five to twenty-one minutes into the chapter."></td>
-<td><img src="screenshots/sync-audiobook-phone.gif" width="180" alt="The same audiobook on a phone, following the computer&#x27;s seek from five to twenty-one minutes a moment later."></td>
-</tr>
-</table>
+<p align="center">
+<img src="screenshots/sync-audiobook-computer.gif" width="75%" alt="History of Julius Caesar on a computer, seeking from five to twenty-one minutes into the chapter.">
+<img src="screenshots/sync-audiobook-phone.gif" width="22%" alt="The same audiobook on a phone, following the computer&#x27;s seek from five to twenty-one minutes a moment later.">
+</p>
 
 ## One app on every screen
 
-<table>
-<tr>
-<td><img src="screenshots/books-desktop.webp" width="480" alt="The Classics library&#x27;s Books view on desktop, with book covers and the full navigation sidebar visible."></td>
-<td><img src="screenshots/books-ereader.webp" width="200" alt="The Classics library&#x27;s Books view in an e-reader frame, with the current navigation sidebar and book cover grid."></td>
-<td><img src="screenshots/phone.webp" width="140" alt="The Classics library on an Android phone, showing its books as a grid of covers."></td>
-</tr>
-</table>
+<p align="center">
+<img src="screenshots/books-desktop.webp" width="57%" alt="The Classics library&#x27;s Books view on desktop, with book covers and the full navigation sidebar visible.">
+<img src="screenshots/books-ereader.webp" width="24%" alt="The Classics library&#x27;s Books view in an e-reader frame, with the current navigation sidebar and book cover grid.">
+<img src="screenshots/phone.webp" width="16%" alt="The Classics library on an Android phone, showing its books as a grid of covers.">
+</p>
 
 ## Keep your folder structure
 
