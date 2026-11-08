@@ -25,8 +25,11 @@ One library for all your books on all your devices.
 - **Keep your folder structure**
   - Existing folder structures are preserved and kept up to date.
 - **Annotations**
-  - **Recurring notes:** Show the same note wherever a name or phrase appears in a chapter, a book or your library.
-  - **Export annotations:** Export to Markdown, save annotations in PDF files, or transfer EPUB annotations to Foliate and Readest.
+  - **Recurring notes:** Show the same note wherever your selection appears in a chapter, a book or your library.
+  - **Export annotations:**
+    - Markdown
+    - PDF file
+    - EPUB to Foliate and Readest
 - **Automatic categorization**
   - Your books are automatically categorized into a subject hierarchy using data embedded in your files and publicly available data.
 - **Find your next read**
