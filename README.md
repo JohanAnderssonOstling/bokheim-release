@@ -26,6 +26,8 @@ One library for all your books on all your devices.
   - Existing folder structures are preserved and kept up to date.
 - **Annotations**
   - Highlight passages and add notes.
+  - Recurring notes.
+  - Export annotations.
 - **Automatic categorization**
   - Your books are automatically categorized into a subject hierarchy using data embedded in your files and publicly available data.
 - **Find your next read**
