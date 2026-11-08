@@ -2,13 +2,9 @@
 
 One library for all your books on all your devices.
 
-[Download Bokheim](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest) · [Open in browser](https://app.bokheim.se)
+[Open in browser](https://app.bokheim.se)
 
-[Linux](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-x86_64.AppImage) · [Windows installer](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-Windows-x86_64-Setup.exe) · [Windows standalone](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-Windows-x86_64-Standalone.exe) · [Android](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-Android-arm64.apk) · [macOS](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-macOS-universal.dmg)
-
-## Kobo installer
-
-[Linux](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-Kobo-Installer-Linux-x86_64.AppImage) · [Windows](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-Kobo-Installer-Windows-x86_64.exe)
+[Linux](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-x86_64.AppImage) · [Windows installer](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-Windows-x86_64-Setup.exe) · [Windows standalone](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-Windows-x86_64-Standalone.exe) · [Android](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-Android-arm64.apk) · [macOS](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-macOS-universal.dmg) · [Kobo installer (Linux)](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-Kobo-Installer-Linux-x86_64.AppImage) · [Kobo installer (Windows)](https://github.com/JohanAnderssonOstling/bokheim-release/releases/latest/download/Bokheim-Kobo-Installer-Windows-x86_64.exe)
 
 ## Features
 
