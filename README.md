@@ -25,7 +25,7 @@ One library for all your books on all your devices.
 - **Keep your folder structure**
   - Existing folder structures are preserved and kept up to date.
 - **Annotations**
-  - **Recurring notes:** Show the same note wherever selections appear in the same chapter, book or across the library.
+  - **Recurring notes:** Show the same note wherever selections appear in the same chapter, book or across your library.
   - **Export annotations:**
     - Markdown
     - PDF file
