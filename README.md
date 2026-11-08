@@ -24,6 +24,8 @@ One library for all your books on all your devices.
   - MP3
 - **Keep your folder structure**
   - Existing folder structures are preserved and kept up to date.
+- **Annotations**
+  - Highlight passages and add notes.
 - **Automatic categorization**
   - Your books are automatically categorized into a subject hierarchy using data embedded in your files and publicly available data.
 - **Find your next read**
