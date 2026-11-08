@@ -36,5 +36,3 @@ One library for all your books on all your devices.
   - Add high quality public domain books from the 5000+ book curated catalog.
 - **Listen to your books**
   - [George](https://bokheim.se/light/#listen) · [Alba](https://bokheim.se/light/alba/#listen)
-
-[Privacy Policy](https://bokheim.se/light/privacy/) · [Terms of Service](https://bokheim.se/light/terms/) · [Delete your account](https://bokheim.se/light/delete-account/)
