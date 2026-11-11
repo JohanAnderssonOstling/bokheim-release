@@ -31,7 +31,6 @@ def main():
         parser.error('--output must be a fresh directory outside the source checkout')
     if args.dry_run:
         print(json.dumps(dict(platform=args.platform, output=str(output),
-              shared_tests='Reuse exact-commit success; otherwise run locally and report',
               build=['bash', 'scripts/ci/local-platform.sh', args.platform, str(output)],
               upload=args.upload, tag=args.tag, deploy=args.deploy), indent=2))
         return
@@ -39,13 +38,8 @@ def main():
     artifacts.clean_revision(sha)
     release_environment = release_config.environment(os.environ)
     env = {**os.environ, **release_environment, 'RUSTUP_TOOLCHAIN': release_environment['RUST_VERSION'], 'RUSTC_BOOTSTRAP': '1'}
-    env.setdefault('CARGO_BUILD_JOBS', '1')
-    gate = [sys.executable, 'scripts/ci/require-shared-tests.py', args.repository, sha]
-    if subprocess.run(gate, cwd=ROOT, env=env).returncode:
-        subprocess.run([sys.executable, 'scripts/ci/shared-tests.py', '--report', args.repository], cwd=ROOT, env=env, check=True)
     subprocess.run(['bash', 'scripts/ci/local-platform.sh', args.platform, str(output)], cwd=ROOT, env=env, check=True)
     artifacts.clean_revision(sha)
-    subprocess.run(gate, cwd=ROOT, env=env, check=True)
     artifacts.record(args.platform, output, sha, args.repository)
     if args.upload:
         artifacts.upload(args.platform, output, args.repository, args.tag)

@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-SPEECH = Path(__file__).resolve().parents[3] / 'shared/reader-speech'
+SPEECH = Path(__file__).resolve().parents[3] / 'apps/reader/crates/speech'
 spec = importlib.util.spec_from_file_location('speech_prepare', SPEECH / 'prepare.py')
 speech = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(speech)

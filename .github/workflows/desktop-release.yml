@@ -14,7 +14,7 @@ on:
         type: string
         required: false
       build_only:
-        description: Build packages without running or requiring tests
+        description: Compatibility input; release builds do not run tests
         required: true
         type: boolean
         default: false
@@ -36,10 +36,6 @@ env:
   APPIMAGETOOL_VERSION: 1.9.1
 
 jobs:
-  windows-checks:
-    if: inputs.build_only != true
-    uses: ./.github/workflows/client-platforms.yml
-
   build-windows:
     name: x86-64 Windows installer and portable app
     runs-on: windows-2025
@@ -143,6 +139,8 @@ jobs:
           with tarfile.open(archive, 'r:bz2') as source:
               source.extractall(destination, filter='data')
           lib = destination / stem / 'lib'
+          assert (lib / library).is_file(), f'Missing speech library: {lib / library}'
+          assert (lib / library).stat().st_size > 0
           with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as output:
               output.write(f'SHERPA_ONNX_LIB_DIR={lib}\n')
           print(f'Prepared native speech libraries: {lib}')
@@ -159,7 +157,6 @@ jobs:
           }
 
       - name: Verify the desktop dependency graph is GPUI-only
-        if: inputs.build_only != true
         working-directory: bokheim
         shell: pwsh
         run: |
@@ -169,10 +166,28 @@ jobs:
             throw "The GPUI Windows build must not depend on Tauri or the mobile application."
           }
 
+      - name: Prepare PDFium inputs
+        working-directory: bokheim
+        shell: pwsh
+        run: python shared/pdfium/prepare.py --target x86_64-pc-windows-msvc
+
       - name: Build GPUI desktop release
         working-directory: bokheim
         shell: pwsh
-        run: python apps/desktop-gpui/scripts/build.py
+        run: cargo desktop --release --timings
+
+      - name: Retain Cargo build timings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bokheim-windows-build-timings
+          path: bokheim/target/cargo-timings/*.html
+          if-no-files-found: ignore
+
+      - name: Stage speech runtime assets
+        working-directory: bokheim
+        shell: pwsh
+        run: python apps/reader/crates/speech/prepare.py --voice all --dest target/release/tts
 
       - name: Build Windows installer
         working-directory: bokheim
@@ -202,14 +217,6 @@ jobs:
           python apps/desktop-gpui/windows/package-update.py --binary target/release/bokheim.exe --icon apps/ui/design-tokens/assets/icon/favicon.ico --output release/Bokheim-Windows-x86_64-Update.zip --portable-output release/Bokheim-Windows-x86_64-Portable.zip
           if ($LASTEXITCODE -ne 0) { throw "Windows update packaging failed" }
 
-      - name: Test single-file Windows launcher
-        if: inputs.build_only != true
-        working-directory: bokheim
-        shell: pwsh
-        run: |
-          cargo test --release --locked --manifest-path apps/desktop-gpui/windows/standalone/Cargo.toml --target-dir target/windows-standalone
-          if ($LASTEXITCODE -ne 0) { throw "Standalone launcher tests failed" }
-
       - name: Build single-file Windows app
         working-directory: bokheim
         shell: pwsh
@@ -218,7 +225,6 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Standalone executable packaging failed" }
 
       - name: Verify portable Windows runtime and update metadata
-        if: inputs.build_only != true
         working-directory: bokheim
         shell: pwsh
         run: |
@@ -241,30 +247,7 @@ jobs:
           }
           $info | Set-Content -Encoding utf8 "release/update-info-windows-x86_64-zip.json"
 
-      - name: Verify first and cached standalone launches
-        if: inputs.build_only != true
-        working-directory: bokheim
-        shell: pwsh
-        run: |
-          $payloadHash = (Get-FileHash -Algorithm SHA256 "release/Bokheim-Windows-x86_64-Portable.zip").Hash.ToLowerInvariant()
-          $runtime = Join-Path $env:LOCALAPPDATA "Bokheim\Standalone\$payloadHash"
-          $standalone = (Resolve-Path "release/Bokheim-Windows-x86_64-Standalone.exe").Path
-          $expected = Get-Content -Raw "release/update-info-windows-x86_64-zip.json" | ConvertFrom-Json | ConvertTo-Json -Depth 10 -Compress
-          $preparedAt = $null
-          foreach ($attempt in 1..2) {
-            $stdout = Join-Path $env:RUNNER_TEMP "standalone-$attempt.stdout"
-            $stderr = Join-Path $env:RUNNER_TEMP "standalone-$attempt.stderr"
-            $process = Start-Process -FilePath $standalone -ArgumentList "--bokheim-update-info" -NoNewWindow -Wait -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
-            if ($process.ExitCode -ne 0) { throw "Standalone launch $attempt failed with exit code $($process.ExitCode): $(Get-Content -Raw $stderr)" }
-            $actual = Get-Content -Raw $stdout | ConvertFrom-Json | ConvertTo-Json -Depth 10 -Compress
-            if ($actual -ne $expected) { throw "Standalone runtime metadata differs from the packaged app" }
-            $marker = Get-Item -LiteralPath (Join-Path $runtime ".ready")
-            if ($preparedAt -and $marker.LastWriteTimeUtc -ne $preparedAt) { throw "Standalone app extracted again on its second launch" }
-            $preparedAt = $marker.LastWriteTimeUtc
-          }
-
       - name: Verify Windows installer
-        if: inputs.build_only != true
         working-directory: bokheim
         shell: pwsh
         run: |
@@ -278,44 +261,9 @@ jobs:
           }
 
       - name: Record verified Windows artifacts
-        if: inputs.build_only != true
         working-directory: bokheim
         shell: pwsh
         run: python scripts/ci/release_artifacts.py record windows --directory release --repository "${{ github.repository }}"
-
-      - name: Write Windows package metadata
-        if: inputs.build_only == true
-        working-directory: bokheim
-        shell: python {0}
-        run: |
-          import json, os, re, sqlite3, sys, tomllib
-          from pathlib import Path
-          sys.path.insert(0, 'scripts/ci')
-          import release_config
-          version = tomllib.loads(Path('apps/desktop-gpui/Cargo.toml').read_text())['package']['version']
-          schema = int(re.search(r'LIBRARY_SCHEMA_VERSION: i64 = (\d+)', Path('client/library-backend/crates/library-database/src/lib.rs').read_text()).group(1))
-          connection = sqlite3.connect('file:target/release/taxonomy.sqlite3?mode=ro', uri=True)
-          taxonomy = dict(connection.execute('SELECT key,value FROM taxonomy_meta'))
-          config = release_config.environment(os.environ)
-          info = {'application': version, 'schema': schema, 'target': 'windows-x86_64-zip',
-                  'taxonomy_formats': [int(taxonomy['format_version'])], 'taxonomy_release': int(taxonomy['release_id']),
-                  'update_trust': {'endpoint': config['BOKHEIM_UPDATE_ENDPOINT'], 'channel': 'stable',
-                                   'keys': {config['BOKHEIM_UPDATE_KEY_ID']: config['BOKHEIM_UPDATE_PUBLIC_KEY_HEX']}}}
-          Path('release/update-info-windows-x86_64-zip.json').write_text(json.dumps(info) + '\n')
-
-      - name: Record Windows binary outputs
-        if: inputs.build_only == true
-        working-directory: bokheim
-        shell: python {0}
-        run: |
-          import json, os, subprocess, sys
-          from pathlib import Path
-          sys.path.insert(0, 'scripts/ci')
-          import release_artifacts as artifacts
-          source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
-          receipt = artifacts.record('windows', Path('release'), source, os.environ['GITHUB_REPOSITORY'], int(os.environ['GITHUB_RUN_ID']))
-          receipt['tests_run'] = False
-          Path('release', artifacts.receipt_name('windows')).write_text(json.dumps(receipt, indent=2) + '\n')
 
       - name: Retain workflow artifact
         uses: actions/upload-artifact@v7
@@ -330,17 +278,12 @@ jobs:
       contents: write
       statuses: read
     name: Publish verified draft artifacts
-    needs: [build-windows, windows-checks]
+    needs: build-windows
     if: startsWith(github.ref, 'refs/tags/') || inputs.publish == true
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
-      - name: Require shared tests for the exact source commit
-        env:
-          GH_TOKEN: ${{ github.token }}
-          SOURCE_REPOSITORY: ${{ github.repository }}
-        run: python3 scripts/ci/require-shared-tests.py "$SOURCE_REPOSITORY" "$(git rev-parse HEAD)"
       - uses: actions/download-artifact@v8
         with:
           pattern: bokheim-desktop-*

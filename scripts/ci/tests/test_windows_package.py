@@ -19,7 +19,7 @@ class WindowsPackageTests(unittest.TestCase):
             (root / 'taxonomy.sqlite3').write_bytes(b'SQLite format 3\0')
             (root / 'fonts').mkdir()
             (root / 'fonts/DroidSansFallback.ttf').write_bytes(b'font')
-            (root / 'bokheim-opds-webview.exe').write_bytes(b'MZ helper')
+            (root / 'bokheim-browser.exe').write_bytes(b'MZ helper')
             (root / 'tts/alba').mkdir(parents=True)
             (root / 'tts/alba/en_GB-alba-medium.onnx').write_bytes(b'voice')
             (root / 'tts/george').mkdir(parents=True)
@@ -37,13 +37,13 @@ class WindowsPackageTests(unittest.TestCase):
             digest = hashlib.sha256(portable.read_bytes()).hexdigest()
             self.assertEqual(portable.with_suffix('.zip.sha256').read_text(), f'{digest}  Portable.zip\n')
             with zipfile.ZipFile(first) as archive:
-                self.assertEqual(set(archive.namelist()), {'Bokheim.exe', 'Bokheim.ico', 'bokheim-opds-webview.exe', 'taxonomy.sqlite3', 'fonts/DroidSansFallback.ttf', 'tts/alba/en_GB-alba-medium.onnx', 'tts/george/model.onnx'})
+                self.assertEqual(set(archive.namelist()), {'Bokheim.exe', 'Bokheim.ico', 'bokheim-browser.exe', 'taxonomy.sqlite3', 'fonts/DroidSansFallback.ttf', 'tts/alba/en_GB-alba-medium.onnx', 'tts/george/model.onnx'})
                 self.assertNotIn('pdfium/pdfium.dll', archive.namelist())
             with zipfile.ZipFile(portable) as archive:
                 extracted = root / 'Extracted app'
                 archive.extractall(extracted)
             self.assertEqual((extracted / 'Bokheim.exe').read_bytes(), binary.read_bytes())
-            self.assertEqual((extracted / 'bokheim-opds-webview.exe').read_bytes(), b'MZ helper')
+            self.assertEqual((extracted / 'bokheim-browser.exe').read_bytes(), b'MZ helper')
             self.assertEqual((extracted / 'taxonomy.sqlite3').read_bytes(), b'SQLite format 3\0')
             self.assertEqual((extracted / 'tts/alba/en_GB-alba-medium.onnx').read_bytes(), b'voice')
             self.assertEqual((extracted / 'tts/george/model.onnx').read_bytes(), b'george-fp32')

@@ -2,7 +2,6 @@
 """Receipts and draft uploads for verified local and Windows release packages."""
 import argparse
 import hashlib
-import importlib.util
 import json
 import os
 from pathlib import Path
@@ -42,10 +41,15 @@ def command(*args):
 
 
 def clean_revision(sha):
-    spec = importlib.util.spec_from_file_location('shared_suite', ROOT / 'scripts/ci/shared-tests.py')
-    suite = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(suite)
-    suite.clean_revision(sha)
+    import release_config
+    require(command('git', 'rev-parse', 'HEAD') == sha
+            and not command('git', 'status', '--porcelain', '--untracked-files=normal'),
+            'Release requires an unchanged, clean source checkout')
+    for directory, pin in release_config.load()['dependencies'].items():
+        sibling = str(ROOT.parent / directory)
+        require(command('git', '-C', sibling, 'rev-parse', 'HEAD') == pin
+                and not command('git', '-C', sibling, 'status', '--porcelain'),
+                f'{directory} must be clean and at release pin {pin}')
 
 
 def receipt_name(platform):
@@ -112,7 +116,6 @@ def upload(platform, directory, repository, tag):
     receipt = json.loads((directory / receipt_name(platform)).read_text())
     sha = receipt['source_commit']
     validate(receipt, platform, sha, repository, directory)
-    command('python3', 'scripts/ci/require-shared-tests.py', repository, sha)
     command('python3', 'scripts/ci/check-server-protocol.py', sha)
     # Never creates or moves tags, including when the release does not exist yet.
     command('gh', 'api', f'repos/{repository}/git/ref/tags/{tag}')

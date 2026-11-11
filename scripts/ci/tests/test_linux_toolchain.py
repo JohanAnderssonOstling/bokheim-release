@@ -49,14 +49,13 @@ class CompilerTests(unittest.TestCase):
 
 @unittest.skipUnless(sys.platform == 'linux', 'Linux browser SDK')
 class BrowserToolchainTests(unittest.TestCase):
-    def test_default_build_allows_system_library_references_only_for_the_helper(self):
+    def test_default_build_uses_browser_cargo_alias(self):
         browser = module('browser-toolchain')
         with patch.object(sys, 'argv', ['browser-toolchain.py', '--offline']), \
              patch.object(browser, 'build_environment', return_value={'SDK': 'environment'}), \
              patch.object(browser.subprocess, 'run') as run:
             browser.main()
-        run.assert_called_once_with(['cargo', 'rustc', '--release', '-p', 'embedded-browser-ui', '--bin', 'bokheim-opds-webview', '--offline',
-                                     '--', '-C', 'link-arg=-Wl,--allow-shlib-undefined'],
+        run.assert_called_once_with(['cargo', 'desktop-browser', '--release', '--offline'],
                                     env={'SDK': 'environment'}, check=True)
 
     def test_pkg_config_wrapper_path_is_absolute_for_cargo_build_script_working_directories(self):

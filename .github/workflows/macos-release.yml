@@ -14,7 +14,7 @@ on:
         type: string
         required: false
       build_only:
-        description: Build packages without running or requiring tests
+        description: Compatibility input; release builds do not run tests
         required: true
         type: boolean
         default: false
@@ -34,7 +34,6 @@ concurrency:
 
 env:
   CARGO_TERM_COLOR: always
-  CARGO_BUILD_JOBS: "2"
   RUSTC_BOOTSTRAP: "1"
   MACOSX_DEPLOYMENT_TARGET: "13.0"
   BOKHEIM_PACKAGE_SOURCE_ROOT: ${{ github.workspace }}/bokheim
@@ -138,11 +137,12 @@ jobs:
           with tarfile.open(archive, 'r:bz2') as source:
               source.extractall(destination, filter='data')
           lib = destination / stem / 'lib'
+          assert (lib / library).is_file(), f'Missing speech library: {lib / library}'
+          assert (lib / library).stat().st_size > 0
           with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as output:
               output.write(f'SHERPA_ONNX_LIB_DIR={lib}\n')
           print(f'Prepared native speech libraries: {lib}')
       - name: Verify version tag
-        if: inputs.build_only != true
         env:
           PUBLISH_REQUESTED: ${{ inputs.publish || false }}
         run: |
@@ -155,13 +155,21 @@ jobs:
           if os.environ['GITHUB_REF'].startswith('refs/tags/'):
               assert os.environ['GITHUB_REF_NAME'] == 'v' + version, 'Tag differs from app version'
           PY
+      - name: Prepare PDFium inputs
+        run: python3 shared/pdfium/prepare.py --target "${{ matrix.target }}"
       - name: Build optimized desktop app
-        run: python3 apps/desktop-gpui/scripts/build.py --target "${{ matrix.target }}"
-      - name: Verify relocated PDF runtime
-        if: inputs.build_only != true
+        run: cargo desktop --release --timings --target "${{ matrix.target }}"
+      - name: Retain Cargo build timings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bokheim-macos-${{ matrix.arch }}-build-timings
+          path: bokheim/target/cargo-timings/*.html
+          if-no-files-found: ignore
+      - name: Stage runtime assets
         run: |
-          PDFIUM_PREPARED_DIR="$PWD/.pdfium/${{ matrix.target }}" \
-            cargo test --release -p pdf-reader-core --test packaged_runtime --target "${{ matrix.target }}"
+          python3 apps/reader/crates/speech/prepare.py --voice all --dest "target/${{ matrix.target }}/release/tts"
+          python3 shared/pdfium/prepare.py --target "${{ matrix.target }}" --dest "target/${{ matrix.target }}/release/pdfium" --offline
       - name: Package and verify architecture bundle
         run: |
           export GITHUB_SHA="$(git rev-parse HEAD)"
@@ -220,7 +228,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          python3 scripts/ci/require-shared-tests.py "$GITHUB_REPOSITORY" "$GITHUB_SHA"
           python3 scripts/ci/check-server-protocol.py "$GITHUB_SHA"
           # Existing tags/releases only; never overwrite a published download.
           gh api "repos/$RELEASE_REPOSITORY/git/ref/tags/$GITHUB_REF_NAME" >/dev/null

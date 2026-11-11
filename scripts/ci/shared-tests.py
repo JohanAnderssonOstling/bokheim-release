@@ -15,7 +15,7 @@ CONTEXT = 'bokheim/shared-tests-v1'
 def commands():
     packages = ['account-client', 'book-access', 'dictionary-catalog', 'dictionary', 'library-enrichment', 'book-model',
                 'library-files', 'asset-transfer', 'client-platform-runtime',
-                'client-runtime', 'client-platform-android', 'client-platform-kobo', 'library-sync', 'library-database',
+                'client-protocol', 'client-platform-android', 'client-platform-kobo', 'library-sync', 'library-database',
                 'library-replica', 'library-backend', 'subject-projection',
                 'kobo-profile', 'kobo-device', 'kobo-package', 'kobo-update']
     return [

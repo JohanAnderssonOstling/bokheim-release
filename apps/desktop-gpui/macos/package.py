@@ -36,7 +36,7 @@ def pdfium(app):
 
 
 def browser_helper(app):
-    return app / "Contents/MacOS/bokheim-opds-webview"
+    return app / "Contents/MacOS/bokheim-browser"
 
 
 def verify_arches(path, expected):
@@ -71,7 +71,7 @@ def architecture(args, version, source):
         (executable(app).parent / "taxonomy.sqlite3").symlink_to("../Resources/taxonomy.sqlite3")
         shutil.copytree(binary.parent / "fonts", resources / "fonts")
         (executable(app).parent / "fonts").symlink_to("../Resources/fonts", target_is_directory=True)
-        shutil.copy2(binary.with_name("bokheim-opds-webview"), browser_helper(app))
+        shutil.copy2(binary.with_name("bokheim-browser"), browser_helper(app))
         pdfium(app).parent.mkdir()
         shutil.copy2(prepared / "libpdfium.dylib", pdfium(app))
         speech = binary.parent / "tts"
@@ -141,7 +141,7 @@ def universal(args, version, source):
         staging.mkdir()
         app = staging / "Bokheim.app"
         shutil.copytree(apps["arm64"], app, symlinks=True)
-        for location in ("Contents/MacOS/Bokheim", "Contents/MacOS/bokheim-opds-webview", "Contents/Frameworks/libpdfium.dylib"):
+        for location in ("Contents/MacOS/Bokheim", "Contents/MacOS/bokheim-browser", "Contents/Frameworks/libpdfium.dylib"):
             run("lipo", "-create", apps["arm64"] / location, apps["x86_64"] / location,
                 "-output", app / location)
             verify_arches(app / location, ARCHES)
