@@ -70,6 +70,9 @@ def record(platform, directory, sha, repository, workflow_run=None):
     if workflow_run:
         require(platform == 'windows' and workflow_run > 0, 'Only Windows uses Actions')
         receipt['workflow_run'] = workflow_run
+        workflow_commit = os.environ.get('GITHUB_SHA', '')
+        require(re.fullmatch(r'[0-9a-f]{40}', workflow_commit), 'Missing workflow commit')
+        receipt['workflow_commit'] = workflow_commit
     (directory / receipt_name(platform)).write_text(json.dumps(receipt, indent=2) + '\n')
     return receipt
 
@@ -82,6 +85,8 @@ def validate(receipt, platform, sha, repository, directory=None):
     require(receipt.get('builder') == ('github-actions' if platform == 'windows' else 'local'), 'Unexpected platform builder')
     if platform == 'windows':
         require(type(receipt.get('workflow_run')) is int and receipt['workflow_run'] > 0, 'Missing Windows workflow run')
+    if 'workflow_commit' in receipt:
+        require(re.fullmatch(r'[0-9a-f]{40}', receipt['workflow_commit']), 'Invalid workflow commit')
     files = receipt.get('files', {})
     require(bool(files), 'Empty build receipt')
     if platform in FILES:
