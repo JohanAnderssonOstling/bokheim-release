@@ -171,6 +171,11 @@ jobs:
         shell: pwsh
         run: python shared/pdfium/prepare.py --target x86_64-pc-windows-msvc
 
+      - name: Resolve release dependencies
+        working-directory: bokheim
+        shell: pwsh
+        run: cargo generate-lockfile
+
       - name: Build GPUI desktop release
         working-directory: bokheim
         shell: pwsh

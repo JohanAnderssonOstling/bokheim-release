@@ -157,6 +157,8 @@ jobs:
           PY
       - name: Prepare PDFium inputs
         run: python3 shared/pdfium/prepare.py --target "${{ matrix.target }}"
+      - name: Resolve release dependencies
+        run: cargo generate-lockfile
       - name: Build optimized desktop app
         run: cargo desktop --release --timings --target "${{ matrix.target }}"
       - name: Retain Cargo build timings
