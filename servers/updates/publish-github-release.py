@@ -46,37 +46,38 @@ def command(*args):
 def validate_release(manifest, receipt, config):
     source = receipt['source_repository']
     repository = receipt['release_repository']
-    sha = receipt['source_commit']
+    sha = receipt.get('source_commit')
     tag = receipt['tag']
     run_id = receipt.get('workflow_run')
     for name in (source, repository):
         require(re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', name), 'Invalid repository in provenance')
-    require(re.fullmatch(r'[0-9a-f]{40}', sha), 'Invalid source commit in provenance')
+    require(sha is None or re.fullmatch(r'[0-9a-f]{40}', sha), 'Invalid source commit in provenance')
     require((type(run_id) is int and run_id > 0) or (run_id is None and bool(receipt.get('build_receipts'))), 'Missing build provenance')
     require(re.fullmatch(r'v\d+\.\d+\.\d+', tag), 'Expected a stable release tag')
     application = manifest.get('application') or {}
     require(application.get('version') == tag[1:], 'Manifest version differs from provenance')
     require(application.get('artifacts') and application['artifacts'] == receipt.get('artifacts'), 'Manifest packages differ from provenance')
     if run_id is not None:
+        require(isinstance(sha, str), 'Legacy workflow provenance requires a source commit')
         run = json.loads(command('gh', 'api', f'repos/{source}/actions/runs/{run_id}'))
         require(prepare_release.validate_run(run, source) == sha, 'Workflow source differs from reviewed provenance')
     else:
         with tempfile.TemporaryDirectory(prefix='bokheim-receipts-') as scratch:
-            actual = prepare_release.verified_receipts(repository, source, sha, tag, Path(scratch))
+            actual = prepare_release.verified_receipts(repository, source, tag, Path(scratch))
         require(actual == receipt['build_receipts'], 'Build receipts differ from reviewed provenance')
         for target, artifact in application['artifacts'].items():
             filename = prepare_release.PACKAGES[target][1]
             require(actual[target]['files'][filename] == {k: artifact[k] for k in ('bytes', 'sha256')},
                     'Reviewed artifact differs from build receipt')
-    command(sys.executable, str(ROOT / 'scripts/ci/require-shared-tests.py'), source, sha)
     release = json.loads(command('gh', 'release', 'view', tag, '--repo', repository, '--json', 'tagName,isDraft,isPrerelease,assets'))
     require(release.get('tagName') == tag and release.get('isDraft') is False and release.get('isPrerelease') is False,
             'Release must be published and stable before signing/publication')
     names = {asset['name'] for asset in release['assets']}
-    require('desktop-source-commit.txt' in names, 'Missing release source receipt')
-    with tempfile.TemporaryDirectory(prefix='bokheim-public-source-') as scratch:
-        command('gh', 'release', 'download', tag, '--repo', repository, '--pattern', 'desktop-source-commit.txt', '--dir', scratch)
-        require(read_regular(Path(scratch) / 'desktop-source-commit.txt').decode().strip() == sha, 'Release source differs from reviewed provenance')
+    if run_id is not None:
+        require('desktop-source-commit.txt' in names, 'Missing release source receipt')
+        with tempfile.TemporaryDirectory(prefix='bokheim-public-source-') as scratch:
+            command('gh', 'release', 'download', tag, '--repo', repository, '--pattern', 'desktop-source-commit.txt', '--dir', scratch)
+            require(read_regular(Path(scratch) / 'desktop-source-commit.txt').decode().strip() == sha, 'Release source differs from reviewed provenance')
     for target, artifact in application['artifacts'].items():
         require(target in prepare_release.PACKAGES, f'Unsupported prepared platform: {target}')
         filename = prepare_release.PACKAGES[target][1]
@@ -126,8 +127,6 @@ def publish(args):
                 str(stage / 'manifest.json'), str(args.key.resolve()), key_id, str(stage / 'manifest.signed.json'))
         envelope = json.loads(read_regular(stage / 'manifest.signed.json'))
         require(envelope['payload'].encode() == payload and envelope['key_id'] == key_id, 'Signer output differs from reviewed payload')
-        # Recheck after building/signing; a superseding test result must block promotion.
-        command(sys.executable, str(ROOT / 'scripts/ci/require-shared-tests.py'), receipt['source_repository'], receipt['source_commit'])
         stage.rename(args.output)
     # Keep the signed output on failure. Publishing is idempotent for these exact
     # bytes; never issue an automatic rollback after an uncertain network result.

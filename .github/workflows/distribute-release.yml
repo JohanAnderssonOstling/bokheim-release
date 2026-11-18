@@ -120,7 +120,7 @@ jobs:
                   assert metadata['artifact']['name'] == image.name
                   assert artifacts.fingerprint(image) == {key: metadata['artifact'][key] for key in ('bytes', 'sha256')}
                   names = [image.name, image.name + '.sha256', 'build-macos.json']
-              source = directory / ('kobo-source-commit.txt' if platform == 'kobo' else 'desktop-source-commit.txt')
+              source = directory / (platform + '-source-commit.txt')
               source.write_text(sha + '\n')
               names.append(source.name)
               uploads = []

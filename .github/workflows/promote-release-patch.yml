@@ -11,7 +11,7 @@ on:
         required: true
         type: string
       source_commit:
-        description: Application source commit in the patch receipts
+        description: Patch generation reference; packages retain their individual build commits
         required: true
         type: string
       kobo_source_commit:

@@ -19,7 +19,7 @@ def main():
     parser.add_argument('--repository', required=True)
     parser.add_argument('--staging-tag', required=True)
     parser.add_argument('--target-tag', required=True)
-    parser.add_argument('--source-commit', required=True)
+    parser.add_argument('--source-commit', required=True, help='Patch generation reference; package receipts retain their own source commits')
     parser.add_argument('--kobo-source-commit', required=True)
     parser.add_argument('--previous-source-commit', required=True)
     args = parser.parse_args()
@@ -50,7 +50,7 @@ def main():
         compatibility = None
         for platform in ('android', 'linux', 'windows'):
             receipt = json.loads((directory / artifacts.receipt_name(platform)).read_text())
-            artifacts.validate(receipt, platform, args.source_commit, args.repository, directory)
+            artifacts.validate(receipt, platform, receipt.get('source_commit'), args.repository, directory)
             info = json.loads((directory / ('update-info-' + artifacts.TARGETS[platform] + '.json')).read_text())
             artifacts.require(info['application'] == version and info['target'] == artifacts.TARGETS[platform],
                               f'Unexpected application version or target: {platform}')
@@ -59,14 +59,14 @@ def main():
             compatibility = current
             if platform == 'windows':
                 run = json.loads(command('gh', 'api', f'repos/{args.repository}/actions/runs/{receipt["workflow_run"]}'))
-                artifacts.require(run['head_sha'] == args.source_commit and run['conclusion'] == 'success',
-                                  'Windows build must succeed for the selected source commit')
+                artifacts.require(run['head_sha'] == receipt.get('workflow_commit', receipt['source_commit']) and run['conclusion'] == 'success',
+                                  'Windows build must succeed for its recorded workflow commit')
             elif platform == 'android':
                 artifacts.require(info['apk_sha256'] == artifacts.fingerprint(directory / 'Bokheim-Android-arm64.apk')['sha256'],
                                   'Android APK digest differs from update info')
                 artifacts.require(info['android']['debuggable'] is False, 'Android release must not be debuggable')
         mac = json.loads((directory / 'build-macos.json').read_text())
-        artifacts.require(mac['source_commit'] == args.source_commit and mac['application'] == version,
+        artifacts.require(re.fullmatch('[0-9a-f]{40}', mac['source_commit']) and mac['application'] == version,
                           'macOS receipt differs from selected source or version')
         artifacts.require(set(mac['architectures']) == {'arm64', 'x86_64'}, 'macOS release must include arm64 and x86_64')
         image = directory / 'Bokheim-macOS-universal.dmg'

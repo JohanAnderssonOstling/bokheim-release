@@ -7,7 +7,6 @@ import os
 from pathlib import Path
 import re
 import subprocess
-import tempfile
 
 ROOT = Path(__file__).resolve().parents[2]
 TARGETS = {'linux': 'linux-x86_64-appimage', 'android': 'android-aarch64-apk',
@@ -81,7 +80,8 @@ def validate(receipt, platform, sha, repository, directory=None):
     protocol = receipt.get('protocol_version')
     require(protocol in ((1, 2) if platform in ('linux', 'windows') else (1,))
             and receipt.get('platform') == TARGETS[platform], 'Wrong receipt platform/protocol')
-    require(receipt.get('source_commit') == sha and receipt.get('source_repository') == repository, 'Receipt source mismatch')
+    require(isinstance(sha, str) and re.fullmatch(r'[0-9a-f]{40}', sha)
+            and receipt.get('source_commit') == sha and receipt.get('source_repository') == repository, 'Receipt source mismatch')
     require(receipt.get('builder') == ('github-actions' if platform == 'windows' else 'local'), 'Unexpected platform builder')
     if platform == 'windows':
         require(type(receipt.get('workflow_run')) is int and receipt['workflow_run'] > 0, 'Missing Windows workflow run')
@@ -133,14 +133,8 @@ def upload(platform, directory, repository, tag):
         command('gh', 'release', 'create', tag, '--repo', repository, '--verify-tag', '--draft', '--title', f'Bokheim {tag[1:]}')
     release = json.loads(command('gh', 'release', 'view', tag, '--repo', repository, '--json', 'isDraft,assets'))
     require(release['isDraft'], 'Cannot overwrite a public release')
-    with tempfile.TemporaryDirectory(prefix='bokheim-upload-') as scratch:
-        source = Path(scratch) / 'desktop-source-commit.txt'
-        if any(a['name'] == source.name for a in release['assets']):
-            command('gh', 'release', 'download', tag, '--repo', repository, '--pattern', source.name, '--dir', scratch)
-            require(source.read_text().strip() == sha, 'Draft already contains a different source commit')
-        source.write_text(sha + '\n')
-        command('gh', 'release', 'upload', tag, '--repo', repository, '--clobber',
-                *[str(directory / name) for name in receipt['files']], str(directory / receipt_name(platform)), str(source))
+    command('gh', 'release', 'upload', tag, '--repo', repository, '--clobber',
+            *[str(directory / name) for name in receipt['files']], str(directory / receipt_name(platform)))
 
 
 def main():
