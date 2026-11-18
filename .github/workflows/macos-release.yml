@@ -184,6 +184,18 @@ jobs:
           path: ${{ runner.temp }}/macos-package/*
           if-no-files-found: error
 
+      - name: Retain compiled macOS inputs after a packaging failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bokheim-macos-${{ matrix.arch }}-compiled-inputs
+          path: |
+            bokheim/target/${{ matrix.target }}/release/bokheim
+            bokheim/target/${{ matrix.target }}/release/bokheim-browser
+            bokheim/target/${{ matrix.target }}/release/build/subject-projection-*/out/**
+            bokheim/target/${{ matrix.target }}/release/fonts/**
+          if-no-files-found: ignore
+
   universal:
     name: Package universal macOS download
     needs: build
