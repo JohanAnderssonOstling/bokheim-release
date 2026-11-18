@@ -57,7 +57,7 @@ jobs:
           - runner: macos-15-intel
             arch: x86_64
             target: x86_64-apple-darwin
-    runs-on: ${{ matrix.runner }}
+    runs-on: ${{ inputs.repackage_run && 'macos-15-intel' || matrix.runner }}
     timeout-minutes: 90
     defaults:
       run:
