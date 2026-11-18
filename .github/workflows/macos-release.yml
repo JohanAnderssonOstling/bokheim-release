@@ -13,6 +13,10 @@ on:
         description: Optional application source commit to package
         type: string
         required: false
+      repackage_run:
+        description: Completed workflow run whose retained binaries should be repackaged without compilation
+        type: string
+        required: false
       build_only:
         description: Compatibility input; release builds do not run tests
         required: true
@@ -25,6 +29,7 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 permissions:
+  actions: read
   contents: read
   statuses: read
 
@@ -71,6 +76,7 @@ jobs:
           sparse-checkout: |
             apps/desktop-gpui/macos/package.py
             scripts/ci/build-native.py
+            scripts/ci/recover-native.py
             scripts/ci/build_cache.py
             scripts/ci/release_config.py
             scripts/ci/release-config.json
@@ -161,7 +167,15 @@ jobs:
       - name: Prepare PDFium inputs
         run: python3 shared/pdfium/prepare.py --target "${{ matrix.target }}"
       - name: Build optimized desktop app
-        run: python3 ../release-packager/scripts/ci/build-native.py cargo desktop --release --timings --target "${{ matrix.target }}"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPACKAGE_RUN: ${{ inputs.repackage_run }}
+        run: |
+          if [[ -n "$REPACKAGE_RUN" ]]; then
+            python3 ../release-packager/scripts/ci/recover-native.py "$REPACKAGE_RUN" "${{ matrix.arch }}"
+          else
+            python3 ../release-packager/scripts/ci/build-native.py cargo desktop --release --timings --target "${{ matrix.target }}"
+          fi
       - name: Retain Cargo build timings
         if: always()
         uses: actions/upload-artifact@v4
@@ -192,6 +206,8 @@ jobs:
           path: |
             bokheim/target/${{ matrix.target }}/release/bokheim
             bokheim/target/${{ matrix.target }}/release/bokheim-browser
+            bokheim/target/${{ matrix.target }}/release/taxonomy.sqlite3
+            bokheim/target/${{ matrix.target }}/release/taxonomy.digest
             bokheim/target/${{ matrix.target }}/release/build/subject-projection*/**
             bokheim/target/${{ matrix.target }}/release/fonts/**
           if-no-files-found: ignore

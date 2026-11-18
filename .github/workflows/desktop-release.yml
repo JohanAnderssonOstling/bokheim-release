@@ -13,6 +13,10 @@ on:
         description: Optional application source commit for build-only packaging
         type: string
         required: false
+      repackage_run:
+        description: Completed workflow run whose retained binaries should be repackaged without compilation
+        type: string
+        required: false
       build_only:
         description: Compatibility input; release builds do not run tests
         required: true
@@ -23,6 +27,7 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 permissions:
+  actions: read
   contents: read
   statuses: read
 
@@ -69,7 +74,9 @@ jobs:
           path: release-tools
           ref: ${{ github.sha }}
           sparse-checkout: |
+            apps/desktop-gpui/windows/Bokheim.iss
             scripts/ci/build-native.py
+            scripts/ci/recover-native.py
             scripts/ci/release_config.py
             scripts/ci/release-config.json
       - name: Load release configuration
@@ -180,7 +187,16 @@ jobs:
       - name: Build GPUI desktop release
         working-directory: bokheim
         shell: pwsh
-        run: python ../release-tools/scripts/ci/build-native.py cargo desktop --release --timings
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPACKAGE_RUN: ${{ inputs.repackage_run }}
+        run: |
+          if ($env:REPACKAGE_RUN) {
+            python ../release-tools/scripts/ci/recover-native.py $env:REPACKAGE_RUN windows
+          } else {
+            python ../release-tools/scripts/ci/build-native.py cargo desktop --release --timings
+          }
+          if ($LASTEXITCODE -ne 0) { throw "Native build or recovery failed" }
 
       - name: Retain Cargo build timings
         if: always()
@@ -209,7 +225,7 @@ jobs:
           if (!(Test-Path $iscc)) {
             throw "Inno Setup compiler was not found"
           }
-          & $iscc "/DMyAppVersion=$env:BOKHEIM_VERSION" "/DSourceExe=$sourceExe" "/DOutputDir=$outputDir" "/DIconFile=$iconFile" "apps/desktop-gpui/windows/Bokheim.iss"
+          & $iscc "/DMyAppVersion=$env:BOKHEIM_VERSION" "/DSourceExe=$sourceExe" "/DOutputDir=$outputDir" "/DIconFile=$iconFile" "../release-tools/apps/desktop-gpui/windows/Bokheim.iss"
           if ($LASTEXITCODE -ne 0) {
             throw "Inno Setup failed with exit code $LASTEXITCODE"
           }
@@ -286,6 +302,8 @@ jobs:
           path: |
             bokheim/target/release/bokheim.exe
             bokheim/target/release/bokheim-browser.exe
+            bokheim/target/release/taxonomy.sqlite3
+            bokheim/target/release/taxonomy.digest
             bokheim/target/release/build/subject-projection*/**
             bokheim/target/release/fonts/**
           if-no-files-found: ignore

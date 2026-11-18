@@ -64,6 +64,12 @@ python3 scripts/ci/dispatch-build.py macos --source-commit FULL_PUSHED_COMMIT
 python3 scripts/ci/dispatch-build.py kobo --source-commit FULL_PUSHED_COMMIT
 ```
 
+After a packaging failure, supply `repackage_run` with the completed workflow
+run ID and keep the same `source_commit`. The workflow checks the retained build's
+source and successful compilation, restores its binaries and generated taxonomy,
+and repeats packaging without invoking Cargo for the application. Bundled fonts
+are staged explicitly and included in the Windows installer.
+
 These commands build optimized binaries with tests and automatic publication
 disabled. In the Actions UI, select `ci/release-builds`, supply `source_commit`,
 and enable `build_only` for the same behavior. Hosted caches are separate for

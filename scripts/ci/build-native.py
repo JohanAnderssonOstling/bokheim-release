@@ -51,6 +51,7 @@ def main():
     profile, = profiles
     for source, name in [('unified-taxonomy-client-v2.sqlite3', 'taxonomy.sqlite3'), ('taxonomy.digest', 'taxonomy.digest')]:
         shutil.copyfile(output / source, profile / name)
+    shutil.copytree(Path('apps/desktop-gpui/assets/fonts'), profile / 'fonts', dirs_exist_ok=True)
     print(f'Staged native taxonomy in {profile}', flush=True)
 
 
