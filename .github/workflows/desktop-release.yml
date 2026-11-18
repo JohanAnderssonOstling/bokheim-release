@@ -179,7 +179,7 @@ jobs:
       - name: Build GPUI desktop release
         working-directory: bokheim
         shell: pwsh
-        run: cargo desktop --release --timings
+        run: python scripts/ci/build-native.py cargo desktop --release --timings
 
       - name: Retain Cargo build timings
         if: always()
