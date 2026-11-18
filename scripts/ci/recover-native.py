@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Repackage retained native binaries after a failed packaging job, without Cargo."""
+"""Repackage retained native binaries without recompiling the application."""
 import argparse
 import json
 from pathlib import Path
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 
 
@@ -43,14 +44,23 @@ def main():
         scratch = Path(scratch)
         command('gh', 'run', 'download', str(args.run), '--repo', repository, '--name', artifact, '--dir', str(scratch))
         generated = scratch / 'taxonomy.sqlite3'
-        if not generated.is_file():
-            generated, = list(scratch.rglob('unified-taxonomy-client-v2.sqlite3'))
         for name in ['bokheim', 'bokheim-browser']:
             filename = name + ('.exe' if windows else '')
             shutil.copy2(scratch / filename, profile / filename)
             (profile / filename).chmod(0o755)
-        shutil.copyfile(generated, profile / 'taxonomy.sqlite3')
-        shutil.copyfile(generated.with_name('taxonomy.digest'), profile / 'taxonomy.digest')
+        if not generated.is_file():
+            candidates = list(scratch.rglob('unified-taxonomy-client-v2.sqlite3'))
+            if candidates:
+                generated, = candidates
+        if generated.is_file():
+            shutil.copyfile(generated, profile / 'taxonomy.sqlite3')
+            shutil.copyfile(generated.with_name('taxonomy.digest'), profile / 'taxonomy.digest')
+        else:
+            # Early retention jobs kept only the executables. Regenerate their
+            # platform-independent resource from the verified application source.
+            subprocess.run([sys.executable, str(Path(__file__).with_name('build-native.py')),
+                            'cargo', 'build', '--locked', '--release', '-p', 'subject-projection',
+                            *(['--target', target] if target else [])], check=True)
     shutil.copytree(Path('apps/desktop-gpui/assets/fonts'), profile / 'fonts', dirs_exist_ok=True)
     print(f'Recovered {args.platform} binaries and generated taxonomy from run {args.run}, source {source}')
 
