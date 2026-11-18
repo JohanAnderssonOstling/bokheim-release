@@ -286,7 +286,7 @@ jobs:
           path: |
             bokheim/target/release/bokheim.exe
             bokheim/target/release/bokheim-browser.exe
-            bokheim/target/release/build/subject-projection-*/out/**
+            bokheim/target/release/build/subject-projection*/**
             bokheim/target/release/fonts/**
           if-no-files-found: ignore
 

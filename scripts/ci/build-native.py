@@ -33,8 +33,11 @@ def main():
                 if taxonomy:
                     outputs.add(Path(message['out_dir']))
             elif message.get('reason') == 'compiler-artifact' and taxonomy and 'lib' in message['target']['kind']:
-                profile = Path(message['filenames'][0]).parent
-                profiles.add(profile.parent if profile.name == 'deps' else profile)
+                for filename in message['filenames']:
+                    artifact = Path(filename)
+                    if artifact.suffix in ('.rlib', '.rmeta'):
+                        profile = artifact.parent
+                        profiles.add(profile.parent if profile.name == 'deps' else profile)
             elif message.get('reason') == 'compiler-message':
                 rendered = message['message'].get('rendered')
                 if rendered:

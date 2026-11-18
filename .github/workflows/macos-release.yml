@@ -192,7 +192,7 @@ jobs:
           path: |
             bokheim/target/${{ matrix.target }}/release/bokheim
             bokheim/target/${{ matrix.target }}/release/bokheim-browser
-            bokheim/target/${{ matrix.target }}/release/build/subject-projection-*/out/**
+            bokheim/target/${{ matrix.target }}/release/build/subject-projection*/**
             bokheim/target/${{ matrix.target }}/release/fonts/**
           if-no-files-found: ignore
 
