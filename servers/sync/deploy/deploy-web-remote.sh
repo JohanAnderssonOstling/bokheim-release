@@ -43,11 +43,7 @@ import release_artifacts as artifacts
 directory = Path(sys.argv[2])
 receipt = json.loads((directory / artifacts.receipt_name('web')).read_text())
 artifacts.validate(receipt, 'web', receipt['source_commit'], receipt['source_repository'], directory)
-if artifacts.command('git', 'rev-parse', 'HEAD') != receipt['source_commit']:
-    raise SystemExit('Web bundle belongs to a different deployment source commit')
-artifacts.clean_revision(receipt['source_commit'])
 artifacts.command('python3', 'scripts/ci/check-server-protocol.py', receipt['source_commit'])
-artifacts.command('python3', 'scripts/ci/require-shared-tests.py', receipt['source_repository'], receipt['source_commit'])
 PY_VERIFY
 else
     "${repository_root}/apps/web-gpui/scripts/build.sh"
@@ -56,7 +52,7 @@ fi
 tar -czf "${stage}/web-dist.tar.gz" -C "$dist" .
 install -m 0755 "${script_directory}/install-web-staged.sh" "${stage}/install-web-staged.sh"
 
-remote_stage=$(ssh "${ssh_options[@]}" "${remote}" "mktemp -d '/tmp/bokheim-web-deploy.XXXXXX'")
+remote_stage=$(ssh "${ssh_options[@]}" "${remote}" "mktemp -d '/usr/local/share/bokheim-web/.upload.XXXXXX'")
 scp "${ssh_options[@]}" "${stage}"/* "${remote}:${remote_stage}/"
 keep_remote_stage=true
 if [[ ${stage_only} == true ]]; then

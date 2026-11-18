@@ -69,6 +69,7 @@ jobs:
           path: release-tools
           ref: ${{ github.sha }}
           sparse-checkout: |
+            scripts/ci/build-native.py
             scripts/ci/release_config.py
             scripts/ci/release-config.json
       - name: Load release configuration
@@ -108,6 +109,11 @@ jobs:
         run: |
           rustup toolchain install $env:RUST_VERSION --profile minimal
           rustup default $env:RUST_VERSION
+
+      - name: Resolve release dependencies
+        working-directory: bokheim
+        shell: pwsh
+        run: cargo generate-lockfile
 
       - name: Restore Cargo dependencies and build artifacts
         uses: Swatinem/rust-cache@v2
@@ -171,15 +177,10 @@ jobs:
         shell: pwsh
         run: python shared/pdfium/prepare.py --target x86_64-pc-windows-msvc
 
-      - name: Resolve release dependencies
-        working-directory: bokheim
-        shell: pwsh
-        run: cargo generate-lockfile
-
       - name: Build GPUI desktop release
         working-directory: bokheim
         shell: pwsh
-        run: python scripts/ci/build-native.py cargo desktop --release --timings
+        run: python ../release-tools/scripts/ci/build-native.py cargo desktop --release --timings
 
       - name: Retain Cargo build timings
         if: always()
@@ -276,6 +277,19 @@ jobs:
           name: bokheim-desktop-windows-x86-64
           path: bokheim/release/*
           if-no-files-found: error
+
+      - name: Retain compiled Windows inputs after a packaging failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bokheim-windows-compiled-inputs
+          path: |
+            bokheim/target/release/bokheim.exe
+            bokheim/target/release/bokheim-browser.exe
+            bokheim/target/release/build/subject-projection-*/out/**
+            bokheim/target/release/fonts/**
+          if-no-files-found: ignore
+
 
 
   publish-draft:

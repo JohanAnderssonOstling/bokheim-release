@@ -70,6 +70,7 @@ jobs:
           ref: ${{ github.sha }}
           sparse-checkout: |
             apps/desktop-gpui/macos/package.py
+            scripts/ci/build-native.py
             scripts/ci/build_cache.py
             scripts/ci/release_config.py
             scripts/ci/release-config.json
@@ -110,6 +111,8 @@ jobs:
           fi
           xcrun --sdk macosx --find metal
           xcrun --sdk macosx --find metallib
+      - name: Resolve release dependencies
+        run: cargo generate-lockfile
       - uses: Swatinem/rust-cache@v2
         with:
           prefix-key: bokheim-macos-v1
@@ -157,10 +160,8 @@ jobs:
           PY
       - name: Prepare PDFium inputs
         run: python3 shared/pdfium/prepare.py --target "${{ matrix.target }}"
-      - name: Resolve release dependencies
-        run: cargo generate-lockfile
       - name: Build optimized desktop app
-        run: python3 scripts/ci/build-native.py cargo desktop --release --timings --target "${{ matrix.target }}"
+        run: python3 ../release-packager/scripts/ci/build-native.py cargo desktop --release --timings --target "${{ matrix.target }}"
       - name: Retain Cargo build timings
         if: always()
         uses: actions/upload-artifact@v4

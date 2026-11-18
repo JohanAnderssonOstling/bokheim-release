@@ -15,8 +15,8 @@ remote_config=${BOKHEIM_UPDATES_REMOTE_CONFIG:-/etc/bokheim-updates.json}
 repo=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)
 # Pin the target directory so a caller's CARGO_TARGET_DIR cannot select a stale binary.
 cargo build --release --manifest-path "$repo/Cargo.toml" --target-dir "$repo/target" -p update-publisher
-stage=$(ssh "$host" 'mktemp -d /tmp/bokheim-update-publish.XXXXXXXX')
-[[ "$stage" =~ ^/tmp/bokheim-update-publish\.[a-zA-Z0-9]+$ ]] || { echo "Unexpected staging path" >&2; exit 1; }
+stage=$(ssh "$host" 'mktemp -d /srv/bokheim-updates/.publish-upload.XXXXXXXX')
+[[ "$stage" =~ ^/srv/bokheim-updates/\.publish-upload\.[a-zA-Z0-9]+$ ]] || { echo "Unexpected staging path" >&2; exit 1; }
 scp "$repo/target/release/update-publisher" "$host:$stage/update-publisher"
 scp -r "$bundle" "$host:$stage/bundle"
 # Config contains only independently installed public trust keys. The private
