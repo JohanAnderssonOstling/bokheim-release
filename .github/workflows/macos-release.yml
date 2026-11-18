@@ -13,6 +13,10 @@ on:
         description: Optional application source commit to package
         type: string
         required: false
+      bundle_run:
+        description: Assemble a universal DMG from completed architecture packages in this workflow run
+        type: string
+        required: false
       repackage_run:
         description: Completed workflow run whose retained binaries should be repackaged without compilation
         type: string
@@ -46,6 +50,7 @@ env:
 
 jobs:
   build:
+    if: ${{ !inputs.bundle_run }}
     name: Build ${{ matrix.arch }} macOS
     strategy:
       fail-fast: false
@@ -215,9 +220,11 @@ jobs:
   universal:
     name: Package universal macOS download
     needs: build
-    runs-on: macos-15
+    if: ${{ !cancelled() && (needs.build.result == 'success' || inputs.bundle_run != '') }}
+    runs-on: macos-15-intel
     timeout-minutes: 20
     permissions:
+      actions: read
       contents: write
       statuses: read
     defaults:
@@ -240,6 +247,8 @@ jobs:
           python-version: "3.12"
       - uses: actions/download-artifact@v4
         with:
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.bundle_run || github.run_id }}
           pattern: bokheim-macos-*
           path: packages
       - name: Combine, sign and verify universal app
