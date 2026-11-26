@@ -122,8 +122,8 @@ jobs:
           fi
           xcrun --sdk macosx --find metal
           xcrun --sdk macosx --find metallib
-      - name: Resolve release dependencies
-        run: cargo generate-lockfile
+      - name: Fetch locked release dependencies
+        run: cargo fetch --locked
       - uses: Swatinem/rust-cache@v2
         with:
           prefix-key: bokheim-macos-v1

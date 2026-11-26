@@ -117,10 +117,10 @@ jobs:
           rustup toolchain install $env:RUST_VERSION --profile minimal
           rustup default $env:RUST_VERSION
 
-      - name: Resolve release dependencies
+      - name: Fetch locked release dependencies
         working-directory: bokheim
         shell: pwsh
-        run: cargo generate-lockfile
+        run: cargo fetch --locked
 
       - name: Restore Cargo dependencies and build artifacts
         uses: Swatinem/rust-cache@v2
